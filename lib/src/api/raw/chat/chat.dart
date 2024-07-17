@@ -78,8 +78,6 @@ class ChatRawApi {
     );
   }
 
-  //  TODO(kevin): should we have this /chat/ws-event endpoint ?
-
   Future<Map<String, dynamic>> blockedChats() {
     final logger = Logger('Xoxno.ChatRawApi.blockedChats');
     logger.finest('blocked chats');
