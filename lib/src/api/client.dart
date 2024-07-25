@@ -6,7 +6,7 @@ import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
 final _logger = Logger('Xoxno.Client');
 
-abstract class IRenewedTokens {
+interface class IRenewedTokens {
   final String accessToken;
   final String refreshToken;
 
