@@ -7,7 +7,8 @@ class ChatRawApi {
 
   const ChatRawApi(this._client);
 
-  Future<List> send({required final Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> send(
+      {required final Map<String, dynamic> body}) {
     final logger = Logger('Xoxno.ChatRawApi.send');
     logger.finest('send');
     return genericPost(

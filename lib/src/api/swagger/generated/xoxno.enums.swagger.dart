@@ -1,6 +1,26 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
+enum TransactionProcessStatusStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('success')
+  success('success'),
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('invalid')
+  invalid('invalid'),
+  @JsonValue('fail')
+  fail('fail'),
+  @JsonValue('notFound')
+  notfound('notFound');
+
+  final String? value;
+
+  const TransactionProcessStatusStatus(this.value);
+}
+
 enum NftActivityFilterCriteriaDtoActivityType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

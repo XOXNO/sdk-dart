@@ -22,6 +22,21 @@ Map<String, dynamic> _$ErrorResponseDtoToJson(ErrorResponseDto instance) =>
       'path': instance.path,
     };
 
+LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) => LoginRequest(
+      address: json['address'] as String,
+      loginToken: json['loginToken'] as String,
+      signature: json['signature'] as String,
+      data: json['data'] as Object,
+    );
+
+Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'loginToken': instance.loginToken,
+      'signature': instance.signature,
+      'data': instance.data,
+    };
+
 LoginAccessDto _$LoginAccessDtoFromJson(Map<String, dynamic> json) =>
     LoginAccessDto(
       accessToken: json['access_token'] as String,
@@ -291,10 +306,8 @@ UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
       profile: json['profile'] as String,
       banner: json['banner'] as String,
       description: json['description'] as String,
-      email: json['email'] as String,
       herotag: json['herotag'] as String,
       isCreator: json['isCreator'] as bool,
-      creatorInfo: json['creatorInfo'] as Object,
       isPoolOwner: json['isPoolOwner'] as bool,
       userDeposit: (json['userDeposit'] as List<dynamic>?)
               ?.map((e) => UserDepositDto.fromJson(e as Map<String, dynamic>))
@@ -318,10 +331,8 @@ Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
       'profile': instance.profile,
       'banner': instance.banner,
       'description': instance.description,
-      'email': instance.email,
       'herotag': instance.herotag,
       'isCreator': instance.isCreator,
-      'creatorInfo': instance.creatorInfo,
       'isPoolOwner': instance.isPoolOwner,
       'userDeposit': instance.userDeposit.map((e) => e.toJson()).toList(),
       'followCount': instance.followCount,
@@ -340,16 +351,16 @@ VerifyEmailDto _$VerifyEmailDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VerifyEmailDtoToJson(VerifyEmailDto instance) =>
     <String, dynamic>{};
 
-TradesilvaniaSignature _$TradesilvaniaSignatureFromJson(
-        Map<String, dynamic> json) =>
-    TradesilvaniaSignature(
-      url: json['url'] as String,
+UserUpdateDTO _$UserUpdateDTOFromJson(Map<String, dynamic> json) =>
+    UserUpdateDTO(
+      socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+      description: json['description'] as String,
     );
 
-Map<String, dynamic> _$TradesilvaniaSignatureToJson(
-        TradesilvaniaSignature instance) =>
+Map<String, dynamic> _$UserUpdateDTOToJson(UserUpdateDTO instance) =>
     <String, dynamic>{
-      'url': instance.url,
+      'socials': instance.socials.toJson(),
+      'description': instance.description,
     };
 
 SuccessDto _$SuccessDtoFromJson(Map<String, dynamic> json) => SuccessDto(
@@ -967,40 +978,6 @@ SignMintDto _$SignMintDtoFromJson(Map<String, dynamic> json) => SignMintDto();
 Map<String, dynamic> _$SignMintDtoToJson(SignMintDto instance) =>
     <String, dynamic>{};
 
-TradeDataDto _$TradeDataDtoFromJson(Map<String, dynamic> json) => TradeDataDto(
-      dayEgldVolume: (json['dayEgldVolume'] as num).toDouble(),
-      weekEgldVolume: (json['weekEgldVolume'] as num).toDouble(),
-      totalEgldVolume: (json['totalEgldVolume'] as num).toDouble(),
-      totalTrades: (json['totalTrades'] as num).toDouble(),
-      averageEgldPrice: (json['averageEgldPrice'] as num).toDouble(),
-      athEgldPrice: (json['athEgldPrice'] as num).toDouble(),
-      athTxHash: json['athTxHash'] as String,
-    );
-
-Map<String, dynamic> _$TradeDataDtoToJson(TradeDataDto instance) =>
-    <String, dynamic>{
-      'dayEgldVolume': instance.dayEgldVolume,
-      'weekEgldVolume': instance.weekEgldVolume,
-      'totalEgldVolume': instance.totalEgldVolume,
-      'totalTrades': instance.totalTrades,
-      'averageEgldPrice': instance.averageEgldPrice,
-      'athEgldPrice': instance.athEgldPrice,
-      'athTxHash': instance.athTxHash,
-    };
-
-MintDataDto _$MintDataDtoFromJson(Map<String, dynamic> json) => MintDataDto(
-      totalMintEgldVolume: (json['totalMintEgldVolume'] as num).toDouble(),
-      weekMintEgldVolume: (json['weekMintEgldVolume'] as num).toDouble(),
-      dayMintEgldVolume: (json['dayMintEgldVolume'] as num).toDouble(),
-    );
-
-Map<String, dynamic> _$MintDataDtoToJson(MintDataDto instance) =>
-    <String, dynamic>{
-      'totalMintEgldVolume': instance.totalMintEgldVolume,
-      'weekMintEgldVolume': instance.weekMintEgldVolume,
-      'dayMintEgldVolume': instance.dayMintEgldVolume,
-    };
-
 OtherDataDto _$OtherDataDtoFromJson(Map<String, dynamic> json) => OtherDataDto(
       nftCount: (json['nftCount'] as num).toDouble(),
       followCount: (json['followCount'] as num).toDouble(),
@@ -1016,16 +993,11 @@ Map<String, dynamic> _$OtherDataDtoToJson(OtherDataDto instance) =>
 
 StatisticsDto _$StatisticsDtoFromJson(Map<String, dynamic> json) =>
     StatisticsDto(
-      tradeData:
-          TradeDataDto.fromJson(json['tradeData'] as Map<String, dynamic>),
-      mintData: MintDataDto.fromJson(json['mintData'] as Map<String, dynamic>),
       other: OtherDataDto.fromJson(json['other'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StatisticsDtoToJson(StatisticsDto instance) =>
     <String, dynamic>{
-      'tradeData': instance.tradeData.toJson(),
-      'mintData': instance.mintData.toJson(),
       'other': instance.other.toJson(),
     };
 
@@ -1049,8 +1021,6 @@ CollectionProfileDto _$CollectionProfileDtoFromJson(
       id: json['id'] as String,
       socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       type: json['type'] as String,
-      lastVerifiedTimestamp: (json['lastVerifiedTimestamp'] as num).toDouble(),
-      lastVerifiedBy: json['lastVerifiedBy'] as String,
       ts: (json['_ts'] as num).toDouble(),
     );
 
@@ -1073,8 +1043,6 @@ Map<String, dynamic> _$CollectionProfileDtoToJson(
       'id': instance.id,
       'socials': instance.socials.toJson(),
       'type': instance.type,
-      'lastVerifiedTimestamp': instance.lastVerifiedTimestamp,
-      'lastVerifiedBy': instance.lastVerifiedBy,
       '_ts': instance.ts,
     };
 
@@ -1113,6 +1081,20 @@ Map<String, dynamic> _$PinnedCollectionDtoToJson(
       'description': instance.description,
       'creator': instance.creator,
       'isMintable': instance.isMintable,
+    };
+
+CollectionPinnedStatusDto _$CollectionPinnedStatusDtoFromJson(
+        Map<String, dynamic> json) =>
+    CollectionPinnedStatusDto(
+      collection: json['collection'] as String,
+      status: json['status'] as bool,
+    );
+
+Map<String, dynamic> _$CollectionPinnedStatusDtoToJson(
+        CollectionPinnedStatusDto instance) =>
+    <String, dynamic>{
+      'collection': instance.collection,
+      'status': instance.status,
     };
 
 PriceDto _$PriceDtoFromJson(Map<String, dynamic> json) => PriceDto(
@@ -1557,6 +1539,7 @@ StakingSummary _$StakingSummaryFromJson(Map<String, dynamic> json) =>
     StakingSummary(
       poolId: (json['poolId'] as num).toDouble(),
       name: json['name'] as String,
+      description: json['description'] as String,
       stakingEnabled: json['stakingEnabled'] as bool,
       profile: json['profile'] as String,
       collection: (json['collection'] as List<dynamic>?)
@@ -1596,6 +1579,7 @@ Map<String, dynamic> _$StakingSummaryToJson(StakingSummary instance) =>
     <String, dynamic>{
       'poolId': instance.poolId,
       'name': instance.name,
+      'description': instance.description,
       'stakingEnabled': instance.stakingEnabled,
       'profile': instance.profile,
       'collection': instance.collection,
@@ -1620,6 +1604,18 @@ Map<String, dynamic> _$StakingSummaryToJson(StakingSummary instance) =>
       'daysLeft': instance.daysLeft,
       'cutFee': instance.cutFee,
       'percentageFilled': instance.percentageFilled,
+    };
+
+StakingPostDTO _$StakingPostDTOFromJson(Map<String, dynamic> json) =>
+    StakingPostDTO(
+      name: json['name'] as String,
+      description: json['description'] as String,
+    );
+
+Map<String, dynamic> _$StakingPostDTOToJson(StakingPostDTO instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'description': instance.description,
     };
 
 OwnedCollectionsDto _$OwnedCollectionsDtoFromJson(Map<String, dynamic> json) =>
@@ -1943,11 +1939,93 @@ Map<String, dynamic> _$GetUsersStatsResponseDtoToJson(
       'usersStats': instance.usersStats.map((e) => e.toJson()).toList(),
     };
 
+TransactionProcessStatus _$TransactionProcessStatusFromJson(
+        Map<String, dynamic> json) =>
+    TransactionProcessStatus(
+      reason: json['reason'] as String,
+      status: transactionProcessStatusStatusFromJson(json['status']),
+    );
+
+Map<String, dynamic> _$TransactionProcessStatusToJson(
+        TransactionProcessStatus instance) =>
+    <String, dynamic>{
+      'reason': instance.reason,
+      'status': transactionProcessStatusStatusToJson(instance.status),
+    };
+
 TransactionCreate _$TransactionCreateFromJson(Map<String, dynamic> json) =>
-    TransactionCreate();
+    TransactionCreate(
+      chainId: json['chainId'] as String,
+      data: json['data'] as String,
+      gasLimit: (json['gasLimit'] as num).toDouble(),
+      gasPrice: (json['gasPrice'] as num).toDouble(),
+      nonce: (json['nonce'] as num).toDouble(),
+      receiver: json['receiver'] as String,
+      receiverUsername: json['receiverUsername'] as String?,
+      sender: json['sender'] as String,
+      senderUsername: json['senderUsername'] as String?,
+      signature: json['signature'] as String,
+      $value: json['value'] as String,
+      version: (json['version'] as num).toDouble(),
+      options: (json['options'] as num?)?.toDouble(),
+      guardian: json['guardian'] as String?,
+      guardianSignature: json['guardianSignature'] as String?,
+    );
 
 Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'chainId': instance.chainId,
+      'data': instance.data,
+      'gasLimit': instance.gasLimit,
+      'gasPrice': instance.gasPrice,
+      'nonce': instance.nonce,
+      'receiver': instance.receiver,
+      'receiverUsername': instance.receiverUsername,
+      'sender': instance.sender,
+      'senderUsername': instance.senderUsername,
+      'signature': instance.signature,
+      'value': instance.$value,
+      'version': instance.version,
+      'options': instance.options,
+      'guardian': instance.guardian,
+      'guardianSignature': instance.guardianSignature,
+    };
+
+TransactionSendResult _$TransactionSendResultFromJson(
+        Map<String, dynamic> json) =>
+    TransactionSendResult(
+      receiver: json['receiver'] as String,
+      receiverShard: (json['receiverShard'] as num).toDouble(),
+      sender: json['sender'] as String,
+      senderShard: (json['senderShard'] as num).toDouble(),
+      status: json['status'] as String,
+      txHash: json['txHash'] as String,
+    );
+
+Map<String, dynamic> _$TransactionSendResultToJson(
+        TransactionSendResult instance) =>
+    <String, dynamic>{
+      'receiver': instance.receiver,
+      'receiverShard': instance.receiverShard,
+      'sender': instance.sender,
+      'senderShard': instance.senderShard,
+      'status': instance.status,
+      'txHash': instance.txHash,
+    };
+
+BatchTransactionResponse _$BatchTransactionResponseFromJson(
+        Map<String, dynamic> json) =>
+    BatchTransactionResponse(
+      status: json['status'] as String,
+      txHash: json['txHash'] as String,
+    );
+
+Map<String, dynamic> _$BatchTransactionResponseToJson(
+        BatchTransactionResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'txHash': instance.txHash,
+    };
 
 CollectionDto _$CollectionDtoFromJson(Map<String, dynamic> json) =>
     CollectionDto(
@@ -2062,11 +2140,55 @@ Map<String, dynamic> _$GlobalSearchResponseDtoToJson(
       'resources': instance.resources.toJson(),
     };
 
-ChatMessageDto _$ChatMessageDtoFromJson(Map<String, dynamic> json) =>
-    ChatMessageDto();
+ChatMessageReplyDto _$ChatMessageReplyDtoFromJson(Map<String, dynamic> json) =>
+    ChatMessageReplyDto(
+      sender: json['sender'] as String,
+      content:
+          ChatMessageReplyDto.fromJson(json['content'] as Map<String, dynamic>),
+      timestamp: (json['timestamp'] as num).toDouble(),
+      id: json['id'] as String,
+    );
 
-Map<String, dynamic> _$ChatMessageDtoToJson(ChatMessageDto instance) =>
-    <String, dynamic>{};
+Map<String, dynamic> _$ChatMessageReplyDtoToJson(
+        ChatMessageReplyDto instance) =>
+    <String, dynamic>{
+      'sender': instance.sender,
+      'content': instance.content.toJson(),
+      'timestamp': instance.timestamp,
+      'id': instance.id,
+    };
+
+ChatMessageContentDto _$ChatMessageContentDtoFromJson(
+        Map<String, dynamic> json) =>
+    ChatMessageContentDto(
+      type: json['type'] as String,
+      $value: json['value'] as String,
+      replyTo:
+          ChatMessageReplyDto.fromJson(json['replyTo'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ChatMessageContentDtoToJson(
+        ChatMessageContentDto instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'value': instance.$value,
+      'replyTo': instance.replyTo.toJson(),
+    };
+
+SendChatMessageDto _$SendChatMessageDtoFromJson(Map<String, dynamic> json) =>
+    SendChatMessageDto(
+      sender: json['sender'] as String,
+      content: ChatMessageContentDto.fromJson(
+          json['content'] as Map<String, dynamic>),
+      receiver: json['receiver'] as String,
+    );
+
+Map<String, dynamic> _$SendChatMessageDtoToJson(SendChatMessageDto instance) =>
+    <String, dynamic>{
+      'sender': instance.sender,
+      'content': instance.content.toJson(),
+      'receiver': instance.receiver,
+    };
 
 ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => ProfileDto(
       address: json['address'] as String,
@@ -2098,15 +2220,39 @@ Map<String, dynamic> _$MessageContentDtoToJson(MessageContentDto instance) =>
 MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) => MessageDto(
       content:
           MessageContentDto.fromJson(json['content'] as Map<String, dynamic>),
-      sender: json['sender'] as String,
+      isRead: json['isRead'] as bool,
       timestamp: (json['timestamp'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$MessageDtoToJson(MessageDto instance) =>
     <String, dynamic>{
       'content': instance.content.toJson(),
-      'sender': instance.sender,
+      'isRead': instance.isRead,
       'timestamp': instance.timestamp,
+    };
+
+ChatMessageDto _$ChatMessageDtoFromJson(Map<String, dynamic> json) =>
+    ChatMessageDto(
+      dataType: json['dataType'] as String,
+      chatId: json['chatId'] as String,
+      receiver: ProfileDto.fromJson(json['receiver'] as Map<String, dynamic>),
+      sender: ProfileDto.fromJson(json['sender'] as Map<String, dynamic>),
+      isGroupChat: json['isGroupChat'] as bool,
+      message: MessageDto.fromJson(json['message'] as Map<String, dynamic>),
+      id: json['id'] as String,
+      chatName: json['chatName'] as String,
+    );
+
+Map<String, dynamic> _$ChatMessageDtoToJson(ChatMessageDto instance) =>
+    <String, dynamic>{
+      'dataType': instance.dataType,
+      'chatId': instance.chatId,
+      'receiver': instance.receiver.toJson(),
+      'sender': instance.sender.toJson(),
+      'isGroupChat': instance.isGroupChat,
+      'message': instance.message.toJson(),
+      'id': instance.id,
+      'chatName': instance.chatName,
     };
 
 ChatConversationDto _$ChatConversationDtoFromJson(Map<String, dynamic> json) =>
@@ -2637,4 +2783,95 @@ Map<String, dynamic> _$NftDocFilterToJson(NftDocFilter instance) =>
       'filters': instance.filters.toJson(),
       'strictSelect': instance.strictSelect,
       'applyNftExtraDetails': instance.applyNftExtraDetails,
+    };
+
+UserAddressUploadPicturePut$RequestBody
+    _$UserAddressUploadPicturePut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        UserAddressUploadPicturePut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$UserAddressUploadPicturePut$RequestBodyToJson(
+        UserAddressUploadPicturePut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+UserAddressUploadBannerPut$RequestBody
+    _$UserAddressUploadBannerPut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        UserAddressUploadBannerPut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$UserAddressUploadBannerPut$RequestBodyToJson(
+        UserAddressUploadBannerPut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+UserAddressCreatorUploadPicturePut$RequestBody
+    _$UserAddressCreatorUploadPicturePut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        UserAddressCreatorUploadPicturePut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$UserAddressCreatorUploadPicturePut$RequestBodyToJson(
+        UserAddressCreatorUploadPicturePut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+UserAddressCreatorUploadBannerPut$RequestBody
+    _$UserAddressCreatorUploadBannerPut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        UserAddressCreatorUploadBannerPut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$UserAddressCreatorUploadBannerPut$RequestBodyToJson(
+        UserAddressCreatorUploadBannerPut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+CollectionCollectionUploadPicturePut$RequestBody
+    _$CollectionCollectionUploadPicturePut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        CollectionCollectionUploadPicturePut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$CollectionCollectionUploadPicturePut$RequestBodyToJson(
+        CollectionCollectionUploadPicturePut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+CollectionCollectionUploadBannerPut$RequestBody
+    _$CollectionCollectionUploadBannerPut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        CollectionCollectionUploadBannerPut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$CollectionCollectionUploadBannerPut$RequestBodyToJson(
+        CollectionCollectionUploadBannerPut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
+    };
+
+PoolPoolIdUploadPicturePut$RequestBody
+    _$PoolPoolIdUploadPicturePut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        PoolPoolIdUploadPicturePut$RequestBody(
+          file: json['file'] as String,
+        );
+
+Map<String, dynamic> _$PoolPoolIdUploadPicturePut$RequestBodyToJson(
+        PoolPoolIdUploadPicturePut$RequestBody instance) =>
+    <String, dynamic>{
+      'file': instance.file,
     };

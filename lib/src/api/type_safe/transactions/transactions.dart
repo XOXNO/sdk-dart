@@ -18,24 +18,26 @@ class TransactionsTypeSafeApi {
     return data;
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> transactionStatus({required final String txHash}) async {
+  Future<TransactionProcessStatus> transactionStatus(
+      {required final String txHash}) async {
     final data = await _api.transactionStatus(txHash: txHash);
-    return data;
+    return TransactionProcessStatus.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> createTransaction({
+  Future<TransactionSendResult> createTransaction({
     required final TransactionCreate transaction,
   }) async {
     final data = await _api.createTransaction(body: transaction.toJson());
-    return data;
+    return TransactionSendResult.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  // TODO(kevin): missing body
-  Future<dynamic> batchTransactions() async {
-    final data = await _api.batchTransactions(body: []);
-    return data;
+  Future<dynamic> batchTransactions({
+    required final List<TransactionCreate> transactions,
+  }) async {
+    final data = await _api.batchTransactions(
+        body: transactions.map((tx) => tx.toJson()).toList());
+    return data
+        .map((element) => BatchTransactionResponse.fromJson(element))
+        .toList();
   }
 }

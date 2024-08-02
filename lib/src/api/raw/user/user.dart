@@ -7,13 +7,14 @@ class UserRawApi {
 
   const UserRawApi(this._client);
 
-  Future<Map<String, dynamic>> login() {
+  Future<Map<String, dynamic>> login({
+    required final Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.UserRawApi.login');
     logger.finest('login');
     return genericPost(
-      _client,
-      generateUri(path: '${_client.baseUrl}/user/login'),
-    );
+        _client, generateUri(path: '${_client.baseUrl}/user/login'),
+        body: body);
   }
 
   Future<Map<String, dynamic>> networkAccountForAddress(
@@ -145,20 +146,6 @@ class UserRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> buySignature({
-    required final Map<String, dynamic> body,
-  }) {
-    final logger = Logger('Xoxno.UserRawApi.buySignature');
-    logger.finest('buy signature');
-    return genericPost(
-      _client,
-      generateUri(
-        path: '${_client.baseUrl}/user/buy/signature',
-      ),
-      body: body,
-    );
-  }
-
   Future<Map<String, dynamic>> uploadPicture({
     required final String address,
     required final Map<String, dynamic> body,
@@ -191,7 +178,6 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> resetPicture({
     required final String address,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.UserRawApi.resetPicture');
     logger.finest('reset picture');
@@ -200,13 +186,11 @@ class UserRawApi {
       generateUri(
         path: '${_client.baseUrl}/user/$address/reset-picture',
       ),
-      body: body,
     );
   }
 
   Future<Map<String, dynamic>> resetBanner({
     required final String address,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.UserRawApi.resetBanner');
     logger.finest('reset banner');
@@ -215,7 +199,6 @@ class UserRawApi {
       generateUri(
         path: '${_client.baseUrl}/user/$address/reset-banner',
       ),
-      body: body,
     );
   }
 
@@ -283,7 +266,6 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> creatorResetPicture({
     required final String address,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.UserRawApi.creatorResetPicture');
     logger.finest('creator reset picture');
@@ -292,13 +274,11 @@ class UserRawApi {
       generateUri(
         path: '${_client.baseUrl}/user/$address/creator/reset-picture',
       ),
-      body: body,
     );
   }
 
   Future<Map<String, dynamic>> creatorResetBanner({
     required final String address,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.UserRawApi.creatorResetBanner');
     logger.finest('creator reset banner');
@@ -307,7 +287,6 @@ class UserRawApi {
       generateUri(
         path: '${_client.baseUrl}/user/$address/creator/reset-banner',
       ),
-      body: body,
     );
   }
 
@@ -333,14 +312,12 @@ class UserRawApi {
 
   Future<List> follow({
     required final String address,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.UserRawApi.follow');
     logger.finest('follow');
     return genericPost(
       _client,
       generateUri(path: '${_client.baseUrl}/user/$address/follow'),
-      body: body,
     );
   }
 

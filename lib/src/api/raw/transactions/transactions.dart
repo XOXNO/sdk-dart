@@ -25,8 +25,8 @@ class TransactionsRawApi {
     );
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> transactionStatus({required final String txHash}) {
+  Future<Map<String, dynamic>> transactionStatus(
+      {required final String txHash}) {
     final logger = Logger('Xoxno.TransactionsRawApi.transactionStatus');
     logger.finest('transactions status');
     return genericGet(
@@ -37,8 +37,7 @@ class TransactionsRawApi {
     );
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> createTransaction({
+  Future<Map<String, dynamic>> createTransaction({
     required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.TransactionsRawApi.createTransaction');
@@ -52,8 +51,8 @@ class TransactionsRawApi {
     );
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> batchTransactions({required final List body}) {
+  Future<List<Map<String, dynamic>>> batchTransactions(
+      {required final List body}) {
     final logger = Logger('Xoxno.TransactionsRawApi.batchTransactions');
     logger.finest('batch transactions');
     return genericPost(
