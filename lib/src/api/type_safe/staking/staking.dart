@@ -11,9 +11,10 @@ class StakingTypeSafeApi {
     return StakingSummary.fromJson(data);
   }
 
-  // TODO(kevin): missing body
-  Future<StakingSummary> updateProfile({required final String poolId}) async {
-    final data = await _api.updateProfile(poolId: poolId, body: {});
+  Future<StakingSummary> updateProfile(
+      {required final String poolId,
+      required final StakingPostDTO body}) async {
+    final data = await _api.updateProfile(poolId: poolId, body: body.toJson());
     return StakingSummary.fromJson(data);
   }
 

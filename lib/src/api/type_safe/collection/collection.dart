@@ -50,11 +50,12 @@ class CollectionTypeSafeApi {
     return CollectionProfileDto.fromJson(data);
   }
 
-  //  TODO(kevin): add missing body
   Future<CollectionProfileDto> updateProfile({
     required final String collection,
+    required final UserUpdateDTO body,
   }) async {
-    final data = await _api.updateProfile(collection: collection, body: {});
+    final data =
+        await _api.updateProfile(collection: collection, body: body.toJson());
     return CollectionProfileDto.fromJson(data);
   }
 
@@ -81,9 +82,8 @@ class CollectionTypeSafeApi {
   }
 
   // TODO(kevin): missing return type
-  // TODO(kevin): missing body
   Future<dynamic> follow({required final String collection}) async {
-    final data = await _api.follow(collection: collection, body: {});
+    final data = await _api.follow(collection: collection);
     return data;
   }
 
@@ -128,19 +128,17 @@ class CollectionTypeSafeApi {
     return CollectionProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CollectionProfileDto> resetPicture({
     required final String collection,
   }) async {
-    final data = await _api.resetPicture(collection: collection, body: {});
+    final data = await _api.resetPicture(collection: collection);
     return CollectionProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CollectionProfileDto> resetBanner({
     required final String collection,
   }) async {
-    final data = await _api.resetBanner(collection: collection, body: {});
+    final data = await _api.resetBanner(collection: collection);
     return CollectionProfileDto.fromJson(data);
   }
 

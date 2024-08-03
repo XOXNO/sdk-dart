@@ -144,7 +144,6 @@ class CollectionRawApi {
 
   Future<Map<String, dynamic>> follow({
     required final String collection,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.follow');
     logger.finest('follow');
@@ -153,7 +152,6 @@ class CollectionRawApi {
       generateUri(
         path: '${_client.baseUrl}/collection/$collection/follow',
       ),
-      body: body,
     );
   }
 
@@ -242,7 +240,6 @@ class CollectionRawApi {
 
   Future<Map<String, dynamic>> resetPicture({
     required final String collection,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.resetPicture');
     logger.finest('reset picture');
@@ -251,13 +248,11 @@ class CollectionRawApi {
       generateUri(
         path: '${_client.baseUrl}/collection/$collection/reset-picture',
       ),
-      body: body,
     );
   }
 
   Future<Map<String, dynamic>> resetBanner({
     required final String collection,
-    required final Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.resetBanner');
     logger.finest('reset banner');
@@ -266,7 +261,6 @@ class CollectionRawApi {
       generateUri(
         path: '${_client.baseUrl}/collection/$collection/reset-banner',
       ),
-      body: body,
     );
   }
 

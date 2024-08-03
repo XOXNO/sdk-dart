@@ -8,9 +8,8 @@ class UserTypeSafeApi {
 
   const UserTypeSafeApi(this._api);
 
-  // TODO(kevin): missing body
-  Future<LoginAccessDto> login() async {
-    final data = await _api.login();
+  Future<LoginAccessDto> login({required final LoginRequest body}) async {
+    final data = await _api.login(body: body.toJson());
     return LoginAccessDto.fromJson(data);
   }
 
@@ -88,34 +87,25 @@ class UserTypeSafeApi {
     return UserSettingsDto.fromJson(data);
   }
 
-  Future<UserSettingsDto> buySignature({
-    required final TradesilvaniaSignature signature,
-  }) async {
-    final data = await _api.buySignature(body: signature.toJson());
-    return UserSettingsDto.fromJson(data);
-  }
-
-  // TODO(kevin): missing body
+  // TODO(kevin): requires file upload
   Future<UserProfileDto> uploadPicture({required final String address}) async {
     final data = await _api.uploadPicture(address: address, body: {});
     return UserProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
+  // TODO(kevin): requires file upload
   Future<UserProfileDto> uploadBanner({required final String address}) async {
     final data = await _api.uploadBanner(address: address, body: {});
     return UserProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<UserProfileDto> resetPicture({required final String address}) async {
-    final data = await _api.resetPicture(address: address, body: {});
+    final data = await _api.resetPicture(address: address);
     return UserProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<UserProfileDto> resetBanner({required final String address}) async {
-    final data = await _api.resetBanner(address: address, body: {});
+    final data = await _api.resetBanner(address: address);
     return UserProfileDto.fromJson(data);
   }
 
@@ -130,11 +120,11 @@ class UserTypeSafeApi {
     return CreatorProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CreatorProfileDto> updateCreatorProfile({
     required final String address,
+    required final UserUpdateDTO body,
   }) async {
-    final data = await _api.updateCreatorProfile(address: address, body: {});
+    final data = await _api.updateCreatorProfile(address: address, body: body.toJson());
     return CreatorProfileDto.fromJson(data);
   }
 
@@ -154,19 +144,17 @@ class UserTypeSafeApi {
     return CreatorProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CreatorProfileDto> creatorResetPicture({
     required final String address,
   }) async {
-    final data = await _api.creatorResetPicture(address: address, body: {});
+    final data = await _api.creatorResetPicture(address: address);
     return CreatorProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CreatorProfileDto> creatorResetBanner({
     required final String address,
   }) async {
-    final data = await _api.creatorResetBanner(address: address, body: {});
+    final data = await _api.creatorResetBanner(address: address);
     return CreatorProfileDto.fromJson(data);
   }
 
@@ -182,9 +170,8 @@ class UserTypeSafeApi {
     return CheckLikeStatusResponseDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<void> follow({required final String address}) async {
-    await _api.follow(address: address, body: {});
+    await _api.follow(address: address);
   }
 
   Future<List<String>> favoriteUsers({required String address}) async {

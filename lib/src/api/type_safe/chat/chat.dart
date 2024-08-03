@@ -6,10 +6,10 @@ class ChatTypeSafeApi {
 
   const ChatTypeSafeApi(this._api);
 
-  // TODO(kevin): missing return type
-  Future<dynamic> send({required final ChatMessageDto message}) async {
+  Future<ChatMessageDto> send(
+      {required final SendChatMessageDto message}) async {
     final data = await _api.send(body: message.toJson());
-    return data;
+    return ChatMessageDto.fromJson(data);
   }
 
   Future<FetchChatConversationsSummaryDto> conversations() async {

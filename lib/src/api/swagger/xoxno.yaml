@@ -4,7 +4,14 @@ paths:
     post:
       operationId: UserDataController_loginUser
       summary: Login and get access token
-      parameters: []
+      parameters:
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
       responses:
         "201":
           description: Access token and expiration time
@@ -110,7 +117,16 @@ paths:
     post:
       operationId: UserDataController_retrieveBulkUserMvxAccount
       summary: Get user bulk network info
-      parameters: []
+      parameters:
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
       responses:
         "201":
           description: User bulk network info response
@@ -218,6 +234,13 @@ paths:
           in: path
           schema:
             type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdateDTO"
       responses:
         "200":
           description: User private profile patch response
@@ -319,7 +342,8 @@ paths:
     patch:
       operationId: UserDataController_setNotificationPreferences
       summary: Get user settings after update
-      parameters: []
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -359,7 +383,8 @@ paths:
     patch:
       operationId: UserDataController_updateEmailSettings
       summary: Path user email settings
-      parameters: []
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -432,7 +457,8 @@ paths:
     post:
       operationId: UserDataController_verifyEmailAddress
       summary: Verify user pending email!
-      parameters: []
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -468,40 +494,6 @@ paths:
         - User
       security:
         - bearer: []
-  /user/buy/signature:
-    post:
-      operationId: UserDataController_buyTokens
-      summary: Tradesilvania signature
-      parameters: []
-      responses:
-        "201":
-          description: Signature for buys
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TradesilvaniaSignature"
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "403":
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-      tags:
-        - User
-      security:
-        - bearer: []
   /user/{address}/upload-picture:
     put:
       operationId: UserDataController_setUserProfilePicture
@@ -512,6 +504,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: User private profile patch response
@@ -551,6 +555,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: User private profile patch response
@@ -741,6 +757,13 @@ paths:
           in: path
           schema:
             type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatorProfileDto"
       responses:
         "200":
           description: Creator profile information updated successfully
@@ -780,6 +803,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: Creator profile information updated successfully
@@ -819,6 +854,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: Creator profile information updated successfully
@@ -1855,7 +1902,8 @@ paths:
     post:
       operationId: NftDataController_signListingWithdraw
       summary: Get signed data
-      parameters: []
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -1901,6 +1949,7 @@ paths:
           in: path
           schema:
             type: string
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -1946,6 +1995,7 @@ paths:
           in: path
           schema:
             type: string
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -2059,6 +2109,13 @@ paths:
           in: path
           schema:
             type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollectionProfileDto"
       responses:
         "200":
           description: Updated collection profile
@@ -2178,6 +2235,80 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/PinnedCollectionDto"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "403":
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+      tags:
+        - Collection
+  /collection/{collection}/pinned-drops:
+    get:
+      operationId: CollectionDataController_retrieveCollectionPinnedToDrops
+      summary: Return pin status for collection within drops page
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Drops page pinned status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionPinnedStatusDto"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "403":
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+      tags:
+        - Collection
+  /collection/{collection}/pinned:
+    get:
+      operationId: CollectionDataController_retrieveCollectionPinned
+      summary: Return pin status for collection within home page
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Home page pinned status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionPinnedStatusDto"
         "400":
           description: Bad Request
           content:
@@ -2394,6 +2525,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: Updated collection profile
@@ -2433,6 +2576,18 @@ paths:
           in: path
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: Updated collection profile
@@ -2857,6 +3012,12 @@ paths:
           in: path
           schema:
             type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StakingPostDTO"
       responses:
         "200":
           description: Update staking pool summary response
@@ -2928,6 +3089,18 @@ paths:
           in: path
           schema:
             type: number
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         "200":
           description: Update staking pool summary response
@@ -3678,47 +3851,10 @@ paths:
         - bearer: []
       tags:
         - User
-  /transactions/{txHash}:
-    get:
-      operationId: TransactionController_getTransaction
-      parameters:
-        - name: txHash
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: withResults
-          required: false
-          in: query
-          description: Include smart contract results in the response. Default is false.
-          schema:
-            type: boolean
-      responses:
-        "200":
-          description: ""
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "403":
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-      tags:
-        - Transactions
   /transactions/{txHash}/status:
     get:
       operationId: TransactionController_getTransactionStatus
+      summary: Check the final transaction status
       parameters:
         - name: txHash
           required: true
@@ -3727,7 +3863,11 @@ paths:
             type: string
       responses:
         "200":
-          description: ""
+          description: Transaction status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionProcessStatus"
         "400":
           description: Bad Request
           content:
@@ -3751,7 +3891,9 @@ paths:
   /transactions:
     post:
       operationId: TransactionController_createTransaction
-      parameters: []
+      summary: Send a transaction to the blockchain
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -3760,7 +3902,11 @@ paths:
               $ref: "#/components/schemas/TransactionCreate"
       responses:
         "201":
-          description: ""
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionSendResult"
         "400":
           description: Bad Request
           content:
@@ -3784,7 +3930,9 @@ paths:
   /transactions/batch:
     post:
       operationId: TransactionController_createTransactionBatch
-      parameters: []
+      summary: Send a transaction to the blockchain
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
@@ -3792,10 +3940,16 @@ paths:
             schema:
               type: array
               items:
-                type: string
+                $ref: "#/components/schemas/TransactionCreate"
       responses:
         "201":
-          description: ""
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BatchTransactionResponse"
         "400":
           description: Bad Request
           content:
@@ -3897,7 +4051,7 @@ paths:
   /collection/search:
     get:
       operationId: SearchDataController_collectionSearch
-      summary: Global User Search
+      summary: Global collection Search
       parameters:
         - name: filter
           required: false
@@ -3908,7 +4062,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Global user search response
+          description: Global collection search response
           content:
             application/json:
               schema:
@@ -3936,7 +4090,7 @@ paths:
   /collection/drops/search:
     get:
       operationId: SearchDataController_collectionDropsSearch
-      summary: Global User Search
+      summary: Global collection drops Search
       parameters:
         - name: filter
           required: false
@@ -3947,7 +4101,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Global user search response
+          description: Global collection drops search response
           content:
             application/json:
               schema:
@@ -3972,20 +4126,64 @@ paths:
                 $ref: "#/components/schemas/ErrorResponseDto"
       tags:
         - Search
+  /nft/search/query:
+    get:
+      operationId: SearchDataController_nftSearch
+      summary: Global nft search
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NftDocFilter"
+          description: 'A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}'
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "403":
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+      tags:
+        - Search
   /user/chat/message:
     post:
       operationId: ChatDataController_sendChatMessage
       summary: Send a private message
-      parameters: []
+      parameters:
+        - schema: {}
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChatMessageDto"
+              $ref: "#/components/schemas/SendChatMessageDto"
       responses:
         "201":
           description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatMessageDto"
         "400":
           description: Bad Request
           content:
@@ -4529,6 +4727,26 @@ components:
         - message
         - timestamp
         - path
+    LoginRequest:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The address of the user
+        loginToken:
+          type: string
+          description: The login token
+        signature:
+          type: string
+          description: The signature of the login token
+        data:
+          type: object
+          description: Additional data as key-value pairs
+      required:
+        - address
+        - loginToken
+        - signature
+        - data
     LoginAccessDto:
       type: object
       properties:
@@ -4913,17 +5131,12 @@ components:
         description:
           type: string
           example: Testing XOXNO V3.2
-        email:
-          type: string
-          example: me@dani.ro
         herotag:
           type: string
           example: "@mihaieremia"
         isCreator:
           type: boolean
           example: false
-        creatorInfo:
-          type: object
         isPoolOwner:
           type: boolean
           example: true
@@ -4950,10 +5163,8 @@ components:
         - profile
         - banner
         - description
-        - email
         - herotag
         - isCreator
-        - creatorInfo
         - isPoolOwner
         - userDeposit
         - followCount
@@ -4965,14 +5176,17 @@ components:
     VerifyEmailDto:
       type: object
       properties: {}
-    TradesilvaniaSignature:
+    UserUpdateDTO:
       type: object
       properties:
-        url:
+        socials:
+          $ref: "#/components/schemas/SocialsDto"
+        description:
           type: string
-          example: htps://tradesilvania.com/asdasd
+          example: Testing XOXNO V3.2
       required:
-        - url
+        - socials
+        - description
     SuccessDto:
       type: object
       properties:
@@ -5778,54 +5992,6 @@ components:
     SignMintDto:
       type: object
       properties: {}
-    TradeDataDto:
-      type: object
-      properties:
-        dayEgldVolume:
-          type: number
-          example: 0.54
-        weekEgldVolume:
-          type: number
-          example: 6.47
-        totalEgldVolume:
-          type: number
-          example: 1229.08
-        totalTrades:
-          type: number
-          example: 3676
-        averageEgldPrice:
-          type: number
-          example: 0.33
-        athEgldPrice:
-          type: number
-          example: 25
-        athTxHash:
-          type: string
-          example: 25c5bbac8cbdb2651ee4ec492b732cf2e3ac52f4bc309590bc4ecd8718f9009e
-      required:
-        - dayEgldVolume
-        - weekEgldVolume
-        - totalEgldVolume
-        - totalTrades
-        - averageEgldPrice
-        - athEgldPrice
-        - athTxHash
-    MintDataDto:
-      type: object
-      properties:
-        totalMintEgldVolume:
-          type: number
-          example: 0
-        weekMintEgldVolume:
-          type: number
-          example: 0
-        dayMintEgldVolume:
-          type: number
-          example: 0
-      required:
-        - totalMintEgldVolume
-        - weekMintEgldVolume
-        - dayMintEgldVolume
     OtherDataDto:
       type: object
       properties:
@@ -5845,15 +6011,9 @@ components:
     StatisticsDto:
       type: object
       properties:
-        tradeData:
-          $ref: "#/components/schemas/TradeDataDto"
-        mintData:
-          $ref: "#/components/schemas/MintDataDto"
         other:
           $ref: "#/components/schemas/OtherDataDto"
       required:
-        - tradeData
-        - mintData
         - other
     CollectionProfileDto:
       type: object
@@ -5907,12 +6067,6 @@ components:
         type:
           type: string
           example: NonFungibleESDT
-        lastVerifiedTimestamp:
-          type: number
-          example: 1679149986
-        lastVerifiedBy:
-          type: string
-          example: erd16ldp9t8g9xaeteyupgqmuwqus00rkdzkf7sn0td25krk3j4luq2s5mn6cd
         _ts:
           type: number
           example: 1720568178
@@ -5933,8 +6087,6 @@ components:
         - id
         - socials
         - type
-        - lastVerifiedTimestamp
-        - lastVerifiedBy
         - _ts
     FloorPriceDto:
       type: object
@@ -5984,6 +6136,18 @@ components:
         - banner
         - description
         - creator
+    CollectionPinnedStatusDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection ticker
+        status:
+          type: boolean
+          description: Pinned status
+      required:
+        - collection
+        - status
     PriceDto:
       type: object
       properties:
@@ -6622,6 +6786,10 @@ components:
           type: string
           description: Pool name
           example: SRB - MiceCity
+        description:
+          type: string
+          description: Pool description
+          example: The largest staking pool
         stakingEnabled:
           type: boolean
           description: Staking enabled
@@ -6727,6 +6895,7 @@ components:
       required:
         - poolId
         - name
+        - description
         - stakingEnabled
         - profile
         - collection
@@ -6751,6 +6920,20 @@ components:
         - daysLeft
         - cutFee
         - percentageFilled
+    StakingPostDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Pool name
+          example: SRB - MiceCity
+        description:
+          type: string
+          description: Pool description
+          example: The largest staking pool
+      required:
+        - name
+        - description
     OwnedCollectionsDto:
       type: object
       properties:
@@ -7149,9 +7332,124 @@ components:
             $ref: "#/components/schemas/UserStatsDto"
       required:
         - usersStats
+    TransactionProcessStatus:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: The error reason
+          default: ""
+        status:
+          type: string
+          description: The status of the transaction
+          enum:
+            - success
+            - pending
+            - invalid
+            - fail
+            - notFound
+      required:
+        - reason
+        - status
     TransactionCreate:
       type: object
-      properties: {}
+      properties:
+        chainId:
+          type: string
+          description: The chain ID
+        data:
+          type: string
+          description: The transaction data
+        gasLimit:
+          type: number
+          description: The gas limit for the transaction
+        gasPrice:
+          type: number
+          description: The gas price for the transaction
+        nonce:
+          type: number
+          description: The nonce for the transaction
+        receiver:
+          type: string
+          description: The receiver address
+        receiverUsername:
+          type: string
+          description: The receiver username
+        sender:
+          type: string
+          description: The sender address
+        senderUsername:
+          type: string
+          description: The sender username
+        signature:
+          type: string
+          description: The signature of the transaction
+        value:
+          type: string
+          description: The value of the transaction
+        version:
+          type: number
+          description: The version of the transaction
+        options:
+          type: number
+          description: Optional transaction options
+        guardian:
+          type: string
+          description: Optional guardian address
+        guardianSignature:
+          type: string
+          description: Optional guardian signature
+      required:
+        - chainId
+        - data
+        - gasLimit
+        - gasPrice
+        - nonce
+        - receiver
+        - sender
+        - signature
+        - value
+        - version
+    TransactionSendResult:
+      type: object
+      properties:
+        receiver:
+          type: string
+          description: The receiver address
+        receiverShard:
+          type: number
+          description: The shard of the receiver
+        sender:
+          type: string
+          description: The sender address
+        senderShard:
+          type: number
+          description: The shard of the sender
+        status:
+          type: string
+          description: The status of the transaction
+        txHash:
+          type: string
+          description: The transaction hash
+      required:
+        - receiver
+        - receiverShard
+        - sender
+        - senderShard
+        - status
+        - txHash
+    BatchTransactionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status of the transaction
+        txHash:
+          type: string
+          description: The transaction hash
+      required:
+        - status
+        - txHash
     CollectionDto:
       type: object
       properties:
@@ -7294,9 +7592,57 @@ components:
         - count
         - hasMoreResults
         - resources
-    ChatMessageDto:
+    ChatMessageReplyDto:
       type: object
-      properties: {}
+      properties:
+        sender:
+          type: string
+          description: Message sender
+        content:
+          description: Message value
+          allOf:
+            - $ref: "#/components/schemas/ChatMessageReplyDto"
+        timestamp:
+          type: number
+          description: Message timestamp
+        id:
+          type: string
+          description: Message id
+      required:
+        - sender
+        - content
+        - timestamp
+        - id
+    ChatMessageContentDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Message type
+        value:
+          type: string
+          description: Message value
+        replyTo:
+          description: Message reply to user
+          allOf:
+            - $ref: "#/components/schemas/ChatMessageReplyDto"
+      required:
+        - type
+        - value
+        - replyTo
+    SendChatMessageDto:
+      type: object
+      properties:
+        sender:
+          type: string
+        content:
+          $ref: "#/components/schemas/ChatMessageContentDto"
+        receiver:
+          type: string
+      required:
+        - sender
+        - content
+        - receiver
     ProfileDto:
       type: object
       properties:
@@ -7332,16 +7678,49 @@ components:
       properties:
         content:
           $ref: "#/components/schemas/MessageContentDto"
-        sender:
-          type: string
-          example: erd1ykh4wsrln0yn4jk7qq49wlsm0j7nvu4pf3zdqakla0vzrplk37ls7swz5y
+        isRead:
+          type: boolean
+          example: true
         timestamp:
           type: number
           example: 1720468991
       required:
         - content
-        - sender
+        - isRead
         - timestamp
+    ChatMessageDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          example: message
+        chatId:
+          type: string
+          example: a0vzrplk37ls7swz5ypz78f83grt9qm6pn57
+        receiver:
+          $ref: "#/components/schemas/ProfileDto"
+        sender:
+          $ref: "#/components/schemas/ProfileDto"
+        isGroupChat:
+          type: boolean
+          example: false
+        message:
+          $ref: "#/components/schemas/MessageDto"
+        id:
+          type: string
+          example: b02f639a-abcf-4db8-9397-bdb3b60cef6a
+        chatName:
+          type: string
+          example: "@mihaieremia"
+      required:
+        - dataType
+        - chatId
+        - receiver
+        - sender
+        - isGroupChat
+        - message
+        - id
+        - chatName
     ChatConversationDto:
       type: object
       properties:
@@ -7350,7 +7729,7 @@ components:
           example: conversation
         chatId:
           type: string
-          example: a0vzrplk37ls7swz5ypz78f83grt9qm6pn57
+          example: a0vzrplk37ls7swz5y1z78283grt4qm6pn57
         sender:
           $ref: "#/components/schemas/ProfileDto"
         receiver:
