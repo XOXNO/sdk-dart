@@ -31,7 +31,7 @@ class TransactionsTypeSafeApi {
     return TransactionSendResult.fromJson(data);
   }
 
-  Future<dynamic> batchTransactions({
+  Future<List<BatchTransactionResponse>> batchTransactions({
     required final List<TransactionCreate> transactions,
   }) async {
     final data = await _api.batchTransactions(
