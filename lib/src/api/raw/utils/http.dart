@@ -62,6 +62,15 @@ Future<T> genericPut<T>(
   return _genericCatchException<T>(response);
 }
 
+Future<T> genericSendRequest<T>(
+  final Client client,
+  final http.BaseRequest request,
+) async {
+  final response = await http.Response.fromStream(await client.send(request));
+  _genericLogResponse(response);
+  return _genericCatchException<T>(response);
+}
+
 void _genericLogResponse(final http.Response response) {
   final logger = Logger('XoxnoSDK.API.genericLogResponse');
   logger.finest(response.headers);

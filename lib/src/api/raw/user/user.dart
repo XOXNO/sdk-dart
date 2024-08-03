@@ -1,6 +1,8 @@
+import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
+import 'package:http_parser/http_parser.dart';
 
 class UserRawApi {
   final Client _client;
@@ -148,32 +150,44 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> uploadPicture({
     required final String address,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.UserRawApi.uploadPicture');
     logger.finest('upload picture');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/user/$address/upload-picture',
       ),
-      body: body,
     );
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> uploadBanner({
     required final String address,
-    required final Map<String, dynamic> body,
-  }) {
+    required final List<int> bytes,
+  }) async {
     final logger = Logger('Xoxno.UserRawApi.uploadBanner');
     logger.finest('upload banner');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/user/$address/upload-banner',
       ),
-      body: body,
     );
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> resetPicture({

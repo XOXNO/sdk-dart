@@ -87,15 +87,19 @@ class UserTypeSafeApi {
     return UserSettingsDto.fromJson(data);
   }
 
-  // TODO(kevin): requires file upload
-  Future<UserProfileDto> uploadPicture({required final String address}) async {
-    final data = await _api.uploadPicture(address: address, body: {});
+  Future<UserProfileDto> uploadPicture({
+    required final String address,
+    required final List<int> bytes,
+  }) async {
+    final data = await _api.uploadPicture(address: address, bytes: bytes);
     return UserProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): requires file upload
-  Future<UserProfileDto> uploadBanner({required final String address}) async {
-    final data = await _api.uploadBanner(address: address, body: {});
+  Future<UserProfileDto> uploadBanner({
+    required final String address,
+    required final List<int> bytes,
+  }) async {
+    final data = await _api.uploadBanner(address: address, bytes: bytes);
     return UserProfileDto.fromJson(data);
   }
 
@@ -124,7 +128,8 @@ class UserTypeSafeApi {
     required final String address,
     required final UserUpdateDTO body,
   }) async {
-    final data = await _api.updateCreatorProfile(address: address, body: body.toJson());
+    final data =
+        await _api.updateCreatorProfile(address: address, body: body.toJson());
     return CreatorProfileDto.fromJson(data);
   }
 
