@@ -2,7 +2,6 @@ import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
-import 'package:http_parser/http_parser.dart';
 
 class UserRawApi {
   final Client _client;
