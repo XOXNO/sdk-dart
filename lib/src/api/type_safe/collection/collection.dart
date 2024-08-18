@@ -52,7 +52,7 @@ class CollectionTypeSafeApi {
 
   Future<CollectionProfileDto> updateProfile({
     required final String collection,
-    required final UserUpdateDTO body,
+    required final EditUserProfileDto body,
   }) async {
     final data =
         await _api.updateProfile(collection: collection, body: body.toJson());
@@ -71,7 +71,7 @@ class CollectionTypeSafeApi {
   }
 
   // TODO(kevin): missing return type
-  Future<dynamic> floorPrice({required final List<String> collections}) async {
+  Future<Map<String, num>> floorPrice({required final List<String> collections}) async {
     final data = await _api.floorPrice(collections: collections);
     return data;
   }
@@ -81,16 +81,15 @@ class CollectionTypeSafeApi {
     return PinnedCollectionDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> follow({required final String collection}) async {
+  Future<FollowCollectionDto> follow({required final String collection}) async {
     final data = await _api.follow(collection: collection);
-    return data;
+    return FollowCollectionDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> query({final String filter = ''}) async {
+  Future<List<CollectionProfileDto>> query({final String filter = ''}) async {
     final data = await _api.query(filter: filter);
-    return data;
+
+    return data.map((element) => CollectionProfileDto.fromJson(element)).toList();
   }
 
   Future<DropsQueryDto> dropsQuery({final String filter = ''}) async {
@@ -112,19 +111,19 @@ class CollectionTypeSafeApi {
     return DropInfoDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CollectionProfileDto> uploadPicture({
     required final String collection,
+    required final List<int> bytes,
   }) async {
-    final data = await _api.uploadPicture(collection: collection, body: {});
+    final data = await _api.uploadPicture(collection: collection, bytes: bytes);
     return CollectionProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CollectionProfileDto> uploadBanner({
     required final String collection,
+    required final List<int> bytes,
   }) async {
-    final data = await _api.uploadBanner(collection: collection, body: {});
+    final data = await _api.uploadBanner(collection: collection, bytes: bytes);
     return CollectionProfileDto.fromJson(data);
   }
 

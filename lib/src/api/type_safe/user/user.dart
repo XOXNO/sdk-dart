@@ -8,7 +8,7 @@ class UserTypeSafeApi {
 
   const UserTypeSafeApi(this._api);
 
-  Future<LoginAccessDto> login({required final LoginRequest body}) async {
+  Future<LoginAccessDto> login({required final LoginRequestDto body}) async {
     final data = await _api.login(body: body.toJson());
     return LoginAccessDto.fromJson(data);
   }
@@ -43,7 +43,7 @@ class UserTypeSafeApi {
   }
 
   Future<UserProfileDto> updateProfile({required final String address}) async {
-    final data = await _api.updateProfile(address: address);
+    final data = await _api.updateProfile(address: address, body: {});
     return UserProfileDto.fromJson(data);
   }
 
@@ -126,26 +126,27 @@ class UserTypeSafeApi {
 
   Future<CreatorProfileDto> updateCreatorProfile({
     required final String address,
-    required final UserUpdateDTO body,
+    required final dynamic body,
   }) async {
     final data =
         await _api.updateCreatorProfile(address: address, body: body.toJson());
     return CreatorProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
   Future<CreatorProfileDto> creatorUploadPicture({
     required final String address,
+    required final List<int> bytes,
   }) async {
-    final data = await _api.creatorUploadPicture(address: address, body: {});
+    final data = await _api.creatorUploadPicture(address: address, bytes: bytes);
     return CreatorProfileDto.fromJson(data);
   }
 
-  // TODO(kevin): missing body
+
   Future<CreatorProfileDto> creatorUploadBanner({
     required final String address,
+    required final List<int> bytes,
   }) async {
-    final data = await _api.creatorUploadBanner(address: address, body: {});
+    final data = await _api.creatorUploadBanner(address: address, bytes: bytes);
     return CreatorProfileDto.fromJson(data);
   }
 
@@ -200,8 +201,7 @@ class UserTypeSafeApi {
     return GetUserOffersResponseDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> favoriteNfts({
+  Future<LikeNftDto> favoriteNfts({
     required final String address,
     final int skip = -1,
     final int top = -1,
@@ -211,13 +211,15 @@ class UserTypeSafeApi {
       skip: skip,
       top: top,
     );
-    return data;
+    return LikeNftDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> creatorListing({required final String scAddress}) async {
+  Future<List<CollectionMintProfileDoc>> creatorListing(
+      {required final String scAddress}) async {
     final data = await _api.creatorListing(scAddress: scAddress);
-    return data;
+    return data
+        .map((element) => CollectionMintProfileDoc.fromJson(element))
+        .toList();
   }
 
   Future<CreatorDetailsDto> creatorDetails({
@@ -257,14 +259,13 @@ class UserTypeSafeApi {
         .toList();
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> stakingCreator({required final String address}) async {
+  Future<StakingCreatorDoc> stakingCreator(
+      {required final String address}) async {
     final data = await _api.stakingCreator(address: address);
-    return data;
+    return StakingCreatorDoc.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> stakingCollection({
+  Future<List<StakingSummary>> stakingCollection({
     required final String address,
     required final String collection,
   }) async {
@@ -272,11 +273,10 @@ class UserTypeSafeApi {
       address: address,
       collection: collection,
     );
-    return data;
+    return data.map((element) => StakingSummary.fromJson(element)).toList();
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> stakingPool({
+  Future<StakingUserPoolNfts> stakingPool({
     required final String address,
     required final String id,
     final String status = '',
@@ -286,13 +286,13 @@ class UserTypeSafeApi {
       id: id,
       status: status,
     );
-    return data;
+    return StakingUserPoolNfts.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> ownedServices({required final String creatorTag}) async {
+  Future<OwnedServicesDto> ownedServices(
+      {required final String creatorTag}) async {
     final data = await _api.ownedServices(creatorTag: creatorTag);
-    return data;
+    return OwnedServicesDto.fromJson(data);
   }
 
   Future<UserAnalyticsDto> analyticsVolume({
@@ -317,35 +317,17 @@ class UserTypeSafeApi {
     return GetUsersStatsResponseDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> xoxnoDrop({
-    final int skip = -1,
-    final int top = -1,
-    final String address = '',
-  }) async {
-    final data = await _api.xoxnoDrop(address: address, skip: skip, top: top);
-    return data;
-  }
-
-  // TODO(kevin): missing return type
-  Future<dynamic> meXoxnoDrop() async {
-    final data = await _api.meXoxnoDrop();
-    return data;
-  }
-
-  // TODO(kevin): missing return type
-  Future<dynamic> notifications({
+  Future<NotificationResponse> notifications({
     final int skip = -1,
     final int top = -1,
   }) async {
     final data = await _api.notifications(skip: skip, top: top);
-    return data;
+    return NotificationResponse.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> notificationsUnreadCount() async {
+  Future<NotificationCountResponse> notificationsUnreadCount() async {
     final data = await _api.notificationsUnreadCount();
-    return data;
+    return NotificationCountResponse.fromJson(data);
   }
 
   Future<SuccessDto> notificationsClear() async {
@@ -353,9 +335,8 @@ class UserTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> notificationsRead() async {
+  Future<NotificationDoc> notificationsRead() async {
     final data = await _api.notificationsRead();
-    return data;
+    return NotificationDoc.fromJson(data);
   }
 }

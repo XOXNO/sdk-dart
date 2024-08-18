@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/formatter.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
@@ -114,7 +115,7 @@ class CollectionRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> floorPrice({
+  Future<Map<String, num>> floorPrice({
     required final List<String> collections,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.floorPrice');
@@ -155,7 +156,7 @@ class CollectionRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> query({final String filter = ''}) {
+  Future<List<Map<String, dynamic>>> query({final String filter = ''}) {
     final logger = Logger('Xoxno.CollectionRawApi.query');
     logger.finest('query');
     return genericGet(
@@ -210,32 +211,45 @@ class CollectionRawApi {
 
   Future<Map<String, dynamic>> uploadPicture({
     required final String collection,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.uploadPicture');
     logger.finest('upload picture');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/collection/$collection/upload-picture',
       ),
-      body: body,
     );
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> uploadBanner({
     required final String collection,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.CollectionRawApi.uploadBanner');
     logger.finest('upload banner');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/collection/$collection/upload-banner',
       ),
-      body: body,
     );
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> resetPicture({

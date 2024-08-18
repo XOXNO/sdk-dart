@@ -23,7 +23,7 @@ class TokensRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> usdPrice({final String identifier = ''}) {
+  Future<Map<String, num>> usdPrice({final String identifier = ''}) {
     final logger = Logger('Xoxno.TokensRawApi.usdPrice');
     logger.finest('usd price');
     return genericGet(
@@ -37,7 +37,7 @@ class TokensRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> egldFiatPrice({
+  Future<Map<String, num>> egldFiatPrice({
     required final String fiatCurrencies,
     final int value = -1,
     final String identifier = '',
@@ -90,7 +90,7 @@ class TokensRawApi {
     );
   }
 
-  Future<int> xoxnoCoinmarketcapTotalSupply() {
+  Future<String> xoxnoCoinmarketcapTotalSupply() {
     final logger = Logger('Xoxno.TokensRawApi.xoxnoCoinmarketcapTotalSupply');
     logger.finest('xoxno coinmarketcap total supply');
     return genericGet(
@@ -101,7 +101,7 @@ class TokensRawApi {
     );
   }
 
-  Future<int> xoxnoCoinmarketcapCirculatingSupply() {
+  Future<String> xoxnoCoinmarketcapCirculatingSupply() {
     final logger =
         Logger('Xoxno.TokensRawApi.xoxnoCoinmarketcapCirculatingSupply');
     logger.finest('xoxno coinmarketcap circulating supply');
@@ -114,7 +114,7 @@ class TokensRawApi {
     );
   }
 
-  Future<int> xoxnoCoingeckoTotalSupply() {
+  Future<String> xoxnoCoingeckoTotalSupply() {
     final logger = Logger('Xoxno.TokensRawApi.xoxnocoingeckoTotalSupply');
     logger.finest('xoxno coingecko total supply');
     return genericGet(

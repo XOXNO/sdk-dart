@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
@@ -33,7 +34,7 @@ class StakingRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> whitelist({required final String poolId}) {
+  Future<List<Map<String, dynamic>>> whitelist({required final String poolId}) {
     final logger = Logger('Xoxno.StakingRawApi.whitelist');
     logger.finest('whitelist');
     return genericGet(
@@ -46,16 +47,23 @@ class StakingRawApi {
 
   Future<Map<String, dynamic>> uploadPicture({
     required final String poolId,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.StakingRawApi.uploadPicture');
     logger.finest('upload picture');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/pool/$poolId/upload-picture',
       ),
-      body: body,
     );
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 }

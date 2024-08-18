@@ -7,7 +7,7 @@ class NftRawApi {
 
   const NftRawApi(this._client);
 
-  Future<List> query({final String filter = ''}) {
+  Future<Map<String, dynamic>> query({final String filter = ''}) {
     final logger = Logger('Xoxno.NftRawApi.query');
     logger.finest('query');
     return genericGet(
@@ -79,7 +79,7 @@ class NftRawApi {
     );
   }
 
-  Future<List> nft({required final String identifier}) {
+  Future<Map<String, dynamic>> nft({required final String identifier}) {
     final logger = Logger('Xoxno.NftRawApi.nft');
     logger.finest('nft');
     return genericGet(

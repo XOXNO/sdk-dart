@@ -18,15 +18,14 @@ class StakingTypeSafeApi {
     return StakingSummary.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> whitelist({required final String poolId}) async {
+  Future<List<NftDoc>> whitelist({required final String poolId}) async {
     final data = await _api.whitelist(poolId: poolId);
-    return data;
+    return data.map((element) => NftDoc.fromJson(element)).toList();
   }
 
-  // TODO(kevin): missing body
-  Future<StakingSummary> uploadPicture({required final String poolId}) async {
-    final data = await _api.uploadPicture(poolId: poolId, body: {});
+  Future<StakingSummary> uploadPicture({required final String poolId ,
+    required final List<int> bytes,}) async {
+    final data = await _api.uploadPicture(poolId: poolId, bytes: bytes);
     return StakingSummary.fromJson(data);
   }
 }
