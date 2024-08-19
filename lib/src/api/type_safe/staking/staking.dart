@@ -23,8 +23,10 @@ class StakingTypeSafeApi {
     return data.map((element) => NftDoc.fromJson(element)).toList();
   }
 
-  Future<StakingSummary> uploadPicture({required final String poolId ,
-    required final List<int> bytes,}) async {
+  Future<StakingSummary> uploadPicture({
+    required final String poolId,
+    required final List<int> bytes,
+  }) async {
     final data = await _api.uploadPicture(poolId: poolId, bytes: bytes);
     return StakingSummary.fromJson(data);
   }
