@@ -64,12 +64,16 @@ class UserRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> updateProfile({required final String address}) {
+  Future<Map<String, dynamic>> updateProfile({
+    required final String address,
+    required final Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.UserRawApi.updateProfile');
     logger.finest('update profile');
     return genericPatch(
       _client,
       generateUri(path: '${_client.baseUrl}/user/$address/profile'),
+      body: body,
     );
   }
 
@@ -249,32 +253,46 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> creatorUploadPicture({
     required final String address,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.UserRawApi.creatorUploadPicture');
     logger.finest('creator upload picture');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/user/$address/creator/upload-picture',
       ),
-      body: body,
     );
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> creatorUploadBanner({
     required final String address,
-    required final Map<String, dynamic> body,
+    required final List<int> bytes,
   }) {
     final logger = Logger('Xoxno.UserRawApi.creatorUploadBanner');
     logger.finest('creator upload banner');
-    return genericPut(
-      _client,
+    final request = http.MultipartRequest(
+      'PUT',
       generateUri(
         path: '${_client.baseUrl}/user/$address/creator/upload-banner',
       ),
-      body: body,
     );
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+      ),
+    );
+    return genericSendRequest(_client, request);
   }
 
   Future<Map<String, dynamic>> creatorResetPicture({
@@ -438,7 +456,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> stakingOwnedPools({
+  Future<List<Map<String, dynamic>>> stakingOwnedPools({
     required final String address,
   }) {
     final logger = Logger('Xoxno.UserRawApi.stakingOwnedPools');
@@ -449,7 +467,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> stakingSummary({
+  Future<List<Map<String, dynamic>>> stakingSummary({
     required final String address,
   }) {
     final logger = Logger('Xoxno.UserRawApi.stakingSummary');
@@ -460,7 +478,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> stakingCreator({
+  Future<Map<String, dynamic>> stakingCreator({
     required final String address,
   }) async {
     final logger = Logger('Xoxno.UserRawApi.stakingCreator');
@@ -471,7 +489,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> stakingCollection({
+  Future<List<Map<String, dynamic>>> stakingCollection({
     required final String address,
     required final String collection,
   }) async {
@@ -485,7 +503,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> stakingPool({
+  Future<Map<String, dynamic>> stakingPool({
     required final String address,
     required final String id,
     final String status = '',
@@ -503,7 +521,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> ownedServices({
+  Future<Map<String, dynamic>> ownedServices({
     required final String creatorTag,
   }) async {
     final logger = Logger('Xoxno.UserRawApi.ownedServices');
@@ -582,7 +600,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> notifications({
+  Future<Map<String, dynamic>> notifications({
     final int skip = -1,
     final int top = -1,
   }) async {
@@ -600,7 +618,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> notificationsUnreadCount() async {
+  Future<Map<String, dynamic>> notificationsUnreadCount() async {
     final logger = Logger('Xoxno.UserRawApi.notificationsUnreadCount');
     logger.finest('notifications unread count');
     return await genericGet(
@@ -622,7 +640,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> notificationsRead() async {
+  Future<Map<String, dynamic>> notificationsRead() async {
     final logger = Logger('Xoxno.UserRawApi.notificationsRead');
     logger.finest('notifications read');
     return await genericPatch(

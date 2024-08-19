@@ -7,24 +7,6 @@ class TransactionsRawApi {
 
   const TransactionsRawApi(this._client);
 
-  // TODO(kevin): missing return type
-  Future<dynamic> transactions({
-    required final String txHash,
-    final bool withResults = false,
-  }) {
-    final logger = Logger('Xoxno.TransactionsRawApi.transactions');
-    logger.finest('transactions');
-    return genericGet(
-      _client,
-      generateUri(
-        path: '${_client.baseUrl}/transactions/$txHash',
-        queryParameters: [
-          if (withResults) 'withResults=$withResults',
-        ],
-      ),
-    );
-  }
-
   Future<Map<String, dynamic>> transactionStatus(
       {required final String txHash}) {
     final logger = Logger('Xoxno.TransactionsRawApi.transactionStatus');

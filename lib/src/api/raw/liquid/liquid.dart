@@ -7,7 +7,7 @@ class LiquidRawApi {
 
   const LiquidRawApi(this._client);
 
-  Future<List> xoxnoRate() {
+  Future<Map<String, dynamic>> xoxnoRate() {
     final logger = Logger('Xoxno.LiquidRawApi.xoxnoRate');
     logger.finest('xoxno rate');
     return genericGet(
@@ -18,7 +18,7 @@ class LiquidRawApi {
     );
   }
 
-  Future<int> xoxnoLiquidSupply() {
+  Future<String> xoxnoLiquidSupply() {
     final logger = Logger('Xoxno.LiquidRawApi.xoxnoLiquidSupply');
     logger.finest('xoxno liquid supply');
     return genericGet(
@@ -29,7 +29,7 @@ class LiquidRawApi {
     );
   }
 
-  Future<int> xoxnoStaked() {
+  Future<String> xoxnoStaked() {
     final logger = Logger('Xoxno.LiquidRawApi.xoxnoStaked');
     logger.finest('xoxno staked');
     return genericGet(

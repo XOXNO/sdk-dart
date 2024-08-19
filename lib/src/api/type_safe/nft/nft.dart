@@ -8,14 +8,13 @@ class NftTypeSafeApi {
 
   const NftTypeSafeApi(this._api);
 
-  // TODO(kevin): missing return type
-  Future<dynamic> query({final NftDocFilter? filter}) async {
+  Future<NftCosmosResponse> query({final NftDocFilter? filter}) async {
     final f = switch (filter?.toJson()) {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
     };
     final data = await _api.query(filter: f);
-    return data;
+    return NftCosmosResponse.fromJson(data);
   }
 
   Future<LikeNftDto> like({required final String identifier}) async {
@@ -36,10 +35,9 @@ class NftTypeSafeApi {
     return GetSingleNftOfferResponseDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> pinned() async {
+  Future<List<NftDoc>> pinned() async {
     final data = await _api.pinned();
-    return data;
+    return data.map((element) => NftDoc.fromJson(element)).toList();
   }
 
   Future<SignDataDto> signWithdraw({
@@ -49,9 +47,8 @@ class NftTypeSafeApi {
     return SignDataDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> nft({required final String identifier}) async {
+  Future<NftProps> nft({required final String identifier}) async {
     final data = await _api.nft(identifier: identifier);
-    return data;
+    return NftProps.fromJson(data);
   }
 }

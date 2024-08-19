@@ -6,18 +6,6 @@ class TransactionsTypeSafeApi {
 
   const TransactionsTypeSafeApi(this._api);
 
-  // TODO(kevin): missing return type
-  Future<dynamic> transactions({
-    required final String txHash,
-    final bool withResults = false,
-  }) async {
-    final data = await _api.transactions(
-      txHash: txHash,
-      withResults: withResults,
-    );
-    return data;
-  }
-
   Future<TransactionProcessStatus> transactionStatus(
       {required final String txHash}) async {
     final data = await _api.transactionStatus(txHash: txHash);

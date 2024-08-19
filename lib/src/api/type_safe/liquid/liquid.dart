@@ -1,24 +1,22 @@
 import 'package:xoxno_sdk/src/api/raw/liquid/liquid.dart';
+import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
 
 class LiquidTypeSafeApi {
   final LiquidRawApi _api;
 
   const LiquidTypeSafeApi(this._api);
 
-  // TODO(kevin): missing return type
-  Future<dynamic> xoxnoRate() async {
+  Future<RateType> xoxnoRate() async {
     final data = await _api.xoxnoRate();
-    return data;
+    return RateType.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> xoxnoLiquidSupply() async {
+  Future<String> xoxnoLiquidSupply() async {
     final data = await _api.xoxnoLiquidSupply();
     return data;
   }
 
-  // TODO(kevin): missing return type
-  Future<dynamic> xoxnoStaked() async {
+  Future<String> xoxnoStaked() async {
     final data = await _api.xoxnoStaked();
     return data;
   }

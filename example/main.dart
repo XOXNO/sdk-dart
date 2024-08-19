@@ -50,7 +50,7 @@ Future<void> main() async {
   final sdk = xoxno.SDK(api);
 
   try {
-    var data = await sdk.api.user.meXoxnoDrop();
+    var data = await sdk.api.user.meProfile();
     logger.info(data);
   } on xoxno.ApiException catch (e, stackTrace) {
     logger.severe(e.toJson());
