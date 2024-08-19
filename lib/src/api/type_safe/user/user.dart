@@ -126,7 +126,7 @@ class UserTypeSafeApi {
 
   Future<CreatorProfileDto> updateCreatorProfile({
     required final String address,
-    required final dynamic body,
+    required final CreatorProfileDto body,
   }) async {
     final data =
         await _api.updateCreatorProfile(address: address, body: body.toJson());
@@ -137,10 +137,10 @@ class UserTypeSafeApi {
     required final String address,
     required final List<int> bytes,
   }) async {
-    final data = await _api.creatorUploadPicture(address: address, bytes: bytes);
+    final data =
+        await _api.creatorUploadPicture(address: address, bytes: bytes);
     return CreatorProfileDto.fromJson(data);
   }
-
 
   Future<CreatorProfileDto> creatorUploadBanner({
     required final String address,
