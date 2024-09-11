@@ -11,6 +11,8 @@ import 'package:xoxno_sdk/src/api/type_safe/transactions/transactions.dart';
 import 'package:xoxno_sdk/src/api/type_safe/user/user.dart';
 
 class TypeSafeApi {
+  final RawApi rawApi;
+
   final UserTypeSafeApi user;
   final TokensTypeSafeApi tokens;
   final LiquidTypeSafeApi liquid;
@@ -22,7 +24,7 @@ class TypeSafeApi {
   final TransactionsTypeSafeApi transactions;
   final SearchTypeSafeApi search;
 
-  TypeSafeApi({required RawApi rawApi})
+  TypeSafeApi({required this.rawApi})
       : user = UserTypeSafeApi(rawApi.user),
         tokens = TokensTypeSafeApi(rawApi.tokens),
         liquid = LiquidTypeSafeApi(rawApi.liquid),
