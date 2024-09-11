@@ -3,18 +3,18 @@ import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
 class ChatRawApi {
-  final Client _client;
+  final Client client;
 
-  const ChatRawApi(this._client);
+  const ChatRawApi(this.client);
 
   Future<Map<String, dynamic>> send(
       {required final Map<String, dynamic> body}) {
     final logger = Logger('Xoxno.ChatRawApi.send');
     logger.finest('send');
     return genericPost(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/message',
+        path: '${client.baseUrl}/user/chat/message',
       ),
       body: body,
     );
@@ -24,9 +24,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.conversations');
     logger.finest('conversations');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/conversation',
+        path: '${client.baseUrl}/user/chat/conversation',
       ),
     );
   }
@@ -35,9 +35,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.conversation');
     logger.finest('conversation');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/conversation/$id',
+        path: '${client.baseUrl}/user/chat/conversation/$id',
       ),
     );
   }
@@ -46,9 +46,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.deleteConversation');
     logger.finest('delete conversation');
     return genericDelete(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/conversation/$id',
+        path: '${client.baseUrl}/user/chat/conversation/$id',
       ),
     );
   }
@@ -57,9 +57,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.conversationSummary');
     logger.finest('conversation summary');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/conversation-summary',
+        path: '${client.baseUrl}/user/chat/conversation-summary',
       ),
     );
   }
@@ -71,10 +71,10 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.deleteMessage');
     logger.finest('delete message');
     return genericDelete(
-      _client,
+      client,
       generateUri(
         path:
-            '${_client.baseUrl}/user/chat/conversation/$conversationId/message/$messageId',
+            '${client.baseUrl}/user/chat/conversation/$conversationId/message/$messageId',
       ),
     );
   }
@@ -83,9 +83,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.blockedChats');
     logger.finest('blocked chats');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/block',
+        path: '${client.baseUrl}/user/chat/block',
       ),
     );
   }
@@ -94,9 +94,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.blockUser');
     logger.finest('block user');
     return genericPost(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/block/$address',
+        path: '${client.baseUrl}/user/chat/block/$address',
       ),
     );
   }
@@ -105,9 +105,9 @@ class ChatRawApi {
     final logger = Logger('Xoxno.ChatRawApi.websocketConnection');
     logger.finest('websocket connection');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/chat/token',
+        path: '${client.baseUrl}/user/chat/token',
       ),
     );
   }

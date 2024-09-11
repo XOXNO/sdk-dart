@@ -5,17 +5,17 @@ import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
 class CollectionRawApi {
-  final Client _client;
+  final Client client;
 
-  const CollectionRawApi(this._client);
+  const CollectionRawApi(this.client);
 
   Future<Map<String, dynamic>> attributes({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.attributes');
     logger.finest('attributes');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/attributes',
+        path: '${client.baseUrl}/collection/$collection/attributes',
       ),
     );
   }
@@ -24,9 +24,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.ranks');
     logger.finest('ranks');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/ranks',
+        path: '${client.baseUrl}/collection/$collection/ranks',
       ),
     );
   }
@@ -35,9 +35,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.listings');
     logger.finest('listings');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/listings',
+        path: '${client.baseUrl}/collection/$collection/listings',
       ),
     );
   }
@@ -49,9 +49,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.signOffer');
     logger.finest('sign offer');
     return genericPost(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/sign-offer',
+        path: '${client.baseUrl}/collection/$collection/sign-offer',
       ),
       body: body,
     );
@@ -64,9 +64,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.signMint');
     logger.finest('sign mint');
     return genericPost(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/sign-mint',
+        path: '${client.baseUrl}/collection/$collection/sign-mint',
       ),
       body: body,
     );
@@ -76,9 +76,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.profile');
     logger.finest('profile');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/profile',
+        path: '${client.baseUrl}/collection/$collection/profile',
       ),
     );
   }
@@ -90,9 +90,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.updateProfile');
     logger.finest('update profile');
     return genericPatch(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/profile',
+        path: '${client.baseUrl}/collection/$collection/profile',
       ),
       body: body,
     );
@@ -105,9 +105,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.collectionFloorPrice');
     logger.finest('collection floor price');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/floor-price',
+        path: '${client.baseUrl}/collection/$collection/floor-price',
         queryParameters: [
           'token=$token',
         ],
@@ -121,9 +121,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.floorPrice');
     logger.finest('floor price');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/floor-price',
+        path: '${client.baseUrl}/collection/floor-price',
         queryParameters: [
           if (collections.isNotEmpty)
             'collection=${collections.take(10).join(',')}'
@@ -136,9 +136,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.pinned');
     logger.finest('pinned');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/pinned',
+        path: '${client.baseUrl}/collection/pinned',
       ),
     );
   }
@@ -149,9 +149,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.follow');
     logger.finest('follow');
     return genericPatch(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/follow',
+        path: '${client.baseUrl}/collection/$collection/follow',
       ),
     );
   }
@@ -160,9 +160,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.query');
     logger.finest('query');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/query',
+        path: '${client.baseUrl}/collection/query',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -174,9 +174,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.dropsQuery');
     logger.finest('drops query');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/drops/query',
+        path: '${client.baseUrl}/collection/drops/query',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -188,9 +188,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.dropInfo');
     logger.finest('drop info');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/drops-info',
+        path: '${client.baseUrl}/collection/$collection/drops-info',
       ),
     );
   }
@@ -202,9 +202,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.creatorDropInfo');
     logger.finest('creator drop info');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$creator/$collection/drops-info',
+        path: '${client.baseUrl}/collection/$creator/$collection/drops-info',
       ),
     );
   }
@@ -218,7 +218,7 @@ class CollectionRawApi {
     final request = http.MultipartRequest(
       'PUT',
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/upload-picture',
+        path: '${client.baseUrl}/collection/$collection/upload-picture',
       ),
     );
     request.files.add(
@@ -227,7 +227,7 @@ class CollectionRawApi {
         bytes,
       ),
     );
-    return genericSendRequest(_client, request);
+    return genericSendRequest(client, request);
   }
 
   Future<Map<String, dynamic>> uploadBanner({
@@ -239,7 +239,7 @@ class CollectionRawApi {
     final request = http.MultipartRequest(
       'PUT',
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/upload-banner',
+        path: '${client.baseUrl}/collection/$collection/upload-banner',
       ),
     );
 
@@ -249,7 +249,7 @@ class CollectionRawApi {
         bytes,
       ),
     );
-    return genericSendRequest(_client, request);
+    return genericSendRequest(client, request);
   }
 
   Future<Map<String, dynamic>> resetPicture({
@@ -258,9 +258,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.resetPicture');
     logger.finest('reset picture');
     return genericPut(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/reset-picture',
+        path: '${client.baseUrl}/collection/$collection/reset-picture',
       ),
     );
   }
@@ -271,9 +271,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.resetBanner');
     logger.finest('reset banner');
     return genericPut(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/reset-banner',
+        path: '${client.baseUrl}/collection/$collection/reset-banner',
       ),
     );
   }
@@ -285,9 +285,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.holders');
     logger.finest('holders');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/holders',
+        path: '${client.baseUrl}/collection/$collection/holders',
         queryParameters: ['exportHolders=$exportHolders'],
       ),
     );
@@ -299,9 +299,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.owner');
     logger.finest('owner');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/owner',
+        path: '${client.baseUrl}/collection/$collection/owner',
       ),
     );
   }
@@ -312,9 +312,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.stats');
     logger.finest('stats');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/stats',
+        path: '${client.baseUrl}/collection/$collection/stats',
       ),
     );
   }
@@ -325,9 +325,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.statsQuery');
     logger.finest('stats query');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/stats/query',
+        path: '${client.baseUrl}/collection/stats/query',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -341,9 +341,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.globalOfferQuery');
     logger.finest('global offer query');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/global-offer/query',
+        path: '${client.baseUrl}/collection/global-offer/query',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -357,9 +357,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.stakingSummary');
     logger.finest('staking summary');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/staking/summary',
+        path: '${client.baseUrl}/collection/$collection/staking/summary',
       ),
     );
   }
@@ -368,9 +368,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.stakingExplore');
     logger.finest('staking explore');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/staking/explore',
+        path: '${client.baseUrl}/collection/staking/explore',
       ),
     );
   }
@@ -384,9 +384,9 @@ class CollectionRawApi {
     final logger = Logger('Xoxno.CollectionRawApi.analyticsVolume');
     logger.finest('analytics volume');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/$collection/analytics/volume',
+        path: '${client.baseUrl}/collection/$collection/analytics/volume',
         queryParameters: [
           if (startTime != null) 'startTime=${dateFormatter.format(startTime)}',
           if (endTime != null) 'endTime=${dateFormatter.format(endTime)}',

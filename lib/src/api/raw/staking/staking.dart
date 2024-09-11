@@ -4,17 +4,17 @@ import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
 class StakingRawApi {
-  final Client _client;
+  final Client client;
 
-  const StakingRawApi(this._client);
+  const StakingRawApi(this.client);
 
   Future<Map<String, dynamic>> profile({required final String poolId}) {
     final logger = Logger('Xoxno.StakingRawApi.profile');
     logger.finest('profile');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/pool/$poolId/profile',
+        path: '${client.baseUrl}/pool/$poolId/profile',
       ),
     );
   }
@@ -26,9 +26,9 @@ class StakingRawApi {
     final logger = Logger('Xoxno.StakingRawApi.updateProfile');
     logger.finest('update profile');
     return genericPatch(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/pool/$poolId/profile',
+        path: '${client.baseUrl}/pool/$poolId/profile',
       ),
       body: body,
     );
@@ -38,9 +38,9 @@ class StakingRawApi {
     final logger = Logger('Xoxno.StakingRawApi.whitelist');
     logger.finest('whitelist');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/pool/$poolId/whitelist',
+        path: '${client.baseUrl}/pool/$poolId/whitelist',
       ),
     );
   }
@@ -54,7 +54,7 @@ class StakingRawApi {
     final request = http.MultipartRequest(
       'PUT',
       generateUri(
-        path: '${_client.baseUrl}/pool/$poolId/upload-picture',
+        path: '${client.baseUrl}/pool/$poolId/upload-picture',
       ),
     );
 
@@ -64,6 +64,6 @@ class StakingRawApi {
         bytes,
       ),
     );
-    return genericSendRequest(_client, request);
+    return genericSendRequest(client, request);
   }
 }

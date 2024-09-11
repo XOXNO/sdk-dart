@@ -3,9 +3,9 @@ import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
 class SearchRawApi {
-  final Client _client;
+  final Client client;
 
-  const SearchRawApi(this._client);
+  const SearchRawApi(this.client);
 
   Future<Map<String, dynamic>> search({
     final String filter = '',
@@ -13,9 +13,9 @@ class SearchRawApi {
     final logger = Logger('Xoxno.SearchRawApi.search');
     logger.finest('search');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/search',
+        path: '${client.baseUrl}/search',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -29,9 +29,9 @@ class SearchRawApi {
     final logger = Logger('Xoxno.SearchRawApi.userSearch');
     logger.finest('user search');
     return await genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/user/search',
+        path: '${client.baseUrl}/user/search',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -45,9 +45,9 @@ class SearchRawApi {
     final logger = Logger('Xoxno.SearchRawApi.collectionSearch');
     logger.finest('collection search');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/search',
+        path: '${client.baseUrl}/collection/search',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
@@ -61,9 +61,9 @@ class SearchRawApi {
     final logger = Logger('Xoxno.SearchRawApi.collectionDropsSearch');
     logger.finest('collection drops search');
     return genericGet(
-      _client,
+      client,
       generateUri(
-        path: '${_client.baseUrl}/collection/drops/search',
+        path: '${client.baseUrl}/collection/drops/search',
         queryParameters: [
           if (filter.isNotEmpty) 'filter=$filter',
         ],
