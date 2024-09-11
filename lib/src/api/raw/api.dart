@@ -11,6 +11,8 @@ import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
 class RawApi {
+  final Client client;
+
   final TokensRawApi tokens;
   final UserRawApi user;
   final LiquidRawApi liquid;
@@ -22,7 +24,7 @@ class RawApi {
   final TransactionsRawApi transactions;
   final SearchRawApi search;
 
-  RawApi({required Client client})
+  RawApi({required this.client})
       : tokens = TokensRawApi(client),
         user = UserRawApi(client),
         liquid = LiquidRawApi(client),
