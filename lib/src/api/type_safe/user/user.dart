@@ -13,6 +13,25 @@ class UserTypeSafeApi {
     return LoginAccessDto.fromJson(data);
   }
 
+  Future<Web2UserDoc> getWeb2UserData() async {
+    final data = await _api.getWeb2UserData();
+    return Web2UserDoc.fromJson(data);
+  }
+
+  Future<Web2UserDoc> createWeb2UserWallet({
+    required final NativeWalletDto body,
+  }) async {
+    final data = await _api.createWeb2UserWallet(body: body.toJson());
+    return Web2UserDoc.fromJson(data);
+  }
+
+  Future<List<String>> getWeb2Shards({
+    required final NativeWalletDto body,
+  }) async {
+    final data = await _api.getWeb2Shards();
+    return data;
+  }
+
   Future<UserNetworkInfoDto> networkAccountForAddress({
     required final String address,
   }) async {

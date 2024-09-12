@@ -14,8 +14,40 @@ class UserRawApi {
     final logger = Logger('Xoxno.UserRawApi.login');
     logger.finest('login');
     return genericPost(
-        client, generateUri(path: '${client.baseUrl}/user/login'),
-        body: body);
+      client,
+      generateUri(path: '${client.baseUrl}/user/login'),
+      body: body,
+    );
+  }
+
+  Future<Map<String, dynamic>> getWeb2UserData() {
+    final logger = Logger('Xoxno.UserRawApi.getWeb2UserData');
+    logger.finest('getWeb2UserData');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/user/web2'),
+    );
+  }
+
+  Future<Map<String, dynamic>> createWeb2UserWallet({
+    required final Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.UserRawApi.createWeb2UserWallet');
+    logger.finest('createWeb2UserWallet');
+    return genericPost(
+      client,
+      generateUri(path: '${client.baseUrl}/user/web2/wallet'),
+      body: body,
+    );
+  }
+
+  Future<List<String>> getWeb2Shards() {
+    final logger = Logger('Xoxno.UserRawApi.getWeb2Shards');
+    logger.finest('getWeb2Shards');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/user/web2/shards'),
+    );
   }
 
   Future<Map<String, dynamic>> networkAccountForAddress(
