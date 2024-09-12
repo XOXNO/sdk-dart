@@ -1,8 +1,6 @@
-import 'package:clock/clock.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
 import 'package:logging/logging.dart';
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
 final _logger = Logger('Xoxno.Client');
 
@@ -47,12 +45,13 @@ class Client extends http.BaseClient {
   Future<http.StreamedResponse> send(final http.BaseRequest request) async {
     _logger.finest('${request.method} ${request.url}');
     request.headers['user-agent'] = _userAgent;
-    final jwt = JWT.decode(_jwt);
-    final expiration =
-        DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
-    if (clock.now().isAfter(expiration)) {
-      await renewTokens();
-    }
+    // look like there is a problem with the accessToken from Firebase
+    // final jwt = JWT.decode(_jwt);
+    // final expiration =
+    //     DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
+    // if (clock.now().isAfter(expiration)) {
+    //   await renewTokens();
+    // }
     if (_jwt.isNotEmpty) {
       request.headers['authorization'] = 'Bearer $_jwt';
     }
