@@ -46,8 +46,9 @@ Future<T> genericPost<T>(
   final Client client,
   final Uri uri, {
   final Object? body,
+  final Map<String, String>? headers,
 }) async {
-  final response = await client.post(uri, body: body);
+  final response = await client.post(uri, body: body, headers: headers);
   _genericLogResponse(response);
   return _genericCatchException<T>(response);
 }

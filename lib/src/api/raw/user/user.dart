@@ -38,8 +38,13 @@ class UserRawApi {
     logger.finest('createWeb2UserWallet');
     return genericPost(
       client,
-      generateUri(path: '${client.baseUrl}/user/web2/wallet'),
+      generateUri(
+        path: '${client.baseUrl}/user/web2/wallet',
+      ),
       body: json.encode(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     );
   }
 
