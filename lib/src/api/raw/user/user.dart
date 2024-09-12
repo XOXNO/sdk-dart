@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
@@ -16,7 +18,7 @@ class UserRawApi {
     return genericPost(
       client,
       generateUri(path: '${client.baseUrl}/user/login'),
-      body: body,
+      body: json.encode(body),
     );
   }
 
@@ -37,7 +39,7 @@ class UserRawApi {
     return genericPost(
       client,
       generateUri(path: '${client.baseUrl}/user/web2/wallet'),
-      body: body,
+      body: json.encode(body),
     );
   }
 
