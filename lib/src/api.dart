@@ -2,6 +2,9 @@ export 'package:xoxno_sdk/src/api/exception/exception.dart';
 
 export 'package:xoxno_sdk/src/api/client.dart';
 
+export 'package:xoxno_sdk/src/api/swagger/generated/xoxno.enums.swagger.dart';
+export 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
+
 export 'package:xoxno_sdk/src/api/raw/ash_aggregator/ash_aggregator.dart';
 export 'package:xoxno_sdk/src/api/raw/chat/chat.dart';
 export 'package:xoxno_sdk/src/api/raw/collection/collection.dart';
