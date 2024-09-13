@@ -48,6 +48,7 @@ Future<T> genericPost<T>(
   final Object? body,
   final Map<String, String>? headers,
 }) async {
+  _genericLogBody(body);
   final response = await client.post(uri, body: body, headers: headers);
   _genericLogResponse(response);
   return _genericCatchException<T>(response);
@@ -70,6 +71,15 @@ Future<T> genericSendRequest<T>(
   final response = await http.Response.fromStream(await client.send(request));
   _genericLogResponse(response);
   return _genericCatchException<T>(response);
+}
+
+void _genericLogBody(final Object? body) {
+  if (body == null) {
+    return;
+  }
+  final logger = Logger('XoxnoSDK.API.genericLogBody');
+  final jsonEncoder = JsonEncoder.withIndent(' ');
+  logger.finer(jsonEncoder.convert(jsonEncoder));
 }
 
 void _genericLogResponse(final http.Response response) {
