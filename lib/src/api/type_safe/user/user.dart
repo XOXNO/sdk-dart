@@ -25,9 +25,9 @@ class UserTypeSafeApi {
     return Web2UserDoc.fromJson(data);
   }
 
-  Future<List<String>> getWeb2Shards() async {
+  Future<Web2UserShardsDto> getWeb2Shards() async {
     final data = await _api.getWeb2Shards();
-    return data;
+    return Web2UserShardsDto.fromJson(data);
   }
 
   Future<UserNetworkInfoDto> networkAccountForAddress({

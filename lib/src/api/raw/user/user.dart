@@ -48,7 +48,7 @@ class UserRawApi {
     );
   }
 
-  Future<List<String>> getWeb2Shards() {
+  Future<Map<String, dynamic>> getWeb2Shards() {
     final logger = Logger('Xoxno.UserRawApi.getWeb2Shards');
     logger.finest('getWeb2Shards');
     return genericGet(

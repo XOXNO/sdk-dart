@@ -45,6 +45,96 @@ enum MintingListingDtoDataType {
   const MintingListingDtoDataType(this.value);
 }
 
+enum EventUserRoleDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventUserRoleDocDataType(this.value);
+}
+
+enum EventUserRoleDocRole {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-reader')
+  eventReader('event-reader'),
+  @JsonValue('event-manager')
+  eventManager('event-manager'),
+  @JsonValue('check-in-manager')
+  checkInManager('check-in-manager');
+
+  final String? value;
+
+  const EventUserRoleDocRole(this.value);
+}
+
+enum EventUserRoleDocPermissions {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-reader-view')
+  eventReaderView('event-reader-view'),
+  @JsonValue('event-manager-edit-page')
+  eventManagerEditPage('event-manager-edit-page'),
+  @JsonValue('event-manager-create-ticket')
+  eventManagerCreateTicket('event-manager-create-ticket'),
+  @JsonValue('event-manager-edit-ticket')
+  eventManagerEditTicket('event-manager-edit-ticket'),
+  @JsonValue('event-manager-delete-ticket')
+  eventManagerDeleteTicket('event-manager-delete-ticket'),
+  @JsonValue('event-manager-edit-guest')
+  eventManagerEditGuest('event-manager-edit-guest'),
+  @JsonValue('event-manager-create-stage')
+  eventManagerCreateStage('event-manager-create-stage'),
+  @JsonValue('event-manager-edit-stage')
+  eventManagerEditStage('event-manager-edit-stage');
+
+  final String? value;
+
+  const EventUserRoleDocPermissions(this.value);
+}
+
+enum EventUserRoleDocStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('pending')
+  pending('pending');
+
+  final String? value;
+
+  const EventUserRoleDocStatus(this.value);
+}
+
 enum EventProfileDocDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -775,82 +865,6 @@ enum EventUserRoleCreateDtoPermissions {
   final String? value;
 
   const EventUserRoleCreateDtoPermissions(this.value);
-}
-
-enum EventUserRoleDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-voucher')
-  eventVoucher('event-voucher'),
-  @JsonValue('event-invitation')
-  eventInvitation('event-invitation'),
-  @JsonValue('event-profile')
-  eventProfile('event-profile'),
-  @JsonValue('event-question')
-  eventQuestion('event-question'),
-  @JsonValue('event-question-answer')
-  eventQuestionAnswer('event-question-answer'),
-  @JsonValue('event-ticket-profile')
-  eventTicketProfile('event-ticket-profile'),
-  @JsonValue('event-ticket-stage')
-  eventTicketStage('event-ticket-stage'),
-  @JsonValue('event-guest')
-  eventGuest('event-guest'),
-  @JsonValue('event-referral-config')
-  eventReferralConfig('event-referral-config'),
-  @JsonValue('event-referral-code')
-  eventReferralCode('event-referral-code'),
-  @JsonValue('event-referral-usage')
-  eventReferralUsage('event-referral-usage'),
-  @JsonValue('event-user-role')
-  eventUserRole('event-user-role');
-
-  final String? value;
-
-  const EventUserRoleDocDataType(this.value);
-}
-
-enum EventUserRoleDocRole {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-reader')
-  eventReader('event-reader'),
-  @JsonValue('event-manager')
-  eventManager('event-manager'),
-  @JsonValue('check-in-manager')
-  checkInManager('check-in-manager');
-
-  final String? value;
-
-  const EventUserRoleDocRole(this.value);
-}
-
-enum EventUserRoleDocPermissions {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-reader-view')
-  eventReaderView('event-reader-view'),
-  @JsonValue('event-manager-edit-page')
-  eventManagerEditPage('event-manager-edit-page'),
-  @JsonValue('event-manager-create-ticket')
-  eventManagerCreateTicket('event-manager-create-ticket'),
-  @JsonValue('event-manager-edit-ticket')
-  eventManagerEditTicket('event-manager-edit-ticket'),
-  @JsonValue('event-manager-delete-ticket')
-  eventManagerDeleteTicket('event-manager-delete-ticket'),
-  @JsonValue('event-manager-edit-guest')
-  eventManagerEditGuest('event-manager-edit-guest'),
-  @JsonValue('event-manager-create-stage')
-  eventManagerCreateStage('event-manager-create-stage'),
-  @JsonValue('event-manager-edit-stage')
-  eventManagerEditStage('event-manager-edit-stage');
-
-  final String? value;
-
-  const EventUserRoleDocPermissions(this.value);
 }
 
 enum QRBodyType {

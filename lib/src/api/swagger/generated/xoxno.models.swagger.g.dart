@@ -1448,6 +1448,38 @@ Map<String, dynamic> _$EventLocationDtoToJson(EventLocationDto instance) =>
       'onlineLink': instance.onlineLink,
     };
 
+EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
+    EventUserRoleDoc(
+      dataType: eventUserRoleDocDataTypeFromJson(json['dataType']),
+      eventId: json['eventId'] as String,
+      wallet: json['wallet'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      role: eventUserRoleDocRoleListFromJson(json['role'] as List?),
+      permissions:
+          eventUserRoleDocPermissionsListFromJson(json['permissions'] as List?),
+      createdAt: (json['createdAt'] as num).toDouble(),
+      endTime: (json['endTime'] as num).toDouble(),
+      id: json['id'] as String,
+      status: eventUserRoleDocStatusFromJson(json['status']),
+    );
+
+Map<String, dynamic> _$EventUserRoleDocToJson(EventUserRoleDoc instance) =>
+    <String, dynamic>{
+      'dataType': eventUserRoleDocDataTypeToJson(instance.dataType),
+      'eventId': instance.eventId,
+      'wallet': instance.wallet,
+      'name': instance.name,
+      'email': instance.email,
+      'role': eventUserRoleDocRoleListToJson(instance.role),
+      'permissions':
+          eventUserRoleDocPermissionsListToJson(instance.permissions),
+      'createdAt': instance.createdAt,
+      'endTime': instance.endTime,
+      'id': instance.id,
+      'status': eventUserRoleDocStatusToJson(instance.status),
+    };
+
 EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
     EventProfileDoc(
       dataType: EventProfileDoc.eventProfileDocDataTypeDataTypeFromJson(
@@ -1468,6 +1500,8 @@ EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
       collection: json['collection'] as String?,
       seo: json['seo'],
       id: json['id'] as String,
+      eventPermissions: EventUserRoleDoc.fromJson(
+          json['eventPermissions'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventProfileDocToJson(EventProfileDoc instance) =>
@@ -1488,6 +1522,7 @@ Map<String, dynamic> _$EventProfileDocToJson(EventProfileDoc instance) =>
       'collection': instance.collection,
       'seo': instance.seo,
       'id': instance.id,
+      'eventPermissions': instance.eventPermissions.toJson(),
     };
 
 CreatorDetailsDto _$CreatorDetailsDtoFromJson(Map<String, dynamic> json) =>
@@ -2626,6 +2661,19 @@ Map<String, dynamic> _$NativeWalletDtoToJson(NativeWalletDto instance) =>
       'wallet': instance.wallet.toJson(),
     };
 
+Web2UserShardsDto _$Web2UserShardsDtoFromJson(Map<String, dynamic> json) =>
+    Web2UserShardsDto(
+      shards: (json['shards'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$Web2UserShardsDtoToJson(Web2UserShardsDto instance) =>
+    <String, dynamic>{
+      'shards': instance.shards,
+    };
+
 FromToDto _$FromToDtoFromJson(Map<String, dynamic> json) => FromToDto(
       address: json['address'] as String,
       profile: json['profile'] as String,
@@ -3542,6 +3590,21 @@ Map<String, dynamic> _$EventQuestionAnswerDtoToJson(
       'answer': instance.answer,
     };
 
+CallbackUrl _$CallbackUrlFromJson(Map<String, dynamic> json) => CallbackUrl(
+      success: json['success'] as String,
+      error: json['error'] as String,
+      successClose: json['successClose'] as String,
+      errorClose: json['errorClose'] as String,
+    );
+
+Map<String, dynamic> _$CallbackUrlToJson(CallbackUrl instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'error': instance.error,
+      'successClose': instance.successClose,
+      'errorClose': instance.errorClose,
+    };
+
 EventGuestRegistrationDto _$EventGuestRegistrationDtoFromJson(
         Map<String, dynamic> json) =>
     EventGuestRegistrationDto(
@@ -3562,6 +3625,9 @@ EventGuestRegistrationDto _$EventGuestRegistrationDtoFromJson(
                   EventQuestionAnswerDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      callbackUrl: json['callbackUrl'] == null
+          ? null
+          : CallbackUrl.fromJson(json['callbackUrl'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventGuestRegistrationDtoToJson(
@@ -3578,6 +3644,7 @@ Map<String, dynamic> _$EventGuestRegistrationDtoToJson(
       'currency': instance.currency,
       'questionAnswers':
           instance.questionAnswers?.map((e) => e.toJson()).toList(),
+      'callbackUrl': instance.callbackUrl?.toJson(),
     };
 
 EventGuestRegistration _$EventGuestRegistrationFromJson(
@@ -3705,6 +3772,7 @@ RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
       isPublished: json['isPublished'] as bool,
       hasSideEvents: json['hasSideEvents'] as bool,
       hasWaitlist: json['hasWaitlist'] as bool,
+      showGuestCount: json['showGuestCount'] as bool,
       refundable: json['refundable'] as bool,
       nameWithNumber: json['nameWithNumber'] as bool,
       botProtection: json['botProtection'] as bool,
@@ -3723,6 +3791,7 @@ Map<String, dynamic> _$RegistrationDetailsDtoToJson(
       'isPublished': instance.isPublished,
       'hasSideEvents': instance.hasSideEvents,
       'hasWaitlist': instance.hasWaitlist,
+      'showGuestCount': instance.showGuestCount,
       'refundable': instance.refundable,
       'nameWithNumber': instance.nameWithNumber,
       'botProtection': instance.botProtection,
@@ -3838,6 +3907,8 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
       collection: json['collection'] as String?,
       seo: json['seo'],
       id: json['id'] as String,
+      eventPermissions: EventUserRoleDoc.fromJson(
+          json['eventPermissions'] as Map<String, dynamic>),
       creatorProfile: CreatorProfileDoc.fromJson(
           json['creatorProfile'] as Map<String, dynamic>),
       guestSummary: json['guestSummary'] == null
@@ -3864,6 +3935,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'collection': instance.collection,
       'seo': instance.seo,
       'id': instance.id,
+      'eventPermissions': instance.eventPermissions.toJson(),
       'creatorProfile': instance.creatorProfile.toJson(),
       'guestSummary': instance.guestSummary?.toJson(),
     };
@@ -4411,6 +4483,8 @@ EventUserRoleCreateDto _$EventUserRoleCreateDtoFromJson(
         Map<String, dynamic> json) =>
     EventUserRoleCreateDto(
       wallet: json['wallet'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
       role: eventUserRoleCreateDtoRoleListFromJson(json['role'] as List?),
       permissions: eventUserRoleCreateDtoPermissionsListFromJson(
           json['permissions'] as List?),
@@ -4421,36 +4495,12 @@ Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
         EventUserRoleCreateDto instance) =>
     <String, dynamic>{
       'wallet': instance.wallet,
+      'name': instance.name,
+      'email': instance.email,
       'role': eventUserRoleCreateDtoRoleListToJson(instance.role),
       'permissions':
           eventUserRoleCreateDtoPermissionsListToJson(instance.permissions),
       'endTime': instance.endTime,
-    };
-
-EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
-    EventUserRoleDoc(
-      dataType: eventUserRoleDocDataTypeFromJson(json['dataType']),
-      eventId: json['eventId'] as String,
-      wallet: json['wallet'] as String,
-      role: eventUserRoleDocRoleListFromJson(json['role'] as List?),
-      permissions:
-          eventUserRoleDocPermissionsListFromJson(json['permissions'] as List?),
-      createdAt: (json['createdAt'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      id: json['id'] as String,
-    );
-
-Map<String, dynamic> _$EventUserRoleDocToJson(EventUserRoleDoc instance) =>
-    <String, dynamic>{
-      'dataType': eventUserRoleDocDataTypeToJson(instance.dataType),
-      'eventId': instance.eventId,
-      'wallet': instance.wallet,
-      'role': eventUserRoleDocRoleListToJson(instance.role),
-      'permissions':
-          eventUserRoleDocPermissionsListToJson(instance.permissions),
-      'createdAt': instance.createdAt,
-      'endTime': instance.endTime,
-      'id': instance.id,
     };
 
 QRBody _$QRBodyFromJson(Map<String, dynamic> json) => QRBody(
@@ -5603,6 +5653,19 @@ EventEventIdQuestionQuestionIdDelete$Response
 
 Map<String, dynamic> _$EventEventIdQuestionQuestionIdDelete$ResponseToJson(
         EventEventIdQuestionQuestionIdDelete$Response instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+    };
+
+EventEventIdRoleRoleIdDelete$Response
+    _$EventEventIdRoleRoleIdDelete$ResponseFromJson(
+            Map<String, dynamic> json) =>
+        EventEventIdRoleRoleIdDelete$Response(
+          success: json['success'] as bool?,
+        );
+
+Map<String, dynamic> _$EventEventIdRoleRoleIdDelete$ResponseToJson(
+        EventEventIdRoleRoleIdDelete$Response instance) =>
     <String, dynamic>{
       'success': instance.success,
     };

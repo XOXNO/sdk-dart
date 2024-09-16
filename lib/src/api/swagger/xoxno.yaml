@@ -3897,9 +3897,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/Web2UserShardsDto'
         '400':
           description: Bad Request
           content:
@@ -6141,6 +6139,66 @@ paths:
         - Ticketing
       security:
         - bearer: []
+  /event/{eventId}/role/{roleId}:
+    delete:
+      operationId: TicketingDataController_deleteRole
+      summary: Delete event user role
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: roleId
+          required: true
+          in: path
+          description: ID of the role
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event user role deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/role/{roleId}/accept:
+    post:
+      operationId: TicketingDataController_acceptRole
+      summary: Accept event user role
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: roleId
+          required: true
+          in: path
+          description: ID of the role
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Event user role accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUserRoleDoc'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
   /event/{eventId}/role/{address}:
     get:
       operationId: TicketingDataController_getEventUserRole
@@ -6156,6 +6214,34 @@ paths:
           required: true
           in: path
           description: User wallet address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event user role details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUserRoleDoc'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/roleId/{roleId}:
+    get:
+      operationId: TicketingDataController_getEventUserRolesById
+      summary: Get event roles by id
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: roleId
+          required: true
+          in: path
+          description: ID of the role
           schema:
             type: string
       responses:
@@ -6246,7 +6332,7 @@ paths:
         - Ticketing
       security:
         - bearer: []
-  /events/voucher/create:
+  /events/{eventId}/voucher/create:
     post:
       operationId: TicketingDataController_createEventVoucher
       summary: Create a new event voucher
@@ -8387,6 +8473,87 @@ components:
         - placeId
         - lat
         - long
+    EventUserRoleDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Type of the document.
+          enum:
+            - event-voucher
+            - event-invitation
+            - event-profile
+            - event-question
+            - event-question-answer
+            - event-ticket-profile
+            - event-ticket-stage
+            - event-guest
+            - event-referral-config
+            - event-referral-code
+            - event-referral-usage
+            - event-user-role
+        eventId:
+          type: string
+          description: Unique identifier for the event.
+        wallet:
+          type: string
+          description: User wallet address
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email address
+        role:
+          type: array
+          description: Role of the user.
+          items:
+            type: string
+            enum:
+              - event-reader
+              - event-manager
+              - check-in-manager
+        permissions:
+          type: array
+          description: Permissions of the user.
+          items:
+            type: string
+            enum:
+              - event-reader-view
+              - event-manager-edit-page
+              - event-manager-create-ticket
+              - event-manager-edit-ticket
+              - event-manager-delete-ticket
+              - event-manager-edit-guest
+              - event-manager-create-stage
+              - event-manager-edit-stage
+        createdAt:
+          type: number
+          description: Timestamp for when the user role was created.
+        endTime:
+          type: number
+          description: Timestamp for when the user role will expire.
+        id:
+          type: string
+          description: Unique identifier for the document.
+        status:
+          type: string
+          description: Status of the user role.
+          enum:
+            - active
+            - pending
+      required:
+        - dataType
+        - eventId
+        - wallet
+        - name
+        - email
+        - role
+        - permissions
+        - createdAt
+        - endTime
+        - id
+        - status
     EventProfileDoc:
       type: object
       properties:
@@ -8465,6 +8632,10 @@ components:
         id:
           type: string
           description: Automatically generated unique identifier for the event.
+        eventPermissions:
+          description: Permissions for the event.
+          allOf:
+            - $ref: '#/components/schemas/EventUserRoleDoc'
       required:
         - dataType
         - creatorAddress
@@ -8478,6 +8649,7 @@ components:
         - profile
         - registration
         - id
+        - eventPermissions
     CreatorDetailsDto:
       type: object
       properties:
@@ -10059,6 +10231,16 @@ components:
       required:
         - shards
         - wallet
+    Web2UserShardsDto:
+      type: object
+      properties:
+        shards:
+          description: Shards of the user
+          type: array
+          items:
+            type: string
+      required:
+        - shards
     FromToDto:
       type: object
       properties:
@@ -11130,6 +11312,22 @@ components:
       required:
         - questionId
         - answer
+    CallbackUrl:
+      type: object
+      properties:
+        success:
+          type: string
+        error:
+          type: string
+        successClose:
+          type: string
+        errorClose:
+          type: string
+      required:
+        - success
+        - error
+        - successClose
+        - errorClose
     EventGuestRegistrationDto:
       type: object
       properties:
@@ -11169,6 +11367,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventQuestionAnswerDto'
+        callbackUrl:
+          description: Callback URL
+          allOf:
+            - $ref: '#/components/schemas/CallbackUrl'
       required:
         - name
         - ticketSelections
@@ -11289,11 +11491,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1726054839
+          example: 1726493446
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: f94bc827-1205-4dd3-8668-3bbee733c77f
+          example: 0336cc32-3100-4936-b52c-aefe139959e4
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11362,6 +11564,8 @@ components:
           type: boolean
         hasWaitlist:
           type: boolean
+        showGuestCount:
+          type: boolean
         refundable:
           type: boolean
         nameWithNumber:
@@ -11379,6 +11583,7 @@ components:
         - isPublished
         - hasSideEvents
         - hasWaitlist
+        - showGuestCount
         - refundable
         - nameWithNumber
         - botProtection
@@ -11389,7 +11594,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726054836
+          minimum: 1726493443
         endTime:
           type: number
         location:
@@ -11578,6 +11783,10 @@ components:
         id:
           type: string
           description: Automatically generated unique identifier for the event.
+        eventPermissions:
+          description: Permissions for the event.
+          allOf:
+            - $ref: '#/components/schemas/EventUserRoleDoc'
         creatorProfile:
           description: Creator profile data including name, profile, and herotag.
           allOf:
@@ -11599,6 +11808,7 @@ components:
         - profile
         - registration
         - id
+        - eventPermissions
         - creatorProfile
     EventSeoDto:
       type: object
@@ -11628,10 +11838,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1726054839
+          example: 1726493447
         endTime:
           type: number
-          example: 1726054839
+          example: 1726493447
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -11741,11 +11951,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1726054836
+          example: 1726493443
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 658dbe9e-0c64-4069-acbe-016bab8123a1
+          example: 2d5d7b3b-2c9a-4235-b71d-08956b0be8d7
       required:
         - dataType
         - eventId
@@ -11809,10 +12019,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726054839
+          minimum: 1726493447
         endTime:
           type: number
-          minimum: 1726141239
+          minimum: 1726579847
         maxLimit:
           type: number
         userLimit:
@@ -11872,11 +12082,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1726054836
+          example: 1726493443
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1726054836
+          example: 1726493443
         maxLimit:
           type: object
           description: >-
@@ -11907,7 +12117,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 569d5607-2e9f-474f-9f80-cd91d0cf2a7b
+          example: 0c63f749-83ca-46d2-b682-dacb6311a79f
       required:
         - dataType
         - eventId
@@ -11944,10 +12154,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726054839
+          minimum: 1726493447
         endTime:
           type: number
-          minimum: 1726141239
+          minimum: 1726579847
       required:
         - maxLimit
         - userLimit
@@ -12018,7 +12228,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 705bdf77-7f40-485c-a0fd-77e0644f21bd
+          example: 3dcf499c-4eda-483d-b86b-223203a956e7
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12081,7 +12291,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1726054839
+          example: 1726493446
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12114,7 +12324,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: aece7c4d-c458-4365-a818-d0148f393660
+          example: d853118e-04c0-4af6-be13-5286a2a48702
       required:
         - dataType
         - eventId
@@ -12180,7 +12390,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1726054839
+          example: 1726493446
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12213,7 +12423,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: aece7c4d-c458-4365-a818-d0148f393660
+          example: d853118e-04c0-4af6-be13-5286a2a48702
         profile:
           type: string
           description: >-
@@ -12307,7 +12517,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1726054839
+          example: 1726493447
       required:
         - dataType
         - id
@@ -12444,11 +12654,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1726054839
+          example: 1726493446
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: f94bc827-1205-4dd3-8668-3bbee733c77f
+          example: 0336cc32-3100-4936-b52c-aefe139959e4
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -12479,6 +12689,12 @@ components:
         wallet:
           type: string
           description: User wallet address
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email
         role:
           type: array
           description: Assigned Roles
@@ -12508,75 +12724,11 @@ components:
           example: 1627852800
       required:
         - wallet
+        - name
+        - email
         - role
         - permissions
         - endTime
-    EventUserRoleDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          description: Type of the document.
-          enum:
-            - event-voucher
-            - event-invitation
-            - event-profile
-            - event-question
-            - event-question-answer
-            - event-ticket-profile
-            - event-ticket-stage
-            - event-guest
-            - event-referral-config
-            - event-referral-code
-            - event-referral-usage
-            - event-user-role
-        eventId:
-          type: string
-          description: Unique identifier for the event.
-        wallet:
-          type: string
-          description: User wallet address
-        role:
-          type: array
-          description: Role of the user.
-          items:
-            type: string
-            enum:
-              - event-reader
-              - event-manager
-              - check-in-manager
-        permissions:
-          type: array
-          description: Permissions of the user.
-          items:
-            type: string
-            enum:
-              - event-reader-view
-              - event-manager-edit-page
-              - event-manager-create-ticket
-              - event-manager-edit-ticket
-              - event-manager-delete-ticket
-              - event-manager-edit-guest
-              - event-manager-create-stage
-              - event-manager-edit-stage
-        createdAt:
-          type: number
-          description: Timestamp for when the user role was created.
-        endTime:
-          type: number
-          description: Timestamp for when the user role will expire.
-        id:
-          type: string
-          description: Unique identifier for the document.
-      required:
-        - dataType
-        - eventId
-        - wallet
-        - role
-        - permissions
-        - createdAt
-        - endTime
-        - id
     QRBody:
       type: object
       properties:
@@ -12735,11 +12887,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726054839
+          example: 1726493447
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726054839
+          example: 1726493447
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -12770,7 +12922,7 @@ components:
         id:
           type: string
           description: Unique identifier for the voucher.
-          example: bc26d7d5-e3ab-48a7-8107-08e26fb011b5
+          example: 393c03e1-899a-46d7-ab36-44aa30aa3b2c
         code:
           type: string
           description: Unique voucher code.
@@ -12823,11 +12975,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726054839
+          example: 1726493447
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726054839
+          example: 1726493447
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -12837,7 +12989,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1726054839
+          example: 1726493447
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -12911,11 +13063,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726054839
+          example: 1726493447
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726054839
+          example: 1726493447
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -12959,7 +13111,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: fede81c4-b0be-498f-83e3-3c575f7de126
+          example: 0077df1c-f6ba-433e-8e4b-d44737a97bbf
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -12975,7 +13127,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1726054839
+          example: 1726493447
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.

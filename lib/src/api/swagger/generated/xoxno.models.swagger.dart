@@ -7155,6 +7155,175 @@ extension $EventLocationDtoExtension on EventLocationDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventUserRoleDoc {
+  const EventUserRoleDoc({
+    required this.dataType,
+    required this.eventId,
+    required this.wallet,
+    required this.name,
+    required this.email,
+    required this.role,
+    required this.permissions,
+    required this.createdAt,
+    required this.endTime,
+    required this.id,
+    required this.status,
+  });
+
+  factory EventUserRoleDoc.fromJson(Map<String, dynamic> json) =>
+      _$EventUserRoleDocFromJson(json);
+
+  static const toJsonFactory = _$EventUserRoleDocToJson;
+  Map<String, dynamic> toJson() => _$EventUserRoleDocToJson(this);
+
+  @JsonKey(
+    name: 'dataType',
+    toJson: eventUserRoleDocDataTypeToJson,
+    fromJson: eventUserRoleDocDataTypeFromJson,
+  )
+  final enums.EventUserRoleDocDataType dataType;
+  @JsonKey(name: 'eventId')
+  final String eventId;
+  @JsonKey(name: 'wallet')
+  final String wallet;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(
+    name: 'role',
+    toJson: eventUserRoleDocRoleListToJson,
+    fromJson: eventUserRoleDocRoleListFromJson,
+  )
+  final List<enums.EventUserRoleDocRole> role;
+  @JsonKey(
+    name: 'permissions',
+    toJson: eventUserRoleDocPermissionsListToJson,
+    fromJson: eventUserRoleDocPermissionsListFromJson,
+  )
+  final List<enums.EventUserRoleDocPermissions> permissions;
+  @JsonKey(name: 'createdAt')
+  final double createdAt;
+  @JsonKey(name: 'endTime')
+  final double endTime;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(
+    name: 'status',
+    toJson: eventUserRoleDocStatusToJson,
+    fromJson: eventUserRoleDocStatusFromJson,
+  )
+  final enums.EventUserRoleDocStatus status;
+  static const fromJsonFactory = _$EventUserRoleDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventUserRoleDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality()
+                    .equals(other.dataType, dataType)) &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventId, eventId)) &&
+            (identical(other.wallet, wallet) ||
+                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.role, role) ||
+                const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.permissions, permissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.permissions, permissions)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.endTime, endTime)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(wallet) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(permissions) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(status) ^
+      runtimeType.hashCode;
+}
+
+extension $EventUserRoleDocExtension on EventUserRoleDoc {
+  EventUserRoleDoc copyWith(
+      {enums.EventUserRoleDocDataType? dataType,
+      String? eventId,
+      String? wallet,
+      String? name,
+      String? email,
+      List<enums.EventUserRoleDocRole>? role,
+      List<enums.EventUserRoleDocPermissions>? permissions,
+      double? createdAt,
+      double? endTime,
+      String? id,
+      enums.EventUserRoleDocStatus? status}) {
+    return EventUserRoleDoc(
+        dataType: dataType ?? this.dataType,
+        eventId: eventId ?? this.eventId,
+        wallet: wallet ?? this.wallet,
+        name: name ?? this.name,
+        email: email ?? this.email,
+        role: role ?? this.role,
+        permissions: permissions ?? this.permissions,
+        createdAt: createdAt ?? this.createdAt,
+        endTime: endTime ?? this.endTime,
+        id: id ?? this.id,
+        status: status ?? this.status);
+  }
+
+  EventUserRoleDoc copyWithWrapped(
+      {Wrapped<enums.EventUserRoleDocDataType>? dataType,
+      Wrapped<String>? eventId,
+      Wrapped<String>? wallet,
+      Wrapped<String>? name,
+      Wrapped<String>? email,
+      Wrapped<List<enums.EventUserRoleDocRole>>? role,
+      Wrapped<List<enums.EventUserRoleDocPermissions>>? permissions,
+      Wrapped<double>? createdAt,
+      Wrapped<double>? endTime,
+      Wrapped<String>? id,
+      Wrapped<enums.EventUserRoleDocStatus>? status}) {
+    return EventUserRoleDoc(
+        dataType: (dataType != null ? dataType.value : this.dataType),
+        eventId: (eventId != null ? eventId.value : this.eventId),
+        wallet: (wallet != null ? wallet.value : this.wallet),
+        name: (name != null ? name.value : this.name),
+        email: (email != null ? email.value : this.email),
+        role: (role != null ? role.value : this.role),
+        permissions:
+            (permissions != null ? permissions.value : this.permissions),
+        createdAt: (createdAt != null ? createdAt.value : this.createdAt),
+        endTime: (endTime != null ? endTime.value : this.endTime),
+        id: (id != null ? id.value : this.id),
+        status: (status != null ? status.value : this.status));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventProfileDoc {
   const EventProfileDoc({
     required this.dataType,
@@ -7173,6 +7342,7 @@ class EventProfileDoc {
     this.collection,
     this.seo,
     required this.id,
+    required this.eventPermissions,
   });
 
   factory EventProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -7222,6 +7392,8 @@ class EventProfileDoc {
   final Object? seo;
   @JsonKey(name: 'id')
   final String id;
+  @JsonKey(name: 'eventPermissions')
+  final EventUserRoleDoc eventPermissions;
   static const fromJsonFactory = _$EventProfileDocFromJson;
 
   @override
@@ -7271,7 +7443,10 @@ class EventProfileDoc {
             (identical(other.seo, seo) ||
                 const DeepCollectionEquality().equals(other.seo, seo)) &&
             (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.eventPermissions, eventPermissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventPermissions, eventPermissions)));
   }
 
   @override
@@ -7295,6 +7470,7 @@ class EventProfileDoc {
       const DeepCollectionEquality().hash(collection) ^
       const DeepCollectionEquality().hash(seo) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(eventPermissions) ^
       runtimeType.hashCode;
 }
 
@@ -7315,7 +7491,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       String? contractAddress,
       String? collection,
       Object? seo,
-      String? id}) {
+      String? id,
+      EventUserRoleDoc? eventPermissions}) {
     return EventProfileDoc(
         dataType: dataType ?? this.dataType,
         creatorAddress: creatorAddress ?? this.creatorAddress,
@@ -7332,7 +7509,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
         contractAddress: contractAddress ?? this.contractAddress,
         collection: collection ?? this.collection,
         seo: seo ?? this.seo,
-        id: id ?? this.id);
+        id: id ?? this.id,
+        eventPermissions: eventPermissions ?? this.eventPermissions);
   }
 
   EventProfileDoc copyWithWrapped(
@@ -7351,7 +7529,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       Wrapped<String?>? contractAddress,
       Wrapped<String?>? collection,
       Wrapped<Object?>? seo,
-      Wrapped<String>? id}) {
+      Wrapped<String>? id,
+      Wrapped<EventUserRoleDoc>? eventPermissions}) {
     return EventProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         creatorAddress: (creatorAddress != null
@@ -7377,7 +7556,10 @@ extension $EventProfileDocExtension on EventProfileDoc {
             : this.contractAddress),
         collection: (collection != null ? collection.value : this.collection),
         seo: (seo != null ? seo.value : this.seo),
-        id: (id != null ? id.value : this.id));
+        id: (id != null ? id.value : this.id),
+        eventPermissions: (eventPermissions != null
+            ? eventPermissions.value
+            : this.eventPermissions));
   }
 }
 
@@ -12630,6 +12812,49 @@ extension $NativeWalletDtoExtension on NativeWalletDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Web2UserShardsDto {
+  const Web2UserShardsDto({
+    required this.shards,
+  });
+
+  factory Web2UserShardsDto.fromJson(Map<String, dynamic> json) =>
+      _$Web2UserShardsDtoFromJson(json);
+
+  static const toJsonFactory = _$Web2UserShardsDtoToJson;
+  Map<String, dynamic> toJson() => _$Web2UserShardsDtoToJson(this);
+
+  @JsonKey(name: 'shards', defaultValue: <String>[])
+  final List<String> shards;
+  static const fromJsonFactory = _$Web2UserShardsDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is Web2UserShardsDto &&
+            (identical(other.shards, shards) ||
+                const DeepCollectionEquality().equals(other.shards, shards)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(shards) ^ runtimeType.hashCode;
+}
+
+extension $Web2UserShardsDtoExtension on Web2UserShardsDto {
+  Web2UserShardsDto copyWith({List<String>? shards}) {
+    return Web2UserShardsDto(shards: shards ?? this.shards);
+  }
+
+  Web2UserShardsDto copyWithWrapped({Wrapped<List<String>>? shards}) {
+    return Web2UserShardsDto(
+        shards: (shards != null ? shards.value : this.shards));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class FromToDto {
   const FromToDto({
     required this.address,
@@ -16726,6 +16951,87 @@ extension $EventQuestionAnswerDtoExtension on EventQuestionAnswerDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class CallbackUrl {
+  const CallbackUrl({
+    required this.success,
+    required this.error,
+    required this.successClose,
+    required this.errorClose,
+  });
+
+  factory CallbackUrl.fromJson(Map<String, dynamic> json) =>
+      _$CallbackUrlFromJson(json);
+
+  static const toJsonFactory = _$CallbackUrlToJson;
+  Map<String, dynamic> toJson() => _$CallbackUrlToJson(this);
+
+  @JsonKey(name: 'success')
+  final String success;
+  @JsonKey(name: 'error')
+  final String error;
+  @JsonKey(name: 'successClose')
+  final String successClose;
+  @JsonKey(name: 'errorClose')
+  final String errorClose;
+  static const fromJsonFactory = _$CallbackUrlFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CallbackUrl &&
+            (identical(other.success, success) ||
+                const DeepCollectionEquality()
+                    .equals(other.success, success)) &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)) &&
+            (identical(other.successClose, successClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.successClose, successClose)) &&
+            (identical(other.errorClose, errorClose) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorClose, errorClose)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(success) ^
+      const DeepCollectionEquality().hash(error) ^
+      const DeepCollectionEquality().hash(successClose) ^
+      const DeepCollectionEquality().hash(errorClose) ^
+      runtimeType.hashCode;
+}
+
+extension $CallbackUrlExtension on CallbackUrl {
+  CallbackUrl copyWith(
+      {String? success,
+      String? error,
+      String? successClose,
+      String? errorClose}) {
+    return CallbackUrl(
+        success: success ?? this.success,
+        error: error ?? this.error,
+        successClose: successClose ?? this.successClose,
+        errorClose: errorClose ?? this.errorClose);
+  }
+
+  CallbackUrl copyWithWrapped(
+      {Wrapped<String>? success,
+      Wrapped<String>? error,
+      Wrapped<String>? successClose,
+      Wrapped<String>? errorClose}) {
+    return CallbackUrl(
+        success: (success != null ? success.value : this.success),
+        error: (error != null ? error.value : this.error),
+        successClose:
+            (successClose != null ? successClose.value : this.successClose),
+        errorClose: (errorClose != null ? errorClose.value : this.errorClose));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventGuestRegistrationDto {
   const EventGuestRegistrationDto({
     this.email,
@@ -16737,6 +17043,7 @@ class EventGuestRegistrationDto {
     this.payWithCrypto,
     required this.currency,
     this.questionAnswers,
+    this.callbackUrl,
   });
 
   factory EventGuestRegistrationDto.fromJson(Map<String, dynamic> json) =>
@@ -16763,6 +17070,8 @@ class EventGuestRegistrationDto {
   final String currency;
   @JsonKey(name: 'questionAnswers', defaultValue: <EventQuestionAnswerDto>[])
   final List<EventQuestionAnswerDto>? questionAnswers;
+  @JsonKey(name: 'callbackUrl')
+  final CallbackUrl? callbackUrl;
   static const fromJsonFactory = _$EventGuestRegistrationDtoFromJson;
 
   @override
@@ -16792,7 +17101,10 @@ class EventGuestRegistrationDto {
                     .equals(other.currency, currency)) &&
             (identical(other.questionAnswers, questionAnswers) ||
                 const DeepCollectionEquality()
-                    .equals(other.questionAnswers, questionAnswers)));
+                    .equals(other.questionAnswers, questionAnswers)) &&
+            (identical(other.callbackUrl, callbackUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.callbackUrl, callbackUrl)));
   }
 
   @override
@@ -16809,6 +17121,7 @@ class EventGuestRegistrationDto {
       const DeepCollectionEquality().hash(payWithCrypto) ^
       const DeepCollectionEquality().hash(currency) ^
       const DeepCollectionEquality().hash(questionAnswers) ^
+      const DeepCollectionEquality().hash(callbackUrl) ^
       runtimeType.hashCode;
 }
 
@@ -16822,7 +17135,8 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
       String? referralCode,
       bool? payWithCrypto,
       String? currency,
-      List<EventQuestionAnswerDto>? questionAnswers}) {
+      List<EventQuestionAnswerDto>? questionAnswers,
+      CallbackUrl? callbackUrl}) {
     return EventGuestRegistrationDto(
         email: email ?? this.email,
         name: name ?? this.name,
@@ -16832,7 +17146,8 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
         referralCode: referralCode ?? this.referralCode,
         payWithCrypto: payWithCrypto ?? this.payWithCrypto,
         currency: currency ?? this.currency,
-        questionAnswers: questionAnswers ?? this.questionAnswers);
+        questionAnswers: questionAnswers ?? this.questionAnswers,
+        callbackUrl: callbackUrl ?? this.callbackUrl);
   }
 
   EventGuestRegistrationDto copyWithWrapped(
@@ -16844,7 +17159,8 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
       Wrapped<String?>? referralCode,
       Wrapped<bool?>? payWithCrypto,
       Wrapped<String>? currency,
-      Wrapped<List<EventQuestionAnswerDto>?>? questionAnswers}) {
+      Wrapped<List<EventQuestionAnswerDto>?>? questionAnswers,
+      Wrapped<CallbackUrl?>? callbackUrl}) {
     return EventGuestRegistrationDto(
         email: (email != null ? email.value : this.email),
         name: (name != null ? name.value : this.name),
@@ -16861,7 +17177,9 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
         currency: (currency != null ? currency.value : this.currency),
         questionAnswers: (questionAnswers != null
             ? questionAnswers.value
-            : this.questionAnswers));
+            : this.questionAnswers),
+        callbackUrl:
+            (callbackUrl != null ? callbackUrl.value : this.callbackUrl));
   }
 }
 
@@ -17389,6 +17707,7 @@ class RegistrationDetailsDto {
     required this.isPublished,
     required this.hasSideEvents,
     required this.hasWaitlist,
+    required this.showGuestCount,
     required this.refundable,
     required this.nameWithNumber,
     required this.botProtection,
@@ -17424,6 +17743,8 @@ class RegistrationDetailsDto {
   final bool hasSideEvents;
   @JsonKey(name: 'hasWaitlist')
   final bool hasWaitlist;
+  @JsonKey(name: 'showGuestCount')
+  final bool showGuestCount;
   @JsonKey(name: 'refundable')
   final bool refundable;
   @JsonKey(name: 'nameWithNumber')
@@ -17466,6 +17787,9 @@ class RegistrationDetailsDto {
             (identical(other.hasWaitlist, hasWaitlist) ||
                 const DeepCollectionEquality()
                     .equals(other.hasWaitlist, hasWaitlist)) &&
+            (identical(other.showGuestCount, showGuestCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.showGuestCount, showGuestCount)) &&
             (identical(other.refundable, refundable) ||
                 const DeepCollectionEquality()
                     .equals(other.refundable, refundable)) &&
@@ -17492,6 +17816,7 @@ class RegistrationDetailsDto {
       const DeepCollectionEquality().hash(isPublished) ^
       const DeepCollectionEquality().hash(hasSideEvents) ^
       const DeepCollectionEquality().hash(hasWaitlist) ^
+      const DeepCollectionEquality().hash(showGuestCount) ^
       const DeepCollectionEquality().hash(refundable) ^
       const DeepCollectionEquality().hash(nameWithNumber) ^
       const DeepCollectionEquality().hash(botProtection) ^
@@ -17510,6 +17835,7 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
       bool? isPublished,
       bool? hasSideEvents,
       bool? hasWaitlist,
+      bool? showGuestCount,
       bool? refundable,
       bool? nameWithNumber,
       bool? botProtection}) {
@@ -17524,6 +17850,7 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
         isPublished: isPublished ?? this.isPublished,
         hasSideEvents: hasSideEvents ?? this.hasSideEvents,
         hasWaitlist: hasWaitlist ?? this.hasWaitlist,
+        showGuestCount: showGuestCount ?? this.showGuestCount,
         refundable: refundable ?? this.refundable,
         nameWithNumber: nameWithNumber ?? this.nameWithNumber,
         botProtection: botProtection ?? this.botProtection);
@@ -17540,6 +17867,7 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
       Wrapped<bool>? isPublished,
       Wrapped<bool>? hasSideEvents,
       Wrapped<bool>? hasWaitlist,
+      Wrapped<bool>? showGuestCount,
       Wrapped<bool>? refundable,
       Wrapped<bool>? nameWithNumber,
       Wrapped<bool>? botProtection}) {
@@ -17561,6 +17889,9 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
             (hasSideEvents != null ? hasSideEvents.value : this.hasSideEvents),
         hasWaitlist:
             (hasWaitlist != null ? hasWaitlist.value : this.hasWaitlist),
+        showGuestCount: (showGuestCount != null
+            ? showGuestCount.value
+            : this.showGuestCount),
         refundable: (refundable != null ? refundable.value : this.refundable),
         nameWithNumber: (nameWithNumber != null
             ? nameWithNumber.value
@@ -18008,6 +18339,7 @@ class EventProfile {
     this.collection,
     this.seo,
     required this.id,
+    required this.eventPermissions,
     required this.creatorProfile,
     this.guestSummary,
   });
@@ -18059,6 +18391,8 @@ class EventProfile {
   final Object? seo;
   @JsonKey(name: 'id')
   final String id;
+  @JsonKey(name: 'eventPermissions')
+  final EventUserRoleDoc eventPermissions;
   @JsonKey(name: 'creatorProfile')
   final CreatorProfileDoc creatorProfile;
   @JsonKey(name: 'guestSummary')
@@ -18113,6 +18447,9 @@ class EventProfile {
                 const DeepCollectionEquality().equals(other.seo, seo)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.eventPermissions, eventPermissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventPermissions, eventPermissions)) &&
             (identical(other.creatorProfile, creatorProfile) ||
                 const DeepCollectionEquality()
                     .equals(other.creatorProfile, creatorProfile)) &&
@@ -18142,6 +18479,7 @@ class EventProfile {
       const DeepCollectionEquality().hash(collection) ^
       const DeepCollectionEquality().hash(seo) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(eventPermissions) ^
       const DeepCollectionEquality().hash(creatorProfile) ^
       const DeepCollectionEquality().hash(guestSummary) ^
       runtimeType.hashCode;
@@ -18165,6 +18503,7 @@ extension $EventProfileExtension on EventProfile {
       String? collection,
       Object? seo,
       String? id,
+      EventUserRoleDoc? eventPermissions,
       CreatorProfileDoc? creatorProfile,
       EventGuestSummary? guestSummary}) {
     return EventProfile(
@@ -18184,6 +18523,7 @@ extension $EventProfileExtension on EventProfile {
         collection: collection ?? this.collection,
         seo: seo ?? this.seo,
         id: id ?? this.id,
+        eventPermissions: eventPermissions ?? this.eventPermissions,
         creatorProfile: creatorProfile ?? this.creatorProfile,
         guestSummary: guestSummary ?? this.guestSummary);
   }
@@ -18205,6 +18545,7 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<String?>? collection,
       Wrapped<Object?>? seo,
       Wrapped<String>? id,
+      Wrapped<EventUserRoleDoc>? eventPermissions,
       Wrapped<CreatorProfileDoc>? creatorProfile,
       Wrapped<EventGuestSummary?>? guestSummary}) {
     return EventProfile(
@@ -18233,6 +18574,9 @@ extension $EventProfileExtension on EventProfile {
         collection: (collection != null ? collection.value : this.collection),
         seo: (seo != null ? seo.value : this.seo),
         id: (id != null ? id.value : this.id),
+        eventPermissions: (eventPermissions != null
+            ? eventPermissions.value
+            : this.eventPermissions),
         creatorProfile: (creatorProfile != null
             ? creatorProfile.value
             : this.creatorProfile),
@@ -20714,6 +21058,8 @@ extension $EventGuestProfileExtension on EventGuestProfile {
 class EventUserRoleCreateDto {
   const EventUserRoleCreateDto({
     required this.wallet,
+    required this.name,
+    required this.email,
     required this.role,
     required this.permissions,
     required this.endTime,
@@ -20727,6 +21073,10 @@ class EventUserRoleCreateDto {
 
   @JsonKey(name: 'wallet')
   final String wallet;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'email')
+  final String email;
   @JsonKey(
     name: 'role',
     toJson: eventUserRoleCreateDtoRoleListToJson,
@@ -20749,6 +21099,10 @@ class EventUserRoleCreateDto {
         (other is EventUserRoleCreateDto &&
             (identical(other.wallet, wallet) ||
                 const DeepCollectionEquality().equals(other.wallet, wallet)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.permissions, permissions) ||
@@ -20764,6 +21118,8 @@ class EventUserRoleCreateDto {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(wallet) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(permissions) ^
       const DeepCollectionEquality().hash(endTime) ^
@@ -20773,11 +21129,15 @@ class EventUserRoleCreateDto {
 extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
   EventUserRoleCreateDto copyWith(
       {String? wallet,
+      String? name,
+      String? email,
       List<enums.EventUserRoleCreateDtoRole>? role,
       List<enums.EventUserRoleCreateDtoPermissions>? permissions,
       double? endTime}) {
     return EventUserRoleCreateDto(
         wallet: wallet ?? this.wallet,
+        name: name ?? this.name,
+        email: email ?? this.email,
         role: role ?? this.role,
         permissions: permissions ?? this.permissions,
         endTime: endTime ?? this.endTime);
@@ -20785,150 +21145,19 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
 
   EventUserRoleCreateDto copyWithWrapped(
       {Wrapped<String>? wallet,
+      Wrapped<String>? name,
+      Wrapped<String>? email,
       Wrapped<List<enums.EventUserRoleCreateDtoRole>>? role,
       Wrapped<List<enums.EventUserRoleCreateDtoPermissions>>? permissions,
       Wrapped<double>? endTime}) {
     return EventUserRoleCreateDto(
         wallet: (wallet != null ? wallet.value : this.wallet),
+        name: (name != null ? name.value : this.name),
+        email: (email != null ? email.value : this.email),
         role: (role != null ? role.value : this.role),
         permissions:
             (permissions != null ? permissions.value : this.permissions),
         endTime: (endTime != null ? endTime.value : this.endTime));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class EventUserRoleDoc {
-  const EventUserRoleDoc({
-    required this.dataType,
-    required this.eventId,
-    required this.wallet,
-    required this.role,
-    required this.permissions,
-    required this.createdAt,
-    required this.endTime,
-    required this.id,
-  });
-
-  factory EventUserRoleDoc.fromJson(Map<String, dynamic> json) =>
-      _$EventUserRoleDocFromJson(json);
-
-  static const toJsonFactory = _$EventUserRoleDocToJson;
-  Map<String, dynamic> toJson() => _$EventUserRoleDocToJson(this);
-
-  @JsonKey(
-    name: 'dataType',
-    toJson: eventUserRoleDocDataTypeToJson,
-    fromJson: eventUserRoleDocDataTypeFromJson,
-  )
-  final enums.EventUserRoleDocDataType dataType;
-  @JsonKey(name: 'eventId')
-  final String eventId;
-  @JsonKey(name: 'wallet')
-  final String wallet;
-  @JsonKey(
-    name: 'role',
-    toJson: eventUserRoleDocRoleListToJson,
-    fromJson: eventUserRoleDocRoleListFromJson,
-  )
-  final List<enums.EventUserRoleDocRole> role;
-  @JsonKey(
-    name: 'permissions',
-    toJson: eventUserRoleDocPermissionsListToJson,
-    fromJson: eventUserRoleDocPermissionsListFromJson,
-  )
-  final List<enums.EventUserRoleDocPermissions> permissions;
-  @JsonKey(name: 'createdAt')
-  final double createdAt;
-  @JsonKey(name: 'endTime')
-  final double endTime;
-  @JsonKey(name: 'id')
-  final String id;
-  static const fromJsonFactory = _$EventUserRoleDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventUserRoleDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality()
-                    .equals(other.dataType, dataType)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality()
-                    .equals(other.eventId, eventId)) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality()
-                    .equals(other.permissions, permissions)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.endTime, endTime)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(permissions) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(id) ^
-      runtimeType.hashCode;
-}
-
-extension $EventUserRoleDocExtension on EventUserRoleDoc {
-  EventUserRoleDoc copyWith(
-      {enums.EventUserRoleDocDataType? dataType,
-      String? eventId,
-      String? wallet,
-      List<enums.EventUserRoleDocRole>? role,
-      List<enums.EventUserRoleDocPermissions>? permissions,
-      double? createdAt,
-      double? endTime,
-      String? id}) {
-    return EventUserRoleDoc(
-        dataType: dataType ?? this.dataType,
-        eventId: eventId ?? this.eventId,
-        wallet: wallet ?? this.wallet,
-        role: role ?? this.role,
-        permissions: permissions ?? this.permissions,
-        createdAt: createdAt ?? this.createdAt,
-        endTime: endTime ?? this.endTime,
-        id: id ?? this.id);
-  }
-
-  EventUserRoleDoc copyWithWrapped(
-      {Wrapped<enums.EventUserRoleDocDataType>? dataType,
-      Wrapped<String>? eventId,
-      Wrapped<String>? wallet,
-      Wrapped<List<enums.EventUserRoleDocRole>>? role,
-      Wrapped<List<enums.EventUserRoleDocPermissions>>? permissions,
-      Wrapped<double>? createdAt,
-      Wrapped<double>? endTime,
-      Wrapped<String>? id}) {
-    return EventUserRoleDoc(
-        dataType: (dataType != null ? dataType.value : this.dataType),
-        eventId: (eventId != null ? eventId.value : this.eventId),
-        wallet: (wallet != null ? wallet.value : this.wallet),
-        role: (role != null ? role.value : this.role),
-        permissions:
-            (permissions != null ? permissions.value : this.permissions),
-        createdAt: (createdAt != null ? createdAt.value : this.createdAt),
-        endTime: (endTime != null ? endTime.value : this.endTime),
-        id: (id != null ? id.value : this.id));
   }
 }
 
@@ -25343,6 +25572,55 @@ extension $EventEventIdQuestionQuestionIdDelete$ResponseExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventEventIdRoleRoleIdDelete$Response {
+  const EventEventIdRoleRoleIdDelete$Response({
+    this.success,
+  });
+
+  factory EventEventIdRoleRoleIdDelete$Response.fromJson(
+          Map<String, dynamic> json) =>
+      _$EventEventIdRoleRoleIdDelete$ResponseFromJson(json);
+
+  static const toJsonFactory = _$EventEventIdRoleRoleIdDelete$ResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$EventEventIdRoleRoleIdDelete$ResponseToJson(this);
+
+  @JsonKey(name: 'success')
+  final bool? success;
+  static const fromJsonFactory =
+      _$EventEventIdRoleRoleIdDelete$ResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventEventIdRoleRoleIdDelete$Response &&
+            (identical(other.success, success) ||
+                const DeepCollectionEquality().equals(other.success, success)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(success) ^ runtimeType.hashCode;
+}
+
+extension $EventEventIdRoleRoleIdDelete$ResponseExtension
+    on EventEventIdRoleRoleIdDelete$Response {
+  EventEventIdRoleRoleIdDelete$Response copyWith({bool? success}) {
+    return EventEventIdRoleRoleIdDelete$Response(
+        success: success ?? this.success);
+  }
+
+  EventEventIdRoleRoleIdDelete$Response copyWithWrapped(
+      {Wrapped<bool?>? success}) {
+    return EventEventIdRoleRoleIdDelete$Response(
+        success: (success != null ? success.value : this.success));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventEventIdCalculatePricesPost$Response$StagePrices$Item {
   const EventEventIdCalculatePricesPost$Response$StagePrices$Item({
     this.stageId,
@@ -25614,6 +25892,296 @@ List<enums.MintingListingDtoDataType>?
 
   return mintingListingDtoDataType
       .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? eventUserRoleDocDataTypeNullableToJson(
+    enums.EventUserRoleDocDataType? eventUserRoleDocDataType) {
+  return eventUserRoleDocDataType?.value;
+}
+
+String? eventUserRoleDocDataTypeToJson(
+    enums.EventUserRoleDocDataType eventUserRoleDocDataType) {
+  return eventUserRoleDocDataType.value;
+}
+
+enums.EventUserRoleDocDataType eventUserRoleDocDataTypeFromJson(
+  Object? eventUserRoleDocDataType, [
+  enums.EventUserRoleDocDataType? defaultValue,
+]) {
+  return enums.EventUserRoleDocDataType.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
+      defaultValue ??
+      enums.EventUserRoleDocDataType.swaggerGeneratedUnknown;
+}
+
+enums.EventUserRoleDocDataType? eventUserRoleDocDataTypeNullableFromJson(
+  Object? eventUserRoleDocDataType, [
+  enums.EventUserRoleDocDataType? defaultValue,
+]) {
+  if (eventUserRoleDocDataType == null) {
+    return null;
+  }
+  return enums.EventUserRoleDocDataType.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
+      defaultValue;
+}
+
+String eventUserRoleDocDataTypeExplodedListToJson(
+    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
+  return eventUserRoleDocDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventUserRoleDocDataTypeListToJson(
+    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
+  if (eventUserRoleDocDataType == null) {
+    return [];
+  }
+
+  return eventUserRoleDocDataType.map((e) => e.value!).toList();
+}
+
+List<enums.EventUserRoleDocDataType> eventUserRoleDocDataTypeListFromJson(
+  List? eventUserRoleDocDataType, [
+  List<enums.EventUserRoleDocDataType>? defaultValue,
+]) {
+  if (eventUserRoleDocDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventUserRoleDocDataType
+      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventUserRoleDocDataType>?
+    eventUserRoleDocDataTypeNullableListFromJson(
+  List? eventUserRoleDocDataType, [
+  List<enums.EventUserRoleDocDataType>? defaultValue,
+]) {
+  if (eventUserRoleDocDataType == null) {
+    return defaultValue;
+  }
+
+  return eventUserRoleDocDataType
+      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? eventUserRoleDocRoleNullableToJson(
+    enums.EventUserRoleDocRole? eventUserRoleDocRole) {
+  return eventUserRoleDocRole?.value;
+}
+
+String? eventUserRoleDocRoleToJson(
+    enums.EventUserRoleDocRole eventUserRoleDocRole) {
+  return eventUserRoleDocRole.value;
+}
+
+enums.EventUserRoleDocRole eventUserRoleDocRoleFromJson(
+  Object? eventUserRoleDocRole, [
+  enums.EventUserRoleDocRole? defaultValue,
+]) {
+  return enums.EventUserRoleDocRole.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
+      defaultValue ??
+      enums.EventUserRoleDocRole.swaggerGeneratedUnknown;
+}
+
+enums.EventUserRoleDocRole? eventUserRoleDocRoleNullableFromJson(
+  Object? eventUserRoleDocRole, [
+  enums.EventUserRoleDocRole? defaultValue,
+]) {
+  if (eventUserRoleDocRole == null) {
+    return null;
+  }
+  return enums.EventUserRoleDocRole.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
+      defaultValue;
+}
+
+String eventUserRoleDocRoleExplodedListToJson(
+    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
+  return eventUserRoleDocRole?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventUserRoleDocRoleListToJson(
+    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
+  if (eventUserRoleDocRole == null) {
+    return [];
+  }
+
+  return eventUserRoleDocRole.map((e) => e.value!).toList();
+}
+
+List<enums.EventUserRoleDocRole> eventUserRoleDocRoleListFromJson(
+  List? eventUserRoleDocRole, [
+  List<enums.EventUserRoleDocRole>? defaultValue,
+]) {
+  if (eventUserRoleDocRole == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventUserRoleDocRole
+      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventUserRoleDocRole>? eventUserRoleDocRoleNullableListFromJson(
+  List? eventUserRoleDocRole, [
+  List<enums.EventUserRoleDocRole>? defaultValue,
+]) {
+  if (eventUserRoleDocRole == null) {
+    return defaultValue;
+  }
+
+  return eventUserRoleDocRole
+      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
+      .toList();
+}
+
+String? eventUserRoleDocPermissionsNullableToJson(
+    enums.EventUserRoleDocPermissions? eventUserRoleDocPermissions) {
+  return eventUserRoleDocPermissions?.value;
+}
+
+String? eventUserRoleDocPermissionsToJson(
+    enums.EventUserRoleDocPermissions eventUserRoleDocPermissions) {
+  return eventUserRoleDocPermissions.value;
+}
+
+enums.EventUserRoleDocPermissions eventUserRoleDocPermissionsFromJson(
+  Object? eventUserRoleDocPermissions, [
+  enums.EventUserRoleDocPermissions? defaultValue,
+]) {
+  return enums.EventUserRoleDocPermissions.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
+      defaultValue ??
+      enums.EventUserRoleDocPermissions.swaggerGeneratedUnknown;
+}
+
+enums.EventUserRoleDocPermissions? eventUserRoleDocPermissionsNullableFromJson(
+  Object? eventUserRoleDocPermissions, [
+  enums.EventUserRoleDocPermissions? defaultValue,
+]) {
+  if (eventUserRoleDocPermissions == null) {
+    return null;
+  }
+  return enums.EventUserRoleDocPermissions.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
+      defaultValue;
+}
+
+String eventUserRoleDocPermissionsExplodedListToJson(
+    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
+  return eventUserRoleDocPermissions?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventUserRoleDocPermissionsListToJson(
+    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
+  if (eventUserRoleDocPermissions == null) {
+    return [];
+  }
+
+  return eventUserRoleDocPermissions.map((e) => e.value!).toList();
+}
+
+List<enums.EventUserRoleDocPermissions> eventUserRoleDocPermissionsListFromJson(
+  List? eventUserRoleDocPermissions, [
+  List<enums.EventUserRoleDocPermissions>? defaultValue,
+]) {
+  if (eventUserRoleDocPermissions == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventUserRoleDocPermissions
+      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventUserRoleDocPermissions>?
+    eventUserRoleDocPermissionsNullableListFromJson(
+  List? eventUserRoleDocPermissions, [
+  List<enums.EventUserRoleDocPermissions>? defaultValue,
+]) {
+  if (eventUserRoleDocPermissions == null) {
+    return defaultValue;
+  }
+
+  return eventUserRoleDocPermissions
+      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
+      .toList();
+}
+
+String? eventUserRoleDocStatusNullableToJson(
+    enums.EventUserRoleDocStatus? eventUserRoleDocStatus) {
+  return eventUserRoleDocStatus?.value;
+}
+
+String? eventUserRoleDocStatusToJson(
+    enums.EventUserRoleDocStatus eventUserRoleDocStatus) {
+  return eventUserRoleDocStatus.value;
+}
+
+enums.EventUserRoleDocStatus eventUserRoleDocStatusFromJson(
+  Object? eventUserRoleDocStatus, [
+  enums.EventUserRoleDocStatus? defaultValue,
+]) {
+  return enums.EventUserRoleDocStatus.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocStatus) ??
+      defaultValue ??
+      enums.EventUserRoleDocStatus.swaggerGeneratedUnknown;
+}
+
+enums.EventUserRoleDocStatus? eventUserRoleDocStatusNullableFromJson(
+  Object? eventUserRoleDocStatus, [
+  enums.EventUserRoleDocStatus? defaultValue,
+]) {
+  if (eventUserRoleDocStatus == null) {
+    return null;
+  }
+  return enums.EventUserRoleDocStatus.values
+          .firstWhereOrNull((e) => e.value == eventUserRoleDocStatus) ??
+      defaultValue;
+}
+
+String eventUserRoleDocStatusExplodedListToJson(
+    List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatus) {
+  return eventUserRoleDocStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventUserRoleDocStatusListToJson(
+    List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatus) {
+  if (eventUserRoleDocStatus == null) {
+    return [];
+  }
+
+  return eventUserRoleDocStatus.map((e) => e.value!).toList();
+}
+
+List<enums.EventUserRoleDocStatus> eventUserRoleDocStatusListFromJson(
+  List? eventUserRoleDocStatus, [
+  List<enums.EventUserRoleDocStatus>? defaultValue,
+]) {
+  if (eventUserRoleDocStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventUserRoleDocStatus
+      .map((e) => eventUserRoleDocStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatusNullableListFromJson(
+  List? eventUserRoleDocStatus, [
+  List<enums.EventUserRoleDocStatus>? defaultValue,
+]) {
+  if (eventUserRoleDocStatus == null) {
+    return defaultValue;
+  }
+
+  return eventUserRoleDocStatus
+      .map((e) => eventUserRoleDocStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -27809,224 +28377,6 @@ List<enums.EventUserRoleCreateDtoPermissions>?
 
   return eventUserRoleCreateDtoPermissions
       .map((e) => eventUserRoleCreateDtoPermissionsFromJson(e.toString()))
-      .toList();
-}
-
-String? eventUserRoleDocDataTypeNullableToJson(
-    enums.EventUserRoleDocDataType? eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType?.value;
-}
-
-String? eventUserRoleDocDataTypeToJson(
-    enums.EventUserRoleDocDataType eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType.value;
-}
-
-enums.EventUserRoleDocDataType eventUserRoleDocDataTypeFromJson(
-  Object? eventUserRoleDocDataType, [
-  enums.EventUserRoleDocDataType? defaultValue,
-]) {
-  return enums.EventUserRoleDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
-      defaultValue ??
-      enums.EventUserRoleDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventUserRoleDocDataType? eventUserRoleDocDataTypeNullableFromJson(
-  Object? eventUserRoleDocDataType, [
-  enums.EventUserRoleDocDataType? defaultValue,
-]) {
-  if (eventUserRoleDocDataType == null) {
-    return null;
-  }
-  return enums.EventUserRoleDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
-      defaultValue;
-}
-
-String eventUserRoleDocDataTypeExplodedListToJson(
-    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventUserRoleDocDataTypeListToJson(
-    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
-  if (eventUserRoleDocDataType == null) {
-    return [];
-  }
-
-  return eventUserRoleDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventUserRoleDocDataType> eventUserRoleDocDataTypeListFromJson(
-  List? eventUserRoleDocDataType, [
-  List<enums.EventUserRoleDocDataType>? defaultValue,
-]) {
-  if (eventUserRoleDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventUserRoleDocDataType
-      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventUserRoleDocDataType>?
-    eventUserRoleDocDataTypeNullableListFromJson(
-  List? eventUserRoleDocDataType, [
-  List<enums.EventUserRoleDocDataType>? defaultValue,
-]) {
-  if (eventUserRoleDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventUserRoleDocDataType
-      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventUserRoleDocRoleNullableToJson(
-    enums.EventUserRoleDocRole? eventUserRoleDocRole) {
-  return eventUserRoleDocRole?.value;
-}
-
-String? eventUserRoleDocRoleToJson(
-    enums.EventUserRoleDocRole eventUserRoleDocRole) {
-  return eventUserRoleDocRole.value;
-}
-
-enums.EventUserRoleDocRole eventUserRoleDocRoleFromJson(
-  Object? eventUserRoleDocRole, [
-  enums.EventUserRoleDocRole? defaultValue,
-]) {
-  return enums.EventUserRoleDocRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
-      defaultValue ??
-      enums.EventUserRoleDocRole.swaggerGeneratedUnknown;
-}
-
-enums.EventUserRoleDocRole? eventUserRoleDocRoleNullableFromJson(
-  Object? eventUserRoleDocRole, [
-  enums.EventUserRoleDocRole? defaultValue,
-]) {
-  if (eventUserRoleDocRole == null) {
-    return null;
-  }
-  return enums.EventUserRoleDocRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
-      defaultValue;
-}
-
-String eventUserRoleDocRoleExplodedListToJson(
-    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
-  return eventUserRoleDocRole?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventUserRoleDocRoleListToJson(
-    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
-  if (eventUserRoleDocRole == null) {
-    return [];
-  }
-
-  return eventUserRoleDocRole.map((e) => e.value!).toList();
-}
-
-List<enums.EventUserRoleDocRole> eventUserRoleDocRoleListFromJson(
-  List? eventUserRoleDocRole, [
-  List<enums.EventUserRoleDocRole>? defaultValue,
-]) {
-  if (eventUserRoleDocRole == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventUserRoleDocRole
-      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventUserRoleDocRole>? eventUserRoleDocRoleNullableListFromJson(
-  List? eventUserRoleDocRole, [
-  List<enums.EventUserRoleDocRole>? defaultValue,
-]) {
-  if (eventUserRoleDocRole == null) {
-    return defaultValue;
-  }
-
-  return eventUserRoleDocRole
-      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
-      .toList();
-}
-
-String? eventUserRoleDocPermissionsNullableToJson(
-    enums.EventUserRoleDocPermissions? eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions?.value;
-}
-
-String? eventUserRoleDocPermissionsToJson(
-    enums.EventUserRoleDocPermissions eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions.value;
-}
-
-enums.EventUserRoleDocPermissions eventUserRoleDocPermissionsFromJson(
-  Object? eventUserRoleDocPermissions, [
-  enums.EventUserRoleDocPermissions? defaultValue,
-]) {
-  return enums.EventUserRoleDocPermissions.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
-      defaultValue ??
-      enums.EventUserRoleDocPermissions.swaggerGeneratedUnknown;
-}
-
-enums.EventUserRoleDocPermissions? eventUserRoleDocPermissionsNullableFromJson(
-  Object? eventUserRoleDocPermissions, [
-  enums.EventUserRoleDocPermissions? defaultValue,
-]) {
-  if (eventUserRoleDocPermissions == null) {
-    return null;
-  }
-  return enums.EventUserRoleDocPermissions.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
-      defaultValue;
-}
-
-String eventUserRoleDocPermissionsExplodedListToJson(
-    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventUserRoleDocPermissionsListToJson(
-    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
-  if (eventUserRoleDocPermissions == null) {
-    return [];
-  }
-
-  return eventUserRoleDocPermissions.map((e) => e.value!).toList();
-}
-
-List<enums.EventUserRoleDocPermissions> eventUserRoleDocPermissionsListFromJson(
-  List? eventUserRoleDocPermissions, [
-  List<enums.EventUserRoleDocPermissions>? defaultValue,
-]) {
-  if (eventUserRoleDocPermissions == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventUserRoleDocPermissions
-      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventUserRoleDocPermissions>?
-    eventUserRoleDocPermissionsNullableListFromJson(
-  List? eventUserRoleDocPermissions, [
-  List<enums.EventUserRoleDocPermissions>? defaultValue,
-]) {
-  if (eventUserRoleDocPermissions == null) {
-    return defaultValue;
-  }
-
-  return eventUserRoleDocPermissions
-      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
       .toList();
 }
 
