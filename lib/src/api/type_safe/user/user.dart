@@ -25,9 +25,7 @@ class UserTypeSafeApi {
     return Web2UserDoc.fromJson(data);
   }
 
-  Future<List<String>> getWeb2Shards({
-    required final NativeWalletDto body,
-  }) async {
+  Future<List<String>> getWeb2Shards() async {
     final data = await _api.getWeb2Shards();
     return data;
   }
