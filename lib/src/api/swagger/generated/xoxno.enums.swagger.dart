@@ -1,28 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
-enum CollectionMintProfileDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('collectionProfile')
-  collectionprofile('collectionProfile'),
-  @JsonValue('globalOffer')
-  globaloffer('globalOffer'),
-  @JsonValue('mintProfile')
-  mintprofile('mintProfile'),
-  @JsonValue('mintStage')
-  mintstage('mintStage'),
-  @JsonValue('collectionStats')
-  collectionstats('collectionStats'),
-  @JsonValue('collectionVerification')
-  collectionverification('collectionVerification');
-
-  final String? value;
-
-  const CollectionMintProfileDocDataType(this.value);
-}
-
 enum MintingListingDtoDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -237,6 +215,28 @@ enum StakingCreatorDocDataType {
   final String? value;
 
   const StakingCreatorDocDataType(this.value);
+}
+
+enum CollectionMintProfileDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('collectionProfile')
+  collectionprofile('collectionProfile'),
+  @JsonValue('globalOffer')
+  globaloffer('globalOffer'),
+  @JsonValue('mintProfile')
+  mintprofile('mintProfile'),
+  @JsonValue('mintStage')
+  mintstage('mintStage'),
+  @JsonValue('collectionStats')
+  collectionstats('collectionStats'),
+  @JsonValue('collectionVerification')
+  collectionverification('collectionVerification');
+
+  final String? value;
+
+  const CollectionMintProfileDocDataType(this.value);
 }
 
 enum Web2UserWalletType {
@@ -875,6 +875,8 @@ enum QRBodyType {
   badge('badge'),
   @JsonValue('offline')
   offline('offline'),
+  @JsonValue('google')
+  google('google'),
   @JsonValue('manual')
   manual('manual');
 
@@ -907,6 +909,8 @@ enum TicketValidationResultType {
   badge('badge'),
   @JsonValue('offline')
   offline('offline'),
+  @JsonValue('google')
+  google('google'),
   @JsonValue('manual')
   manual('manual');
 

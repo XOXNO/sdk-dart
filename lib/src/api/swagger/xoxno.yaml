@@ -983,15 +983,25 @@ paths:
           in: path
           schema:
             type: string
-      responses:
-        '200':
-          description: User followed collections tickers response
+        - name: filter
+          required: true
+          in: query
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/CollectionStatsFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Explore collections statistics response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExploreCollectionsStatisticsDto'
         '400':
           description: Bad Request
           content:
@@ -1158,7 +1168,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TokenDto'
+                  $ref: '#/components/schemas/TokenDocDto'
         '400':
           description: Bad Request
           content:
@@ -1475,7 +1485,7 @@ paths:
         - LiquidXOXNO
   /ash/min-token-quantity:
     get:
-      operationId: AshAggregatorController_getAccountCollectionDetails
+      operationId: AshAggregatorController_getMinTokenQuantity
       summary: Fetch swap routes
       parameters:
         - name: originalToken
@@ -1493,6 +1503,58 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Swap routes fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchSwapRoutesResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - Ash Aggregator
+  /ash/max-token-quantity:
+    get:
+      operationId: AshAggregatorController_getMaxTokenQuantity
+      summary: Fetch swap routes
+      parameters:
+        - name: paymentTokenValue
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: paymentToken
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: wantedToken
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: slippage
+          required: true
+          in: query
+          schema:
+            type: number
       responses:
         '200':
           description: Swap routes fetched successfully
@@ -2376,12 +2438,12 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - Collection
-  /user/{scAddress}/creator/listing:
+  /user/{address}/creator/listing:
     get:
       operationId: CollectionDataController_retrieveCreatorListing
       summary: Get creator all listings
       parameters:
-        - name: scAddress
+        - name: address
           required: true
           in: path
           schema:
@@ -2392,9 +2454,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CollectionMintProfileDoc'
+                $ref: '#/components/schemas/CreatorDetailsDto'
         '400':
           description: Bad Request
           content:
@@ -5738,9 +5798,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EventProfile'
+                $ref: '#/components/schemas/CreatorDetailsDto'
       tags:
         - Ticketing
         - User
@@ -5837,6 +5895,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventInvitation'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/voucher/query:
+    get:
+      operationId: TicketingDataController_getEventVouchers
+      summary: Get event vouchers for event
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventVoucherFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of vouchers for the event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CosmosPaginatedResponse'
       tags:
         - Ticketing
       security:
@@ -6139,7 +6231,7 @@ paths:
         - Ticketing
       security:
         - bearer: []
-  /event/{eventId}/role/{roleId}:
+  /event/{eventId}/role/{address}:
     delete:
       operationId: TicketingDataController_deleteRole
       summary: Delete event user role
@@ -6148,6 +6240,11 @@ paths:
           required: true
           in: path
           description: ID of the event
+          schema:
+            type: string
+        - name: address
+          required: true
+          in: path
           schema:
             type: string
         - name: roleId
@@ -6159,6 +6256,58 @@ paths:
       responses:
         '200':
           description: Event user role deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+    get:
+      operationId: TicketingDataController_getEventUserRole
+      summary: Get event user role details
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: address
+          required: true
+          in: path
+          description: User wallet address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event user role details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUserRoleDoc'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/guest:
+    delete:
+      operationId: TicketingDataController_deleteGuest
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Guest deleted
           content:
             application/json:
               schema:
@@ -6191,34 +6340,6 @@ paths:
       responses:
         '201':
           description: Event user role accepted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
-      security:
-        - bearer: []
-  /event/{eventId}/role/{address}:
-    get:
-      operationId: TicketingDataController_getEventUserRole
-      summary: Get event user role details
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-        - name: address
-          required: true
-          in: path
-          description: User wallet address
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Event user role details
           content:
             application/json:
               schema:
@@ -6313,6 +6434,7 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
       requestBody:
@@ -6332,7 +6454,7 @@ paths:
         - Ticketing
       security:
         - bearer: []
-  /events/{eventId}/voucher/create:
+  /event/{eventId}/voucher:
     post:
       operationId: TicketingDataController_createEventVoucher
       summary: Create a new event voucher
@@ -6354,19 +6476,21 @@ paths:
         - Ticketing
       security:
         - bearer: []
-  /events/{eventId}/voucher/{voucherId}:
-    put:
+  /event/{eventId}/voucher/{voucherCode}:
+    patch:
       operationId: TicketingDataController_editEventVoucher
       summary: Edit an existing event voucher
       parameters:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
-        - name: voucherId
+        - name: voucherCode
           required: true
           in: path
+          description: Code of the voucher
           schema:
             type: string
       requestBody:
@@ -6382,6 +6506,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventVoucherDoc'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+    delete:
+      operationId: TicketingDataController_deleteEventVoucher
+      summary: Delete an existing event voucher
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: voucherCode
+          required: true
+          in: path
+          description: Code of the voucher
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted event description image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
       tags:
         - Ticketing
       security:
@@ -6442,6 +6597,50 @@ paths:
       tags:
         - Ticketing
         - Guest
+      security:
+        - bearer: []
+  /event/{eventId}/ticket/{ticketId}/google/class:
+    post:
+      operationId: TicketingDataController_createGooglePassClass
+      summary: Create or update Google Pass class
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: ticketId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Google Pass class created or updated
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/guest/{address}/google/pass:
+    get:
+      operationId: TicketingDataController_createGooglePassForGuest
+      summary: Create Google Pass for guest
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Google Pass created for guest
+      tags:
+        - Ticketing
       security:
         - bearer: []
 info:
@@ -6650,79 +6849,58 @@ components:
     TokenDto:
       type: object
       properties:
-        id:
-          type: string
-          description: ID of the token
-          example: EGLD
+        nonce:
+          type: number
+          example: 0
         identifier:
           type: string
-          description: Identifier of the token
-          example: EGLD
-        collection:
-          type: string
-          description: Collection of the token
-          example: FungibleTokenInfo
-        dataType:
-          type: string
-          description: Data type of the token
-          example: fungibleTokenProfile
+          example: TIME-84518f
         decimals:
           type: number
-          description: Decimals of the token
           example: 18
-        name:
+        balance:
           type: string
-          description: Name of the token
-          example: EGLD
-        type:
-          type: string
-          description: Type of the token
-          example: FungibleESDT
-        category:
-          description: Categories of the token
-          example:
-            - all
-            - trade
-            - staking
-            - minting
-            - p2p
-          type: array
-          items:
-            type: string
-        svgUrl:
-          type: string
-          description: SVG URL of the token logo
-          example: https://media.xoxno.com/tokens/EGLD/logo.svg
-        pngUrl:
-          type: string
-          description: PNG URL of the token logo
-          example: https://media.xoxno.com/tokens/EGLD/logo.png
+          example: '514203000000000000000'
         ticker:
           type: string
-          description: Ticker of the token
-          example: EGLD
-        _ts:
+          example: TIME
+        name:
+          type: string
+          example: TIME
+        shortBalance:
           type: number
-          description: Timestamp
-          example: 1705933418
+          example: 514.203
         usdPrice:
           type: number
-          description: USD price of the token
-          example: 35.70543073773239
+          example: 12.160648172030305
+        usdValue:
+          type: number
+          example: 6253.041772002499
+        egldValue:
+          type: number
+          example: 171.32505804164822
+        assets:
+          $ref: '#/components/schemas/TokenAssetsDto'
+        isAshSupported:
+          type: boolean
+          example: false
+        weight:
+          type: number
+          example: 83.21
       required:
-        - id
+        - nonce
         - identifier
-        - collection
-        - dataType
         - decimals
-        - name
-        - type
-        - category
-        - svgUrl
-        - pngUrl
+        - balance
         - ticker
-        - _ts
+        - name
+        - shortBalance
         - usdPrice
+        - usdValue
+        - egldValue
+        - assets
+        - isAshSupported
+        - weight
     UserTokenInventoryResponseDto:
       type: object
       properties:
@@ -7053,6 +7231,139 @@ components:
         - description
         - creatorTag
         - followCount
+    DayTradingStatsDto:
+      type: object
+      properties:
+        volume:
+          type: number
+          description: Trading volume for the day
+        volumeMargin:
+          type: number
+          description: Margin of volume change for the day
+        trades:
+          type: number
+          description: Number of trades for the day
+        tradesMargin:
+          type: number
+          description: Margin of trades change for the day
+        minPrice:
+          type: number
+          description: Minimum price for the day
+        maxPrice:
+          type: number
+          description: Maximum price for the day
+        averagePrice:
+          type: number
+          description: Average price for the day
+      required:
+        - volume
+        - volumeMargin
+        - trades
+        - tradesMargin
+        - minPrice
+        - maxPrice
+        - averagePrice
+    TradingStatsDto:
+      type: object
+      properties:
+        day:
+          description: Daily trading statistics
+          allOf:
+            - $ref: '#/components/schemas/DayTradingStatsDto'
+      required:
+        - day
+    CollectionInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: EBMC
+        socials:
+          $ref: '#/components/schemas/SocialsDto'
+        isVerified:
+          type: boolean
+          example: false
+        isVisible:
+          type: boolean
+          example: true
+        description:
+          type: string
+          example: Test collection
+        profile:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
+        banner:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
+        collectionSize:
+          type: number
+          example: 2955
+        followCount:
+          type: number
+          example: 16
+        holdersCount:
+          type: number
+          example: 0
+        owner:
+          type: string
+          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
+        volume:
+          type: number
+          example: 1230.34
+      required:
+        - name
+        - socials
+        - isVerified
+        - isVisible
+        - description
+        - profile
+        - banner
+        - collectionSize
+        - followCount
+        - holdersCount
+        - owner
+        - volume
+    CollectionStatsDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Identifier of the collection
+        tradingStats:
+          description: Trading statistics of the collection
+          allOf:
+            - $ref: '#/components/schemas/TradingStatsDto'
+        floorPrice:
+          type: number
+          description: Current floor price
+        listedCount:
+          type: number
+          description: Number of listed items
+        collectionInfo:
+          description: Information about the collection
+          allOf:
+            - $ref: '#/components/schemas/CollectionInfoDto'
+      required:
+        - collection
+        - tradingStats
+        - floorPrice
+        - listedCount
+        - collectionInfo
+    ExploreCollectionsStatisticsDto:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionStatsDto'
+        hasMoreResults:
+          type: boolean
+          example: true
+      required:
+        - resources
+        - hasMoreResults
     CheckLikeStatusResponseDto:
       type: object
       properties:
@@ -7075,6 +7386,82 @@ components:
       required:
         - isFollowed
         - addressFavorite
+    TokenDocDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the token
+          example: EGLD
+        identifier:
+          type: string
+          description: Identifier of the token
+          example: EGLD
+        collection:
+          type: string
+          description: Collection of the token
+          example: FungibleTokenInfo
+        dataType:
+          type: string
+          description: Data type of the token
+          example: fungibleTokenProfile
+        decimals:
+          type: number
+          description: Decimals of the token
+          example: 18
+        name:
+          type: string
+          description: Name of the token
+          example: EGLD
+        type:
+          type: string
+          description: Type of the token
+          example: FungibleESDT
+        category:
+          description: Categories of the token
+          example:
+            - all
+            - trade
+            - staking
+            - minting
+            - p2p
+          type: array
+          items:
+            type: string
+        svgUrl:
+          type: string
+          description: SVG URL of the token logo
+          example: https://media.xoxno.com/tokens/EGLD/logo.svg
+        pngUrl:
+          type: string
+          description: PNG URL of the token logo
+          example: https://media.xoxno.com/tokens/EGLD/logo.png
+        ticker:
+          type: string
+          description: Ticker of the token
+          example: EGLD
+        _ts:
+          type: number
+          description: Timestamp
+          example: 1705933418
+        usdPrice:
+          type: number
+          description: USD price of the token
+          example: 35.70543073773239
+      required:
+        - id
+        - identifier
+        - collection
+        - dataType
+        - decimals
+        - name
+        - type
+        - category
+        - svgUrl
+        - pngUrl
+        - ticker
+        - _ts
+        - usdPrice
     RateType:
       type: object
       properties:
@@ -7296,13 +7683,25 @@ components:
         - assetOut
         - functionName
         - arguments
+    AshTokenDto:
+      type: object
+      properties:
+        address:
+          type: string
+          example: PADAWAN-a17f58
+        decimal:
+          type: number
+          example: 18
+      required:
+        - address
+        - decimal
     PoolDto:
       type: object
       properties:
         allTokens:
           type: array
           items:
-            $ref: '#/components/schemas/TokenDto'
+            $ref: '#/components/schemas/AshTokenDto'
         type:
           type: string
           example: onedex
@@ -7680,59 +8079,6 @@ components:
         - amountShort
         - decimals
         - usdValue
-    CollectionInfoDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: EBMC
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        isVerified:
-          type: boolean
-          example: false
-        isVisible:
-          type: boolean
-          example: true
-        description:
-          type: string
-          example: Test collection
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
-        collectionSize:
-          type: number
-          example: 2955
-        followCount:
-          type: number
-          example: 16
-        holdersCount:
-          type: number
-          example: 0
-        owner:
-          type: string
-          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
-        volume:
-          type: number
-          example: 1230.34
-      required:
-        - name
-        - socials
-        - isVerified
-        - isVisible
-        - description
-        - profile
-        - banner
-        - collectionSize
-        - followCount
-        - holdersCount
-        - owner
-        - volume
     CreatorInfoDto:
       type: object
       properties:
@@ -8048,86 +8394,6 @@ components:
           example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
       required:
         - owner
-    DayTradingStatsDto:
-      type: object
-      properties:
-        volume:
-          type: number
-          description: Trading volume for the day
-        volumeMargin:
-          type: number
-          description: Margin of volume change for the day
-        trades:
-          type: number
-          description: Number of trades for the day
-        tradesMargin:
-          type: number
-          description: Margin of trades change for the day
-        minPrice:
-          type: number
-          description: Minimum price for the day
-        maxPrice:
-          type: number
-          description: Maximum price for the day
-        averagePrice:
-          type: number
-          description: Average price for the day
-      required:
-        - volume
-        - volumeMargin
-        - trades
-        - tradesMargin
-        - minPrice
-        - maxPrice
-        - averagePrice
-    TradingStatsDto:
-      type: object
-      properties:
-        day:
-          description: Daily trading statistics
-          allOf:
-            - $ref: '#/components/schemas/DayTradingStatsDto'
-      required:
-        - day
-    CollectionStatsDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          description: Identifier of the collection
-        tradingStats:
-          description: Trading statistics of the collection
-          allOf:
-            - $ref: '#/components/schemas/TradingStatsDto'
-        floorPrice:
-          type: number
-          description: Current floor price
-        listedCount:
-          type: number
-          description: Number of listed items
-        collectionInfo:
-          description: Information about the collection
-          allOf:
-            - $ref: '#/components/schemas/CollectionInfoDto'
-      required:
-        - collection
-        - tradingStats
-        - floorPrice
-        - listedCount
-        - collectionInfo
-    ExploreCollectionsStatisticsDto:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionStatsDto'
-        hasMoreResults:
-          type: boolean
-          example: true
-      required:
-        - resources
-        - hasMoreResults
     AttributeDto:
       type: object
       properties:
@@ -8230,113 +8496,6 @@ components:
       required:
         - resources
         - hasMoreResults
-    CollectionMintProfileDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-            - collectionProfile
-            - globalOffer
-            - mintProfile
-            - mintStage
-            - collectionStats
-            - collectionVerification
-          default: mintProfile
-        collection:
-          type: string
-        contractAddress:
-          type: string
-        collectionTag:
-          type: string
-        creatorTag:
-          type: string
-        creatorName:
-          type: string
-        cid:
-          type: string
-        mediaType:
-          type: string
-        baseNftName:
-          type: string
-        hasAttributes:
-          type: boolean
-        ownerTransferred:
-          type: boolean
-        collectionSize:
-          type: number
-        totalNftMinted:
-          type: number
-        globalWalletLimit:
-          type: number
-        royalties:
-          type: number
-        oldVersion:
-          type: boolean
-        nameShuffle:
-          type: boolean
-        nftTransferLimited:
-          type: boolean
-        allowsPublicBurn:
-          type: boolean
-        kycRequired:
-          type: boolean
-        allowsRefund:
-          type: boolean
-        hasBotProtection:
-          type: boolean
-        hasReveal:
-          type: boolean
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
-        startTime:
-          type: object
-        endTime:
-          type: number
-        isSoldOut:
-          type: object
-        tags:
-          oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
-        id:
-          type: string
-        _ts:
-          type: number
-      required:
-        - dataType
-        - collection
-        - contractAddress
-        - collectionTag
-        - creatorTag
-        - creatorName
-        - cid
-        - mediaType
-        - baseNftName
-        - hasAttributes
-        - ownerTransferred
-        - collectionSize
-        - totalNftMinted
-        - globalWalletLimit
-        - royalties
-        - oldVersion
-        - nameShuffle
-        - nftTransferLimited
-        - kycRequired
-        - allowsRefund
-        - hasBotProtection
-        - hasReveal
-        - prices
-        - startTime
-        - endTime
-        - isSoldOut
-        - tags
-        - id
-        - _ts
     MintingListingDto:
       type: object
       properties:
@@ -10009,6 +10168,113 @@ components:
         - totalDelegatorCount
         - rewardTickers
         - collectionInfo
+    CollectionMintProfileDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
+          default: mintProfile
+        collection:
+          type: string
+        contractAddress:
+          type: string
+        collectionTag:
+          type: string
+        creatorTag:
+          type: string
+        creatorName:
+          type: string
+        cid:
+          type: string
+        mediaType:
+          type: string
+        baseNftName:
+          type: string
+        hasAttributes:
+          type: boolean
+        ownerTransferred:
+          type: boolean
+        collectionSize:
+          type: number
+        totalNftMinted:
+          type: number
+        globalWalletLimit:
+          type: number
+        royalties:
+          type: number
+        oldVersion:
+          type: boolean
+        nameShuffle:
+          type: boolean
+        nftTransferLimited:
+          type: boolean
+        allowsPublicBurn:
+          type: boolean
+        kycRequired:
+          type: boolean
+        allowsRefund:
+          type: boolean
+        hasBotProtection:
+          type: boolean
+        hasReveal:
+          type: boolean
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
+        startTime:
+          type: object
+        endTime:
+          type: number
+        isSoldOut:
+          type: object
+        tags:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        id:
+          type: string
+        _ts:
+          type: number
+      required:
+        - dataType
+        - collection
+        - contractAddress
+        - collectionTag
+        - creatorTag
+        - creatorName
+        - cid
+        - mediaType
+        - baseNftName
+        - hasAttributes
+        - ownerTransferred
+        - collectionSize
+        - totalNftMinted
+        - globalWalletLimit
+        - royalties
+        - oldVersion
+        - nameShuffle
+        - nftTransferLimited
+        - kycRequired
+        - allowsRefund
+        - hasBotProtection
+        - hasReveal
+        - prices
+        - startTime
+        - endTime
+        - isSoldOut
+        - tags
+        - id
+        - _ts
     OwnedServicesDto:
       type: object
       properties:
@@ -10028,7 +10294,7 @@ components:
           $ref: '#/components/schemas/CreatorProfileDto'
         address:
           type: string
-          example: erd131231
+          example: erd1312
       required:
         - mintProfiles
         - stakingPools
@@ -11491,11 +11757,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1726493446
+          example: 1727100499
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 0336cc32-3100-4936-b52c-aefe139959e4
+          example: cc27d907-6e2d-43f7-aab1-89b13177f8cb
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11594,7 +11860,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726493443
+          minimum: 1727100495
         endTime:
           type: number
         location:
@@ -11838,10 +12104,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1726493447
+          example: 1727100499
         endTime:
           type: number
-          example: 1726493447
+          example: 1727100499
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -11951,11 +12217,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1726493443
+          example: 1727100495
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 2d5d7b3b-2c9a-4235-b71d-08956b0be8d7
+          example: ceb66126-7233-41b5-bf61-f0d27c95a9e3
       required:
         - dataType
         - eventId
@@ -12019,10 +12285,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726493447
+          minimum: 1727100499
         endTime:
           type: number
-          minimum: 1726579847
+          minimum: 1727186899
         maxLimit:
           type: number
         userLimit:
@@ -12082,11 +12348,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1726493443
+          example: 1727100495
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1726493443
+          example: 1727100495
         maxLimit:
           type: object
           description: >-
@@ -12117,7 +12383,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 0c63f749-83ca-46d2-b682-dacb6311a79f
+          example: 0723da8e-6d78-4906-990d-8ad475cd792e
       required:
         - dataType
         - eventId
@@ -12154,10 +12420,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1726493447
+          minimum: 1727100499
         endTime:
           type: number
-          minimum: 1726579847
+          minimum: 1727186899
       required:
         - maxLimit
         - userLimit
@@ -12228,7 +12494,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 3dcf499c-4eda-483d-b86b-223203a956e7
+          example: 83b96809-9760-4c2d-b8fe-e539d9706374
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12291,7 +12557,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1726493446
+          example: 1727100499
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12324,7 +12590,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d853118e-04c0-4af6-be13-5286a2a48702
+          example: 7238f1b5-a732-479a-802d-84ad00ffb023
       required:
         - dataType
         - eventId
@@ -12390,7 +12656,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1726493446
+          example: 1727100499
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12423,7 +12689,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d853118e-04c0-4af6-be13-5286a2a48702
+          example: 7238f1b5-a732-479a-802d-84ad00ffb023
         profile:
           type: string
           description: >-
@@ -12464,6 +12730,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventGuestProfile'
+      required:
+        - hasMoreResults
+        - resources
+    CosmosPaginatedResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
       required:
         - hasMoreResults
         - resources
@@ -12517,7 +12802,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1726493447
+          example: 1727100499
       required:
         - dataType
         - id
@@ -12654,11 +12939,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1726493446
+          example: 1727100499
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 0336cc32-3100-4936-b52c-aefe139959e4
+          example: cc27d907-6e2d-43f7-aab1-89b13177f8cb
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -12738,6 +13023,7 @@ components:
           enum:
             - badge
             - offline
+            - google
             - manual
         data:
           type: string
@@ -12788,6 +13074,7 @@ components:
           enum:
             - badge
             - offline
+            - google
             - manual
         message:
           type: string
@@ -12859,11 +13146,9 @@ components:
         maxUsesPerUser:
           type: number
           description: Maximum uses allowed per user.
-        eventIds:
-          description: List of specific event IDs where the voucher can be applied.
-          type: array
-          items:
-            type: string
+        eventId:
+          type: string
+          description: The specific eventId where the voucher can be used
         ticketTypeIds:
           description: List of specific ticket type IDs where the voucher can be applied.
           type: array
@@ -12887,11 +13172,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726493447
+          example: 1727100499
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726493447
+          example: 1727100499
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -12922,7 +13207,6 @@ components:
         id:
           type: string
           description: Unique identifier for the voucher.
-          example: 393c03e1-899a-46d7-ab36-44aa30aa3b2c
         code:
           type: string
           description: Unique voucher code.
@@ -12947,11 +13231,9 @@ components:
         usedCount:
           type: object
           description: Tracks the number of times the voucher has been used.
-        eventIds:
+        eventId:
+          type: string
           description: List of specific event IDs where the voucher can be applied.
-          type: array
-          items:
-            type: string
         ticketTypeIds:
           description: List of specific ticket type IDs where the voucher can be applied.
           type: array
@@ -12975,11 +13257,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726493447
+          example: 1727100499
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726493447
+          example: 1727100499
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -12989,7 +13271,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1726493447
+          example: 1727100499
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13003,7 +13285,7 @@ components:
         - maxUses
         - maxUsesPerUser
         - usedCount
-        - eventIds
+        - eventId
         - ticketTypeIds
         - stageIds
         - minTicketCount
@@ -13035,11 +13317,6 @@ components:
         maxUsesPerUser:
           type: number
           description: Maximum uses allowed per user.
-        eventIds:
-          description: List of specific event IDs where the voucher can be applied.
-          type: array
-          items:
-            type: string
         ticketTypeIds:
           description: List of specific ticket type IDs where the voucher can be applied.
           type: array
@@ -13063,11 +13340,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1726493447
+          example: 1727100499
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1726493447
+          example: 1727100499
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13111,7 +13388,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 0077df1c-f6ba-433e-8e4b-d44737a97bbf
+          example: 4f0316e0-a643-406e-873e-64262c285aad
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13127,7 +13404,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1726493447
+          example: 1727100499
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.

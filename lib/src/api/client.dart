@@ -23,6 +23,7 @@ class Client extends http.BaseClient {
   final http.Client _client;
   String _refreshToken = '';
   String _jwt = '';
+  String _nativeToken = '';
 
   Client({
     http.Client? client,
@@ -39,6 +40,10 @@ class Client extends http.BaseClient {
     _jwt = value;
   }
 
+  set nativeToken(final String value) {
+    _nativeToken = value;
+  }
+
   set refreshToken(final String value) {
     _refreshToken = value;
   }
@@ -47,15 +52,19 @@ class Client extends http.BaseClient {
   Future<http.StreamedResponse> send(final http.BaseRequest request) async {
     _logger.finest('${request.method} ${request.url}');
     request.headers['user-agent'] = _userAgent;
-    final jwt = JWT.decode(_jwt);
-    final expiration =
-        DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
-    if (clock.now().isAfter(expiration)) {
-      await renewTokens();
+    final authorizationHeaderSB = StringBuffer('Bearer ');
+    if (_nativeToken.isNotEmpty) {
+      authorizationHeaderSB.write(_nativeToken);
+    } else if (_jwt.isNotEmpty) {
+      final jwt = JWT.decode(_jwt);
+      final expiration =
+          DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
+      if (clock.now().isAfter(expiration)) {
+        await renewTokens();
+      }
+      authorizationHeaderSB.write(_jwt);
     }
-    if (_jwt.isNotEmpty) {
-      request.headers['authorization'] = 'Bearer $_jwt';
-    }
+    request.headers['authorization'] = authorizationHeaderSB.toString();
     return _client.send(request);
   }
 
