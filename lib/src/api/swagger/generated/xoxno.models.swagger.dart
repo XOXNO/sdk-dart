@@ -295,15 +295,15 @@ class UserNetworkInfoDto {
     required this.nonce,
     required this.balanceShort,
     required this.username,
-    required this.isUpgradeable,
-    required this.isReadable,
-    required this.isGuarded,
-    required this.isPayable,
-    required this.isPayableBySmartContract,
+    this.isUpgradeable,
+    this.isReadable,
+    this.isGuarded,
+    this.isPayable,
+    this.isPayableBySmartContract,
     required this.balance,
     required this.shard,
     required this.guarded,
-    required this.activeGuardian,
+    this.activeGuardian,
     required this.usdValue,
   });
 
@@ -322,15 +322,15 @@ class UserNetworkInfoDto {
   @JsonKey(name: 'username')
   final String username;
   @JsonKey(name: 'isUpgradeable')
-  final bool isUpgradeable;
+  final bool? isUpgradeable;
   @JsonKey(name: 'isReadable')
-  final bool isReadable;
+  final bool? isReadable;
   @JsonKey(name: 'isGuarded')
-  final bool isGuarded;
+  final bool? isGuarded;
   @JsonKey(name: 'isPayable')
-  final bool isPayable;
+  final bool? isPayable;
   @JsonKey(name: 'isPayableBySmartContract')
-  final bool isPayableBySmartContract;
+  final bool? isPayableBySmartContract;
   @JsonKey(name: 'balance')
   final String balance;
   @JsonKey(name: 'shard')
@@ -338,7 +338,7 @@ class UserNetworkInfoDto {
   @JsonKey(name: 'guarded')
   final bool guarded;
   @JsonKey(name: 'activeGuardian')
-  final ActiveGuardianDto activeGuardian;
+  final ActiveGuardianDto? activeGuardian;
   @JsonKey(name: 'usdValue')
   final double usdValue;
   static const fromJsonFactory = _$UserNetworkInfoDtoFromJson;
@@ -452,15 +452,15 @@ extension $UserNetworkInfoDtoExtension on UserNetworkInfoDto {
       Wrapped<double>? nonce,
       Wrapped<double>? balanceShort,
       Wrapped<String>? username,
-      Wrapped<bool>? isUpgradeable,
-      Wrapped<bool>? isReadable,
-      Wrapped<bool>? isGuarded,
-      Wrapped<bool>? isPayable,
-      Wrapped<bool>? isPayableBySmartContract,
+      Wrapped<bool?>? isUpgradeable,
+      Wrapped<bool?>? isReadable,
+      Wrapped<bool?>? isGuarded,
+      Wrapped<bool?>? isPayable,
+      Wrapped<bool?>? isPayableBySmartContract,
       Wrapped<String>? balance,
       Wrapped<double>? shard,
       Wrapped<bool>? guarded,
-      Wrapped<ActiveGuardianDto>? activeGuardian,
+      Wrapped<ActiveGuardianDto?>? activeGuardian,
       Wrapped<double>? usdValue}) {
     return UserNetworkInfoDto(
         address: (address != null ? address.value : this.address),

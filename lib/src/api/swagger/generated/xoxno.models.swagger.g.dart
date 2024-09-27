@@ -70,16 +70,18 @@ UserNetworkInfoDto _$UserNetworkInfoDtoFromJson(Map<String, dynamic> json) =>
       nonce: (json['nonce'] as num).toDouble(),
       balanceShort: (json['balanceShort'] as num).toDouble(),
       username: json['username'] as String,
-      isUpgradeable: json['isUpgradeable'] as bool,
-      isReadable: json['isReadable'] as bool,
-      isGuarded: json['isGuarded'] as bool,
-      isPayable: json['isPayable'] as bool,
-      isPayableBySmartContract: json['isPayableBySmartContract'] as bool,
+      isUpgradeable: json['isUpgradeable'] as bool?,
+      isReadable: json['isReadable'] as bool?,
+      isGuarded: json['isGuarded'] as bool?,
+      isPayable: json['isPayable'] as bool?,
+      isPayableBySmartContract: json['isPayableBySmartContract'] as bool?,
       balance: json['balance'] as String,
       shard: (json['shard'] as num).toDouble(),
       guarded: json['guarded'] as bool,
-      activeGuardian: ActiveGuardianDto.fromJson(
-          json['activeGuardian'] as Map<String, dynamic>),
+      activeGuardian: json['activeGuardian'] == null
+          ? null
+          : ActiveGuardianDto.fromJson(
+              json['activeGuardian'] as Map<String, dynamic>),
       usdValue: (json['usdValue'] as num).toDouble(),
     );
 
@@ -97,7 +99,7 @@ Map<String, dynamic> _$UserNetworkInfoDtoToJson(UserNetworkInfoDto instance) =>
       'balance': instance.balance,
       'shard': instance.shard,
       'guarded': instance.guarded,
-      'activeGuardian': instance.activeGuardian.toJson(),
+      'activeGuardian': instance.activeGuardian?.toJson(),
       'usdValue': instance.usdValue,
     };
 

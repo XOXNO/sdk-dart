@@ -6810,15 +6810,9 @@ components:
         - nonce
         - balanceShort
         - username
-        - isUpgradeable
-        - isReadable
-        - isGuarded
-        - isPayable
-        - isPayableBySmartContract
         - balance
         - shard
         - guarded
-        - activeGuardian
         - usdValue
     WalletDto:
       type: object
@@ -11811,11 +11805,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727403005
+          example: 1727451263
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 4d402946-955e-435e-9c86-df63d9ca35c2
+          example: 66124e59-696c-4d3b-b6de-bb6e725cd8b7
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11914,7 +11908,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727403001
+          minimum: 1727451263
         endTime:
           type: number
         location:
@@ -12158,10 +12152,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1727403005
+          example: 1727451264
         endTime:
           type: number
-          example: 1727403005
+          example: 1727451264
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -12271,11 +12265,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1727403001
+          example: 1727451263
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: b675ff92-049a-43a8-9bc2-02a482ebffb8
+          example: c6392166-d4b4-4623-b4ec-c7609d0149a7
       required:
         - dataType
         - eventId
@@ -12339,10 +12333,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727403005
+          minimum: 1727451264
         endTime:
           type: number
-          minimum: 1727489405
+          minimum: 1727537664
         maxLimit:
           type: number
         userLimit:
@@ -12402,11 +12396,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1727403001
+          example: 1727451263
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1727403001
+          example: 1727451263
         maxLimit:
           type: object
           description: >-
@@ -12437,7 +12431,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: af16e865-d242-40b1-925c-19a8c42e4ae2
+          example: a82877f9-8d63-46f4-b7b4-7e315d597deb
       required:
         - dataType
         - eventId
@@ -12474,10 +12468,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727403005
+          minimum: 1727451264
         endTime:
           type: number
-          minimum: 1727489405
+          minimum: 1727537664
       required:
         - maxLimit
         - userLimit
@@ -12548,7 +12542,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 17325f82-3aa2-48d0-aef5-2706f2b321ec
+          example: 52233859-51aa-4aa8-8a07-b95cdeb4ca42
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12611,7 +12605,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727403005
+          example: 1727451263
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12644,7 +12638,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: fbbff9ce-994d-4ce9-acf1-3c9a6772fb50
+          example: 466ca83c-7d49-4622-a86b-b9782069c9ff
       required:
         - dataType
         - eventId
@@ -12710,7 +12704,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727403005
+          example: 1727451263
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12743,7 +12737,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: fbbff9ce-994d-4ce9-acf1-3c9a6772fb50
+          example: 466ca83c-7d49-4622-a86b-b9782069c9ff
         profile:
           type: string
           description: >-
@@ -12856,7 +12850,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1727403005
+          example: 1727451263
       required:
         - dataType
         - id
@@ -12993,11 +12987,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727403005
+          example: 1727451263
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 4d402946-955e-435e-9c86-df63d9ca35c2
+          example: 66124e59-696c-4d3b-b6de-bb6e725cd8b7
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13226,11 +13220,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727403005
+          example: 1727451264
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727403005
+          example: 1727451264
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13311,11 +13305,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727403005
+          example: 1727451264
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727403005
+          example: 1727451264
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13325,7 +13319,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1727403005
+          example: 1727451264
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13394,11 +13388,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727403005
+          example: 1727451264
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727403005
+          example: 1727451264
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13442,7 +13436,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: db1826ae-e177-4add-85e2-338c0acb7a07
+          example: aa4cd720-a5d0-444d-adb7-5a4ba862dfdf
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13458,7 +13452,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1727403005
+          example: 1727451263
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
