@@ -1112,6 +1112,7 @@ class UserDepositDto {
   const UserDepositDto({
     required this.balance,
     required this.balanceShort,
+    required this.usdPrice,
     required this.paymentToken,
     required this.paymentTokenNonce,
   });
@@ -1126,6 +1127,8 @@ class UserDepositDto {
   final String balance;
   @JsonKey(name: 'balanceShort')
   final double balanceShort;
+  @JsonKey(name: 'usdPrice')
+  final double usdPrice;
   @JsonKey(name: 'paymentToken')
   final String paymentToken;
   @JsonKey(name: 'paymentTokenNonce')
@@ -1142,6 +1145,9 @@ class UserDepositDto {
             (identical(other.balanceShort, balanceShort) ||
                 const DeepCollectionEquality()
                     .equals(other.balanceShort, balanceShort)) &&
+            (identical(other.usdPrice, usdPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.usdPrice, usdPrice)) &&
             (identical(other.paymentToken, paymentToken) ||
                 const DeepCollectionEquality()
                     .equals(other.paymentToken, paymentToken)) &&
@@ -1157,6 +1163,7 @@ class UserDepositDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(balance) ^
       const DeepCollectionEquality().hash(balanceShort) ^
+      const DeepCollectionEquality().hash(usdPrice) ^
       const DeepCollectionEquality().hash(paymentToken) ^
       const DeepCollectionEquality().hash(paymentTokenNonce) ^
       runtimeType.hashCode;
@@ -1166,11 +1173,13 @@ extension $UserDepositDtoExtension on UserDepositDto {
   UserDepositDto copyWith(
       {String? balance,
       double? balanceShort,
+      double? usdPrice,
       String? paymentToken,
       double? paymentTokenNonce}) {
     return UserDepositDto(
         balance: balance ?? this.balance,
         balanceShort: balanceShort ?? this.balanceShort,
+        usdPrice: usdPrice ?? this.usdPrice,
         paymentToken: paymentToken ?? this.paymentToken,
         paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce);
   }
@@ -1178,12 +1187,14 @@ extension $UserDepositDtoExtension on UserDepositDto {
   UserDepositDto copyWithWrapped(
       {Wrapped<String>? balance,
       Wrapped<double>? balanceShort,
+      Wrapped<double>? usdPrice,
       Wrapped<String>? paymentToken,
       Wrapped<double>? paymentTokenNonce}) {
     return UserDepositDto(
         balance: (balance != null ? balance.value : this.balance),
         balanceShort:
             (balanceShort != null ? balanceShort.value : this.balanceShort),
+        usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice),
         paymentToken:
             (paymentToken != null ? paymentToken.value : this.paymentToken),
         paymentTokenNonce: (paymentTokenNonce != null
@@ -4727,6 +4738,7 @@ class FloorPriceDto {
   const FloorPriceDto({
     required this.collection,
     required this.price,
+    required this.usdPrice,
   });
 
   factory FloorPriceDto.fromJson(Map<String, dynamic> json) =>
@@ -4739,6 +4751,8 @@ class FloorPriceDto {
   final String collection;
   @JsonKey(name: 'price')
   final double price;
+  @JsonKey(name: 'usdPrice')
+  final double usdPrice;
   static const fromJsonFactory = _$FloorPriceDtoFromJson;
 
   @override
@@ -4749,7 +4763,10 @@ class FloorPriceDto {
                 const DeepCollectionEquality()
                     .equals(other.collection, collection)) &&
             (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.usdPrice, usdPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.usdPrice, usdPrice)));
   }
 
   @override
@@ -4759,20 +4776,27 @@ class FloorPriceDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(collection) ^
       const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(usdPrice) ^
       runtimeType.hashCode;
 }
 
 extension $FloorPriceDtoExtension on FloorPriceDto {
-  FloorPriceDto copyWith({String? collection, double? price}) {
+  FloorPriceDto copyWith(
+      {String? collection, double? price, double? usdPrice}) {
     return FloorPriceDto(
-        collection: collection ?? this.collection, price: price ?? this.price);
+        collection: collection ?? this.collection,
+        price: price ?? this.price,
+        usdPrice: usdPrice ?? this.usdPrice);
   }
 
   FloorPriceDto copyWithWrapped(
-      {Wrapped<String>? collection, Wrapped<double>? price}) {
+      {Wrapped<String>? collection,
+      Wrapped<double>? price,
+      Wrapped<double>? usdPrice}) {
     return FloorPriceDto(
         collection: (collection != null ? collection.value : this.collection),
-        price: (price != null ? price.value : this.price));
+        price: (price != null ? price.value : this.price),
+        usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice));
   }
 }
 
@@ -14519,29 +14543,29 @@ class TransactionCreate {
   Map<String, dynamic> toJson() => _$TransactionCreateToJson(this);
 
   @JsonKey(name: 'chainId')
-  final Object chainId;
+  final String chainId;
   @JsonKey(name: 'data')
   final Object data;
   @JsonKey(name: 'gasLimit')
-  final Object gasLimit;
+  final double gasLimit;
   @JsonKey(name: 'gasPrice')
-  final Object gasPrice;
+  final double gasPrice;
   @JsonKey(name: 'nonce')
-  final Object nonce;
+  final double nonce;
   @JsonKey(name: 'receiver')
-  final Object receiver;
+  final String receiver;
   @JsonKey(name: 'receiverUsername')
   final String? receiverUsername;
   @JsonKey(name: 'sender')
-  final Object sender;
+  final String sender;
   @JsonKey(name: 'senderUsername')
   final String? senderUsername;
   @JsonKey(name: 'signature')
-  final Object signature;
+  final String signature;
   @JsonKey(name: 'value')
-  final Object $value;
+  final String $value;
   @JsonKey(name: 'version')
-  final Object version;
+  final double version;
   @JsonKey(name: 'options')
   final double? options;
   @JsonKey(name: 'guardian')
@@ -14622,18 +14646,18 @@ class TransactionCreate {
 
 extension $TransactionCreateExtension on TransactionCreate {
   TransactionCreate copyWith(
-      {Object? chainId,
+      {String? chainId,
       Object? data,
-      Object? gasLimit,
-      Object? gasPrice,
-      Object? nonce,
-      Object? receiver,
+      double? gasLimit,
+      double? gasPrice,
+      double? nonce,
+      String? receiver,
       String? receiverUsername,
-      Object? sender,
+      String? sender,
       String? senderUsername,
-      Object? signature,
-      Object? $value,
-      Object? version,
+      String? signature,
+      String? $value,
+      double? version,
       double? options,
       String? guardian,
       String? guardianSignature}) {
@@ -14656,18 +14680,18 @@ extension $TransactionCreateExtension on TransactionCreate {
   }
 
   TransactionCreate copyWithWrapped(
-      {Wrapped<Object>? chainId,
+      {Wrapped<String>? chainId,
       Wrapped<Object>? data,
-      Wrapped<Object>? gasLimit,
-      Wrapped<Object>? gasPrice,
-      Wrapped<Object>? nonce,
-      Wrapped<Object>? receiver,
+      Wrapped<double>? gasLimit,
+      Wrapped<double>? gasPrice,
+      Wrapped<double>? nonce,
+      Wrapped<String>? receiver,
       Wrapped<String?>? receiverUsername,
-      Wrapped<Object>? sender,
+      Wrapped<String>? sender,
       Wrapped<String?>? senderUsername,
-      Wrapped<Object>? signature,
-      Wrapped<Object>? $value,
-      Wrapped<Object>? version,
+      Wrapped<String>? signature,
+      Wrapped<String>? $value,
+      Wrapped<double>? version,
       Wrapped<double?>? options,
       Wrapped<String?>? guardian,
       Wrapped<String?>? guardianSignature}) {
@@ -14714,17 +14738,21 @@ class TransactionSendResult {
   Map<String, dynamic> toJson() => _$TransactionSendResultToJson(this);
 
   @JsonKey(name: 'receiver')
-  final Object receiver;
+  final String receiver;
   @JsonKey(name: 'receiverShard')
-  final Object receiverShard;
+  final double receiverShard;
   @JsonKey(name: 'sender')
-  final Object sender;
+  final String sender;
   @JsonKey(name: 'senderShard')
-  final Object senderShard;
-  @JsonKey(name: 'status')
-  final Object status;
+  final double senderShard;
+  @JsonKey(
+    name: 'status',
+    toJson: transactionSendResultStatusToJson,
+    fromJson: transactionSendResultStatusFromJson,
+  )
+  final enums.TransactionSendResultStatus status;
   @JsonKey(name: 'txHash')
-  final Object txHash;
+  final String txHash;
   static const fromJsonFactory = _$TransactionSendResultFromJson;
 
   @override
@@ -14764,12 +14792,12 @@ class TransactionSendResult {
 
 extension $TransactionSendResultExtension on TransactionSendResult {
   TransactionSendResult copyWith(
-      {Object? receiver,
-      Object? receiverShard,
-      Object? sender,
-      Object? senderShard,
-      Object? status,
-      Object? txHash}) {
+      {String? receiver,
+      double? receiverShard,
+      String? sender,
+      double? senderShard,
+      enums.TransactionSendResultStatus? status,
+      String? txHash}) {
     return TransactionSendResult(
         receiver: receiver ?? this.receiver,
         receiverShard: receiverShard ?? this.receiverShard,
@@ -14780,12 +14808,12 @@ extension $TransactionSendResultExtension on TransactionSendResult {
   }
 
   TransactionSendResult copyWithWrapped(
-      {Wrapped<Object>? receiver,
-      Wrapped<Object>? receiverShard,
-      Wrapped<Object>? sender,
-      Wrapped<Object>? senderShard,
-      Wrapped<Object>? status,
-      Wrapped<Object>? txHash}) {
+      {Wrapped<String>? receiver,
+      Wrapped<double>? receiverShard,
+      Wrapped<String>? sender,
+      Wrapped<double>? senderShard,
+      Wrapped<enums.TransactionSendResultStatus>? status,
+      Wrapped<String>? txHash}) {
     return TransactionSendResult(
         receiver: (receiver != null ? receiver.value : this.receiver),
         receiverShard:
@@ -14811,10 +14839,14 @@ class BatchTransactionResponse {
   static const toJsonFactory = _$BatchTransactionResponseToJson;
   Map<String, dynamic> toJson() => _$BatchTransactionResponseToJson(this);
 
-  @JsonKey(name: 'status')
-  final Object status;
+  @JsonKey(
+    name: 'status',
+    toJson: batchTransactionResponseStatusToJson,
+    fromJson: batchTransactionResponseStatusFromJson,
+  )
+  final enums.BatchTransactionResponseStatus status;
   @JsonKey(name: 'txHash')
-  final Object txHash;
+  final String txHash;
   static const fromJsonFactory = _$BatchTransactionResponseFromJson;
 
   @override
@@ -14838,13 +14870,15 @@ class BatchTransactionResponse {
 }
 
 extension $BatchTransactionResponseExtension on BatchTransactionResponse {
-  BatchTransactionResponse copyWith({Object? status, Object? txHash}) {
+  BatchTransactionResponse copyWith(
+      {enums.BatchTransactionResponseStatus? status, String? txHash}) {
     return BatchTransactionResponse(
         status: status ?? this.status, txHash: txHash ?? this.txHash);
   }
 
   BatchTransactionResponse copyWithWrapped(
-      {Wrapped<Object>? status, Wrapped<Object>? txHash}) {
+      {Wrapped<enums.BatchTransactionResponseStatus>? status,
+      Wrapped<String>? txHash}) {
     return BatchTransactionResponse(
         status: (status != null ? status.value : this.status),
         txHash: (txHash != null ? txHash.value : this.txHash));
@@ -27357,6 +27391,156 @@ List<enums.TransactionProcessStatusStatus>?
 
   return transactionProcessStatusStatus
       .map((e) => transactionProcessStatusStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? transactionSendResultStatusNullableToJson(
+    enums.TransactionSendResultStatus? transactionSendResultStatus) {
+  return transactionSendResultStatus?.value;
+}
+
+String? transactionSendResultStatusToJson(
+    enums.TransactionSendResultStatus transactionSendResultStatus) {
+  return transactionSendResultStatus.value;
+}
+
+enums.TransactionSendResultStatus transactionSendResultStatusFromJson(
+  Object? transactionSendResultStatus, [
+  enums.TransactionSendResultStatus? defaultValue,
+]) {
+  return enums.TransactionSendResultStatus.values
+          .firstWhereOrNull((e) => e.value == transactionSendResultStatus) ??
+      defaultValue ??
+      enums.TransactionSendResultStatus.swaggerGeneratedUnknown;
+}
+
+enums.TransactionSendResultStatus? transactionSendResultStatusNullableFromJson(
+  Object? transactionSendResultStatus, [
+  enums.TransactionSendResultStatus? defaultValue,
+]) {
+  if (transactionSendResultStatus == null) {
+    return null;
+  }
+  return enums.TransactionSendResultStatus.values
+          .firstWhereOrNull((e) => e.value == transactionSendResultStatus) ??
+      defaultValue;
+}
+
+String transactionSendResultStatusExplodedListToJson(
+    List<enums.TransactionSendResultStatus>? transactionSendResultStatus) {
+  return transactionSendResultStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> transactionSendResultStatusListToJson(
+    List<enums.TransactionSendResultStatus>? transactionSendResultStatus) {
+  if (transactionSendResultStatus == null) {
+    return [];
+  }
+
+  return transactionSendResultStatus.map((e) => e.value!).toList();
+}
+
+List<enums.TransactionSendResultStatus> transactionSendResultStatusListFromJson(
+  List? transactionSendResultStatus, [
+  List<enums.TransactionSendResultStatus>? defaultValue,
+]) {
+  if (transactionSendResultStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return transactionSendResultStatus
+      .map((e) => transactionSendResultStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.TransactionSendResultStatus>?
+    transactionSendResultStatusNullableListFromJson(
+  List? transactionSendResultStatus, [
+  List<enums.TransactionSendResultStatus>? defaultValue,
+]) {
+  if (transactionSendResultStatus == null) {
+    return defaultValue;
+  }
+
+  return transactionSendResultStatus
+      .map((e) => transactionSendResultStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? batchTransactionResponseStatusNullableToJson(
+    enums.BatchTransactionResponseStatus? batchTransactionResponseStatus) {
+  return batchTransactionResponseStatus?.value;
+}
+
+String? batchTransactionResponseStatusToJson(
+    enums.BatchTransactionResponseStatus batchTransactionResponseStatus) {
+  return batchTransactionResponseStatus.value;
+}
+
+enums.BatchTransactionResponseStatus batchTransactionResponseStatusFromJson(
+  Object? batchTransactionResponseStatus, [
+  enums.BatchTransactionResponseStatus? defaultValue,
+]) {
+  return enums.BatchTransactionResponseStatus.values
+          .firstWhereOrNull((e) => e.value == batchTransactionResponseStatus) ??
+      defaultValue ??
+      enums.BatchTransactionResponseStatus.swaggerGeneratedUnknown;
+}
+
+enums.BatchTransactionResponseStatus?
+    batchTransactionResponseStatusNullableFromJson(
+  Object? batchTransactionResponseStatus, [
+  enums.BatchTransactionResponseStatus? defaultValue,
+]) {
+  if (batchTransactionResponseStatus == null) {
+    return null;
+  }
+  return enums.BatchTransactionResponseStatus.values
+          .firstWhereOrNull((e) => e.value == batchTransactionResponseStatus) ??
+      defaultValue;
+}
+
+String batchTransactionResponseStatusExplodedListToJson(
+    List<enums.BatchTransactionResponseStatus>?
+        batchTransactionResponseStatus) {
+  return batchTransactionResponseStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> batchTransactionResponseStatusListToJson(
+    List<enums.BatchTransactionResponseStatus>?
+        batchTransactionResponseStatus) {
+  if (batchTransactionResponseStatus == null) {
+    return [];
+  }
+
+  return batchTransactionResponseStatus.map((e) => e.value!).toList();
+}
+
+List<enums.BatchTransactionResponseStatus>
+    batchTransactionResponseStatusListFromJson(
+  List? batchTransactionResponseStatus, [
+  List<enums.BatchTransactionResponseStatus>? defaultValue,
+]) {
+  if (batchTransactionResponseStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return batchTransactionResponseStatus
+      .map((e) => batchTransactionResponseStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.BatchTransactionResponseStatus>?
+    batchTransactionResponseStatusNullableListFromJson(
+  List? batchTransactionResponseStatus, [
+  List<enums.BatchTransactionResponseStatus>? defaultValue,
+]) {
+  if (batchTransactionResponseStatus == null) {
+    return defaultValue;
+  }
+
+  return batchTransactionResponseStatus
+      .map((e) => batchTransactionResponseStatusFromJson(e.toString()))
       .toList();
 }
 

@@ -228,6 +228,7 @@ UserDepositDto _$UserDepositDtoFromJson(Map<String, dynamic> json) =>
     UserDepositDto(
       balance: json['balance'] as String,
       balanceShort: (json['balanceShort'] as num).toDouble(),
+      usdPrice: (json['usdPrice'] as num).toDouble(),
       paymentToken: json['paymentToken'] as String,
       paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
     );
@@ -236,6 +237,7 @@ Map<String, dynamic> _$UserDepositDtoToJson(UserDepositDto instance) =>
     <String, dynamic>{
       'balance': instance.balance,
       'balanceShort': instance.balanceShort,
+      'usdPrice': instance.usdPrice,
       'paymentToken': instance.paymentToken,
       'paymentTokenNonce': instance.paymentTokenNonce,
     };
@@ -950,12 +952,14 @@ FloorPriceDto _$FloorPriceDtoFromJson(Map<String, dynamic> json) =>
     FloorPriceDto(
       collection: json['collection'] as String,
       price: (json['price'] as num).toDouble(),
+      usdPrice: (json['usdPrice'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$FloorPriceDtoToJson(FloorPriceDto instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'price': instance.price,
+      'usdPrice': instance.usdPrice,
     };
 
 PinnedCollectionDto _$PinnedCollectionDtoFromJson(Map<String, dynamic> json) =>
@@ -3037,18 +3041,18 @@ Map<String, dynamic> _$TransactionProcessStatusToJson(
 
 TransactionCreate _$TransactionCreateFromJson(Map<String, dynamic> json) =>
     TransactionCreate(
-      chainId: json['chainId'] as Object,
+      chainId: json['chainId'] as String,
       data: json['data'] as Object,
-      gasLimit: json['gasLimit'] as Object,
-      gasPrice: json['gasPrice'] as Object,
-      nonce: json['nonce'] as Object,
-      receiver: json['receiver'] as Object,
+      gasLimit: (json['gasLimit'] as num).toDouble(),
+      gasPrice: (json['gasPrice'] as num).toDouble(),
+      nonce: (json['nonce'] as num).toDouble(),
+      receiver: json['receiver'] as String,
       receiverUsername: json['receiverUsername'] as String?,
-      sender: json['sender'] as Object,
+      sender: json['sender'] as String,
       senderUsername: json['senderUsername'] as String?,
-      signature: json['signature'] as Object,
-      $value: json['value'] as Object,
-      version: json['version'] as Object,
+      signature: json['signature'] as String,
+      $value: json['value'] as String,
+      version: (json['version'] as num).toDouble(),
       options: (json['options'] as num?)?.toDouble(),
       guardian: json['guardian'] as String?,
       guardianSignature: json['guardianSignature'] as String?,
@@ -3076,12 +3080,12 @@ Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
 TransactionSendResult _$TransactionSendResultFromJson(
         Map<String, dynamic> json) =>
     TransactionSendResult(
-      receiver: json['receiver'] as Object,
-      receiverShard: json['receiverShard'] as Object,
-      sender: json['sender'] as Object,
-      senderShard: json['senderShard'] as Object,
-      status: json['status'] as Object,
-      txHash: json['txHash'] as Object,
+      receiver: json['receiver'] as String,
+      receiverShard: (json['receiverShard'] as num).toDouble(),
+      sender: json['sender'] as String,
+      senderShard: (json['senderShard'] as num).toDouble(),
+      status: transactionSendResultStatusFromJson(json['status']),
+      txHash: json['txHash'] as String,
     );
 
 Map<String, dynamic> _$TransactionSendResultToJson(
@@ -3091,21 +3095,21 @@ Map<String, dynamic> _$TransactionSendResultToJson(
       'receiverShard': instance.receiverShard,
       'sender': instance.sender,
       'senderShard': instance.senderShard,
-      'status': instance.status,
+      'status': transactionSendResultStatusToJson(instance.status),
       'txHash': instance.txHash,
     };
 
 BatchTransactionResponse _$BatchTransactionResponseFromJson(
         Map<String, dynamic> json) =>
     BatchTransactionResponse(
-      status: json['status'] as Object,
-      txHash: json['txHash'] as Object,
+      status: batchTransactionResponseStatusFromJson(json['status']),
+      txHash: json['txHash'] as String,
     );
 
 Map<String, dynamic> _$BatchTransactionResponseToJson(
         BatchTransactionResponse instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': batchTransactionResponseStatusToJson(instance.status),
       'txHash': instance.txHash,
     };
 

@@ -361,6 +361,46 @@ enum TransactionProcessStatusStatus {
   const TransactionProcessStatusStatus(this.value);
 }
 
+enum TransactionSendResultStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('success')
+  success('success'),
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('invalid')
+  invalid('invalid'),
+  @JsonValue('fail')
+  fail('fail'),
+  @JsonValue('notFound')
+  notfound('notFound');
+
+  final String? value;
+
+  const TransactionSendResultStatus(this.value);
+}
+
+enum BatchTransactionResponseStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('success')
+  success('success'),
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('invalid')
+  invalid('invalid'),
+  @JsonValue('fail')
+  fail('fail'),
+  @JsonValue('notFound')
+  notfound('notFound');
+
+  final String? value;
+
+  const BatchTransactionResponseStatus(this.value);
+}
+
 enum NotificationAssetDtoType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

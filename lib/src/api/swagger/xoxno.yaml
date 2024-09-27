@@ -1189,6 +1189,40 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - Token
+  /tokens/swap:
+    get:
+      operationId: TokenDataController_retrieveTokensForSwap
+      summary: Get tokens for swap
+      parameters: []
+      responses:
+        '200':
+          description: List of tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TokenDocDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - Token
   /tokens/usd-price:
     get:
       operationId: TokenDataController_retrieveTokensPrice
@@ -6960,6 +6994,9 @@ components:
         balanceShort:
           type: number
           example: 1
+        usdPrice:
+          type: number
+          example: 1
         paymentToken:
           type: string
           example: EGLD
@@ -6969,6 +7006,7 @@ components:
       required:
         - balance
         - balanceShort
+        - usdPrice
         - paymentToken
         - paymentTokenNonce
     EmailNotificationsDto:
@@ -7984,9 +8022,13 @@ components:
         price:
           type: number
           example: 0.18
+        usdPrice:
+          type: number
+          example: 0.18
       required:
         - collection
         - price
+        - usdPrice
     PinnedCollectionDto:
       type: object
       properties:
@@ -10907,40 +10949,40 @@ components:
       type: object
       properties:
         chainId:
-          type: object
+          type: string
           description: The chain ID
         data:
           type: object
           description: The transaction data
         gasLimit:
-          type: object
+          type: number
           description: The gas limit for the transaction
         gasPrice:
-          type: object
+          type: number
           description: The gas price for the transaction
         nonce:
-          type: object
+          type: number
           description: The nonce for the transaction
         receiver:
-          type: object
+          type: string
           description: The receiver address
         receiverUsername:
           type: string
           description: The receiver username
         sender:
-          type: object
+          type: string
           description: The sender address
         senderUsername:
           type: string
           description: The sender username
         signature:
-          type: object
+          type: string
           description: The signature of the transaction
         value:
-          type: object
+          type: string
           description: The value of the transaction
         version:
-          type: object
+          type: number
           description: The version of the transaction
         options:
           type: number
@@ -10966,22 +11008,28 @@ components:
       type: object
       properties:
         receiver:
-          type: object
+          type: string
           description: The receiver address
         receiverShard:
-          type: object
+          type: number
           description: The shard of the receiver
         sender:
-          type: object
+          type: string
           description: The sender address
         senderShard:
-          type: object
+          type: number
           description: The shard of the sender
         status:
-          type: object
+          type: string
           description: The status of the transaction
+          enum:
+            - success
+            - pending
+            - invalid
+            - fail
+            - notFound
         txHash:
-          type: object
+          type: string
           description: The transaction hash
       required:
         - receiver
@@ -10994,10 +11042,16 @@ components:
       type: object
       properties:
         status:
-          type: object
+          type: string
           description: The status of the transaction
+          enum:
+            - success
+            - pending
+            - invalid
+            - fail
+            - notFound
         txHash:
-          type: object
+          type: string
           description: The transaction hash
       required:
         - status
@@ -11757,11 +11811,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727100499
+          example: 1727403005
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: cc27d907-6e2d-43f7-aab1-89b13177f8cb
+          example: 4d402946-955e-435e-9c86-df63d9ca35c2
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11860,7 +11914,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727100495
+          minimum: 1727403001
         endTime:
           type: number
         location:
@@ -12104,10 +12158,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1727100499
+          example: 1727403005
         endTime:
           type: number
-          example: 1727100499
+          example: 1727403005
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -12217,11 +12271,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1727100495
+          example: 1727403001
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: ceb66126-7233-41b5-bf61-f0d27c95a9e3
+          example: b675ff92-049a-43a8-9bc2-02a482ebffb8
       required:
         - dataType
         - eventId
@@ -12285,10 +12339,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727100499
+          minimum: 1727403005
         endTime:
           type: number
-          minimum: 1727186899
+          minimum: 1727489405
         maxLimit:
           type: number
         userLimit:
@@ -12348,11 +12402,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1727100495
+          example: 1727403001
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1727100495
+          example: 1727403001
         maxLimit:
           type: object
           description: >-
@@ -12383,7 +12437,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 0723da8e-6d78-4906-990d-8ad475cd792e
+          example: af16e865-d242-40b1-925c-19a8c42e4ae2
       required:
         - dataType
         - eventId
@@ -12420,10 +12474,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727100499
+          minimum: 1727403005
         endTime:
           type: number
-          minimum: 1727186899
+          minimum: 1727489405
       required:
         - maxLimit
         - userLimit
@@ -12494,7 +12548,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 83b96809-9760-4c2d-b8fe-e539d9706374
+          example: 17325f82-3aa2-48d0-aef5-2706f2b321ec
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12557,7 +12611,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727100499
+          example: 1727403005
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12590,7 +12644,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 7238f1b5-a732-479a-802d-84ad00ffb023
+          example: fbbff9ce-994d-4ce9-acf1-3c9a6772fb50
       required:
         - dataType
         - eventId
@@ -12656,7 +12710,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727100499
+          example: 1727403005
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12689,7 +12743,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 7238f1b5-a732-479a-802d-84ad00ffb023
+          example: fbbff9ce-994d-4ce9-acf1-3c9a6772fb50
         profile:
           type: string
           description: >-
@@ -12802,7 +12856,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1727100499
+          example: 1727403005
       required:
         - dataType
         - id
@@ -12939,11 +12993,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727100499
+          example: 1727403005
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: cc27d907-6e2d-43f7-aab1-89b13177f8cb
+          example: 4d402946-955e-435e-9c86-df63d9ca35c2
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13172,11 +13226,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727100499
+          example: 1727403005
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727100499
+          example: 1727403005
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13257,11 +13311,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727100499
+          example: 1727403005
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727100499
+          example: 1727403005
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13271,7 +13325,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1727100499
+          example: 1727403005
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13340,11 +13394,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727100499
+          example: 1727403005
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727100499
+          example: 1727403005
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13388,7 +13442,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 4f0316e0-a643-406e-873e-64262c285aad
+          example: db1826ae-e177-4add-85e2-338c0acb7a07
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13404,7 +13458,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1727100499
+          example: 1727403005
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
