@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
@@ -29,7 +31,7 @@ class TransactionsRawApi {
       generateUri(
         path: '${client.baseUrl}/transactions',
       ),
-      body: body,
+      body: json.encode(body),
     );
   }
 
@@ -42,7 +44,7 @@ class TransactionsRawApi {
       generateUri(
         path: '${client.baseUrl}/transactions/batch',
       ),
-      body: body,
+      body: json.encode(body),
     );
   }
 }
