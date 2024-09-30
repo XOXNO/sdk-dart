@@ -561,9 +561,9 @@ Map<String, dynamic> _$UserFavoriteResponseDtoToJson(
     };
 
 TokenDocDto _$TokenDocDtoFromJson(Map<String, dynamic> json) => TokenDocDto(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       identifier: json['identifier'] as String,
-      collection: json['collection'] as String,
+      collection: json['collection'] as String?,
       dataType: json['dataType'] as String,
       decimals: (json['decimals'] as num).toDouble(),
       name: json['name'] as String,
@@ -575,7 +575,7 @@ TokenDocDto _$TokenDocDtoFromJson(Map<String, dynamic> json) => TokenDocDto(
       svgUrl: json['svgUrl'] as String,
       pngUrl: json['pngUrl'] as String,
       ticker: json['ticker'] as String,
-      ts: (json['_ts'] as num).toDouble(),
+      ts: (json['_ts'] as num?)?.toDouble(),
       usdPrice: (json['usdPrice'] as num).toDouble(),
     );
 
@@ -3044,7 +3044,7 @@ Map<String, dynamic> _$TransactionProcessStatusToJson(
 TransactionCreate _$TransactionCreateFromJson(Map<String, dynamic> json) =>
     TransactionCreate(
       chainId: json['chainId'] as String,
-      data: json['data'] as Object,
+      data: json['data'],
       gasLimit: (json['gasLimit'] as num).toDouble(),
       gasPrice: (json['gasPrice'] as num).toDouble(),
       nonce: (json['nonce'] as num).toDouble(),

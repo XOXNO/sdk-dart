@@ -2721,9 +2721,9 @@ extension $UserFavoriteResponseDtoExtension on UserFavoriteResponseDto {
 @JsonSerializable(explicitToJson: true)
 class TokenDocDto {
   const TokenDocDto({
-    required this.id,
+    this.id,
     required this.identifier,
-    required this.collection,
+    this.collection,
     required this.dataType,
     required this.decimals,
     required this.name,
@@ -2732,7 +2732,7 @@ class TokenDocDto {
     required this.svgUrl,
     required this.pngUrl,
     required this.ticker,
-    required this.ts,
+    this.ts,
     required this.usdPrice,
   });
 
@@ -2743,11 +2743,11 @@ class TokenDocDto {
   Map<String, dynamic> toJson() => _$TokenDocDtoToJson(this);
 
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: 'identifier')
   final String identifier;
   @JsonKey(name: 'collection')
-  final String collection;
+  final String? collection;
   @JsonKey(name: 'dataType')
   final String dataType;
   @JsonKey(name: 'decimals')
@@ -2765,7 +2765,7 @@ class TokenDocDto {
   @JsonKey(name: 'ticker')
   final String ticker;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
   static const fromJsonFactory = _$TokenDocDtoFromJson;
@@ -2861,9 +2861,9 @@ extension $TokenDocDtoExtension on TokenDocDto {
   }
 
   TokenDocDto copyWithWrapped(
-      {Wrapped<String>? id,
+      {Wrapped<String?>? id,
       Wrapped<String>? identifier,
-      Wrapped<String>? collection,
+      Wrapped<String?>? collection,
       Wrapped<String>? dataType,
       Wrapped<double>? decimals,
       Wrapped<String>? name,
@@ -2872,7 +2872,7 @@ extension $TokenDocDtoExtension on TokenDocDto {
       Wrapped<String>? svgUrl,
       Wrapped<String>? pngUrl,
       Wrapped<String>? ticker,
-      Wrapped<double>? ts,
+      Wrapped<double?>? ts,
       Wrapped<double>? usdPrice}) {
     return TokenDocDto(
         id: (id != null ? id.value : this.id),
@@ -14520,7 +14520,7 @@ extension $TransactionProcessStatusExtension on TransactionProcessStatus {
 class TransactionCreate {
   const TransactionCreate({
     required this.chainId,
-    required this.data,
+    this.data,
     required this.gasLimit,
     required this.gasPrice,
     required this.nonce,
@@ -14545,7 +14545,7 @@ class TransactionCreate {
   @JsonKey(name: 'chainId')
   final String chainId;
   @JsonKey(name: 'data')
-  final Object data;
+  final Object? data;
   @JsonKey(name: 'gasLimit')
   final double gasLimit;
   @JsonKey(name: 'gasPrice')
@@ -14681,7 +14681,7 @@ extension $TransactionCreateExtension on TransactionCreate {
 
   TransactionCreate copyWithWrapped(
       {Wrapped<String>? chainId,
-      Wrapped<Object>? data,
+      Wrapped<Object?>? data,
       Wrapped<double>? gasLimit,
       Wrapped<double>? gasPrice,
       Wrapped<double>? nonce,
