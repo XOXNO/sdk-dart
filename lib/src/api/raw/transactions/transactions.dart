@@ -32,6 +32,7 @@ class TransactionsRawApi {
         path: '${client.baseUrl}/transactions',
       ),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -45,6 +46,7 @@ class TransactionsRawApi {
         path: '${client.baseUrl}/transactions/batch',
       ),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 }
