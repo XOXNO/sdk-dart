@@ -3145,7 +3145,7 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       herotag: json['herotag'] as String,
       isVerified: json['isVerified'] as bool,
       profile: json['profile'] as String,
-      isCreator: json['isCreator'] as bool,
+      isCreator: json['isCreator'] as bool?,
       addressTrimmed: json['addressTrimmed'] as String,
     );
 

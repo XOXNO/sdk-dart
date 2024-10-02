@@ -15015,7 +15015,7 @@ class UserDto {
     required this.herotag,
     required this.isVerified,
     required this.profile,
-    required this.isCreator,
+    this.isCreator,
     required this.addressTrimmed,
   });
 
@@ -15034,7 +15034,7 @@ class UserDto {
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'isCreator')
-  final bool isCreator;
+  final bool? isCreator;
   @JsonKey(name: 'addressTrimmed')
   final String addressTrimmed;
   static const fromJsonFactory = _$UserDtoFromJson;
@@ -15099,7 +15099,7 @@ extension $UserDtoExtension on UserDto {
       Wrapped<String>? herotag,
       Wrapped<bool>? isVerified,
       Wrapped<String>? profile,
-      Wrapped<bool>? isCreator,
+      Wrapped<bool?>? isCreator,
       Wrapped<String>? addressTrimmed}) {
     return UserDto(
         address: (address != null ? address.value : this.address),

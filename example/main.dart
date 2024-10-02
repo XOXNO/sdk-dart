@@ -50,7 +50,12 @@ Future<void> main() async {
   final sdk = xoxno.SDK(api);
 
   try {
-    var data = await sdk.api.user.meProfile();
+    // var data = await sdk.api.user.meProfile();
+    var data = await sdk.api.search.userSearch(
+      filterQuery: xoxno.FilterQueryDto(
+        name: 'erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57',
+      ),
+    );
     logger.info(data);
   } on xoxno.ApiException catch (e, stackTrace) {
     logger.severe(e.toJson());
