@@ -4836,6 +4836,20 @@ Map<String, dynamic> _$AnsweredQuestionWithDetailsToJson(
       'question': instance.question.toJson(),
     };
 
+EventGuestApproveDto _$EventGuestApproveDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventGuestApproveDto(
+      address: json['address'] as String,
+      isApproved: json['isApproved'] as bool,
+    );
+
+Map<String, dynamic> _$EventGuestApproveDtoToJson(
+        EventGuestApproveDto instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'isApproved': instance.isApproved,
+    };
+
 RangeFilter _$RangeFilterFromJson(Map<String, dynamic> json) => RangeFilter(
       min: (json['min'] as num?)?.toDouble(),
       max: (json['max'] as num?)?.toDouble(),
@@ -4952,6 +4966,16 @@ Map<String, dynamic> _$CollectionOffersFilterToJson(
       'top': instance.top,
       'skip': instance.skip,
       'filters': instance.filters,
+    };
+
+FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
+    FilterQueryDto(
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
     };
 
 CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(

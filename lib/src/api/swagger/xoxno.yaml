@@ -4415,11 +4415,15 @@ paths:
       summary: Global Search
       parameters:
         - name: filter
-          required: false
+          required: true
           in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterQueryDto'
           description: >-
-            A JSON string representing the filter criteria. For example: {"key":
-            "value"}
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
           schema:
             type: string
       responses:
@@ -4455,11 +4459,15 @@ paths:
       summary: Global User Search
       parameters:
         - name: filter
-          required: false
+          required: true
           in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterQueryDto'
           description: >-
-            A JSON string representing the filter criteria. For example: {"key":
-            "value"}
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
           schema:
             type: string
       responses:
@@ -4495,11 +4503,15 @@ paths:
       summary: Global collection Search
       parameters:
         - name: filter
-          required: false
+          required: true
           in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterQueryDto'
           description: >-
-            A JSON string representing the filter criteria. For example: {"key":
-            "value"}
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
           schema:
             type: string
       responses:
@@ -4535,11 +4547,15 @@ paths:
       summary: Global collection drops Search
       parameters:
         - name: filter
-          required: false
+          required: true
           in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterQueryDto'
           description: >-
-            A JSON string representing the filter criteria. For example: {"key":
-            "value"}
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
           schema:
             type: string
       responses:
@@ -6045,7 +6061,7 @@ paths:
             schema:
               $ref: '#/components/schemas/EventQuestionEditDto'
       responses:
-        '200':
+        '201':
           description: Custom question updated
           content:
             application/json:
@@ -6631,6 +6647,39 @@ paths:
       tags:
         - Ticketing
         - Guest
+      security:
+        - bearer: []
+  /event/{eventId}/guest/approve:
+    patch:
+      operationId: TicketingDataController_approveOrRejectGuestRegistration
+      summary: Approve or reject guests registration
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventGuestApproveDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventGuestProfile'
+      tags:
+        - Ticketing
       security:
         - bearer: []
   /event/{eventId}/ticket/{ticketId}/google/class:
@@ -11802,11 +11851,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727687846
+          example: 1727859281
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 5d2f6351-b19f-4e52-b5d3-a41afce1dcbb
+          example: 8bf0e903-c272-42d8-a625-38a5e1af4a13
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11905,7 +11954,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727687843
+          minimum: 1727859277
         endTime:
           type: number
         location:
@@ -12149,10 +12198,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1727687847
+          example: 1727859282
         endTime:
           type: number
-          example: 1727687847
+          example: 1727859282
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -12262,11 +12311,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1727687842
+          example: 1727859277
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 5bd10559-7b6c-4fc9-a38b-0ba769c9a25f
+          example: 26320345-7d67-4ed7-81ce-612ccb7c7fc9
       required:
         - dataType
         - eventId
@@ -12330,10 +12379,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727687847
+          minimum: 1727859282
         endTime:
           type: number
-          minimum: 1727774247
+          minimum: 1727945682
         maxLimit:
           type: number
         userLimit:
@@ -12393,11 +12442,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1727687842
+          example: 1727859277
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1727687842
+          example: 1727859277
         maxLimit:
           type: object
           description: >-
@@ -12428,7 +12477,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 9701f830-b47e-44f5-b0bf-6ee36ca6ac7c
+          example: 9845c376-455a-408b-bdfc-6e165db36544
       required:
         - dataType
         - eventId
@@ -12465,10 +12514,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727687847
+          minimum: 1727859282
         endTime:
           type: number
-          minimum: 1727774247
+          minimum: 1727945682
       required:
         - maxLimit
         - userLimit
@@ -12539,7 +12588,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 1212f580-0b61-447d-ab75-7ecb14e1369c
+          example: 2865d03f-c48e-434f-b0c6-6e554cb067a6
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12602,7 +12651,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727687846
+          example: 1727859281
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12635,7 +12684,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: e6130665-25d9-4478-ace4-1cb771b03ca3
+          example: 66f03fda-e458-4761-a246-887335f3dfa9
       required:
         - dataType
         - eventId
@@ -12701,7 +12750,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727687846
+          example: 1727859281
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12734,7 +12783,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: e6130665-25d9-4478-ace4-1cb771b03ca3
+          example: 66f03fda-e458-4761-a246-887335f3dfa9
         profile:
           type: string
           description: >-
@@ -12847,7 +12896,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1727687846
+          example: 1727859281
       required:
         - dataType
         - id
@@ -12984,11 +13033,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727687846
+          example: 1727859281
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 5d2f6351-b19f-4e52-b5d3-a41afce1dcbb
+          example: 8bf0e903-c272-42d8-a625-38a5e1af4a13
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13217,11 +13266,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727687847
+          example: 1727859282
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727687847
+          example: 1727859282
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13302,11 +13351,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727687847
+          example: 1727859282
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727687847
+          example: 1727859282
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13316,7 +13365,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1727687847
+          example: 1727859282
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13385,11 +13434,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727687847
+          example: 1727859282
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727687847
+          example: 1727859282
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13433,7 +13482,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: ddd00dc5-c1c9-4fcd-9512-df015df9bde5
+          example: 20682686-046e-4f8f-8292-a22a0231ee4c
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13449,7 +13498,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1727687846
+          example: 1727859281
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -13475,6 +13524,16 @@ components:
       required:
         - answer
         - question
+    EventGuestApproveDto:
+      type: object
+      properties:
+        address:
+          type: string
+        isApproved:
+          type: boolean
+      required:
+        - address
+        - isApproved
     RangeFilter:
       type: object
       properties:
@@ -13607,6 +13666,15 @@ components:
         filters:
           type: CollectionOffersFilterCriteriaDto
           default: {}
+    FilterQueryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The search query
+          example: '@mihai'
+      required:
+        - name
     CollectionOffersFilterCriteriaDto:
       type: object
       properties:
@@ -14012,6 +14080,7 @@ components:
               - pendingApproval
               - inviteClaimed
               - partiallyActive
+              - rejected
               - active
               - completed
               - partiallyCompleted

@@ -1303,6 +1303,8 @@ enum EventGuestFilterCriteriaDtoStatus {
   inviteclaimed('inviteClaimed'),
   @JsonValue('partiallyActive')
   partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
   @JsonValue('active')
   active('active'),
   @JsonValue('completed')

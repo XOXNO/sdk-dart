@@ -22709,6 +22709,62 @@ extension $AnsweredQuestionWithDetailsExtension on AnsweredQuestionWithDetails {
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventGuestApproveDto {
+  const EventGuestApproveDto({
+    required this.address,
+    required this.isApproved,
+  });
+
+  factory EventGuestApproveDto.fromJson(Map<String, dynamic> json) =>
+      _$EventGuestApproveDtoFromJson(json);
+
+  static const toJsonFactory = _$EventGuestApproveDtoToJson;
+  Map<String, dynamic> toJson() => _$EventGuestApproveDtoToJson(this);
+
+  @JsonKey(name: 'address')
+  final String address;
+  @JsonKey(name: 'isApproved')
+  final bool isApproved;
+  static const fromJsonFactory = _$EventGuestApproveDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventGuestApproveDto &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.isApproved, isApproved) ||
+                const DeepCollectionEquality()
+                    .equals(other.isApproved, isApproved)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(isApproved) ^
+      runtimeType.hashCode;
+}
+
+extension $EventGuestApproveDtoExtension on EventGuestApproveDto {
+  EventGuestApproveDto copyWith({String? address, bool? isApproved}) {
+    return EventGuestApproveDto(
+        address: address ?? this.address,
+        isApproved: isApproved ?? this.isApproved);
+  }
+
+  EventGuestApproveDto copyWithWrapped(
+      {Wrapped<String>? address, Wrapped<bool>? isApproved}) {
+    return EventGuestApproveDto(
+        address: (address != null ? address.value : this.address),
+        isApproved: (isApproved != null ? isApproved.value : this.isApproved));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class RangeFilter {
   const RangeFilter({
     this.min,
@@ -23123,6 +23179,48 @@ extension $CollectionOffersFilterExtension on CollectionOffersFilter {
         top: (top != null ? top.value : this.top),
         skip: (skip != null ? skip.value : this.skip),
         filters: (filters != null ? filters.value : this.filters));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FilterQueryDto {
+  const FilterQueryDto({
+    required this.name,
+  });
+
+  factory FilterQueryDto.fromJson(Map<String, dynamic> json) =>
+      _$FilterQueryDtoFromJson(json);
+
+  static const toJsonFactory = _$FilterQueryDtoToJson;
+  Map<String, dynamic> toJson() => _$FilterQueryDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String name;
+  static const fromJsonFactory = _$FilterQueryDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is FilterQueryDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
+}
+
+extension $FilterQueryDtoExtension on FilterQueryDto {
+  FilterQueryDto copyWith({String? name}) {
+    return FilterQueryDto(name: name ?? this.name);
+  }
+
+  FilterQueryDto copyWithWrapped({Wrapped<String>? name}) {
+    return FilterQueryDto(name: (name != null ? name.value : this.name));
   }
 }
 
