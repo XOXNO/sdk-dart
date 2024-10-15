@@ -8281,7 +8281,7 @@ extension $NftSaleInfoExtension on NftSaleInfo {
 @JsonSerializable(explicitToJson: true)
 class NftStats {
   const NftStats({
-    required this.likedCount,
+    this.likedCount,
   });
 
   factory NftStats.fromJson(Map<String, dynamic> json) =>
@@ -8291,7 +8291,7 @@ class NftStats {
   Map<String, dynamic> toJson() => _$NftStatsToJson(this);
 
   @JsonKey(name: 'likedCount')
-  final double likedCount;
+  final double? likedCount;
   static const fromJsonFactory = _$NftStatsFromJson;
 
   @override
@@ -8316,7 +8316,7 @@ extension $NftStatsExtension on NftStats {
     return NftStats(likedCount: likedCount ?? this.likedCount);
   }
 
-  NftStats copyWithWrapped({Wrapped<double>? likedCount}) {
+  NftStats copyWithWrapped({Wrapped<double?>? likedCount}) {
     return NftStats(
         likedCount: (likedCount != null ? likedCount.value : this.likedCount));
   }
@@ -8590,7 +8590,7 @@ class NftDoc {
     this.currentOwner,
     required this.owner,
     required this.onSale,
-    required this.isTicket,
+    this.isTicket,
     this.saleInfo,
     required this.statistics,
     this.metadata,
@@ -8649,7 +8649,7 @@ class NftDoc {
   @JsonKey(name: 'onSale', defaultValue: false)
   final bool onSale;
   @JsonKey(name: 'isTicket', defaultValue: false)
-  final bool isTicket;
+  final bool? isTicket;
   @JsonKey(name: 'saleInfo')
   final NftSaleInfo? saleInfo;
   @JsonKey(name: 'statistics')
@@ -8841,7 +8841,7 @@ extension $NftDocExtension on NftDoc {
       Wrapped<dynamic>? currentOwner,
       Wrapped<dynamic>? owner,
       Wrapped<bool>? onSale,
-      Wrapped<bool>? isTicket,
+      Wrapped<bool?>? isTicket,
       Wrapped<NftSaleInfo?>? saleInfo,
       Wrapped<NftStats>? statistics,
       Wrapped<NftMetadata?>? metadata,
@@ -10613,7 +10613,7 @@ class NftProps {
     this.currentOwner,
     required this.owner,
     required this.onSale,
-    required this.isTicket,
+    this.isTicket,
     this.saleInfo,
     required this.statistics,
     this.metadata,
@@ -10679,7 +10679,7 @@ class NftProps {
   @JsonKey(name: 'onSale', defaultValue: false)
   final bool onSale;
   @JsonKey(name: 'isTicket', defaultValue: false)
-  final bool isTicket;
+  final bool? isTicket;
   @JsonKey(name: 'saleInfo')
   final NftSaleInfo? saleInfo;
   @JsonKey(name: 'statistics')
@@ -10911,7 +10911,7 @@ extension $NftPropsExtension on NftProps {
       Wrapped<dynamic>? currentOwner,
       Wrapped<dynamic>? owner,
       Wrapped<bool>? onSale,
-      Wrapped<bool>? isTicket,
+      Wrapped<bool?>? isTicket,
       Wrapped<NftSaleInfo?>? saleInfo,
       Wrapped<NftStats>? statistics,
       Wrapped<NftMetadata?>? metadata,

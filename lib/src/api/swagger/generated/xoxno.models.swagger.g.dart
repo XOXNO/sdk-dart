@@ -1669,7 +1669,7 @@ Map<String, dynamic> _$NftSaleInfoToJson(NftSaleInfo instance) =>
     };
 
 NftStats _$NftStatsFromJson(Map<String, dynamic> json) => NftStats(
-      likedCount: (json['likedCount'] as num).toDouble(),
+      likedCount: (json['likedCount'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$NftStatsToJson(NftStats instance) => <String, dynamic>{
