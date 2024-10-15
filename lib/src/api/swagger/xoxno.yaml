@@ -1327,6 +1327,38 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - Token
+  /tokens/egld:
+    get:
+      operationId: TokenDataController_retrieveEGLDTokenInfo
+      summary: Fetch EGLD metrics
+      parameters: []
+      responses:
+        '200':
+          description: EGLD metrics info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IMetrics'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - Token
   /tokens/xoxno/info:
     get:
       operationId: TokenDataController_getXOXNOSummaryLending
@@ -1421,6 +1453,41 @@ paths:
       tags:
         - Token
         - LiquidXOXNO
+  /liquid/egld/stats:
+    get:
+      operationId: TokenDataController_getEGLDLiquidStats
+      summary: Fetch EGLD liquid staking statistics
+      parameters: []
+      responses:
+        '200':
+          description: EGLD Liquid statistics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/XoxnoLiquidStatsDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - Token
+        - LiquidEGLD
   /liquid/xoxno/rate:
     get:
       operationId: XoxnoLiquidScController_getExchangeRate
@@ -1517,6 +1584,313 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - LiquidXOXNO
+  /analytics/marketplace-unique-users:
+    get:
+      operationId: KustoDataController_getMarketplaceUniqueUsers
+      summary: Get marketplace unique users
+      parameters:
+        - name: before
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: after
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: bin
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Marketplace unique users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalyticsMarketplaceUniqueUsers'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - NftActivity
+  /liquid/egld/rate:
+    get:
+      operationId: XoxnoEgldLiquidScController_getExchangeRate
+      summary: Fetch Liquid EGLD ratio
+      parameters: []
+      responses:
+        '200':
+          description: Liquid EGLD rates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateType'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/liquid-supply:
+    get:
+      operationId: XoxnoEgldLiquidScController_getTotalLSSupply
+      summary: Fetch Liquid EGLD supply
+      parameters: []
+      responses:
+        '200':
+          description: Liquid EGLD supply as long string
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/staked:
+    get:
+      operationId: XoxnoEgldLiquidScController_getTotalStaked
+      summary: Fetch Liquid EGLD total staked supply
+      parameters: []
+      responses:
+        '200':
+          description: EGLD staked supply as long string
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/pending-rewards:
+    get:
+      operationId: XoxnoEgldLiquidScController_getPendingRewards
+      summary: Fetch Liquid EGLD pending rewards
+      parameters: []
+      responses:
+        '200':
+          description: EGLD pending rewards as long string
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/pending-undelegate:
+    get:
+      operationId: XoxnoEgldLiquidScController_getPendingUndelegate
+      summary: Fetch Liquid EGLD pending undelegate
+      parameters: []
+      responses:
+        '200':
+          description: EGLD pending undelegate as long string
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/pending-delegate:
+    get:
+      operationId: XoxnoEgldLiquidScController_getPendingDelegate
+      summary: Fetch Liquid EGLD pending delegate
+      parameters: []
+      responses:
+        '200':
+          description: EGLD pending delegate as number
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/protocol-apr:
+    get:
+      operationId: XoxnoEgldLiquidScController_getProtocolAPR
+      summary: Fetch Liquid EGLD protocol APR
+      parameters: []
+      responses:
+        '200':
+          description: EGLD protocol APR as number
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/providers:
+    get:
+      operationId: XoxnoEgldLiquidScController_getProviders
+      summary: Fetch Liquid EGLD providers
+      parameters: []
+      responses:
+        '200':
+          description: EGLD providers list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
   /ash/min-token-quantity:
     get:
       operationId: AshAggregatorController_getMinTokenQuantity
@@ -5366,6 +5740,34 @@ paths:
         - Ticketing
       security:
         - bearer: []
+  /event/profile/query:
+    get:
+      operationId: TicketingDataController_getEvents
+      summary: Get events
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventProfileFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
   /event/{eventId}/profile:
     put:
       operationId: TicketingDataController_setEventProfilePicture
@@ -7589,8 +7991,6 @@ components:
           type: number
         totalStakedCountUsd:
           type: number
-        userStakedCount:
-          type: number
         totalRewardsPaid:
           type: number
         totalRewardsPaidUsd:
@@ -7598,6 +7998,10 @@ components:
         uniqueStakersCount:
           type: number
         instakeUnstake:
+          type: string
+        instantPendingUnstake:
+          type: string
+        totalWithdrawn:
           type: number
         serviceFee:
           type: number
@@ -7617,11 +8021,12 @@ components:
         - apr
         - totalStakedCount
         - totalStakedCountUsd
-        - userStakedCount
         - totalRewardsPaid
         - totalRewardsPaidUsd
         - uniqueStakersCount
         - instakeUnstake
+        - instantPendingUnstake
+        - totalWithdrawn
         - serviceFee
     XoxnoInfo:
       type: object
@@ -7701,8 +8106,12 @@ components:
           description: Service fee
           example: 0
         instantUnstake:
-          type: number
+          type: string
           description: Amount available for instant unstake
+          example: 0
+        instantPendingUnstake:
+          type: string
+          description: Amount pending for unstake
           example: 0
       required:
         - participants
@@ -7715,6 +8124,66 @@ components:
         - rateInfo
         - serviceFee
         - instantUnstake
+        - instantPendingUnstake
+    AnalyticsMarketplaceUniqueUsers:
+      type: object
+      properties:
+        Day:
+          type: string
+          description: The date of the data entry
+          example: '2024-05-06T00:00:00.0000000Z'
+          format: date-time
+        UniqueUsers:
+          type: number
+          description: Number of unique users
+          example: 1016
+        UniqueBuyers:
+          type: number
+          description: Number of unique buyers
+          example: 505
+        UniqueSellers:
+          type: number
+          description: Number of unique sellers
+          example: 656
+      required:
+        - Day
+        - UniqueUsers
+        - UniqueBuyers
+        - UniqueSellers
+    ProviderDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The address of the provider
+        profile:
+          type: string
+          description: The profile avatar of the provider
+        name:
+          type: string
+          description: The name of the provider
+        delegationCap:
+          type: number
+          description: The delegation cap of the provider
+        nodes:
+          type: number
+          description: The number of nodes the provider has
+        apr:
+          type: number
+          description: The annual percentage rate (APR) of the provider
+        identity:
+          type: string
+          description: The identity of the provider
+        totalStaked:
+          type: number
+          description: The total staked amount by the provider
+        protocolStakedAmount:
+          type: number
+          description: The protocol staked amount
+      required:
+        - address
+        - totalStaked
+        - protocolStakedAmount
     SwapDto:
       type: object
       properties:
@@ -8963,18 +9432,12 @@ components:
     NftMedia:
       type: object
       properties:
-        avifUrl:
-          type: string
         webpUrl:
           type: string
-        retries:
-          type: number
         originalMedia:
           $ref: '#/components/schemas/OriginalMedia'
       required:
-        - avifUrl
         - webpUrl
-        - retries
         - originalMedia
     NftSaleInfo:
       type: object
@@ -9135,6 +9598,14 @@ components:
             - SemiFungibleESDT
             - MetaESDT
           description: The type of the asset
+        subType:
+          type: string
+          enum:
+            - NonFungibleESDTv2
+            - DynamicNonFungibleESDT
+            - DynamicSemiFungibleESDT
+            - DynamicMetaESDT
+          description: The sub-type of the asset
         supply:
           type: number
           description: >-
@@ -9219,21 +9690,15 @@ components:
         - attributes
         - nonce
         - type
+        - subType
         - name
         - royalties
         - url
-        - uris
-        - creator
         - wasProcessed
-        - media
-        - currentOwner
         - owner
         - onSale
         - isTicket
         - statistics
-        - eventData
-        - tags
-        - id
     NftCosmosResponse:
       type: object
       properties:
@@ -9250,7 +9715,6 @@ components:
       required:
         - resources
         - hasMoreResults
-        - count
     LikeNftDto:
       type: object
       properties:
@@ -9714,6 +10178,14 @@ components:
             - SemiFungibleESDT
             - MetaESDT
           description: The type of the asset
+        subType:
+          type: string
+          enum:
+            - NonFungibleESDTv2
+            - DynamicNonFungibleESDT
+            - DynamicSemiFungibleESDT
+            - DynamicMetaESDT
+          description: The sub-type of the asset
         supply:
           type: number
           description: >-
@@ -9816,21 +10288,15 @@ components:
         - attributes
         - nonce
         - type
+        - subType
         - name
         - royalties
         - url
-        - uris
-        - creator
         - wasProcessed
-        - media
-        - currentOwner
         - owner
         - onSale
         - isTicket
         - statistics
-        - eventData
-        - tags
-        - id
     SignWithdrawDto:
       type: object
       properties:
@@ -11850,11 +12316,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727881939
+          example: 1728993193
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 2f901166-a902-4abc-9ef8-7716ba757e63
+          example: e163d880-c64b-40dc-b112-a3f28c7c677b
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -11953,7 +12419,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727881935
+          minimum: 1728993189
         endTime:
           type: number
         location:
@@ -12169,6 +12635,25 @@ components:
         - id
         - eventPermissions
         - creatorProfile
+    PaginatedResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGuestProfile'
+      required:
+        - hasMoreResults
+        - resources
     EventSeoDto:
       type: object
       properties:
@@ -12197,10 +12682,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1727881939
+          example: 1728993193
         endTime:
           type: number
-          example: 1727881939
+          example: 1728993193
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -12310,11 +12795,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1727881935
+          example: 1728993189
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: a768e6ec-a66c-4031-a491-fa1fea5dc582
+          example: 97356d24-f71c-498d-a8e5-d0520115595d
       required:
         - dataType
         - eventId
@@ -12378,10 +12863,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727881939
+          minimum: 1728993193
         endTime:
           type: number
-          minimum: 1727968339
+          minimum: 1729079593
         maxLimit:
           type: number
         userLimit:
@@ -12441,11 +12926,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1727881935
+          example: 1728993189
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1727881935
+          example: 1728993189
         maxLimit:
           type: object
           description: >-
@@ -12476,7 +12961,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 36372291-1999-432b-b662-03fc6a78bc7d
+          example: 26bd6673-3902-4c8a-843a-9b7d96df855f
       required:
         - dataType
         - eventId
@@ -12513,10 +12998,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1727881939
+          minimum: 1728993193
         endTime:
           type: number
-          minimum: 1727968339
+          minimum: 1729079593
       required:
         - maxLimit
         - userLimit
@@ -12587,7 +13072,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: dc1f8ee1-2027-4b00-90ef-34a7326af1e1
+          example: 7c576e16-d294-4160-b485-0783fd680fa4
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -12650,7 +13135,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727881939
+          example: 1728993193
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12683,7 +13168,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: e1b0d4a2-5638-487a-be0d-a009a75f0f38
+          example: d5aeffa9-d2ee-40d5-ba53-0b71f4a43b51
       required:
         - dataType
         - eventId
@@ -12749,7 +13234,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1727881939
+          example: 1728993193
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -12782,7 +13267,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: e1b0d4a2-5638-487a-be0d-a009a75f0f38
+          example: d5aeffa9-d2ee-40d5-ba53-0b71f4a43b51
         profile:
           type: string
           description: >-
@@ -12807,25 +13292,6 @@ components:
         - id
         - profile
         - herotag
-    PaginatedResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Total number of documents
-          example: 100
-        hasMoreResults:
-          type: boolean
-          description: Indicates if there are more documents available
-          example: true
-        resources:
-          description: List of documents
-          type: array
-          items:
-            $ref: '#/components/schemas/EventGuestProfile'
-      required:
-        - hasMoreResults
-        - resources
     CosmosPaginatedResponse:
       type: object
       properties:
@@ -12882,6 +13348,14 @@ components:
           description: >-
             Type of answer expected (e.g., text, textarea, radio, checkbox,
             etc.).
+          enum:
+            - text
+            - textarea
+            - radio
+            - dropdown
+            - checkbox
+            - time
+            - date
         requireTime:
           type: boolean
           description: >-
@@ -12895,7 +13369,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1727881939
+          example: 1728993193
       required:
         - dataType
         - id
@@ -12922,10 +13396,10 @@ components:
             - text
             - textarea
             - radio
+            - dropdown
             - checkbox
             - time
             - date
-            - dropdown
         requireTime:
           type: boolean
           description: >-
@@ -12957,6 +13431,7 @@ components:
             - text
             - textarea
             - radio
+            - dropdown
             - checkbox
             - time
             - date
@@ -13032,11 +13507,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1727881939
+          example: 1728993193
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 2f901166-a902-4abc-9ef8-7716ba757e63
+          example: e163d880-c64b-40dc-b112-a3f28c7c677b
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13265,11 +13740,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727881939
+          example: 1728993193
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727881939
+          example: 1728993193
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13350,11 +13825,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727881939
+          example: 1728993193
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727881939
+          example: 1728993193
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13364,7 +13839,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1727881939
+          example: 1728993193
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13433,11 +13908,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1727881939
+          example: 1728993193
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1727881939
+          example: 1728993193
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13481,7 +13956,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: d4d56f24-993b-4afe-8209-adf85237870d
+          example: 7668e138-5fe1-4194-b540-bd765b93b581
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13497,7 +13972,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1727881939
+          example: 1728993193
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -13604,6 +14079,7 @@ components:
               - xoxnoStaking
               - xoxnoP2P
               - xoxnoLs
+              - xoxnoEgldLs
         range:
           type: array
           items:
@@ -13788,6 +14264,13 @@ components:
             - NonFungibleESDT
             - SemiFungibleESDT
             - MetaESDT
+        subType:
+          type: string
+          enum:
+            - NonFungibleESDTv2
+            - DynamicNonFungibleESDT
+            - DynamicSemiFungibleESDT
+            - DynamicMetaESDT
         profile:
           type: string
           default: >-
@@ -13844,6 +14327,7 @@ components:
         - isVerified
         - socials
         - type
+        - subType
         - profile
         - banner
         - statistics
@@ -14179,5 +14663,45 @@ components:
           default: 0
         filters:
           $ref: '#/components/schemas/EventInvitationFilterCriteriaDto'
+      required:
+        - filters
+    EventProfileFilterCriteriaDto:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventProfileFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+          default: []
+        orderBy:
+          type: array
+          items:
+            type: string
+          default: []
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: number
+          default: 25
+        skip:
+          type: number
+          default: 0
+        filters:
+          $ref: '#/components/schemas/EventProfileFilterCriteriaDto'
       required:
         - filters

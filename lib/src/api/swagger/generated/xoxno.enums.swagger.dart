@@ -183,6 +183,24 @@ enum NftDocType {
   const NftDocType(this.value);
 }
 
+enum NftDocSubType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NonFungibleESDTv2')
+  nonfungibleesdtv2('NonFungibleESDTv2'),
+  @JsonValue('DynamicNonFungibleESDT')
+  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
+  @JsonValue('DynamicSemiFungibleESDT')
+  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
+  @JsonValue('DynamicMetaESDT')
+  dynamicmetaesdt('DynamicMetaESDT');
+
+  final String? value;
+
+  const NftDocSubType(this.value);
+}
+
 enum NftPropsType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -199,6 +217,24 @@ enum NftPropsType {
   final String? value;
 
   const NftPropsType(this.value);
+}
+
+enum NftPropsSubType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NonFungibleESDTv2')
+  nonfungibleesdtv2('NonFungibleESDTv2'),
+  @JsonValue('DynamicNonFungibleESDT')
+  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
+  @JsonValue('DynamicSemiFungibleESDT')
+  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
+  @JsonValue('DynamicMetaESDT')
+  dynamicmetaesdt('DynamicMetaESDT');
+
+  final String? value;
+
+  const NftPropsSubType(this.value);
 }
 
 enum StakingCreatorDocDataType {
@@ -785,6 +821,30 @@ enum EventQuestionDocDataType {
   const EventQuestionDocDataType(this.value);
 }
 
+enum EventQuestionDocAnswerType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('text')
+  text('text'),
+  @JsonValue('textarea')
+  textarea('textarea'),
+  @JsonValue('radio')
+  radio('radio'),
+  @JsonValue('dropdown')
+  dropdown('dropdown'),
+  @JsonValue('checkbox')
+  checkbox('checkbox'),
+  @JsonValue('time')
+  time('time'),
+  @JsonValue('date')
+  date('date');
+
+  final String? value;
+
+  const EventQuestionDocAnswerType(this.value);
+}
+
 enum EventQuestionCreateDtoAnswerType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -795,14 +855,14 @@ enum EventQuestionCreateDtoAnswerType {
   textarea('textarea'),
   @JsonValue('radio')
   radio('radio'),
+  @JsonValue('dropdown')
+  dropdown('dropdown'),
   @JsonValue('checkbox')
   checkbox('checkbox'),
   @JsonValue('time')
   time('time'),
   @JsonValue('date')
-  date('date'),
-  @JsonValue('dropdown')
-  dropdown('dropdown');
+  date('date');
 
   final String? value;
 
@@ -819,6 +879,8 @@ enum EventQuestionEditDtoAnswerType {
   textarea('textarea'),
   @JsonValue('radio')
   radio('radio'),
+  @JsonValue('dropdown')
+  dropdown('dropdown'),
   @JsonValue('checkbox')
   checkbox('checkbox'),
   @JsonValue('time')
@@ -1188,7 +1250,9 @@ enum NftActivityFilterCriteriaDtoSource {
   @JsonValue('xoxnoP2P')
   xoxnop2p('xoxnoP2P'),
   @JsonValue('xoxnoLs')
-  xoxnols('xoxnoLs');
+  xoxnols('xoxnoLs'),
+  @JsonValue('xoxnoEgldLs')
+  xoxnoegldls('xoxnoEgldLs');
 
   final String? value;
 
@@ -1277,6 +1341,24 @@ enum CollectionProfileDocType {
   final String? value;
 
   const CollectionProfileDocType(this.value);
+}
+
+enum CollectionProfileDocSubType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NonFungibleESDTv2')
+  nonfungibleesdtv2('NonFungibleESDTv2'),
+  @JsonValue('DynamicNonFungibleESDT')
+  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
+  @JsonValue('DynamicSemiFungibleESDT')
+  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
+  @JsonValue('DynamicMetaESDT')
+  dynamicmetaesdt('DynamicMetaESDT');
+
+  final String? value;
+
+  const CollectionProfileDocSubType(this.value);
 }
 
 enum NftOfferDocFilterOrderBy {

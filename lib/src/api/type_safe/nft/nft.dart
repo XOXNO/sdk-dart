@@ -11,7 +11,7 @@ class NftTypeSafeApi {
   Future<NftCosmosResponse> query({final NftDocFilter? filter}) async {
     final f = switch (filter?.toJson()) {
       null => '',
-      (Map<String, dynamic> value) => json.encode(value),
+      Map<String, dynamic> value => json.encode(value),
     };
     final data = await _api.query(filter: f);
     return NftCosmosResponse.fromJson(data);
