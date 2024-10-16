@@ -9568,7 +9568,79 @@ components:
         - eventId
         - ticketId
         - checkInStatus
-    NftDoc:
+    CollectionExtraFeesConfig:
+      type: object
+      properties:
+        amount:
+          type: number
+        address:
+          type: string
+      required:
+        - amount
+        - address
+    XoxnoMarketplaceScCollectionConfig:
+      type: object
+      properties:
+        reversedCutFees:
+          type: object
+          default: false
+        reversedRoyalties:
+          type: object
+          default: false
+        customRoyalties:
+          type: object
+          default: false
+        minRoyalties:
+          type: object
+          default: 0
+        maxRoyalties:
+          type: object
+          default: 0
+        extraFees:
+          $ref: '#/components/schemas/CollectionExtraFeesConfig'
+        adminAddress:
+          type: string
+      required:
+        - reversedCutFees
+        - reversedRoyalties
+        - customRoyalties
+        - minRoyalties
+        - maxRoyalties
+    CollectionProfileSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MiceCity
+        profile:
+          type: string
+          example: MiceCity
+        owner:
+          type: string
+        banner:
+          type: string
+        socials:
+          $ref: '#/components/schemas/SocialsDto'
+        isVerified:
+          type: boolean
+        isVisible:
+          type: boolean
+        collectionSize:
+          type: number
+        description:
+          type: string
+        followCount:
+          type: number
+        holdersCount:
+          type: number
+        customConfig:
+          $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
+        roles:
+          type: object
+      required:
+        - name
+        - profile
+    NftProps:
       type: object
       properties:
         identifier:
@@ -9682,13 +9754,29 @@ components:
         id:
           type: string
           description: The unique long ID of an asset in our database
+        receiverIsNotOwner:
+          type: boolean
+        balance:
+          type: number
+          description: Balance owned by the user
+        unboundDaysLeft:
+          type: number
+          description: Left days until the staked NFT can be claimed back
+        unboundEpoch:
+          type: number
+          description: The epoch day when the NFT will be available for claiming
+        collectionInfo:
+          description: The extra information about the collection of this specific NFT
+          allOf:
+            - $ref: '#/components/schemas/CollectionProfileSummary'
+        extraProperties:
+          type: object
+          description: Extra props for the specific NFT
       required:
         - identifier
         - collection
-        - attributes
         - nonce
         - type
-        - subType
         - name
         - royalties
         - url
@@ -9702,7 +9790,7 @@ components:
         resources:
           type: array
           items:
-            $ref: '#/components/schemas/NftDoc'
+            $ref: '#/components/schemas/NftProps'
         hasMoreResults:
           type: boolean
           example: true
@@ -10074,225 +10162,6 @@ components:
       required:
         - density
         - listings
-    CollectionExtraFeesConfig:
-      type: object
-      properties:
-        amount:
-          type: number
-        address:
-          type: string
-      required:
-        - amount
-        - address
-    XoxnoMarketplaceScCollectionConfig:
-      type: object
-      properties:
-        reversedCutFees:
-          type: object
-          default: false
-        reversedRoyalties:
-          type: object
-          default: false
-        customRoyalties:
-          type: object
-          default: false
-        minRoyalties:
-          type: object
-          default: 0
-        maxRoyalties:
-          type: object
-          default: 0
-        extraFees:
-          $ref: '#/components/schemas/CollectionExtraFeesConfig'
-        adminAddress:
-          type: string
-      required:
-        - reversedCutFees
-        - reversedRoyalties
-        - customRoyalties
-        - minRoyalties
-        - maxRoyalties
-    CollectionProfileSummary:
-      type: object
-      properties:
-        name:
-          type: string
-          example: MiceCity
-        profile:
-          type: string
-          example: MiceCity
-        owner:
-          type: string
-        banner:
-          type: string
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        isVerified:
-          type: boolean
-        isVisible:
-          type: boolean
-        collectionSize:
-          type: number
-        description:
-          type: string
-        followCount:
-          type: number
-        holdersCount:
-          type: number
-        customConfig:
-          $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
-        roles:
-          type: object
-      required:
-        - name
-        - profile
-        - socials
-    NftProps:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: Unique identifier of the asset
-        collection:
-          type: string
-          description: Unique collection ID
-        originalCollection:
-          type: string
-          description: >-
-            For syntetic NFTs this unique collection represents the underlaying
-            collection
-        attributes:
-          type: string
-          description: Base64 attributes
-        nonce:
-          type: number
-          description: The unique number of an asset
-        type:
-          type: string
-          enum:
-            - FungibleESDT
-            - NonFungibleESDT
-            - SemiFungibleESDT
-            - MetaESDT
-          description: The type of the asset
-        subType:
-          type: string
-          enum:
-            - NonFungibleESDTv2
-            - DynamicNonFungibleESDT
-            - DynamicSemiFungibleESDT
-            - DynamicMetaESDT
-          description: The sub-type of the asset
-        supply:
-          type: number
-          description: >-
-            In case of an SFT/MetaESDT we show the total supply minted for this
-            unique asset
-        name:
-          type: string
-          description: The name of the asset
-        royalties:
-          type: number
-          description: >-
-            The original royalties set by the creator at mint time, to be
-            compared with custom settings
-        url:
-          type: string
-          description: The original asset media URL
-        uris:
-          description: All media URLs of an asset
-          type: array
-          items:
-            type: string
-        creator:
-          oneOf:
-            - type: string
-            - $ref: '#/components/schemas/OwnerDto'
-          description: The creator profile information
-        wasProcessed:
-          type: boolean
-          default: false
-          description: >-
-            Indicates if the specific asset has the media processed and
-            optimized WEBP/AVIF
-        media:
-          description: Processed URLs and types of the specific asset
-          allOf:
-            - $ref: '#/components/schemas/NftMedia'
-        currentOwner:
-          oneOf:
-            - type: string
-            - $ref: '#/components/schemas/OwnerDto'
-          description: The current owner profile information
-        owner:
-          oneOf:
-            - type: string
-            - $ref: '#/components/schemas/OwnerDto'
-          description: The owner profile information
-        onSale:
-          type: boolean
-          default: false
-          description: Indicates if the specific asset is on sale or not
-        isTicket:
-          type: boolean
-          default: false
-          description: Indicates if the specific asset is a ticket
-        saleInfo:
-          description: When onSale = true, saleInfo keeps the info about the listing
-          allOf:
-            - $ref: '#/components/schemas/NftSaleInfo'
-        statistics:
-          description: Statistics about the asset
-          allOf:
-            - $ref: '#/components/schemas/NftStats'
-        metadata:
-          description: When onSale = true, saleInfo keeps the info about the listing
-          allOf:
-            - $ref: '#/components/schemas/NftMetadata'
-        eventData:
-          description: Event-specific data associated with this NFT.
-          allOf:
-            - $ref: '#/components/schemas/NFTEventData'
-        tags:
-          description: A list of hashtags parts of the asset
-          type: array
-          items:
-            type: string
-        id:
-          type: string
-          description: The unique long ID of an asset in our database
-        receiverIsNotOwner:
-          type: boolean
-        balance:
-          type: number
-          description: Balance owned by the user
-        unboundDaysLeft:
-          type: number
-          description: Left days until the staked NFT can be claimed back
-        unboundEpoch:
-          type: number
-          description: The epoch day when the NFT will be available for claiming
-        collectionInfo:
-          description: The extra information about the collection of this specific NFT
-          allOf:
-            - $ref: '#/components/schemas/CollectionProfileSummary'
-        extraProperties:
-          type: object
-          description: Extra props for the specific NFT
-      required:
-        - identifier
-        - collection
-        - attributes
-        - nonce
-        - type
-        - subType
-        - name
-        - royalties
-        - url
-        - wasProcessed
-        - owner
-        - onSale
-        - statistics
     SignWithdrawDto:
       type: object
       properties:
@@ -10532,6 +10401,132 @@ components:
         - daysLeft
         - cutFee
         - percentageFilled
+    NftDoc:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Unique identifier of the asset
+        collection:
+          type: string
+          description: Unique collection ID
+        originalCollection:
+          type: string
+          description: >-
+            For syntetic NFTs this unique collection represents the underlaying
+            collection
+        attributes:
+          type: string
+          description: Base64 attributes
+        nonce:
+          type: number
+          description: The unique number of an asset
+        type:
+          type: string
+          enum:
+            - FungibleESDT
+            - NonFungibleESDT
+            - SemiFungibleESDT
+            - MetaESDT
+          description: The type of the asset
+        subType:
+          type: string
+          enum:
+            - NonFungibleESDTv2
+            - DynamicNonFungibleESDT
+            - DynamicSemiFungibleESDT
+            - DynamicMetaESDT
+          description: The sub-type of the asset
+        supply:
+          type: number
+          description: >-
+            In case of an SFT/MetaESDT we show the total supply minted for this
+            unique asset
+        name:
+          type: string
+          description: The name of the asset
+        royalties:
+          type: number
+          description: >-
+            The original royalties set by the creator at mint time, to be
+            compared with custom settings
+        url:
+          type: string
+          description: The original asset media URL
+        uris:
+          description: All media URLs of an asset
+          type: array
+          items:
+            type: string
+        creator:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/OwnerDto'
+          description: The creator profile information
+        wasProcessed:
+          type: boolean
+          default: false
+          description: >-
+            Indicates if the specific asset has the media processed and
+            optimized WEBP/AVIF
+        media:
+          description: Processed URLs and types of the specific asset
+          allOf:
+            - $ref: '#/components/schemas/NftMedia'
+        currentOwner:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/OwnerDto'
+          description: The current owner profile information
+        owner:
+          oneOf:
+            - type: string
+            - $ref: '#/components/schemas/OwnerDto'
+          description: The owner profile information
+        onSale:
+          type: boolean
+          default: false
+          description: Indicates if the specific asset is on sale or not
+        isTicket:
+          type: boolean
+          default: false
+          description: Indicates if the specific asset is a ticket
+        saleInfo:
+          description: When onSale = true, saleInfo keeps the info about the listing
+          allOf:
+            - $ref: '#/components/schemas/NftSaleInfo'
+        statistics:
+          description: Statistics about the asset
+          allOf:
+            - $ref: '#/components/schemas/NftStats'
+        metadata:
+          description: When onSale = true, saleInfo keeps the info about the listing
+          allOf:
+            - $ref: '#/components/schemas/NftMetadata'
+        eventData:
+          description: Event-specific data associated with this NFT.
+          allOf:
+            - $ref: '#/components/schemas/NFTEventData'
+        tags:
+          description: A list of hashtags parts of the asset
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+          description: The unique long ID of an asset in our database
+      required:
+        - identifier
+        - collection
+        - nonce
+        - type
+        - name
+        - royalties
+        - url
+        - wasProcessed
+        - owner
+        - onSale
+        - statistics
     StakingPostDTO:
       type: object
       properties:
@@ -12312,11 +12307,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1728994090
+          example: 1729080695
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 00d13678-834a-4e2a-b663-1b71edab07c6
+          example: fbc8dc6d-8591-4f1b-94a8-9dbf6a219c6d
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -12415,7 +12410,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1728994087
+          minimum: 1729080694
         endTime:
           type: number
         location:
@@ -12678,10 +12673,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1728994090
+          example: 1729080695
         endTime:
           type: number
-          example: 1728994090
+          example: 1729080695
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -12791,11 +12786,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1728994087
+          example: 1729080694
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 47be0887-aa55-4401-b33a-83afc90c182a
+          example: 03f23d32-cd58-4b12-a673-ee1dc5352634
       required:
         - dataType
         - eventId
@@ -12859,10 +12854,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1728994090
+          minimum: 1729080695
         endTime:
           type: number
-          minimum: 1729080490
+          minimum: 1729167095
         maxLimit:
           type: number
         userLimit:
@@ -12922,11 +12917,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1728994087
+          example: 1729080694
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1728994087
+          example: 1729080694
         maxLimit:
           type: object
           description: >-
@@ -12957,7 +12952,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 005361c8-f026-4b50-94da-03ccddfcf8cf
+          example: e03be90e-692e-466b-9edf-fe55a973928b
       required:
         - dataType
         - eventId
@@ -12994,10 +12989,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1728994090
+          minimum: 1729080695
         endTime:
           type: number
-          minimum: 1729080490
+          minimum: 1729167095
       required:
         - maxLimit
         - userLimit
@@ -13068,7 +13063,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 23feee17-00e0-4550-8306-736f1bf8a694
+          example: 9b058c39-29d9-494d-815b-c0356d15d741
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -13131,7 +13126,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1728994090
+          example: 1729080695
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -13164,7 +13159,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f20051f4-96c2-4d96-bbb1-6f90907d0764
+          example: ff9bb55c-fec1-41d6-a07c-65876240cd07
       required:
         - dataType
         - eventId
@@ -13230,7 +13225,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1728994090
+          example: 1729080695
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -13263,7 +13258,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f20051f4-96c2-4d96-bbb1-6f90907d0764
+          example: ff9bb55c-fec1-41d6-a07c-65876240cd07
         profile:
           type: string
           description: >-
@@ -13365,7 +13360,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1728994090
+          example: 1729080695
       required:
         - dataType
         - id
@@ -13503,11 +13498,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1728994090
+          example: 1729080695
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 00d13678-834a-4e2a-b663-1b71edab07c6
+          example: fbc8dc6d-8591-4f1b-94a8-9dbf6a219c6d
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13736,11 +13731,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1728994090
+          example: 1729080695
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1728994090
+          example: 1729080695
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13821,11 +13816,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1728994090
+          example: 1729080695
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1728994090
+          example: 1729080695
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13835,7 +13830,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1728994090
+          example: 1729080695
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -13904,11 +13899,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1728994090
+          example: 1729080695
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1728994090
+          example: 1729080695
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13952,7 +13947,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: be6c474d-5caf-4c54-b248-60fbc66dcd93
+          example: 1c7aacc3-f10a-4b47-a24b-1712fdbc1a49
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13968,7 +13963,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1728994090
+          example: 1729080695
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.

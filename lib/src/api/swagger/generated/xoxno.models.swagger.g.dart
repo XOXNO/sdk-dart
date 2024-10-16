@@ -1732,14 +1732,96 @@ Map<String, dynamic> _$NFTEventDataToJson(NFTEventData instance) =>
       'checkInStatus': instance.checkInStatus,
     };
 
-NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
+CollectionExtraFeesConfig _$CollectionExtraFeesConfigFromJson(
+        Map<String, dynamic> json) =>
+    CollectionExtraFeesConfig(
+      amount: (json['amount'] as num).toDouble(),
+      address: json['address'] as String,
+    );
+
+Map<String, dynamic> _$CollectionExtraFeesConfigToJson(
+        CollectionExtraFeesConfig instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      'address': instance.address,
+    };
+
+XoxnoMarketplaceScCollectionConfig _$XoxnoMarketplaceScCollectionConfigFromJson(
+        Map<String, dynamic> json) =>
+    XoxnoMarketplaceScCollectionConfig(
+      reversedCutFees: json['reversedCutFees'] as Object,
+      reversedRoyalties: json['reversedRoyalties'] as Object,
+      customRoyalties: json['customRoyalties'] as Object,
+      minRoyalties: json['minRoyalties'] as Object,
+      maxRoyalties: json['maxRoyalties'] as Object,
+      extraFees: json['extraFees'] == null
+          ? null
+          : CollectionExtraFeesConfig.fromJson(
+              json['extraFees'] as Map<String, dynamic>),
+      adminAddress: json['adminAddress'] as String?,
+    );
+
+Map<String, dynamic> _$XoxnoMarketplaceScCollectionConfigToJson(
+        XoxnoMarketplaceScCollectionConfig instance) =>
+    <String, dynamic>{
+      'reversedCutFees': instance.reversedCutFees,
+      'reversedRoyalties': instance.reversedRoyalties,
+      'customRoyalties': instance.customRoyalties,
+      'minRoyalties': instance.minRoyalties,
+      'maxRoyalties': instance.maxRoyalties,
+      'extraFees': instance.extraFees?.toJson(),
+      'adminAddress': instance.adminAddress,
+    };
+
+CollectionProfileSummary _$CollectionProfileSummaryFromJson(
+        Map<String, dynamic> json) =>
+    CollectionProfileSummary(
+      name: json['name'] as String,
+      profile: json['profile'] as String,
+      owner: json['owner'] as String?,
+      banner: json['banner'] as String?,
+      socials: json['socials'] == null
+          ? null
+          : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+      isVerified: json['isVerified'] as bool?,
+      isVisible: json['isVisible'] as bool?,
+      collectionSize: (json['collectionSize'] as num?)?.toDouble(),
+      description: json['description'] as String?,
+      followCount: (json['followCount'] as num?)?.toDouble(),
+      holdersCount: (json['holdersCount'] as num?)?.toDouble(),
+      customConfig: json['customConfig'] == null
+          ? null
+          : XoxnoMarketplaceScCollectionConfig.fromJson(
+              json['customConfig'] as Map<String, dynamic>),
+      roles: json['roles'],
+    );
+
+Map<String, dynamic> _$CollectionProfileSummaryToJson(
+        CollectionProfileSummary instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'profile': instance.profile,
+      'owner': instance.owner,
+      'banner': instance.banner,
+      'socials': instance.socials?.toJson(),
+      'isVerified': instance.isVerified,
+      'isVisible': instance.isVisible,
+      'collectionSize': instance.collectionSize,
+      'description': instance.description,
+      'followCount': instance.followCount,
+      'holdersCount': instance.holdersCount,
+      'customConfig': instance.customConfig?.toJson(),
+      'roles': instance.roles,
+    };
+
+NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       identifier: json['identifier'] as String,
       collection: json['collection'] as String,
       originalCollection: json['originalCollection'] as String?,
-      attributes: json['attributes'] as String,
+      attributes: json['attributes'] as String?,
       nonce: (json['nonce'] as num).toDouble(),
-      type: nftDocTypeFromJson(json['type']),
-      subType: nftDocSubTypeFromJson(json['subType']),
+      type: nftPropsTypeFromJson(json['type']),
+      subType: nftPropsSubTypeNullableFromJson(json['subType']),
       supply: (json['supply'] as num?)?.toDouble(),
       name: json['name'] as String,
       royalties: (json['royalties'] as num).toDouble(),
@@ -1770,16 +1852,25 @@ NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
           (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
       id: json['id'] as String?,
+      receiverIsNotOwner: json['receiverIsNotOwner'] as bool?,
+      balance: (json['balance'] as num?)?.toDouble(),
+      unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toDouble(),
+      unboundEpoch: (json['unboundEpoch'] as num?)?.toDouble(),
+      collectionInfo: json['collectionInfo'] == null
+          ? null
+          : CollectionProfileSummary.fromJson(
+              json['collectionInfo'] as Map<String, dynamic>),
+      extraProperties: json['extraProperties'],
     );
 
-Map<String, dynamic> _$NftDocToJson(NftDoc instance) => <String, dynamic>{
+Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
       'identifier': instance.identifier,
       'collection': instance.collection,
       'originalCollection': instance.originalCollection,
       'attributes': instance.attributes,
       'nonce': instance.nonce,
-      'type': nftDocTypeToJson(instance.type),
-      'subType': nftDocSubTypeToJson(instance.subType),
+      'type': nftPropsTypeToJson(instance.type),
+      'subType': nftPropsSubTypeNullableToJson(instance.subType),
       'supply': instance.supply,
       'name': instance.name,
       'royalties': instance.royalties,
@@ -1798,12 +1889,18 @@ Map<String, dynamic> _$NftDocToJson(NftDoc instance) => <String, dynamic>{
       'eventData': instance.eventData?.toJson(),
       'tags': instance.tags,
       'id': instance.id,
+      'receiverIsNotOwner': instance.receiverIsNotOwner,
+      'balance': instance.balance,
+      'unboundDaysLeft': instance.unboundDaysLeft,
+      'unboundEpoch': instance.unboundEpoch,
+      'collectionInfo': instance.collectionInfo?.toJson(),
+      'extraProperties': instance.extraProperties,
     };
 
 NftCosmosResponse _$NftCosmosResponseFromJson(Map<String, dynamic> json) =>
     NftCosmosResponse(
       resources: (json['resources'] as List<dynamic>?)
-              ?.map((e) => NftDoc.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => NftProps.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       hasMoreResults: json['hasMoreResults'] as bool,
@@ -2082,169 +2179,6 @@ Map<String, dynamic> _$ListingsResponseDtoToJson(
       'listings': instance.listings.map((e) => e.toJson()).toList(),
     };
 
-CollectionExtraFeesConfig _$CollectionExtraFeesConfigFromJson(
-        Map<String, dynamic> json) =>
-    CollectionExtraFeesConfig(
-      amount: (json['amount'] as num).toDouble(),
-      address: json['address'] as String,
-    );
-
-Map<String, dynamic> _$CollectionExtraFeesConfigToJson(
-        CollectionExtraFeesConfig instance) =>
-    <String, dynamic>{
-      'amount': instance.amount,
-      'address': instance.address,
-    };
-
-XoxnoMarketplaceScCollectionConfig _$XoxnoMarketplaceScCollectionConfigFromJson(
-        Map<String, dynamic> json) =>
-    XoxnoMarketplaceScCollectionConfig(
-      reversedCutFees: json['reversedCutFees'] as Object,
-      reversedRoyalties: json['reversedRoyalties'] as Object,
-      customRoyalties: json['customRoyalties'] as Object,
-      minRoyalties: json['minRoyalties'] as Object,
-      maxRoyalties: json['maxRoyalties'] as Object,
-      extraFees: json['extraFees'] == null
-          ? null
-          : CollectionExtraFeesConfig.fromJson(
-              json['extraFees'] as Map<String, dynamic>),
-      adminAddress: json['adminAddress'] as String?,
-    );
-
-Map<String, dynamic> _$XoxnoMarketplaceScCollectionConfigToJson(
-        XoxnoMarketplaceScCollectionConfig instance) =>
-    <String, dynamic>{
-      'reversedCutFees': instance.reversedCutFees,
-      'reversedRoyalties': instance.reversedRoyalties,
-      'customRoyalties': instance.customRoyalties,
-      'minRoyalties': instance.minRoyalties,
-      'maxRoyalties': instance.maxRoyalties,
-      'extraFees': instance.extraFees?.toJson(),
-      'adminAddress': instance.adminAddress,
-    };
-
-CollectionProfileSummary _$CollectionProfileSummaryFromJson(
-        Map<String, dynamic> json) =>
-    CollectionProfileSummary(
-      name: json['name'] as String,
-      profile: json['profile'] as String,
-      owner: json['owner'] as String?,
-      banner: json['banner'] as String?,
-      socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-      isVerified: json['isVerified'] as bool?,
-      isVisible: json['isVisible'] as bool?,
-      collectionSize: (json['collectionSize'] as num?)?.toDouble(),
-      description: json['description'] as String?,
-      followCount: (json['followCount'] as num?)?.toDouble(),
-      holdersCount: (json['holdersCount'] as num?)?.toDouble(),
-      customConfig: json['customConfig'] == null
-          ? null
-          : XoxnoMarketplaceScCollectionConfig.fromJson(
-              json['customConfig'] as Map<String, dynamic>),
-      roles: json['roles'],
-    );
-
-Map<String, dynamic> _$CollectionProfileSummaryToJson(
-        CollectionProfileSummary instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'profile': instance.profile,
-      'owner': instance.owner,
-      'banner': instance.banner,
-      'socials': instance.socials.toJson(),
-      'isVerified': instance.isVerified,
-      'isVisible': instance.isVisible,
-      'collectionSize': instance.collectionSize,
-      'description': instance.description,
-      'followCount': instance.followCount,
-      'holdersCount': instance.holdersCount,
-      'customConfig': instance.customConfig?.toJson(),
-      'roles': instance.roles,
-    };
-
-NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
-      identifier: json['identifier'] as String,
-      collection: json['collection'] as String,
-      originalCollection: json['originalCollection'] as String?,
-      attributes: json['attributes'] as String,
-      nonce: (json['nonce'] as num).toDouble(),
-      type: nftPropsTypeFromJson(json['type']),
-      subType: nftPropsSubTypeFromJson(json['subType']),
-      supply: (json['supply'] as num?)?.toDouble(),
-      name: json['name'] as String,
-      royalties: (json['royalties'] as num).toDouble(),
-      url: json['url'] as String,
-      uris:
-          (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
-      creator: json['creator'],
-      wasProcessed: json['wasProcessed'] as bool? ?? false,
-      media: json['media'] == null
-          ? null
-          : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
-      currentOwner: json['currentOwner'],
-      owner: json['owner'],
-      onSale: json['onSale'] as bool? ?? false,
-      isTicket: json['isTicket'] as bool? ?? false,
-      saleInfo: json['saleInfo'] == null
-          ? null
-          : NftSaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
-      statistics: NftStats.fromJson(json['statistics'] as Map<String, dynamic>),
-      metadata: json['metadata'] == null
-          ? null
-          : NftMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
-      eventData: json['eventData'] == null
-          ? null
-          : NFTEventData.fromJson(json['eventData'] as Map<String, dynamic>),
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
-      id: json['id'] as String?,
-      receiverIsNotOwner: json['receiverIsNotOwner'] as bool?,
-      balance: (json['balance'] as num?)?.toDouble(),
-      unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toDouble(),
-      unboundEpoch: (json['unboundEpoch'] as num?)?.toDouble(),
-      collectionInfo: json['collectionInfo'] == null
-          ? null
-          : CollectionProfileSummary.fromJson(
-              json['collectionInfo'] as Map<String, dynamic>),
-      extraProperties: json['extraProperties'],
-    );
-
-Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
-      'identifier': instance.identifier,
-      'collection': instance.collection,
-      'originalCollection': instance.originalCollection,
-      'attributes': instance.attributes,
-      'nonce': instance.nonce,
-      'type': nftPropsTypeToJson(instance.type),
-      'subType': nftPropsSubTypeToJson(instance.subType),
-      'supply': instance.supply,
-      'name': instance.name,
-      'royalties': instance.royalties,
-      'url': instance.url,
-      'uris': instance.uris,
-      'creator': instance.creator,
-      'wasProcessed': instance.wasProcessed,
-      'media': instance.media?.toJson(),
-      'currentOwner': instance.currentOwner,
-      'owner': instance.owner,
-      'onSale': instance.onSale,
-      'isTicket': instance.isTicket,
-      'saleInfo': instance.saleInfo?.toJson(),
-      'statistics': instance.statistics.toJson(),
-      'metadata': instance.metadata?.toJson(),
-      'eventData': instance.eventData?.toJson(),
-      'tags': instance.tags,
-      'id': instance.id,
-      'receiverIsNotOwner': instance.receiverIsNotOwner,
-      'balance': instance.balance,
-      'unboundDaysLeft': instance.unboundDaysLeft,
-      'unboundEpoch': instance.unboundEpoch,
-      'collectionInfo': instance.collectionInfo?.toJson(),
-      'extraProperties': instance.extraProperties,
-    };
-
 SignWithdrawDto _$SignWithdrawDtoFromJson(Map<String, dynamic> json) =>
     SignWithdrawDto(
       auctionId: (json['auctionId'] as List<dynamic>?)
@@ -2386,6 +2320,74 @@ Map<String, dynamic> _$StakingSummaryToJson(StakingSummary instance) =>
       'daysLeft': instance.daysLeft,
       'cutFee': instance.cutFee,
       'percentageFilled': instance.percentageFilled,
+    };
+
+NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
+      identifier: json['identifier'] as String,
+      collection: json['collection'] as String,
+      originalCollection: json['originalCollection'] as String?,
+      attributes: json['attributes'] as String?,
+      nonce: (json['nonce'] as num).toDouble(),
+      type: nftDocTypeFromJson(json['type']),
+      subType: nftDocSubTypeNullableFromJson(json['subType']),
+      supply: (json['supply'] as num?)?.toDouble(),
+      name: json['name'] as String,
+      royalties: (json['royalties'] as num).toDouble(),
+      url: json['url'] as String,
+      uris:
+          (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      creator: json['creator'],
+      wasProcessed: json['wasProcessed'] as bool? ?? false,
+      media: json['media'] == null
+          ? null
+          : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
+      currentOwner: json['currentOwner'],
+      owner: json['owner'],
+      onSale: json['onSale'] as bool? ?? false,
+      isTicket: json['isTicket'] as bool? ?? false,
+      saleInfo: json['saleInfo'] == null
+          ? null
+          : NftSaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
+      statistics: NftStats.fromJson(json['statistics'] as Map<String, dynamic>),
+      metadata: json['metadata'] == null
+          ? null
+          : NftMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
+      eventData: json['eventData'] == null
+          ? null
+          : NFTEventData.fromJson(json['eventData'] as Map<String, dynamic>),
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      id: json['id'] as String?,
+    );
+
+Map<String, dynamic> _$NftDocToJson(NftDoc instance) => <String, dynamic>{
+      'identifier': instance.identifier,
+      'collection': instance.collection,
+      'originalCollection': instance.originalCollection,
+      'attributes': instance.attributes,
+      'nonce': instance.nonce,
+      'type': nftDocTypeToJson(instance.type),
+      'subType': nftDocSubTypeNullableToJson(instance.subType),
+      'supply': instance.supply,
+      'name': instance.name,
+      'royalties': instance.royalties,
+      'url': instance.url,
+      'uris': instance.uris,
+      'creator': instance.creator,
+      'wasProcessed': instance.wasProcessed,
+      'media': instance.media?.toJson(),
+      'currentOwner': instance.currentOwner,
+      'owner': instance.owner,
+      'onSale': instance.onSale,
+      'isTicket': instance.isTicket,
+      'saleInfo': instance.saleInfo?.toJson(),
+      'statistics': instance.statistics.toJson(),
+      'metadata': instance.metadata?.toJson(),
+      'eventData': instance.eventData?.toJson(),
+      'tags': instance.tags,
+      'id': instance.id,
     };
 
 StakingPostDTO _$StakingPostDTOFromJson(Map<String, dynamic> json) =>

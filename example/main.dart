@@ -38,7 +38,7 @@ Future<void> main() async {
 
   final client = xoxno.Client(
     client: rawClient,
-    baseUrl: 'https://api.xoxno.com',
+    baseUrl: 'https://devnet-api.xoxno.com',
     renewableTokens: RenewableTokens(),
   );
   final rawJWT =
@@ -51,11 +51,7 @@ Future<void> main() async {
 
   try {
     // var data = await sdk.api.user.meProfile();
-    var data = await sdk.api.search.userSearch(
-      filterQuery: xoxno.FilterQueryDto(
-        name: 'erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57',
-      ),
-    );
+    var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
     logger.info(data);
   } on xoxno.ApiException catch (e, stackTrace) {
     logger.severe(e.toJson());

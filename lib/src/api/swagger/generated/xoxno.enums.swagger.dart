@@ -165,42 +165,6 @@ enum NftSaleInfoMarketplace {
   const NftSaleInfoMarketplace(this.value);
 }
 
-enum NftDocType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('FungibleESDT')
-  fungibleesdt('FungibleESDT'),
-  @JsonValue('NonFungibleESDT')
-  nonfungibleesdt('NonFungibleESDT'),
-  @JsonValue('SemiFungibleESDT')
-  semifungibleesdt('SemiFungibleESDT'),
-  @JsonValue('MetaESDT')
-  metaesdt('MetaESDT');
-
-  final String? value;
-
-  const NftDocType(this.value);
-}
-
-enum NftDocSubType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('NonFungibleESDTv2')
-  nonfungibleesdtv2('NonFungibleESDTv2'),
-  @JsonValue('DynamicNonFungibleESDT')
-  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
-  @JsonValue('DynamicSemiFungibleESDT')
-  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
-  @JsonValue('DynamicMetaESDT')
-  dynamicmetaesdt('DynamicMetaESDT');
-
-  final String? value;
-
-  const NftDocSubType(this.value);
-}
-
 enum NftPropsType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -235,6 +199,42 @@ enum NftPropsSubType {
   final String? value;
 
   const NftPropsSubType(this.value);
+}
+
+enum NftDocType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('FungibleESDT')
+  fungibleesdt('FungibleESDT'),
+  @JsonValue('NonFungibleESDT')
+  nonfungibleesdt('NonFungibleESDT'),
+  @JsonValue('SemiFungibleESDT')
+  semifungibleesdt('SemiFungibleESDT'),
+  @JsonValue('MetaESDT')
+  metaesdt('MetaESDT');
+
+  final String? value;
+
+  const NftDocType(this.value);
+}
+
+enum NftDocSubType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NonFungibleESDTv2')
+  nonfungibleesdtv2('NonFungibleESDTv2'),
+  @JsonValue('DynamicNonFungibleESDT')
+  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
+  @JsonValue('DynamicSemiFungibleESDT')
+  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
+  @JsonValue('DynamicMetaESDT')
+  dynamicmetaesdt('DynamicMetaESDT');
+
+  final String? value;
+
+  const NftDocSubType(this.value);
 }
 
 enum StakingCreatorDocDataType {
