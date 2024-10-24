@@ -315,7 +315,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserSettingsDto'
+                $ref: '#/components/schemas/UserSettingsDoc'
         '400':
           description: Bad Request
           content:
@@ -356,7 +356,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserSettingsDto'
+                $ref: '#/components/schemas/UserSettingsDoc'
         '400':
           description: Bad Request
           content:
@@ -382,7 +382,7 @@ paths:
   /user/me/settings/email:
     patch:
       operationId: UserDataController_updateEmailSettings
-      summary: Path user email settings
+      summary: Patch user email settings
       parameters:
         - schema: {}
       requestBody:
@@ -397,7 +397,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserSettingsDto'
+                $ref: '#/components/schemas/UserSettingsDoc'
         '400':
           description: Bad Request
           content:
@@ -430,7 +430,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserSettingsDto'
+                $ref: '#/components/schemas/UserSettingsDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - User
+      security:
+        - bearer: []
+  /user/me/settings/phone:
+    patch:
+      operationId: UserDataController_updatePhoneSettings
+      summary: Patch user phone settings
+      parameters:
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPhoneDto'
+      responses:
+        '200':
+          description: User settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDoc'
         '400':
           description: Bad Request
           content:
@@ -471,7 +512,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserSettingsDto'
+                $ref: '#/components/schemas/UserSettingsDoc'
         '400':
           description: Bad Request
           content:
@@ -1871,6 +1912,38 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProviderDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
+  /liquid/egld/provider/{address}/create:
+    post:
+      operationId: XoxnoEgldLiquidScController_createProvider
+      parameters:
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
         '400':
           description: Bad Request
           content:
@@ -5533,140 +5606,6 @@ paths:
         - User
       security:
         - bearer: []
-  /event/{eventId}/calculate-prices:
-    post:
-      operationId: TicketingDataController_calculateTicketPrices
-      summary: Calculate ticket prices with discounts
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                referralCode:
-                  type: string
-                  nullable: true
-                discountCode:
-                  type: string
-                  nullable: true
-                ticketSelections:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/TicketSelectionDto'
-      responses:
-        '201':
-          description: Ticket prices calculated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  currency:
-                    type: string
-                  stagePrices:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        stageId:
-                          type: string
-                        stageName:
-                          type: string
-                        ticketTypeId:
-                          type: string
-                        ticketTypeName:
-                          type: string
-                        normalPrice:
-                          type: number
-                        discountedPrice:
-                          type: number
-                        quantity:
-                          type: number
-                  vat:
-                    type: number
-      tags:
-        - Ticketing
-      security:
-        - bearer: []
-  /event/{eventId}/validate-discount:
-    post:
-      operationId: TicketingDataController_validateDiscountCode
-      summary: Validate discount code
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                discountCode:
-                  type: string
-              required:
-                - discountCode
-      responses:
-        '200':
-          description: Discount code validated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  isValid:
-                    type: boolean
-                  discountType:
-                    type: string
-                  discountAmount:
-                    type: number
-                  discountMaxAmount:
-                    type: number
-      tags:
-        - Ticketing
-      security:
-        - bearer: []
-  /event/{eventId}/register:
-    post:
-      operationId: TicketingDataController_registerForEvent
-      summary: Register for an event
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-        - schema: {}
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventGuestRegistrationDto'
-      responses:
-        '201':
-          description: Registration successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventRegistrationResponseDto'
-      tags:
-        - Ticketing
-      security:
-        - bearer: []
   /event:
     post:
       operationId: TicketingDataController_createEvent
@@ -5763,7 +5702,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedResponse'
+                $ref: '#/components/schemas/EventProfileQuery'
       tags:
         - Ticketing
       security:
@@ -5927,11 +5866,36 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/register:
+    post:
+      operationId: TicketingDataController_registerForEvent
+      summary: Register for an event
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventGuestRegistrationDto'
+      responses:
+        '201':
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRegistrationResponseDto'
       tags:
         - Ticketing
       security:
@@ -6127,6 +6091,12 @@ paths:
           description: ID of the event
           schema:
             type: string
+        - name: isEnabled
+          required: false
+          in: query
+          description: Filter by enabled status
+          schema:
+            type: boolean
       responses:
         '200':
           description: Event stage details
@@ -6224,11 +6194,57 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/calculate-prices:
+    post:
+      operationId: TicketingDataController_calculateTicketPrices
+      summary: Calculate ticket prices with discounts
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCalculationRequestDto'
+      responses:
+        '201':
+          description: Ticket prices calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketPricesResponse'
+      tags:
+        - Ticketing
+      security:
+        - bearer: []
+  /event/{eventId}/validate-discount:
+    post:
+      operationId: TicketingDataController_validateDiscountCode
+      summary: Validate discount code
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Discount code validated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountCodeValidationResponse'
       tags:
         - Ticketing
       security:
@@ -6318,7 +6334,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedResponse'
+                $ref: '#/components/schemas/EventInvitationQuery'
       tags:
         - Ticketing
       security:
@@ -6380,7 +6396,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CosmosPaginatedResponse'
+                $ref: '#/components/schemas/EventVoucherQuery'
       tags:
         - Ticketing
       security:
@@ -6495,11 +6511,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
       tags:
         - Ticketing
       security:
@@ -6596,7 +6608,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedResponse'
+                $ref: '#/components/schemas/EventGuestProfileQuery'
       tags:
         - Ticketing
       security:
@@ -6711,11 +6723,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
       tags:
         - Ticketing
       security:
@@ -6763,11 +6771,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
       tags:
         - Ticketing
       security:
@@ -6835,13 +6839,11 @@ paths:
       parameters: []
       responses:
         '200':
-          description: Event details
+          description: My event details
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EventProfile'
+                $ref: '#/components/schemas/EventProfileQuery'
       tags:
         - Ticketing
       security:
@@ -6984,11 +6986,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
+                $ref: '#/components/schemas/SuccessDto'
       tags:
         - Ticketing
       security:
@@ -7519,9 +7517,6 @@ components:
     UserSettingsDto:
       type: object
       properties:
-        dataType:
-          type: string
-          example: userSettings
         emailNotifications:
           $ref: '#/components/schemas/EmailNotificationsDto'
         notificationPreferences:
@@ -7537,7 +7532,6 @@ components:
           type: number
           example: 1720462258
       required:
-        - dataType
         - emailNotifications
         - notificationPreferences
         - address
@@ -7621,6 +7615,165 @@ components:
         - shard
         - _ts
         - userSettings
+    UserBillingDetails:
+      type: object
+      properties:
+        isCompany:
+          type: boolean
+          description: Indicates whether the guest is a company.
+        name:
+          type: string
+          description: Name of the company.
+        companyRegistrationNumber:
+          type: string
+          description: Company registration number.
+        companyVatNumber:
+          type: string
+          description: Company VAT number.
+        email:
+          type: string
+          description: Email address.
+        country:
+          type: string
+          description: Country
+        city:
+          type: string
+          description: City
+        address1:
+          type: string
+          description: Address line 1
+        address2:
+          type: string
+          description: Address line 2
+        postalCode:
+          type: string
+          description: Postal code
+      required:
+        - isCompany
+        - name
+        - companyRegistrationNumber
+        - email
+        - country
+        - city
+        - address1
+    UserEmailNotificationSettings:
+      type: object
+      properties:
+        enabled:
+          type: object
+          description: Email notifications enabled
+        emailAddress:
+          type: object
+          description: Email address
+        isEmailVerificationPending:
+          type: object
+          description: Email verification pending
+        isEmailVerified:
+          type: object
+          description: Email verified
+        isWeb2User:
+          type: object
+          description: Web2 user
+        timestamp:
+          type: number
+          description: Timestamp
+      required:
+        - enabled
+        - emailAddress
+        - isEmailVerificationPending
+        - isEmailVerified
+        - isWeb2User
+    UserPhoneNotificationSettings:
+      type: object
+      properties:
+        enabled:
+          type: object
+          description: Phone notifications enabled
+        phoneNumber:
+          type: object
+          description: Phone number
+        isPhoneVerificationPending:
+          type: object
+          description: Phone verification pending
+        isPhoneVerified:
+          type: object
+          description: Phone verified
+        timestamp:
+          type: number
+          description: Timestamp
+      required:
+        - enabled
+        - phoneNumber
+        - isPhoneVerificationPending
+        - isPhoneVerified
+    UserNotificationPreferences:
+      type: object
+      properties:
+        sales:
+          type: object
+          description: Sales notifications
+        bids:
+          type: object
+          description: Bids notifications
+        offersReceived:
+          type: object
+          description: Offers received notifications
+        offersAccepted:
+          type: object
+          description: Offers accepted notifications
+        offersRejected:
+          type: object
+          description: Offers rejected notifications
+        deposits:
+          type: object
+          description: Deposits notifications
+      required:
+        - sales
+        - bids
+        - offersReceived
+        - offersAccepted
+        - offersRejected
+        - deposits
+    UserSettingsDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Type of user data
+        address:
+          type: string
+          description: User address
+        name:
+          type: string
+          description: User name
+        billingDetails:
+          description: User billing details
+          allOf:
+            - $ref: '#/components/schemas/UserBillingDetails'
+        emailNotifications:
+          description: Email notification settings
+          allOf:
+            - $ref: '#/components/schemas/UserEmailNotificationSettings'
+        phoneNotifications:
+          description: Phone notification settings
+          allOf:
+            - $ref: '#/components/schemas/UserPhoneNotificationSettings'
+        notificationPreferences:
+          description: Notification preferences
+          allOf:
+            - $ref: '#/components/schemas/UserNotificationPreferences'
+        id:
+          type: string
+          description: User ID
+        _ts:
+          type: number
+          description: Timestamp
+      required:
+        - dataType
+        - address
+        - emailNotifications
+        - notificationPreferences
+        - id
     SetEmailDto:
       type: object
       properties:
@@ -7632,6 +7785,19 @@ components:
           type: string
           description: The email address to be set
           example: example@example.com
+      required:
+        - enabled
+    SetPhoneDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Indicates if the phone feature is enabled
+          example: true
+        phoneNumber:
+          type: string
+          description: The phone number to be set
+          example: '+1234567890'
       required:
         - enabled
     VerifyEmailDto:
@@ -9681,6 +9847,11 @@ components:
           description: >-
             In case of an SFT/MetaESDT we show the total supply minted for this
             unique asset
+        supplyLong:
+          type: string
+          description: >-
+            In case of an SFT/MetaESDT we show the total supply minted for this
+            unique asset as string
         name:
           type: string
           description: The name of the asset
@@ -10442,6 +10613,11 @@ components:
           description: >-
             In case of an SFT/MetaESDT we show the total supply minted for this
             unique asset
+        supplyLong:
+          type: string
+          description: >-
+            In case of an SFT/MetaESDT we show the total supply minted for this
+            unique asset as string
         name:
           type: string
           description: The name of the asset
@@ -12083,6 +12259,359 @@ components:
           type: number
       required:
         - count
+    RegistrationDetailsDto:
+      type: object
+      properties:
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+        maxLimit:
+          type: number
+        userLimit:
+          type: number
+        requireKYC:
+          type: boolean
+        requireName:
+          type: boolean
+        requireEmail:
+          type: boolean
+        requirePhoneNumber:
+          type: boolean
+        isPublished:
+          type: boolean
+        hasSideEvents:
+          type: boolean
+        hasWaitlist:
+          type: boolean
+        showGuestCount:
+          type: boolean
+        refundable:
+          type: boolean
+        nameWithNumber:
+          type: boolean
+        botProtection:
+          type: boolean
+      required:
+        - visibility
+        - maxLimit
+        - userLimit
+        - requireKYC
+        - requireName
+        - requireEmail
+        - requirePhoneNumber
+        - isPublished
+        - hasSideEvents
+        - hasWaitlist
+        - showGuestCount
+        - refundable
+        - nameWithNumber
+        - botProtection
+    EventSeoDto:
+      type: object
+      properties:
+        description:
+          type: string
+          example: This is a description
+        tags:
+          example:
+            - tag1
+            - tag2
+          type: array
+          items:
+            type: string
+        alternativeTitle:
+          type: string
+          example: Alternative Title
+      required:
+        - description
+        - tags
+        - alternativeTitle
+    EventProfileCreateDto:
+      type: object
+      properties:
+        title:
+          type: string
+        startTime:
+          type: number
+          minimum: 1729739281
+        endTime:
+          type: number
+        location:
+          $ref: '#/components/schemas/EventLocationDto'
+        registration:
+          $ref: '#/components/schemas/RegistrationDetailsDto'
+        isVirtualEvent:
+          type: boolean
+        seo:
+          $ref: '#/components/schemas/EventSeoDto'
+      required:
+        - title
+        - startTime
+        - endTime
+        - location
+        - registration
+        - isVirtualEvent
+        - seo
+    CreatorProfileDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: The type of user data.
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
+            - delegationContractProfile
+          default: creatorProfile
+        address:
+          type: string
+          description: Wallet address of the creator.
+        name:
+          type: string
+          description: Name of the creator.
+        creatorTag:
+          type: string
+          description: Tag of the creator.
+        contractAddress:
+          type: string
+          description: Contract address of the creator.
+        ticketingContractAddress:
+          type: string
+          description: Ticketing Contract address of the creator.
+        profile:
+          type: string
+          description: Profile picture of the creator.
+        banner:
+          type: string
+          description: Banner picture of the creator.
+        joinedDate:
+          type: number
+          description: Join date of the creator as a Unix timestamp in seconds.
+        description:
+          type: string
+          description: Description of the creator.
+        socials:
+          type: object
+          description: Social media links of the creator.
+        id:
+          type: string
+          description: ID of the creator.
+      required:
+        - dataType
+        - address
+        - name
+        - creatorTag
+        - contractAddress
+        - ticketingContractAddress
+        - profile
+        - banner
+        - joinedDate
+        - description
+        - socials
+        - id
+    EventGuestProfileSummary:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The address of the guest.
+          example: erd1234
+        profile:
+          type: string
+          description: The profile URL of the guest.
+          example: https://example.com/profile.png
+        name:
+          type: string
+          description: The name of the guest.
+          example: John Doe
+        herotag:
+          type: string
+          description: The herotag of the guest.
+          example: john-doe
+      required:
+        - address
+        - profile
+    EventGuestSummary:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of guests.
+          example: 100
+        guests:
+          description: List of guests with their address, profile, name, and herotag.
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGuestProfileSummary'
+      required:
+        - count
+        - guests
+    EventProfile:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: The type of user data.
+          enum:
+            - event-voucher
+            - event-invitation
+            - event-profile
+            - event-question
+            - event-question-answer
+            - event-ticket-profile
+            - event-ticket-stage
+            - event-guest
+            - event-referral-config
+            - event-referral-code
+            - event-referral-usage
+            - event-user-role
+          default: event-profile
+        creatorAddress:
+          type: string
+          description: Wallet address of the creator of the event.
+        title:
+          type: string
+          description: Title of the event.
+        startTime:
+          type: number
+          description: Start time of the event as a Unix timestamp in seconds.
+        endTime:
+          type: number
+          description: End time of the event as a Unix timestamp in seconds.
+        descriptionUrl:
+          type: string
+          description: >-
+            URL to the markdown file in Azure storage containing the event
+            description.
+          default: >-
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
+        location:
+          description: >-
+            Location details including geo points, address, and optional
+            instructions.
+          allOf:
+            - $ref: '#/components/schemas/EventLocationDto'
+        isVirtualEvent:
+          type: boolean
+          description: Define if the event happens in real life or virtual on Zoom/Meet
+        slug:
+          type: string
+          description: Unique slug for the event URL.
+        profile:
+          type: string
+          description: URL to the profile image in Azure storage.
+          default: >-
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
+        background:
+          type: string
+          description: URL to the background image in Azure storage, optional.
+        registration:
+          type: object
+          description: >-
+            Registration details such as visibility, max capacity, and ticket
+            limits.
+        contractAddress:
+          type: string
+          description: The address of the contract that manages the event.
+        collection:
+          type: string
+          description: The NFT collection the event is associated with.
+        seo:
+          type: object
+          description: >-
+            SEO-related information such as short description, tags, and
+            alternative title.
+        id:
+          type: string
+          description: Automatically generated unique identifier for the event.
+        eventPermissions:
+          description: Permissions for the event.
+          allOf:
+            - $ref: '#/components/schemas/EventUserRoleDoc'
+        creatorProfile:
+          description: Creator profile data including name, profile, and herotag.
+          allOf:
+            - $ref: '#/components/schemas/CreatorProfileDoc'
+        guestSummary:
+          description: Summary of the guests attending the event.
+          allOf:
+            - $ref: '#/components/schemas/EventGuestSummary'
+        startsFrom:
+          type: object
+          description: The price of the event, if applicable.
+          example:
+            price: 100
+            currency: USD
+      required:
+        - dataType
+        - creatorAddress
+        - title
+        - startTime
+        - endTime
+        - descriptionUrl
+        - location
+        - isVirtualEvent
+        - slug
+        - profile
+        - registration
+        - id
+        - eventPermissions
+        - creatorProfile
+    EventProfileQuery:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            $ref: '#/components/schemas/EventProfile'
+      required:
+        - hasMoreResults
+        - resources
+    EventProfileEditDto:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Event Title
+        startTime:
+          type: number
+          example: 1729739282
+        endTime:
+          type: number
+          example: 1729739282
+        location:
+          $ref: '#/components/schemas/EventLocationDto'
+        isVirtualEvent:
+          type: boolean
+        registration:
+          $ref: '#/components/schemas/RegistrationDetailsDto'
+        slug:
+          type: string
+          example: my-awesome-event
+        seo:
+          $ref: '#/components/schemas/EventSeoDto'
+      required:
+        - title
+        - startTime
+        - endTime
+        - location
+        - isVirtualEvent
+        - registration
+        - slug
+        - seo
     TicketSelectionDto:
       type: object
       properties:
@@ -12307,11 +12836,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1729080695
+          example: 1729739282
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: fbc8dc6d-8591-4f1b-94a8-9dbf6a219c6d
+          example: 5570607d-6979-411a-97d7-a13c822a6dff
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -12354,349 +12883,6 @@ components:
           $ref: '#/components/schemas/FiatPaymentForm'
       required:
         - guestDoc
-    RegistrationDetailsDto:
-      type: object
-      properties:
-        visibility:
-          type: string
-          enum:
-            - public
-            - private
-        maxLimit:
-          type: number
-        userLimit:
-          type: number
-        requireKYC:
-          type: boolean
-        requireName:
-          type: boolean
-        requireEmail:
-          type: boolean
-        requirePhoneNumber:
-          type: boolean
-        isPublished:
-          type: boolean
-        hasSideEvents:
-          type: boolean
-        hasWaitlist:
-          type: boolean
-        showGuestCount:
-          type: boolean
-        refundable:
-          type: boolean
-        nameWithNumber:
-          type: boolean
-        botProtection:
-          type: boolean
-      required:
-        - visibility
-        - maxLimit
-        - userLimit
-        - requireKYC
-        - requireName
-        - requireEmail
-        - requirePhoneNumber
-        - isPublished
-        - hasSideEvents
-        - hasWaitlist
-        - showGuestCount
-        - refundable
-        - nameWithNumber
-        - botProtection
-    EventProfileCreateDto:
-      type: object
-      properties:
-        title:
-          type: string
-        startTime:
-          type: number
-          minimum: 1729080694
-        endTime:
-          type: number
-        location:
-          $ref: '#/components/schemas/EventLocationDto'
-        registration:
-          $ref: '#/components/schemas/RegistrationDetailsDto'
-        isVirtualEvent:
-          type: boolean
-      required:
-        - title
-        - startTime
-        - endTime
-        - location
-        - registration
-        - isVirtualEvent
-    CreatorProfileDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          description: The type of user data.
-          enum:
-            - userProfile
-            - creatorProfile
-            - userFavorite
-            - userSettings
-          default: creatorProfile
-        address:
-          type: string
-          description: Wallet address of the creator.
-        name:
-          type: string
-          description: Name of the creator.
-        creatorTag:
-          type: string
-          description: Tag of the creator.
-        contractAddress:
-          type: string
-          description: Contract address of the creator.
-        ticketingContractAddress:
-          type: string
-          description: Ticketing Contract address of the creator.
-        profile:
-          type: string
-          description: Profile picture of the creator.
-        banner:
-          type: string
-          description: Banner picture of the creator.
-        joinedDate:
-          type: number
-          description: Join date of the creator as a Unix timestamp in seconds.
-        description:
-          type: string
-          description: Description of the creator.
-        socials:
-          type: object
-          description: Social media links of the creator.
-        id:
-          type: string
-          description: ID of the creator.
-      required:
-        - dataType
-        - address
-        - name
-        - creatorTag
-        - contractAddress
-        - ticketingContractAddress
-        - profile
-        - banner
-        - joinedDate
-        - description
-        - socials
-        - id
-    EventGuestProfileSummary:
-      type: object
-      properties:
-        address:
-          type: string
-          description: The address of the guest.
-          example: erd1234
-        profile:
-          type: string
-          description: The profile URL of the guest.
-          example: https://example.com/profile.png
-        name:
-          type: string
-          description: The name of the guest.
-          example: John Doe
-        herotag:
-          type: string
-          description: The herotag of the guest.
-          example: john-doe
-      required:
-        - address
-        - profile
-    EventGuestSummary:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Total number of guests.
-          example: 100
-        guests:
-          description: List of guests with their address, profile, name, and herotag.
-          type: array
-          items:
-            $ref: '#/components/schemas/EventGuestProfileSummary'
-      required:
-        - count
-        - guests
-    EventProfile:
-      type: object
-      properties:
-        dataType:
-          type: string
-          description: The type of user data.
-          enum:
-            - event-voucher
-            - event-invitation
-            - event-profile
-            - event-question
-            - event-question-answer
-            - event-ticket-profile
-            - event-ticket-stage
-            - event-guest
-            - event-referral-config
-            - event-referral-code
-            - event-referral-usage
-            - event-user-role
-          default: event-profile
-        creatorAddress:
-          type: string
-          description: Wallet address of the creator of the event.
-        title:
-          type: string
-          description: Title of the event.
-        startTime:
-          type: number
-          description: Start time of the event as a Unix timestamp in seconds.
-        endTime:
-          type: number
-          description: End time of the event as a Unix timestamp in seconds.
-        descriptionUrl:
-          type: string
-          description: >-
-            URL to the markdown file in Azure storage containing the event
-            description.
-          default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
-        location:
-          description: >-
-            Location details including geo points, address, and optional
-            instructions.
-          allOf:
-            - $ref: '#/components/schemas/EventLocationDto'
-        isVirtualEvent:
-          type: boolean
-          description: Define if the event happens in real life or virtual on Zoom/Meet
-        slug:
-          type: string
-          description: Unique slug for the event URL.
-        profile:
-          type: string
-          description: URL to the profile image in Azure storage.
-          default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
-        background:
-          type: string
-          description: URL to the background image in Azure storage, optional.
-        registration:
-          type: object
-          description: >-
-            Registration details such as visibility, max capacity, and ticket
-            limits.
-        contractAddress:
-          type: string
-          description: The address of the contract that manages the event.
-        collection:
-          type: string
-          description: The NFT collection the event is associated with.
-        seo:
-          type: object
-          description: >-
-            SEO-related information such as short description, tags, and
-            alternative title.
-        id:
-          type: string
-          description: Automatically generated unique identifier for the event.
-        eventPermissions:
-          description: Permissions for the event.
-          allOf:
-            - $ref: '#/components/schemas/EventUserRoleDoc'
-        creatorProfile:
-          description: Creator profile data including name, profile, and herotag.
-          allOf:
-            - $ref: '#/components/schemas/CreatorProfileDoc'
-        guestSummary:
-          description: Summary of the guests attending the event.
-          allOf:
-            - $ref: '#/components/schemas/EventGuestSummary'
-      required:
-        - dataType
-        - creatorAddress
-        - title
-        - startTime
-        - endTime
-        - descriptionUrl
-        - location
-        - isVirtualEvent
-        - slug
-        - profile
-        - registration
-        - id
-        - eventPermissions
-        - creatorProfile
-    PaginatedResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Total number of documents
-          example: 100
-        hasMoreResults:
-          type: boolean
-          description: Indicates if there are more documents available
-          example: true
-        resources:
-          description: List of documents
-          type: array
-          items:
-            $ref: '#/components/schemas/EventGuestProfile'
-      required:
-        - hasMoreResults
-        - resources
-    EventSeoDto:
-      type: object
-      properties:
-        description:
-          type: string
-          example: This is a description
-        tags:
-          example:
-            - tag1
-            - tag2
-          type: array
-          items:
-            type: string
-        alternativeTitle:
-          type: string
-          example: Alternative Title
-      required:
-        - description
-        - tags
-        - alternativeTitle
-    EventProfileEditDto:
-      type: object
-      properties:
-        title:
-          type: string
-          example: Event Title
-        startTime:
-          type: number
-          example: 1729080695
-        endTime:
-          type: number
-          example: 1729080695
-        location:
-          $ref: '#/components/schemas/EventLocationDto'
-        isVirtualEvent:
-          type: boolean
-        registration:
-          $ref: '#/components/schemas/RegistrationDetailsDto'
-        slug:
-          type: string
-          example: my-awesome-event
-        seo:
-          $ref: '#/components/schemas/EventSeoDto'
-      required:
-        - title
-        - startTime
-        - endTime
-        - location
-        - isVirtualEvent
-        - registration
-        - slug
-        - seo
     EventTicketProfileCreateDto:
       type: object
       properties:
@@ -12786,11 +12972,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1729080694
+          example: 1729739281
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 03f23d32-cd58-4b12-a673-ee1dc5352634
+          example: 1a14fa41-9838-4c8c-9072-b54ddcacfa66
       required:
         - dataType
         - eventId
@@ -12854,10 +13040,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1729080695
+          minimum: 1729739282
         endTime:
           type: number
-          minimum: 1729167095
+          minimum: 1729825682
         maxLimit:
           type: number
         userLimit:
@@ -12917,11 +13103,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1729080694
+          example: 1729739281
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1729080694
+          example: 1729739281
         maxLimit:
           type: object
           description: >-
@@ -12952,7 +13138,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: e03be90e-692e-466b-9edf-fe55a973928b
+          example: 8cda44d2-20c2-4d79-9375-518f91219767
       required:
         - dataType
         - eventId
@@ -12989,10 +13175,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1729080695
+          minimum: 1729739282
         endTime:
           type: number
-          minimum: 1729167095
+          minimum: 1729825682
       required:
         - maxLimit
         - userLimit
@@ -13003,6 +13189,79 @@ components:
         - name
         - startTime
         - endTime
+    TicketCalculationRequestDto:
+      type: object
+      properties:
+        referralCode:
+          type: string
+          nullable: true
+        discountCode:
+          type: string
+          nullable: true
+        ticketSelections:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketSelectionDto'
+      required:
+        - referralCode
+        - discountCode
+        - ticketSelections
+    StagePrice:
+      type: object
+      properties:
+        stageId:
+          type: string
+        stageName:
+          type: string
+        ticketTypeId:
+          type: string
+        ticketTypeName:
+          type: string
+        normalPrice:
+          type: number
+        discountedPrice:
+          type: number
+        quantity:
+          type: number
+      required:
+        - stageId
+        - stageName
+        - ticketTypeId
+        - ticketTypeName
+        - normalPrice
+        - discountedPrice
+        - quantity
+    TicketPricesResponse:
+      type: object
+      properties:
+        currency:
+          type: string
+        stagePrices:
+          type: array
+          items:
+            $ref: '#/components/schemas/StagePrice'
+        vat:
+          type: number
+      required:
+        - currency
+        - stagePrices
+        - vat
+    DiscountCodeValidationResponse:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+        discountType:
+          type: string
+        discountAmount:
+          type: number
+        discountMaxAmount:
+          type: number
+      required:
+        - isValid
+        - discountType
+        - discountAmount
+        - discountMaxAmount
     Ticket:
       type: object
       properties:
@@ -13063,7 +13322,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 9b058c39-29d9-494d-815b-c0356d15d741
+          example: 13cbbc3a-b147-43be-9457-b553272c17fa
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -13126,7 +13385,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1729080695
+          example: 1729739282
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -13159,7 +13418,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: ff9bb55c-fec1-41d6-a07c-65876240cd07
+          example: ef96793f-3c18-4715-b154-b16e2f6f5fbd
       required:
         - dataType
         - eventId
@@ -13225,7 +13484,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1729080695
+          example: 1729739282
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -13258,7 +13517,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: ff9bb55c-fec1-41d6-a07c-65876240cd07
+          example: ef96793f-3c18-4715-b154-b16e2f6f5fbd
         profile:
           type: string
           description: >-
@@ -13283,7 +13542,7 @@ components:
         - id
         - profile
         - herotag
-    CosmosPaginatedResponse:
+    EventInvitationQuery:
       type: object
       properties:
         count:
@@ -13298,7 +13557,138 @@ components:
           description: List of documents
           type: array
           items:
-            type: array
+            $ref: '#/components/schemas/EventInvitation'
+      required:
+        - hasMoreResults
+        - resources
+    EventVoucherDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: The type of event data.
+          enum:
+            - event-voucher
+            - event-invitation
+            - event-profile
+            - event-question
+            - event-question-answer
+            - event-ticket-profile
+            - event-ticket-stage
+            - event-guest
+            - event-referral-config
+            - event-referral-code
+            - event-referral-usage
+            - event-user-role
+          default: event-voucher
+        id:
+          type: string
+          description: Unique identifier for the voucher.
+        code:
+          type: string
+          description: Unique voucher code.
+        type:
+          type: string
+          description: Type of discount provided by the voucher.
+          enum:
+            - fixed
+            - percentage
+        amount:
+          type: number
+          description: The discount value. Fixed amount or percentage.
+        maxDiscountAmount:
+          type: number
+          description: Optional maximum discount cap for percentage-based vouchers.
+        maxUses:
+          type: number
+          description: Total number of uses allowed for this voucher.
+        maxUsesPerUser:
+          type: number
+          description: Maximum uses allowed per user.
+        usedCount:
+          type: object
+          description: Tracks the number of times the voucher has been used.
+        eventId:
+          type: string
+          description: List of specific event IDs where the voucher can be applied.
+        ticketTypeIds:
+          description: List of specific ticket type IDs where the voucher can be applied.
+          type: array
+          items:
+            type: string
+        stageIds:
+          description: >-
+            List of specific stage IDs where the voucher can be applied,
+            optional.
+          type: array
+          items:
+            type: string
+        minTicketCount:
+          type: number
+          description: Minimum number of tickets required to use the voucher, optional.
+        maxTicketCount:
+          type: number
+          description: >-
+            Maximum number of tickets in a single transaction where the voucher
+            can be applied, optional.
+        startDate:
+          type: number
+          description: Timestamp when the voucher becomes valid.
+          example: 1729739282
+        endDate:
+          type: number
+          description: Timestamp when the voucher expires.
+          example: 1729739282
+        isActive:
+          type: object
+          description: Indicates whether the voucher is currently active.
+        ownerId:
+          type: string
+          description: Optional ID of the owner who can use this voucher.
+        createdAt:
+          type: number
+          description: Timestamp when the voucher was created.
+          example: 1729739282
+        createdBy:
+          type: string
+          description: Reference to the admin or system that created the voucher.
+      required:
+        - dataType
+        - id
+        - code
+        - type
+        - amount
+        - maxDiscountAmount
+        - maxUses
+        - maxUsesPerUser
+        - usedCount
+        - eventId
+        - ticketTypeIds
+        - stageIds
+        - minTicketCount
+        - maxTicketCount
+        - startDate
+        - endDate
+        - isActive
+        - ownerId
+        - createdAt
+        - createdBy
+    EventVoucherQuery:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            $ref: '#/components/schemas/EventVoucherDoc'
       required:
         - hasMoreResults
         - resources
@@ -13360,7 +13750,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1729080695
+          example: 1729739282
       required:
         - dataType
         - id
@@ -13498,11 +13888,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1729080695
+          example: 1729739282
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: fbc8dc6d-8591-4f1b-94a8-9dbf6a219c6d
+          example: 5570607d-6979-411a-97d7-a13c822a6dff
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -13527,6 +13917,25 @@ components:
         - id
         - profile
         - herotag
+    EventGuestProfileQuery:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGuestProfile'
+      required:
+        - hasMoreResults
+        - resources
     EventUserRoleCreateDto:
       type: object
       properties:
@@ -13731,11 +14140,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1729080695
+          example: 1729739282
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1729080695
+          example: 1729739282
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13743,118 +14152,6 @@ components:
         ownerId:
           type: string
           description: Optional ID of the owner who can use this voucher.
-    EventVoucherDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          description: The type of event data.
-          enum:
-            - event-voucher
-            - event-invitation
-            - event-profile
-            - event-question
-            - event-question-answer
-            - event-ticket-profile
-            - event-ticket-stage
-            - event-guest
-            - event-referral-config
-            - event-referral-code
-            - event-referral-usage
-            - event-user-role
-          default: event-voucher
-        id:
-          type: string
-          description: Unique identifier for the voucher.
-        code:
-          type: string
-          description: Unique voucher code.
-        type:
-          type: string
-          description: Type of discount provided by the voucher.
-          enum:
-            - fixed
-            - percentage
-        amount:
-          type: number
-          description: The discount value. Fixed amount or percentage.
-        maxDiscountAmount:
-          type: number
-          description: Optional maximum discount cap for percentage-based vouchers.
-        maxUses:
-          type: number
-          description: Total number of uses allowed for this voucher.
-        maxUsesPerUser:
-          type: number
-          description: Maximum uses allowed per user.
-        usedCount:
-          type: object
-          description: Tracks the number of times the voucher has been used.
-        eventId:
-          type: string
-          description: List of specific event IDs where the voucher can be applied.
-        ticketTypeIds:
-          description: List of specific ticket type IDs where the voucher can be applied.
-          type: array
-          items:
-            type: string
-        stageIds:
-          description: >-
-            List of specific stage IDs where the voucher can be applied,
-            optional.
-          type: array
-          items:
-            type: string
-        minTicketCount:
-          type: number
-          description: Minimum number of tickets required to use the voucher, optional.
-        maxTicketCount:
-          type: number
-          description: >-
-            Maximum number of tickets in a single transaction where the voucher
-            can be applied, optional.
-        startDate:
-          type: number
-          description: Timestamp when the voucher becomes valid.
-          example: 1729080695
-        endDate:
-          type: number
-          description: Timestamp when the voucher expires.
-          example: 1729080695
-        isActive:
-          type: object
-          description: Indicates whether the voucher is currently active.
-        ownerId:
-          type: string
-          description: Optional ID of the owner who can use this voucher.
-        createdAt:
-          type: number
-          description: Timestamp when the voucher was created.
-          example: 1729080695
-        createdBy:
-          type: string
-          description: Reference to the admin or system that created the voucher.
-      required:
-        - dataType
-        - id
-        - code
-        - type
-        - amount
-        - maxDiscountAmount
-        - maxUses
-        - maxUsesPerUser
-        - usedCount
-        - eventId
-        - ticketTypeIds
-        - stageIds
-        - minTicketCount
-        - maxTicketCount
-        - startDate
-        - endDate
-        - isActive
-        - ownerId
-        - createdAt
-        - createdBy
     EventVoucherEditDto:
       type: object
       properties:
@@ -13899,11 +14196,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1729080695
+          example: 1729739282
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1729080695
+          example: 1729739282
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -13947,7 +14244,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 1c7aacc3-f10a-4b47-a24b-1712fdbc1a49
+          example: f880b846-3a28-4f6f-bf3f-396c1fa6c62e
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -13963,7 +14260,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1729080695
+          example: 1729739282
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -14654,6 +14951,80 @@ components:
           default: 0
         filters:
           $ref: '#/components/schemas/EventInvitationFilterCriteriaDto'
+      required:
+        - filters
+    EventVoucherFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+          description: Search text for voucher code or other attributes.
+        code:
+          description: Filter by specific voucher codes.
+          type: array
+          items:
+            type: string
+        type:
+          type: array
+          description: Filter by type of discount (fixed or percentage).
+          items:
+            type: string
+            enum:
+              - fixed
+              - percentage
+        amount:
+          type: number
+          description: Filter vouchers by exact discount amount.
+        maxDiscountAmount:
+          type: number
+          description: Optional maximum discount cap for percentage-based vouchers.
+        maxUses:
+          type: number
+          description: Filter vouchers by maximum allowed uses.
+        maxUsesPerUser:
+          type: number
+          description: Filter vouchers by maximum uses per user.
+        isActive:
+          type: boolean
+          description: Filter by active status of the voucher.
+        ownerId:
+          type: string
+          description: Filter by owner ID who can use the voucher.
+        range:
+          description: Filter vouchers within a range of dates.
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventVoucherFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+          default: []
+        orderBy:
+          type: array
+          items:
+            type: string
+          default: []
+        includeCount:
+          type: boolean
+          default: false
+          description: Include total count of results.
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: number
+          default: 25
+        skip:
+          type: number
+          default: 0
+        filters:
+          description: Criteria to filter event vouchers.
+          allOf:
+            - $ref: '#/components/schemas/EventVoucherFilterCriteriaDto'
       required:
         - filters
     EventProfileFilterCriteriaDto:

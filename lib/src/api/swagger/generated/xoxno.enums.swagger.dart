@@ -497,6 +497,74 @@ enum NotificationDocActivityType {
   const NotificationDocActivityType(this.value);
 }
 
+enum RegistrationDetailsDtoVisibility {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('public')
+  public('public'),
+  @JsonValue('private')
+  private('private');
+
+  final String? value;
+
+  const RegistrationDetailsDtoVisibility(this.value);
+}
+
+enum CreatorProfileDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('userProfile')
+  userprofile('userProfile'),
+  @JsonValue('creatorProfile')
+  creatorprofile('creatorProfile'),
+  @JsonValue('userFavorite')
+  userfavorite('userFavorite'),
+  @JsonValue('userSettings')
+  usersettings('userSettings'),
+  @JsonValue('delegationContractProfile')
+  delegationcontractprofile('delegationContractProfile');
+
+  final String? value;
+
+  const CreatorProfileDocDataType(this.value);
+}
+
+enum EventProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventProfileDataType(this.value);
+}
+
 enum EventGuestDocDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -547,72 +615,6 @@ enum FiatPaymentFormType {
   final String? value;
 
   const FiatPaymentFormType(this.value);
-}
-
-enum RegistrationDetailsDtoVisibility {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('public')
-  public('public'),
-  @JsonValue('private')
-  private('private');
-
-  final String? value;
-
-  const RegistrationDetailsDtoVisibility(this.value);
-}
-
-enum CreatorProfileDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('userProfile')
-  userprofile('userProfile'),
-  @JsonValue('creatorProfile')
-  creatorprofile('creatorProfile'),
-  @JsonValue('userFavorite')
-  userfavorite('userFavorite'),
-  @JsonValue('userSettings')
-  usersettings('userSettings');
-
-  final String? value;
-
-  const CreatorProfileDocDataType(this.value);
-}
-
-enum EventProfileDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-voucher')
-  eventVoucher('event-voucher'),
-  @JsonValue('event-invitation')
-  eventInvitation('event-invitation'),
-  @JsonValue('event-profile')
-  eventProfile('event-profile'),
-  @JsonValue('event-question')
-  eventQuestion('event-question'),
-  @JsonValue('event-question-answer')
-  eventQuestionAnswer('event-question-answer'),
-  @JsonValue('event-ticket-profile')
-  eventTicketProfile('event-ticket-profile'),
-  @JsonValue('event-ticket-stage')
-  eventTicketStage('event-ticket-stage'),
-  @JsonValue('event-guest')
-  eventGuest('event-guest'),
-  @JsonValue('event-referral-config')
-  eventReferralConfig('event-referral-config'),
-  @JsonValue('event-referral-code')
-  eventReferralCode('event-referral-code'),
-  @JsonValue('event-referral-usage')
-  eventReferralUsage('event-referral-usage'),
-  @JsonValue('event-user-role')
-  eventUserRole('event-user-role');
-
-  final String? value;
-
-  const EventProfileDataType(this.value);
 }
 
 enum EventTicketProfileDocDataType {
@@ -785,6 +787,54 @@ enum EventInvitationStatus {
   final String? value;
 
   const EventInvitationStatus(this.value);
+}
+
+enum EventVoucherDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventVoucherDocDataType(this.value);
+}
+
+enum EventVoucherDocType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('fixed')
+  fixed('fixed'),
+  @JsonValue('percentage')
+  percentage('percentage');
+
+  final String? value;
+
+  const EventVoucherDocType(this.value);
 }
 
 enum EventQuestionDocDataType {
@@ -1079,54 +1129,6 @@ enum EventVoucherCreateDtoType {
   const EventVoucherCreateDtoType(this.value);
 }
 
-enum EventVoucherDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-voucher')
-  eventVoucher('event-voucher'),
-  @JsonValue('event-invitation')
-  eventInvitation('event-invitation'),
-  @JsonValue('event-profile')
-  eventProfile('event-profile'),
-  @JsonValue('event-question')
-  eventQuestion('event-question'),
-  @JsonValue('event-question-answer')
-  eventQuestionAnswer('event-question-answer'),
-  @JsonValue('event-ticket-profile')
-  eventTicketProfile('event-ticket-profile'),
-  @JsonValue('event-ticket-stage')
-  eventTicketStage('event-ticket-stage'),
-  @JsonValue('event-guest')
-  eventGuest('event-guest'),
-  @JsonValue('event-referral-config')
-  eventReferralConfig('event-referral-config'),
-  @JsonValue('event-referral-code')
-  eventReferralCode('event-referral-code'),
-  @JsonValue('event-referral-usage')
-  eventReferralUsage('event-referral-usage'),
-  @JsonValue('event-user-role')
-  eventUserRole('event-user-role');
-
-  final String? value;
-
-  const EventVoucherDocDataType(this.value);
-}
-
-enum EventVoucherDocType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('fixed')
-  fixed('fixed'),
-  @JsonValue('percentage')
-  percentage('percentage');
-
-  final String? value;
-
-  const EventVoucherDocType(this.value);
-}
-
 enum EventVoucherEditDtoType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -1415,4 +1417,18 @@ enum EventInvitationFilterCriteriaDtoStatus {
   final String? value;
 
   const EventInvitationFilterCriteriaDtoStatus(this.value);
+}
+
+enum EventVoucherFilterCriteriaDtoType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('fixed')
+  fixed('fixed'),
+  @JsonValue('percentage')
+  percentage('percentage');
+
+  final String? value;
+
+  const EventVoucherFilterCriteriaDtoType(this.value);
 }

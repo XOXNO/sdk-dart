@@ -9,7 +9,7 @@ import 'package:xoxno_sdk/src/api/type_safe/staking/staking.dart';
 import 'package:xoxno_sdk/src/api/type_safe/tokens/tokens.dart';
 import 'package:xoxno_sdk/src/api/type_safe/transactions/transactions.dart';
 import 'package:xoxno_sdk/src/api/type_safe/user/user.dart';
-
+import 'package:xoxno_sdk/src/api/type_safe/event/event.dart';
 class TypeSafeApi {
   final RawApi rawApi;
 
@@ -23,7 +23,7 @@ class TypeSafeApi {
   final NftActivityTypeSafeApi nftActivity;
   final TransactionsTypeSafeApi transactions;
   final SearchTypeSafeApi search;
-
+  final EventTypeSafeApi event;
   TypeSafeApi({required this.rawApi})
       : user = UserTypeSafeApi(rawApi.user),
         tokens = TokensTypeSafeApi(rawApi.tokens),
@@ -34,5 +34,6 @@ class TypeSafeApi {
         staking = StakingTypeSafeApi(rawApi.staking),
         nftActivity = NftActivityTypeSafeApi(rawApi.nftActivity),
         transactions = TransactionsTypeSafeApi(rawApi.transactions),
-        search = SearchTypeSafeApi(rawApi.search);
+        search = SearchTypeSafeApi(rawApi.search),
+        event = EventTypeSafeApi(rawApi.event);
 }

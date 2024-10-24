@@ -9,7 +9,7 @@ import 'package:xoxno_sdk/src/api/raw/tokens/tokens.dart';
 import 'package:xoxno_sdk/src/api/raw/transactions/transactions.dart';
 import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
-
+import 'package:xoxno_sdk/src/api/raw/event/event.dart';
 class RawApi {
   final Client client;
 
@@ -23,7 +23,7 @@ class RawApi {
   final NftActivityRawApi nftActivity;
   final TransactionsRawApi transactions;
   final SearchRawApi search;
-
+  final EventRawApi event;
   RawApi({required this.client})
       : tokens = TokensRawApi(client),
         user = UserRawApi(client),
@@ -34,5 +34,6 @@ class RawApi {
         staking = StakingRawApi(client),
         nftActivity = NftActivityRawApi(client),
         transactions = TransactionsRawApi(client),
-        search = SearchRawApi(client);
+        search = SearchRawApi(client),
+        event = EventRawApi(client);
 }

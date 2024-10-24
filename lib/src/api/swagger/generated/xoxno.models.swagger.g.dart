@@ -290,7 +290,6 @@ Map<String, dynamic> _$NotificationPreferencesDtoToJson(
 
 UserSettingsDto _$UserSettingsDtoFromJson(Map<String, dynamic> json) =>
     UserSettingsDto(
-      dataType: json['dataType'] as String,
       emailNotifications: EmailNotificationsDto.fromJson(
           json['emailNotifications'] as Map<String, dynamic>),
       notificationPreferences: NotificationPreferencesDto.fromJson(
@@ -302,7 +301,6 @@ UserSettingsDto _$UserSettingsDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserSettingsDtoToJson(UserSettingsDto instance) =>
     <String, dynamic>{
-      'dataType': instance.dataType,
       'emailNotifications': instance.emailNotifications.toJson(),
       'notificationPreferences': instance.notificationPreferences.toJson(),
       'address': instance.address,
@@ -358,6 +356,132 @@ Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
       'userSettings': instance.userSettings.toJson(),
     };
 
+UserBillingDetails _$UserBillingDetailsFromJson(Map<String, dynamic> json) =>
+    UserBillingDetails(
+      isCompany: json['isCompany'] as bool,
+      name: json['name'] as String,
+      companyRegistrationNumber: json['companyRegistrationNumber'] as String,
+      companyVatNumber: json['companyVatNumber'] as String?,
+      email: json['email'] as String,
+      country: json['country'] as String,
+      city: json['city'] as String,
+      address1: json['address1'] as String,
+      address2: json['address2'] as String?,
+      postalCode: json['postalCode'] as String?,
+    );
+
+Map<String, dynamic> _$UserBillingDetailsToJson(UserBillingDetails instance) =>
+    <String, dynamic>{
+      'isCompany': instance.isCompany,
+      'name': instance.name,
+      'companyRegistrationNumber': instance.companyRegistrationNumber,
+      'companyVatNumber': instance.companyVatNumber,
+      'email': instance.email,
+      'country': instance.country,
+      'city': instance.city,
+      'address1': instance.address1,
+      'address2': instance.address2,
+      'postalCode': instance.postalCode,
+    };
+
+UserEmailNotificationSettings _$UserEmailNotificationSettingsFromJson(
+        Map<String, dynamic> json) =>
+    UserEmailNotificationSettings(
+      enabled: json['enabled'] as Object,
+      emailAddress: json['emailAddress'] as Object,
+      isEmailVerificationPending: json['isEmailVerificationPending'] as Object,
+      isEmailVerified: json['isEmailVerified'] as Object,
+      isWeb2User: json['isWeb2User'] as Object,
+      timestamp: (json['timestamp'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$UserEmailNotificationSettingsToJson(
+        UserEmailNotificationSettings instance) =>
+    <String, dynamic>{
+      'enabled': instance.enabled,
+      'emailAddress': instance.emailAddress,
+      'isEmailVerificationPending': instance.isEmailVerificationPending,
+      'isEmailVerified': instance.isEmailVerified,
+      'isWeb2User': instance.isWeb2User,
+      'timestamp': instance.timestamp,
+    };
+
+UserPhoneNotificationSettings _$UserPhoneNotificationSettingsFromJson(
+        Map<String, dynamic> json) =>
+    UserPhoneNotificationSettings(
+      enabled: json['enabled'] as Object,
+      phoneNumber: json['phoneNumber'] as Object,
+      isPhoneVerificationPending: json['isPhoneVerificationPending'] as Object,
+      isPhoneVerified: json['isPhoneVerified'] as Object,
+      timestamp: (json['timestamp'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$UserPhoneNotificationSettingsToJson(
+        UserPhoneNotificationSettings instance) =>
+    <String, dynamic>{
+      'enabled': instance.enabled,
+      'phoneNumber': instance.phoneNumber,
+      'isPhoneVerificationPending': instance.isPhoneVerificationPending,
+      'isPhoneVerified': instance.isPhoneVerified,
+      'timestamp': instance.timestamp,
+    };
+
+UserNotificationPreferences _$UserNotificationPreferencesFromJson(
+        Map<String, dynamic> json) =>
+    UserNotificationPreferences(
+      sales: json['sales'] as Object,
+      bids: json['bids'] as Object,
+      offersReceived: json['offersReceived'] as Object,
+      offersAccepted: json['offersAccepted'] as Object,
+      offersRejected: json['offersRejected'] as Object,
+      deposits: json['deposits'] as Object,
+    );
+
+Map<String, dynamic> _$UserNotificationPreferencesToJson(
+        UserNotificationPreferences instance) =>
+    <String, dynamic>{
+      'sales': instance.sales,
+      'bids': instance.bids,
+      'offersReceived': instance.offersReceived,
+      'offersAccepted': instance.offersAccepted,
+      'offersRejected': instance.offersRejected,
+      'deposits': instance.deposits,
+    };
+
+UserSettingsDoc _$UserSettingsDocFromJson(Map<String, dynamic> json) =>
+    UserSettingsDoc(
+      dataType: json['dataType'] as String,
+      address: json['address'] as String,
+      name: json['name'] as String?,
+      billingDetails: json['billingDetails'] == null
+          ? null
+          : UserBillingDetails.fromJson(
+              json['billingDetails'] as Map<String, dynamic>),
+      emailNotifications: UserEmailNotificationSettings.fromJson(
+          json['emailNotifications'] as Map<String, dynamic>),
+      phoneNotifications: json['phoneNotifications'] == null
+          ? null
+          : UserPhoneNotificationSettings.fromJson(
+              json['phoneNotifications'] as Map<String, dynamic>),
+      notificationPreferences: UserNotificationPreferences.fromJson(
+          json['notificationPreferences'] as Map<String, dynamic>),
+      id: json['id'] as String,
+      ts: (json['_ts'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$UserSettingsDocToJson(UserSettingsDoc instance) =>
+    <String, dynamic>{
+      'dataType': instance.dataType,
+      'address': instance.address,
+      'name': instance.name,
+      'billingDetails': instance.billingDetails?.toJson(),
+      'emailNotifications': instance.emailNotifications.toJson(),
+      'phoneNotifications': instance.phoneNotifications?.toJson(),
+      'notificationPreferences': instance.notificationPreferences.toJson(),
+      'id': instance.id,
+      '_ts': instance.ts,
+    };
+
 SetEmailDto _$SetEmailDtoFromJson(Map<String, dynamic> json) => SetEmailDto(
       enabled: json['enabled'] as bool,
       emailAddress: json['emailAddress'] as String?,
@@ -367,6 +491,17 @@ Map<String, dynamic> _$SetEmailDtoToJson(SetEmailDto instance) =>
     <String, dynamic>{
       'enabled': instance.enabled,
       'emailAddress': instance.emailAddress,
+    };
+
+SetPhoneDto _$SetPhoneDtoFromJson(Map<String, dynamic> json) => SetPhoneDto(
+      enabled: json['enabled'] as bool,
+      phoneNumber: json['phoneNumber'] as String?,
+    );
+
+Map<String, dynamic> _$SetPhoneDtoToJson(SetPhoneDto instance) =>
+    <String, dynamic>{
+      'enabled': instance.enabled,
+      'phoneNumber': instance.phoneNumber,
     };
 
 VerifyEmailDto _$VerifyEmailDtoFromJson(Map<String, dynamic> json) =>
@@ -1823,6 +1958,7 @@ NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       type: nftPropsTypeFromJson(json['type']),
       subType: nftPropsSubTypeNullableFromJson(json['subType']),
       supply: (json['supply'] as num?)?.toDouble(),
+      supplyLong: json['supplyLong'] as String?,
       name: json['name'] as String,
       royalties: (json['royalties'] as num).toDouble(),
       url: json['url'] as String,
@@ -1872,6 +2008,7 @@ Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
       'type': nftPropsTypeToJson(instance.type),
       'subType': nftPropsSubTypeNullableToJson(instance.subType),
       'supply': instance.supply,
+      'supplyLong': instance.supplyLong,
       'name': instance.name,
       'royalties': instance.royalties,
       'url': instance.url,
@@ -2331,6 +2468,7 @@ NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
       type: nftDocTypeFromJson(json['type']),
       subType: nftDocSubTypeNullableFromJson(json['subType']),
       supply: (json['supply'] as num?)?.toDouble(),
+      supplyLong: json['supplyLong'] as String?,
       name: json['name'] as String,
       royalties: (json['royalties'] as num).toDouble(),
       url: json['url'] as String,
@@ -2371,6 +2509,7 @@ Map<String, dynamic> _$NftDocToJson(NftDoc instance) => <String, dynamic>{
       'type': nftDocTypeToJson(instance.type),
       'subType': nftDocSubTypeNullableToJson(instance.subType),
       'supply': instance.supply,
+      'supplyLong': instance.supplyLong,
       'name': instance.name,
       'royalties': instance.royalties,
       'url': instance.url,
@@ -3659,6 +3798,250 @@ Map<String, dynamic> _$NotificationCountResponseToJson(
       'count': instance.count,
     };
 
+RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
+        Map<String, dynamic> json) =>
+    RegistrationDetailsDto(
+      visibility: registrationDetailsDtoVisibilityFromJson(json['visibility']),
+      maxLimit: (json['maxLimit'] as num).toDouble(),
+      userLimit: (json['userLimit'] as num).toDouble(),
+      requireKYC: json['requireKYC'] as bool,
+      requireName: json['requireName'] as bool,
+      requireEmail: json['requireEmail'] as bool,
+      requirePhoneNumber: json['requirePhoneNumber'] as bool,
+      isPublished: json['isPublished'] as bool,
+      hasSideEvents: json['hasSideEvents'] as bool,
+      hasWaitlist: json['hasWaitlist'] as bool,
+      showGuestCount: json['showGuestCount'] as bool,
+      refundable: json['refundable'] as bool,
+      nameWithNumber: json['nameWithNumber'] as bool,
+      botProtection: json['botProtection'] as bool,
+    );
+
+Map<String, dynamic> _$RegistrationDetailsDtoToJson(
+        RegistrationDetailsDto instance) =>
+    <String, dynamic>{
+      'visibility': registrationDetailsDtoVisibilityToJson(instance.visibility),
+      'maxLimit': instance.maxLimit,
+      'userLimit': instance.userLimit,
+      'requireKYC': instance.requireKYC,
+      'requireName': instance.requireName,
+      'requireEmail': instance.requireEmail,
+      'requirePhoneNumber': instance.requirePhoneNumber,
+      'isPublished': instance.isPublished,
+      'hasSideEvents': instance.hasSideEvents,
+      'hasWaitlist': instance.hasWaitlist,
+      'showGuestCount': instance.showGuestCount,
+      'refundable': instance.refundable,
+      'nameWithNumber': instance.nameWithNumber,
+      'botProtection': instance.botProtection,
+    };
+
+EventSeoDto _$EventSeoDtoFromJson(Map<String, dynamic> json) => EventSeoDto(
+      description: json['description'] as String,
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      alternativeTitle: json['alternativeTitle'] as String,
+    );
+
+Map<String, dynamic> _$EventSeoDtoToJson(EventSeoDto instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'tags': instance.tags,
+      'alternativeTitle': instance.alternativeTitle,
+    };
+
+EventProfileCreateDto _$EventProfileCreateDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventProfileCreateDto(
+      title: json['title'] as String,
+      startTime: (json['startTime'] as num).toDouble(),
+      endTime: (json['endTime'] as num).toDouble(),
+      location:
+          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      registration: RegistrationDetailsDto.fromJson(
+          json['registration'] as Map<String, dynamic>),
+      isVirtualEvent: json['isVirtualEvent'] as bool,
+      seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$EventProfileCreateDtoToJson(
+        EventProfileCreateDto instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'location': instance.location.toJson(),
+      'registration': instance.registration.toJson(),
+      'isVirtualEvent': instance.isVirtualEvent,
+      'seo': instance.seo.toJson(),
+    };
+
+CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
+    CreatorProfileDoc(
+      dataType: CreatorProfileDoc.creatorProfileDocDataTypeDataTypeFromJson(
+          json['dataType']),
+      address: json['address'] as String,
+      name: json['name'] as String,
+      creatorTag: json['creatorTag'] as String,
+      contractAddress: json['contractAddress'] as String,
+      ticketingContractAddress: json['ticketingContractAddress'] as String,
+      profile: json['profile'] as String,
+      banner: json['banner'] as String,
+      joinedDate: (json['joinedDate'] as num).toDouble(),
+      description: json['description'] as String,
+      socials: json['socials'] as Object,
+      id: json['id'] as String,
+    );
+
+Map<String, dynamic> _$CreatorProfileDocToJson(CreatorProfileDoc instance) =>
+    <String, dynamic>{
+      'dataType': creatorProfileDocDataTypeToJson(instance.dataType),
+      'address': instance.address,
+      'name': instance.name,
+      'creatorTag': instance.creatorTag,
+      'contractAddress': instance.contractAddress,
+      'ticketingContractAddress': instance.ticketingContractAddress,
+      'profile': instance.profile,
+      'banner': instance.banner,
+      'joinedDate': instance.joinedDate,
+      'description': instance.description,
+      'socials': instance.socials,
+      'id': instance.id,
+    };
+
+EventGuestProfileSummary _$EventGuestProfileSummaryFromJson(
+        Map<String, dynamic> json) =>
+    EventGuestProfileSummary(
+      address: json['address'] as String,
+      profile: json['profile'] as String,
+      name: json['name'] as String?,
+      herotag: json['herotag'] as String?,
+    );
+
+Map<String, dynamic> _$EventGuestProfileSummaryToJson(
+        EventGuestProfileSummary instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'profile': instance.profile,
+      'name': instance.name,
+      'herotag': instance.herotag,
+    };
+
+EventGuestSummary _$EventGuestSummaryFromJson(Map<String, dynamic> json) =>
+    EventGuestSummary(
+      count: (json['count'] as num).toDouble(),
+      guests: (json['guests'] as List<dynamic>?)
+              ?.map((e) =>
+                  EventGuestProfileSummary.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventGuestSummaryToJson(EventGuestSummary instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'guests': instance.guests.map((e) => e.toJson()).toList(),
+    };
+
+EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
+      dataType:
+          EventProfile.eventProfileDataTypeDataTypeFromJson(json['dataType']),
+      creatorAddress: json['creatorAddress'] as String,
+      title: json['title'] as String,
+      startTime: (json['startTime'] as num).toDouble(),
+      endTime: (json['endTime'] as num).toDouble(),
+      descriptionUrl: json['descriptionUrl'] as String,
+      location:
+          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      isVirtualEvent: json['isVirtualEvent'] as bool,
+      slug: json['slug'] as String,
+      profile: json['profile'] as String,
+      background: json['background'] as String?,
+      registration: json['registration'] as Object,
+      contractAddress: json['contractAddress'] as String?,
+      collection: json['collection'] as String?,
+      seo: json['seo'],
+      id: json['id'] as String,
+      eventPermissions: EventUserRoleDoc.fromJson(
+          json['eventPermissions'] as Map<String, dynamic>),
+      creatorProfile: CreatorProfileDoc.fromJson(
+          json['creatorProfile'] as Map<String, dynamic>),
+      guestSummary: json['guestSummary'] == null
+          ? null
+          : EventGuestSummary.fromJson(
+              json['guestSummary'] as Map<String, dynamic>),
+      startsFrom: json['startsFrom'],
+    );
+
+Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
+    <String, dynamic>{
+      'dataType': eventProfileDataTypeToJson(instance.dataType),
+      'creatorAddress': instance.creatorAddress,
+      'title': instance.title,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'descriptionUrl': instance.descriptionUrl,
+      'location': instance.location.toJson(),
+      'isVirtualEvent': instance.isVirtualEvent,
+      'slug': instance.slug,
+      'profile': instance.profile,
+      'background': instance.background,
+      'registration': instance.registration,
+      'contractAddress': instance.contractAddress,
+      'collection': instance.collection,
+      'seo': instance.seo,
+      'id': instance.id,
+      'eventPermissions': instance.eventPermissions.toJson(),
+      'creatorProfile': instance.creatorProfile.toJson(),
+      'guestSummary': instance.guestSummary?.toJson(),
+      'startsFrom': instance.startsFrom,
+    };
+
+EventProfileQuery _$EventProfileQueryFromJson(Map<String, dynamic> json) =>
+    EventProfileQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) => EventProfile.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventProfileQueryToJson(EventProfileQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
+    EventProfileEditDto(
+      title: json['title'] as String,
+      startTime: (json['startTime'] as num).toDouble(),
+      endTime: (json['endTime'] as num).toDouble(),
+      location:
+          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      isVirtualEvent: json['isVirtualEvent'] as bool,
+      registration: RegistrationDetailsDto.fromJson(
+          json['registration'] as Map<String, dynamic>),
+      slug: json['slug'] as String,
+      seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$EventProfileEditDtoToJson(
+        EventProfileEditDto instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'location': instance.location.toJson(),
+      'isVirtualEvent': instance.isVirtualEvent,
+      'registration': instance.registration.toJson(),
+      'slug': instance.slug,
+      'seo': instance.seo.toJson(),
+    };
+
 TicketSelectionDto _$TicketSelectionDtoFromJson(Map<String, dynamic> json) =>
     TicketSelectionDto(
       ticketProfileId: json['ticketProfileId'] as String,
@@ -3862,247 +4245,6 @@ Map<String, dynamic> _$EventRegistrationResponseDtoToJson(
     <String, dynamic>{
       'guestDoc': instance.guestDoc.toJson(),
       'fiatPaymentForm': instance.fiatPaymentForm?.toJson(),
-    };
-
-RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
-        Map<String, dynamic> json) =>
-    RegistrationDetailsDto(
-      visibility: registrationDetailsDtoVisibilityFromJson(json['visibility']),
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
-      requireKYC: json['requireKYC'] as bool,
-      requireName: json['requireName'] as bool,
-      requireEmail: json['requireEmail'] as bool,
-      requirePhoneNumber: json['requirePhoneNumber'] as bool,
-      isPublished: json['isPublished'] as bool,
-      hasSideEvents: json['hasSideEvents'] as bool,
-      hasWaitlist: json['hasWaitlist'] as bool,
-      showGuestCount: json['showGuestCount'] as bool,
-      refundable: json['refundable'] as bool,
-      nameWithNumber: json['nameWithNumber'] as bool,
-      botProtection: json['botProtection'] as bool,
-    );
-
-Map<String, dynamic> _$RegistrationDetailsDtoToJson(
-        RegistrationDetailsDto instance) =>
-    <String, dynamic>{
-      'visibility': registrationDetailsDtoVisibilityToJson(instance.visibility),
-      'maxLimit': instance.maxLimit,
-      'userLimit': instance.userLimit,
-      'requireKYC': instance.requireKYC,
-      'requireName': instance.requireName,
-      'requireEmail': instance.requireEmail,
-      'requirePhoneNumber': instance.requirePhoneNumber,
-      'isPublished': instance.isPublished,
-      'hasSideEvents': instance.hasSideEvents,
-      'hasWaitlist': instance.hasWaitlist,
-      'showGuestCount': instance.showGuestCount,
-      'refundable': instance.refundable,
-      'nameWithNumber': instance.nameWithNumber,
-      'botProtection': instance.botProtection,
-    };
-
-EventProfileCreateDto _$EventProfileCreateDtoFromJson(
-        Map<String, dynamic> json) =>
-    EventProfileCreateDto(
-      title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      location:
-          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
-      registration: RegistrationDetailsDto.fromJson(
-          json['registration'] as Map<String, dynamic>),
-      isVirtualEvent: json['isVirtualEvent'] as bool,
-    );
-
-Map<String, dynamic> _$EventProfileCreateDtoToJson(
-        EventProfileCreateDto instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'location': instance.location.toJson(),
-      'registration': instance.registration.toJson(),
-      'isVirtualEvent': instance.isVirtualEvent,
-    };
-
-CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
-    CreatorProfileDoc(
-      dataType: CreatorProfileDoc.creatorProfileDocDataTypeDataTypeFromJson(
-          json['dataType']),
-      address: json['address'] as String,
-      name: json['name'] as String,
-      creatorTag: json['creatorTag'] as String,
-      contractAddress: json['contractAddress'] as String,
-      ticketingContractAddress: json['ticketingContractAddress'] as String,
-      profile: json['profile'] as String,
-      banner: json['banner'] as String,
-      joinedDate: (json['joinedDate'] as num).toDouble(),
-      description: json['description'] as String,
-      socials: json['socials'] as Object,
-      id: json['id'] as String,
-    );
-
-Map<String, dynamic> _$CreatorProfileDocToJson(CreatorProfileDoc instance) =>
-    <String, dynamic>{
-      'dataType': creatorProfileDocDataTypeToJson(instance.dataType),
-      'address': instance.address,
-      'name': instance.name,
-      'creatorTag': instance.creatorTag,
-      'contractAddress': instance.contractAddress,
-      'ticketingContractAddress': instance.ticketingContractAddress,
-      'profile': instance.profile,
-      'banner': instance.banner,
-      'joinedDate': instance.joinedDate,
-      'description': instance.description,
-      'socials': instance.socials,
-      'id': instance.id,
-    };
-
-EventGuestProfileSummary _$EventGuestProfileSummaryFromJson(
-        Map<String, dynamic> json) =>
-    EventGuestProfileSummary(
-      address: json['address'] as String,
-      profile: json['profile'] as String,
-      name: json['name'] as String?,
-      herotag: json['herotag'] as String?,
-    );
-
-Map<String, dynamic> _$EventGuestProfileSummaryToJson(
-        EventGuestProfileSummary instance) =>
-    <String, dynamic>{
-      'address': instance.address,
-      'profile': instance.profile,
-      'name': instance.name,
-      'herotag': instance.herotag,
-    };
-
-EventGuestSummary _$EventGuestSummaryFromJson(Map<String, dynamic> json) =>
-    EventGuestSummary(
-      count: (json['count'] as num).toDouble(),
-      guests: (json['guests'] as List<dynamic>?)
-              ?.map((e) =>
-                  EventGuestProfileSummary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$EventGuestSummaryToJson(EventGuestSummary instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'guests': instance.guests.map((e) => e.toJson()).toList(),
-    };
-
-EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
-      dataType:
-          EventProfile.eventProfileDataTypeDataTypeFromJson(json['dataType']),
-      creatorAddress: json['creatorAddress'] as String,
-      title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      descriptionUrl: json['descriptionUrl'] as String,
-      location:
-          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
-      isVirtualEvent: json['isVirtualEvent'] as bool,
-      slug: json['slug'] as String,
-      profile: json['profile'] as String,
-      background: json['background'] as String?,
-      registration: json['registration'] as Object,
-      contractAddress: json['contractAddress'] as String?,
-      collection: json['collection'] as String?,
-      seo: json['seo'],
-      id: json['id'] as String,
-      eventPermissions: EventUserRoleDoc.fromJson(
-          json['eventPermissions'] as Map<String, dynamic>),
-      creatorProfile: CreatorProfileDoc.fromJson(
-          json['creatorProfile'] as Map<String, dynamic>),
-      guestSummary: json['guestSummary'] == null
-          ? null
-          : EventGuestSummary.fromJson(
-              json['guestSummary'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
-    <String, dynamic>{
-      'dataType': eventProfileDataTypeToJson(instance.dataType),
-      'creatorAddress': instance.creatorAddress,
-      'title': instance.title,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'descriptionUrl': instance.descriptionUrl,
-      'location': instance.location.toJson(),
-      'isVirtualEvent': instance.isVirtualEvent,
-      'slug': instance.slug,
-      'profile': instance.profile,
-      'background': instance.background,
-      'registration': instance.registration,
-      'contractAddress': instance.contractAddress,
-      'collection': instance.collection,
-      'seo': instance.seo,
-      'id': instance.id,
-      'eventPermissions': instance.eventPermissions.toJson(),
-      'creatorProfile': instance.creatorProfile.toJson(),
-      'guestSummary': instance.guestSummary?.toJson(),
-    };
-
-PaginatedResponse _$PaginatedResponseFromJson(Map<String, dynamic> json) =>
-    PaginatedResponse(
-      count: (json['count'] as num?)?.toDouble(),
-      hasMoreResults: json['hasMoreResults'] as bool,
-      resources: (json['resources'] as List<dynamic>?)
-              ?.map(
-                  (e) => EventGuestProfile.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$PaginatedResponseToJson(PaginatedResponse instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources.map((e) => e.toJson()).toList(),
-    };
-
-EventSeoDto _$EventSeoDtoFromJson(Map<String, dynamic> json) => EventSeoDto(
-      description: json['description'] as String,
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
-      alternativeTitle: json['alternativeTitle'] as String,
-    );
-
-Map<String, dynamic> _$EventSeoDtoToJson(EventSeoDto instance) =>
-    <String, dynamic>{
-      'description': instance.description,
-      'tags': instance.tags,
-      'alternativeTitle': instance.alternativeTitle,
-    };
-
-EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
-    EventProfileEditDto(
-      title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      location:
-          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
-      isVirtualEvent: json['isVirtualEvent'] as bool,
-      registration: RegistrationDetailsDto.fromJson(
-          json['registration'] as Map<String, dynamic>),
-      slug: json['slug'] as String,
-      seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$EventProfileEditDtoToJson(
-        EventProfileEditDto instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'location': instance.location.toJson(),
-      'isVirtualEvent': instance.isVirtualEvent,
-      'registration': instance.registration.toJson(),
-      'slug': instance.slug,
-      'seo': instance.seo.toJson(),
     };
 
 EventTicketProfileCreateDto _$EventTicketProfileCreateDtoFromJson(
@@ -4315,6 +4457,85 @@ Map<String, dynamic> _$EventStageProfileEditDtoToJson(
       'endTime': instance.endTime,
     };
 
+TicketCalculationRequestDto _$TicketCalculationRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    TicketCalculationRequestDto(
+      referralCode: json['referralCode'] as String?,
+      discountCode: json['discountCode'] as String?,
+      ticketSelections: (json['ticketSelections'] as List<dynamic>?)
+              ?.map(
+                  (e) => TicketSelectionDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$TicketCalculationRequestDtoToJson(
+        TicketCalculationRequestDto instance) =>
+    <String, dynamic>{
+      'referralCode': instance.referralCode,
+      'discountCode': instance.discountCode,
+      'ticketSelections':
+          instance.ticketSelections.map((e) => e.toJson()).toList(),
+    };
+
+StagePrice _$StagePriceFromJson(Map<String, dynamic> json) => StagePrice(
+      stageId: json['stageId'] as String,
+      stageName: json['stageName'] as String,
+      ticketTypeId: json['ticketTypeId'] as String,
+      ticketTypeName: json['ticketTypeName'] as String,
+      normalPrice: (json['normalPrice'] as num).toDouble(),
+      discountedPrice: (json['discountedPrice'] as num).toDouble(),
+      quantity: (json['quantity'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$StagePriceToJson(StagePrice instance) =>
+    <String, dynamic>{
+      'stageId': instance.stageId,
+      'stageName': instance.stageName,
+      'ticketTypeId': instance.ticketTypeId,
+      'ticketTypeName': instance.ticketTypeName,
+      'normalPrice': instance.normalPrice,
+      'discountedPrice': instance.discountedPrice,
+      'quantity': instance.quantity,
+    };
+
+TicketPricesResponse _$TicketPricesResponseFromJson(
+        Map<String, dynamic> json) =>
+    TicketPricesResponse(
+      currency: json['currency'] as String,
+      stagePrices: (json['stagePrices'] as List<dynamic>?)
+              ?.map((e) => StagePrice.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      vat: (json['vat'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$TicketPricesResponseToJson(
+        TicketPricesResponse instance) =>
+    <String, dynamic>{
+      'currency': instance.currency,
+      'stagePrices': instance.stagePrices.map((e) => e.toJson()).toList(),
+      'vat': instance.vat,
+    };
+
+DiscountCodeValidationResponse _$DiscountCodeValidationResponseFromJson(
+        Map<String, dynamic> json) =>
+    DiscountCodeValidationResponse(
+      isValid: json['isValid'] as bool,
+      discountType: json['discountType'] as String,
+      discountAmount: (json['discountAmount'] as num).toDouble(),
+      discountMaxAmount: (json['discountMaxAmount'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
+        DiscountCodeValidationResponse instance) =>
+    <String, dynamic>{
+      'isValid': instance.isValid,
+      'discountType': instance.discountType,
+      'discountAmount': instance.discountAmount,
+      'discountMaxAmount': instance.discountMaxAmount,
+    };
+
 Ticket _$TicketFromJson(Map<String, dynamic> json) => Ticket(
       ticketId: json['ticketId'] as String,
       quantity: (json['quantity'] as num).toDouble(),
@@ -4464,23 +4685,95 @@ Map<String, dynamic> _$EventInvitationToJson(EventInvitation instance) =>
       'herotag': instance.herotag,
     };
 
-CosmosPaginatedResponse _$CosmosPaginatedResponseFromJson(
+EventInvitationQuery _$EventInvitationQueryFromJson(
         Map<String, dynamic> json) =>
-    CosmosPaginatedResponse(
+    EventInvitationQuery(
       count: (json['count'] as num?)?.toDouble(),
       hasMoreResults: json['hasMoreResults'] as bool,
       resources: (json['resources'] as List<dynamic>?)
-              ?.map((e) => e as List<dynamic>)
+              ?.map((e) => EventInvitation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
 
-Map<String, dynamic> _$CosmosPaginatedResponseToJson(
-        CosmosPaginatedResponse instance) =>
+Map<String, dynamic> _$EventInvitationQueryToJson(
+        EventInvitationQuery instance) =>
     <String, dynamic>{
       'count': instance.count,
       'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+EventVoucherDoc _$EventVoucherDocFromJson(Map<String, dynamic> json) =>
+    EventVoucherDoc(
+      dataType: EventVoucherDoc.eventVoucherDocDataTypeDataTypeFromJson(
+          json['dataType']),
+      id: json['id'] as String,
+      code: json['code'] as String,
+      type: eventVoucherDocTypeFromJson(json['type']),
+      amount: (json['amount'] as num).toDouble(),
+      maxDiscountAmount: (json['maxDiscountAmount'] as num).toDouble(),
+      maxUses: (json['maxUses'] as num).toDouble(),
+      maxUsesPerUser: (json['maxUsesPerUser'] as num).toDouble(),
+      usedCount: json['usedCount'] as Object,
+      eventId: json['eventId'] as String,
+      ticketTypeIds: (json['ticketTypeIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      stageIds: (json['stageIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      minTicketCount: (json['minTicketCount'] as num).toDouble(),
+      maxTicketCount: (json['maxTicketCount'] as num).toDouble(),
+      startDate: (json['startDate'] as num).toDouble(),
+      endDate: (json['endDate'] as num).toDouble(),
+      isActive: json['isActive'] as Object,
+      ownerId: json['ownerId'] as String,
+      createdAt: (json['createdAt'] as num).toDouble(),
+      createdBy: json['createdBy'] as String,
+    );
+
+Map<String, dynamic> _$EventVoucherDocToJson(EventVoucherDoc instance) =>
+    <String, dynamic>{
+      'dataType': eventVoucherDocDataTypeToJson(instance.dataType),
+      'id': instance.id,
+      'code': instance.code,
+      'type': eventVoucherDocTypeToJson(instance.type),
+      'amount': instance.amount,
+      'maxDiscountAmount': instance.maxDiscountAmount,
+      'maxUses': instance.maxUses,
+      'maxUsesPerUser': instance.maxUsesPerUser,
+      'usedCount': instance.usedCount,
+      'eventId': instance.eventId,
+      'ticketTypeIds': instance.ticketTypeIds,
+      'stageIds': instance.stageIds,
+      'minTicketCount': instance.minTicketCount,
+      'maxTicketCount': instance.maxTicketCount,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'isActive': instance.isActive,
+      'ownerId': instance.ownerId,
+      'createdAt': instance.createdAt,
+      'createdBy': instance.createdBy,
+    };
+
+EventVoucherQuery _$EventVoucherQueryFromJson(Map<String, dynamic> json) =>
+    EventVoucherQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) => EventVoucherDoc.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventVoucherQueryToJson(EventVoucherQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
 EventQuestionDoc _$EventQuestionDocFromJson(Map<String, dynamic> json) =>
@@ -4601,6 +4894,26 @@ Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
       'id': instance.id,
       'profile': instance.profile,
       'herotag': instance.herotag,
+    };
+
+EventGuestProfileQuery _$EventGuestProfileQueryFromJson(
+        Map<String, dynamic> json) =>
+    EventGuestProfileQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map(
+                  (e) => EventGuestProfile.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventGuestProfileQueryToJson(
+        EventGuestProfileQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
 EventUserRoleCreateDto _$EventUserRoleCreateDtoFromJson(
@@ -4735,61 +5048,6 @@ Map<String, dynamic> _$EventVoucherCreateDtoToJson(
       'endDate': instance.endDate,
       'isActive': instance.isActive,
       'ownerId': instance.ownerId,
-    };
-
-EventVoucherDoc _$EventVoucherDocFromJson(Map<String, dynamic> json) =>
-    EventVoucherDoc(
-      dataType: EventVoucherDoc.eventVoucherDocDataTypeDataTypeFromJson(
-          json['dataType']),
-      id: json['id'] as String,
-      code: json['code'] as String,
-      type: eventVoucherDocTypeFromJson(json['type']),
-      amount: (json['amount'] as num).toDouble(),
-      maxDiscountAmount: (json['maxDiscountAmount'] as num).toDouble(),
-      maxUses: (json['maxUses'] as num).toDouble(),
-      maxUsesPerUser: (json['maxUsesPerUser'] as num).toDouble(),
-      usedCount: json['usedCount'] as Object,
-      eventId: json['eventId'] as String,
-      ticketTypeIds: (json['ticketTypeIds'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      stageIds: (json['stageIds'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      minTicketCount: (json['minTicketCount'] as num).toDouble(),
-      maxTicketCount: (json['maxTicketCount'] as num).toDouble(),
-      startDate: (json['startDate'] as num).toDouble(),
-      endDate: (json['endDate'] as num).toDouble(),
-      isActive: json['isActive'] as Object,
-      ownerId: json['ownerId'] as String,
-      createdAt: (json['createdAt'] as num).toDouble(),
-      createdBy: json['createdBy'] as String,
-    );
-
-Map<String, dynamic> _$EventVoucherDocToJson(EventVoucherDoc instance) =>
-    <String, dynamic>{
-      'dataType': eventVoucherDocDataTypeToJson(instance.dataType),
-      'id': instance.id,
-      'code': instance.code,
-      'type': eventVoucherDocTypeToJson(instance.type),
-      'amount': instance.amount,
-      'maxDiscountAmount': instance.maxDiscountAmount,
-      'maxUses': instance.maxUses,
-      'maxUsesPerUser': instance.maxUsesPerUser,
-      'usedCount': instance.usedCount,
-      'eventId': instance.eventId,
-      'ticketTypeIds': instance.ticketTypeIds,
-      'stageIds': instance.stageIds,
-      'minTicketCount': instance.minTicketCount,
-      'maxTicketCount': instance.maxTicketCount,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'isActive': instance.isActive,
-      'ownerId': instance.ownerId,
-      'createdAt': instance.createdAt,
-      'createdBy': instance.createdBy,
     };
 
 EventVoucherEditDto _$EventVoucherEditDtoFromJson(Map<String, dynamic> json) =>
@@ -5527,6 +5785,71 @@ Map<String, dynamic> _$EventInvitationFilterToJson(
       'filters': instance.filters.toJson(),
     };
 
+EventVoucherFilterCriteriaDto _$EventVoucherFilterCriteriaDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventVoucherFilterCriteriaDto(
+      searchText: json['searchText'] as String?,
+      code:
+          (json['code'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      type:
+          eventVoucherFilterCriteriaDtoTypeListFromJson(json['type'] as List?),
+      amount: (json['amount'] as num?)?.toDouble(),
+      maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
+      maxUses: (json['maxUses'] as num?)?.toDouble(),
+      maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
+      isActive: json['isActive'] as bool?,
+      ownerId: json['ownerId'] as String?,
+      range: (json['range'] as List<dynamic>?)
+              ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventVoucherFilterCriteriaDtoToJson(
+        EventVoucherFilterCriteriaDto instance) =>
+    <String, dynamic>{
+      'searchText': instance.searchText,
+      'code': instance.code,
+      'type': eventVoucherFilterCriteriaDtoTypeListToJson(instance.type),
+      'amount': instance.amount,
+      'maxDiscountAmount': instance.maxDiscountAmount,
+      'maxUses': instance.maxUses,
+      'maxUsesPerUser': instance.maxUsesPerUser,
+      'isActive': instance.isActive,
+      'ownerId': instance.ownerId,
+      'range': instance.range?.map((e) => e.toJson()).toList(),
+    };
+
+EventVoucherFilter _$EventVoucherFilterFromJson(Map<String, dynamic> json) =>
+    EventVoucherFilter(
+      select: (json['select'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      orderBy: (json['orderBy'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      includeCount: json['includeCount'] as bool? ?? false,
+      strictSelect: json['strictSelect'] as bool? ?? false,
+      top: (json['top'] as num?)?.toDouble(),
+      skip: (json['skip'] as num?)?.toDouble(),
+      filters: EventVoucherFilterCriteriaDto.fromJson(
+          json['filters'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$EventVoucherFilterToJson(EventVoucherFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+    };
+
 EventProfileFilterCriteriaDto _$EventProfileFilterCriteriaDtoFromJson(
         Map<String, dynamic> json) =>
     EventProfileFilterCriteriaDto(
@@ -5667,41 +5990,6 @@ Map<String, dynamic> _$PoolPoolIdUploadPicturePut$RequestBodyToJson(
       'file': instance.file,
     };
 
-EventEventIdCalculatePricesPost$RequestBody
-    _$EventEventIdCalculatePricesPost$RequestBodyFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdCalculatePricesPost$RequestBody(
-          referralCode: json['referralCode'] as String?,
-          discountCode: json['discountCode'] as String?,
-          ticketSelections: (json['ticketSelections'] as List<dynamic>?)
-                  ?.map((e) =>
-                      TicketSelectionDto.fromJson(e as Map<String, dynamic>))
-                  .toList() ??
-              [],
-        );
-
-Map<String, dynamic> _$EventEventIdCalculatePricesPost$RequestBodyToJson(
-        EventEventIdCalculatePricesPost$RequestBody instance) =>
-    <String, dynamic>{
-      'referralCode': instance.referralCode,
-      'discountCode': instance.discountCode,
-      'ticketSelections':
-          instance.ticketSelections?.map((e) => e.toJson()).toList(),
-    };
-
-EventEventIdValidateDiscountPost$RequestBody
-    _$EventEventIdValidateDiscountPost$RequestBodyFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdValidateDiscountPost$RequestBody(
-          discountCode: json['discountCode'] as String,
-        );
-
-Map<String, dynamic> _$EventEventIdValidateDiscountPost$RequestBodyToJson(
-        EventEventIdValidateDiscountPost$RequestBody instance) =>
-    <String, dynamic>{
-      'discountCode': instance.discountCode,
-    };
-
 EventEventIdProfilePut$RequestBody _$EventEventIdProfilePut$RequestBodyFromJson(
         Map<String, dynamic> json) =>
     EventEventIdProfilePut$RequestBody(
@@ -5764,147 +6052,4 @@ Map<String, dynamic> _$EventEventIdTicketTicketIdProfilePut$RequestBodyToJson(
         EventEventIdTicketTicketIdProfilePut$RequestBody instance) =>
     <String, dynamic>{
       'file': instance.file,
-    };
-
-EventEventIdCalculatePricesPost$Response
-    _$EventEventIdCalculatePricesPost$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdCalculatePricesPost$Response(
-          currency: json['currency'] as String?,
-          stagePrices: (json['stagePrices'] as List<dynamic>?)
-              ?.map((e) =>
-                  EventEventIdCalculatePricesPost$Response$StagePrices$Item
-                      .fromJson(e as Map<String, dynamic>))
-              .toList(),
-          vat: (json['vat'] as num?)?.toDouble(),
-        );
-
-Map<String, dynamic> _$EventEventIdCalculatePricesPost$ResponseToJson(
-        EventEventIdCalculatePricesPost$Response instance) =>
-    <String, dynamic>{
-      'currency': instance.currency,
-      'stagePrices': instance.stagePrices?.map((e) => e.toJson()).toList(),
-      'vat': instance.vat,
-    };
-
-EventEventIdValidateDiscountPost$Response
-    _$EventEventIdValidateDiscountPost$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdValidateDiscountPost$Response(
-          isValid: json['isValid'] as bool?,
-          discountType: json['discountType'] as String?,
-          discountAmount: (json['discountAmount'] as num?)?.toDouble(),
-          discountMaxAmount: (json['discountMaxAmount'] as num?)?.toDouble(),
-        );
-
-Map<String, dynamic> _$EventEventIdValidateDiscountPost$ResponseToJson(
-        EventEventIdValidateDiscountPost$Response instance) =>
-    <String, dynamic>{
-      'isValid': instance.isValid,
-      'discountType': instance.discountType,
-      'discountAmount': instance.discountAmount,
-      'discountMaxAmount': instance.discountMaxAmount,
-    };
-
-EventEventIdDescriptionImageImageIdDelete$Response
-    _$EventEventIdDescriptionImageImageIdDelete$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdDescriptionImageImageIdDelete$Response(
-          success: json['success'] as bool?,
-        );
-
-Map<String, dynamic> _$EventEventIdDescriptionImageImageIdDelete$ResponseToJson(
-        EventEventIdDescriptionImageImageIdDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdStageStageIdDelete$Response
-    _$EventEventIdStageStageIdDelete$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdStageStageIdDelete$Response(
-          success: json['success'] as bool?,
-        );
-
-Map<String, dynamic> _$EventEventIdStageStageIdDelete$ResponseToJson(
-        EventEventIdStageStageIdDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdQuestionQuestionIdDelete$Response
-    _$EventEventIdQuestionQuestionIdDelete$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdQuestionQuestionIdDelete$Response(
-          success: json['success'] as bool?,
-        );
-
-Map<String, dynamic> _$EventEventIdQuestionQuestionIdDelete$ResponseToJson(
-        EventEventIdQuestionQuestionIdDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdRoleAddressDelete$Response
-    _$EventEventIdRoleAddressDelete$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdRoleAddressDelete$Response(
-          success: json['success'] as bool?,
-        );
-
-Map<String, dynamic> _$EventEventIdRoleAddressDelete$ResponseToJson(
-        EventEventIdRoleAddressDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdGuestDelete$Response _$EventEventIdGuestDelete$ResponseFromJson(
-        Map<String, dynamic> json) =>
-    EventEventIdGuestDelete$Response(
-      success: json['success'] as bool?,
-    );
-
-Map<String, dynamic> _$EventEventIdGuestDelete$ResponseToJson(
-        EventEventIdGuestDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdVoucherVoucherCodeDelete$Response
-    _$EventEventIdVoucherVoucherCodeDelete$ResponseFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdVoucherVoucherCodeDelete$Response(
-          success: json['success'] as bool?,
-        );
-
-Map<String, dynamic> _$EventEventIdVoucherVoucherCodeDelete$ResponseToJson(
-        EventEventIdVoucherVoucherCodeDelete$Response instance) =>
-    <String, dynamic>{
-      'success': instance.success,
-    };
-
-EventEventIdCalculatePricesPost$Response$StagePrices$Item
-    _$EventEventIdCalculatePricesPost$Response$StagePrices$ItemFromJson(
-            Map<String, dynamic> json) =>
-        EventEventIdCalculatePricesPost$Response$StagePrices$Item(
-          stageId: json['stageId'] as String?,
-          stageName: json['stageName'] as String?,
-          ticketTypeId: json['ticketTypeId'] as String?,
-          ticketTypeName: json['ticketTypeName'] as String?,
-          normalPrice: (json['normalPrice'] as num?)?.toDouble(),
-          discountedPrice: (json['discountedPrice'] as num?)?.toDouble(),
-          quantity: (json['quantity'] as num?)?.toDouble(),
-        );
-
-Map<String,
-    dynamic> _$EventEventIdCalculatePricesPost$Response$StagePrices$ItemToJson(
-        EventEventIdCalculatePricesPost$Response$StagePrices$Item instance) =>
-    <String, dynamic>{
-      'stageId': instance.stageId,
-      'stageName': instance.stageName,
-      'ticketTypeId': instance.ticketTypeId,
-      'ticketTypeName': instance.ticketTypeName,
-      'normalPrice': instance.normalPrice,
-      'discountedPrice': instance.discountedPrice,
-      'quantity': instance.quantity,
     };
