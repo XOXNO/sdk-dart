@@ -147,6 +147,26 @@ enum EventProfileDocDataType {
   const EventProfileDocDataType(this.value);
 }
 
+enum CreatorDetailsDtoDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('userProfile')
+  userprofile('userProfile'),
+  @JsonValue('creatorProfile')
+  creatorprofile('creatorProfile'),
+  @JsonValue('userFavorite')
+  userfavorite('userFavorite'),
+  @JsonValue('userSettings')
+  usersettings('userSettings'),
+  @JsonValue('delegationContractProfile')
+  delegationcontractprofile('delegationContractProfile');
+
+  final String? value;
+
+  const CreatorDetailsDtoDataType(this.value);
+}
+
 enum NftSaleInfoMarketplace {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -975,6 +995,32 @@ enum EventGuestProfileDataType {
   final String? value;
 
   const EventGuestProfileDataType(this.value);
+}
+
+enum EventGuestExportStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const EventGuestExportStatus(this.value);
 }
 
 enum EventUserRoleCreateDtoRole {
