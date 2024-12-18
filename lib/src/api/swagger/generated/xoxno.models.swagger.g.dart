@@ -759,6 +759,7 @@ IMetrics _$IMetricsFromJson(Map<String, dynamic> json) => IMetrics(
       holdersCount: (json['holdersCount'] as num).toDouble(),
       rate: RateType.fromJson(json['rate'] as Map<String, dynamic>),
       apr: (json['apr'] as num).toDouble(),
+      apy: (json['apy'] as num).toDouble(),
       totalStakedCount: (json['totalStakedCount'] as num).toDouble(),
       totalStakedCountUsd: (json['totalStakedCountUsd'] as num).toDouble(),
       totalRewardsPaid: (json['totalRewardsPaid'] as num).toDouble(),
@@ -784,6 +785,7 @@ Map<String, dynamic> _$IMetricsToJson(IMetrics instance) => <String, dynamic>{
       'holdersCount': instance.holdersCount,
       'rate': instance.rate.toJson(),
       'apr': instance.apr,
+      'apy': instance.apy,
       'totalStakedCount': instance.totalStakedCount,
       'totalStakedCountUsd': instance.totalStakedCountUsd,
       'totalRewardsPaid': instance.totalRewardsPaid,
@@ -830,6 +832,7 @@ XoxnoLiquidStatsDto _$XoxnoLiquidStatsDtoFromJson(Map<String, dynamic> json) =>
       totalRewardsEgldValue: (json['totalRewardsEgldValue'] as num).toDouble(),
       totalStaked: (json['totalStaked'] as num).toDouble(),
       yearlyAPR: (json['yearlyAPR'] as num).toDouble(),
+      apy: (json['apy'] as num).toDouble(),
       totalRewardsUsdValue: (json['totalRewardsUsdValue'] as num).toDouble(),
       totalStakedUsdValue: (json['totalStakedUsdValue'] as num).toDouble(),
       rateInfo: RateType.fromJson(json['rateInfo'] as Map<String, dynamic>),
@@ -846,6 +849,7 @@ Map<String, dynamic> _$XoxnoLiquidStatsDtoToJson(
       'totalRewardsEgldValue': instance.totalRewardsEgldValue,
       'totalStaked': instance.totalStaked,
       'yearlyAPR': instance.yearlyAPR,
+      'apy': instance.apy,
       'totalRewardsUsdValue': instance.totalRewardsUsdValue,
       'totalStakedUsdValue': instance.totalStakedUsdValue,
       'rateInfo': instance.rateInfo.toJson(),
@@ -1650,12 +1654,15 @@ EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       startTime: (json['startTime'] as num).toDouble(),
       endTime: (json['endTime'] as num).toDouble(),
-      descriptionUrl: json['descriptionUrl'] as String,
+      descriptionUrl: json['descriptionUrl'] as String?,
       location:
           EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool,
       slug: json['slug'] as String,
       profile: json['profile'] as String,
+      category: eventProfileDocCategoryFromJson(json['category']),
+      subCategory:
+          eventProfileDocSubCategoryNullableFromJson(json['subCategory']),
       background: json['background'] as String?,
       registration: json['registration'] as Object,
       premium: json['premium'] as Object,
@@ -1682,6 +1689,9 @@ Map<String, dynamic> _$EventProfileDocToJson(EventProfileDoc instance) =>
       'isVirtualEvent': instance.isVirtualEvent,
       'slug': instance.slug,
       'profile': instance.profile,
+      'category': eventProfileDocCategoryToJson(instance.category),
+      'subCategory':
+          eventProfileDocSubCategoryNullableToJson(instance.subCategory),
       'background': instance.background,
       'registration': instance.registration,
       'premium': instance.premium,
@@ -1780,7 +1790,9 @@ Map<String, dynamic> _$NftMediaToJson(NftMedia instance) => <String, dynamic>{
 NftSaleInfo _$NftSaleInfoFromJson(Map<String, dynamic> json) => NftSaleInfo(
       auctionId: (json['auctionId'] as num).toDouble(),
       seller: json['seller'] as String,
-      currentWinner: json['currentWinner'],
+      currentWinner: json['currentWinner'] == null
+          ? null
+          : OwnerDto.fromJson(json['currentWinner'] as Map<String, dynamic>),
       minBid: json['minBid'] as String,
       maxBid: json['maxBid'] as String,
       currentBid: json['currentBid'] as String?,
@@ -1804,7 +1816,7 @@ Map<String, dynamic> _$NftSaleInfoToJson(NftSaleInfo instance) =>
     <String, dynamic>{
       'auctionId': instance.auctionId,
       'seller': instance.seller,
-      'currentWinner': instance.currentWinner,
+      'currentWinner': instance.currentWinner?.toJson(),
       'minBid': instance.minBid,
       'maxBid': instance.maxBid,
       'currentBid': instance.currentBid,
@@ -1986,13 +1998,17 @@ NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       uris:
           (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
-      creator: json['creator'],
+      creator: json['creator'] == null
+          ? null
+          : OwnerDto.fromJson(json['creator'] as Map<String, dynamic>),
       wasProcessed: json['wasProcessed'] as bool? ?? false,
       media: json['media'] == null
           ? null
           : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
-      currentOwner: json['currentOwner'],
-      owner: json['owner'],
+      currentOwner: json['currentOwner'] == null
+          ? null
+          : OwnerDto.fromJson(json['currentOwner'] as Map<String, dynamic>),
+      owner: OwnerDto.fromJson(json['owner'] as Map<String, dynamic>),
       onSale: json['onSale'] as bool? ?? false,
       isTicket: json['isTicket'] as bool? ?? false,
       saleInfo: json['saleInfo'] == null
@@ -2034,11 +2050,11 @@ Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
       'royalties': instance.royalties,
       'url': instance.url,
       'uris': instance.uris,
-      'creator': instance.creator,
+      'creator': instance.creator?.toJson(),
       'wasProcessed': instance.wasProcessed,
       'media': instance.media?.toJson(),
-      'currentOwner': instance.currentOwner,
-      'owner': instance.owner,
+      'currentOwner': instance.currentOwner?.toJson(),
+      'owner': instance.owner.toJson(),
       'onSale': instance.onSale,
       'isTicket': instance.isTicket,
       'saleInfo': instance.saleInfo?.toJson(),
@@ -2496,13 +2512,17 @@ NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
       uris:
           (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
-      creator: json['creator'],
+      creator: json['creator'] == null
+          ? null
+          : OwnerDto.fromJson(json['creator'] as Map<String, dynamic>),
       wasProcessed: json['wasProcessed'] as bool? ?? false,
       media: json['media'] == null
           ? null
           : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
-      currentOwner: json['currentOwner'],
-      owner: json['owner'],
+      currentOwner: json['currentOwner'] == null
+          ? null
+          : OwnerDto.fromJson(json['currentOwner'] as Map<String, dynamic>),
+      owner: OwnerDto.fromJson(json['owner'] as Map<String, dynamic>),
       onSale: json['onSale'] as bool? ?? false,
       isTicket: json['isTicket'] as bool? ?? false,
       saleInfo: json['saleInfo'] == null
@@ -2535,11 +2555,11 @@ Map<String, dynamic> _$NftDocToJson(NftDoc instance) => <String, dynamic>{
       'royalties': instance.royalties,
       'url': instance.url,
       'uris': instance.uris,
-      'creator': instance.creator,
+      'creator': instance.creator?.toJson(),
       'wasProcessed': instance.wasProcessed,
       'media': instance.media?.toJson(),
-      'currentOwner': instance.currentOwner,
-      'owner': instance.owner,
+      'currentOwner': instance.currentOwner?.toJson(),
+      'owner': instance.owner.toJson(),
       'onSale': instance.onSale,
       'isTicket': instance.isTicket,
       'saleInfo': instance.saleInfo?.toJson(),
@@ -3355,6 +3375,467 @@ Map<String, dynamic> _$GetUsersStatsResponseDtoToJson(
       'usersStats': instance.usersStats.map((e) => e.toJson()).toList(),
     };
 
+LendingMarketParticipants _$LendingMarketParticipantsFromJson(
+        Map<String, dynamic> json) =>
+    LendingMarketParticipants(
+      count: (json['count'] as num).toDouble(),
+      wallets: (json['wallets'] as List<dynamic>?)
+              ?.map((e) => OwnerDto.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LendingMarketParticipantsToJson(
+        LendingMarketParticipants instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'wallets': instance.wallets.map((e) => e.toJson()).toList(),
+    };
+
+LendingMarketProfile _$LendingMarketProfileFromJson(
+        Map<String, dynamic> json) =>
+    LendingMarketProfile(
+      dataType: lendingMarketProfileDataTypeFromJson(json['dataType']),
+      token: json['token'] as String,
+      name: json['name'] as String,
+      decimals: (json['decimals'] as num).toDouble(),
+      address: json['address'] as String,
+      baseRate: json['baseRate'] as String,
+      maxBorrowRate: json['maxBorrowRate'] as String,
+      slopeRate1: json['slopeRate1'] as String,
+      slopeRate2: json['slopeRate2'] as String,
+      optimalUsageRate: json['optimalUsageRate'] as String,
+      reserveFactor: json['reserveFactor'] as String,
+      liquidationFee: json['liquidationFee'] as String,
+      ltv: json['ltv'] as String,
+      liquidationBonus: json['liquidationBonus'] as String,
+      liquidationThreshold: json['liquidationThreshold'] as String,
+      rewardsReserve: json['rewardsReserve'] as Object,
+      rewardsReserveShort: json['rewardsReserveShort'] as Object,
+      reserves: json['reserves'] as Object,
+      reservesShort: json['reservesShort'] as Object,
+      supplyAmount: json['supplyAmount'] as Object,
+      borrowAmount: json['borrowAmount'] as Object,
+      supplyAmountShort: json['supplyAmountShort'] as Object,
+      borrowAmountShort: json['borrowAmountShort'] as Object,
+      vaultAmount: json['vaultAmount'] as Object,
+      vaultAmountShort: json['vaultAmountShort'] as Object,
+      supplyCap: json['supplyCap'] as String,
+      borrowCap: json['borrowCap'] as String,
+      supplyCapShort: json['supplyCapShort'] as Object,
+      borrowCapShort: json['borrowCapShort'] as Object,
+      supplyIndex: json['supplyIndex'] as Object,
+      borrowIndex: json['borrowIndex'] as Object,
+      timestamp: json['timestamp'] as Object,
+      borrowApy: json['borrowApy'] as Object,
+      supplyApy: json['supplyApy'] as Object,
+      utilizationRate: json['utilizationRate'] as Object,
+      canBeCollateral: json['canBeCollateral'] as bool,
+      canBeBorrowed: json['canBeBorrowed'] as bool,
+      eMode: json['eMode'] as bool,
+      eModeCategories: (json['eModeCategories'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      isolated: json['isolated'] as bool,
+      maxDebtUsd: json['maxDebtUsd'] as Object,
+      maxDebtUsdShort: json['maxDebtUsdShort'] as Object,
+      debtCeiling: json['debtCeiling'] as String?,
+      debtCeilingShort: (json['debtCeilingShort'] as num?)?.toDouble(),
+      siloed: json['siloed'] as bool,
+      flashLoan: json['flashLoan'] as bool,
+      flashLoanFee: json['flashLoanFee'] as String,
+      canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
+      eModeCategoryProfiles: (json['eModeCategoryProfiles'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      oraclePrice: (json['oraclePrice'] as num).toDouble(),
+      participants: LendingMarketParticipants.fromJson(
+          json['participants'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LendingMarketProfileToJson(
+        LendingMarketProfile instance) =>
+    <String, dynamic>{
+      'dataType': lendingMarketProfileDataTypeToJson(instance.dataType),
+      'token': instance.token,
+      'name': instance.name,
+      'decimals': instance.decimals,
+      'address': instance.address,
+      'baseRate': instance.baseRate,
+      'maxBorrowRate': instance.maxBorrowRate,
+      'slopeRate1': instance.slopeRate1,
+      'slopeRate2': instance.slopeRate2,
+      'optimalUsageRate': instance.optimalUsageRate,
+      'reserveFactor': instance.reserveFactor,
+      'liquidationFee': instance.liquidationFee,
+      'ltv': instance.ltv,
+      'liquidationBonus': instance.liquidationBonus,
+      'liquidationThreshold': instance.liquidationThreshold,
+      'rewardsReserve': instance.rewardsReserve,
+      'rewardsReserveShort': instance.rewardsReserveShort,
+      'reserves': instance.reserves,
+      'reservesShort': instance.reservesShort,
+      'supplyAmount': instance.supplyAmount,
+      'borrowAmount': instance.borrowAmount,
+      'supplyAmountShort': instance.supplyAmountShort,
+      'borrowAmountShort': instance.borrowAmountShort,
+      'vaultAmount': instance.vaultAmount,
+      'vaultAmountShort': instance.vaultAmountShort,
+      'supplyCap': instance.supplyCap,
+      'borrowCap': instance.borrowCap,
+      'supplyCapShort': instance.supplyCapShort,
+      'borrowCapShort': instance.borrowCapShort,
+      'supplyIndex': instance.supplyIndex,
+      'borrowIndex': instance.borrowIndex,
+      'timestamp': instance.timestamp,
+      'borrowApy': instance.borrowApy,
+      'supplyApy': instance.supplyApy,
+      'utilizationRate': instance.utilizationRate,
+      'canBeCollateral': instance.canBeCollateral,
+      'canBeBorrowed': instance.canBeBorrowed,
+      'eMode': instance.eMode,
+      'eModeCategories': instance.eModeCategories,
+      'isolated': instance.isolated,
+      'maxDebtUsd': instance.maxDebtUsd,
+      'maxDebtUsdShort': instance.maxDebtUsdShort,
+      'debtCeiling': instance.debtCeiling,
+      'debtCeilingShort': instance.debtCeilingShort,
+      'siloed': instance.siloed,
+      'flashLoan': instance.flashLoan,
+      'flashLoanFee': instance.flashLoanFee,
+      'canBorrowInIsolation': instance.canBorrowInIsolation,
+      'eModeCategoryProfiles': instance.eModeCategoryProfiles,
+      'oraclePrice': instance.oraclePrice,
+      'participants': instance.participants.toJson(),
+    };
+
+LendingMarketProfileQuery _$LendingMarketProfileQueryFromJson(
+        Map<String, dynamic> json) =>
+    LendingMarketProfileQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) =>
+                  LendingMarketProfile.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LendingMarketProfileQueryToJson(
+        LendingMarketProfileQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+LendingEModeCategoryProfileDoc _$LendingEModeCategoryProfileDocFromJson(
+        Map<String, dynamic> json) =>
+    LendingEModeCategoryProfileDoc(
+      dataType:
+          lendingEModeCategoryProfileDocDataTypeFromJson(json['dataType']),
+      ltv: json['ltv'] as String,
+      liquidationThreshold: json['liquidationThreshold'] as String,
+      liquidationBonus: json['liquidationBonus'] as String,
+      id: json['id'] as String,
+    );
+
+Map<String, dynamic> _$LendingEModeCategoryProfileDocToJson(
+        LendingEModeCategoryProfileDoc instance) =>
+    <String, dynamic>{
+      'dataType':
+          lendingEModeCategoryProfileDocDataTypeToJson(instance.dataType),
+      'ltv': instance.ltv,
+      'liquidationThreshold': instance.liquidationThreshold,
+      'liquidationBonus': instance.liquidationBonus,
+      'id': instance.id,
+    };
+
+PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
+    PickTypeClass(
+      token: json['token'] as String,
+      name: json['name'] as String,
+      decimals: (json['decimals'] as num).toDouble(),
+      rewardsReserve: json['rewardsReserve'] as Object,
+      reserves: json['reserves'] as Object,
+      supplyAmount: json['supplyAmount'] as Object,
+      vaultAmount: json['vaultAmount'] as Object,
+      supplyCap: json['supplyCap'] as String,
+      borrowApy: json['borrowApy'] as Object,
+      supplyApy: json['supplyApy'] as Object,
+      canBeCollateral: json['canBeCollateral'] as bool,
+      canBeBorrowed: json['canBeBorrowed'] as bool,
+      isolated: json['isolated'] as bool,
+      maxDebtUsd: json['maxDebtUsd'] as Object,
+      debtCeiling: json['debtCeiling'] as String?,
+      siloed: json['siloed'] as bool,
+      canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
+    );
+
+Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'name': instance.name,
+      'decimals': instance.decimals,
+      'rewardsReserve': instance.rewardsReserve,
+      'reserves': instance.reserves,
+      'supplyAmount': instance.supplyAmount,
+      'vaultAmount': instance.vaultAmount,
+      'supplyCap': instance.supplyCap,
+      'borrowApy': instance.borrowApy,
+      'supplyApy': instance.supplyApy,
+      'canBeCollateral': instance.canBeCollateral,
+      'canBeBorrowed': instance.canBeBorrowed,
+      'isolated': instance.isolated,
+      'maxDebtUsd': instance.maxDebtUsd,
+      'debtCeiling': instance.debtCeiling,
+      'siloed': instance.siloed,
+      'canBorrowInIsolation': instance.canBorrowInIsolation,
+    };
+
+LendingAccountProfile _$LendingAccountProfileFromJson(
+        Map<String, dynamic> json) =>
+    LendingAccountProfile(
+      dataType: lendingAccountProfileDataTypeFromJson(json['dataType']),
+      identifier: json['identifier'] as String,
+      nonce: (json['nonce'] as num).toDouble(),
+      token: json['token'] as String,
+      supplyAmount: json['supplyAmount'] as Object,
+      borrowAmount: json['borrowAmount'] as Object,
+      supplyAmountShort: json['supplyAmountShort'] as Object,
+      borrowAmountShort: json['borrowAmountShort'] as Object,
+      supplyAccumulatedInterest: json['supplyAccumulatedInterest'] as Object,
+      borrowAccumulatedInterest: json['borrowAccumulatedInterest'] as Object,
+      supplyAccumulatedInterestShort:
+          json['supplyAccumulatedInterestShort'] as Object,
+      borrowAccumulatedInterestShort:
+          json['borrowAccumulatedInterestShort'] as Object,
+      supplyTimestamp: json['supplyTimestamp'] as Object,
+      supplyIndex: json['supplyIndex'] as Object,
+      borrowTimestamp: json['borrowTimestamp'] as Object,
+      borrowIndex: json['borrowIndex'] as Object,
+      entryLiquidationThreshold:
+          (json['entryLiquidationThreshold'] as num).toDouble(),
+      isolated: json['isolated'] as bool,
+      isVault: json['isVault'] as bool,
+      eModeCategory: json['eModeCategory'] as String,
+      address: json['address'] as String,
+      eModeCategoryProfile: json['eModeCategoryProfile'] == null
+          ? null
+          : LendingEModeCategoryProfileDoc.fromJson(
+              json['eModeCategoryProfile'] as Map<String, dynamic>),
+      marketProfile: json['marketProfile'] == null
+          ? null
+          : PickTypeClass.fromJson(
+              json['marketProfile'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LendingAccountProfileToJson(
+        LendingAccountProfile instance) =>
+    <String, dynamic>{
+      'dataType': lendingAccountProfileDataTypeToJson(instance.dataType),
+      'identifier': instance.identifier,
+      'nonce': instance.nonce,
+      'token': instance.token,
+      'supplyAmount': instance.supplyAmount,
+      'borrowAmount': instance.borrowAmount,
+      'supplyAmountShort': instance.supplyAmountShort,
+      'borrowAmountShort': instance.borrowAmountShort,
+      'supplyAccumulatedInterest': instance.supplyAccumulatedInterest,
+      'borrowAccumulatedInterest': instance.borrowAccumulatedInterest,
+      'supplyAccumulatedInterestShort': instance.supplyAccumulatedInterestShort,
+      'borrowAccumulatedInterestShort': instance.borrowAccumulatedInterestShort,
+      'supplyTimestamp': instance.supplyTimestamp,
+      'supplyIndex': instance.supplyIndex,
+      'borrowTimestamp': instance.borrowTimestamp,
+      'borrowIndex': instance.borrowIndex,
+      'entryLiquidationThreshold': instance.entryLiquidationThreshold,
+      'isolated': instance.isolated,
+      'isVault': instance.isVault,
+      'eModeCategory': instance.eModeCategory,
+      'address': instance.address,
+      'eModeCategoryProfile': instance.eModeCategoryProfile?.toJson(),
+      'marketProfile': instance.marketProfile?.toJson(),
+    };
+
+ShortLendingTokenEModeProfileDoc _$ShortLendingTokenEModeProfileDocFromJson(
+        Map<String, dynamic> json) =>
+    ShortLendingTokenEModeProfileDoc(
+      token: json['token'] as String,
+      canBeCollateral: json['canBeCollateral'] as bool,
+      canBeBorrowed: json['canBeBorrowed'] as bool,
+      eModeCategory: json['eModeCategory'] as String,
+    );
+
+Map<String, dynamic> _$ShortLendingTokenEModeProfileDocToJson(
+        ShortLendingTokenEModeProfileDoc instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'canBeCollateral': instance.canBeCollateral,
+      'canBeBorrowed': instance.canBeBorrowed,
+      'eModeCategory': instance.eModeCategory,
+    };
+
+LendingEModeCategoryProfile _$LendingEModeCategoryProfileFromJson(
+        Map<String, dynamic> json) =>
+    LendingEModeCategoryProfile(
+      dataType: lendingEModeCategoryProfileDataTypeFromJson(json['dataType']),
+      ltv: json['ltv'] as String,
+      liquidationThreshold: json['liquidationThreshold'] as String,
+      liquidationBonus: json['liquidationBonus'] as String,
+      id: json['id'] as String,
+      eModeTokenProfiles: (json['eModeTokenProfiles'] as List<dynamic>?)
+              ?.map((e) => ShortLendingTokenEModeProfileDoc.fromJson(
+                  e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LendingEModeCategoryProfileToJson(
+        LendingEModeCategoryProfile instance) =>
+    <String, dynamic>{
+      'dataType': lendingEModeCategoryProfileDataTypeToJson(instance.dataType),
+      'ltv': instance.ltv,
+      'liquidationThreshold': instance.liquidationThreshold,
+      'liquidationBonus': instance.liquidationBonus,
+      'id': instance.id,
+      'eModeTokenProfiles':
+          instance.eModeTokenProfiles.map((e) => e.toJson()).toList(),
+    };
+
+LendingMarketAnalyticsGraph _$LendingMarketAnalyticsGraphFromJson(
+        Map<String, dynamic> json) =>
+    LendingMarketAnalyticsGraph(
+      token: json['token'] as String,
+      timestamp: (json['timestamp'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      minSupplyApy: (json['minSupplyApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      maxSupplyApy: (json['maxSupplyApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      avgSupplyApy: (json['avgSupplyApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      minBorrowApy: (json['minBorrowApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      maxBorrowApy: (json['maxBorrowApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      avgBorrowApy: (json['avgBorrowApy'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      minUtilizationRate: (json['minUtilizationRate'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      maxUtilizationRate: (json['maxUtilizationRate'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      avgUtilizationRate: (json['avgUtilizationRate'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      minSupplyAmount: (json['minSupplyAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      maxSupplyAmount: (json['maxSupplyAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      avgSupplyAmount: (json['avgSupplyAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      minBorrowAmount: (json['minBorrowAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      maxBorrowAmount: (json['maxBorrowAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      avgBorrowAmount: (json['avgBorrowAmount'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$LendingMarketAnalyticsGraphToJson(
+        LendingMarketAnalyticsGraph instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'timestamp': instance.timestamp,
+      'minSupplyApy': instance.minSupplyApy,
+      'maxSupplyApy': instance.maxSupplyApy,
+      'avgSupplyApy': instance.avgSupplyApy,
+      'minBorrowApy': instance.minBorrowApy,
+      'maxBorrowApy': instance.maxBorrowApy,
+      'avgBorrowApy': instance.avgBorrowApy,
+      'minUtilizationRate': instance.minUtilizationRate,
+      'maxUtilizationRate': instance.maxUtilizationRate,
+      'avgUtilizationRate': instance.avgUtilizationRate,
+      'minSupplyAmount': instance.minSupplyAmount,
+      'maxSupplyAmount': instance.maxSupplyAmount,
+      'avgSupplyAmount': instance.avgSupplyAmount,
+      'minBorrowAmount': instance.minBorrowAmount,
+      'maxBorrowAmount': instance.maxBorrowAmount,
+      'avgBorrowAmount': instance.avgBorrowAmount,
+    };
+
+LendingPositionStatus _$LendingPositionStatusFromJson(
+        Map<String, dynamic> json) =>
+    LendingPositionStatus(
+      position: (json['position'] as num).toDouble(),
+      identifier: json['identifier'] as String,
+      supplied: (json['supplied'] as num).toDouble(),
+      borrowed: (json['borrowed'] as num).toDouble(),
+      healthFactor: (json['healthFactor'] as num).toDouble(),
+      wallet: OwnerDto.fromJson(json['wallet'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LendingPositionStatusToJson(
+        LendingPositionStatus instance) =>
+    <String, dynamic>{
+      'position': instance.position,
+      'identifier': instance.identifier,
+      'supplied': instance.supplied,
+      'borrowed': instance.borrowed,
+      'healthFactor': instance.healthFactor,
+      'wallet': instance.wallet.toJson(),
+    };
+
+LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
+    LendingOverallStats(
+      supplied: (json['supplied'] as num).toDouble(),
+      borrowed: (json['borrowed'] as num).toDouble(),
+      suppliedMargin: (json['suppliedMargin'] as num).toDouble(),
+      borrowedMargin: (json['borrowedMargin'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$LendingOverallStatsToJson(
+        LendingOverallStats instance) =>
+    <String, dynamic>{
+      'supplied': instance.supplied,
+      'borrowed': instance.borrowed,
+      'suppliedMargin': instance.suppliedMargin,
+      'borrowedMargin': instance.borrowedMargin,
+    };
+
 TransactionProcessStatus _$TransactionProcessStatusFromJson(
         Map<String, dynamic> json) =>
     TransactionProcessStatus(
@@ -3884,6 +4365,8 @@ EventProfileCreateDto _$EventProfileCreateDtoFromJson(
           json['registration'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool,
       seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+      category: json['category'] as String,
+      subCategory: json['subCategory'] as String,
     );
 
 Map<String, dynamic> _$EventProfileCreateDtoToJson(
@@ -3896,6 +4379,8 @@ Map<String, dynamic> _$EventProfileCreateDtoToJson(
       'registration': instance.registration.toJson(),
       'isVirtualEvent': instance.isVirtualEvent,
       'seo': instance.seo.toJson(),
+      'category': instance.category,
+      'subCategory': instance.subCategory,
     };
 
 CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
@@ -3973,12 +4458,14 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
       title: json['title'] as String,
       startTime: (json['startTime'] as num).toDouble(),
       endTime: (json['endTime'] as num).toDouble(),
-      descriptionUrl: json['descriptionUrl'] as String,
+      descriptionUrl: json['descriptionUrl'] as String?,
       location:
           EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool,
       slug: json['slug'] as String,
       profile: json['profile'] as String,
+      category: eventProfileCategoryFromJson(json['category']),
+      subCategory: eventProfileSubCategoryNullableFromJson(json['subCategory']),
       background: json['background'] as String?,
       registration: json['registration'] as Object,
       premium: json['premium'] as Object,
@@ -4012,6 +4499,9 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'isVirtualEvent': instance.isVirtualEvent,
       'slug': instance.slug,
       'profile': instance.profile,
+      'category': eventProfileCategoryToJson(instance.category),
+      'subCategory':
+          eventProfileSubCategoryNullableToJson(instance.subCategory),
       'background': instance.background,
       'registration': instance.registration,
       'premium': instance.premium,
@@ -4054,6 +4544,8 @@ EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
           json['registration'] as Map<String, dynamic>),
       slug: json['slug'] as String,
       seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+      category: json['category'] as String,
+      subCategory: json['subCategory'] as String,
     );
 
 Map<String, dynamic> _$EventProfileEditDtoToJson(
@@ -4067,6 +4559,8 @@ Map<String, dynamic> _$EventProfileEditDtoToJson(
       'registration': instance.registration.toJson(),
       'slug': instance.slug,
       'seo': instance.seo.toJson(),
+      'category': instance.category,
+      'subCategory': instance.subCategory,
     };
 
 TicketSelectionDto _$TicketSelectionDtoFromJson(Map<String, dynamic> json) =>
@@ -4256,6 +4750,19 @@ Map<String, dynamic> _$FiatPaymentFormToJson(FiatPaymentForm instance) =>
       'data': instance.data,
     };
 
+CryptoPaymentResult _$CryptoPaymentResultFromJson(Map<String, dynamic> json) =>
+    CryptoPaymentResult(
+      signature: json['signature'] as String,
+      data: json['data'] as String,
+    );
+
+Map<String, dynamic> _$CryptoPaymentResultToJson(
+        CryptoPaymentResult instance) =>
+    <String, dynamic>{
+      'signature': instance.signature,
+      'data': instance.data,
+    };
+
 EventRegistrationResponseDto _$EventRegistrationResponseDtoFromJson(
         Map<String, dynamic> json) =>
     EventRegistrationResponseDto(
@@ -4265,6 +4772,10 @@ EventRegistrationResponseDto _$EventRegistrationResponseDtoFromJson(
           ? null
           : FiatPaymentForm.fromJson(
               json['fiatPaymentForm'] as Map<String, dynamic>),
+      cryptoPayment: json['cryptoPayment'] == null
+          ? null
+          : CryptoPaymentResult.fromJson(
+              json['cryptoPayment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventRegistrationResponseDtoToJson(
@@ -4272,6 +4783,7 @@ Map<String, dynamic> _$EventRegistrationResponseDtoToJson(
     <String, dynamic>{
       'guestDoc': instance.guestDoc.toJson(),
       'fiatPaymentForm': instance.fiatPaymentForm?.toJson(),
+      'cryptoPayment': instance.cryptoPayment?.toJson(),
     };
 
 EventTicketProfileCreateDto _$EventTicketProfileCreateDtoFromJson(
@@ -4985,6 +5497,36 @@ Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
       'endTime': instance.endTime,
     };
 
+MyEvents _$MyEventsFromJson(Map<String, dynamic> json) => MyEvents(
+      ticketCount: (json['ticketCount'] as num).toDouble(),
+      status: myEventsStatusFromJson(json['status']),
+      eventProfile:
+          EventProfile.fromJson(json['eventProfile'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$MyEventsToJson(MyEvents instance) => <String, dynamic>{
+      'ticketCount': instance.ticketCount,
+      'status': myEventsStatusToJson(instance.status),
+      'eventProfile': instance.eventProfile.toJson(),
+    };
+
+GetMyEventsQuery _$GetMyEventsQueryFromJson(Map<String, dynamic> json) =>
+    GetMyEventsQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) => MyEvents.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$GetMyEventsQueryToJson(GetMyEventsQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
 QRBody _$QRBodyFromJson(Map<String, dynamic> json) => QRBody(
       type: qRBodyTypeFromJson(json['type']),
       data: json['data'] as String,
@@ -5225,6 +5767,203 @@ Map<String, dynamic> _$EventCountGroupedByCountryToJson(
       'country': instance.country,
       'eventCount': instance.eventCount,
       'cities': instance.cities,
+    };
+
+RewardDetails _$RewardDetailsFromJson(Map<String, dynamic> json) =>
+    RewardDetails(
+      rewardType: rewardDetailsRewardTypeFromJson(json['rewardType']),
+      conditionType: rewardDetailsConditionTypeFromJson(json['conditionType']),
+      condition: (json['condition'] as num).toDouble(),
+      currency: json['currency'] as String,
+      voucherInfo: json['voucherInfo'] == null
+          ? null
+          : EventVoucherDoc.fromJson(
+              json['voucherInfo'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$RewardDetailsToJson(RewardDetails instance) =>
+    <String, dynamic>{
+      'rewardType': rewardDetailsRewardTypeToJson(instance.rewardType),
+      'conditionType': rewardDetailsConditionTypeToJson(instance.conditionType),
+      'condition': instance.condition,
+      'currency': instance.currency,
+      'voucherInfo': instance.voucherInfo?.toJson(),
+    };
+
+EventReferralConfigCreateDto _$EventReferralConfigCreateDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralConfigCreateDto(
+      appliedVoucher: json['appliedVoucher'] == null
+          ? null
+          : EventVoucherDoc.fromJson(
+              json['appliedVoucher'] as Map<String, dynamic>),
+      rewardDetails: json['rewardDetails'] == null
+          ? null
+          : RewardDetails.fromJson(
+              json['rewardDetails'] as Map<String, dynamic>),
+      isSelfService: json['isSelfService'] as bool,
+      isActive: json['isActive'] as bool,
+    );
+
+Map<String, dynamic> _$EventReferralConfigCreateDtoToJson(
+        EventReferralConfigCreateDto instance) =>
+    <String, dynamic>{
+      'appliedVoucher': instance.appliedVoucher?.toJson(),
+      'rewardDetails': instance.rewardDetails?.toJson(),
+      'isSelfService': instance.isSelfService,
+      'isActive': instance.isActive,
+    };
+
+EventReferralConfigDoc _$EventReferralConfigDocFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralConfigDoc(
+      dataType:
+          EventReferralConfigDoc.eventReferralConfigDocDataTypeDataTypeFromJson(
+              json['dataType']),
+      id: json['id'] as String,
+      eventId: json['eventId'] as String,
+      appliedVoucher: json['appliedVoucher'] == null
+          ? null
+          : EventVoucherDoc.fromJson(
+              json['appliedVoucher'] as Map<String, dynamic>),
+      rewardDetails: json['rewardDetails'] == null
+          ? null
+          : RewardDetails.fromJson(
+              json['rewardDetails'] as Map<String, dynamic>),
+      isSelfService: json['isSelfService'] as Object,
+      isActive: json['isActive'] as Object,
+      createdAt: (json['createdAt'] as num).toDouble(),
+      createdBy: json['createdBy'] as String,
+    );
+
+Map<String, dynamic> _$EventReferralConfigDocToJson(
+        EventReferralConfigDoc instance) =>
+    <String, dynamic>{
+      'dataType': eventReferralConfigDocDataTypeToJson(instance.dataType),
+      'id': instance.id,
+      'eventId': instance.eventId,
+      'appliedVoucher': instance.appliedVoucher?.toJson(),
+      'rewardDetails': instance.rewardDetails?.toJson(),
+      'isSelfService': instance.isSelfService,
+      'isActive': instance.isActive,
+      'createdAt': instance.createdAt,
+      'createdBy': instance.createdBy,
+    };
+
+EventReferralConfigEditDto _$EventReferralConfigEditDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralConfigEditDto(
+      appliedVoucher: json['appliedVoucher'] == null
+          ? null
+          : EventVoucherDoc.fromJson(
+              json['appliedVoucher'] as Map<String, dynamic>),
+      rewardDetails: json['rewardDetails'] == null
+          ? null
+          : RewardDetails.fromJson(
+              json['rewardDetails'] as Map<String, dynamic>),
+      isSelfService: json['isSelfService'] as bool?,
+      isActive: json['isActive'] as bool?,
+    );
+
+Map<String, dynamic> _$EventReferralConfigEditDtoToJson(
+        EventReferralConfigEditDto instance) =>
+    <String, dynamic>{
+      'appliedVoucher': instance.appliedVoucher?.toJson(),
+      'rewardDetails': instance.rewardDetails?.toJson(),
+      'isSelfService': instance.isSelfService,
+      'isActive': instance.isActive,
+    };
+
+EventReferralConfigQuery _$EventReferralConfigQueryFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralConfigQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool?,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) =>
+                  EventReferralConfigDoc.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventReferralConfigQueryToJson(
+        EventReferralConfigQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+EventReferralCreateDto _$EventReferralCreateDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralCreateDto(
+      referralCode: json['referralCode'] as String,
+      referralConfigId: json['referralConfigId'] as String,
+    );
+
+Map<String, dynamic> _$EventReferralCreateDtoToJson(
+        EventReferralCreateDto instance) =>
+    <String, dynamic>{
+      'referralCode': instance.referralCode,
+      'referralConfigId': instance.referralConfigId,
+    };
+
+EventReferralDoc _$EventReferralDocFromJson(Map<String, dynamic> json) =>
+    EventReferralDoc(
+      dataType: EventReferralDoc.eventReferralDocDataTypeDataTypeFromJson(
+          json['dataType']),
+      id: json['id'] as String,
+      referralCode: json['referralCode'] as String,
+      ownerId: json['ownerId'] as String?,
+      eventId: json['eventId'] as String,
+      referralConfigId: json['referralConfigId'] as String,
+      successfulReferrals: json['successfulReferrals'] as Object,
+      createdAt: (json['createdAt'] as num).toDouble(),
+      isActive: json['isActive'] as Object,
+    );
+
+Map<String, dynamic> _$EventReferralDocToJson(EventReferralDoc instance) =>
+    <String, dynamic>{
+      'dataType': eventReferralDocDataTypeToJson(instance.dataType),
+      'id': instance.id,
+      'referralCode': instance.referralCode,
+      'ownerId': instance.ownerId,
+      'eventId': instance.eventId,
+      'referralConfigId': instance.referralConfigId,
+      'successfulReferrals': instance.successfulReferrals,
+      'createdAt': instance.createdAt,
+      'isActive': instance.isActive,
+    };
+
+EventReferralEditDto _$EventReferralEditDtoFromJson(
+        Map<String, dynamic> json) =>
+    EventReferralEditDto(
+      referralCode: json['referralCode'] as String?,
+      isActive: json['isActive'] as bool?,
+    );
+
+Map<String, dynamic> _$EventReferralEditDtoToJson(
+        EventReferralEditDto instance) =>
+    <String, dynamic>{
+      'referralCode': instance.referralCode,
+      'isActive': instance.isActive,
+    };
+
+EventReferralQuery _$EventReferralQueryFromJson(Map<String, dynamic> json) =>
+    EventReferralQuery(
+      count: (json['count'] as num?)?.toDouble(),
+      hasMoreResults: json['hasMoreResults'] as bool?,
+      resources: (json['resources'] as List<dynamic>?)
+              ?.map((e) => EventReferralDoc.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventReferralQueryToJson(EventReferralQuery instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
 RangeFilter _$RangeFilterFromJson(Map<String, dynamic> json) => RangeFilter(
@@ -5925,6 +6664,14 @@ EventProfileFilterCriteriaDto _$EventProfileFilterCriteriaDtoFromJson(
               ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      category: (json['category'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      subCategory: (json['subCategory'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$EventProfileFilterCriteriaDtoToJson(
@@ -5933,6 +6680,8 @@ Map<String, dynamic> _$EventProfileFilterCriteriaDtoToJson(
       'searchText': instance.searchText,
       'area': instance.area,
       'range': instance.range?.map((e) => e.toJson()).toList(),
+      'category': instance.category,
+      'subCategory': instance.subCategory,
     };
 
 EventExtraProperties _$EventExtraPropertiesFromJson(
@@ -5974,6 +6723,95 @@ EventProfileFilter _$EventProfileFilterFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$EventProfileFilterToJson(EventProfileFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+      'extraProperties': instance.extraProperties?.toJson(),
+    };
+
+LendingMarketProfileFilterCriteriaDto
+    _$LendingMarketProfileFilterCriteriaDtoFromJson(
+            Map<String, dynamic> json) =>
+        LendingMarketProfileFilterCriteriaDto(
+          token: (json['token'] as List<dynamic>?)
+                  ?.map((e) => e as String)
+                  .toList() ??
+              [],
+          range: (json['range'] as List<dynamic>?)
+                  ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+                  .toList() ??
+              [],
+          eMode: json['eMode'] as bool?,
+          flashLoan: json['flashLoan'] as bool?,
+          isolated: json['isolated'] as bool?,
+          siloed: json['siloed'] as bool?,
+          canBeCollateral: json['canBeCollateral'] as bool?,
+          canBeBorrowed: json['canBeBorrowed'] as bool?,
+          canBorrowInIsolation: json['canBorrowInIsolation'] as bool?,
+          isDebtCeilingReached: json['isDebtCeilingReached'] as bool?,
+        );
+
+Map<String, dynamic> _$LendingMarketProfileFilterCriteriaDtoToJson(
+        LendingMarketProfileFilterCriteriaDto instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'range': instance.range?.map((e) => e.toJson()).toList(),
+      'eMode': instance.eMode,
+      'flashLoan': instance.flashLoan,
+      'isolated': instance.isolated,
+      'siloed': instance.siloed,
+      'canBeCollateral': instance.canBeCollateral,
+      'canBeBorrowed': instance.canBeBorrowed,
+      'canBorrowInIsolation': instance.canBorrowInIsolation,
+      'isDebtCeilingReached': instance.isDebtCeilingReached,
+    };
+
+LendingMarketProfileExtraProperties
+    _$LendingMarketProfileExtraPropertiesFromJson(Map<String, dynamic> json) =>
+        LendingMarketProfileExtraProperties(
+          eModeCategoryProfile: json['eModeCategoryProfile'] as bool?,
+          oraclePrice: json['oraclePrice'] as bool?,
+          participants: json['participants'] as bool?,
+        );
+
+Map<String, dynamic> _$LendingMarketProfileExtraPropertiesToJson(
+        LendingMarketProfileExtraProperties instance) =>
+    <String, dynamic>{
+      'eModeCategoryProfile': instance.eModeCategoryProfile,
+      'oraclePrice': instance.oraclePrice,
+      'participants': instance.participants,
+    };
+
+LendingMarketProfileFilter _$LendingMarketProfileFilterFromJson(
+        Map<String, dynamic> json) =>
+    LendingMarketProfileFilter(
+      select: (json['select'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      orderBy: (json['orderBy'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      includeCount: json['includeCount'] as bool? ?? false,
+      strictSelect: json['strictSelect'] as bool? ?? false,
+      top: (json['top'] as num?)?.toDouble(),
+      skip: (json['skip'] as num?)?.toDouble(),
+      filters: LendingMarketProfileFilterCriteriaDto.fromJson(
+          json['filters'] as Map<String, dynamic>),
+      extraProperties: json['extraProperties'] == null
+          ? null
+          : LendingMarketProfileExtraProperties.fromJson(
+              json['extraProperties'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LendingMarketProfileFilterToJson(
+        LendingMarketProfileFilter instance) =>
     <String, dynamic>{
       'select': instance.select,
       'orderBy': instance.orderBy,
@@ -6138,4 +6976,16 @@ Map<String, dynamic> _$EventEventIdTicketTicketIdProfilePut$RequestBodyToJson(
         EventEventIdTicketTicketIdProfilePut$RequestBody instance) =>
     <String, dynamic>{
       'file': instance.file,
+    };
+
+LendingMarketTokenPriceGet$Response
+    _$LendingMarketTokenPriceGet$ResponseFromJson(Map<String, dynamic> json) =>
+        LendingMarketTokenPriceGet$Response(
+          price: json['price'] as String?,
+        );
+
+Map<String, dynamic> _$LendingMarketTokenPriceGet$ResponseToJson(
+        LendingMarketTokenPriceGet$Response instance) =>
+    <String, dynamic>{
+      'price': instance.price,
     };

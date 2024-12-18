@@ -147,6 +147,98 @@ enum EventProfileDocDataType {
   const EventProfileDocDataType(this.value);
 }
 
+enum EventProfileDocCategory {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('festival')
+  festival('festival'),
+  @JsonValue('conference')
+  conference('conference'),
+  @JsonValue('networking')
+  networking('networking'),
+  @JsonValue('meetup')
+  meetup('meetup'),
+  @JsonValue('web3')
+  web3('web3'),
+  @JsonValue('entertainment')
+  entertainment('entertainment');
+
+  final String? value;
+
+  const EventProfileDocCategory(this.value);
+}
+
+enum EventProfileDocSubCategory {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('music')
+  music('music'),
+  @JsonValue('arts-and-culture')
+  artsAndCulture('arts-and-culture'),
+  @JsonValue('food-and-drink')
+  foodAndDrink('food-and-drink'),
+  @JsonValue('lifestyle-and-wellness')
+  lifestyleAndWellness('lifestyle-and-wellness'),
+  @JsonValue('local-and-community')
+  localAndCommunity('local-and-community'),
+  @JsonValue('technology-and-innovation')
+  technologyAndInnovation('technology-and-innovation'),
+  @JsonValue('business-and-finance')
+  businessAndFinance('business-and-finance'),
+  @JsonValue('healthcare-and-science')
+  healthcareAndScience('healthcare-and-science'),
+  @JsonValue('education-and-learning')
+  educationAndLearning('education-and-learning'),
+  @JsonValue('marketing-and-media')
+  marketingAndMedia('marketing-and-media'),
+  @JsonValue('industry-specific')
+  industrySpecific('industry-specific'),
+  @JsonValue('career-development')
+  careerDevelopment('career-development'),
+  @JsonValue('investor-and-startups')
+  investorAndStartups('investor-and-startups'),
+  @JsonValue('social-impact')
+  socialImpact('social-impact'),
+  @JsonValue('personal-development')
+  personalDevelopment('personal-development'),
+  @JsonValue('hobbies-and-interests')
+  hobbiesAndInterests('hobbies-and-interests'),
+  @JsonValue('professional-groups')
+  professionalGroups('professional-groups'),
+  @JsonValue('social-gathering')
+  socialGathering('social-gathering'),
+  @JsonValue('education-and-skills')
+  educationAndSkills('education-and-skills'),
+  @JsonValue('family-and-kids')
+  familyAndKids('family-and-kids'),
+  @JsonValue('blockchain-and-cryptocurrency')
+  blockchainAndCryptocurrency('blockchain-and-cryptocurrency'),
+  @JsonValue('metaverse-and-vr')
+  metaverseAndVr('metaverse-and-vr'),
+  @JsonValue('defi-and-finance')
+  defiAndFinance('defi-and-finance'),
+  @JsonValue('dao-and-governance')
+  daoAndGovernance('dao-and-governance'),
+  @JsonValue('web3-startups')
+  web3Startups('web3-startups'),
+  @JsonValue('live-music')
+  liveMusic('live-music'),
+  @JsonValue('comedy-shows')
+  comedyShows('comedy-shows'),
+  @JsonValue('theatre-and-performance')
+  theatreAndPerformance('theatre-and-performance'),
+  @JsonValue('movies')
+  movies('movies'),
+  @JsonValue('nightlife-and-clubbing')
+  nightlifeAndClubbing('nightlife-and-clubbing');
+
+  final String? value;
+
+  const EventProfileDocSubCategory(this.value);
+}
+
 enum CreatorDetailsDtoDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -397,6 +489,78 @@ enum Web2WalletDtoWalletClientType {
   const Web2WalletDtoWalletClientType(this.value);
 }
 
+enum LendingMarketProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingMarketProfileDataType(this.value);
+}
+
+enum LendingEModeCategoryProfileDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingEModeCategoryProfileDocDataType(this.value);
+}
+
+enum LendingAccountProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingAccountProfileDataType(this.value);
+}
+
+enum LendingEModeCategoryProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingEModeCategoryProfileDataType(this.value);
+}
+
 enum TransactionProcessStatusStatus {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -583,6 +747,98 @@ enum EventProfileDataType {
   final String? value;
 
   const EventProfileDataType(this.value);
+}
+
+enum EventProfileCategory {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('festival')
+  festival('festival'),
+  @JsonValue('conference')
+  conference('conference'),
+  @JsonValue('networking')
+  networking('networking'),
+  @JsonValue('meetup')
+  meetup('meetup'),
+  @JsonValue('web3')
+  web3('web3'),
+  @JsonValue('entertainment')
+  entertainment('entertainment');
+
+  final String? value;
+
+  const EventProfileCategory(this.value);
+}
+
+enum EventProfileSubCategory {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('music')
+  music('music'),
+  @JsonValue('arts-and-culture')
+  artsAndCulture('arts-and-culture'),
+  @JsonValue('food-and-drink')
+  foodAndDrink('food-and-drink'),
+  @JsonValue('lifestyle-and-wellness')
+  lifestyleAndWellness('lifestyle-and-wellness'),
+  @JsonValue('local-and-community')
+  localAndCommunity('local-and-community'),
+  @JsonValue('technology-and-innovation')
+  technologyAndInnovation('technology-and-innovation'),
+  @JsonValue('business-and-finance')
+  businessAndFinance('business-and-finance'),
+  @JsonValue('healthcare-and-science')
+  healthcareAndScience('healthcare-and-science'),
+  @JsonValue('education-and-learning')
+  educationAndLearning('education-and-learning'),
+  @JsonValue('marketing-and-media')
+  marketingAndMedia('marketing-and-media'),
+  @JsonValue('industry-specific')
+  industrySpecific('industry-specific'),
+  @JsonValue('career-development')
+  careerDevelopment('career-development'),
+  @JsonValue('investor-and-startups')
+  investorAndStartups('investor-and-startups'),
+  @JsonValue('social-impact')
+  socialImpact('social-impact'),
+  @JsonValue('personal-development')
+  personalDevelopment('personal-development'),
+  @JsonValue('hobbies-and-interests')
+  hobbiesAndInterests('hobbies-and-interests'),
+  @JsonValue('professional-groups')
+  professionalGroups('professional-groups'),
+  @JsonValue('social-gathering')
+  socialGathering('social-gathering'),
+  @JsonValue('education-and-skills')
+  educationAndSkills('education-and-skills'),
+  @JsonValue('family-and-kids')
+  familyAndKids('family-and-kids'),
+  @JsonValue('blockchain-and-cryptocurrency')
+  blockchainAndCryptocurrency('blockchain-and-cryptocurrency'),
+  @JsonValue('metaverse-and-vr')
+  metaverseAndVr('metaverse-and-vr'),
+  @JsonValue('defi-and-finance')
+  defiAndFinance('defi-and-finance'),
+  @JsonValue('dao-and-governance')
+  daoAndGovernance('dao-and-governance'),
+  @JsonValue('web3-startups')
+  web3Startups('web3-startups'),
+  @JsonValue('live-music')
+  liveMusic('live-music'),
+  @JsonValue('comedy-shows')
+  comedyShows('comedy-shows'),
+  @JsonValue('theatre-and-performance')
+  theatreAndPerformance('theatre-and-performance'),
+  @JsonValue('movies')
+  movies('movies'),
+  @JsonValue('nightlife-and-clubbing')
+  nightlifeAndClubbing('nightlife-and-clubbing');
+
+  final String? value;
+
+  const EventProfileSubCategory(this.value);
 }
 
 enum EventGuestDocDataType {
@@ -1065,6 +1321,32 @@ enum EventUserRoleCreateDtoPermissions {
   const EventUserRoleCreateDtoPermissions(this.value);
 }
 
+enum MyEventsStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const MyEventsStatus(this.value);
+}
+
 enum QRBodyType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -1223,6 +1505,104 @@ enum EventGuestAnswerDocDataType {
   const EventGuestAnswerDocDataType(this.value);
 }
 
+enum RewardDetailsRewardType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('voucher')
+  voucher('voucher'),
+  @JsonValue('invitation')
+  invitation('invitation'),
+  @JsonValue('other')
+  other('other');
+
+  final String? value;
+
+  const RewardDetailsRewardType(this.value);
+}
+
+enum RewardDetailsConditionType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('ticketsSoldCount')
+  ticketssoldcount('ticketsSoldCount'),
+  @JsonValue('revenueCount')
+  revenuecount('revenueCount');
+
+  final String? value;
+
+  const RewardDetailsConditionType(this.value);
+}
+
+enum EventReferralConfigDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventReferralConfigDocDataType(this.value);
+}
+
+enum EventReferralDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventReferralDocDataType(this.value);
+}
+
 enum NftActivityFilterCriteriaDtoActivityType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -1300,7 +1680,9 @@ enum NftActivityFilterCriteriaDtoSource {
   @JsonValue('xoxnoLs')
   xoxnols('xoxnoLs'),
   @JsonValue('xoxnoEgldLs')
-  xoxnoegldls('xoxnoEgldLs');
+  xoxnoegldls('xoxnoEgldLs'),
+  @JsonValue('xoxnoLending')
+  xoxnolending('xoxnoLending');
 
   final String? value;
 
@@ -1477,4 +1859,60 @@ enum EventVoucherFilterCriteriaDtoType {
   final String? value;
 
   const EventVoucherFilterCriteriaDtoType(this.value);
+}
+
+enum UserStatsGetOrderBy {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('totalVolume')
+  totalvolume('totalVolume');
+
+  final String? value;
+
+  const UserStatsGetOrderBy(this.value);
+}
+
+enum UserStatsGetOrderDirection {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('asc')
+  asc('asc'),
+  @JsonValue('desc')
+  desc('desc');
+
+  final String? value;
+
+  const UserStatsGetOrderDirection(this.value);
+}
+
+enum LendingLeaderboardGetOrderBy {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('supplied')
+  supplied('supplied'),
+  @JsonValue('borrowed')
+  borrowed('borrowed'),
+  @JsonValue('healthFactor')
+  healthfactor('healthFactor');
+
+  final String? value;
+
+  const LendingLeaderboardGetOrderBy(this.value);
+}
+
+enum LendingLeaderboardGetOrderDirection {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('asc')
+  asc('asc'),
+  @JsonValue('desc')
+  desc('desc');
+
+  final String? value;
+
+  const LendingLeaderboardGetOrderDirection(this.value);
 }
