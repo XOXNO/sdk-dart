@@ -36,9 +36,13 @@ class Client extends http.BaseClient {
         ),
         _renewableTokens = renewableTokens;
 
+  String get jwt => _jwt;
+
   set jwt(final String value) {
     _jwt = value;
   }
+
+  String get nativeToken => _nativeToken;
 
   set nativeToken(final String value) {
     _nativeToken = value;
@@ -53,9 +57,7 @@ class Client extends http.BaseClient {
     _logger.finest('${request.method} ${request.url}');
     request.headers['user-agent'] = _userAgent;
     final authorizationHeaderSB = StringBuffer('Bearer ');
-    if (_nativeToken.isNotEmpty) {
-      authorizationHeaderSB.write(_nativeToken);
-    } else if (_jwt.isNotEmpty) {
+    if (_jwt.isNotEmpty) {
       final jwt = JWT.decode(_jwt);
       final expiration =
           DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
@@ -63,6 +65,8 @@ class Client extends http.BaseClient {
         await renewTokens();
       }
       authorizationHeaderSB.write(_jwt);
+    } else if (_nativeToken.isNotEmpty) {
+      authorizationHeaderSB.write(_nativeToken);
     }
     request.headers['authorization'] = authorizationHeaderSB.toString();
     return _client.send(request);

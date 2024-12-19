@@ -517,9 +517,9 @@ class EventTypeSafeApi {
     return EventUserRoleDoc.fromJson(data);
   }
 
-  Future<EventProfileQuery> getMyEvents() async {
+  Future<GetMyEventsQuery> getMyEvents() async {
     final data = await _api.getMyEvents();
-    return EventProfileQuery.fromJson(data);
+    return GetMyEventsQuery.fromJson(data);
   }
 
   Future<List<AnsweredQuestionWithDetails>> getAnsweredQuestions({
