@@ -206,13 +206,13 @@ Map<String, dynamic> _$UserTokenInventoryResponseDtoToJson(
     };
 
 SocialsDto _$SocialsDtoFromJson(Map<String, dynamic> json) => SocialsDto(
-      twitter: json['twitter'] as String,
-      instagram: json['instagram'] as String,
-      website: json['website'] as String,
-      telegram: json['telegram'] as String,
-      discord: json['discord'] as String,
-      facebook: json['facebook'] as String,
-      youtube: json['youtube'] as String,
+      twitter: json['twitter'] as String?,
+      instagram: json['instagram'] as String?,
+      website: json['website'] as String?,
+      telegram: json['telegram'] as String?,
+      discord: json['discord'] as String?,
+      facebook: json['facebook'] as String?,
+      youtube: json['youtube'] as String?,
     );
 
 Map<String, dynamic> _$SocialsDtoToJson(SocialsDto instance) =>
