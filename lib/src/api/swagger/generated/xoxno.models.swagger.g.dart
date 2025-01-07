@@ -330,8 +330,10 @@ UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
       followCount: (json['followCount'] as num).toDouble(),
       shard: (json['shard'] as num).toDouble(),
       ts: (json['_ts'] as num).toDouble(),
-      userSettings: UserSettingsDto.fromJson(
-          json['userSettings'] as Map<String, dynamic>),
+      userSettings: json['userSettings'] == null
+          ? null
+          : UserSettingsDto.fromJson(
+              json['userSettings'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
@@ -353,7 +355,7 @@ Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
       'followCount': instance.followCount,
       'shard': instance.shard,
       '_ts': instance.ts,
-      'userSettings': instance.userSettings.toJson(),
+      'userSettings': instance.userSettings?.toJson(),
     };
 
 UserBillingDetails _$UserBillingDetailsFromJson(Map<String, dynamic> json) =>
