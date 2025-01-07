@@ -997,13 +997,13 @@ extension $UserTokenInventoryResponseDtoExtension
 @JsonSerializable(explicitToJson: true)
 class SocialsDto {
   const SocialsDto({
-    required this.twitter,
-    required this.instagram,
-    required this.website,
-    required this.telegram,
-    required this.discord,
-    required this.facebook,
-    required this.youtube,
+    this.twitter,
+    this.instagram,
+    this.website,
+    this.telegram,
+    this.discord,
+    this.facebook,
+    this.youtube,
   });
 
   factory SocialsDto.fromJson(Map<String, dynamic> json) =>
@@ -1013,19 +1013,19 @@ class SocialsDto {
   Map<String, dynamic> toJson() => _$SocialsDtoToJson(this);
 
   @JsonKey(name: 'twitter')
-  final String twitter;
+  final String? twitter;
   @JsonKey(name: 'instagram')
-  final String instagram;
+  final String? instagram;
   @JsonKey(name: 'website')
-  final String website;
+  final String? website;
   @JsonKey(name: 'telegram')
-  final String telegram;
+  final String? telegram;
   @JsonKey(name: 'discord')
-  final String discord;
+  final String? discord;
   @JsonKey(name: 'facebook')
-  final String facebook;
+  final String? facebook;
   @JsonKey(name: 'youtube')
-  final String youtube;
+  final String? youtube;
   static const fromJsonFactory = _$SocialsDtoFromJson;
 
   @override
@@ -1089,13 +1089,13 @@ extension $SocialsDtoExtension on SocialsDto {
   }
 
   SocialsDto copyWithWrapped(
-      {Wrapped<String>? twitter,
-      Wrapped<String>? instagram,
-      Wrapped<String>? website,
-      Wrapped<String>? telegram,
-      Wrapped<String>? discord,
-      Wrapped<String>? facebook,
-      Wrapped<String>? youtube}) {
+      {Wrapped<String?>? twitter,
+      Wrapped<String?>? instagram,
+      Wrapped<String?>? website,
+      Wrapped<String?>? telegram,
+      Wrapped<String?>? discord,
+      Wrapped<String?>? facebook,
+      Wrapped<String?>? youtube}) {
     return SocialsDto(
         twitter: (twitter != null ? twitter.value : this.twitter),
         instagram: (instagram != null ? instagram.value : this.instagram),

@@ -8278,14 +8278,6 @@ components:
         youtube:
           type: string
           example: ''
-      required:
-        - twitter
-        - instagram
-        - website
-        - telegram
-        - discord
-        - facebook
-        - youtube
     UserDepositDto:
       type: object
       properties:
