@@ -3,7 +3,6 @@ paths:
   /user/login:
     post:
       operationId: UserDataController_loginUser
-      summary: Login and get access token
       parameters:
         - schema: {}
       requestBody:
@@ -37,12 +36,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Login and get access token
       tags:
         - User
   /user/{address}/network-account:
     get:
       operationId: UserDataController_retrieveUserMvxAccount
-      summary: Get user network info
       parameters:
         - name: address
           required: true
@@ -74,12 +73,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user network info
       tags:
         - User
   /user/{address}/token-inventory:
     get:
       operationId: UserDataController_retrieveUserTokenBalance
-      summary: Get User Token Inventory
       parameters:
         - name: address
           required: true
@@ -111,12 +110,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get User Token Inventory
       tags:
         - User
   /user/network-account:
     post:
       operationId: UserDataController_retrieveBulkUserMvxAccount
-      summary: Get user bulk network info
       parameters:
         - schema: {}
       requestBody:
@@ -152,12 +151,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user bulk network info
       tags:
         - User
   /user/me/profile:
     get:
       operationId: UserDataController_retrieveMyProfile
-      summary: Get user private profile response with email
       parameters: []
       responses:
         '200':
@@ -184,14 +183,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get user private profile response with email
+      tags:
+        - User
   /user/{address}/profile:
     get:
       operationId: UserDataController_retrieveUserProfile
-      summary: Get User Public Profile
       parameters:
         - name: address
           required: true
@@ -223,11 +222,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get User Public Profile
       tags:
         - User
     patch:
       operationId: UserDataController_editUserProfile
-      summary: Edit user profile
       parameters:
         - name: address
           required: true
@@ -266,14 +265,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Edit user profile
+      tags:
+        - User
   /user/me:
     get:
       operationId: UserDataController_retrieveUserMyProfile
-      summary: Get me user profile
       parameters: []
       responses:
         '200':
@@ -300,14 +299,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get me user profile
+      tags:
+        - User
   /user/me/settings:
     get:
       operationId: UserDataController_retrieveMySettings
-      summary: Get user settings
       parameters: []
       responses:
         '200':
@@ -334,14 +333,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get user settings
+      tags:
+        - User
   /user/me/settings/notification-preferences:
     patch:
       operationId: UserDataController_setNotificationPreferences
-      summary: Get user notification settings after update
       parameters:
         - schema: {}
       requestBody:
@@ -375,14 +374,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get user notification settings after update
+      tags:
+        - User
   /user/me/settings/email:
     patch:
       operationId: UserDataController_updateEmailSettings
-      summary: Patch user email settings
       parameters:
         - schema: {}
       requestBody:
@@ -416,13 +415,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Patch user email settings
+      tags:
+        - User
     delete:
       operationId: UserDataController_deleteEmailSettings
-      summary: Delete user email settings
       parameters: []
       responses:
         '200':
@@ -449,14 +448,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Delete user email settings
+      tags:
+        - User
   /user/me/settings/phone:
     patch:
       operationId: UserDataController_updatePhoneSettings
-      summary: Patch user phone settings
       parameters:
         - schema: {}
       requestBody:
@@ -490,14 +489,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Patch user phone settings
+      tags:
+        - User
   /user/me/settings/verify-email:
     post:
       operationId: UserDataController_verifyEmailAddress
-      summary: Verify user pending email!
       parameters:
         - schema: {}
       requestBody:
@@ -531,14 +530,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Verify user pending email!
+      tags:
+        - User
   /user/{address}/upload-picture:
     put:
       operationId: UserDataController_setUserProfilePicture
-      summary: Set user profile public picture
       parameters:
         - name: address
           required: true
@@ -582,14 +581,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Set user profile public picture
+      tags:
+        - User
   /user/{address}/upload-banner:
     put:
       operationId: UserDataController_setUserBannerPicture
-      summary: Set user public banner image
       parameters:
         - name: address
           required: true
@@ -633,14 +632,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Set user public banner image
+      tags:
+        - User
   /user/{address}/reset-picture:
     put:
       operationId: UserDataController_resetUserProfilePicture
-      summary: Reset to default the public profile picture of a user
       parameters:
         - name: address
           required: true
@@ -672,14 +671,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Reset to default the public profile picture of a user
+      tags:
+        - User
   /user/{address}/reset-banner:
     put:
       operationId: UserDataController_resetUserBanner
-      summary: Reset to default the public banner picture of a user
       parameters:
         - name: address
           required: true
@@ -711,14 +710,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Reset to default the public banner picture of a user
+      tags:
+        - User
   /user/{tag}/creator/is-registered:
     get:
       operationId: UserDataController_retrieveUserTagIsCreator
-      summary: Is the creator/organisor unique brand tag registered
       parameters:
         - name: tag
           required: true
@@ -750,12 +749,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Is the creator/organisor unique brand tag registered
       tags:
         - User
   /user/{address}/creator/profile:
     get:
       operationId: UserDataController_retrieveUserCreatorProfile
-      summary: Get creator profile information
       parameters:
         - name: address
           required: true
@@ -787,11 +786,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get creator profile information
       tags:
         - User
     patch:
       operationId: CollectionDataController_editUserCreatorProfile
-      summary: Update creator profile information
       parameters:
         - name: address
           required: true
@@ -832,12 +831,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update creator profile information
       tags:
+        - CollectionData
         - User
   /user/{address}/creator/upload-picture:
     put:
       operationId: UserDataController_setUserCreatorProfilePicture
-      summary: Update creator profile picture
       parameters:
         - name: address
           required: true
@@ -881,14 +881,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Update creator profile picture
+      tags:
+        - User
   /user/{address}/creator/upload-banner:
     put:
       operationId: UserDataController_setUserCreatorBannerPicture
-      summary: Update creator profile banner
       parameters:
         - name: address
           required: true
@@ -932,14 +932,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Update creator profile banner
+      tags:
+        - User
   /user/{address}/creator/reset-picture:
     put:
       operationId: UserDataController_resetUserCreatorProfilePicture
-      summary: Reset creator profile picture
       parameters:
         - name: address
           required: true
@@ -971,14 +971,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Reset creator profile picture
+      tags:
+        - User
   /user/{address}/creator/reset-banner:
     put:
       operationId: UserDataController_resetUserCreatorBanner
-      summary: Reset creator profile banner
       parameters:
         - name: address
           required: true
@@ -1010,14 +1010,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Reset creator profile banner
+      tags:
+        - User
   /user/{address}/favorite/collections:
     get:
       operationId: UserDataController_retrieveUserFavoriteCollections
-      summary: Get user followed collections tickers
       parameters:
         - name: address
           required: true
@@ -1034,8 +1034,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Explore collections statistics response
@@ -1061,13 +1059,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user followed collections tickers
       tags:
         - User
         - User
   /user/favorite/{favoriteId}:
     get:
       operationId: UserDataController_retrieveUserFavorite
-      summary: Check if user has liked an NFT
       parameters:
         - name: favoriteId
           required: true
@@ -1099,15 +1097,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Check if user has liked an NFT
       tags:
         - User
         - User
-      security:
-        - bearer: []
   /user/{address}/follow:
     post:
       operationId: UserDataController_followUser
-      summary: Follow or unfollow a user
       parameters:
         - name: address
           required: true
@@ -1139,15 +1137,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Follow or unfollow a user
       tags:
         - User
         - User
-      security:
-        - bearer: []
   /user/{address}/favorite/users:
     get:
       operationId: UserDataController_retrieveUserFavoriteUsers
-      summary: Check user list of followed addresses
       parameters:
         - name: address
           required: true
@@ -1181,13 +1179,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Check user list of followed addresses
       tags:
         - User
         - User
   /tokens:
     get:
       operationId: TokenDataController_retrieveTokens
-      summary: Get tokens
       parameters:
         - name: identifier
           required: false
@@ -1228,12 +1226,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get tokens
       tags:
         - Token
   /tokens/swap:
     get:
       operationId: TokenDataController_retrieveTokensForSwap
-      summary: Get tokens for swap
       parameters: []
       responses:
         '200':
@@ -1262,6 +1260,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get tokens for swap
       tags:
         - Token
   /tokens/usd-price:
@@ -1339,7 +1338,6 @@ paths:
   /tokens/xoxno:
     get:
       operationId: TokenDataController_retrieveXoxnoTokenInfo
-      summary: Fetch XOXNO metrics
       parameters: []
       responses:
         '200':
@@ -1366,12 +1364,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO metrics
       tags:
         - Token
   /tokens/egld:
     get:
       operationId: TokenDataController_retrieveEGLDTokenInfo
-      summary: Fetch EGLD metrics
       parameters: []
       responses:
         '200':
@@ -1398,12 +1396,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch EGLD metrics
       tags:
         - Token
   /tokens/xoxno/info:
     get:
       operationId: TokenDataController_getXOXNOSummaryLending
-      summary: Fetch XOXNO statistics
       parameters: []
       responses:
         '200':
@@ -1430,6 +1428,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO statistics
       tags:
         - Token
   /tokens/xoxno/liquid:
@@ -1462,7 +1461,6 @@ paths:
   /liquid/xoxno/stats:
     get:
       operationId: TokenDataController_getXoxnoLiquidStats
-      summary: Fetch XOXNO liquid staking statistics
       parameters: []
       responses:
         '200':
@@ -1491,13 +1489,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO liquid staking statistics
       tags:
         - Token
         - LiquidXOXNO
   /liquid/egld/stats:
     get:
       operationId: TokenDataController_getEGLDLiquidStats
-      summary: Fetch EGLD liquid staking statistics
       parameters: []
       responses:
         '200':
@@ -1526,13 +1524,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch EGLD liquid staking statistics
       tags:
         - Token
         - LiquidEGLD
   /liquid/xoxno/rate:
     get:
       operationId: XoxnoLiquidScController_getExchangeRate
-      summary: Fetch XOXNO liquid staking ratio
       parameters: []
       responses:
         '200':
@@ -1559,12 +1557,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO liquid staking ratio
       tags:
         - LiquidXOXNO
   /liquid/xoxno/liquid-supply:
     get:
       operationId: XoxnoLiquidScController_getTotalLSSupply
-      summary: Fetch XOXNO liquid staking supply
       parameters: []
       responses:
         '200':
@@ -1591,12 +1589,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO liquid staking supply
       tags:
         - LiquidXOXNO
   /liquid/xoxno/staked:
     get:
       operationId: XoxnoLiquidScController_getTotalStaked
-      summary: Fetch XOXNO liquid staking total staked supply
       parameters: []
       responses:
         '200':
@@ -1623,12 +1621,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO liquid staking total staked supply
       tags:
         - LiquidXOXNO
   /analytics/marketplace-unique-users:
     get:
       operationId: KustoDataController_getMarketplaceUniqueUsers
-      summary: Get marketplace unique users
       parameters:
         - name: before
           required: true
@@ -1672,12 +1670,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get marketplace unique users
       tags:
+        - KustoData
         - NftActivity
   /liquid/egld/rate:
     get:
       operationId: XoxnoEgldLiquidScController_getExchangeRate
-      summary: Fetch Liquid EGLD ratio
       parameters: []
       responses:
         '200':
@@ -1704,12 +1703,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD ratio
       tags:
         - LiquidEGLD
   /liquid/egld/liquid-supply:
     get:
       operationId: XoxnoEgldLiquidScController_getTotalLSSupply
-      summary: Fetch Liquid EGLD supply
       parameters: []
       responses:
         '200':
@@ -1736,12 +1735,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD supply
       tags:
         - LiquidEGLD
   /liquid/egld/staked:
     get:
       operationId: XoxnoEgldLiquidScController_getTotalStaked
-      summary: Fetch Liquid EGLD total staked supply
       parameters: []
       responses:
         '200':
@@ -1768,12 +1767,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD total staked supply
       tags:
         - LiquidEGLD
   /liquid/egld/pending-fees:
     get:
       operationId: XoxnoEgldLiquidScController_getPendingFees
-      summary: Fetch Liquid EGLD pending fees
       parameters: []
       responses:
         '200':
@@ -1800,12 +1799,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD pending fees
       tags:
         - LiquidEGLD
   /liquid/egld/pending-undelegate:
     get:
       operationId: XoxnoEgldLiquidScController_getPendingUndelegate
-      summary: Fetch Liquid EGLD pending undelegate
       parameters: []
       responses:
         '200':
@@ -1832,44 +1831,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD pending undelegate
       tags:
         - LiquidEGLD
   /liquid/egld/pending-delegate:
     get:
       operationId: XoxnoEgldLiquidScController_getPendingDelegate
+      parameters: []
+      responses:
+        '200':
+          description: EGLD pending delegate as number
+          content:
+            application/json:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       summary: Fetch Liquid EGLD pending delegate
-      parameters: []
-      responses:
-        '200':
-          description: EGLD pending delegate as number
-          content:
-            application/json:
-              schema:
-                type: number
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - LiquidEGLD
   /liquid/egld/execute-delegate:
     get:
       operationId: XoxnoEgldLiquidScController_executePendingDelegate
-      summary: Execute Liquid EGLD pending delegate
       parameters: []
       responses:
         '200':
@@ -1896,12 +1895,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Execute Liquid EGLD pending delegate
       tags:
         - LiquidEGLD
   /liquid/egld/execute-undelegate:
     get:
       operationId: XoxnoEgldLiquidScController_executePendingUnDelegate
-      summary: Execute Liquid EGLD pending undelegate
       parameters: []
       responses:
         '200':
@@ -1928,84 +1927,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - LiquidEGLD
-  /liquid/egld/execute-delegate:
-    get:
-      operationId: XoxnoEgldLiquidScController_executePendingDelegate
-      summary: Execute Liquid EGLD pending delegate
-      parameters: []
-      responses:
-        "200":
-          description: EGLD pending delegate as number
-          content:
-            application/json:
-              schema:
-                type: number
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "403":
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-      tags:
-        - LiquidEGLD
-  /liquid/egld/execute-undelegate:
-    get:
-      operationId: XoxnoEgldLiquidScController_executePendingUnDelegate
       summary: Execute Liquid EGLD pending undelegate
-      parameters: []
-      responses:
-        "200":
-          description: EGLD pending undelegate as number
-          content:
-            application/json:
-              schema:
-                type: number
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "403":
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
       tags:
         - LiquidEGLD
   /liquid/egld/protocol-apr:
     get:
       operationId: XoxnoEgldLiquidScController_getProtocolAPR
-      summary: Fetch Liquid EGLD protocol APR
       parameters: []
       responses:
         '200':
-          description: EGLD protocol APR as number
+          description: EGLD protocol APR & APYs as number
           content:
             application/json:
               schema:
-                type: number
+                type: object
+                properties:
+                  apr:
+                    type: number
+                    example: 7.3
+                  apy:
+                    type: number
+                    example: 7.6
         '400':
           description: Bad Request
           content:
@@ -2024,12 +1966,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch Liquid EGLD protocol APR
       tags:
         - LiquidEGLD
   /liquid/egld/providers:
     get:
       operationId: XoxnoEgldLiquidScController_getProviders
-      summary: Fetch Liquid EGLD providers
       parameters: []
       responses:
         '200':
@@ -2058,98 +2000,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - LiquidEGLD
-  /liquid/egld/provider/{address}/create:
-    post:
-      operationId: XoxnoEgldLiquidScController_createProvider
-      parameters:
-        - name: address
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '201':
-          description: ''
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - LiquidEGLD
-  /liquid/egld/providers/create/all:
-    post:
-      operationId: XoxnoEgldLiquidScController_createAllProviders
-      parameters: []
-      responses:
-        '201':
-          description: ''
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - LiquidEGLD
-  /liquid/egld/providers/create/all:
-    post:
-      operationId: XoxnoEgldLiquidScController_createAllProviders
-      parameters: []
-      responses:
-        "201":
-          description: ""
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "403":
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDto"
+      summary: Fetch Liquid EGLD providers
       tags:
         - LiquidEGLD
   /ash/min-token-quantity:
     get:
       operationId: AshAggregatorController_getMinTokenQuantity
-      summary: Fetch swap routes
       parameters:
         - name: originalToken
           required: true
@@ -2191,12 +2047,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch swap routes
       tags:
         - Ash Aggregator
   /ash/max-token-quantity:
     get:
       operationId: AshAggregatorController_getMaxTokenQuantity
-      summary: Fetch swap routes
       parameters:
         - name: paymentTokenValue
           required: true
@@ -2243,12 +2099,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch swap routes
       tags:
         - Ash Aggregator
   /collection/{collection}/profile:
     get:
       operationId: CollectionDataController_retrieveCollectionProfile
-      summary: Get collection profile
       parameters:
         - name: collection
           required: true
@@ -2280,11 +2136,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection profile
       tags:
+        - CollectionData
         - Collection
     patch:
       operationId: CollectionDataController_editCollectionProfile
-      summary: Update collection profile
       parameters:
         - name: collection
           required: true
@@ -2325,12 +2182,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection profile
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/floor-price:
     get:
       operationId: CollectionDataController_retrieveCollectionFloorPrice
-      summary: Get floor price of a collection
       parameters:
         - name: collection
           required: true
@@ -2367,12 +2225,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get floor price of a collection
       tags:
+        - CollectionData
         - Collection
   /collection/floor-price:
     get:
       operationId: CollectionDataController_retrieveBulkCollectionFloorPrice
-      summary: Get floor price of a list of collections
       parameters:
         - name: collection
           required: false
@@ -2412,12 +2271,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get floor price of a list of collections
       tags:
+        - CollectionData
         - Collection
   /collection/pinned:
     get:
       operationId: CollectionDataController_retrievePinnedCollection
-      summary: Get pinned collections
       parameters: []
       responses:
         '200':
@@ -2446,12 +2306,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get pinned collections
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/pinned-drops:
     get:
       operationId: CollectionDataController_retrieveCollectionPinnedToDrops
-      summary: Return pin status for collection within drops page
       parameters:
         - name: collection
           required: true
@@ -2483,12 +2344,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Return pin status for collection within drops page
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/pinned:
     get:
       operationId: CollectionDataController_retrieveCollectionPinned
-      summary: Return pin status for collection within home page
       parameters:
         - name: collection
           required: true
@@ -2520,12 +2382,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Return pin status for collection within home page
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/follow:
     post:
       operationId: CollectionDataController_followCollection
-      summary: Follow a specific collection
       parameters:
         - name: collection
           required: true
@@ -2559,12 +2422,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Follow a specific collection
       tags:
+        - CollectionData
         - Collection
   /collection/query:
     get:
       operationId: CollectionDataController_retrieveCollections
-      summary: Fetch and filter collections
       parameters:
         - name: filter
           required: false
@@ -2601,12 +2465,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch and filter collections
       tags:
+        - CollectionData
         - Collection
   /collection/drops/query:
     get:
       operationId: CollectionDataController_retrieveCollectionDrops
-      summary: Get drops query
       parameters:
         - name: filter
           required: false
@@ -2641,12 +2506,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get drops query
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/drop-info:
     get:
       operationId: CollectionDataController_retrieveCollectionMintInfo
-      summary: Get drop info
       parameters:
         - name: collection
           required: true
@@ -2678,12 +2544,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get drop info
       tags:
+        - CollectionData
         - Collection
   /collection/{creatorTag}/{collectionTag}/drop-info:
     get:
       operationId: CollectionDataController_retrieveCollectionMintInfoByTags
-      summary: Get drop info
       parameters:
         - name: creatorTag
           required: true
@@ -2720,12 +2587,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get drop info
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/upload-picture:
     put:
       operationId: CollectionDataController_setCollectionProfilePicture
-      summary: Update collection profile
       parameters:
         - name: collection
           required: true
@@ -2771,12 +2639,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection profile
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/upload-banner:
     put:
       operationId: CollectionDataController_setCollectionBanner
-      summary: Update collection profile
       parameters:
         - name: collection
           required: true
@@ -2822,12 +2691,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection profile
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/reset-picture:
     put:
       operationId: CollectionDataController_resetCollectionProfilePicture
-      summary: Update collection profile
       parameters:
         - name: collection
           required: true
@@ -2861,12 +2731,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection profile
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/reset-banner:
     put:
       operationId: CollectionDataController_resetCollectionBanner
-      summary: Update collection profile
       parameters:
         - name: collection
           required: true
@@ -2900,12 +2771,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection profile
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/holders:
     get:
       operationId: CollectionDataController_retrieveCollectionHolders
-      summary: Get collection holders by collection ID
       parameters:
         - name: collection
           required: true
@@ -2937,12 +2809,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection holders by collection ID
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/owner:
     get:
       operationId: CollectionDataController_retrieveCollectionOwner
-      summary: Get collection owner by collection ID
       parameters:
         - name: collection
           required: true
@@ -2974,12 +2847,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection owner by collection ID
       tags:
+        - CollectionData
         - Collection
   /collection/{collection}/stats:
     get:
       operationId: CollectionDataController_retrieveCollectionStatisticsByCollection
-      summary: Get collection stats
       parameters:
         - name: collection
           required: true
@@ -3011,12 +2885,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection stats
       tags:
+        - CollectionData
         - Collection
   /collection/stats/query:
     get:
       operationId: CollectionDataController_retrieveCollectionStatistics
-      summary: Get explore collections statistics
       parameters:
         - name: filter
           required: true
@@ -3028,8 +2903,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Explore collections statistics response
@@ -3055,12 +2928,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get explore collections statistics
       tags:
+        - CollectionData
         - Collection
   /collection/global-offer/query:
     get:
       operationId: CollectionDataController_retrieveCollectionOffers
-      summary: Get global offers
       parameters:
         - name: filter
           required: true
@@ -3072,8 +2946,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Global offers response
@@ -3099,12 +2971,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get global offers
       tags:
+        - CollectionData
         - Collection
   /user/{address}/creator/listing:
     get:
       operationId: CollectionDataController_retrieveCreatorListing
-      summary: Get creator all listings
       parameters:
         - name: address
           required: true
@@ -3136,12 +3009,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get creator all listings
       tags:
+        - CollectionData
         - User
   /user/{address}/creator/details:
     get:
       operationId: CollectionDataController_retrieveCreatorDetails
-      summary: Get creator details information
       parameters:
         - name: address
           required: true
@@ -3173,12 +3047,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get creator details information
       tags:
+        - CollectionData
         - User
   /nft/query:
     get:
       operationId: NftDataController_retrieveNfts
-      summary: Fetch NFTs based on the query filter
       parameters:
         - name: filter
           required: true
@@ -3190,8 +3065,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: NFT query response for the used filters
@@ -3217,12 +3090,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch NFTs based on the query filter
       tags:
+        - NftData
         - Nft
   /nft/{identifier}/like:
     post:
       operationId: NftDataController_likeNft
-      summary: Like an NFT
       parameters:
         - name: identifier
           required: true
@@ -3256,12 +3130,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Like an NFT
       tags:
+        - NftData
         - Nft
   /user/{address}/inventory-summary:
     get:
       operationId: NftDataController_retrieveUserInventorySummary
-      summary: Get inventory summary for collections by user wallet
       parameters:
         - name: address
           required: true
@@ -3301,12 +3176,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get inventory summary for collections by user wallet
       tags:
+        - NftData
         - User
   /user/{address}/offers:
     get:
       operationId: NftDataController_retrieveUserOffers
-      summary: Get user offers
       parameters:
         - name: address
           required: true
@@ -3356,12 +3232,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user offers
       tags:
+        - NftData
         - User
   /nft/offer/query:
     get:
       operationId: NftDataController_retrieveNftOffers
-      summary: Get nft offers
       parameters:
         - name: filter
           required: true
@@ -3373,8 +3250,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: User offers
@@ -3400,12 +3275,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get nft offers
       tags:
+        - NftData
         - Nft
   /user/{address}/favorite/nfts:
     get:
       operationId: NftDataController_retrieveUserFavoriteNfts
-      summary: Get the liked NFTs by an user
       parameters:
         - name: address
           required: true
@@ -3449,12 +3325,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get the liked NFTs by an user
       tags:
+        - NftData
         - User
   /collection/{collection}/attributes:
     get:
       operationId: NftDataController_retrieveCollectionAttributes
-      summary: Get attributes
       parameters:
         - name: collection
           required: true
@@ -3497,12 +3374,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get attributes
       tags:
+        - NftData
         - Collection
   /nft/{identifier}/offers:
     get:
       operationId: NftDataController_retrieveSingleNftOffers
-      summary: Get single NFT offers
       parameters:
         - name: identifier
           required: true
@@ -3544,12 +3422,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get single NFT offers
       tags:
+        - NftData
         - Nft
   /collection/{collection}/ranks:
     get:
       operationId: NftDataController_retrieveCollectionRanks
-      summary: Fetch collection ranks
       parameters:
         - name: collection
           required: true
@@ -3583,12 +3462,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch collection ranks
       tags:
+        - NftData
         - Collection
   /collection/{collection}/listings:
     get:
       operationId: NftDataController_retrieveCollectionListings
-      summary: Get collection listings
       parameters:
         - name: collection
           required: true
@@ -3620,12 +3500,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection listings
       tags:
+        - NftData
         - Collection
   /nft/pinned:
     get:
       operationId: NftDataController_retrievePinnedCollection
-      summary: Get homepage pinned NFTs
       parameters: []
       responses:
         '200':
@@ -3654,12 +3535,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get homepage pinned NFTs
       tags:
+        - NftData
         - Nft
   /nft/sign-withdraw:
     post:
       operationId: NftDataController_signListingWithdraw
-      summary: Get signed data
       parameters:
         - schema: {}
       requestBody:
@@ -3695,12 +3577,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Get signed data
       tags:
+        - NftData
         - Nft
   /collection/{collection}/sign-offer:
     post:
       operationId: NftDataController_signOffer
-      summary: Get signed data
       parameters:
         - name: collection
           required: true
@@ -3741,12 +3624,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Get signed data
       tags:
+        - NftData
         - Collection
   /collection/{collection}/sign-mint:
     post:
       operationId: NftDataController_signMint
-      summary: Get signed data
       parameters:
         - name: collection
           required: true
@@ -3787,12 +3671,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Get signed data
       tags:
+        - NftData
         - Collection
   /nft/{identifier}:
     get:
       operationId: NftDataController_retrieveSingleNft
-      summary: Get a single NFT
       parameters:
         - name: identifier
           required: true
@@ -3824,12 +3709,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get a single NFT
       tags:
+        - NftData
         - Nft
   /pool/{poolId}/profile:
     get:
       operationId: StakingDataController_retrievePoolDetails
-      summary: Get collection staking pool summary
       parameters:
         - name: poolId
           required: true
@@ -3861,11 +3747,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection staking pool summary
       tags:
+        - StakingData
         - Staking
     patch:
       operationId: StakingDataController_editStakingPoolProfile
-      summary: Update collection staking pool summary
       parameters:
         - name: poolId
           required: true
@@ -3905,12 +3792,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection staking pool summary
       tags:
+        - StakingData
         - Staking
   /pool/{poolId}/whitelist:
     get:
       operationId: StakingDataController_retrievePoolWhitelist
-      summary: Get the whitelisted NFTs of a staking pool
       parameters:
         - name: poolId
           required: true
@@ -3944,12 +3832,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get the whitelisted NFTs of a staking pool
       tags:
+        - StakingData
         - Staking
   /pool/{poolId}/upload-picture:
     put:
       operationId: StakingDataController_setCollectionProfilePicture
-      summary: Update collection staking pool summary
       parameters:
         - name: poolId
           required: true
@@ -3995,12 +3884,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Update collection staking pool summary
       tags:
+        - StakingData
         - Staking
   /user/{address}/staking/available-pools:
     get:
       operationId: StakingDataController_retrieveUserAvailablePools
-      summary: Get collection staking pool summary
       parameters:
         - name: address
           required: true
@@ -4034,12 +3924,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection staking pool summary
       tags:
+        - StakingData
         - User
   /user/{address}/staking/owned-collections:
     get:
       operationId: StakingDataController_retrieveUserOwnedCollections
-      summary: Get owned collections by user ID
       parameters:
         - name: address
           required: true
@@ -4071,12 +3962,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get owned collections by user ID
       tags:
+        - StakingData
         - User
   /user/{address}/staking/owned-pools:
     get:
       operationId: StakingDataController_retrieveUserOwnedPools
-      summary: Get owned collections staking pools summary
       parameters:
         - name: address
           required: true
@@ -4110,12 +4002,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get owned collections staking pools summary
       tags:
+        - StakingData
         - User
   /user/{address}/staking/summary:
     get:
       operationId: StakingDataController_retrieveUserStakingSummary
-      summary: Get user staking summary by user ID
       parameters:
         - name: address
           required: true
@@ -4149,12 +4042,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user staking summary by user ID
       tags:
+        - StakingData
         - User
   /user/{address}/staking/creator:
     get:
       operationId: StakingDataController_retrieveUserStakingCreator
-      summary: Get creator settings for staking
       parameters:
         - name: address
           required: true
@@ -4186,12 +4080,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get creator settings for staking
       tags:
+        - StakingData
         - User
   /user/{address}/staking/collection/{collection}:
     get:
       operationId: StakingDataController_retrieveUserCollectionStaking
-      summary: Get user staking details by collection
       parameters:
         - name: address
           required: true
@@ -4230,12 +4125,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user staking details by collection
       tags:
+        - StakingData
         - User
   /user/{address}/staking/pool/{poolId}/nfts:
     get:
       operationId: StakingDataController_retrieveUserPoolStaking
-      summary: Get user staking NFTs by poolId and status
       parameters:
         - name: address
           required: true
@@ -4280,12 +4176,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user staking NFTs by poolId and status
       tags:
+        - StakingData
         - User
   /collection/{collection}/staking/summary:
     get:
       operationId: StakingDataController_retrieveCollectionPoolStaking
-      summary: Get collection staking summary
       parameters:
         - name: collection
           required: true
@@ -4319,12 +4216,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection staking summary
       tags:
+        - StakingData
         - Collection
   /collection/staking/explore:
     get:
       operationId: StakingDataController_exploreCollectionPoolStaking
-      summary: Get explore staking pools
       parameters: []
       responses:
         '200':
@@ -4353,12 +4251,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get explore staking pools
       tags:
+        - StakingData
         - Collection
   /user/{creatorTag}/owned-services:
     get:
       operationId: StakingDataController_retrieveCreatorOwnedServicesByTag
-      summary: Get all owned services by a brand
       parameters:
         - name: creatorTag
           required: true
@@ -4390,12 +4289,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get all owned services by a brand
       tags:
+        - StakingData
         - User
   /search:
     get:
       operationId: SearchDataController_globalSearch
-      summary: Global Search
       parameters:
         - name: filter
           required: true
@@ -4407,8 +4307,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Global search response
@@ -4434,12 +4332,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Global Search
       tags:
         - Search
   /user/search:
     get:
       operationId: SearchDataController_userSearch
-      summary: Global User Search
       parameters:
         - name: filter
           required: true
@@ -4451,8 +4349,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Global user search response
@@ -4478,12 +4374,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Global User Search
       tags:
         - Search
   /collection/search:
     get:
       operationId: SearchDataController_collectionSearch
-      summary: Global collection Search
       parameters:
         - name: filter
           required: true
@@ -4495,8 +4391,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Global collection search response
@@ -4522,12 +4416,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Global collection Search
       tags:
         - Search
   /collection/drops/search:
     get:
       operationId: SearchDataController_collectionDropsSearch
-      summary: Global collection drops Search
       parameters:
         - name: filter
           required: true
@@ -4539,8 +4433,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Global collection drops search response
@@ -4566,12 +4458,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Global collection drops Search
       tags:
         - Search
   /nft/search/query:
     get:
       operationId: SearchDataController_nftSearch
-      summary: Global nft search
       parameters:
         - name: filter
           required: true
@@ -4583,8 +4475,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: ''
@@ -4606,17 +4496,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Global nft search
       tags:
         - Search
   /user/native-token:
     get:
       operationId: Web2UserDataController_getNativeToken
-      summary: Get native token for the user
       parameters:
         - name: originalUrl
           required: false
           in: query
           description: The original URL
+          schema:
+            type: string
+        - name: extraInfo
+          required: false
+          in: query
+          description: The extra info as a string JSON
           schema:
             type: string
       responses:
@@ -4644,14 +4540,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Get native token for the user
+      tags:
+        - Web2User
   /user/web2:
     get:
       operationId: Web2UserDataController_getWeb2User
-      summary: Get Web2 user data
       parameters: []
       responses:
         '200':
@@ -4678,14 +4574,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Get Web2 user data
+      tags:
+        - Web2User
   /user/web2/session-cookie:
     post:
       operationId: Web2UserDataController_createSessionCookie
-      summary: Create session cookie
       parameters: []
       responses:
         '200':
@@ -4708,14 +4604,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Create session cookie
+      tags:
+        - Web2User
   /user/web2/wallet:
     post:
       operationId: Web2UserDataController_createWeb2UserWallet
-      summary: Create Web2 user native wallet
       parameters:
         - schema: {}
       requestBody:
@@ -4749,14 +4645,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Create Web2 user native wallet
+      tags:
+        - Web2User
   /user/web2/wallet-link:
     post:
       operationId: Web2UserDataController_linkExternalWallet
-      summary: Link external wallet
       parameters:
         - schema: {}
       requestBody:
@@ -4790,14 +4686,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Link external wallet
+      tags:
+        - Web2User
   /user/web2/{index}/wallet-link:
     delete:
       operationId: Web2UserDataController_unlinkExternalWallet
-      summary: Unlink external wallet
       parameters:
         - name: index
           required: true
@@ -4829,14 +4725,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Unlink external wallet
+      tags:
+        - Web2User
   /user/web2/shards:
     get:
       operationId: Web2UserDataController_getWeb2UserShards
-      summary: Get Web2 user shards
       parameters: []
       responses:
         '200':
@@ -4863,14 +4759,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Web2User
       security:
         - bearer: []
+      summary: Get Web2 user shards
+      tags:
+        - Web2User
   /activity/query:
     get:
       operationId: NftActivityDataController_retrieveNftActivity
-      summary: Query activity history
       parameters:
         - name: filter
           required: true
@@ -4882,8 +4778,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Activity history response
@@ -4909,12 +4803,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Query activity history
       tags:
+        - NftActivityData
         - NftActivity
   /analytics/volume:
     get:
       operationId: NftActivityDataController_retrieveVolumeGraphData
-      summary: Get analytics volume
       parameters:
         - name: startTime
           required: false
@@ -4959,12 +4854,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get analytics volume
       tags:
+        - NftActivityData
         - NftActivity
   /collection/{collection}/analytics/volume:
     get:
       operationId: NftActivityDataController_retrieveCollectionVolumeGraphData
-      summary: Get analytics volume
       parameters:
         - name: collection
           required: true
@@ -5016,12 +4912,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get analytics volume
       tags:
+        - NftActivityData
         - Collection
   /user/{address}/analytics/volume:
     get:
       operationId: NftActivityDataController_retrieveUserTradingSummary
-      summary: Fetch user analytics
       parameters:
         - name: address
           required: true
@@ -5053,12 +4950,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch user analytics
       tags:
+        - NftActivityData
         - User
   /analytics/overview:
     get:
       operationId: NftActivityDataController_retrieveOverallStatistics
-      summary: Get global analytics overview
       parameters: []
       responses:
         '200':
@@ -5085,12 +4983,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get global analytics overview
       tags:
+        - NftActivityData
         - NftActivity
   /user/stats:
     get:
       operationId: NftActivityDataController_retrieveUserStatistics
-      summary: Get users stats
       parameters:
         - name: skip
           required: false
@@ -5146,7 +5045,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get users stats
       tags:
+        - NftActivityData
         - User
   /lending/market-sc:
     get:
@@ -5163,7 +5064,7 @@ paths:
                   type: string
       tags:
         - Lending SC
-  /lending/market/{token}/price:
+  /lending/market/{token}/price/egld:
     get:
       operationId: XoxnoLendingScController_getTokenPrice
       parameters:
@@ -5188,7 +5089,6 @@ paths:
   /lending/market/{token}/profile:
     get:
       operationId: LendingDataController_retrieveMarketProfile
-      summary: Get lending market profile
       parameters:
         - name: token
           required: true
@@ -5203,12 +5103,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LendingMarketProfile'
+      summary: Get lending market profile
       tags:
         - Lending And Borrowing
   /lending/market/query:
     get:
       operationId: LendingDataController_retrieveMarketProfiles
-      summary: Get lending markets overview
       parameters:
         - name: filter
           required: true
@@ -5220,8 +5120,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Explore lending markets
@@ -5229,12 +5127,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LendingMarketProfileQuery'
+      summary: Get lending markets overview
       tags:
         - Lending And Borrowing
   /user/lending/me:
     get:
       operationId: LendingDataController_retrieveUserLendingPosition
-      summary: Get my lending & borrowing positions
       parameters:
         - name: token
           required: false
@@ -5251,14 +5149,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingAccountProfile'
-      tags:
-        - Lending And Borrowing
       security:
         - bearer: []
+      summary: Get my lending & borrowing positions
+      tags:
+        - Lending And Borrowing
   /lending/market/emode-categories:
     get:
       operationId: LendingDataController_retrieveMarketProfilesByCategoryIds
-      summary: Get lending market profiles by category IDs
       parameters:
         - name: categoryIds
           required: true
@@ -5275,12 +5173,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingEModeCategoryProfile'
+      summary: Get lending market profiles by category IDs
       tags:
         - Lending And Borrowing
   /lending/market/{token}/emode-categories:
     get:
       operationId: LendingDataController_retrieveMarketEModeProfiles
-      summary: Get lending market available e-mode profile
       parameters:
         - name: token
           required: true
@@ -5297,12 +5195,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingEModeCategoryProfile'
+      summary: Get lending market available e-mode profile
       tags:
         - Lending And Borrowing
   /lending/market/{token}/analytics:
     get:
       operationId: LendingDataController_retrieveMarketAnalytics
-      summary: Get lending market analytics graph data
       parameters:
         - name: token
           required: true
@@ -5337,12 +5235,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingMarketAnalyticsGraph'
+      summary: Get lending market analytics graph data
       tags:
         - Lending And Borrowing
   /lending/leaderboard:
     get:
       operationId: LendingDataController_retrieveLendingLeaderboard
-      summary: Get lending position leaderboard
       parameters:
         - name: skip
           required: false
@@ -5390,6 +5288,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingPositionStatus'
+      summary: Get lending position leaderboard
       tags:
         - Lending And Borrowing
         - User
@@ -5404,12 +5303,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LendingOverallStats'
+      summary: Get lending protocol stats
       tags:
         - Lending And Borrowing
   /transactions/{txHash}/status:
     get:
       operationId: TransactionController_getTransactionStatus
-      summary: Check the final transaction status
       parameters:
         - name: txHash
           required: true
@@ -5441,12 +5340,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Check the final transaction status
       tags:
         - Transactions
   /transactions:
     post:
       operationId: TransactionController_createTransaction
-      summary: Send a transaction to the blockchain
       parameters:
         - schema: {}
       requestBody:
@@ -5480,12 +5379,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Send a transaction to the blockchain
       tags:
         - Transactions
   /transactions/batch:
     post:
       operationId: TransactionController_createTransactionBatch
-      summary: Send a transaction to the blockchain
       parameters:
         - schema: {}
       requestBody:
@@ -5523,12 +5422,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Send a transaction to the blockchain
       tags:
         - Transactions
   /user/chat/message:
     post:
       operationId: ChatDataController_sendChatMessage
-      summary: Send a private message
       parameters:
         - schema: {}
       requestBody:
@@ -5562,14 +5461,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Send a private message
+      tags:
+        - Chat
   /user/chat/conversation:
     get:
       operationId: ChatDataController_getChatConversation
-      summary: Fetch user chat conversations summary
       parameters:
         - name: isGroupChat
           required: false
@@ -5616,14 +5515,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Fetch user chat conversations summary
+      tags:
+        - Chat
   /user/chat/conversation/{conversationId}:
     get:
       operationId: ChatDataController_getConversationMessageById
-      summary: Fetch user chat conversation messages
       parameters:
         - name: conversationId
           required: true
@@ -5672,13 +5571,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Fetch user chat conversation messages
+      tags:
+        - Chat
     delete:
       operationId: ChatDataController_deleteConversation
-      summary: Delete a user conversation
       parameters:
         - name: conversationId
           required: true
@@ -5710,14 +5609,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Delete a user conversation
+      tags:
+        - Chat
   /user/chat/conversation-summary:
     get:
       operationId: ChatDataController_getUserConversationSummary
-      summary: Fetch global conversation summary
       parameters: []
       responses:
         '200':
@@ -5744,14 +5643,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Fetch global conversation summary
+      tags:
+        - Chat
   /user/chat/conversation/{conversationId}/message/{messageId}:
     delete:
       operationId: ChatDataController_deleteUserConversationMessage
-      summary: Delete a user conversation
       parameters:
         - name: conversationId
           required: true
@@ -5794,14 +5693,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Delete a user conversation
+      tags:
+        - Chat
   /user/chat/block:
     get:
       operationId: ChatDataController_getBlockedUsers
-      summary: Fetch blocked chats
       parameters: []
       responses:
         '200':
@@ -5828,14 +5727,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Fetch blocked chats
+      tags:
+        - Chat
   /user/chat/block/{address}:
     post:
       operationId: ChatDataController_blockUser
-      summary: Block a user
       parameters:
         - name: address
           required: true
@@ -5867,14 +5766,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - Chat
       security:
         - bearer: []
+      summary: Block a user
+      tags:
+        - Chat
   /user/chat/token:
     post:
       operationId: AzureWsController_generateChatAccessToken
-      summary: Get WebSocket connection token
       parameters: []
       responses:
         '201':
@@ -5903,12 +5802,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+      summary: Get WebSocket connection token
       tags:
+        - AzureWs
         - Chat
   /user/notifications:
     get:
       operationId: NotificationDataController_getNotifications
-      summary: Get notifications of an user
       parameters:
         - name: top
           required: false
@@ -5947,14 +5847,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get notifications of an user
+      tags:
+        - User
   /user/notifications/unread-count:
     get:
       operationId: NotificationDataController_getNotificationCount
-      summary: Get the un read notification count
       parameters: []
       responses:
         '200':
@@ -5981,14 +5881,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Get the un read notification count
+      tags:
+        - User
   /user/notifications/clear:
     delete:
       operationId: NotificationDataController_clearAllNotifications
-      summary: Delete a user conversation
       parameters: []
       responses:
         '200':
@@ -6015,14 +5915,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Delete a user conversation
+      tags:
+        - User
   /user/notifications/read:
     patch:
       operationId: NotificationDataController_setNotificationAsRead
-      summary: Set as read notifications, leave empty ID to read all
       parameters:
         - name: id
           required: false
@@ -6055,14 +5955,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
-      tags:
-        - User
       security:
         - bearer: []
+      summary: Set as read notifications, leave empty ID to read all
+      tags:
+        - User
   /event:
     post:
       operationId: TicketingDataController_createEvent
-      summary: Create new event
       parameters:
         - schema: {}
       requestBody:
@@ -6078,14 +5978,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create new event
+      tags:
+        - Ticketing
   /event/{eventId}:
     get:
       operationId: TicketingDataController_getEventById
-      summary: Get event details
       parameters:
         - name: eventId
           required: true
@@ -6100,13 +6000,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event details
+      tags:
+        - Ticketing
     patch:
       operationId: TicketingDataController_editEvent
-      summary: Update event details
       parameters:
         - name: eventId
           required: true
@@ -6128,14 +6028,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event details
+      tags:
+        - Ticketing
   /event/profile/query:
     get:
       operationId: TicketingDataController_getEvents
-      summary: Get events
       parameters:
         - name: filter
           required: true
@@ -6147,8 +6047,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Event profile
@@ -6156,14 +6054,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfileQuery'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get events
+      tags:
+        - Ticketing
   /event/{eventId}/profile:
     put:
       operationId: TicketingDataController_setEventProfilePicture
-      summary: Update event profile image
       parameters:
         - name: eventId
           required: true
@@ -6190,14 +6088,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event profile image
+      tags:
+        - Ticketing
   /event/{eventId}/background:
     put:
       operationId: TicketingDataController_setEventBackgroundPicture
-      summary: Update event background image
       parameters:
         - name: eventId
           required: true
@@ -6224,14 +6122,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event background image
+      tags:
+        - Ticketing
   /event/{eventId}/description:
     put:
       operationId: TicketingDataController_setEventDescription
-      summary: Update event description
       parameters:
         - name: eventId
           required: true
@@ -6258,14 +6156,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event description
+      tags:
+        - Ticketing
   /event/{eventId}/description/image:
     put:
       operationId: TicketingDataController_uploadEventDescriptionImage
-      summary: Upload event description image
       parameters:
         - name: eventId
           required: true
@@ -6292,14 +6190,14 @@ paths:
             application/json:
               schema:
                 type: string
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Upload event description image
+      tags:
+        - Ticketing
   /event/{eventId}/description/image/{imageId}:
     delete:
       operationId: TicketingDataController_deleteEventDescriptionImage
-      summary: Delete event description image
       parameters:
         - name: eventId
           required: true
@@ -6320,14 +6218,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Delete event description image
+      tags:
+        - Ticketing
   /event/{eventId}/register:
     post:
       operationId: TicketingDataController_registerForEvent
-      summary: Register for an event
       parameters:
         - name: eventId
           required: true
@@ -6349,14 +6247,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventRegistrationResponseDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Register for an event
+      tags:
+        - Ticketing
   /event/{eventId}/ticket:
     post:
       operationId: TicketingDataController_createEventTicketType
-      summary: Create new event ticket
       parameters:
         - name: eventId
           required: true
@@ -6377,13 +6275,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create new event ticket
+      tags:
+        - Ticketing
     get:
       operationId: TicketingDataController_getEventTickets
-      summary: Get event tickets
       parameters:
         - name: eventId
           required: true
@@ -6400,14 +6298,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventTicketProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event tickets
+      tags:
+        - Ticketing
   /event/{eventId}/ticket/{ticketId}:
     get:
       operationId: TicketingDataController_getEventTicketById
-      summary: Get event ticket details
       parameters:
         - name: eventId
           required: true
@@ -6428,13 +6326,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event ticket details
+      tags:
+        - Ticketing
     patch:
       operationId: TicketingDataController_editEventTicket
-      summary: Update event ticket details
       parameters:
         - name: eventId
           required: true
@@ -6462,14 +6360,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event ticket details
+      tags:
+        - Ticketing
   /event/{eventId}/ticket/{ticketId}/profile:
     put:
       operationId: TicketingDataController_uploadEventTicketImage
-      summary: Upload event ticket profile
       parameters:
         - name: eventId
           required: true
@@ -6502,14 +6400,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Upload event ticket profile
+      tags:
+        - Ticketing
   /event/{eventId}/stage:
     post:
       operationId: TicketingDataController_createEventTicketStage
-      summary: Create new event stage
       parameters:
         - name: eventId
           required: true
@@ -6530,13 +6428,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventStageProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create new event stage
+      tags:
+        - Ticketing
     get:
       operationId: TicketingDataController_getEventStages
-      summary: Get event stages
       parameters:
         - name: eventId
           required: true
@@ -6559,14 +6457,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventStageProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event stages
+      tags:
+        - Ticketing
   /event/{eventId}/stage/{stageId}:
     get:
       operationId: TicketingDataController_getEventStageById
-      summary: Get event stage details
       parameters:
         - name: eventId
           required: true
@@ -6587,13 +6485,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventStageProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event stage details
+      tags:
+        - Ticketing
     patch:
       operationId: TicketingDataController_editEventStage
-      summary: Update event stage details
       parameters:
         - name: eventId
           required: true
@@ -6621,13 +6519,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventStageProfileDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Update event stage details
+      tags:
+        - Ticketing
     delete:
       operationId: TicketingDataController_deleteEventStage
-      summary: Delete event stage
       parameters:
         - name: eventId
           required: true
@@ -6648,14 +6546,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Delete event stage
+      tags:
+        - Ticketing
   /event/{eventId}/calculate-prices:
     post:
       operationId: TicketingDataController_calculateTicketPrices
-      summary: Calculate ticket prices with discounts
       parameters:
         - name: eventId
           required: true
@@ -6676,14 +6574,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TicketPricesResponse'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Calculate ticket prices with discounts
+      tags:
+        - Ticketing
   /event/{eventId}/validate-discount:
     post:
       operationId: TicketingDataController_validateDiscountCode
-      summary: Validate discount code
       parameters:
         - name: eventId
           required: true
@@ -6698,14 +6596,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeValidationResponse'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Validate discount code
+      tags:
+        - Ticketing
   /user/{address}/creator/events:
     get:
       operationId: TicketingDataController_getCreatorEvents
-      summary: Get creator events created
       parameters:
         - name: address
           required: true
@@ -6720,15 +6618,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreatorDetailsDto'
+      security:
+        - bearer: []
+      summary: Get creator events created
       tags:
         - Ticketing
         - User
-      security:
-        - bearer: []
   /event/{eventId}/invite:
     post:
       operationId: TicketingDataController_createInvitation
-      summary: Create event invitation
       parameters:
         - name: eventId
           required: true
@@ -6754,14 +6652,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventInvitationDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create event invitation
+      tags:
+        - Ticketing
   /event/{eventId}/invite/query:
     get:
       operationId: TicketingDataController_getEventInvitations
-      summary: Get event invitations
       parameters:
         - name: eventId
           required: true
@@ -6779,8 +6677,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Event invitation details
@@ -6788,14 +6684,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventInvitationQuery'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event invitations
+      tags:
+        - Ticketing
   /event/{eventId}/invite/{inviteId}:
     get:
       operationId: TicketingDataController_getVoucherData
-      summary: Get event invitation details
       parameters:
         - name: eventId
           required: true
@@ -6816,14 +6712,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventInvitation'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event invitation details
+      tags:
+        - Ticketing
   /event/{eventId}/voucher/query:
     get:
       operationId: TicketingDataController_getEventVouchers
-      summary: Get event vouchers for event
       parameters:
         - name: eventId
           required: true
@@ -6841,8 +6737,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: List of vouchers for the event
@@ -6850,14 +6744,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventVoucherQuery'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event vouchers for event
+      tags:
+        - Ticketing
   /event/{eventId}/questions:
     get:
       operationId: TicketingDataController_getEventQuestions
-      summary: Get event custom questions
       parameters:
         - name: eventId
           required: true
@@ -6874,14 +6768,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventQuestionDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event custom questions
+      tags:
+        - Ticketing
   /event/{eventId}/question:
     post:
       operationId: TicketingDataController_createEventQuestion
-      summary: Create custom question for event
       parameters:
         - name: eventId
           required: true
@@ -6903,14 +6797,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventQuestionDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create custom question for event
+      tags:
+        - Ticketing
   /event/{eventId}/question/{questionId}:
     patch:
       operationId: TicketingDataController_editEventQuestion
-      summary: Edit custom question for event
       parameters:
         - name: eventId
           required: true
@@ -6938,13 +6832,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventQuestionDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Edit custom question for event
+      tags:
+        - Ticketing
     delete:
       operationId: TicketingDataController_deleteEventQuestion
-      summary: Delete custom question for event
       parameters:
         - name: eventId
           required: true
@@ -6965,14 +6859,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Delete custom question for event
+      tags:
+        - Ticketing
   /event/{eventId}/invite/{inviteId}/claim:
     post:
       operationId: TicketingDataController_claimInvitation
-      summary: Claim invitation
       parameters:
         - name: eventId
           required: true
@@ -7000,14 +6894,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventInvitation'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Claim invitation
+      tags:
+        - Ticketing
   /event/{eventId}/invite/{inviteId}/cancel:
     post:
       operationId: TicketingDataController_cancelInvitation
-      summary: Cancel invitation
       parameters:
         - name: eventId
           required: true
@@ -7028,14 +6922,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventInvitationDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Cancel invitation
+      tags:
+        - Ticketing
   /event/{eventId}/guest/query:
     get:
       operationId: TicketingDataController_getEventGuests
-      summary: Get event guests
       parameters:
         - name: eventId
           required: true
@@ -7053,8 +6947,6 @@ paths:
           description: >-
             A JSON object representing the filter criteria. Example:
             {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-          schema:
-            type: string
       responses:
         '200':
           description: Event guest details
@@ -7062,14 +6954,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventGuestProfileQuery'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event guests
+      tags:
+        - Ticketing
   /event/{eventId}/guest/{address}:
     get:
       operationId: TicketingDataController_getEventGuest
-      summary: Get event guest details
       parameters:
         - name: eventId
           required: true
@@ -7090,14 +6982,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventGuestProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event guest details
+      tags:
+        - Ticketing
   /event/{eventId}/guest-export:
     get:
       operationId: TicketingDataController_getEventGuestExport
-      summary: Get list of all guests
       parameters:
         - name: eventId
           required: true
@@ -7114,14 +7006,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventGuestExport'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get list of all guests
+      tags:
+        - Ticketing
   /event/{eventId}/role:
     post:
       operationId: TicketingDataController_createUserRole
-      summary: Create event user role
       parameters:
         - name: eventId
           required: true
@@ -7145,13 +7037,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create event user role
+      tags:
+        - Ticketing
     get:
       operationId: TicketingDataController_getEventUserRoles
-      summary: Get event roles
       parameters:
         - name: eventId
           required: true
@@ -7168,14 +7060,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event roles
+      tags:
+        - Ticketing
   /event/{eventId}/role/{address}:
     delete:
       operationId: TicketingDataController_deleteRole
-      summary: Delete event user role
       parameters:
         - name: eventId
           required: true
@@ -7201,13 +7093,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Delete event user role
+      tags:
+        - Ticketing
     get:
       operationId: TicketingDataController_getEventUserRole
-      summary: Get event user role details
       parameters:
         - name: eventId
           required: true
@@ -7228,10 +7120,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event user role details
+      tags:
+        - Ticketing
   /event/{eventId}/guest:
     delete:
       operationId: TicketingDataController_deleteGuest
@@ -7249,14 +7142,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      tags:
+        - Ticketing
   /event/{eventId}/role/{roleId}/accept:
     post:
       operationId: TicketingDataController_acceptRole
-      summary: Accept event user role
       parameters:
         - name: eventId
           required: true
@@ -7277,14 +7169,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Accept event user role
+      tags:
+        - Ticketing
   /event/{eventId}/roleId/{roleId}:
     get:
       operationId: TicketingDataController_getEventUserRolesById
-      summary: Get event roles by id
       parameters:
         - name: eventId
           required: true
@@ -7305,14 +7197,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUserRoleDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event roles by id
+      tags:
+        - Ticketing
   /user/me/event:
     get:
       operationId: TicketingDataController_getMyEvents
-      summary: Get my events
       parameters: []
       responses:
         '200':
@@ -7320,19 +7212,15 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
                 $ref: '#/components/schemas/GetMyEventsQuery'
-=======
-                $ref: "#/components/schemas/GetMyEventsQuery"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get my events
+      tags:
+        - Ticketing
   /user/me/event/badge:
     get:
       operationId: TicketingDataController_generateQR
-      summary: Create badge QR
       parameters: []
       responses:
         '200':
@@ -7341,14 +7229,14 @@ paths:
             application/json:
               schema:
                 type: string
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create badge QR
+      tags:
+        - Ticketing
   /user/me/event/badge/payload:
     get:
       operationId: TicketingDataController_generateQRPayload
-      summary: Create badge QR
       parameters: []
       responses:
         '200':
@@ -7357,14 +7245,14 @@ paths:
             application/json:
               schema:
                 type: string
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create badge QR
+      tags:
+        - Ticketing
   /event/{eventId}/scan:
     post:
       operationId: TicketingDataController_eventScanTickets
-      summary: Validate QR
       parameters:
         - name: eventId
           required: true
@@ -7385,14 +7273,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TicketValidationResult'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Validate QR
+      tags:
+        - Ticketing
   /event/{eventId}/voucher:
     post:
       operationId: TicketingDataController_createEventVoucher
-      summary: Create a new event voucher
       parameters: []
       requestBody:
         required: true
@@ -7407,14 +7295,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventVoucherDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create a new event voucher
+      tags:
+        - Ticketing
   /event/{eventId}/voucher/{voucherCode}:
     patch:
       operationId: TicketingDataController_editEventVoucher
-      summary: Edit an existing event voucher
       parameters:
         - name: eventId
           required: true
@@ -7441,13 +7329,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventVoucherDoc'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Edit an existing event voucher
+      tags:
+        - Ticketing
     delete:
       operationId: TicketingDataController_deleteEventVoucher
-      summary: Delete an existing event voucher
       parameters:
         - name: eventId
           required: true
@@ -7468,14 +7356,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessDto'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Delete an existing event voucher
+      tags:
+        - Ticketing
   /event/{eventId}/manual-check-in:
     post:
       operationId: TicketingDataController_manualCheckIn
-      summary: Manual check-in
       parameters:
         - name: eventId
           required: true
@@ -7497,14 +7385,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TicketValidationResult'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Manual check-in
+      tags:
+        - Ticketing
   /event/{eventId}/guest/{guestId}/answered-questions:
     get:
       operationId: TicketingDataController_getAnsweredQuestions
-      summary: Get answered questions with details for a guest
       parameters:
         - name: eventId
           required: true
@@ -7525,14 +7413,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AnsweredQuestionWithDetails'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get answered questions with details for a guest
+      tags:
+        - Ticketing
   /event/{eventId}/guest/approve:
     patch:
       operationId: TicketingDataController_approveOrRejectGuestRegistration
-      summary: Approve or reject guests registration
       parameters:
         - name: eventId
           required: true
@@ -7558,14 +7446,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventGuestProfile'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Approve or reject guests registration
+      tags:
+        - Ticketing
   /event/{eventId}/ticket/{ticketId}/google/class:
     post:
       operationId: TicketingDataController_createGooglePassClass
-      summary: Create or update Google Pass class
       parameters:
         - name: eventId
           required: true
@@ -7580,14 +7468,14 @@ paths:
       responses:
         '201':
           description: Google Pass class created or updated
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create or update Google Pass class
+      tags:
+        - Ticketing
   /event/{eventId}/guest/{address}/google/pass:
     get:
       operationId: TicketingDataController_createGooglePassForGuest
-      summary: Create Google Pass for guest
       parameters:
         - name: eventId
           required: true
@@ -7602,14 +7490,14 @@ paths:
       responses:
         '201':
           description: Google Pass created for guest
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Create Google Pass for guest
+      tags:
+        - Ticketing
   /event/profile/location:
     get:
       operationId: TicketingDataController_getEventLocations
-      summary: Get event locations
       parameters: []
       responses:
         '200':
@@ -7620,14 +7508,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventCountGroupedByCountry'
-      tags:
-        - Ticketing
       security:
         - bearer: []
+      summary: Get event locations
+      tags:
+        - Ticketing
   /event/{eventId}/referral-config:
     post:
       operationId: TicketingDataController_createReferralConfig
-      summary: Create a new referral configuration for an event
       parameters:
         - name: eventId
           required: true
@@ -7641,7 +7529,6 @@ paths:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
               $ref: '#/components/schemas/EventReferralConfigCreateDto'
       responses:
         '201':
@@ -7650,25 +7537,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
-=======
-              $ref: "#/components/schemas/EventReferralConfigCreateDto"
-      responses:
-        "201":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralConfigDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Create a new referral configuration for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referral-config/{configId}:
     patch:
       operationId: TicketingDataController_editReferralConfig
-      summary: Edit a referral configuration for an event
       parameters:
         - name: eventId
           required: true
@@ -7688,7 +7565,6 @@ paths:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
               $ref: '#/components/schemas/EventReferralConfigEditDto'
       responses:
         '200':
@@ -7697,24 +7573,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
-=======
-              $ref: "#/components/schemas/EventReferralConfigEditDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralConfigDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Edit a referral configuration for an event
+      tags:
+        - Ticketing
     delete:
       operationId: TicketingDataController_deleteReferralConfig
-      summary: Delete a referral configuration for an event
       parameters:
         - name: eventId
           required: true
@@ -7729,30 +7595,21 @@ paths:
           schema:
             type: string
       responses:
-<<<<<<< HEAD
         '200':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
-=======
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralConfigDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Delete a referral configuration for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referral-configs:
     get:
       operationId: TicketingDataController_getReferralConfigs
-      summary: Get referral configurations for an event
       parameters:
         - name: eventId
           required: true
@@ -7767,30 +7624,21 @@ paths:
           schema:
             type: string
       responses:
-<<<<<<< HEAD
         '200':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralConfigQuery'
-=======
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralConfigQuery"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Get referral configurations for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referral:
     post:
       operationId: TicketingDataController_createReferral
-      summary: Create a new referral for an event
       parameters:
         - name: eventId
           required: true
@@ -7804,7 +7652,6 @@ paths:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
               $ref: '#/components/schemas/EventReferralCreateDto'
       responses:
         '201':
@@ -7813,25 +7660,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralDoc'
-=======
-              $ref: "#/components/schemas/EventReferralCreateDto"
-      responses:
-        "201":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Create a new referral for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referral/{referralCode}:
     patch:
       operationId: TicketingDataController_editReferral
-      summary: Edit a referral for an event
       parameters:
         - name: eventId
           required: true
@@ -7851,7 +7688,6 @@ paths:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
               $ref: '#/components/schemas/EventReferralEditDto'
       responses:
         '200':
@@ -7860,24 +7696,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralDoc'
-=======
-              $ref: "#/components/schemas/EventReferralEditDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Edit a referral for an event
+      tags:
+        - Ticketing
     delete:
       operationId: TicketingDataController_deleteReferral
-      summary: Delete a referral for an event
       parameters:
         - name: eventId
           required: true
@@ -7892,30 +7718,21 @@ paths:
           schema:
             type: string
       responses:
-<<<<<<< HEAD
         '200':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralDoc'
-=======
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Delete a referral for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referrals:
     get:
       operationId: TicketingDataController_getReferrals
-      summary: Get referrals for an event
       parameters:
         - name: eventId
           required: true
@@ -7930,30 +7747,21 @@ paths:
           schema:
             type: string
       responses:
-<<<<<<< HEAD
         '200':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventReferralQuery'
-=======
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EventReferralQuery"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Get referrals for an event
+      tags:
+        - Ticketing
   /event/{eventId}/referrals/self-serviced:
     get:
       operationId: TicketingDataController_getSelfServicedReferrals
-      summary: Get self-serviced referrals for a specific event or all events
       parameters:
         - name: eventId
           required: false
@@ -7962,28 +7770,20 @@ paths:
           schema:
             type: string
       responses:
-<<<<<<< HEAD
         '200':
           description: ''
-=======
-        "200":
-          description: ""
->>>>>>> d44343f (more event types)
           content:
             application/json:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
                   $ref: '#/components/schemas/EventReferralDoc'
-=======
-                  $ref: "#/components/schemas/EventReferralDoc"
->>>>>>> d44343f (more event types)
-      tags:
-        - Ticketing
       security:
         - bearer: []
         - bearer: []
+      summary: Get self-serviced referrals for a specific event or all events
+      tags:
+        - Ticketing
 info:
   title: XOXNO APIs
   description: APIs for XOXNO marketplace
@@ -8999,7 +8799,7 @@ components:
           type: number
         holdersCount:
           type: number
-        rate:
+        rateInfo:
           $ref: '#/components/schemas/RateType'
         apr:
           type: number
@@ -9015,7 +8815,7 @@ components:
           type: number
         uniqueStakersCount:
           type: number
-        instakeUnstake:
+        instantUnstake:
           type: string
         instantPendingUnstake:
           type: string
@@ -9035,7 +8835,7 @@ components:
         - supplyShort
         - transfersCount
         - holdersCount
-        - rate
+        - rateInfo
         - apr
         - apy
         - totalStakedCount
@@ -9043,7 +8843,7 @@ components:
         - totalRewardsPaid
         - totalRewardsPaidUsd
         - uniqueStakersCount
-        - instakeUnstake
+        - instantUnstake
         - instantPendingUnstake
         - totalWithdrawn
         - serviceFee
@@ -12680,6 +12480,17 @@ components:
       required:
         - count
         - wallets
+    MarketExtraApy:
+      type: object
+      properties:
+        nativeApy:
+          type: number
+          description: Native APY for derivatives tokes
+          example: 0.03
+        feesApr:
+          type: number
+          description: LP fees APR
+          example: 0.03
     LendingMarketProfile:
       type: object
       properties:
@@ -12890,13 +12701,17 @@ components:
           items:
             type: array
         oraclePrice:
-          type: number
+          type: string
           description: Oracle price
-          example: 100
+          example: '100'
         participants:
           description: Participants in the lending market
           allOf:
             - $ref: '#/components/schemas/LendingMarketParticipants'
+        extraApy:
+          description: Extra APY for derivatives & LP tokens
+          allOf:
+            - $ref: '#/components/schemas/MarketExtraApy'
       required:
         - dataType
         - token
@@ -12989,6 +12804,10 @@ components:
           type: string
           description: Liquidation bonus
           example: 0.1
+        isDeprecated:
+          type: boolean
+          description: Is eMode deprecated
+          example: false
         id:
           type: string
           description: EMode category
@@ -12998,6 +12817,7 @@ components:
         - ltv
         - liquidationThreshold
         - liquidationBonus
+        - isDeprecated
         - id
     PickTypeClass:
       type: object
@@ -13070,6 +12890,10 @@ components:
           type: boolean
           description: Indicates if the asset can be borrowed in isolation
           example: false
+        extraApy:
+          description: Extra APY for derivatives & LP tokens
+          allOf:
+            - $ref: '#/components/schemas/MarketExtraApy'
       required:
         - token
         - name
@@ -13159,9 +12983,13 @@ components:
           description: Borrow index
           example: 0
         entryLiquidationThreshold:
-          type: number
+          type: string
           description: Entry liquidation threshold
-          example: 0.85
+          example: '780000000000000000000'
+        entryLtv:
+          type: string
+          description: Entry loan to value
+          example: '650000000000000000000'
         isolated:
           type: boolean
           description: Indicates if the asset is isolated
@@ -13204,6 +13032,7 @@ components:
         - borrowTimestamp
         - borrowIndex
         - entryLiquidationThreshold
+        - entryLtv
         - isolated
         - isVault
         - eModeCategory
@@ -13255,6 +13084,10 @@ components:
           type: string
           description: Liquidation bonus
           example: 0.1
+        isDeprecated:
+          type: boolean
+          description: Is eMode deprecated
+          example: false
         id:
           type: string
           description: EMode category
@@ -13269,6 +13102,7 @@ components:
         - ltv
         - liquidationThreshold
         - liquidationBonus
+        - isDeprecated
         - id
         - eModeTokenProfiles
     LendingMarketAnalyticsGraph:
@@ -13477,10 +13311,27 @@ components:
     LendingOverallStats:
       type: object
       properties:
-        supplied:
+        topMarkets:
+          description: Top markets by supply APY
+          example:
+            - USDC-350c4e
+            - XOXNO-589e09
+            - LXOXNO-a00540
+          type: array
+          items:
+            type: string
+        marketCount:
+          type: number
+          description: Total number of lending markets
+          example: 10
+        participantsCount:
           type: number
           description: Total supplied amount
           example: 10000000
+        bestApy:
+          type: number
+          description: Maximum APY
+          example: 0.04
         borrowed:
           type: number
           description: Total borrowed amount
@@ -13494,7 +13345,10 @@ components:
           description: Total borrowed margin over 24h
           example: 15
       required:
-        - supplied
+        - topMarkets
+        - marketCount
+        - participantsCount
+        - bestApy
         - borrowed
         - suppliedMargin
         - borrowedMargin
@@ -14092,11 +13946,7 @@ components:
           type: string
         startTime:
           type: number
-<<<<<<< HEAD
-          minimum: 1734525790
-=======
-          minimum: 1731817190
->>>>>>> d44343f (more event types)
+          minimum: 1736257098
         endTime:
           type: number
         location:
@@ -14106,11 +13956,7 @@ components:
         isVirtualEvent:
           type: boolean
         seo:
-<<<<<<< HEAD
           $ref: '#/components/schemas/EventSeoDto'
-=======
-          $ref: "#/components/schemas/EventSeoDto"
->>>>>>> d44343f (more event types)
         category:
           type: string
         subCategory:
@@ -14407,17 +14253,10 @@ components:
           example: Event Title
         startTime:
           type: number
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         endTime:
           type: number
-          example: 1734525794
-=======
-          example: 1731817191
-        endTime:
-          type: number
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -14428,11 +14267,7 @@ components:
           type: string
           example: my-awesome-event
         seo:
-<<<<<<< HEAD
           $ref: '#/components/schemas/EventSeoDto'
-=======
-          $ref: "#/components/schemas/EventSeoDto"
->>>>>>> d44343f (more event types)
         category:
           type: string
         subCategory:
@@ -14672,19 +14507,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: d35c834d-768f-4252-aadb-e8e6fb0a71b4
-=======
-          example: 1731817191
-        invitationId:
-          type: string
-          description: Invitation ID for the guest
-          example: 1a296938-9e1e-4304-915a-408e36982516
->>>>>>> d44343f (more event types)
+          example: 0eaeb82a-b329-4e0c-84c3-2479ca3f9941
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14734,15 +14561,9 @@ components:
         guestDoc:
           $ref: '#/components/schemas/EventGuestDoc'
         fiatPaymentForm:
-<<<<<<< HEAD
           $ref: '#/components/schemas/FiatPaymentForm'
         cryptoPayment:
           $ref: '#/components/schemas/CryptoPaymentResult'
-=======
-          $ref: "#/components/schemas/FiatPaymentForm"
-        cryptoPayment:
-          $ref: "#/components/schemas/CryptoPaymentResult"
->>>>>>> d44343f (more event types)
       required:
         - guestDoc
     EventTicketProfileCreateDto:
@@ -14834,19 +14655,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-<<<<<<< HEAD
-          example: 1734525790
+          example: 1736257098
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: eeecb816-6ad2-41f6-966f-585dd7ad57c7
-=======
-          example: 1731817190
-        id:
-          type: string
-          description: Unique identifier for this ticket type.
-          example: 2754aa30-abe9-4c84-91df-3cb541a341c5
->>>>>>> d44343f (more event types)
+          example: bab800da-f247-4a2c-bd17-1f8366d25a1c
       required:
         - dataType
         - eventId
@@ -14910,17 +14723,10 @@ components:
           type: string
         startTime:
           type: number
-<<<<<<< HEAD
-          minimum: 1734525794
+          minimum: 1736257103
         endTime:
           type: number
-          minimum: 1734612194
-=======
-          minimum: 1731817191
-        endTime:
-          type: number
-          minimum: 1731903591
->>>>>>> d44343f (more event types)
+          minimum: 1736343503
         maxLimit:
           type: number
         userLimit:
@@ -14980,19 +14786,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-<<<<<<< HEAD
-          example: 1734525790
+          example: 1736257098
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1734525790
-=======
-          example: 1731817190
-        endTime:
-          type: number
-          description: Timestamp when this stage ends.
-          example: 1731817190
->>>>>>> d44343f (more event types)
+          example: 1736257098
         maxLimit:
           type: object
           description: >-
@@ -15023,11 +14821,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-<<<<<<< HEAD
-          example: 85f18e43-2485-4eb5-bc17-ef33f53ee12b
-=======
-          example: b66d8dad-2739-42d8-802e-993231b8e99a
->>>>>>> d44343f (more event types)
+          example: b9412378-5d67-4b11-99db-dc47e5d53bdc
       required:
         - dataType
         - eventId
@@ -15064,17 +14858,10 @@ components:
           type: string
         startTime:
           type: number
-<<<<<<< HEAD
-          minimum: 1734525794
+          minimum: 1736257103
         endTime:
           type: number
-          minimum: 1734612194
-=======
-          minimum: 1731817191
-        endTime:
-          type: number
-          minimum: 1731903591
->>>>>>> d44343f (more event types)
+          minimum: 1736343503
       required:
         - maxLimit
         - userLimit
@@ -15218,11 +15005,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-<<<<<<< HEAD
-          example: 952537c1-5071-433f-b62d-42f7e32c4802
-=======
-          example: 4afbef1d-8ab6-423c-9bf6-2ec62dbcc557
->>>>>>> d44343f (more event types)
+          example: bb0b5435-4276-468e-a1ec-18085e863600
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -15285,11 +15068,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15322,11 +15101,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-<<<<<<< HEAD
-          example: cad7fc31-f30b-4c8b-9ad3-942e12694479
-=======
-          example: 4781f294-9f63-4160-b31d-51b03c6effff
->>>>>>> d44343f (more event types)
+          example: d83fd2a4-bec0-41e2-a461-fa185157162f
       required:
         - dataType
         - eventId
@@ -15392,11 +15167,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15429,11 +15200,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-<<<<<<< HEAD
-          example: cad7fc31-f30b-4c8b-9ad3-942e12694479
-=======
-          example: 4781f294-9f63-4160-b31d-51b03c6effff
->>>>>>> d44343f (more event types)
+          example: d83fd2a4-bec0-41e2-a461-fa185157162f
         profile:
           type: string
           description: >-
@@ -15550,19 +15317,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1734525794
-=======
-          example: 1731817191
-        endDate:
-          type: number
-          description: Timestamp when the voucher expires.
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -15572,11 +15331,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15678,11 +15433,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
       required:
         - dataType
         - id
@@ -15820,19 +15571,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: d35c834d-768f-4252-aadb-e8e6fb0a71b4
-=======
-          example: 1731817191
-        invitationId:
-          type: string
-          description: Invitation ID for the guest
-          example: 1a296938-9e1e-4304-915a-408e36982516
->>>>>>> d44343f (more event types)
+          example: 0eaeb82a-b329-4e0c-84c3-2479ca3f9941
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15976,11 +15719,7 @@ components:
         eventProfile:
           description: The event profile.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/EventProfile'
-=======
-            - $ref: "#/components/schemas/EventProfile"
->>>>>>> d44343f (more event types)
       required:
         - ticketCount
         - status
@@ -16000,11 +15739,7 @@ components:
           description: List of documents
           type: array
           items:
-<<<<<<< HEAD
             $ref: '#/components/schemas/MyEvents'
-=======
-            $ref: "#/components/schemas/MyEvents"
->>>>>>> d44343f (more event types)
       required:
         - hasMoreResults
         - resources
@@ -16166,19 +15901,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1734525794
-=======
-          example: 1731817191
-        endDate:
-          type: number
-          description: Timestamp when the voucher expires.
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -16230,19 +15957,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-<<<<<<< HEAD
-          example: 1734525794
+          example: 1736257103
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1734525794
-=======
-          example: 1731817191
-        endDate:
-          type: number
-          description: Timestamp when the voucher expires.
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -16286,11 +16005,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-<<<<<<< HEAD
-          example: f75cf088-5d35-488b-9bd6-03f8578bc976
-=======
-          example: 2cf4fb03-cff8-414a-87d3-c6a15f853472
->>>>>>> d44343f (more event types)
+          example: 1180cbee-9ae7-4549-ba45-6deaeb9104e5
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16306,11 +16021,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -16397,11 +16108,7 @@ components:
         voucherInfo:
           description: Voucher details that will be issued when the condition is met.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/EventVoucherDoc'
-=======
-            - $ref: "#/components/schemas/EventVoucherDoc"
->>>>>>> d44343f (more event types)
       required:
         - rewardType
         - conditionType
@@ -16415,21 +16122,13 @@ components:
             Voucher automatically applied as a discount when this referral code
             is used.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/EventVoucherDoc'
-=======
-            - $ref: "#/components/schemas/EventVoucherDoc"
->>>>>>> d44343f (more event types)
         rewardDetails:
           description: >-
             Details about the reward issued to the referral owner after certain
             conditions are met.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/RewardDetails'
-=======
-            - $ref: "#/components/schemas/RewardDetails"
->>>>>>> d44343f (more event types)
         isSelfService:
           type: boolean
           description: >-
@@ -16464,11 +16163,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-<<<<<<< HEAD
-          example: c4fb28e5-74a4-44dc-9e3b-2685925ee55e
-=======
-          example: a55c5bee-9592-4a69-9a25-e0db43f9813e
->>>>>>> d44343f (more event types)
+          example: 3a44aae7-7158-463c-adbe-97372cb8a7fc
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16477,21 +16172,13 @@ components:
             Indicates if a voucher should be automatically applied as a discount
             when this referral code is used.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/EventVoucherDoc'
-=======
-            - $ref: "#/components/schemas/EventVoucherDoc"
->>>>>>> d44343f (more event types)
         rewardDetails:
           description: >-
             Details about the reward issued to the referral owner after a
             certain number of successful referrals or revenue thresholds.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/RewardDetails'
-=======
-            - $ref: "#/components/schemas/RewardDetails"
->>>>>>> d44343f (more event types)
         isSelfService:
           type: object
           description: >-
@@ -16503,11 +16190,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral configuration was created.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16527,21 +16210,13 @@ components:
             Voucher automatically applied as a discount when this referral code
             is used.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/EventVoucherDoc'
-=======
-            - $ref: "#/components/schemas/EventVoucherDoc"
->>>>>>> d44343f (more event types)
         rewardDetails:
           description: >-
             Details about the reward issued to the referral owner after certain
             conditions are met.
           allOf:
-<<<<<<< HEAD
             - $ref: '#/components/schemas/RewardDetails'
-=======
-            - $ref: "#/components/schemas/RewardDetails"
->>>>>>> d44343f (more event types)
         isSelfService:
           type: boolean
           description: >-
@@ -16563,11 +16238,7 @@ components:
           description: List of referral configurations matching the filter.
           type: array
           items:
-<<<<<<< HEAD
             $ref: '#/components/schemas/EventReferralConfigDoc'
-=======
-            $ref: "#/components/schemas/EventReferralConfigDoc"
->>>>>>> d44343f (more event types)
       required:
         - resources
     EventReferralCreateDto:
@@ -16605,11 +16276,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-<<<<<<< HEAD
-          example: b34f086b-f866-42cf-9e46-724bd4367cc4
-=======
-          example: aecb8c6f-9184-4ea5-9249-704737e635b0
->>>>>>> d44343f (more event types)
+          example: 2be2b490-51e1-4489-be51-82709c6b453d
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16628,11 +16295,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral was created.
-<<<<<<< HEAD
-          example: 1734525794
-=======
-          example: 1731817191
->>>>>>> d44343f (more event types)
+          example: 1736257103
         isActive:
           type: object
           description: Indicates whether the referral code is currently active.
@@ -16667,11 +16330,7 @@ components:
           description: List of referrals matching the filter.
           type: array
           items:
-<<<<<<< HEAD
             $ref: '#/components/schemas/EventReferralDoc'
-=======
-            $ref: "#/components/schemas/EventReferralDoc"
->>>>>>> d44343f (more event types)
       required:
         - resources
     RangeFilter:
@@ -16781,42 +16440,6 @@ components:
           default: {}
           allOf:
             - $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
-    CollectionOffersFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-          default: []
-        orderBy:
-          type: array
-          items:
-            type: string
-          default: []
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: number
-          default: 25
-        skip:
-          type: number
-          default: 0
-        filters:
-          type: CollectionOffersFilterCriteriaDto
-          default: {}
-    FilterQueryDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The search query
-          example: '@mihai'
-      required:
-        - name
     CollectionOffersFilterCriteriaDto:
       type: object
       properties:
@@ -16868,6 +16491,43 @@ components:
         withAttributes:
           type: boolean
           example: true
+    CollectionOffersFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+          default: []
+        orderBy:
+          type: array
+          items:
+            type: string
+          default: []
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: number
+          default: 25
+        skip:
+          type: number
+          default: 0
+        filters:
+          default: {}
+          allOf:
+            - $ref: '#/components/schemas/CollectionOffersFilterCriteriaDto'
+    FilterQueryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The search query
+          example: '@mihai'
+      required:
+        - name
     CollectionStatsFilterCriteriaDto:
       type: object
       properties:
@@ -17418,11 +17078,7 @@ components:
         range:
           type: array
           items:
-<<<<<<< HEAD
             $ref: '#/components/schemas/RangeFilter'
-=======
-            $ref: "#/components/schemas/RangeFilter"
->>>>>>> d44343f (more event types)
         category:
           type: array
           items:

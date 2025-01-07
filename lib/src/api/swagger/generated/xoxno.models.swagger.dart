@@ -3648,7 +3648,7 @@ class IMetrics {
     required this.supplyShort,
     required this.transfersCount,
     required this.holdersCount,
-    required this.rate,
+    required this.rateInfo,
     required this.apr,
     required this.apy,
     required this.totalStakedCount,
@@ -3656,7 +3656,7 @@ class IMetrics {
     required this.totalRewardsPaid,
     required this.totalRewardsPaidUsd,
     required this.uniqueStakersCount,
-    required this.instakeUnstake,
+    required this.instantUnstake,
     required this.instantPendingUnstake,
     required this.totalWithdrawn,
     required this.serviceFee,
@@ -3690,8 +3690,8 @@ class IMetrics {
   final double transfersCount;
   @JsonKey(name: 'holdersCount')
   final double holdersCount;
-  @JsonKey(name: 'rate')
-  final RateType rate;
+  @JsonKey(name: 'rateInfo')
+  final RateType rateInfo;
   @JsonKey(name: 'apr')
   final double apr;
   @JsonKey(name: 'apy')
@@ -3706,8 +3706,8 @@ class IMetrics {
   final double totalRewardsPaidUsd;
   @JsonKey(name: 'uniqueStakersCount')
   final double uniqueStakersCount;
-  @JsonKey(name: 'instakeUnstake')
-  final String instakeUnstake;
+  @JsonKey(name: 'instantUnstake')
+  final String instantUnstake;
   @JsonKey(name: 'instantPendingUnstake')
   final String instantPendingUnstake;
   @JsonKey(name: 'totalWithdrawn')
@@ -3750,8 +3750,9 @@ class IMetrics {
             (identical(other.holdersCount, holdersCount) ||
                 const DeepCollectionEquality()
                     .equals(other.holdersCount, holdersCount)) &&
-            (identical(other.rate, rate) ||
-                const DeepCollectionEquality().equals(other.rate, rate)) &&
+            (identical(other.rateInfo, rateInfo) ||
+                const DeepCollectionEquality()
+                    .equals(other.rateInfo, rateInfo)) &&
             (identical(other.apr, apr) ||
                 const DeepCollectionEquality().equals(other.apr, apr)) &&
             (identical(other.apy, apy) ||
@@ -3771,9 +3772,9 @@ class IMetrics {
             (identical(other.uniqueStakersCount, uniqueStakersCount) ||
                 const DeepCollectionEquality()
                     .equals(other.uniqueStakersCount, uniqueStakersCount)) &&
-            (identical(other.instakeUnstake, instakeUnstake) ||
+            (identical(other.instantUnstake, instantUnstake) ||
                 const DeepCollectionEquality()
-                    .equals(other.instakeUnstake, instakeUnstake)) &&
+                    .equals(other.instantUnstake, instantUnstake)) &&
             (identical(other.instantPendingUnstake, instantPendingUnstake) ||
                 const DeepCollectionEquality().equals(
                     other.instantPendingUnstake, instantPendingUnstake)) &&
@@ -3801,7 +3802,7 @@ class IMetrics {
       const DeepCollectionEquality().hash(supplyShort) ^
       const DeepCollectionEquality().hash(transfersCount) ^
       const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(rate) ^
+      const DeepCollectionEquality().hash(rateInfo) ^
       const DeepCollectionEquality().hash(apr) ^
       const DeepCollectionEquality().hash(apy) ^
       const DeepCollectionEquality().hash(totalStakedCount) ^
@@ -3809,7 +3810,7 @@ class IMetrics {
       const DeepCollectionEquality().hash(totalRewardsPaid) ^
       const DeepCollectionEquality().hash(totalRewardsPaidUsd) ^
       const DeepCollectionEquality().hash(uniqueStakersCount) ^
-      const DeepCollectionEquality().hash(instakeUnstake) ^
+      const DeepCollectionEquality().hash(instantUnstake) ^
       const DeepCollectionEquality().hash(instantPendingUnstake) ^
       const DeepCollectionEquality().hash(totalWithdrawn) ^
       const DeepCollectionEquality().hash(serviceFee) ^
@@ -3829,7 +3830,7 @@ extension $IMetricsExtension on IMetrics {
       double? supplyShort,
       double? transfersCount,
       double? holdersCount,
-      RateType? rate,
+      RateType? rateInfo,
       double? apr,
       double? apy,
       double? totalStakedCount,
@@ -3837,7 +3838,7 @@ extension $IMetricsExtension on IMetrics {
       double? totalRewardsPaid,
       double? totalRewardsPaidUsd,
       double? uniqueStakersCount,
-      String? instakeUnstake,
+      String? instantUnstake,
       String? instantPendingUnstake,
       double? totalWithdrawn,
       double? serviceFee}) {
@@ -3853,7 +3854,7 @@ extension $IMetricsExtension on IMetrics {
         supplyShort: supplyShort ?? this.supplyShort,
         transfersCount: transfersCount ?? this.transfersCount,
         holdersCount: holdersCount ?? this.holdersCount,
-        rate: rate ?? this.rate,
+        rateInfo: rateInfo ?? this.rateInfo,
         apr: apr ?? this.apr,
         apy: apy ?? this.apy,
         totalStakedCount: totalStakedCount ?? this.totalStakedCount,
@@ -3861,7 +3862,7 @@ extension $IMetricsExtension on IMetrics {
         totalRewardsPaid: totalRewardsPaid ?? this.totalRewardsPaid,
         totalRewardsPaidUsd: totalRewardsPaidUsd ?? this.totalRewardsPaidUsd,
         uniqueStakersCount: uniqueStakersCount ?? this.uniqueStakersCount,
-        instakeUnstake: instakeUnstake ?? this.instakeUnstake,
+        instantUnstake: instantUnstake ?? this.instantUnstake,
         instantPendingUnstake:
             instantPendingUnstake ?? this.instantPendingUnstake,
         totalWithdrawn: totalWithdrawn ?? this.totalWithdrawn,
@@ -3880,7 +3881,7 @@ extension $IMetricsExtension on IMetrics {
       Wrapped<double>? supplyShort,
       Wrapped<double>? transfersCount,
       Wrapped<double>? holdersCount,
-      Wrapped<RateType>? rate,
+      Wrapped<RateType>? rateInfo,
       Wrapped<double>? apr,
       Wrapped<double>? apy,
       Wrapped<double>? totalStakedCount,
@@ -3888,7 +3889,7 @@ extension $IMetricsExtension on IMetrics {
       Wrapped<double>? totalRewardsPaid,
       Wrapped<double>? totalRewardsPaidUsd,
       Wrapped<double>? uniqueStakersCount,
-      Wrapped<String>? instakeUnstake,
+      Wrapped<String>? instantUnstake,
       Wrapped<String>? instantPendingUnstake,
       Wrapped<double>? totalWithdrawn,
       Wrapped<double>? serviceFee}) {
@@ -3915,7 +3916,7 @@ extension $IMetricsExtension on IMetrics {
             : this.transfersCount),
         holdersCount:
             (holdersCount != null ? holdersCount.value : this.holdersCount),
-        rate: (rate != null ? rate.value : this.rate),
+        rateInfo: (rateInfo != null ? rateInfo.value : this.rateInfo),
         apr: (apr != null ? apr.value : this.apr),
         apy: (apy != null ? apy.value : this.apy),
         totalStakedCount: (totalStakedCount != null
@@ -3933,9 +3934,9 @@ extension $IMetricsExtension on IMetrics {
         uniqueStakersCount: (uniqueStakersCount != null
             ? uniqueStakersCount.value
             : this.uniqueStakersCount),
-        instakeUnstake: (instakeUnstake != null
-            ? instakeUnstake.value
-            : this.instakeUnstake),
+        instantUnstake: (instantUnstake != null
+            ? instantUnstake.value
+            : this.instantUnstake),
         instantPendingUnstake: (instantPendingUnstake != null
             ? instantPendingUnstake.value
             : this.instantPendingUnstake),
@@ -16124,6 +16125,61 @@ extension $LendingMarketParticipantsExtension on LendingMarketParticipants {
 }
 
 @JsonSerializable(explicitToJson: true)
+class MarketExtraApy {
+  const MarketExtraApy({
+    this.nativeApy,
+    this.feesApr,
+  });
+
+  factory MarketExtraApy.fromJson(Map<String, dynamic> json) =>
+      _$MarketExtraApyFromJson(json);
+
+  static const toJsonFactory = _$MarketExtraApyToJson;
+  Map<String, dynamic> toJson() => _$MarketExtraApyToJson(this);
+
+  @JsonKey(name: 'nativeApy')
+  final double? nativeApy;
+  @JsonKey(name: 'feesApr')
+  final double? feesApr;
+  static const fromJsonFactory = _$MarketExtraApyFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MarketExtraApy &&
+            (identical(other.nativeApy, nativeApy) ||
+                const DeepCollectionEquality()
+                    .equals(other.nativeApy, nativeApy)) &&
+            (identical(other.feesApr, feesApr) ||
+                const DeepCollectionEquality().equals(other.feesApr, feesApr)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(nativeApy) ^
+      const DeepCollectionEquality().hash(feesApr) ^
+      runtimeType.hashCode;
+}
+
+extension $MarketExtraApyExtension on MarketExtraApy {
+  MarketExtraApy copyWith({double? nativeApy, double? feesApr}) {
+    return MarketExtraApy(
+        nativeApy: nativeApy ?? this.nativeApy,
+        feesApr: feesApr ?? this.feesApr);
+  }
+
+  MarketExtraApy copyWithWrapped(
+      {Wrapped<double?>? nativeApy, Wrapped<double?>? feesApr}) {
+    return MarketExtraApy(
+        nativeApy: (nativeApy != null ? nativeApy.value : this.nativeApy),
+        feesApr: (feesApr != null ? feesApr.value : this.feesApr));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LendingMarketProfile {
   const LendingMarketProfile({
     required this.dataType,
@@ -16177,6 +16233,7 @@ class LendingMarketProfile {
     required this.eModeCategoryProfiles,
     required this.oraclePrice,
     required this.participants,
+    this.extraApy,
   });
 
   factory LendingMarketProfile.fromJson(Map<String, dynamic> json) =>
@@ -16288,9 +16345,11 @@ class LendingMarketProfile {
   @JsonKey(name: 'eModeCategoryProfiles', defaultValue: <List<Object?>>[])
   final List<List<Object?>> eModeCategoryProfiles;
   @JsonKey(name: 'oraclePrice')
-  final double oraclePrice;
+  final String oraclePrice;
   @JsonKey(name: 'participants')
   final LendingMarketParticipants participants;
+  @JsonKey(name: 'extraApy')
+  final MarketExtraApy? extraApy;
   static const fromJsonFactory = _$LendingMarketProfileFromJson;
 
   @override
@@ -16390,7 +16449,8 @@ class LendingMarketProfile {
             (identical(other.canBorrowInIsolation, canBorrowInIsolation) || const DeepCollectionEquality().equals(other.canBorrowInIsolation, canBorrowInIsolation)) &&
             (identical(other.eModeCategoryProfiles, eModeCategoryProfiles) || const DeepCollectionEquality().equals(other.eModeCategoryProfiles, eModeCategoryProfiles)) &&
             (identical(other.oraclePrice, oraclePrice) || const DeepCollectionEquality().equals(other.oraclePrice, oraclePrice)) &&
-            (identical(other.participants, participants) || const DeepCollectionEquality().equals(other.participants, participants)));
+            (identical(other.participants, participants) || const DeepCollectionEquality().equals(other.participants, participants)) &&
+            (identical(other.extraApy, extraApy) || const DeepCollectionEquality().equals(other.extraApy, extraApy)));
   }
 
   @override
@@ -16449,6 +16509,7 @@ class LendingMarketProfile {
       const DeepCollectionEquality().hash(eModeCategoryProfiles) ^
       const DeepCollectionEquality().hash(oraclePrice) ^
       const DeepCollectionEquality().hash(participants) ^
+      const DeepCollectionEquality().hash(extraApy) ^
       runtimeType.hashCode;
 }
 
@@ -16503,8 +16564,9 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       String? flashLoanFee,
       bool? canBorrowInIsolation,
       List<List<Object?>>? eModeCategoryProfiles,
-      double? oraclePrice,
-      LendingMarketParticipants? participants}) {
+      String? oraclePrice,
+      LendingMarketParticipants? participants,
+      MarketExtraApy? extraApy}) {
     return LendingMarketProfile(
         dataType: dataType ?? this.dataType,
         token: token ?? this.token,
@@ -16557,7 +16619,8 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
         eModeCategoryProfiles:
             eModeCategoryProfiles ?? this.eModeCategoryProfiles,
         oraclePrice: oraclePrice ?? this.oraclePrice,
-        participants: participants ?? this.participants);
+        participants: participants ?? this.participants,
+        extraApy: extraApy ?? this.extraApy);
   }
 
   LendingMarketProfile copyWithWrapped(
@@ -16610,8 +16673,9 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       Wrapped<String>? flashLoanFee,
       Wrapped<bool>? canBorrowInIsolation,
       Wrapped<List<List<Object?>>>? eModeCategoryProfiles,
-      Wrapped<double>? oraclePrice,
-      Wrapped<LendingMarketParticipants>? participants}) {
+      Wrapped<String>? oraclePrice,
+      Wrapped<LendingMarketParticipants>? participants,
+      Wrapped<MarketExtraApy?>? extraApy}) {
     return LendingMarketProfile(
         dataType: (dataType != null ? dataType.value : this.dataType),
         token: (token != null ? token.value : this.token),
@@ -16712,7 +16776,8 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
         oraclePrice:
             (oraclePrice != null ? oraclePrice.value : this.oraclePrice),
         participants:
-            (participants != null ? participants.value : this.participants));
+            (participants != null ? participants.value : this.participants),
+        extraApy: (extraApy != null ? extraApy.value : this.extraApy));
   }
 }
 
@@ -16794,6 +16859,7 @@ class LendingEModeCategoryProfileDoc {
     required this.ltv,
     required this.liquidationThreshold,
     required this.liquidationBonus,
+    required this.isDeprecated,
     required this.id,
   });
 
@@ -16815,6 +16881,8 @@ class LendingEModeCategoryProfileDoc {
   final String liquidationThreshold;
   @JsonKey(name: 'liquidationBonus')
   final String liquidationBonus;
+  @JsonKey(name: 'isDeprecated')
+  final bool isDeprecated;
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$LendingEModeCategoryProfileDocFromJson;
@@ -16834,6 +16902,9 @@ class LendingEModeCategoryProfileDoc {
             (identical(other.liquidationBonus, liquidationBonus) ||
                 const DeepCollectionEquality()
                     .equals(other.liquidationBonus, liquidationBonus)) &&
+            (identical(other.isDeprecated, isDeprecated) ||
+                const DeepCollectionEquality()
+                    .equals(other.isDeprecated, isDeprecated)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)));
   }
@@ -16847,6 +16918,7 @@ class LendingEModeCategoryProfileDoc {
       const DeepCollectionEquality().hash(ltv) ^
       const DeepCollectionEquality().hash(liquidationThreshold) ^
       const DeepCollectionEquality().hash(liquidationBonus) ^
+      const DeepCollectionEquality().hash(isDeprecated) ^
       const DeepCollectionEquality().hash(id) ^
       runtimeType.hashCode;
 }
@@ -16858,12 +16930,14 @@ extension $LendingEModeCategoryProfileDocExtension
       String? ltv,
       String? liquidationThreshold,
       String? liquidationBonus,
+      bool? isDeprecated,
       String? id}) {
     return LendingEModeCategoryProfileDoc(
         dataType: dataType ?? this.dataType,
         ltv: ltv ?? this.ltv,
         liquidationThreshold: liquidationThreshold ?? this.liquidationThreshold,
         liquidationBonus: liquidationBonus ?? this.liquidationBonus,
+        isDeprecated: isDeprecated ?? this.isDeprecated,
         id: id ?? this.id);
   }
 
@@ -16872,6 +16946,7 @@ extension $LendingEModeCategoryProfileDocExtension
       Wrapped<String>? ltv,
       Wrapped<String>? liquidationThreshold,
       Wrapped<String>? liquidationBonus,
+      Wrapped<bool>? isDeprecated,
       Wrapped<String>? id}) {
     return LendingEModeCategoryProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -16882,6 +16957,8 @@ extension $LendingEModeCategoryProfileDocExtension
         liquidationBonus: (liquidationBonus != null
             ? liquidationBonus.value
             : this.liquidationBonus),
+        isDeprecated:
+            (isDeprecated != null ? isDeprecated.value : this.isDeprecated),
         id: (id != null ? id.value : this.id));
   }
 }
@@ -16906,6 +16983,7 @@ class PickTypeClass {
     this.debtCeiling,
     required this.siloed,
     required this.canBorrowInIsolation,
+    this.extraApy,
   });
 
   factory PickTypeClass.fromJson(Map<String, dynamic> json) =>
@@ -16948,6 +17026,8 @@ class PickTypeClass {
   final bool siloed;
   @JsonKey(name: 'canBorrowInIsolation')
   final bool canBorrowInIsolation;
+  @JsonKey(name: 'extraApy')
+  final MarketExtraApy? extraApy;
   static const fromJsonFactory = _$PickTypeClassFromJson;
 
   @override
@@ -17000,8 +17080,11 @@ class PickTypeClass {
             (identical(other.siloed, siloed) ||
                 const DeepCollectionEquality().equals(other.siloed, siloed)) &&
             (identical(other.canBorrowInIsolation, canBorrowInIsolation) ||
+                const DeepCollectionEquality().equals(
+                    other.canBorrowInIsolation, canBorrowInIsolation)) &&
+            (identical(other.extraApy, extraApy) ||
                 const DeepCollectionEquality()
-                    .equals(other.canBorrowInIsolation, canBorrowInIsolation)));
+                    .equals(other.extraApy, extraApy)));
   }
 
   @override
@@ -17026,6 +17109,7 @@ class PickTypeClass {
       const DeepCollectionEquality().hash(debtCeiling) ^
       const DeepCollectionEquality().hash(siloed) ^
       const DeepCollectionEquality().hash(canBorrowInIsolation) ^
+      const DeepCollectionEquality().hash(extraApy) ^
       runtimeType.hashCode;
 }
 
@@ -17047,7 +17131,8 @@ extension $PickTypeClassExtension on PickTypeClass {
       Object? maxDebtUsd,
       String? debtCeiling,
       bool? siloed,
-      bool? canBorrowInIsolation}) {
+      bool? canBorrowInIsolation,
+      MarketExtraApy? extraApy}) {
     return PickTypeClass(
         token: token ?? this.token,
         name: name ?? this.name,
@@ -17065,8 +17150,8 @@ extension $PickTypeClassExtension on PickTypeClass {
         maxDebtUsd: maxDebtUsd ?? this.maxDebtUsd,
         debtCeiling: debtCeiling ?? this.debtCeiling,
         siloed: siloed ?? this.siloed,
-        canBorrowInIsolation:
-            canBorrowInIsolation ?? this.canBorrowInIsolation);
+        canBorrowInIsolation: canBorrowInIsolation ?? this.canBorrowInIsolation,
+        extraApy: extraApy ?? this.extraApy);
   }
 
   PickTypeClass copyWithWrapped(
@@ -17086,7 +17171,8 @@ extension $PickTypeClassExtension on PickTypeClass {
       Wrapped<Object>? maxDebtUsd,
       Wrapped<String?>? debtCeiling,
       Wrapped<bool>? siloed,
-      Wrapped<bool>? canBorrowInIsolation}) {
+      Wrapped<bool>? canBorrowInIsolation,
+      Wrapped<MarketExtraApy?>? extraApy}) {
     return PickTypeClass(
         token: (token != null ? token.value : this.token),
         name: (name != null ? name.value : this.name),
@@ -17114,7 +17200,8 @@ extension $PickTypeClassExtension on PickTypeClass {
         siloed: (siloed != null ? siloed.value : this.siloed),
         canBorrowInIsolation: (canBorrowInIsolation != null
             ? canBorrowInIsolation.value
-            : this.canBorrowInIsolation));
+            : this.canBorrowInIsolation),
+        extraApy: (extraApy != null ? extraApy.value : this.extraApy));
   }
 }
 
@@ -17138,6 +17225,7 @@ class LendingAccountProfile {
     required this.borrowTimestamp,
     required this.borrowIndex,
     required this.entryLiquidationThreshold,
+    required this.entryLtv,
     required this.isolated,
     required this.isVault,
     required this.eModeCategory,
@@ -17189,7 +17277,9 @@ class LendingAccountProfile {
   @JsonKey(name: 'borrowIndex')
   final Object borrowIndex;
   @JsonKey(name: 'entryLiquidationThreshold')
-  final double entryLiquidationThreshold;
+  final String entryLiquidationThreshold;
+  @JsonKey(name: 'entryLtv')
+  final String entryLtv;
   @JsonKey(name: 'isolated')
   final bool isolated;
   @JsonKey(name: 'isVault')
@@ -17259,6 +17349,7 @@ class LendingAccountProfile {
                 const DeepCollectionEquality()
                     .equals(other.borrowIndex, borrowIndex)) &&
             (identical(other.entryLiquidationThreshold, entryLiquidationThreshold) || const DeepCollectionEquality().equals(other.entryLiquidationThreshold, entryLiquidationThreshold)) &&
+            (identical(other.entryLtv, entryLtv) || const DeepCollectionEquality().equals(other.entryLtv, entryLtv)) &&
             (identical(other.isolated, isolated) || const DeepCollectionEquality().equals(other.isolated, isolated)) &&
             (identical(other.isVault, isVault) || const DeepCollectionEquality().equals(other.isVault, isVault)) &&
             (identical(other.eModeCategory, eModeCategory) || const DeepCollectionEquality().equals(other.eModeCategory, eModeCategory)) &&
@@ -17289,6 +17380,7 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(borrowTimestamp) ^
       const DeepCollectionEquality().hash(borrowIndex) ^
       const DeepCollectionEquality().hash(entryLiquidationThreshold) ^
+      const DeepCollectionEquality().hash(entryLtv) ^
       const DeepCollectionEquality().hash(isolated) ^
       const DeepCollectionEquality().hash(isVault) ^
       const DeepCollectionEquality().hash(eModeCategory) ^
@@ -17316,7 +17408,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Object? supplyIndex,
       Object? borrowTimestamp,
       Object? borrowIndex,
-      double? entryLiquidationThreshold,
+      String? entryLiquidationThreshold,
+      String? entryLtv,
       bool? isolated,
       bool? isVault,
       String? eModeCategory,
@@ -17346,6 +17439,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         borrowIndex: borrowIndex ?? this.borrowIndex,
         entryLiquidationThreshold:
             entryLiquidationThreshold ?? this.entryLiquidationThreshold,
+        entryLtv: entryLtv ?? this.entryLtv,
         isolated: isolated ?? this.isolated,
         isVault: isVault ?? this.isVault,
         eModeCategory: eModeCategory ?? this.eModeCategory,
@@ -17371,7 +17465,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Wrapped<Object>? supplyIndex,
       Wrapped<Object>? borrowTimestamp,
       Wrapped<Object>? borrowIndex,
-      Wrapped<double>? entryLiquidationThreshold,
+      Wrapped<String>? entryLiquidationThreshold,
+      Wrapped<String>? entryLtv,
       Wrapped<bool>? isolated,
       Wrapped<bool>? isVault,
       Wrapped<String>? eModeCategory,
@@ -17418,6 +17513,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         entryLiquidationThreshold: (entryLiquidationThreshold != null
             ? entryLiquidationThreshold.value
             : this.entryLiquidationThreshold),
+        entryLtv: (entryLtv != null ? entryLtv.value : this.entryLtv),
         isolated: (isolated != null ? isolated.value : this.isolated),
         isVault: (isVault != null ? isVault.value : this.isVault),
         eModeCategory:
@@ -17525,6 +17621,7 @@ class LendingEModeCategoryProfile {
     required this.ltv,
     required this.liquidationThreshold,
     required this.liquidationBonus,
+    required this.isDeprecated,
     required this.id,
     required this.eModeTokenProfiles,
   });
@@ -17547,6 +17644,8 @@ class LendingEModeCategoryProfile {
   final String liquidationThreshold;
   @JsonKey(name: 'liquidationBonus')
   final String liquidationBonus;
+  @JsonKey(name: 'isDeprecated')
+  final bool isDeprecated;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(
@@ -17570,6 +17669,9 @@ class LendingEModeCategoryProfile {
             (identical(other.liquidationBonus, liquidationBonus) ||
                 const DeepCollectionEquality()
                     .equals(other.liquidationBonus, liquidationBonus)) &&
+            (identical(other.isDeprecated, isDeprecated) ||
+                const DeepCollectionEquality()
+                    .equals(other.isDeprecated, isDeprecated)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.eModeTokenProfiles, eModeTokenProfiles) ||
@@ -17586,6 +17688,7 @@ class LendingEModeCategoryProfile {
       const DeepCollectionEquality().hash(ltv) ^
       const DeepCollectionEquality().hash(liquidationThreshold) ^
       const DeepCollectionEquality().hash(liquidationBonus) ^
+      const DeepCollectionEquality().hash(isDeprecated) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(eModeTokenProfiles) ^
       runtimeType.hashCode;
@@ -17597,6 +17700,7 @@ extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
       String? ltv,
       String? liquidationThreshold,
       String? liquidationBonus,
+      bool? isDeprecated,
       String? id,
       List<ShortLendingTokenEModeProfileDoc>? eModeTokenProfiles}) {
     return LendingEModeCategoryProfile(
@@ -17604,6 +17708,7 @@ extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
         ltv: ltv ?? this.ltv,
         liquidationThreshold: liquidationThreshold ?? this.liquidationThreshold,
         liquidationBonus: liquidationBonus ?? this.liquidationBonus,
+        isDeprecated: isDeprecated ?? this.isDeprecated,
         id: id ?? this.id,
         eModeTokenProfiles: eModeTokenProfiles ?? this.eModeTokenProfiles);
   }
@@ -17613,6 +17718,7 @@ extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
       Wrapped<String>? ltv,
       Wrapped<String>? liquidationThreshold,
       Wrapped<String>? liquidationBonus,
+      Wrapped<bool>? isDeprecated,
       Wrapped<String>? id,
       Wrapped<List<ShortLendingTokenEModeProfileDoc>>? eModeTokenProfiles}) {
     return LendingEModeCategoryProfile(
@@ -17624,6 +17730,8 @@ extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
         liquidationBonus: (liquidationBonus != null
             ? liquidationBonus.value
             : this.liquidationBonus),
+        isDeprecated:
+            (isDeprecated != null ? isDeprecated.value : this.isDeprecated),
         id: (id != null ? id.value : this.id),
         eModeTokenProfiles: (eModeTokenProfiles != null
             ? eModeTokenProfiles.value
@@ -17984,7 +18092,10 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
 @JsonSerializable(explicitToJson: true)
 class LendingOverallStats {
   const LendingOverallStats({
-    required this.supplied,
+    required this.topMarkets,
+    required this.marketCount,
+    required this.participantsCount,
+    required this.bestApy,
     required this.borrowed,
     required this.suppliedMargin,
     required this.borrowedMargin,
@@ -17996,8 +18107,14 @@ class LendingOverallStats {
   static const toJsonFactory = _$LendingOverallStatsToJson;
   Map<String, dynamic> toJson() => _$LendingOverallStatsToJson(this);
 
-  @JsonKey(name: 'supplied')
-  final double supplied;
+  @JsonKey(name: 'topMarkets', defaultValue: <String>[])
+  final List<String> topMarkets;
+  @JsonKey(name: 'marketCount')
+  final double marketCount;
+  @JsonKey(name: 'participantsCount')
+  final double participantsCount;
+  @JsonKey(name: 'bestApy')
+  final double bestApy;
   @JsonKey(name: 'borrowed')
   final double borrowed;
   @JsonKey(name: 'suppliedMargin')
@@ -18010,9 +18127,18 @@ class LendingOverallStats {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is LendingOverallStats &&
-            (identical(other.supplied, supplied) ||
+            (identical(other.topMarkets, topMarkets) ||
                 const DeepCollectionEquality()
-                    .equals(other.supplied, supplied)) &&
+                    .equals(other.topMarkets, topMarkets)) &&
+            (identical(other.marketCount, marketCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.marketCount, marketCount)) &&
+            (identical(other.participantsCount, participantsCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.participantsCount, participantsCount)) &&
+            (identical(other.bestApy, bestApy) ||
+                const DeepCollectionEquality()
+                    .equals(other.bestApy, bestApy)) &&
             (identical(other.borrowed, borrowed) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowed, borrowed)) &&
@@ -18029,7 +18155,10 @@ class LendingOverallStats {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(supplied) ^
+      const DeepCollectionEquality().hash(topMarkets) ^
+      const DeepCollectionEquality().hash(marketCount) ^
+      const DeepCollectionEquality().hash(participantsCount) ^
+      const DeepCollectionEquality().hash(bestApy) ^
       const DeepCollectionEquality().hash(borrowed) ^
       const DeepCollectionEquality().hash(suppliedMargin) ^
       const DeepCollectionEquality().hash(borrowedMargin) ^
@@ -18038,24 +18167,39 @@ class LendingOverallStats {
 
 extension $LendingOverallStatsExtension on LendingOverallStats {
   LendingOverallStats copyWith(
-      {double? supplied,
+      {List<String>? topMarkets,
+      double? marketCount,
+      double? participantsCount,
+      double? bestApy,
       double? borrowed,
       double? suppliedMargin,
       double? borrowedMargin}) {
     return LendingOverallStats(
-        supplied: supplied ?? this.supplied,
+        topMarkets: topMarkets ?? this.topMarkets,
+        marketCount: marketCount ?? this.marketCount,
+        participantsCount: participantsCount ?? this.participantsCount,
+        bestApy: bestApy ?? this.bestApy,
         borrowed: borrowed ?? this.borrowed,
         suppliedMargin: suppliedMargin ?? this.suppliedMargin,
         borrowedMargin: borrowedMargin ?? this.borrowedMargin);
   }
 
   LendingOverallStats copyWithWrapped(
-      {Wrapped<double>? supplied,
+      {Wrapped<List<String>>? topMarkets,
+      Wrapped<double>? marketCount,
+      Wrapped<double>? participantsCount,
+      Wrapped<double>? bestApy,
       Wrapped<double>? borrowed,
       Wrapped<double>? suppliedMargin,
       Wrapped<double>? borrowedMargin}) {
     return LendingOverallStats(
-        supplied: (supplied != null ? supplied.value : this.supplied),
+        topMarkets: (topMarkets != null ? topMarkets.value : this.topMarkets),
+        marketCount:
+            (marketCount != null ? marketCount.value : this.marketCount),
+        participantsCount: (participantsCount != null
+            ? participantsCount.value
+            : this.participantsCount),
+        bestApy: (bestApy != null ? bestApy.value : this.bestApy),
         borrowed: (borrowed != null ? borrowed.value : this.borrowed),
         suppliedMargin: (suppliedMargin != null
             ? suppliedMargin.value
@@ -27971,160 +28115,6 @@ extension $NftActivityFilterExtension on NftActivityFilter {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CollectionOffersFilter {
-  const CollectionOffersFilter({
-    this.select,
-    this.orderBy,
-    this.includeCount,
-    this.strictSelect,
-    this.top,
-    this.skip,
-    this.filters,
-  });
-
-  factory CollectionOffersFilter.fromJson(Map<String, dynamic> json) =>
-      _$CollectionOffersFilterFromJson(json);
-
-  static const toJsonFactory = _$CollectionOffersFilterToJson;
-  Map<String, dynamic> toJson() => _$CollectionOffersFilterToJson(this);
-
-  @JsonKey(name: 'select', defaultValue: <String>[])
-  final List<String>? select;
-  @JsonKey(name: 'orderBy', defaultValue: <String>[])
-  final List<String>? orderBy;
-  @JsonKey(name: 'includeCount')
-  final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
-  final bool? strictSelect;
-  @JsonKey(name: 'top')
-  final double? top;
-  @JsonKey(name: 'skip')
-  final double? skip;
-  @JsonKey(name: 'filters')
-  final Object? filters;
-  static const fromJsonFactory = _$CollectionOffersFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionOffersFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality()
-                    .equals(other.orderBy, orderBy)) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.includeCount, includeCount)) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality()
-                    .equals(other.strictSelect, strictSelect)) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionOffersFilterExtension on CollectionOffersFilter {
-  CollectionOffersFilter copyWith(
-      {List<String>? select,
-      List<String>? orderBy,
-      bool? includeCount,
-      bool? strictSelect,
-      double? top,
-      double? skip,
-      Object? filters}) {
-    return CollectionOffersFilter(
-        select: select ?? this.select,
-        orderBy: orderBy ?? this.orderBy,
-        includeCount: includeCount ?? this.includeCount,
-        strictSelect: strictSelect ?? this.strictSelect,
-        top: top ?? this.top,
-        skip: skip ?? this.skip,
-        filters: filters ?? this.filters);
-  }
-
-  CollectionOffersFilter copyWithWrapped(
-      {Wrapped<List<String>?>? select,
-      Wrapped<List<String>?>? orderBy,
-      Wrapped<bool?>? includeCount,
-      Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
-      Wrapped<Object?>? filters}) {
-    return CollectionOffersFilter(
-        select: (select != null ? select.value : this.select),
-        orderBy: (orderBy != null ? orderBy.value : this.orderBy),
-        includeCount:
-            (includeCount != null ? includeCount.value : this.includeCount),
-        strictSelect:
-            (strictSelect != null ? strictSelect.value : this.strictSelect),
-        top: (top != null ? top.value : this.top),
-        skip: (skip != null ? skip.value : this.skip),
-        filters: (filters != null ? filters.value : this.filters));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class FilterQueryDto {
-  const FilterQueryDto({
-    required this.name,
-  });
-
-  factory FilterQueryDto.fromJson(Map<String, dynamic> json) =>
-      _$FilterQueryDtoFromJson(json);
-
-  static const toJsonFactory = _$FilterQueryDtoToJson;
-  Map<String, dynamic> toJson() => _$FilterQueryDtoToJson(this);
-
-  @JsonKey(name: 'name')
-  final String name;
-  static const fromJsonFactory = _$FilterQueryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FilterQueryDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
-}
-
-extension $FilterQueryDtoExtension on FilterQueryDto {
-  FilterQueryDto copyWith({String? name}) {
-    return FilterQueryDto(name: name ?? this.name);
-  }
-
-  FilterQueryDto copyWithWrapped({Wrapped<String>? name}) {
-    return FilterQueryDto(name: (name != null ? name.value : this.name));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class CollectionOffersFilterCriteriaDto {
   const CollectionOffersFilterCriteriaDto({
     this.dataType,
@@ -28265,6 +28255,160 @@ extension $CollectionOffersFilterCriteriaDtoExtension
         withAttributes: (withAttributes != null
             ? withAttributes.value
             : this.withAttributes));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionOffersFilter {
+  const CollectionOffersFilter({
+    this.select,
+    this.orderBy,
+    this.includeCount,
+    this.strictSelect,
+    this.top,
+    this.skip,
+    this.filters,
+  });
+
+  factory CollectionOffersFilter.fromJson(Map<String, dynamic> json) =>
+      _$CollectionOffersFilterFromJson(json);
+
+  static const toJsonFactory = _$CollectionOffersFilterToJson;
+  Map<String, dynamic> toJson() => _$CollectionOffersFilterToJson(this);
+
+  @JsonKey(name: 'select', defaultValue: <String>[])
+  final List<String>? select;
+  @JsonKey(name: 'orderBy', defaultValue: <String>[])
+  final List<String>? orderBy;
+  @JsonKey(name: 'includeCount')
+  final bool? includeCount;
+  @JsonKey(name: 'strictSelect', defaultValue: false)
+  final bool? strictSelect;
+  @JsonKey(name: 'top')
+  final double? top;
+  @JsonKey(name: 'skip')
+  final double? skip;
+  @JsonKey(name: 'filters')
+  final CollectionOffersFilterCriteriaDto? filters;
+  static const fromJsonFactory = _$CollectionOffersFilterFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionOffersFilter &&
+            (identical(other.select, select) ||
+                const DeepCollectionEquality().equals(other.select, select)) &&
+            (identical(other.orderBy, orderBy) ||
+                const DeepCollectionEquality()
+                    .equals(other.orderBy, orderBy)) &&
+            (identical(other.includeCount, includeCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.includeCount, includeCount)) &&
+            (identical(other.strictSelect, strictSelect) ||
+                const DeepCollectionEquality()
+                    .equals(other.strictSelect, strictSelect)) &&
+            (identical(other.top, top) ||
+                const DeepCollectionEquality().equals(other.top, top)) &&
+            (identical(other.skip, skip) ||
+                const DeepCollectionEquality().equals(other.skip, skip)) &&
+            (identical(other.filters, filters) ||
+                const DeepCollectionEquality().equals(other.filters, filters)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(select) ^
+      const DeepCollectionEquality().hash(orderBy) ^
+      const DeepCollectionEquality().hash(includeCount) ^
+      const DeepCollectionEquality().hash(strictSelect) ^
+      const DeepCollectionEquality().hash(top) ^
+      const DeepCollectionEquality().hash(skip) ^
+      const DeepCollectionEquality().hash(filters) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionOffersFilterExtension on CollectionOffersFilter {
+  CollectionOffersFilter copyWith(
+      {List<String>? select,
+      List<String>? orderBy,
+      bool? includeCount,
+      bool? strictSelect,
+      double? top,
+      double? skip,
+      CollectionOffersFilterCriteriaDto? filters}) {
+    return CollectionOffersFilter(
+        select: select ?? this.select,
+        orderBy: orderBy ?? this.orderBy,
+        includeCount: includeCount ?? this.includeCount,
+        strictSelect: strictSelect ?? this.strictSelect,
+        top: top ?? this.top,
+        skip: skip ?? this.skip,
+        filters: filters ?? this.filters);
+  }
+
+  CollectionOffersFilter copyWithWrapped(
+      {Wrapped<List<String>?>? select,
+      Wrapped<List<String>?>? orderBy,
+      Wrapped<bool?>? includeCount,
+      Wrapped<bool?>? strictSelect,
+      Wrapped<double?>? top,
+      Wrapped<double?>? skip,
+      Wrapped<CollectionOffersFilterCriteriaDto?>? filters}) {
+    return CollectionOffersFilter(
+        select: (select != null ? select.value : this.select),
+        orderBy: (orderBy != null ? orderBy.value : this.orderBy),
+        includeCount:
+            (includeCount != null ? includeCount.value : this.includeCount),
+        strictSelect:
+            (strictSelect != null ? strictSelect.value : this.strictSelect),
+        top: (top != null ? top.value : this.top),
+        skip: (skip != null ? skip.value : this.skip),
+        filters: (filters != null ? filters.value : this.filters));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class FilterQueryDto {
+  const FilterQueryDto({
+    required this.name,
+  });
+
+  factory FilterQueryDto.fromJson(Map<String, dynamic> json) =>
+      _$FilterQueryDtoFromJson(json);
+
+  static const toJsonFactory = _$FilterQueryDtoToJson;
+  Map<String, dynamic> toJson() => _$FilterQueryDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String name;
+  static const fromJsonFactory = _$FilterQueryDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is FilterQueryDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
+}
+
+extension $FilterQueryDtoExtension on FilterQueryDto {
+  FilterQueryDto copyWith({String? name}) {
+    return FilterQueryDto(name: name ?? this.name);
+  }
+
+  FilterQueryDto copyWithWrapped({Wrapped<String>? name}) {
+    return FilterQueryDto(name: (name != null ? name.value : this.name));
   }
 }
 
@@ -31369,27 +31513,84 @@ extension $EventEventIdTicketTicketIdProfilePut$RequestBodyExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class LendingMarketTokenPriceGet$Response {
-  const LendingMarketTokenPriceGet$Response({
-    this.price,
+class LiquidEgldProtocolAprGet$Response {
+  const LiquidEgldProtocolAprGet$Response({
+    this.apr,
+    this.apy,
   });
 
-  factory LendingMarketTokenPriceGet$Response.fromJson(
+  factory LiquidEgldProtocolAprGet$Response.fromJson(
           Map<String, dynamic> json) =>
-      _$LendingMarketTokenPriceGet$ResponseFromJson(json);
+      _$LiquidEgldProtocolAprGet$ResponseFromJson(json);
 
-  static const toJsonFactory = _$LendingMarketTokenPriceGet$ResponseToJson;
+  static const toJsonFactory = _$LiquidEgldProtocolAprGet$ResponseToJson;
   Map<String, dynamic> toJson() =>
-      _$LendingMarketTokenPriceGet$ResponseToJson(this);
+      _$LiquidEgldProtocolAprGet$ResponseToJson(this);
 
-  @JsonKey(name: 'price')
-  final String? price;
-  static const fromJsonFactory = _$LendingMarketTokenPriceGet$ResponseFromJson;
+  @JsonKey(name: 'apr')
+  final double? apr;
+  @JsonKey(name: 'apy')
+  final double? apy;
+  static const fromJsonFactory = _$LiquidEgldProtocolAprGet$ResponseFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is LendingMarketTokenPriceGet$Response &&
+        (other is LiquidEgldProtocolAprGet$Response &&
+            (identical(other.apr, apr) ||
+                const DeepCollectionEquality().equals(other.apr, apr)) &&
+            (identical(other.apy, apy) ||
+                const DeepCollectionEquality().equals(other.apy, apy)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(apr) ^
+      const DeepCollectionEquality().hash(apy) ^
+      runtimeType.hashCode;
+}
+
+extension $LiquidEgldProtocolAprGet$ResponseExtension
+    on LiquidEgldProtocolAprGet$Response {
+  LiquidEgldProtocolAprGet$Response copyWith({double? apr, double? apy}) {
+    return LiquidEgldProtocolAprGet$Response(
+        apr: apr ?? this.apr, apy: apy ?? this.apy);
+  }
+
+  LiquidEgldProtocolAprGet$Response copyWithWrapped(
+      {Wrapped<double?>? apr, Wrapped<double?>? apy}) {
+    return LiquidEgldProtocolAprGet$Response(
+        apr: (apr != null ? apr.value : this.apr),
+        apy: (apy != null ? apy.value : this.apy));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LendingMarketTokenPriceEgldGet$Response {
+  const LendingMarketTokenPriceEgldGet$Response({
+    this.price,
+  });
+
+  factory LendingMarketTokenPriceEgldGet$Response.fromJson(
+          Map<String, dynamic> json) =>
+      _$LendingMarketTokenPriceEgldGet$ResponseFromJson(json);
+
+  static const toJsonFactory = _$LendingMarketTokenPriceEgldGet$ResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$LendingMarketTokenPriceEgldGet$ResponseToJson(this);
+
+  @JsonKey(name: 'price')
+  final String? price;
+  static const fromJsonFactory =
+      _$LendingMarketTokenPriceEgldGet$ResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LendingMarketTokenPriceEgldGet$Response &&
             (identical(other.price, price) ||
                 const DeepCollectionEquality().equals(other.price, price)));
   }
@@ -31402,15 +31603,15 @@ class LendingMarketTokenPriceGet$Response {
       const DeepCollectionEquality().hash(price) ^ runtimeType.hashCode;
 }
 
-extension $LendingMarketTokenPriceGet$ResponseExtension
-    on LendingMarketTokenPriceGet$Response {
-  LendingMarketTokenPriceGet$Response copyWith({String? price}) {
-    return LendingMarketTokenPriceGet$Response(price: price ?? this.price);
+extension $LendingMarketTokenPriceEgldGet$ResponseExtension
+    on LendingMarketTokenPriceEgldGet$Response {
+  LendingMarketTokenPriceEgldGet$Response copyWith({String? price}) {
+    return LendingMarketTokenPriceEgldGet$Response(price: price ?? this.price);
   }
 
-  LendingMarketTokenPriceGet$Response copyWithWrapped(
+  LendingMarketTokenPriceEgldGet$Response copyWithWrapped(
       {Wrapped<String?>? price}) {
-    return LendingMarketTokenPriceGet$Response(
+    return LendingMarketTokenPriceEgldGet$Response(
         price: (price != null ? price.value : this.price));
   }
 }

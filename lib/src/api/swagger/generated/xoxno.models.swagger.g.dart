@@ -757,7 +757,7 @@ IMetrics _$IMetricsFromJson(Map<String, dynamic> json) => IMetrics(
       supplyShort: (json['supplyShort'] as num).toDouble(),
       transfersCount: (json['transfersCount'] as num).toDouble(),
       holdersCount: (json['holdersCount'] as num).toDouble(),
-      rate: RateType.fromJson(json['rate'] as Map<String, dynamic>),
+      rateInfo: RateType.fromJson(json['rateInfo'] as Map<String, dynamic>),
       apr: (json['apr'] as num).toDouble(),
       apy: (json['apy'] as num).toDouble(),
       totalStakedCount: (json['totalStakedCount'] as num).toDouble(),
@@ -765,7 +765,7 @@ IMetrics _$IMetricsFromJson(Map<String, dynamic> json) => IMetrics(
       totalRewardsPaid: (json['totalRewardsPaid'] as num).toDouble(),
       totalRewardsPaidUsd: (json['totalRewardsPaidUsd'] as num).toDouble(),
       uniqueStakersCount: (json['uniqueStakersCount'] as num).toDouble(),
-      instakeUnstake: json['instakeUnstake'] as String,
+      instantUnstake: json['instantUnstake'] as String,
       instantPendingUnstake: json['instantPendingUnstake'] as String,
       totalWithdrawn: (json['totalWithdrawn'] as num).toDouble(),
       serviceFee: (json['serviceFee'] as num).toDouble(),
@@ -783,7 +783,7 @@ Map<String, dynamic> _$IMetricsToJson(IMetrics instance) => <String, dynamic>{
       'supplyShort': instance.supplyShort,
       'transfersCount': instance.transfersCount,
       'holdersCount': instance.holdersCount,
-      'rate': instance.rate.toJson(),
+      'rateInfo': instance.rateInfo.toJson(),
       'apr': instance.apr,
       'apy': instance.apy,
       'totalStakedCount': instance.totalStakedCount,
@@ -791,7 +791,7 @@ Map<String, dynamic> _$IMetricsToJson(IMetrics instance) => <String, dynamic>{
       'totalRewardsPaid': instance.totalRewardsPaid,
       'totalRewardsPaidUsd': instance.totalRewardsPaidUsd,
       'uniqueStakersCount': instance.uniqueStakersCount,
-      'instakeUnstake': instance.instakeUnstake,
+      'instantUnstake': instance.instantUnstake,
       'instantPendingUnstake': instance.instantPendingUnstake,
       'totalWithdrawn': instance.totalWithdrawn,
       'serviceFee': instance.serviceFee,
@@ -3392,6 +3392,18 @@ Map<String, dynamic> _$LendingMarketParticipantsToJson(
       'wallets': instance.wallets.map((e) => e.toJson()).toList(),
     };
 
+MarketExtraApy _$MarketExtraApyFromJson(Map<String, dynamic> json) =>
+    MarketExtraApy(
+      nativeApy: (json['nativeApy'] as num?)?.toDouble(),
+      feesApr: (json['feesApr'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$MarketExtraApyToJson(MarketExtraApy instance) =>
+    <String, dynamic>{
+      'nativeApy': instance.nativeApy,
+      'feesApr': instance.feesApr,
+    };
+
 LendingMarketProfile _$LendingMarketProfileFromJson(
         Map<String, dynamic> json) =>
     LendingMarketProfile(
@@ -3450,9 +3462,12 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
               ?.map((e) => e as List<dynamic>)
               .toList() ??
           [],
-      oraclePrice: (json['oraclePrice'] as num).toDouble(),
+      oraclePrice: json['oraclePrice'] as String,
       participants: LendingMarketParticipants.fromJson(
           json['participants'] as Map<String, dynamic>),
+      extraApy: json['extraApy'] == null
+          ? null
+          : MarketExtraApy.fromJson(json['extraApy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LendingMarketProfileToJson(
@@ -3509,6 +3524,7 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
       'eModeCategoryProfiles': instance.eModeCategoryProfiles,
       'oraclePrice': instance.oraclePrice,
       'participants': instance.participants.toJson(),
+      'extraApy': instance.extraApy?.toJson(),
     };
 
 LendingMarketProfileQuery _$LendingMarketProfileQueryFromJson(
@@ -3539,6 +3555,7 @@ LendingEModeCategoryProfileDoc _$LendingEModeCategoryProfileDocFromJson(
       ltv: json['ltv'] as String,
       liquidationThreshold: json['liquidationThreshold'] as String,
       liquidationBonus: json['liquidationBonus'] as String,
+      isDeprecated: json['isDeprecated'] as bool,
       id: json['id'] as String,
     );
 
@@ -3550,6 +3567,7 @@ Map<String, dynamic> _$LendingEModeCategoryProfileDocToJson(
       'ltv': instance.ltv,
       'liquidationThreshold': instance.liquidationThreshold,
       'liquidationBonus': instance.liquidationBonus,
+      'isDeprecated': instance.isDeprecated,
       'id': instance.id,
     };
 
@@ -3572,6 +3590,9 @@ PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
       debtCeiling: json['debtCeiling'] as String?,
       siloed: json['siloed'] as bool,
       canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
+      extraApy: json['extraApy'] == null
+          ? null
+          : MarketExtraApy.fromJson(json['extraApy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
@@ -3593,6 +3614,7 @@ Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
       'debtCeiling': instance.debtCeiling,
       'siloed': instance.siloed,
       'canBorrowInIsolation': instance.canBorrowInIsolation,
+      'extraApy': instance.extraApy?.toJson(),
     };
 
 LendingAccountProfile _$LendingAccountProfileFromJson(
@@ -3616,8 +3638,8 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
       supplyIndex: json['supplyIndex'] as Object,
       borrowTimestamp: json['borrowTimestamp'] as Object,
       borrowIndex: json['borrowIndex'] as Object,
-      entryLiquidationThreshold:
-          (json['entryLiquidationThreshold'] as num).toDouble(),
+      entryLiquidationThreshold: json['entryLiquidationThreshold'] as String,
+      entryLtv: json['entryLtv'] as String,
       isolated: json['isolated'] as bool,
       isVault: json['isVault'] as bool,
       eModeCategory: json['eModeCategory'] as String,
@@ -3652,6 +3674,7 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
       'borrowTimestamp': instance.borrowTimestamp,
       'borrowIndex': instance.borrowIndex,
       'entryLiquidationThreshold': instance.entryLiquidationThreshold,
+      'entryLtv': instance.entryLtv,
       'isolated': instance.isolated,
       'isVault': instance.isVault,
       'eModeCategory': instance.eModeCategory,
@@ -3685,6 +3708,7 @@ LendingEModeCategoryProfile _$LendingEModeCategoryProfileFromJson(
       ltv: json['ltv'] as String,
       liquidationThreshold: json['liquidationThreshold'] as String,
       liquidationBonus: json['liquidationBonus'] as String,
+      isDeprecated: json['isDeprecated'] as bool,
       id: json['id'] as String,
       eModeTokenProfiles: (json['eModeTokenProfiles'] as List<dynamic>?)
               ?.map((e) => ShortLendingTokenEModeProfileDoc.fromJson(
@@ -3700,6 +3724,7 @@ Map<String, dynamic> _$LendingEModeCategoryProfileToJson(
       'ltv': instance.ltv,
       'liquidationThreshold': instance.liquidationThreshold,
       'liquidationBonus': instance.liquidationBonus,
+      'isDeprecated': instance.isDeprecated,
       'id': instance.id,
       'eModeTokenProfiles':
           instance.eModeTokenProfiles.map((e) => e.toJson()).toList(),
@@ -3821,7 +3846,13 @@ Map<String, dynamic> _$LendingPositionStatusToJson(
 
 LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
     LendingOverallStats(
-      supplied: (json['supplied'] as num).toDouble(),
+      topMarkets: (json['topMarkets'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      marketCount: (json['marketCount'] as num).toDouble(),
+      participantsCount: (json['participantsCount'] as num).toDouble(),
+      bestApy: (json['bestApy'] as num).toDouble(),
       borrowed: (json['borrowed'] as num).toDouble(),
       suppliedMargin: (json['suppliedMargin'] as num).toDouble(),
       borrowedMargin: (json['borrowedMargin'] as num).toDouble(),
@@ -3830,7 +3861,10 @@ LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LendingOverallStatsToJson(
         LendingOverallStats instance) =>
     <String, dynamic>{
-      'supplied': instance.supplied,
+      'topMarkets': instance.topMarkets,
+      'marketCount': instance.marketCount,
+      'participantsCount': instance.participantsCount,
+      'bestApy': instance.bestApy,
       'borrowed': instance.borrowed,
       'suppliedMargin': instance.suppliedMargin,
       'borrowedMargin': instance.borrowedMargin,
@@ -6054,46 +6088,6 @@ Map<String, dynamic> _$NftActivityFilterToJson(NftActivityFilter instance) =>
       'filters': instance.filters?.toJson(),
     };
 
-CollectionOffersFilter _$CollectionOffersFilterFromJson(
-        Map<String, dynamic> json) =>
-    CollectionOffersFilter(
-      select: (json['select'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      orderBy: (json['orderBy'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      includeCount: json['includeCount'] as bool?,
-      strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
-      filters: json['filters'],
-    );
-
-Map<String, dynamic> _$CollectionOffersFilterToJson(
-        CollectionOffersFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters,
-    };
-
-FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
-    FilterQueryDto(
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-    };
-
 CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(
         Map<String, dynamic> json) =>
     CollectionOffersFilterCriteriaDto(
@@ -6140,6 +6134,49 @@ Map<String, dynamic> _$CollectionOffersFilterCriteriaDtoToJson(
       'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
       'isActive': instance.isActive,
       'withAttributes': instance.withAttributes,
+    };
+
+CollectionOffersFilter _$CollectionOffersFilterFromJson(
+        Map<String, dynamic> json) =>
+    CollectionOffersFilter(
+      select: (json['select'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      orderBy: (json['orderBy'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      includeCount: json['includeCount'] as bool?,
+      strictSelect: json['strictSelect'] as bool? ?? false,
+      top: (json['top'] as num?)?.toDouble(),
+      skip: (json['skip'] as num?)?.toDouble(),
+      filters: json['filters'] == null
+          ? null
+          : CollectionOffersFilterCriteriaDto.fromJson(
+              json['filters'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CollectionOffersFilterToJson(
+        CollectionOffersFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters?.toJson(),
+    };
+
+FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
+    FilterQueryDto(
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
     };
 
 CollectionStatsFilterCriteriaDto _$CollectionStatsFilterCriteriaDtoFromJson(
@@ -6978,14 +7015,29 @@ Map<String, dynamic> _$EventEventIdTicketTicketIdProfilePut$RequestBodyToJson(
       'file': instance.file,
     };
 
-LendingMarketTokenPriceGet$Response
-    _$LendingMarketTokenPriceGet$ResponseFromJson(Map<String, dynamic> json) =>
-        LendingMarketTokenPriceGet$Response(
+LiquidEgldProtocolAprGet$Response _$LiquidEgldProtocolAprGet$ResponseFromJson(
+        Map<String, dynamic> json) =>
+    LiquidEgldProtocolAprGet$Response(
+      apr: (json['apr'] as num?)?.toDouble(),
+      apy: (json['apy'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$LiquidEgldProtocolAprGet$ResponseToJson(
+        LiquidEgldProtocolAprGet$Response instance) =>
+    <String, dynamic>{
+      'apr': instance.apr,
+      'apy': instance.apy,
+    };
+
+LendingMarketTokenPriceEgldGet$Response
+    _$LendingMarketTokenPriceEgldGet$ResponseFromJson(
+            Map<String, dynamic> json) =>
+        LendingMarketTokenPriceEgldGet$Response(
           price: json['price'] as String?,
         );
 
-Map<String, dynamic> _$LendingMarketTokenPriceGet$ResponseToJson(
-        LendingMarketTokenPriceGet$Response instance) =>
+Map<String, dynamic> _$LendingMarketTokenPriceEgldGet$ResponseToJson(
+        LendingMarketTokenPriceEgldGet$Response instance) =>
     <String, dynamic>{
       'price': instance.price,
     };
