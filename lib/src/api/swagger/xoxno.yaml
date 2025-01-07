@@ -8264,7 +8264,6 @@ components:
         - followCount
         - shard
         - _ts
-        - userSettings
     UserBillingDetails:
       type: object
       properties:

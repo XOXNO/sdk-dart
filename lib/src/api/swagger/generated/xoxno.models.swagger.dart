@@ -1537,7 +1537,7 @@ class UserProfileDto {
     required this.followCount,
     required this.shard,
     required this.ts,
-    required this.userSettings,
+    this.userSettings,
   });
 
   factory UserProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -1581,7 +1581,7 @@ class UserProfileDto {
   @JsonKey(name: '_ts')
   final double ts;
   @JsonKey(name: 'userSettings')
-  final UserSettingsDto userSettings;
+  final UserSettingsDto? userSettings;
   static const fromJsonFactory = _$UserProfileDtoFromJson;
 
   @override
@@ -1725,7 +1725,7 @@ extension $UserProfileDtoExtension on UserProfileDto {
       Wrapped<double>? followCount,
       Wrapped<double>? shard,
       Wrapped<double>? ts,
-      Wrapped<UserSettingsDto>? userSettings}) {
+      Wrapped<UserSettingsDto?>? userSettings}) {
     return UserProfileDto(
         dataType: (dataType != null ? dataType.value : this.dataType),
         address: (address != null ? address.value : this.address),
