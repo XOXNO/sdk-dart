@@ -2039,6 +2039,7 @@ NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       id: json['id'] as String?,
       receiverIsNotOwner: json['receiverIsNotOwner'] as bool?,
       balance: (json['balance'] as num?)?.toDouble(),
+      balanceLong: json['balanceLong'] as String?,
       unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toDouble(),
       unboundEpoch: (json['unboundEpoch'] as num?)?.toDouble(),
       collectionInfo: json['collectionInfo'] == null
@@ -2080,6 +2081,7 @@ Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
       'id': instance.id,
       'receiverIsNotOwner': instance.receiverIsNotOwner,
       'balance': instance.balance,
+      'balanceLong': instance.balanceLong,
       'unboundDaysLeft': instance.unboundDaysLeft,
       'unboundEpoch': instance.unboundEpoch,
       'collectionInfo': instance.collectionInfo?.toJson(),

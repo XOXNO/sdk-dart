@@ -9826,6 +9826,7 @@ class NftProps {
     this.id,
     this.receiverIsNotOwner,
     this.balance,
+    this.balanceLong,
     this.unboundDaysLeft,
     this.unboundEpoch,
     this.collectionInfo,
@@ -9902,6 +9903,8 @@ class NftProps {
   final bool? receiverIsNotOwner;
   @JsonKey(name: 'balance')
   final double? balance;
+  @JsonKey(name: 'balanceLong')
+  final String? balanceLong;
   @JsonKey(name: 'unboundDaysLeft')
   final double? unboundDaysLeft;
   @JsonKey(name: 'unboundEpoch')
@@ -9987,6 +9990,7 @@ class NftProps {
                 const DeepCollectionEquality()
                     .equals(other.receiverIsNotOwner, receiverIsNotOwner)) &&
             (identical(other.balance, balance) || const DeepCollectionEquality().equals(other.balance, balance)) &&
+            (identical(other.balanceLong, balanceLong) || const DeepCollectionEquality().equals(other.balanceLong, balanceLong)) &&
             (identical(other.unboundDaysLeft, unboundDaysLeft) || const DeepCollectionEquality().equals(other.unboundDaysLeft, unboundDaysLeft)) &&
             (identical(other.unboundEpoch, unboundEpoch) || const DeepCollectionEquality().equals(other.unboundEpoch, unboundEpoch)) &&
             (identical(other.collectionInfo, collectionInfo) || const DeepCollectionEquality().equals(other.collectionInfo, collectionInfo)) &&
@@ -10026,6 +10030,7 @@ class NftProps {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(receiverIsNotOwner) ^
       const DeepCollectionEquality().hash(balance) ^
+      const DeepCollectionEquality().hash(balanceLong) ^
       const DeepCollectionEquality().hash(unboundDaysLeft) ^
       const DeepCollectionEquality().hash(unboundEpoch) ^
       const DeepCollectionEquality().hash(collectionInfo) ^
@@ -10063,6 +10068,7 @@ extension $NftPropsExtension on NftProps {
       String? id,
       bool? receiverIsNotOwner,
       double? balance,
+      String? balanceLong,
       double? unboundDaysLeft,
       double? unboundEpoch,
       CollectionProfileSummary? collectionInfo,
@@ -10096,6 +10102,7 @@ extension $NftPropsExtension on NftProps {
         id: id ?? this.id,
         receiverIsNotOwner: receiverIsNotOwner ?? this.receiverIsNotOwner,
         balance: balance ?? this.balance,
+        balanceLong: balanceLong ?? this.balanceLong,
         unboundDaysLeft: unboundDaysLeft ?? this.unboundDaysLeft,
         unboundEpoch: unboundEpoch ?? this.unboundEpoch,
         collectionInfo: collectionInfo ?? this.collectionInfo,
@@ -10131,6 +10138,7 @@ extension $NftPropsExtension on NftProps {
       Wrapped<String?>? id,
       Wrapped<bool?>? receiverIsNotOwner,
       Wrapped<double?>? balance,
+      Wrapped<String?>? balanceLong,
       Wrapped<double?>? unboundDaysLeft,
       Wrapped<double?>? unboundEpoch,
       Wrapped<CollectionProfileSummary?>? collectionInfo,
@@ -10170,6 +10178,8 @@ extension $NftPropsExtension on NftProps {
             ? receiverIsNotOwner.value
             : this.receiverIsNotOwner),
         balance: (balance != null ? balance.value : this.balance),
+        balanceLong:
+            (balanceLong != null ? balanceLong.value : this.balanceLong),
         unboundDaysLeft: (unboundDaysLeft != null
             ? unboundDaysLeft.value
             : this.unboundDaysLeft),
