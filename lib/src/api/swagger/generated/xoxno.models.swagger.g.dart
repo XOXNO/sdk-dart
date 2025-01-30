@@ -831,7 +831,6 @@ XoxnoLiquidStatsDto _$XoxnoLiquidStatsDtoFromJson(Map<String, dynamic> json) =>
     XoxnoLiquidStatsDto(
       participants: (json['participants'] as num).toDouble(),
       totalRewards: (json['totalRewards'] as num).toDouble(),
-      totalRewardsEgldValue: (json['totalRewardsEgldValue'] as num).toDouble(),
       totalStaked: (json['totalStaked'] as num).toDouble(),
       yearlyAPR: (json['yearlyAPR'] as num).toDouble(),
       apy: (json['apy'] as num).toDouble(),
@@ -848,7 +847,6 @@ Map<String, dynamic> _$XoxnoLiquidStatsDtoToJson(
     <String, dynamic>{
       'participants': instance.participants,
       'totalRewards': instance.totalRewards,
-      'totalRewardsEgldValue': instance.totalRewardsEgldValue,
       'totalStaked': instance.totalStaked,
       'yearlyAPR': instance.yearlyAPR,
       'apy': instance.apy,
@@ -1984,6 +1982,18 @@ Map<String, dynamic> _$CollectionProfileSummaryToJson(
       'roles': instance.roles,
     };
 
+ExtraProperties _$ExtraPropertiesFromJson(Map<String, dynamic> json) =>
+    ExtraProperties(
+      currentEpoch: (json['currentEpoch'] as num?)?.toDouble(),
+      level: (json['level'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$ExtraPropertiesToJson(ExtraProperties instance) =>
+    <String, dynamic>{
+      'currentEpoch': instance.currentEpoch,
+      'level': instance.level,
+    };
+
 NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       identifier: json['identifier'] as String,
       collection: json['collection'] as String,
@@ -1995,7 +2005,7 @@ NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
       supply: (json['supply'] as num?)?.toDouble(),
       supplyLong: json['supplyLong'] as String?,
       name: json['name'] as String,
-      royalties: (json['royalties'] as num).toDouble(),
+      royalties: (json['royalties'] as num?)?.toDouble(),
       url: json['url'] as String,
       uris:
           (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
@@ -2035,7 +2045,10 @@ NftProps _$NftPropsFromJson(Map<String, dynamic> json) => NftProps(
           ? null
           : CollectionProfileSummary.fromJson(
               json['collectionInfo'] as Map<String, dynamic>),
-      extraProperties: json['extraProperties'],
+      extraProperties: json['extraProperties'] == null
+          ? null
+          : ExtraProperties.fromJson(
+              json['extraProperties'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
@@ -2070,7 +2083,7 @@ Map<String, dynamic> _$NftPropsToJson(NftProps instance) => <String, dynamic>{
       'unboundDaysLeft': instance.unboundDaysLeft,
       'unboundEpoch': instance.unboundEpoch,
       'collectionInfo': instance.collectionInfo?.toJson(),
-      'extraProperties': instance.extraProperties,
+      'extraProperties': instance.extraProperties?.toJson(),
     };
 
 NftCosmosResponse _$NftCosmosResponseFromJson(Map<String, dynamic> json) =>
@@ -2509,7 +2522,7 @@ NftDoc _$NftDocFromJson(Map<String, dynamic> json) => NftDoc(
       supply: (json['supply'] as num?)?.toDouble(),
       supplyLong: json['supplyLong'] as String?,
       name: json['name'] as String,
-      royalties: (json['royalties'] as num).toDouble(),
+      royalties: (json['royalties'] as num?)?.toDouble(),
       url: json['url'] as String,
       uris:
           (json['uris'] as List<dynamic>?)?.map((e) => e as String).toList() ??
@@ -3578,19 +3591,28 @@ PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
       token: json['token'] as String,
       name: json['name'] as String,
       decimals: (json['decimals'] as num).toDouble(),
+      baseRate: json['baseRate'] as String,
+      maxBorrowRate: json['maxBorrowRate'] as String,
+      slopeRate1: json['slopeRate1'] as String,
+      slopeRate2: json['slopeRate2'] as String,
+      optimalUsageRate: json['optimalUsageRate'] as String,
+      reserveFactor: json['reserveFactor'] as String,
       rewardsReserve: json['rewardsReserve'] as Object,
       reserves: json['reserves'] as Object,
       supplyAmount: json['supplyAmount'] as Object,
+      borrowAmount: json['borrowAmount'] as Object,
       vaultAmount: json['vaultAmount'] as Object,
       supplyCap: json['supplyCap'] as String,
       borrowApy: json['borrowApy'] as Object,
       supplyApy: json['supplyApy'] as Object,
+      utilizationRate: json['utilizationRate'] as Object,
       canBeCollateral: json['canBeCollateral'] as bool,
       canBeBorrowed: json['canBeBorrowed'] as bool,
       isolated: json['isolated'] as bool,
       maxDebtUsd: json['maxDebtUsd'] as Object,
       debtCeiling: json['debtCeiling'] as String?,
       siloed: json['siloed'] as bool,
+      flashLoanFee: json['flashLoanFee'] as String,
       canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
       extraApy: json['extraApy'] == null
           ? null
@@ -3602,19 +3624,28 @@ Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
       'token': instance.token,
       'name': instance.name,
       'decimals': instance.decimals,
+      'baseRate': instance.baseRate,
+      'maxBorrowRate': instance.maxBorrowRate,
+      'slopeRate1': instance.slopeRate1,
+      'slopeRate2': instance.slopeRate2,
+      'optimalUsageRate': instance.optimalUsageRate,
+      'reserveFactor': instance.reserveFactor,
       'rewardsReserve': instance.rewardsReserve,
       'reserves': instance.reserves,
       'supplyAmount': instance.supplyAmount,
+      'borrowAmount': instance.borrowAmount,
       'vaultAmount': instance.vaultAmount,
       'supplyCap': instance.supplyCap,
       'borrowApy': instance.borrowApy,
       'supplyApy': instance.supplyApy,
+      'utilizationRate': instance.utilizationRate,
       'canBeCollateral': instance.canBeCollateral,
       'canBeBorrowed': instance.canBeBorrowed,
       'isolated': instance.isolated,
       'maxDebtUsd': instance.maxDebtUsd,
       'debtCeiling': instance.debtCeiling,
       'siloed': instance.siloed,
+      'flashLoanFee': instance.flashLoanFee,
       'canBorrowInIsolation': instance.canBorrowInIsolation,
       'extraApy': instance.extraApy?.toJson(),
     };
@@ -3641,6 +3672,8 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
       borrowTimestamp: json['borrowTimestamp'] as Object,
       borrowIndex: json['borrowIndex'] as Object,
       entryLiquidationThreshold: json['entryLiquidationThreshold'] as String,
+      entryLiquidationBonus: json['entryLiquidationBonus'] as String,
+      entryLiquidationFee: json['entryLiquidationFee'] as String,
       entryLtv: json['entryLtv'] as String,
       isolated: json['isolated'] as bool,
       isVault: json['isVault'] as bool,
@@ -3676,6 +3709,8 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
       'borrowTimestamp': instance.borrowTimestamp,
       'borrowIndex': instance.borrowIndex,
       'entryLiquidationThreshold': instance.entryLiquidationThreshold,
+      'entryLiquidationBonus': instance.entryLiquidationBonus,
+      'entryLiquidationFee': instance.entryLiquidationFee,
       'entryLtv': instance.entryLtv,
       'isolated': instance.isolated,
       'isVault': instance.isVault,

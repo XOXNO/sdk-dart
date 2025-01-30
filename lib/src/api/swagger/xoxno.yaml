@@ -2003,6 +2003,33 @@ paths:
       summary: Fetch Liquid EGLD providers
       tags:
         - LiquidEGLD
+  /liquid/egld/simulate-provider-selection:
+    post:
+      operationId: XoxnoEgldLiquidScController_simulateDelegatorSelection
+      parameters: []
+      responses:
+        '201':
+          description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
   /ash/min-token-quantity:
     get:
       operationId: AshAggregatorController_getMinTokenQuantity
@@ -4220,6 +4247,46 @@ paths:
       tags:
         - StakingData
         - Collection
+  /collection/{collection}/staking/delegators:
+    get:
+      operationId: StakingDataController_retrieveCollectionStakingDelegators
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of staking delegators addresses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection all staking delegators
+      tags:
+        - StakingData
+        - Collection
   /collection/staking/explore:
     get:
       operationId: StakingDataController_exploreCollectionPoolStaking
@@ -5049,6 +5116,34 @@ paths:
       tags:
         - NftActivityData
         - User
+  /analytics/dune/egld-ls:
+    get:
+      operationId: NftActivityDataController_retrieveEgldLs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - NftActivityData
+        - Dune
   /lending/market-sc:
     get:
       operationId: XoxnoLendingScController_getMarketSCs
@@ -5130,10 +5225,16 @@ paths:
       summary: Get lending markets overview
       tags:
         - Lending And Borrowing
-  /user/lending/me:
+  /user/lending/{address}:
     get:
       operationId: LendingDataController_retrieveUserLendingPosition
       parameters:
+        - name: address
+          required: true
+          in: path
+          description: User address
+          schema:
+            type: string
         - name: token
           required: false
           in: query
@@ -5304,6 +5405,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/LendingOverallStats'
       summary: Get lending protocol stats
+      tags:
+        - Lending And Borrowing
+  /lending/market/prices:
+    get:
+      operationId: LendingDataController_retrieveLendingMarketsPrices
+      parameters:
+        - name: returnAsUsd
+          required: false
+          in: query
+          description: Return prices in USD
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Lending markets prices
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  EGLD: 1
+      summary: Get token prices as EGLD for all lending markets
       tags:
         - Lending And Borrowing
   /transactions/{txHash}/status:
@@ -8895,10 +9018,6 @@ components:
           type: number
           description: Total rewards awarded
           example: 768.42
-        totalRewardsEgldValue:
-          type: number
-          description: Total rewards awarded as EGLD
-          example: 4.85
         totalStaked:
           type: number
           description: Total staked amount
@@ -8938,7 +9057,6 @@ components:
       required:
         - participants
         - totalRewards
-        - totalRewardsEgldValue
         - totalStaked
         - yearlyAPR
         - apy
@@ -10535,6 +10653,15 @@ components:
       required:
         - name
         - profile
+    ExtraProperties:
+      type: object
+      properties:
+        currentEpoch:
+          type: number
+          description: Current epoch of the day
+        level:
+          type: number
+          description: Custom level of the NFT
     NftProps:
       type: object
       properties:
@@ -10667,15 +10794,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/CollectionProfileSummary'
         extraProperties:
-          type: object
           description: Extra props for the specific NFT
+          allOf:
+            - $ref: '#/components/schemas/ExtraProperties'
       required:
         - identifier
         - collection
         - nonce
         - type
         - name
-        - royalties
         - url
         - wasProcessed
         - owner
@@ -11420,7 +11547,6 @@ components:
         - nonce
         - type
         - name
-        - royalties
         - url
         - wasProcessed
         - owner
@@ -12833,6 +12959,30 @@ components:
           type: number
           description: Number of decimals for the token
           example: 18
+        baseRate:
+          type: string
+          description: Base interest rate
+          example: 0.02
+        maxBorrowRate:
+          type: string
+          description: Maximum borrow rate
+          example: 0.1
+        slopeRate1:
+          type: string
+          description: Slope rate 1
+          example: 0.04
+        slopeRate2:
+          type: string
+          description: Slope rate 2
+          example: 0.08
+        optimalUsageRate:
+          type: string
+          description: Optimal usage rate
+          example: 0.8
+        reserveFactor:
+          type: string
+          description: Reserve factor
+          example: 0.1
         rewardsReserve:
           type: object
           description: Rewards reserves
@@ -12845,6 +12995,10 @@ components:
           type: object
           description: Supply amount
           example: '2000000'
+        borrowAmount:
+          type: object
+          description: Borrow amount
+          example: '1500000'
         vaultAmount:
           type: object
           description: Vault amount
@@ -12861,6 +13015,10 @@ components:
           type: object
           description: Supply annual percentage yield
           example: 0.03
+        utilizationRate:
+          type: object
+          description: Utilization rate
+          example: 0.75
         canBeCollateral:
           type: boolean
           description: Indicates if the asset can be used as collateral
@@ -12885,6 +13043,10 @@ components:
           type: boolean
           description: Indicates if the asset is siloed
           example: false
+        flashLoanFee:
+          type: string
+          description: Flash loan fee
+          example: 0.003
         canBorrowInIsolation:
           type: boolean
           description: Indicates if the asset can be borrowed in isolation
@@ -12897,18 +13059,27 @@ components:
         - token
         - name
         - decimals
+        - baseRate
+        - maxBorrowRate
+        - slopeRate1
+        - slopeRate2
+        - optimalUsageRate
+        - reserveFactor
         - rewardsReserve
         - reserves
         - supplyAmount
+        - borrowAmount
         - vaultAmount
         - supplyCap
         - borrowApy
         - supplyApy
+        - utilizationRate
         - canBeCollateral
         - canBeBorrowed
         - isolated
         - maxDebtUsd
         - siloed
+        - flashLoanFee
         - canBorrowInIsolation
     LendingAccountProfile:
       type: object
@@ -12985,6 +13156,14 @@ components:
           type: string
           description: Entry liquidation threshold
           example: '780000000000000000000'
+        entryLiquidationBonus:
+          type: string
+          description: Entry liquidation bonus
+          example: '800000000000000000000'
+        entryLiquidationFee:
+          type: string
+          description: Entry liquidation fee
+          example: '100000000000000000000'
         entryLtv:
           type: string
           description: Entry loan to value
@@ -13031,6 +13210,8 @@ components:
         - borrowTimestamp
         - borrowIndex
         - entryLiquidationThreshold
+        - entryLiquidationBonus
+        - entryLiquidationFee
         - entryLtv
         - isolated
         - isVault
@@ -13945,7 +14126,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1736257098
+          minimum: 1738249659
         endTime:
           type: number
         location:
@@ -14252,10 +14433,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1736257103
+          example: 1738249659
         endTime:
           type: number
-          example: 1736257103
+          example: 1738249659
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -14506,11 +14687,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1736257103
+          example: 1738249659
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 0eaeb82a-b329-4e0c-84c3-2479ca3f9941
+          example: a8859ec2-0688-4208-b61b-0269a94be845
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14654,11 +14835,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1736257098
+          example: 1738249659
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: bab800da-f247-4a2c-bd17-1f8366d25a1c
+          example: d52c7ece-b216-4a72-b137-b91cad978506
       required:
         - dataType
         - eventId
@@ -14722,10 +14903,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1736257103
+          minimum: 1738249659
         endTime:
           type: number
-          minimum: 1736343503
+          minimum: 1738336059
         maxLimit:
           type: number
         userLimit:
@@ -14785,11 +14966,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1736257098
+          example: 1738249659
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1736257098
+          example: 1738249659
         maxLimit:
           type: object
           description: >-
@@ -14820,7 +15001,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: b9412378-5d67-4b11-99db-dc47e5d53bdc
+          example: b26f67ae-0abc-4783-b09c-c3c6a54d2c6f
       required:
         - dataType
         - eventId
@@ -14857,10 +15038,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1736257103
+          minimum: 1738249659
         endTime:
           type: number
-          minimum: 1736343503
+          minimum: 1738336059
       required:
         - maxLimit
         - userLimit
@@ -15004,7 +15185,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: bb0b5435-4276-468e-a1ec-18085e863600
+          example: 73e85cd4-26fe-4f65-8b0e-63a3be0d0046
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -15067,7 +15248,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1736257103
+          example: 1738249659
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15100,7 +15281,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d83fd2a4-bec0-41e2-a461-fa185157162f
+          example: ce0fc7d7-64c8-4916-bf59-7304a089703c
       required:
         - dataType
         - eventId
@@ -15166,7 +15347,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1736257103
+          example: 1738249659
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15199,7 +15380,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d83fd2a4-bec0-41e2-a461-fa185157162f
+          example: ce0fc7d7-64c8-4916-bf59-7304a089703c
         profile:
           type: string
           description: >-
@@ -15316,11 +15497,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1736257103
+          example: 1738249659
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1736257103
+          example: 1738249659
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -15330,7 +15511,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1736257103
+          example: 1738249659
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15432,7 +15613,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1736257103
+          example: 1738249659
       required:
         - dataType
         - id
@@ -15570,11 +15751,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1736257103
+          example: 1738249659
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 0eaeb82a-b329-4e0c-84c3-2479ca3f9941
+          example: a8859ec2-0688-4208-b61b-0269a94be845
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15900,11 +16081,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1736257103
+          example: 1738249659
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1736257103
+          example: 1738249659
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -15956,11 +16137,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1736257103
+          example: 1738249659
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1736257103
+          example: 1738249659
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -16004,7 +16185,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 1180cbee-9ae7-4549-ba45-6deaeb9104e5
+          example: d4719cc0-7ae6-4cab-b097-0332d25c0014
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16020,7 +16201,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1736257103
+          example: 1738249659
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -16162,7 +16343,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 3a44aae7-7158-463c-adbe-97372cb8a7fc
+          example: 87f57b42-85b4-4c3d-b0e4-df48a16ad03c
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16189,7 +16370,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral configuration was created.
-          example: 1736257103
+          example: 1738249659
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16275,7 +16456,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 2be2b490-51e1-4489-be51-82709c6b453d
+          example: 228f30ec-bd74-4fa0-9b8e-a88eb0d60c47
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16294,7 +16475,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral was created.
-          example: 1736257103
+          example: 1738249659
         isActive:
           type: object
           description: Indicates whether the referral code is currently active.

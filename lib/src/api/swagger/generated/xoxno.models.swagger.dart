@@ -4113,7 +4113,6 @@ class XoxnoLiquidStatsDto {
   const XoxnoLiquidStatsDto({
     required this.participants,
     required this.totalRewards,
-    required this.totalRewardsEgldValue,
     required this.totalStaked,
     required this.yearlyAPR,
     required this.apy,
@@ -4135,8 +4134,6 @@ class XoxnoLiquidStatsDto {
   final double participants;
   @JsonKey(name: 'totalRewards')
   final double totalRewards;
-  @JsonKey(name: 'totalRewardsEgldValue')
-  final double totalRewardsEgldValue;
   @JsonKey(name: 'totalStaked')
   final double totalStaked;
   @JsonKey(name: 'yearlyAPR')
@@ -4167,9 +4164,6 @@ class XoxnoLiquidStatsDto {
             (identical(other.totalRewards, totalRewards) ||
                 const DeepCollectionEquality()
                     .equals(other.totalRewards, totalRewards)) &&
-            (identical(other.totalRewardsEgldValue, totalRewardsEgldValue) ||
-                const DeepCollectionEquality().equals(
-                    other.totalRewardsEgldValue, totalRewardsEgldValue)) &&
             (identical(other.totalStaked, totalStaked) ||
                 const DeepCollectionEquality()
                     .equals(other.totalStaked, totalStaked)) &&
@@ -4205,7 +4199,6 @@ class XoxnoLiquidStatsDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(participants) ^
       const DeepCollectionEquality().hash(totalRewards) ^
-      const DeepCollectionEquality().hash(totalRewardsEgldValue) ^
       const DeepCollectionEquality().hash(totalStaked) ^
       const DeepCollectionEquality().hash(yearlyAPR) ^
       const DeepCollectionEquality().hash(apy) ^
@@ -4222,7 +4215,6 @@ extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
   XoxnoLiquidStatsDto copyWith(
       {double? participants,
       double? totalRewards,
-      double? totalRewardsEgldValue,
       double? totalStaked,
       double? yearlyAPR,
       double? apy,
@@ -4235,8 +4227,6 @@ extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
     return XoxnoLiquidStatsDto(
         participants: participants ?? this.participants,
         totalRewards: totalRewards ?? this.totalRewards,
-        totalRewardsEgldValue:
-            totalRewardsEgldValue ?? this.totalRewardsEgldValue,
         totalStaked: totalStaked ?? this.totalStaked,
         yearlyAPR: yearlyAPR ?? this.yearlyAPR,
         apy: apy ?? this.apy,
@@ -4252,7 +4242,6 @@ extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
   XoxnoLiquidStatsDto copyWithWrapped(
       {Wrapped<double>? participants,
       Wrapped<double>? totalRewards,
-      Wrapped<double>? totalRewardsEgldValue,
       Wrapped<double>? totalStaked,
       Wrapped<double>? yearlyAPR,
       Wrapped<double>? apy,
@@ -4267,9 +4256,6 @@ extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
             (participants != null ? participants.value : this.participants),
         totalRewards:
             (totalRewards != null ? totalRewards.value : this.totalRewards),
-        totalRewardsEgldValue: (totalRewardsEgldValue != null
-            ? totalRewardsEgldValue.value
-            : this.totalRewardsEgldValue),
         totalStaked:
             (totalStaked != null ? totalStaked.value : this.totalStaked),
         yearlyAPR: (yearlyAPR != null ? yearlyAPR.value : this.yearlyAPR),
@@ -9754,6 +9740,62 @@ extension $CollectionProfileSummaryExtension on CollectionProfileSummary {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ExtraProperties {
+  const ExtraProperties({
+    this.currentEpoch,
+    this.level,
+  });
+
+  factory ExtraProperties.fromJson(Map<String, dynamic> json) =>
+      _$ExtraPropertiesFromJson(json);
+
+  static const toJsonFactory = _$ExtraPropertiesToJson;
+  Map<String, dynamic> toJson() => _$ExtraPropertiesToJson(this);
+
+  @JsonKey(name: 'currentEpoch')
+  final double? currentEpoch;
+  @JsonKey(name: 'level')
+  final double? level;
+  static const fromJsonFactory = _$ExtraPropertiesFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ExtraProperties &&
+            (identical(other.currentEpoch, currentEpoch) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentEpoch, currentEpoch)) &&
+            (identical(other.level, level) ||
+                const DeepCollectionEquality().equals(other.level, level)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(currentEpoch) ^
+      const DeepCollectionEquality().hash(level) ^
+      runtimeType.hashCode;
+}
+
+extension $ExtraPropertiesExtension on ExtraProperties {
+  ExtraProperties copyWith({double? currentEpoch, double? level}) {
+    return ExtraProperties(
+        currentEpoch: currentEpoch ?? this.currentEpoch,
+        level: level ?? this.level);
+  }
+
+  ExtraProperties copyWithWrapped(
+      {Wrapped<double?>? currentEpoch, Wrapped<double?>? level}) {
+    return ExtraProperties(
+        currentEpoch:
+            (currentEpoch != null ? currentEpoch.value : this.currentEpoch),
+        level: (level != null ? level.value : this.level));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class NftProps {
   const NftProps({
     required this.identifier,
@@ -9766,7 +9808,7 @@ class NftProps {
     this.supply,
     this.supplyLong,
     required this.name,
-    required this.royalties,
+    this.royalties,
     required this.url,
     this.uris,
     this.creator,
@@ -9825,7 +9867,7 @@ class NftProps {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'royalties')
-  final double royalties;
+  final double? royalties;
   @JsonKey(name: 'url')
   final String url;
   @JsonKey(name: 'uris', defaultValue: <String>[])
@@ -9867,7 +9909,7 @@ class NftProps {
   @JsonKey(name: 'collectionInfo')
   final CollectionProfileSummary? collectionInfo;
   @JsonKey(name: 'extraProperties')
-  final Object? extraProperties;
+  final ExtraProperties? extraProperties;
   static const fromJsonFactory = _$NftPropsFromJson;
 
   @override
@@ -10024,7 +10066,7 @@ extension $NftPropsExtension on NftProps {
       double? unboundDaysLeft,
       double? unboundEpoch,
       CollectionProfileSummary? collectionInfo,
-      Object? extraProperties}) {
+      ExtraProperties? extraProperties}) {
     return NftProps(
         identifier: identifier ?? this.identifier,
         collection: collection ?? this.collection,
@@ -10071,7 +10113,7 @@ extension $NftPropsExtension on NftProps {
       Wrapped<double?>? supply,
       Wrapped<String?>? supplyLong,
       Wrapped<String>? name,
-      Wrapped<double>? royalties,
+      Wrapped<double?>? royalties,
       Wrapped<String>? url,
       Wrapped<List<String>?>? uris,
       Wrapped<OwnerDto?>? creator,
@@ -10092,7 +10134,7 @@ extension $NftPropsExtension on NftProps {
       Wrapped<double?>? unboundDaysLeft,
       Wrapped<double?>? unboundEpoch,
       Wrapped<CollectionProfileSummary?>? collectionInfo,
-      Wrapped<Object?>? extraProperties}) {
+      Wrapped<ExtraProperties?>? extraProperties}) {
     return NftProps(
         identifier: (identifier != null ? identifier.value : this.identifier),
         collection: (collection != null ? collection.value : this.collection),
@@ -12182,7 +12224,7 @@ class NftDoc {
     this.supply,
     this.supplyLong,
     required this.name,
-    required this.royalties,
+    this.royalties,
     required this.url,
     this.uris,
     this.creator,
@@ -12234,7 +12276,7 @@ class NftDoc {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'royalties')
-  final double royalties;
+  final double? royalties;
   @JsonKey(name: 'url')
   final String url;
   @JsonKey(name: 'uris', defaultValue: <String>[])
@@ -12442,7 +12484,7 @@ extension $NftDocExtension on NftDoc {
       Wrapped<double?>? supply,
       Wrapped<String?>? supplyLong,
       Wrapped<String>? name,
-      Wrapped<double>? royalties,
+      Wrapped<double?>? royalties,
       Wrapped<String>? url,
       Wrapped<List<String>?>? uris,
       Wrapped<OwnerDto?>? creator,
@@ -16969,19 +17011,28 @@ class PickTypeClass {
     required this.token,
     required this.name,
     required this.decimals,
+    required this.baseRate,
+    required this.maxBorrowRate,
+    required this.slopeRate1,
+    required this.slopeRate2,
+    required this.optimalUsageRate,
+    required this.reserveFactor,
     required this.rewardsReserve,
     required this.reserves,
     required this.supplyAmount,
+    required this.borrowAmount,
     required this.vaultAmount,
     required this.supplyCap,
     required this.borrowApy,
     required this.supplyApy,
+    required this.utilizationRate,
     required this.canBeCollateral,
     required this.canBeBorrowed,
     required this.isolated,
     required this.maxDebtUsd,
     this.debtCeiling,
     required this.siloed,
+    required this.flashLoanFee,
     required this.canBorrowInIsolation,
     this.extraApy,
   });
@@ -16998,12 +17049,26 @@ class PickTypeClass {
   final String name;
   @JsonKey(name: 'decimals')
   final double decimals;
+  @JsonKey(name: 'baseRate')
+  final String baseRate;
+  @JsonKey(name: 'maxBorrowRate')
+  final String maxBorrowRate;
+  @JsonKey(name: 'slopeRate1')
+  final String slopeRate1;
+  @JsonKey(name: 'slopeRate2')
+  final String slopeRate2;
+  @JsonKey(name: 'optimalUsageRate')
+  final String optimalUsageRate;
+  @JsonKey(name: 'reserveFactor')
+  final String reserveFactor;
   @JsonKey(name: 'rewardsReserve')
   final Object rewardsReserve;
   @JsonKey(name: 'reserves')
   final Object reserves;
   @JsonKey(name: 'supplyAmount')
   final Object supplyAmount;
+  @JsonKey(name: 'borrowAmount')
+  final Object borrowAmount;
   @JsonKey(name: 'vaultAmount')
   final Object vaultAmount;
   @JsonKey(name: 'supplyCap')
@@ -17012,6 +17077,8 @@ class PickTypeClass {
   final Object borrowApy;
   @JsonKey(name: 'supplyApy')
   final Object supplyApy;
+  @JsonKey(name: 'utilizationRate')
+  final Object utilizationRate;
   @JsonKey(name: 'canBeCollateral')
   final bool canBeCollateral;
   @JsonKey(name: 'canBeBorrowed')
@@ -17024,6 +17091,8 @@ class PickTypeClass {
   final String? debtCeiling;
   @JsonKey(name: 'siloed')
   final bool siloed;
+  @JsonKey(name: 'flashLoanFee')
+  final String flashLoanFee;
   @JsonKey(name: 'canBorrowInIsolation')
   final bool canBorrowInIsolation;
   @JsonKey(name: 'extraApy')
@@ -17041,6 +17110,24 @@ class PickTypeClass {
             (identical(other.decimals, decimals) ||
                 const DeepCollectionEquality()
                     .equals(other.decimals, decimals)) &&
+            (identical(other.baseRate, baseRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.baseRate, baseRate)) &&
+            (identical(other.maxBorrowRate, maxBorrowRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxBorrowRate, maxBorrowRate)) &&
+            (identical(other.slopeRate1, slopeRate1) ||
+                const DeepCollectionEquality()
+                    .equals(other.slopeRate1, slopeRate1)) &&
+            (identical(other.slopeRate2, slopeRate2) ||
+                const DeepCollectionEquality()
+                    .equals(other.slopeRate2, slopeRate2)) &&
+            (identical(other.optimalUsageRate, optimalUsageRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.optimalUsageRate, optimalUsageRate)) &&
+            (identical(other.reserveFactor, reserveFactor) ||
+                const DeepCollectionEquality()
+                    .equals(other.reserveFactor, reserveFactor)) &&
             (identical(other.rewardsReserve, rewardsReserve) ||
                 const DeepCollectionEquality()
                     .equals(other.rewardsReserve, rewardsReserve)) &&
@@ -17050,6 +17137,9 @@ class PickTypeClass {
             (identical(other.supplyAmount, supplyAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyAmount, supplyAmount)) &&
+            (identical(other.borrowAmount, borrowAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.borrowAmount, borrowAmount)) &&
             (identical(other.vaultAmount, vaultAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.vaultAmount, vaultAmount)) &&
@@ -17062,6 +17152,9 @@ class PickTypeClass {
             (identical(other.supplyApy, supplyApy) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyApy, supplyApy)) &&
+            (identical(other.utilizationRate, utilizationRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.utilizationRate, utilizationRate)) &&
             (identical(other.canBeCollateral, canBeCollateral) ||
                 const DeepCollectionEquality()
                     .equals(other.canBeCollateral, canBeCollateral)) &&
@@ -17075,16 +17168,11 @@ class PickTypeClass {
                 const DeepCollectionEquality()
                     .equals(other.maxDebtUsd, maxDebtUsd)) &&
             (identical(other.debtCeiling, debtCeiling) ||
-                const DeepCollectionEquality()
-                    .equals(other.debtCeiling, debtCeiling)) &&
-            (identical(other.siloed, siloed) ||
-                const DeepCollectionEquality().equals(other.siloed, siloed)) &&
-            (identical(other.canBorrowInIsolation, canBorrowInIsolation) ||
-                const DeepCollectionEquality().equals(
-                    other.canBorrowInIsolation, canBorrowInIsolation)) &&
-            (identical(other.extraApy, extraApy) ||
-                const DeepCollectionEquality()
-                    .equals(other.extraApy, extraApy)));
+                const DeepCollectionEquality().equals(other.debtCeiling, debtCeiling)) &&
+            (identical(other.siloed, siloed) || const DeepCollectionEquality().equals(other.siloed, siloed)) &&
+            (identical(other.flashLoanFee, flashLoanFee) || const DeepCollectionEquality().equals(other.flashLoanFee, flashLoanFee)) &&
+            (identical(other.canBorrowInIsolation, canBorrowInIsolation) || const DeepCollectionEquality().equals(other.canBorrowInIsolation, canBorrowInIsolation)) &&
+            (identical(other.extraApy, extraApy) || const DeepCollectionEquality().equals(other.extraApy, extraApy)));
   }
 
   @override
@@ -17095,19 +17183,28 @@ class PickTypeClass {
       const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(decimals) ^
+      const DeepCollectionEquality().hash(baseRate) ^
+      const DeepCollectionEquality().hash(maxBorrowRate) ^
+      const DeepCollectionEquality().hash(slopeRate1) ^
+      const DeepCollectionEquality().hash(slopeRate2) ^
+      const DeepCollectionEquality().hash(optimalUsageRate) ^
+      const DeepCollectionEquality().hash(reserveFactor) ^
       const DeepCollectionEquality().hash(rewardsReserve) ^
       const DeepCollectionEquality().hash(reserves) ^
       const DeepCollectionEquality().hash(supplyAmount) ^
+      const DeepCollectionEquality().hash(borrowAmount) ^
       const DeepCollectionEquality().hash(vaultAmount) ^
       const DeepCollectionEquality().hash(supplyCap) ^
       const DeepCollectionEquality().hash(borrowApy) ^
       const DeepCollectionEquality().hash(supplyApy) ^
+      const DeepCollectionEquality().hash(utilizationRate) ^
       const DeepCollectionEquality().hash(canBeCollateral) ^
       const DeepCollectionEquality().hash(canBeBorrowed) ^
       const DeepCollectionEquality().hash(isolated) ^
       const DeepCollectionEquality().hash(maxDebtUsd) ^
       const DeepCollectionEquality().hash(debtCeiling) ^
       const DeepCollectionEquality().hash(siloed) ^
+      const DeepCollectionEquality().hash(flashLoanFee) ^
       const DeepCollectionEquality().hash(canBorrowInIsolation) ^
       const DeepCollectionEquality().hash(extraApy) ^
       runtimeType.hashCode;
@@ -17118,38 +17215,56 @@ extension $PickTypeClassExtension on PickTypeClass {
       {String? token,
       String? name,
       double? decimals,
+      String? baseRate,
+      String? maxBorrowRate,
+      String? slopeRate1,
+      String? slopeRate2,
+      String? optimalUsageRate,
+      String? reserveFactor,
       Object? rewardsReserve,
       Object? reserves,
       Object? supplyAmount,
+      Object? borrowAmount,
       Object? vaultAmount,
       String? supplyCap,
       Object? borrowApy,
       Object? supplyApy,
+      Object? utilizationRate,
       bool? canBeCollateral,
       bool? canBeBorrowed,
       bool? isolated,
       Object? maxDebtUsd,
       String? debtCeiling,
       bool? siloed,
+      String? flashLoanFee,
       bool? canBorrowInIsolation,
       MarketExtraApy? extraApy}) {
     return PickTypeClass(
         token: token ?? this.token,
         name: name ?? this.name,
         decimals: decimals ?? this.decimals,
+        baseRate: baseRate ?? this.baseRate,
+        maxBorrowRate: maxBorrowRate ?? this.maxBorrowRate,
+        slopeRate1: slopeRate1 ?? this.slopeRate1,
+        slopeRate2: slopeRate2 ?? this.slopeRate2,
+        optimalUsageRate: optimalUsageRate ?? this.optimalUsageRate,
+        reserveFactor: reserveFactor ?? this.reserveFactor,
         rewardsReserve: rewardsReserve ?? this.rewardsReserve,
         reserves: reserves ?? this.reserves,
         supplyAmount: supplyAmount ?? this.supplyAmount,
+        borrowAmount: borrowAmount ?? this.borrowAmount,
         vaultAmount: vaultAmount ?? this.vaultAmount,
         supplyCap: supplyCap ?? this.supplyCap,
         borrowApy: borrowApy ?? this.borrowApy,
         supplyApy: supplyApy ?? this.supplyApy,
+        utilizationRate: utilizationRate ?? this.utilizationRate,
         canBeCollateral: canBeCollateral ?? this.canBeCollateral,
         canBeBorrowed: canBeBorrowed ?? this.canBeBorrowed,
         isolated: isolated ?? this.isolated,
         maxDebtUsd: maxDebtUsd ?? this.maxDebtUsd,
         debtCeiling: debtCeiling ?? this.debtCeiling,
         siloed: siloed ?? this.siloed,
+        flashLoanFee: flashLoanFee ?? this.flashLoanFee,
         canBorrowInIsolation: canBorrowInIsolation ?? this.canBorrowInIsolation,
         extraApy: extraApy ?? this.extraApy);
   }
@@ -17158,36 +17273,60 @@ extension $PickTypeClassExtension on PickTypeClass {
       {Wrapped<String>? token,
       Wrapped<String>? name,
       Wrapped<double>? decimals,
+      Wrapped<String>? baseRate,
+      Wrapped<String>? maxBorrowRate,
+      Wrapped<String>? slopeRate1,
+      Wrapped<String>? slopeRate2,
+      Wrapped<String>? optimalUsageRate,
+      Wrapped<String>? reserveFactor,
       Wrapped<Object>? rewardsReserve,
       Wrapped<Object>? reserves,
       Wrapped<Object>? supplyAmount,
+      Wrapped<Object>? borrowAmount,
       Wrapped<Object>? vaultAmount,
       Wrapped<String>? supplyCap,
       Wrapped<Object>? borrowApy,
       Wrapped<Object>? supplyApy,
+      Wrapped<Object>? utilizationRate,
       Wrapped<bool>? canBeCollateral,
       Wrapped<bool>? canBeBorrowed,
       Wrapped<bool>? isolated,
       Wrapped<Object>? maxDebtUsd,
       Wrapped<String?>? debtCeiling,
       Wrapped<bool>? siloed,
+      Wrapped<String>? flashLoanFee,
       Wrapped<bool>? canBorrowInIsolation,
       Wrapped<MarketExtraApy?>? extraApy}) {
     return PickTypeClass(
         token: (token != null ? token.value : this.token),
         name: (name != null ? name.value : this.name),
         decimals: (decimals != null ? decimals.value : this.decimals),
+        baseRate: (baseRate != null ? baseRate.value : this.baseRate),
+        maxBorrowRate:
+            (maxBorrowRate != null ? maxBorrowRate.value : this.maxBorrowRate),
+        slopeRate1: (slopeRate1 != null ? slopeRate1.value : this.slopeRate1),
+        slopeRate2: (slopeRate2 != null ? slopeRate2.value : this.slopeRate2),
+        optimalUsageRate: (optimalUsageRate != null
+            ? optimalUsageRate.value
+            : this.optimalUsageRate),
+        reserveFactor:
+            (reserveFactor != null ? reserveFactor.value : this.reserveFactor),
         rewardsReserve: (rewardsReserve != null
             ? rewardsReserve.value
             : this.rewardsReserve),
         reserves: (reserves != null ? reserves.value : this.reserves),
         supplyAmount:
             (supplyAmount != null ? supplyAmount.value : this.supplyAmount),
+        borrowAmount:
+            (borrowAmount != null ? borrowAmount.value : this.borrowAmount),
         vaultAmount:
             (vaultAmount != null ? vaultAmount.value : this.vaultAmount),
         supplyCap: (supplyCap != null ? supplyCap.value : this.supplyCap),
         borrowApy: (borrowApy != null ? borrowApy.value : this.borrowApy),
         supplyApy: (supplyApy != null ? supplyApy.value : this.supplyApy),
+        utilizationRate: (utilizationRate != null
+            ? utilizationRate.value
+            : this.utilizationRate),
         canBeCollateral: (canBeCollateral != null
             ? canBeCollateral.value
             : this.canBeCollateral),
@@ -17198,6 +17337,8 @@ extension $PickTypeClassExtension on PickTypeClass {
         debtCeiling:
             (debtCeiling != null ? debtCeiling.value : this.debtCeiling),
         siloed: (siloed != null ? siloed.value : this.siloed),
+        flashLoanFee:
+            (flashLoanFee != null ? flashLoanFee.value : this.flashLoanFee),
         canBorrowInIsolation: (canBorrowInIsolation != null
             ? canBorrowInIsolation.value
             : this.canBorrowInIsolation),
@@ -17225,6 +17366,8 @@ class LendingAccountProfile {
     required this.borrowTimestamp,
     required this.borrowIndex,
     required this.entryLiquidationThreshold,
+    required this.entryLiquidationBonus,
+    required this.entryLiquidationFee,
     required this.entryLtv,
     required this.isolated,
     required this.isVault,
@@ -17278,6 +17421,10 @@ class LendingAccountProfile {
   final Object borrowIndex;
   @JsonKey(name: 'entryLiquidationThreshold')
   final String entryLiquidationThreshold;
+  @JsonKey(name: 'entryLiquidationBonus')
+  final String entryLiquidationBonus;
+  @JsonKey(name: 'entryLiquidationFee')
+  final String entryLiquidationFee;
   @JsonKey(name: 'entryLtv')
   final String entryLtv;
   @JsonKey(name: 'isolated')
@@ -17349,6 +17496,8 @@ class LendingAccountProfile {
                 const DeepCollectionEquality()
                     .equals(other.borrowIndex, borrowIndex)) &&
             (identical(other.entryLiquidationThreshold, entryLiquidationThreshold) || const DeepCollectionEquality().equals(other.entryLiquidationThreshold, entryLiquidationThreshold)) &&
+            (identical(other.entryLiquidationBonus, entryLiquidationBonus) || const DeepCollectionEquality().equals(other.entryLiquidationBonus, entryLiquidationBonus)) &&
+            (identical(other.entryLiquidationFee, entryLiquidationFee) || const DeepCollectionEquality().equals(other.entryLiquidationFee, entryLiquidationFee)) &&
             (identical(other.entryLtv, entryLtv) || const DeepCollectionEquality().equals(other.entryLtv, entryLtv)) &&
             (identical(other.isolated, isolated) || const DeepCollectionEquality().equals(other.isolated, isolated)) &&
             (identical(other.isVault, isVault) || const DeepCollectionEquality().equals(other.isVault, isVault)) &&
@@ -17380,6 +17529,8 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(borrowTimestamp) ^
       const DeepCollectionEquality().hash(borrowIndex) ^
       const DeepCollectionEquality().hash(entryLiquidationThreshold) ^
+      const DeepCollectionEquality().hash(entryLiquidationBonus) ^
+      const DeepCollectionEquality().hash(entryLiquidationFee) ^
       const DeepCollectionEquality().hash(entryLtv) ^
       const DeepCollectionEquality().hash(isolated) ^
       const DeepCollectionEquality().hash(isVault) ^
@@ -17409,6 +17560,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Object? borrowTimestamp,
       Object? borrowIndex,
       String? entryLiquidationThreshold,
+      String? entryLiquidationBonus,
+      String? entryLiquidationFee,
       String? entryLtv,
       bool? isolated,
       bool? isVault,
@@ -17439,6 +17592,9 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         borrowIndex: borrowIndex ?? this.borrowIndex,
         entryLiquidationThreshold:
             entryLiquidationThreshold ?? this.entryLiquidationThreshold,
+        entryLiquidationBonus:
+            entryLiquidationBonus ?? this.entryLiquidationBonus,
+        entryLiquidationFee: entryLiquidationFee ?? this.entryLiquidationFee,
         entryLtv: entryLtv ?? this.entryLtv,
         isolated: isolated ?? this.isolated,
         isVault: isVault ?? this.isVault,
@@ -17466,6 +17622,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Wrapped<Object>? borrowTimestamp,
       Wrapped<Object>? borrowIndex,
       Wrapped<String>? entryLiquidationThreshold,
+      Wrapped<String>? entryLiquidationBonus,
+      Wrapped<String>? entryLiquidationFee,
       Wrapped<String>? entryLtv,
       Wrapped<bool>? isolated,
       Wrapped<bool>? isVault,
@@ -17513,6 +17671,12 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         entryLiquidationThreshold: (entryLiquidationThreshold != null
             ? entryLiquidationThreshold.value
             : this.entryLiquidationThreshold),
+        entryLiquidationBonus: (entryLiquidationBonus != null
+            ? entryLiquidationBonus.value
+            : this.entryLiquidationBonus),
+        entryLiquidationFee: (entryLiquidationFee != null
+            ? entryLiquidationFee.value
+            : this.entryLiquidationFee),
         entryLtv: (entryLtv != null ? entryLtv.value : this.entryLtv),
         isolated: (isolated != null ? isolated.value : this.isolated),
         isVault: (isVault != null ? isVault.value : this.isVault),
