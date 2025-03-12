@@ -20,7 +20,7 @@ class CollectionRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> ranks({required final String collection}) {
+  Future<List<dynamic>> ranks({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.ranks');
     logger.finest('ranks');
     return genericGet(
@@ -156,7 +156,7 @@ class CollectionRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> query({final String filter = ''}) {
+  Future<List<dynamic>> query({final String filter = ''}) {
     final logger = Logger('Xoxno.CollectionRawApi.query');
     logger.finest('query');
     return genericGet(

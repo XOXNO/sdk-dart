@@ -51,8 +51,13 @@ Future<void> main() async {
 
   try {
     // var data = await sdk.api.user.meProfile();
-    var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
-    logger.info(data);
+    // var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
+    var tokenss = await sdk.api.tokens.swapTokens();
+    // var tokenss = await sdk.api.collection.query();
+    // logger.info(tokens);
+    logger.info(tokenss);
+
+    // logger.info(data);
   } on xoxno.ApiException catch (e, stackTrace) {
     logger.severe(e.toJson());
     logger.severe(stackTrace);

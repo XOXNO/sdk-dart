@@ -86,7 +86,7 @@ class CollectionTypeSafeApi {
     return FollowCollectionDto.fromJson(data);
   }
 
-  Future<List<CollectionProfileDto>> query({final String filter = ''}) async {
+  Future<List<CollectionProfileDto>> query({final String filter = '{}'}) async {
     final data = await _api.query(filter: filter);
 
     return data.map((element) => CollectionProfileDto.fromJson(element)).toList();

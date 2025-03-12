@@ -7,7 +7,7 @@ class TokensRawApi {
 
   const TokensRawApi(this.client);
 
-  Future<List<Map<String, dynamic>>> tokens(
+  Future<List<dynamic>> tokens(
       {final String identifier = '', final List<String> category = const []}) {
     final logger = Logger('Xoxno.TokensRawApi.tokens');
     logger.finest('tokens');
@@ -23,7 +23,7 @@ class TokensRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> swapTokens() {
+  Future<List<dynamic>> swapTokens() {
     final logger = Logger('Xoxno.TokensRawApi.swapTokens');
     logger.finest('swapTokens');
     return genericGet(

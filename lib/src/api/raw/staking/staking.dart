@@ -34,7 +34,7 @@ class StakingRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> whitelist({required final String poolId}) {
+  Future<List<dynamic>> whitelist({required final String poolId}) {
     final logger = Logger('Xoxno.StakingRawApi.whitelist');
     logger.finest('whitelist');
     return genericGet(

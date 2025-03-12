@@ -495,7 +495,7 @@ class UserRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> stakingOwnedPools({
+  Future<List<dynamic>> stakingOwnedPools({
     required final String address,
   }) {
     final logger = Logger('Xoxno.UserRawApi.stakingOwnedPools');
@@ -506,7 +506,7 @@ class UserRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> stakingSummary({
+  Future<List<dynamic>> stakingSummary({
     required final String address,
   }) {
     final logger = Logger('Xoxno.UserRawApi.stakingSummary');
@@ -528,7 +528,7 @@ class UserRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> stakingCollection({
+  Future<List<dynamic>> stakingCollection({
     required final String address,
     required final String collection,
   }) async {

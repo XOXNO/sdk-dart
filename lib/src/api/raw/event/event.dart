@@ -172,7 +172,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getEventTickets(
+  Future<List<dynamic>> getEventTickets(
       {required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventTickets');
     logger.finest('get event tickets');
@@ -238,7 +238,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getEventStages({
+  Future<List<dynamic>> getEventStages({
     required String eventId,
     bool? isEnabled,
   }) {
@@ -366,7 +366,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getEventQuestions({required String eventId}) {
+  Future<List<dynamic>> getEventQuestions({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventQuestions');
     logger.finest('get event questions');
     return genericGet(
@@ -513,7 +513,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getEventUserRoles({required String eventId}) {
+  Future<List<dynamic>> getEventUserRoles({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventUserRoles');
     logger.finest('get event user roles');
     return genericGet(
@@ -617,7 +617,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getAnsweredQuestions(
+  Future<List<dynamic>> getAnsweredQuestions(
       {required String eventId, required String guestId}) {
     final logger = Logger('Xoxno.EventRawApi.getAnsweredQuestions');
     logger.finest('get answered questions');
