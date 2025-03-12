@@ -23,6 +23,15 @@ class TokensRawApi {
     );
   }
 
+  Future<List<Map<String, dynamic>>> swapTokens() {
+    final logger = Logger('Xoxno.TokensRawApi.swapTokens');
+    logger.finest('swapTokens');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/tokens/swap'),
+    );
+  }
+
   Future<Map<String, num>> usdPrice({final String identifier = ''}) {
     final logger = Logger('Xoxno.TokensRawApi.usdPrice');
     logger.finest('usd price');

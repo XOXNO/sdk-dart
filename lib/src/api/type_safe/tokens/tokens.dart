@@ -18,6 +18,11 @@ class TokensTypeSafeApi {
     return data.map((element) => TokenDto.fromJson(element)).toList();
   }
 
+  Future<List<TokenDto>> swapTokens() async {
+    final data = await _api.swapTokens();
+    return data.map((element) => TokenDto.fromJson(element)).toList();
+  }
+
   // TODO(kevin): missing return type
   Future<Map<String, num>> usdPrice({final String identifier = ''}) async {
     final data = await _api.usdPrice(identifier: identifier);
