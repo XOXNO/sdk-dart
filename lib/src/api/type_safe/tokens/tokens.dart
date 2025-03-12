@@ -20,7 +20,6 @@ class TokensTypeSafeApi {
 
   Future<List<TokenDocDto>> swapTokens() async {
     final data = await _api.swapTokens();
-    print(data);
     return data.map((element) => TokenDocDto.fromJson(element)).toList();
   }
 

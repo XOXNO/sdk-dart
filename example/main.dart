@@ -38,7 +38,7 @@ Future<void> main() async {
 
   final client = xoxno.Client(
     client: rawClient,
-    baseUrl: 'https://devnet-api.xoxno.com',
+    baseUrl: 'https://api.xoxno.com',
     renewableTokens: RenewableTokens(),
   );
   final rawJWT =
