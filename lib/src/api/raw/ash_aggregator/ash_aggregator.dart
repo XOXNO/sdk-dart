@@ -26,4 +26,26 @@ class AshAggregatorRawApi {
       ),
     );
   }
+
+  Future<Map<String, dynamic>> maxTokenQuantity({
+    required final String paymentToken,
+    required final String paymentTokenValue,
+    required final String wantedToken,
+    required final double slippage,
+  }) {
+    final logger = Logger('Xoxno.AshAggregatorRawApi.maxTokenQuantity');
+    logger.finest('max token quantity');
+    return genericGet(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/ash/max-token-quantity',
+        queryParameters: [
+          'paymentToken=$paymentToken',
+          'paymentTokenValue=$paymentTokenValue',
+          'wantedToken=$wantedToken',
+          'slippage=$slippage',
+        ],
+      ),
+    );
+  }
 }

@@ -18,4 +18,18 @@ class AshAggregatorTypeSafeApi {
     );
     return FetchSwapRoutesResponseDto.fromJson(data);
   }
+
+  Future<FetchSwapRoutesResponseDto> maxTokenQuantity({
+    required final String paymentToken,
+    required final String paymentTokenValue,
+    required final String wantedToken,
+    required final double slippage,
+  }) async {
+    final data = await _api.maxTokenQuantity(
+        paymentToken: paymentToken,
+        paymentTokenValue: paymentTokenValue,
+        wantedToken: wantedToken,
+        slippage: slippage);
+    return FetchSwapRoutesResponseDto.fromJson(data);
+  }
 }
