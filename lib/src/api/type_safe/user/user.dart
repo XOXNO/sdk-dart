@@ -205,7 +205,7 @@ class UserTypeSafeApi {
   }
 
   Future<List<InventorySummaryDto>> inventorySummary(
-      {required final String address, final Bool? activeAuctions}) async {
+      {required final String address, final bool? activeAuctions}) async {
     final data = await _api.inventorySummary(
         address: address, activeAuctions: activeAuctions);
     return data

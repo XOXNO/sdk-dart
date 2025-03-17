@@ -402,7 +402,7 @@ class UserRawApi {
   }
 
   Future<List> inventorySummary(
-      {required final String address, final Bool? activeAuctions}) {
+      {required final String address, final bool? activeAuctions}) {
     final logger = Logger('Xoxno.UserRawApi.inventorySummary');
     logger.finest('inventory summary');
     return genericGet(
