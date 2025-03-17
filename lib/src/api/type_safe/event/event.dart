@@ -16,7 +16,6 @@ class EventTypeSafeApi {
 
   Future<EventProfile> getEventById({required String eventId}) async {
     final data = await _api.getEventById(eventId: eventId);
-    print(data);
     return EventProfile.fromJson(data);
   }
 

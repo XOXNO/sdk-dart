@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
 import 'package:xoxno_sdk/src/api/type_safe/common/order_direction.dart';
@@ -202,10 +204,10 @@ class UserTypeSafeApi {
     return data;
   }
 
-  Future<List<InventorySummaryDto>> inventorySummary({
-    required final String address,
-  }) async {
-    final data = await _api.inventorySummary(address: address);
+  Future<List<InventorySummaryDto>> inventorySummary(
+      {required final String address, final Bool? activeAuctions}) async {
+    final data = await _api.inventorySummary(
+        address: address, activeAuctions: activeAuctions);
     return data
         .map((element) => InventorySummaryDto.fromJson(element))
         .toList();

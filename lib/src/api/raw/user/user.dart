@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -400,12 +401,15 @@ class UserRawApi {
     );
   }
 
-  Future<List> inventorySummary({required final String address}) {
+  Future<List> inventorySummary(
+      {required final String address, final Bool? activeAuctions}) {
     final logger = Logger('Xoxno.UserRawApi.inventorySummary');
     logger.finest('inventory summary');
     return genericGet(
       client,
-      generateUri(path: '${client.baseUrl}/user/$address/inventory-summary'),
+      generateUri(
+          path: '${client.baseUrl}/user/$address/inventory-summary',
+          queryParameters: ['activeAuctions=$activeAuctions']),
     );
   }
 
