@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/xoxno_sdk.dart' as xoxno;
+import 'package:xoxno_sdk/xoxno_sdk.dart';
 
 const myAddress =
     'erd13mfer3plwznqfxlyll766uvlwq8nk5vgtn8n6u97hjezuumhklyq23rhsm';
@@ -52,7 +53,7 @@ Future<void> main() async {
   try {
     // var data = await sdk.api.user.meProfile();
     // var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
-    var tokenss = await sdk.api.tokens.swapTokens();
+    var tokenss = await sdk.api.event.getEvents(filter: EventProfileFilter(top: 10, filters: xoxno.EventProfileFilterCriteriaDto(), extraProperties: EventExtraProperties(creatorProfile: true, guestSummary: true)));
     // var tokenss = await sdk.api.collection.query();
     // logger.info(tokens);
     logger.info(tokenss);

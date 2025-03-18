@@ -1682,7 +1682,11 @@ enum NftActivityFilterCriteriaDtoSource {
   @JsonValue('xoxnoEgldLs')
   xoxnoegldls('xoxnoEgldLs'),
   @JsonValue('xoxnoLending')
-  xoxnolending('xoxnoLending');
+  xoxnolending('xoxnoLending'),
+  @JsonValue('boberBattle')
+  boberbattle('boberBattle'),
+  @JsonValue('boberWheel')
+  boberwheel('boberWheel');
 
   final String? value;
 

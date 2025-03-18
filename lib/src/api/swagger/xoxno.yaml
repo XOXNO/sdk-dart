@@ -544,6 +544,11 @@ paths:
           in: path
           schema:
             type: string
+        - name: referer
+          required: true
+          in: query
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -5144,6 +5149,34 @@ paths:
       tags:
         - NftActivityData
         - Dune
+  /sync/lending:
+    get:
+      operationId: NftActivityDataController_retrieveLending
+      parameters: []
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - NftActivityData
+        - Dune
   /lending/market-sc:
     get:
       operationId: XoxnoLendingScController_getMarketSCs
@@ -5250,9 +5283,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingAccountProfile'
-      security:
-        - bearer: []
       summary: Get my lending & borrowing positions
+      tags:
+        - Lending And Borrowing
+  /user/lending/position/{identifier}:
+    get:
+      operationId: LendingDataController_retrieveUserLendingSinglePosition
+      parameters:
+        - name: identifier
+          required: true
+          in: path
+          description: NFT identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User lending position
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingAccountProfile'
+      summary: Get single lending & borrowing position
+      tags:
+        - Lending And Borrowing
+  /user/lending/image/{nonce}:
+    get:
+      operationId: LendingDataController_retrieveLendingImage
+      parameters:
+        - name: nonce
+          required: true
+          in: path
+          description: Nonce of the position
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lending picture
+      summary: Get picture of lending position
       tags:
         - Lending And Borrowing
   /lending/market/emode-categories:
@@ -10413,8 +10480,6 @@ components:
         - profile
         - banner
         - joinedDate
-        - description
-        - socials
         - listing
         - events
     EditUserCreatorProfileDto:
@@ -12662,6 +12727,14 @@ components:
           type: string
           description: Slope rate 2
           example: 0.08
+        slopeRate3:
+          type: string
+          description: Slope rate 3
+          example: 0.12
+        midUsageRate:
+          type: string
+          description: Mid usage rate
+          example: 0.5
         optimalUsageRate:
           type: string
           description: Optimal usage rate
@@ -12850,6 +12923,8 @@ components:
         - maxBorrowRate
         - slopeRate1
         - slopeRate2
+        - slopeRate3
+        - midUsageRate
         - optimalUsageRate
         - reserveFactor
         - liquidationFee
@@ -12978,6 +13053,14 @@ components:
           type: string
           description: Slope rate 2
           example: 0.08
+        slopeRate3:
+          type: string
+          description: Slope rate 3
+          example: 0.12
+        midUsageRate:
+          type: string
+          description: Mid usage rate
+          example: 0.5
         optimalUsageRate:
           type: string
           description: Optimal usage rate
@@ -13010,6 +13093,10 @@ components:
           type: string
           description: Supply cap
           example: '3000000'
+        borrowCap:
+          type: string
+          description: Borrow cap
+          example: '2500000'
         borrowApy:
           type: object
           description: Borrow annual percentage yield
@@ -13066,6 +13153,8 @@ components:
         - maxBorrowRate
         - slopeRate1
         - slopeRate2
+        - slopeRate3
+        - midUsageRate
         - optimalUsageRate
         - reserveFactor
         - rewardsReserve
@@ -13074,6 +13163,7 @@ components:
         - borrowAmount
         - vaultAmount
         - supplyCap
+        - borrowCap
         - borrowApy
         - supplyApy
         - utilizationRate
@@ -14129,7 +14219,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1738253838
+          minimum: 1742305327
         endTime:
           type: number
         location:
@@ -14208,8 +14298,6 @@ components:
         - profile
         - banner
         - joinedDate
-        - description
-        - socials
     EventGuestProfileSummary:
       type: object
       properties:
@@ -14436,10 +14524,10 @@ components:
           example: Event Title
         startTime:
           type: number
-          example: 1738253839
+          example: 1742305328
         endTime:
           type: number
-          example: 1738253839
+          example: 1742305328
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -14690,11 +14778,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1738253839
+          example: 1742305328
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: c9bf2004-0c57-47c2-b7f4-f641085bb8a0
+          example: 37507ba6-eb64-433f-b145-44ff9502b01b
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14838,11 +14926,11 @@ components:
         createdAt:
           type: number
           description: Timestamp when the ticket type was created.
-          example: 1738253838
+          example: 1742305327
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: c6e44f9c-1052-46cc-8585-26bb3ecd4086
+          example: d8f8fdc8-3580-4f38-9549-ec419132f6b4
       required:
         - dataType
         - eventId
@@ -14906,10 +14994,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1738253839
+          minimum: 1742305328
         endTime:
           type: number
-          minimum: 1738340239
+          minimum: 1742391728
         maxLimit:
           type: number
         userLimit:
@@ -14969,11 +15057,11 @@ components:
         startTime:
           type: number
           description: Timestamp when this stage starts.
-          example: 1738253838
+          example: 1742305327
         endTime:
           type: number
           description: Timestamp when this stage ends.
-          example: 1738253838
+          example: 1742305327
         maxLimit:
           type: object
           description: >-
@@ -15004,7 +15092,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: c2fb282a-25ad-48d7-ab1d-7cc65fcf4353
+          example: 93582f47-e287-4650-a928-f66ba5eece1c
       required:
         - dataType
         - eventId
@@ -15041,10 +15129,10 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1738253839
+          minimum: 1742305328
         endTime:
           type: number
-          minimum: 1738340239
+          minimum: 1742391728
       required:
         - maxLimit
         - userLimit
@@ -15188,7 +15276,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 943dc0e5-635a-4fc7-bfa0-2c0fa04d17ec
+          example: 9796a54a-769a-4c6d-85df-7f371dd79387
         quantity:
           type: number
           description: The number of tickets for this type.
@@ -15251,7 +15339,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1738253839
+          example: 1742305328
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15284,7 +15372,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: b9cc0a03-4ce6-4837-87db-8c50f0b5f15a
+          example: 06e68fdb-6bc7-45b8-a88b-7e0ddd63f1d9
       required:
         - dataType
         - eventId
@@ -15350,7 +15438,7 @@ components:
         createdAt:
           type: number
           description: The timestamp when the ticket invitation was created.
-          example: 1738253839
+          example: 1742305328
         isClaimed:
           type: object
           description: Indicates if the ticket has been claimed.
@@ -15383,7 +15471,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: b9cc0a03-4ce6-4837-87db-8c50f0b5f15a
+          example: 06e68fdb-6bc7-45b8-a88b-7e0ddd63f1d9
         profile:
           type: string
           description: >-
@@ -15500,11 +15588,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1738253839
+          example: 1742305328
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1738253839
+          example: 1742305328
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -15514,7 +15602,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the voucher was created.
-          example: 1738253839
+          example: 1742305328
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15616,7 +15704,7 @@ components:
         createdAt:
           type: number
           description: Timestamp of question creation.
-          example: 1738253839
+          example: 1742305328
       required:
         - dataType
         - id
@@ -15754,11 +15842,11 @@ components:
         createdAt:
           type: number
           description: Timestamp of guest creation.
-          example: 1738253839
+          example: 1742305328
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: c9bf2004-0c57-47c2-b7f4-f641085bb8a0
+          example: 37507ba6-eb64-433f-b145-44ff9502b01b
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16084,11 +16172,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1738253839
+          example: 1742305328
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1738253839
+          example: 1742305328
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -16140,11 +16228,11 @@ components:
         startDate:
           type: number
           description: Timestamp when the voucher becomes valid.
-          example: 1738253839
+          example: 1742305328
         endDate:
           type: number
           description: Timestamp when the voucher expires.
-          example: 1738253839
+          example: 1742305328
         isActive:
           type: object
           description: Indicates whether the voucher is currently active.
@@ -16188,7 +16276,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 458608cd-3b02-47a8-b8a4-5a6e476ef1db
+          example: f52b8db5-3d5f-4c61-b1b5-87f2e5dabbcc
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16204,7 +16292,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the answer was provided.
-          example: 1738253839
+          example: 1742305328
         ttl:
           type: number
           description: Time to live in seconds. Only set when status is pending.
@@ -16346,7 +16434,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: eb443949-e4e9-424a-8828-7cde342c31a4
+          example: 477f0674-ea55-4eac-acdc-d03b7578bd2b
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16373,7 +16461,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral configuration was created.
-          example: 1738253839
+          example: 1742305328
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16459,7 +16547,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: a9c8f0c4-54c8-4587-a037-84cc940a406a
+          example: 114a40e3-e64e-4b5b-816e-2ecd6a8633e9
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16478,7 +16566,7 @@ components:
         createdAt:
           type: number
           description: Timestamp when the referral was created.
-          example: 1738253839
+          example: 1742305328
         isActive:
           type: object
           description: Indicates whether the referral code is currently active.
@@ -16589,6 +16677,8 @@ components:
               - xoxnoLs
               - xoxnoEgldLs
               - xoxnoLending
+              - boberBattle
+              - boberWheel
         range:
           type: array
           items:

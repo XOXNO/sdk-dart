@@ -8440,8 +8440,8 @@ class CreatorDetailsDto {
     required this.profile,
     required this.banner,
     required this.joinedDate,
-    required this.description,
-    required this.socials,
+    this.description,
+    this.socials,
     this.id,
     required this.listing,
     required this.events,
@@ -8481,9 +8481,9 @@ class CreatorDetailsDto {
   @JsonKey(name: 'joinedDate')
   final double joinedDate;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'socials')
-  final Object socials;
+  final Object? socials;
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: 'listing', defaultValue: <MintingListingDto>[])
@@ -8604,8 +8604,8 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
       Wrapped<String>? profile,
       Wrapped<String>? banner,
       Wrapped<double>? joinedDate,
-      Wrapped<String>? description,
-      Wrapped<Object>? socials,
+      Wrapped<String?>? description,
+      Wrapped<Object?>? socials,
       Wrapped<String?>? id,
       Wrapped<List<MintingListingDto>>? listing,
       Wrapped<List<EventProfileDoc>>? events}) {
@@ -16243,6 +16243,8 @@ class LendingMarketProfile {
     required this.maxBorrowRate,
     required this.slopeRate1,
     required this.slopeRate2,
+    required this.slopeRate3,
+    required this.midUsageRate,
     required this.optimalUsageRate,
     required this.reserveFactor,
     required this.liquidationFee,
@@ -16316,6 +16318,10 @@ class LendingMarketProfile {
   final String slopeRate1;
   @JsonKey(name: 'slopeRate2')
   final String slopeRate2;
+  @JsonKey(name: 'slopeRate3')
+  final String slopeRate3;
+  @JsonKey(name: 'midUsageRate')
+  final String midUsageRate;
   @JsonKey(name: 'optimalUsageRate')
   final String optimalUsageRate;
   @JsonKey(name: 'reserveFactor')
@@ -16433,6 +16439,12 @@ class LendingMarketProfile {
             (identical(other.slopeRate2, slopeRate2) ||
                 const DeepCollectionEquality()
                     .equals(other.slopeRate2, slopeRate2)) &&
+            (identical(other.slopeRate3, slopeRate3) ||
+                const DeepCollectionEquality()
+                    .equals(other.slopeRate3, slopeRate3)) &&
+            (identical(other.midUsageRate, midUsageRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.midUsageRate, midUsageRate)) &&
             (identical(other.optimalUsageRate, optimalUsageRate) ||
                 const DeepCollectionEquality()
                     .equals(other.optimalUsageRate, optimalUsageRate)) &&
@@ -16468,12 +16480,8 @@ class LendingMarketProfile {
             (identical(other.borrowAmount, borrowAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowAmount, borrowAmount)) &&
-            (identical(other.supplyAmountShort, supplyAmountShort) ||
-                const DeepCollectionEquality()
-                    .equals(other.supplyAmountShort, supplyAmountShort)) &&
-            (identical(other.borrowAmountShort, borrowAmountShort) ||
-                const DeepCollectionEquality()
-                    .equals(other.borrowAmountShort, borrowAmountShort)) &&
+            (identical(other.supplyAmountShort, supplyAmountShort) || const DeepCollectionEquality().equals(other.supplyAmountShort, supplyAmountShort)) &&
+            (identical(other.borrowAmountShort, borrowAmountShort) || const DeepCollectionEquality().equals(other.borrowAmountShort, borrowAmountShort)) &&
             (identical(other.vaultAmount, vaultAmount) || const DeepCollectionEquality().equals(other.vaultAmount, vaultAmount)) &&
             (identical(other.vaultAmountShort, vaultAmountShort) || const DeepCollectionEquality().equals(other.vaultAmountShort, vaultAmountShort)) &&
             (identical(other.supplyCap, supplyCap) || const DeepCollectionEquality().equals(other.supplyCap, supplyCap)) &&
@@ -16519,6 +16527,8 @@ class LendingMarketProfile {
       const DeepCollectionEquality().hash(maxBorrowRate) ^
       const DeepCollectionEquality().hash(slopeRate1) ^
       const DeepCollectionEquality().hash(slopeRate2) ^
+      const DeepCollectionEquality().hash(slopeRate3) ^
+      const DeepCollectionEquality().hash(midUsageRate) ^
       const DeepCollectionEquality().hash(optimalUsageRate) ^
       const DeepCollectionEquality().hash(reserveFactor) ^
       const DeepCollectionEquality().hash(liquidationFee) ^
@@ -16576,6 +16586,8 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       String? maxBorrowRate,
       String? slopeRate1,
       String? slopeRate2,
+      String? slopeRate3,
+      String? midUsageRate,
       String? optimalUsageRate,
       String? reserveFactor,
       String? liquidationFee,
@@ -16629,6 +16641,8 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
         maxBorrowRate: maxBorrowRate ?? this.maxBorrowRate,
         slopeRate1: slopeRate1 ?? this.slopeRate1,
         slopeRate2: slopeRate2 ?? this.slopeRate2,
+        slopeRate3: slopeRate3 ?? this.slopeRate3,
+        midUsageRate: midUsageRate ?? this.midUsageRate,
         optimalUsageRate: optimalUsageRate ?? this.optimalUsageRate,
         reserveFactor: reserveFactor ?? this.reserveFactor,
         liquidationFee: liquidationFee ?? this.liquidationFee,
@@ -16685,6 +16699,8 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       Wrapped<String>? maxBorrowRate,
       Wrapped<String>? slopeRate1,
       Wrapped<String>? slopeRate2,
+      Wrapped<String>? slopeRate3,
+      Wrapped<String>? midUsageRate,
       Wrapped<String>? optimalUsageRate,
       Wrapped<String>? reserveFactor,
       Wrapped<String>? liquidationFee,
@@ -16739,6 +16755,9 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
             (maxBorrowRate != null ? maxBorrowRate.value : this.maxBorrowRate),
         slopeRate1: (slopeRate1 != null ? slopeRate1.value : this.slopeRate1),
         slopeRate2: (slopeRate2 != null ? slopeRate2.value : this.slopeRate2),
+        slopeRate3: (slopeRate3 != null ? slopeRate3.value : this.slopeRate3),
+        midUsageRate:
+            (midUsageRate != null ? midUsageRate.value : this.midUsageRate),
         optimalUsageRate: (optimalUsageRate != null
             ? optimalUsageRate.value
             : this.optimalUsageRate),
@@ -17025,6 +17044,8 @@ class PickTypeClass {
     required this.maxBorrowRate,
     required this.slopeRate1,
     required this.slopeRate2,
+    required this.slopeRate3,
+    required this.midUsageRate,
     required this.optimalUsageRate,
     required this.reserveFactor,
     required this.rewardsReserve,
@@ -17033,6 +17054,7 @@ class PickTypeClass {
     required this.borrowAmount,
     required this.vaultAmount,
     required this.supplyCap,
+    required this.borrowCap,
     required this.borrowApy,
     required this.supplyApy,
     required this.utilizationRate,
@@ -17067,6 +17089,10 @@ class PickTypeClass {
   final String slopeRate1;
   @JsonKey(name: 'slopeRate2')
   final String slopeRate2;
+  @JsonKey(name: 'slopeRate3')
+  final String slopeRate3;
+  @JsonKey(name: 'midUsageRate')
+  final String midUsageRate;
   @JsonKey(name: 'optimalUsageRate')
   final String optimalUsageRate;
   @JsonKey(name: 'reserveFactor')
@@ -17083,6 +17109,8 @@ class PickTypeClass {
   final Object vaultAmount;
   @JsonKey(name: 'supplyCap')
   final String supplyCap;
+  @JsonKey(name: 'borrowCap')
+  final String borrowCap;
   @JsonKey(name: 'borrowApy')
   final Object borrowApy;
   @JsonKey(name: 'supplyApy')
@@ -17132,6 +17160,12 @@ class PickTypeClass {
             (identical(other.slopeRate2, slopeRate2) ||
                 const DeepCollectionEquality()
                     .equals(other.slopeRate2, slopeRate2)) &&
+            (identical(other.slopeRate3, slopeRate3) ||
+                const DeepCollectionEquality()
+                    .equals(other.slopeRate3, slopeRate3)) &&
+            (identical(other.midUsageRate, midUsageRate) ||
+                const DeepCollectionEquality()
+                    .equals(other.midUsageRate, midUsageRate)) &&
             (identical(other.optimalUsageRate, optimalUsageRate) ||
                 const DeepCollectionEquality()
                     .equals(other.optimalUsageRate, optimalUsageRate)) &&
@@ -17156,6 +17190,9 @@ class PickTypeClass {
             (identical(other.supplyCap, supplyCap) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyCap, supplyCap)) &&
+            (identical(other.borrowCap, borrowCap) ||
+                const DeepCollectionEquality()
+                    .equals(other.borrowCap, borrowCap)) &&
             (identical(other.borrowApy, borrowApy) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowApy, borrowApy)) &&
@@ -17169,16 +17206,10 @@ class PickTypeClass {
                 const DeepCollectionEquality()
                     .equals(other.canBeCollateral, canBeCollateral)) &&
             (identical(other.canBeBorrowed, canBeBorrowed) ||
-                const DeepCollectionEquality()
-                    .equals(other.canBeBorrowed, canBeBorrowed)) &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality()
-                    .equals(other.isolated, isolated)) &&
-            (identical(other.maxDebtUsd, maxDebtUsd) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxDebtUsd, maxDebtUsd)) &&
-            (identical(other.debtCeiling, debtCeiling) ||
-                const DeepCollectionEquality().equals(other.debtCeiling, debtCeiling)) &&
+                const DeepCollectionEquality().equals(other.canBeBorrowed, canBeBorrowed)) &&
+            (identical(other.isolated, isolated) || const DeepCollectionEquality().equals(other.isolated, isolated)) &&
+            (identical(other.maxDebtUsd, maxDebtUsd) || const DeepCollectionEquality().equals(other.maxDebtUsd, maxDebtUsd)) &&
+            (identical(other.debtCeiling, debtCeiling) || const DeepCollectionEquality().equals(other.debtCeiling, debtCeiling)) &&
             (identical(other.siloed, siloed) || const DeepCollectionEquality().equals(other.siloed, siloed)) &&
             (identical(other.flashLoanFee, flashLoanFee) || const DeepCollectionEquality().equals(other.flashLoanFee, flashLoanFee)) &&
             (identical(other.canBorrowInIsolation, canBorrowInIsolation) || const DeepCollectionEquality().equals(other.canBorrowInIsolation, canBorrowInIsolation)) &&
@@ -17197,6 +17228,8 @@ class PickTypeClass {
       const DeepCollectionEquality().hash(maxBorrowRate) ^
       const DeepCollectionEquality().hash(slopeRate1) ^
       const DeepCollectionEquality().hash(slopeRate2) ^
+      const DeepCollectionEquality().hash(slopeRate3) ^
+      const DeepCollectionEquality().hash(midUsageRate) ^
       const DeepCollectionEquality().hash(optimalUsageRate) ^
       const DeepCollectionEquality().hash(reserveFactor) ^
       const DeepCollectionEquality().hash(rewardsReserve) ^
@@ -17205,6 +17238,7 @@ class PickTypeClass {
       const DeepCollectionEquality().hash(borrowAmount) ^
       const DeepCollectionEquality().hash(vaultAmount) ^
       const DeepCollectionEquality().hash(supplyCap) ^
+      const DeepCollectionEquality().hash(borrowCap) ^
       const DeepCollectionEquality().hash(borrowApy) ^
       const DeepCollectionEquality().hash(supplyApy) ^
       const DeepCollectionEquality().hash(utilizationRate) ^
@@ -17229,6 +17263,8 @@ extension $PickTypeClassExtension on PickTypeClass {
       String? maxBorrowRate,
       String? slopeRate1,
       String? slopeRate2,
+      String? slopeRate3,
+      String? midUsageRate,
       String? optimalUsageRate,
       String? reserveFactor,
       Object? rewardsReserve,
@@ -17237,6 +17273,7 @@ extension $PickTypeClassExtension on PickTypeClass {
       Object? borrowAmount,
       Object? vaultAmount,
       String? supplyCap,
+      String? borrowCap,
       Object? borrowApy,
       Object? supplyApy,
       Object? utilizationRate,
@@ -17257,6 +17294,8 @@ extension $PickTypeClassExtension on PickTypeClass {
         maxBorrowRate: maxBorrowRate ?? this.maxBorrowRate,
         slopeRate1: slopeRate1 ?? this.slopeRate1,
         slopeRate2: slopeRate2 ?? this.slopeRate2,
+        slopeRate3: slopeRate3 ?? this.slopeRate3,
+        midUsageRate: midUsageRate ?? this.midUsageRate,
         optimalUsageRate: optimalUsageRate ?? this.optimalUsageRate,
         reserveFactor: reserveFactor ?? this.reserveFactor,
         rewardsReserve: rewardsReserve ?? this.rewardsReserve,
@@ -17265,6 +17304,7 @@ extension $PickTypeClassExtension on PickTypeClass {
         borrowAmount: borrowAmount ?? this.borrowAmount,
         vaultAmount: vaultAmount ?? this.vaultAmount,
         supplyCap: supplyCap ?? this.supplyCap,
+        borrowCap: borrowCap ?? this.borrowCap,
         borrowApy: borrowApy ?? this.borrowApy,
         supplyApy: supplyApy ?? this.supplyApy,
         utilizationRate: utilizationRate ?? this.utilizationRate,
@@ -17287,6 +17327,8 @@ extension $PickTypeClassExtension on PickTypeClass {
       Wrapped<String>? maxBorrowRate,
       Wrapped<String>? slopeRate1,
       Wrapped<String>? slopeRate2,
+      Wrapped<String>? slopeRate3,
+      Wrapped<String>? midUsageRate,
       Wrapped<String>? optimalUsageRate,
       Wrapped<String>? reserveFactor,
       Wrapped<Object>? rewardsReserve,
@@ -17295,6 +17337,7 @@ extension $PickTypeClassExtension on PickTypeClass {
       Wrapped<Object>? borrowAmount,
       Wrapped<Object>? vaultAmount,
       Wrapped<String>? supplyCap,
+      Wrapped<String>? borrowCap,
       Wrapped<Object>? borrowApy,
       Wrapped<Object>? supplyApy,
       Wrapped<Object>? utilizationRate,
@@ -17316,6 +17359,9 @@ extension $PickTypeClassExtension on PickTypeClass {
             (maxBorrowRate != null ? maxBorrowRate.value : this.maxBorrowRate),
         slopeRate1: (slopeRate1 != null ? slopeRate1.value : this.slopeRate1),
         slopeRate2: (slopeRate2 != null ? slopeRate2.value : this.slopeRate2),
+        slopeRate3: (slopeRate3 != null ? slopeRate3.value : this.slopeRate3),
+        midUsageRate:
+            (midUsageRate != null ? midUsageRate.value : this.midUsageRate),
         optimalUsageRate: (optimalUsageRate != null
             ? optimalUsageRate.value
             : this.optimalUsageRate),
@@ -17332,6 +17378,7 @@ extension $PickTypeClassExtension on PickTypeClass {
         vaultAmount:
             (vaultAmount != null ? vaultAmount.value : this.vaultAmount),
         supplyCap: (supplyCap != null ? supplyCap.value : this.supplyCap),
+        borrowCap: (borrowCap != null ? borrowCap.value : this.borrowCap),
         borrowApy: (borrowApy != null ? borrowApy.value : this.borrowApy),
         supplyApy: (supplyApy != null ? supplyApy.value : this.supplyApy),
         utilizationRate: (utilizationRate != null
@@ -20882,8 +20929,8 @@ class CreatorProfileDoc {
     required this.profile,
     required this.banner,
     required this.joinedDate,
-    required this.description,
-    required this.socials,
+    this.description,
+    this.socials,
     this.id,
   });
 
@@ -20921,9 +20968,9 @@ class CreatorProfileDoc {
   @JsonKey(name: 'joinedDate')
   final double joinedDate;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'socials')
-  final Object socials;
+  final Object? socials;
   @JsonKey(name: 'id')
   final String? id;
   static const fromJsonFactory = _$CreatorProfileDocFromJson;
@@ -21029,8 +21076,8 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
       Wrapped<String>? profile,
       Wrapped<String>? banner,
       Wrapped<double>? joinedDate,
-      Wrapped<String>? description,
-      Wrapped<Object>? socials,
+      Wrapped<String?>? description,
+      Wrapped<Object?>? socials,
       Wrapped<String?>? id}) {
     return CreatorProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
