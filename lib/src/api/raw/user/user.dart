@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
@@ -20,6 +19,7 @@ class UserRawApi {
       client,
       generateUri(path: '${client.baseUrl}/user/login'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -188,6 +188,7 @@ class UserRawApi {
         path: '${client.baseUrl}/user/me/settings/verify-email',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 

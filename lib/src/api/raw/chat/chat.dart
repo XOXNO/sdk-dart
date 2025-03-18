@@ -17,6 +17,7 @@ class ChatRawApi {
         path: '${client.baseUrl}/user/chat/message',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
 import 'package:xoxno_sdk/src/api/type_safe/common/order_direction.dart';

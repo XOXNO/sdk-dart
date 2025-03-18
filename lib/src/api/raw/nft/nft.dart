@@ -76,6 +76,7 @@ class NftRawApi {
         path: '${client.baseUrl}/nft/sign-withdraw',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 

@@ -17,6 +17,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -148,6 +149,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/register'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -159,6 +161,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/ticket'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -172,8 +175,7 @@ class EventRawApi {
     );
   }
 
-  Future<List<dynamic>> getEventTickets(
-      {required String eventId}) {
+  Future<List<dynamic>> getEventTickets({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventTickets');
     logger.finest('get event tickets');
     return genericGet(
@@ -225,6 +227,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/stage'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -286,6 +289,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/calculate-prices'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -297,6 +301,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/validate-discount'),
       body: json.encode({'discountCode': discountCode}),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -317,6 +322,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/invite'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -383,6 +389,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/question'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -422,6 +429,7 @@ class EventRawApi {
       generateUri(
           path: '${client.baseUrl}/event/$eventId/invite/$inviteId/claim'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -471,6 +479,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/role'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -567,6 +576,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/scan'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -578,6 +588,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/${body['eventId']}/voucher'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -614,6 +625,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/manual-check-in'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 

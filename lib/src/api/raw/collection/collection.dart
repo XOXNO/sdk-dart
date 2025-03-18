@@ -54,6 +54,7 @@ class CollectionRawApi {
         path: '${client.baseUrl}/collection/$collection/sign-offer',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -69,6 +70,7 @@ class CollectionRawApi {
         path: '${client.baseUrl}/collection/$collection/sign-mint',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
