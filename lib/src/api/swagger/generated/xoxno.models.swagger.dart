@@ -20788,9 +20788,9 @@ class EventProfileCreateDto {
     required this.location,
     required this.registration,
     required this.isVirtualEvent,
-    required this.seo,
+    this.seo,
     required this.category,
-    required this.subCategory,
+    this.subCategory,
   });
 
   factory EventProfileCreateDto.fromJson(Map<String, dynamic> json) =>
@@ -20812,11 +20812,11 @@ class EventProfileCreateDto {
   @JsonKey(name: 'isVirtualEvent')
   final bool isVirtualEvent;
   @JsonKey(name: 'seo')
-  final EventSeoDto seo;
+  final EventSeoDto? seo;
   @JsonKey(name: 'category')
   final String category;
   @JsonKey(name: 'subCategory')
-  final String subCategory;
+  final String? subCategory;
   static const fromJsonFactory = _$EventProfileCreateDtoFromJson;
 
   @override
@@ -20897,9 +20897,9 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       Wrapped<EventLocationDto>? location,
       Wrapped<RegistrationDetailsDto>? registration,
       Wrapped<bool>? isVirtualEvent,
-      Wrapped<EventSeoDto>? seo,
+      Wrapped<EventSeoDto?>? seo,
       Wrapped<String>? category,
-      Wrapped<String>? subCategory}) {
+      Wrapped<String?>? subCategory}) {
     return EventProfileCreateDto(
         title: (title != null ? title.value : this.title),
         startTime: (startTime != null ? startTime.value : this.startTime),

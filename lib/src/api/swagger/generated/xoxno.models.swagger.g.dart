@@ -4447,9 +4447,11 @@ EventProfileCreateDto _$EventProfileCreateDtoFromJson(
       registration: RegistrationDetailsDto.fromJson(
           json['registration'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool,
-      seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+      seo: json['seo'] == null
+          ? null
+          : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
       category: json['category'] as String,
-      subCategory: json['subCategory'] as String,
+      subCategory: json['subCategory'] as String?,
     );
 
 Map<String, dynamic> _$EventProfileCreateDtoToJson(
@@ -4461,7 +4463,7 @@ Map<String, dynamic> _$EventProfileCreateDtoToJson(
       'location': instance.location.toJson(),
       'registration': instance.registration.toJson(),
       'isVirtualEvent': instance.isVirtualEvent,
-      'seo': instance.seo.toJson(),
+      'seo': instance.seo?.toJson(),
       'category': instance.category,
       'subCategory': instance.subCategory,
     };
