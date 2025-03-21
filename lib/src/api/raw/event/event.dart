@@ -541,12 +541,17 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getMyEvents() {
+  Future<Map<String, dynamic>> getMyEvents(bool extended) {
     final logger = Logger('Xoxno.EventRawApi.getMyEvents');
     logger.finest('get my events');
     return genericGet(
       client,
-      generateUri(path: '${client.baseUrl}/user/me/event'),
+      generateUri(
+        path: '${client.baseUrl}/user/me/event',
+        queryParameters: [
+          'extended=$extended',
+        ],
+      ),
     );
   }
 
