@@ -61,12 +61,18 @@ class EventRawApi {
       {required String eventId, required List<int> fileBytes}) {
     final logger = Logger('Xoxno.EventRawApi.setEventProfilePicture');
     logger.finest('set event profile picture');
+
     final request = http.MultipartRequest(
       'PUT',
       generateUri(path: '${client.baseUrl}/event/$eventId/profile'),
     );
-    request.files.add(http.MultipartFile.fromBytes('file', fileBytes,
-        filename: 'profile.jpg'));
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        fileBytes,
+      ),
+    );
     return genericSendRequest(client, request);
   }
 
