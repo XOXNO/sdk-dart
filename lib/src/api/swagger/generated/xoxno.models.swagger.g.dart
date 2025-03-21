@@ -4562,8 +4562,10 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
           ? null
           : EventUserRoleDoc.fromJson(
               json['eventPermissions'] as Map<String, dynamic>),
-      creatorProfile: CreatorProfileDoc.fromJson(
-          json['creatorProfile'] as Map<String, dynamic>),
+      creatorProfile: json['creatorProfile'] == null
+          ? null
+          : CreatorProfileDoc.fromJson(
+              json['creatorProfile'] as Map<String, dynamic>),
       guestSummary: json['guestSummary'] == null
           ? null
           : EventGuestSummary.fromJson(
@@ -4595,7 +4597,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'seo': instance.seo,
       'id': instance.id,
       'eventPermissions': instance.eventPermissions?.toJson(),
-      'creatorProfile': instance.creatorProfile.toJson(),
+      'creatorProfile': instance.creatorProfile?.toJson(),
       'guestSummary': instance.guestSummary?.toJson(),
       'startsFrom': instance.startsFrom,
     };

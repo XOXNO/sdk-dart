@@ -21255,7 +21255,7 @@ class EventProfile {
     this.seo,
     required this.id,
     this.eventPermissions,
-    required this.creatorProfile,
+    this.creatorProfile,
     this.guestSummary,
     this.startsFrom,
   });
@@ -21326,7 +21326,7 @@ class EventProfile {
   @JsonKey(name: 'eventPermissions')
   final EventUserRoleDoc? eventPermissions;
   @JsonKey(name: 'creatorProfile')
-  final CreatorProfileDoc creatorProfile;
+  final CreatorProfileDoc? creatorProfile;
   @JsonKey(name: 'guestSummary')
   final EventGuestSummary? guestSummary;
   @JsonKey(name: 'startsFrom')
@@ -21513,7 +21513,7 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<Object?>? seo,
       Wrapped<String>? id,
       Wrapped<EventUserRoleDoc?>? eventPermissions,
-      Wrapped<CreatorProfileDoc>? creatorProfile,
+      Wrapped<CreatorProfileDoc?>? creatorProfile,
       Wrapped<EventGuestSummary?>? guestSummary,
       Wrapped<Object?>? startsFrom}) {
     return EventProfile(
