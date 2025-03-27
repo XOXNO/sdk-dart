@@ -22411,7 +22411,7 @@ class EventGuestDoc {
     this.invitationId,
     this.metadata,
     required this.id,
-    required this.pk,
+    this.pk,
   });
 
   factory EventGuestDoc.fromJson(Map<String, dynamic> json) =>
@@ -22458,7 +22458,7 @@ class EventGuestDoc {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   static const fromJsonFactory = _$EventGuestDocFromJson;
 
   @override
@@ -22566,7 +22566,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
       Wrapped<String>? id,
-      Wrapped<String>? pk}) {
+      Wrapped<String?>? pk}) {
     return EventGuestDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         wallet: (wallet != null ? wallet.value : this.wallet),
@@ -25577,7 +25577,7 @@ class EventGuestProfile {
     this.invitationId,
     this.metadata,
     required this.id,
-    required this.pk,
+    this.pk,
     required this.profile,
     required this.herotag,
   });
@@ -25626,7 +25626,7 @@ class EventGuestProfile {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'herotag')
@@ -25749,7 +25749,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
       Wrapped<String>? id,
-      Wrapped<String>? pk,
+      Wrapped<String?>? pk,
       Wrapped<String>? profile,
       Wrapped<String>? herotag}) {
     return EventGuestProfile(

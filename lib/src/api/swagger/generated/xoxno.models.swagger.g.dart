@@ -4809,7 +4809,7 @@ EventGuestDoc _$EventGuestDocFromJson(Map<String, dynamic> json) =>
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
       id: json['id'] as String,
-      pk: json['pk'] as String,
+      pk: json['pk'] as String?,
     );
 
 Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
@@ -5508,7 +5508,7 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
       id: json['id'] as String,
-      pk: json['pk'] as String,
+      pk: json['pk'] as String?,
       profile: json['profile'] as String,
       herotag: json['herotag'] as String,
     );
