@@ -570,7 +570,7 @@ class EventRawApi {
     );
   }
 
-  Future<String> generateQRPayload() {
+  Future<dynamic> generateQRPayload() {
     final logger = Logger('Xoxno.EventRawApi.generateQRPayload');
     logger.finest('generate QR payload');
     return genericGet(

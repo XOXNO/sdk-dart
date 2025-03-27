@@ -5624,6 +5624,17 @@ Map<String, dynamic> _$GetMyEventsQueryToJson(GetMyEventsQuery instance) =>
       'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
+BageQRData _$BageQRDataFromJson(Map<String, dynamic> json) => BageQRData(
+      type: bageQRDataTypeFromJson(json['type']),
+      data: json['data'] as String,
+    );
+
+Map<String, dynamic> _$BageQRDataToJson(BageQRData instance) =>
+    <String, dynamic>{
+      'type': bageQRDataTypeToJson(instance.type),
+      'data': instance.data,
+    };
+
 QRBody _$QRBodyFromJson(Map<String, dynamic> json) => QRBody(
       type: qRBodyTypeFromJson(json['type']),
       data: json['data'] as String,

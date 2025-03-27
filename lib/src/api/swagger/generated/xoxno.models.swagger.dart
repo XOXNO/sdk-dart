@@ -26189,6 +26189,62 @@ extension $GetMyEventsQueryExtension on GetMyEventsQuery {
 }
 
 @JsonSerializable(explicitToJson: true)
+class BageQRData {
+  const BageQRData({
+    required this.type,
+    required this.data,
+  });
+
+  factory BageQRData.fromJson(Map<String, dynamic> json) =>
+      _$BageQRDataFromJson(json);
+
+  static const toJsonFactory = _$BageQRDataToJson;
+  Map<String, dynamic> toJson() => _$BageQRDataToJson(this);
+
+  @JsonKey(
+    name: 'type',
+    toJson: bageQRDataTypeToJson,
+    fromJson: bageQRDataTypeFromJson,
+  )
+  final enums.BageQRDataType type;
+  @JsonKey(name: 'data')
+  final String data;
+  static const fromJsonFactory = _$BageQRDataFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BageQRData &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(data) ^
+      runtimeType.hashCode;
+}
+
+extension $BageQRDataExtension on BageQRData {
+  BageQRData copyWith({enums.BageQRDataType? type, String? data}) {
+    return BageQRData(type: type ?? this.type, data: data ?? this.data);
+  }
+
+  BageQRData copyWithWrapped(
+      {Wrapped<enums.BageQRDataType>? type, Wrapped<String>? data}) {
+    return BageQRData(
+        type: (type != null ? type.value : this.type),
+        data: (data != null ? data.value : this.data));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class QRBody {
   const QRBody({
     required this.type,
@@ -36101,6 +36157,76 @@ List<enums.MyEventsStatus>? myEventsStatusNullableListFromJson(
 
   return myEventsStatus
       .map((e) => myEventsStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? bageQRDataTypeNullableToJson(enums.BageQRDataType? bageQRDataType) {
+  return bageQRDataType?.value;
+}
+
+String? bageQRDataTypeToJson(enums.BageQRDataType bageQRDataType) {
+  return bageQRDataType.value;
+}
+
+enums.BageQRDataType bageQRDataTypeFromJson(
+  Object? bageQRDataType, [
+  enums.BageQRDataType? defaultValue,
+]) {
+  return enums.BageQRDataType.values
+          .firstWhereOrNull((e) => e.value == bageQRDataType) ??
+      defaultValue ??
+      enums.BageQRDataType.swaggerGeneratedUnknown;
+}
+
+enums.BageQRDataType? bageQRDataTypeNullableFromJson(
+  Object? bageQRDataType, [
+  enums.BageQRDataType? defaultValue,
+]) {
+  if (bageQRDataType == null) {
+    return null;
+  }
+  return enums.BageQRDataType.values
+          .firstWhereOrNull((e) => e.value == bageQRDataType) ??
+      defaultValue;
+}
+
+String bageQRDataTypeExplodedListToJson(
+    List<enums.BageQRDataType>? bageQRDataType) {
+  return bageQRDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> bageQRDataTypeListToJson(
+    List<enums.BageQRDataType>? bageQRDataType) {
+  if (bageQRDataType == null) {
+    return [];
+  }
+
+  return bageQRDataType.map((e) => e.value!).toList();
+}
+
+List<enums.BageQRDataType> bageQRDataTypeListFromJson(
+  List? bageQRDataType, [
+  List<enums.BageQRDataType>? defaultValue,
+]) {
+  if (bageQRDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return bageQRDataType
+      .map((e) => bageQRDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.BageQRDataType>? bageQRDataTypeNullableListFromJson(
+  List? bageQRDataType, [
+  List<enums.BageQRDataType>? defaultValue,
+]) {
+  if (bageQRDataType == null) {
+    return defaultValue;
+  }
+
+  return bageQRDataType
+      .map((e) => bageQRDataTypeFromJson(e.toString()))
       .toList();
 }
 

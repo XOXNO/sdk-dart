@@ -1399,6 +1399,24 @@ enum MyEventsStatus {
   const MyEventsStatus(this.value);
 }
 
+enum BageQRDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('badge')
+  badge('badge'),
+  @JsonValue('offline')
+  offline('offline'),
+  @JsonValue('google')
+  google('google'),
+  @JsonValue('manual')
+  manual('manual');
+
+  final String? value;
+
+  const BageQRDataType(this.value);
+}
+
 enum QRBodyType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

@@ -305,9 +305,9 @@ class EventTypeSafeApi {
     return data;
   }
 
-  Future<String> generateQRPayload() async {
+  Future<BageQRData> generateQRPayload() async {
     final data = await _api.generateQRPayload();
-    return data;
+    return BageQRData.fromJson(data);
   }
 
   Future<TicketValidationResult> eventScanTickets({
