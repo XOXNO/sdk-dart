@@ -22184,8 +22184,8 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
 class EventGuestRegistration {
   const EventGuestRegistration({
     this.email,
-    required this.name,
-    required this.phone,
+    this.name,
+    this.phone,
   });
 
   factory EventGuestRegistration.fromJson(Map<String, dynamic> json) =>
@@ -22197,9 +22197,9 @@ class EventGuestRegistration {
   @JsonKey(name: 'email')
   final String? email;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'phone')
-  final String phone;
+  final String? phone;
   static const fromJsonFactory = _$EventGuestRegistrationFromJson;
 
   @override
@@ -22236,8 +22236,8 @@ extension $EventGuestRegistrationExtension on EventGuestRegistration {
 
   EventGuestRegistration copyWithWrapped(
       {Wrapped<String?>? email,
-      Wrapped<String>? name,
-      Wrapped<String>? phone}) {
+      Wrapped<String?>? name,
+      Wrapped<String?>? phone}) {
     return EventGuestRegistration(
         email: (email != null ? email.value : this.email),
         name: (name != null ? name.value : this.name),
@@ -22410,7 +22410,7 @@ class EventGuestDoc {
     required this.createdAt,
     this.invitationId,
     this.metadata,
-    required this.id,
+    this.id,
     this.pk,
   });
 
@@ -22456,7 +22456,7 @@ class EventGuestDoc {
   @JsonKey(name: 'metadata')
   final Object? metadata;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: 'pk')
   final String? pk;
   static const fromJsonFactory = _$EventGuestDocFromJson;
@@ -22565,7 +22565,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       Wrapped<double>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
-      Wrapped<String>? id,
+      Wrapped<String?>? id,
       Wrapped<String?>? pk}) {
     return EventGuestDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -25576,7 +25576,7 @@ class EventGuestProfile {
     required this.createdAt,
     this.invitationId,
     this.metadata,
-    required this.id,
+    this.id,
     this.pk,
     required this.profile,
     required this.herotag,
@@ -25624,7 +25624,7 @@ class EventGuestProfile {
   @JsonKey(name: 'metadata')
   final Object? metadata;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: 'profile')
@@ -25748,7 +25748,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       Wrapped<double>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
-      Wrapped<String>? id,
+      Wrapped<String?>? id,
       Wrapped<String?>? pk,
       Wrapped<String>? profile,
       Wrapped<String>? herotag}) {

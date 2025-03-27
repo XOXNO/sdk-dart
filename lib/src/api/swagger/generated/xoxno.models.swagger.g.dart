@@ -4749,8 +4749,8 @@ EventGuestRegistration _$EventGuestRegistrationFromJson(
         Map<String, dynamic> json) =>
     EventGuestRegistration(
       email: json['email'] as String?,
-      name: json['name'] as String,
-      phone: json['phone'] as String,
+      name: json['name'] as String?,
+      phone: json['phone'] as String?,
     );
 
 Map<String, dynamic> _$EventGuestRegistrationToJson(
@@ -4808,7 +4808,7 @@ EventGuestDoc _$EventGuestDocFromJson(Map<String, dynamic> json) =>
       createdAt: (json['createdAt'] as num).toDouble(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
-      id: json['id'] as String,
+      id: json['id'] as String?,
       pk: json['pk'] as String?,
     );
 
@@ -5507,7 +5507,7 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
       createdAt: (json['createdAt'] as num).toDouble(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
-      id: json['id'] as String,
+      id: json['id'] as String?,
       pk: json['pk'] as String?,
       profile: json['profile'] as String,
       herotag: json['herotag'] as String,
