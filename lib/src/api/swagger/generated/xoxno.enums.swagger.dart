@@ -875,6 +875,32 @@ enum EventGuestDocDataType {
   const EventGuestDocDataType(this.value);
 }
 
+enum EventGuestDocStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const EventGuestDocStatus(this.value);
+}
+
 enum FiatPaymentFormType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -1251,6 +1277,32 @@ enum EventGuestProfileDataType {
   final String? value;
 
   const EventGuestProfileDataType(this.value);
+}
+
+enum EventGuestProfileStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const EventGuestProfileStatus(this.value);
 }
 
 enum EventGuestExportStatus {
