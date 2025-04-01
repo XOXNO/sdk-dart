@@ -54,8 +54,8 @@ Future<void> main() async {
     // var data = await sdk.api.user.meProfile();
     // var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
     // var tokenss = await sdk.api.event.getEvents(filter: EventProfileFilter(top: 10, filters: xoxno.EventProfileFilterCriteriaDto(), extraProperties: EventExtraProperties(creatorProfile: true, guestSummary: true)));
-    // var tokenss = await sdk.api.event.getMyEvents(true);
-    var user = await sdk.api.event.getEventTickets(eventId: "bd2eb3a8-65cb-48b9-932a-c7af7d5bed2e");
+    // var tokenss = await sdk.api.event.getMyEvents(true);.getEventStages(eventId: eventId, isEnabled: true);
+    var user = await sdk.api.event.getEventStages(eventId: "bd2eb3a8-65cb-48b9-932a-c7af7d5bed2e", isEnabled: true);
     // logger.info(tokens);
     logger.info(user);
 

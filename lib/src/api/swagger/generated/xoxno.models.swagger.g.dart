@@ -5022,17 +5022,17 @@ EventStageProfileDoc _$EventStageProfileDocFromJson(
       name: json['name'] as String,
       startTime: (json['startTime'] as num).toDouble(),
       endTime: (json['endTime'] as num).toDouble(),
-      maxLimit: json['maxLimit'] as Object,
-      userLimit: json['userLimit'] as Object,
-      isEnabled: json['isEnabled'] as Object,
-      isWhitelist: json['isWhitelist'] as Object,
-      requiredApproval: json['requiredApproval'] as Object,
+      maxLimit: (json['maxLimit'] as num).toDouble(),
+      userLimit: (json['userLimit'] as num).toDouble(),
+      isEnabled: json['isEnabled'] as bool,
+      isWhitelist: json['isWhitelist'] as bool,
+      requiredApproval: json['requiredApproval'] as bool,
       prices: (json['prices'] as List<dynamic>?)
               ?.map((e) =>
                   EgldOrEsdtTokenPayment.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      soldCount: json['soldCount'] as Object,
+      soldCount: (json['soldCount'] as num).toDouble(),
       id: json['id'] as String,
     );
 

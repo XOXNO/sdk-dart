@@ -23445,19 +23445,19 @@ class EventStageProfileDoc {
   @JsonKey(name: 'endTime')
   final double endTime;
   @JsonKey(name: 'maxLimit')
-  final Object maxLimit;
+  final double maxLimit;
   @JsonKey(name: 'userLimit')
-  final Object userLimit;
+  final double userLimit;
   @JsonKey(name: 'isEnabled')
-  final Object isEnabled;
+  final bool isEnabled;
   @JsonKey(name: 'isWhitelist')
-  final Object isWhitelist;
+  final bool isWhitelist;
   @JsonKey(name: 'requiredApproval')
-  final Object requiredApproval;
+  final bool requiredApproval;
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment> prices;
   @JsonKey(name: 'soldCount')
-  final Object soldCount;
+  final double soldCount;
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$EventStageProfileDocFromJson;
@@ -23537,13 +23537,13 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
       String? name,
       double? startTime,
       double? endTime,
-      Object? maxLimit,
-      Object? userLimit,
-      Object? isEnabled,
-      Object? isWhitelist,
-      Object? requiredApproval,
+      double? maxLimit,
+      double? userLimit,
+      bool? isEnabled,
+      bool? isWhitelist,
+      bool? requiredApproval,
       List<EgldOrEsdtTokenPayment>? prices,
-      Object? soldCount,
+      double? soldCount,
       String? id}) {
     return EventStageProfileDoc(
         dataType: dataType ?? this.dataType,
@@ -23569,13 +23569,13 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
       Wrapped<String>? name,
       Wrapped<double>? startTime,
       Wrapped<double>? endTime,
-      Wrapped<Object>? maxLimit,
-      Wrapped<Object>? userLimit,
-      Wrapped<Object>? isEnabled,
-      Wrapped<Object>? isWhitelist,
-      Wrapped<Object>? requiredApproval,
+      Wrapped<double>? maxLimit,
+      Wrapped<double>? userLimit,
+      Wrapped<bool>? isEnabled,
+      Wrapped<bool>? isWhitelist,
+      Wrapped<bool>? requiredApproval,
       Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
-      Wrapped<Object>? soldCount,
+      Wrapped<double>? soldCount,
       Wrapped<String>? id}) {
     return EventStageProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
