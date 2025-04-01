@@ -39,7 +39,7 @@ Future<void> main() async {
 
   final client = xoxno.Client(
     client: rawClient,
-    baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://api.xoxno.com',
     renewableTokens: RenewableTokens(),
   );
   final rawJWT =
@@ -55,7 +55,7 @@ Future<void> main() async {
     // var data = await sdk.api.nft.nft(identifier: 'MICE-9e007a-0174');
     // var tokenss = await sdk.api.event.getEvents(filter: EventProfileFilter(top: 10, filters: xoxno.EventProfileFilterCriteriaDto(), extraProperties: EventExtraProperties(creatorProfile: true, guestSummary: true)));
     // var tokenss = await sdk.api.event.getMyEvents(true);
-    var user = await sdk.api.event.getEventGuest(eventId: "7e5c571a-41d7-49b2-a8f3-02380de28a41", address: "erd1uwaxvuccf6x9ww59cx6n437hw3mw5e46z6hyk6ad25l00z4mj7tqqj5398");
+    var user = await sdk.api.event.getEventTickets(eventId: "bd2eb3a8-65cb-48b9-932a-c7af7d5bed2e");
     // logger.info(tokens);
     logger.info(user);
 

@@ -22883,9 +22883,9 @@ class EventTicketProfileDoc {
     required this.name,
     required this.description,
     required this.profile,
-    required this.royalties,
-    required this.badgeColor,
-    required this.characteristics,
+    this.royalties,
+    this.badgeColor,
+    this.characteristics,
     this.maxLimit,
     required this.userLimit,
     required this.soldCount,
@@ -22919,11 +22919,11 @@ class EventTicketProfileDoc {
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'royalties')
-  final Object royalties;
+  final Object? royalties;
   @JsonKey(name: 'badgeColor')
-  final String badgeColor;
+  final String? badgeColor;
   @JsonKey(name: 'characteristics')
-  final Object characteristics;
+  final Object? characteristics;
   @JsonKey(name: 'maxLimit')
   final Object? maxLimit;
   @JsonKey(name: 'userLimit')
@@ -23037,9 +23037,9 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
       Wrapped<String>? name,
       Wrapped<String>? description,
       Wrapped<String>? profile,
-      Wrapped<Object>? royalties,
-      Wrapped<String>? badgeColor,
-      Wrapped<Object>? characteristics,
+      Wrapped<Object?>? royalties,
+      Wrapped<String?>? badgeColor,
+      Wrapped<Object?>? characteristics,
       Wrapped<Object?>? maxLimit,
       Wrapped<Object>? userLimit,
       Wrapped<Object>? soldCount,
@@ -24233,8 +24233,8 @@ class TicketProfileSummary {
     required this.name,
     required this.description,
     required this.profile,
-    required this.badgeColor,
-    required this.characteristics,
+    this.badgeColor,
+    this.characteristics,
     required this.ticketId,
     this.quantity,
   });
@@ -24252,9 +24252,9 @@ class TicketProfileSummary {
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'badgeColor')
-  final String badgeColor;
+  final String? badgeColor;
   @JsonKey(name: 'characteristics')
-  final Object characteristics;
+  final Object? characteristics;
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
@@ -24325,8 +24325,8 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
       {Wrapped<String>? name,
       Wrapped<String>? description,
       Wrapped<String>? profile,
-      Wrapped<String>? badgeColor,
-      Wrapped<Object>? characteristics,
+      Wrapped<String?>? badgeColor,
+      Wrapped<Object?>? characteristics,
       Wrapped<String>? ticketId,
       Wrapped<double?>? quantity}) {
     return TicketProfileSummary(
