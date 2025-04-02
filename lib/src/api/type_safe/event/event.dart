@@ -188,7 +188,6 @@ class EventTypeSafeApi {
       eventId: eventId,
       isEnabled: isEnabled,
     );
-    print(data);
     return data.map((item) => EventStageProfileDoc.fromJson(item)).toList();
   }
 

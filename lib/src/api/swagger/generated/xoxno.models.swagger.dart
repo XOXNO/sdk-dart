@@ -7972,19 +7972,19 @@ class RegistrationType {
     required this.visibility,
     required this.maxLimit,
     required this.userLimit,
-    required this.soldCount,
+    this.soldCount,
     required this.hasSideEvents,
-    required this.showGuestCount,
+    this.showGuestCount,
     required this.requireKYC,
     required this.refundable,
     required this.nameWithNumber,
     required this.botProtection,
     required this.isPublished,
-    required this.hasWaitlist,
+    this.hasWaitlist,
     required this.requireName,
     required this.requireEmail,
     required this.requirePhoneNumber,
-    required this.hasCustomQuestions,
+    this.hasCustomQuestions,
     this.emailSender,
   });
 
@@ -8005,11 +8005,11 @@ class RegistrationType {
   @JsonKey(name: 'userLimit')
   final int userLimit;
   @JsonKey(name: 'soldCount')
-  final int soldCount;
+  final int? soldCount;
   @JsonKey(name: 'hasSideEvents')
   final bool hasSideEvents;
   @JsonKey(name: 'showGuestCount')
-  final bool showGuestCount;
+  final bool? showGuestCount;
   @JsonKey(name: 'requireKYC')
   final bool requireKYC;
   @JsonKey(name: 'refundable')
@@ -8021,7 +8021,7 @@ class RegistrationType {
   @JsonKey(name: 'isPublished')
   final bool isPublished;
   @JsonKey(name: 'hasWaitlist')
-  final bool hasWaitlist;
+  final bool? hasWaitlist;
   @JsonKey(name: 'requireName')
   final bool requireName;
   @JsonKey(name: 'requireEmail')
@@ -8029,7 +8029,7 @@ class RegistrationType {
   @JsonKey(name: 'requirePhoneNumber')
   final bool requirePhoneNumber;
   @JsonKey(name: 'hasCustomQuestions')
-  final bool hasCustomQuestions;
+  final bool? hasCustomQuestions;
   @JsonKey(name: 'emailSender')
   final String? emailSender;
   static const fromJsonFactory = _$RegistrationTypeFromJson;
@@ -8159,19 +8159,19 @@ extension $RegistrationTypeExtension on RegistrationType {
       {Wrapped<enums.RegistrationTypeVisibility>? visibility,
       Wrapped<int>? maxLimit,
       Wrapped<int>? userLimit,
-      Wrapped<int>? soldCount,
+      Wrapped<int?>? soldCount,
       Wrapped<bool>? hasSideEvents,
-      Wrapped<bool>? showGuestCount,
+      Wrapped<bool?>? showGuestCount,
       Wrapped<bool>? requireKYC,
       Wrapped<bool>? refundable,
       Wrapped<bool>? nameWithNumber,
       Wrapped<bool>? botProtection,
       Wrapped<bool>? isPublished,
-      Wrapped<bool>? hasWaitlist,
+      Wrapped<bool?>? hasWaitlist,
       Wrapped<bool>? requireName,
       Wrapped<bool>? requireEmail,
       Wrapped<bool>? requirePhoneNumber,
-      Wrapped<bool>? hasCustomQuestions,
+      Wrapped<bool?>? hasCustomQuestions,
       Wrapped<String?>? emailSender}) {
     return RegistrationType(
         visibility: (visibility != null ? visibility.value : this.visibility),
