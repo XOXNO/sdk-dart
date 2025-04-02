@@ -7967,6 +7967,293 @@ extension $EventLocationDtoExtension on EventLocationDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RegistrationType {
+  const RegistrationType({
+    required this.visibility,
+    required this.maxLimit,
+    required this.userLimit,
+    required this.soldCount,
+    required this.hasSideEvents,
+    required this.showGuestCount,
+    required this.requireKYC,
+    required this.refundable,
+    required this.nameWithNumber,
+    required this.botProtection,
+    required this.isPublished,
+    required this.hasWaitlist,
+    required this.requireName,
+    required this.requireEmail,
+    required this.requirePhoneNumber,
+    required this.hasCustomQuestions,
+    this.emailSender,
+  });
+
+  factory RegistrationType.fromJson(Map<String, dynamic> json) =>
+      _$RegistrationTypeFromJson(json);
+
+  static const toJsonFactory = _$RegistrationTypeToJson;
+  Map<String, dynamic> toJson() => _$RegistrationTypeToJson(this);
+
+  @JsonKey(
+    name: 'visibility',
+    toJson: registrationTypeVisibilityToJson,
+    fromJson: registrationTypeVisibilityFromJson,
+  )
+  final enums.RegistrationTypeVisibility visibility;
+  @JsonKey(name: 'maxLimit')
+  final int maxLimit;
+  @JsonKey(name: 'userLimit')
+  final int userLimit;
+  @JsonKey(name: 'soldCount')
+  final int soldCount;
+  @JsonKey(name: 'hasSideEvents')
+  final bool hasSideEvents;
+  @JsonKey(name: 'showGuestCount')
+  final bool showGuestCount;
+  @JsonKey(name: 'requireKYC')
+  final bool requireKYC;
+  @JsonKey(name: 'refundable')
+  final bool refundable;
+  @JsonKey(name: 'nameWithNumber')
+  final bool nameWithNumber;
+  @JsonKey(name: 'botProtection')
+  final bool botProtection;
+  @JsonKey(name: 'isPublished')
+  final bool isPublished;
+  @JsonKey(name: 'hasWaitlist')
+  final bool hasWaitlist;
+  @JsonKey(name: 'requireName')
+  final bool requireName;
+  @JsonKey(name: 'requireEmail')
+  final bool requireEmail;
+  @JsonKey(name: 'requirePhoneNumber')
+  final bool requirePhoneNumber;
+  @JsonKey(name: 'hasCustomQuestions')
+  final bool hasCustomQuestions;
+  @JsonKey(name: 'emailSender')
+  final String? emailSender;
+  static const fromJsonFactory = _$RegistrationTypeFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is RegistrationType &&
+            (identical(other.visibility, visibility) ||
+                const DeepCollectionEquality()
+                    .equals(other.visibility, visibility)) &&
+            (identical(other.maxLimit, maxLimit) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxLimit, maxLimit)) &&
+            (identical(other.userLimit, userLimit) ||
+                const DeepCollectionEquality()
+                    .equals(other.userLimit, userLimit)) &&
+            (identical(other.soldCount, soldCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.soldCount, soldCount)) &&
+            (identical(other.hasSideEvents, hasSideEvents) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasSideEvents, hasSideEvents)) &&
+            (identical(other.showGuestCount, showGuestCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.showGuestCount, showGuestCount)) &&
+            (identical(other.requireKYC, requireKYC) ||
+                const DeepCollectionEquality()
+                    .equals(other.requireKYC, requireKYC)) &&
+            (identical(other.refundable, refundable) ||
+                const DeepCollectionEquality()
+                    .equals(other.refundable, refundable)) &&
+            (identical(other.nameWithNumber, nameWithNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.nameWithNumber, nameWithNumber)) &&
+            (identical(other.botProtection, botProtection) ||
+                const DeepCollectionEquality()
+                    .equals(other.botProtection, botProtection)) &&
+            (identical(other.isPublished, isPublished) ||
+                const DeepCollectionEquality()
+                    .equals(other.isPublished, isPublished)) &&
+            (identical(other.hasWaitlist, hasWaitlist) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasWaitlist, hasWaitlist)) &&
+            (identical(other.requireName, requireName) ||
+                const DeepCollectionEquality()
+                    .equals(other.requireName, requireName)) &&
+            (identical(other.requireEmail, requireEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.requireEmail, requireEmail)) &&
+            (identical(other.requirePhoneNumber, requirePhoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.requirePhoneNumber, requirePhoneNumber)) &&
+            (identical(other.hasCustomQuestions, hasCustomQuestions) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasCustomQuestions, hasCustomQuestions)) &&
+            (identical(other.emailSender, emailSender) ||
+                const DeepCollectionEquality()
+                    .equals(other.emailSender, emailSender)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visibility) ^
+      const DeepCollectionEquality().hash(maxLimit) ^
+      const DeepCollectionEquality().hash(userLimit) ^
+      const DeepCollectionEquality().hash(soldCount) ^
+      const DeepCollectionEquality().hash(hasSideEvents) ^
+      const DeepCollectionEquality().hash(showGuestCount) ^
+      const DeepCollectionEquality().hash(requireKYC) ^
+      const DeepCollectionEquality().hash(refundable) ^
+      const DeepCollectionEquality().hash(nameWithNumber) ^
+      const DeepCollectionEquality().hash(botProtection) ^
+      const DeepCollectionEquality().hash(isPublished) ^
+      const DeepCollectionEquality().hash(hasWaitlist) ^
+      const DeepCollectionEquality().hash(requireName) ^
+      const DeepCollectionEquality().hash(requireEmail) ^
+      const DeepCollectionEquality().hash(requirePhoneNumber) ^
+      const DeepCollectionEquality().hash(hasCustomQuestions) ^
+      const DeepCollectionEquality().hash(emailSender) ^
+      runtimeType.hashCode;
+}
+
+extension $RegistrationTypeExtension on RegistrationType {
+  RegistrationType copyWith(
+      {enums.RegistrationTypeVisibility? visibility,
+      int? maxLimit,
+      int? userLimit,
+      int? soldCount,
+      bool? hasSideEvents,
+      bool? showGuestCount,
+      bool? requireKYC,
+      bool? refundable,
+      bool? nameWithNumber,
+      bool? botProtection,
+      bool? isPublished,
+      bool? hasWaitlist,
+      bool? requireName,
+      bool? requireEmail,
+      bool? requirePhoneNumber,
+      bool? hasCustomQuestions,
+      String? emailSender}) {
+    return RegistrationType(
+        visibility: visibility ?? this.visibility,
+        maxLimit: maxLimit ?? this.maxLimit,
+        userLimit: userLimit ?? this.userLimit,
+        soldCount: soldCount ?? this.soldCount,
+        hasSideEvents: hasSideEvents ?? this.hasSideEvents,
+        showGuestCount: showGuestCount ?? this.showGuestCount,
+        requireKYC: requireKYC ?? this.requireKYC,
+        refundable: refundable ?? this.refundable,
+        nameWithNumber: nameWithNumber ?? this.nameWithNumber,
+        botProtection: botProtection ?? this.botProtection,
+        isPublished: isPublished ?? this.isPublished,
+        hasWaitlist: hasWaitlist ?? this.hasWaitlist,
+        requireName: requireName ?? this.requireName,
+        requireEmail: requireEmail ?? this.requireEmail,
+        requirePhoneNumber: requirePhoneNumber ?? this.requirePhoneNumber,
+        hasCustomQuestions: hasCustomQuestions ?? this.hasCustomQuestions,
+        emailSender: emailSender ?? this.emailSender);
+  }
+
+  RegistrationType copyWithWrapped(
+      {Wrapped<enums.RegistrationTypeVisibility>? visibility,
+      Wrapped<int>? maxLimit,
+      Wrapped<int>? userLimit,
+      Wrapped<int>? soldCount,
+      Wrapped<bool>? hasSideEvents,
+      Wrapped<bool>? showGuestCount,
+      Wrapped<bool>? requireKYC,
+      Wrapped<bool>? refundable,
+      Wrapped<bool>? nameWithNumber,
+      Wrapped<bool>? botProtection,
+      Wrapped<bool>? isPublished,
+      Wrapped<bool>? hasWaitlist,
+      Wrapped<bool>? requireName,
+      Wrapped<bool>? requireEmail,
+      Wrapped<bool>? requirePhoneNumber,
+      Wrapped<bool>? hasCustomQuestions,
+      Wrapped<String?>? emailSender}) {
+    return RegistrationType(
+        visibility: (visibility != null ? visibility.value : this.visibility),
+        maxLimit: (maxLimit != null ? maxLimit.value : this.maxLimit),
+        userLimit: (userLimit != null ? userLimit.value : this.userLimit),
+        soldCount: (soldCount != null ? soldCount.value : this.soldCount),
+        hasSideEvents:
+            (hasSideEvents != null ? hasSideEvents.value : this.hasSideEvents),
+        showGuestCount: (showGuestCount != null
+            ? showGuestCount.value
+            : this.showGuestCount),
+        requireKYC: (requireKYC != null ? requireKYC.value : this.requireKYC),
+        refundable: (refundable != null ? refundable.value : this.refundable),
+        nameWithNumber: (nameWithNumber != null
+            ? nameWithNumber.value
+            : this.nameWithNumber),
+        botProtection:
+            (botProtection != null ? botProtection.value : this.botProtection),
+        isPublished:
+            (isPublished != null ? isPublished.value : this.isPublished),
+        hasWaitlist:
+            (hasWaitlist != null ? hasWaitlist.value : this.hasWaitlist),
+        requireName:
+            (requireName != null ? requireName.value : this.requireName),
+        requireEmail:
+            (requireEmail != null ? requireEmail.value : this.requireEmail),
+        requirePhoneNumber: (requirePhoneNumber != null
+            ? requirePhoneNumber.value
+            : this.requirePhoneNumber),
+        hasCustomQuestions: (hasCustomQuestions != null
+            ? hasCustomQuestions.value
+            : this.hasCustomQuestions),
+        emailSender:
+            (emailSender != null ? emailSender.value : this.emailSender));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PremiumType {
+  const PremiumType({
+    required this.searchable,
+  });
+
+  factory PremiumType.fromJson(Map<String, dynamic> json) =>
+      _$PremiumTypeFromJson(json);
+
+  static const toJsonFactory = _$PremiumTypeToJson;
+  Map<String, dynamic> toJson() => _$PremiumTypeToJson(this);
+
+  @JsonKey(name: 'searchable')
+  final bool searchable;
+  static const fromJsonFactory = _$PremiumTypeFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PremiumType &&
+            (identical(other.searchable, searchable) ||
+                const DeepCollectionEquality()
+                    .equals(other.searchable, searchable)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(searchable) ^ runtimeType.hashCode;
+}
+
+extension $PremiumTypeExtension on PremiumType {
+  PremiumType copyWith({bool? searchable}) {
+    return PremiumType(searchable: searchable ?? this.searchable);
+  }
+
+  PremiumType copyWithWrapped({Wrapped<bool>? searchable}) {
+    return PremiumType(
+        searchable: (searchable != null ? searchable.value : this.searchable));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventUserRoleDoc {
   const EventUserRoleDoc({
     required this.dataType,
@@ -7977,7 +8264,7 @@ class EventUserRoleDoc {
     required this.role,
     required this.permissions,
     required this.createdAt,
-    required this.endTime,
+    this.endTime,
     required this.id,
     required this.status,
   });
@@ -8015,9 +8302,9 @@ class EventUserRoleDoc {
   )
   final List<enums.EventUserRoleDocPermissions> permissions;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int? endTime;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(
@@ -8089,8 +8376,8 @@ extension $EventUserRoleDocExtension on EventUserRoleDoc {
       String? email,
       List<enums.EventUserRoleDocRole>? role,
       List<enums.EventUserRoleDocPermissions>? permissions,
-      double? createdAt,
-      double? endTime,
+      int? createdAt,
+      int? endTime,
       String? id,
       enums.EventUserRoleDocStatus? status}) {
     return EventUserRoleDoc(
@@ -8115,8 +8402,8 @@ extension $EventUserRoleDocExtension on EventUserRoleDoc {
       Wrapped<String>? email,
       Wrapped<List<enums.EventUserRoleDocRole>>? role,
       Wrapped<List<enums.EventUserRoleDocPermissions>>? permissions,
-      Wrapped<double>? createdAt,
-      Wrapped<double>? endTime,
+      Wrapped<int>? createdAt,
+      Wrapped<int?>? endTime,
       Wrapped<String>? id,
       Wrapped<enums.EventUserRoleDocStatus>? status}) {
     return EventUserRoleDoc(
@@ -8179,15 +8466,15 @@ class EventProfileDoc {
           value, enums.EventProfileDocDataType.eventProfile);
 
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'creatorAddress')
   final String creatorAddress;
   @JsonKey(name: 'title')
   final String title;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'descriptionUrl')
   final String? descriptionUrl;
   @JsonKey(name: 'location')
@@ -8213,9 +8500,9 @@ class EventProfileDoc {
   @JsonKey(name: 'background')
   final String? background;
   @JsonKey(name: 'registration')
-  final Object registration;
+  final RegistrationType registration;
   @JsonKey(name: 'premium')
-  final Object premium;
+  final PremiumType premium;
   @JsonKey(name: 'contractAddress')
   final String? contractAddress;
   @JsonKey(name: 'collection')
@@ -8325,11 +8612,11 @@ class EventProfileDoc {
 extension $EventProfileDocExtension on EventProfileDoc {
   EventProfileDoc copyWith(
       {enums.EventProfileDocDataType? dataType,
-      double? createdAt,
+      int? createdAt,
       String? creatorAddress,
       String? title,
-      double? startTime,
-      double? endTime,
+      int? startTime,
+      int? endTime,
       String? descriptionUrl,
       EventLocationDto? location,
       bool? isVirtualEvent,
@@ -8338,8 +8625,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       enums.EventProfileDocCategory? category,
       enums.EventProfileDocSubCategory? subCategory,
       String? background,
-      Object? registration,
-      Object? premium,
+      RegistrationType? registration,
+      PremiumType? premium,
       String? contractAddress,
       String? collection,
       Object? seo,
@@ -8371,11 +8658,11 @@ extension $EventProfileDocExtension on EventProfileDoc {
 
   EventProfileDoc copyWithWrapped(
       {Wrapped<enums.EventProfileDocDataType>? dataType,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? createdAt,
       Wrapped<String>? creatorAddress,
       Wrapped<String>? title,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
       Wrapped<String?>? descriptionUrl,
       Wrapped<EventLocationDto>? location,
       Wrapped<bool>? isVirtualEvent,
@@ -8384,8 +8671,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       Wrapped<enums.EventProfileDocCategory>? category,
       Wrapped<enums.EventProfileDocSubCategory?>? subCategory,
       Wrapped<String?>? background,
-      Wrapped<Object>? registration,
-      Wrapped<Object>? premium,
+      Wrapped<RegistrationType>? registration,
+      Wrapped<PremiumType>? premium,
       Wrapped<String?>? contractAddress,
       Wrapped<String?>? collection,
       Wrapped<Object?>? seo,
@@ -20534,9 +20821,9 @@ class RegistrationDetailsDto {
   )
   final enums.RegistrationDetailsDtoVisibility visibility;
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int userLimit;
   @JsonKey(name: 'requireKYC')
   final bool requireKYC;
   @JsonKey(name: 'requireName')
@@ -20634,8 +20921,8 @@ class RegistrationDetailsDto {
 extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
   RegistrationDetailsDto copyWith(
       {enums.RegistrationDetailsDtoVisibility? visibility,
-      double? maxLimit,
-      double? userLimit,
+      int? maxLimit,
+      int? userLimit,
       bool? requireKYC,
       bool? requireName,
       bool? requireEmail,
@@ -20666,8 +20953,8 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
 
   RegistrationDetailsDto copyWithWrapped(
       {Wrapped<enums.RegistrationDetailsDtoVisibility>? visibility,
-      Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit,
+      Wrapped<int>? maxLimit,
+      Wrapped<int>? userLimit,
       Wrapped<bool>? requireKYC,
       Wrapped<bool>? requireName,
       Wrapped<bool>? requireEmail,
@@ -21190,7 +21477,7 @@ class EventGuestSummary {
   Map<String, dynamic> toJson() => _$EventGuestSummaryToJson(this);
 
   @JsonKey(name: 'count')
-  final double count;
+  final int count;
   @JsonKey(name: 'guests', defaultValue: <EventGuestProfileSummary>[])
   final List<EventGuestProfileSummary> guests;
   static const fromJsonFactory = _$EventGuestSummaryFromJson;
@@ -21217,17 +21504,70 @@ class EventGuestSummary {
 
 extension $EventGuestSummaryExtension on EventGuestSummary {
   EventGuestSummary copyWith(
-      {double? count, List<EventGuestProfileSummary>? guests}) {
+      {int? count, List<EventGuestProfileSummary>? guests}) {
     return EventGuestSummary(
         count: count ?? this.count, guests: guests ?? this.guests);
   }
 
   EventGuestSummary copyWithWrapped(
-      {Wrapped<double>? count,
-      Wrapped<List<EventGuestProfileSummary>>? guests}) {
+      {Wrapped<int>? count, Wrapped<List<EventGuestProfileSummary>>? guests}) {
     return EventGuestSummary(
         count: (count != null ? count.value : this.count),
         guests: (guests != null ? guests.value : this.guests));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventStartPrice {
+  const EventStartPrice({
+    required this.price,
+    required this.currency,
+  });
+
+  factory EventStartPrice.fromJson(Map<String, dynamic> json) =>
+      _$EventStartPriceFromJson(json);
+
+  static const toJsonFactory = _$EventStartPriceToJson;
+  Map<String, dynamic> toJson() => _$EventStartPriceToJson(this);
+
+  @JsonKey(name: 'price')
+  final double price;
+  @JsonKey(name: 'currency')
+  final String currency;
+  static const fromJsonFactory = _$EventStartPriceFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventStartPrice &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.currency, currency) ||
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(currency) ^
+      runtimeType.hashCode;
+}
+
+extension $EventStartPriceExtension on EventStartPrice {
+  EventStartPrice copyWith({double? price, String? currency}) {
+    return EventStartPrice(
+        price: price ?? this.price, currency: currency ?? this.currency);
+  }
+
+  EventStartPrice copyWithWrapped(
+      {Wrapped<double>? price, Wrapped<String>? currency}) {
+    return EventStartPrice(
+        price: (price != null ? price.value : this.price),
+        currency: (currency != null ? currency.value : this.currency));
   }
 }
 
@@ -21278,15 +21618,15 @@ class EventProfile {
           value, enums.EventProfileDataType.eventProfile);
 
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'creatorAddress')
   final String creatorAddress;
   @JsonKey(name: 'title')
   final String title;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'descriptionUrl')
   final String? descriptionUrl;
   @JsonKey(name: 'location')
@@ -21312,9 +21652,9 @@ class EventProfile {
   @JsonKey(name: 'background')
   final String? background;
   @JsonKey(name: 'registration')
-  final Object registration;
+  final RegistrationType registration;
   @JsonKey(name: 'premium')
-  final Object premium;
+  final PremiumType premium;
   @JsonKey(name: 'contractAddress')
   final String? contractAddress;
   @JsonKey(name: 'collection')
@@ -21330,7 +21670,7 @@ class EventProfile {
   @JsonKey(name: 'guestSummary')
   final EventGuestSummary? guestSummary;
   @JsonKey(name: 'startsFrom')
-  final Object? startsFrom;
+  final EventStartPrice? startsFrom;
   static const fromJsonFactory = _$EventProfileFromJson;
 
   @override
@@ -21441,11 +21781,11 @@ class EventProfile {
 extension $EventProfileExtension on EventProfile {
   EventProfile copyWith(
       {enums.EventProfileDataType? dataType,
-      double? createdAt,
+      int? createdAt,
       String? creatorAddress,
       String? title,
-      double? startTime,
-      double? endTime,
+      int? startTime,
+      int? endTime,
       String? descriptionUrl,
       EventLocationDto? location,
       bool? isVirtualEvent,
@@ -21454,8 +21794,8 @@ extension $EventProfileExtension on EventProfile {
       enums.EventProfileCategory? category,
       enums.EventProfileSubCategory? subCategory,
       String? background,
-      Object? registration,
-      Object? premium,
+      RegistrationType? registration,
+      PremiumType? premium,
       String? contractAddress,
       String? collection,
       Object? seo,
@@ -21463,7 +21803,7 @@ extension $EventProfileExtension on EventProfile {
       EventUserRoleDoc? eventPermissions,
       CreatorProfileDoc? creatorProfile,
       EventGuestSummary? guestSummary,
-      Object? startsFrom}) {
+      EventStartPrice? startsFrom}) {
     return EventProfile(
         dataType: dataType ?? this.dataType,
         createdAt: createdAt ?? this.createdAt,
@@ -21493,11 +21833,11 @@ extension $EventProfileExtension on EventProfile {
 
   EventProfile copyWithWrapped(
       {Wrapped<enums.EventProfileDataType>? dataType,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? createdAt,
       Wrapped<String>? creatorAddress,
       Wrapped<String>? title,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
       Wrapped<String?>? descriptionUrl,
       Wrapped<EventLocationDto>? location,
       Wrapped<bool>? isVirtualEvent,
@@ -21506,8 +21846,8 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<enums.EventProfileCategory>? category,
       Wrapped<enums.EventProfileSubCategory?>? subCategory,
       Wrapped<String?>? background,
-      Wrapped<Object>? registration,
-      Wrapped<Object>? premium,
+      Wrapped<RegistrationType>? registration,
+      Wrapped<PremiumType>? premium,
       Wrapped<String?>? contractAddress,
       Wrapped<String?>? collection,
       Wrapped<Object?>? seo,
@@ -21515,7 +21855,7 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<EventUserRoleDoc?>? eventPermissions,
       Wrapped<CreatorProfileDoc?>? creatorProfile,
       Wrapped<EventGuestSummary?>? guestSummary,
-      Wrapped<Object?>? startsFrom}) {
+      Wrapped<EventStartPrice?>? startsFrom}) {
     return EventProfile(
         dataType: (dataType != null ? dataType.value : this.dataType),
         createdAt: (createdAt != null ? createdAt.value : this.createdAt),
@@ -21652,9 +21992,9 @@ class EventProfileEditDto {
   @JsonKey(name: 'title')
   final String title;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'location')
   final EventLocationDto location;
   @JsonKey(name: 'isVirtualEvent')
@@ -21725,8 +22065,8 @@ class EventProfileEditDto {
 extension $EventProfileEditDtoExtension on EventProfileEditDto {
   EventProfileEditDto copyWith(
       {String? title,
-      double? startTime,
-      double? endTime,
+      int? startTime,
+      int? endTime,
       EventLocationDto? location,
       bool? isVirtualEvent,
       RegistrationDetailsDto? registration,
@@ -21749,8 +22089,8 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
 
   EventProfileEditDto copyWithWrapped(
       {Wrapped<String>? title,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
       Wrapped<EventLocationDto>? location,
       Wrapped<bool?>? isVirtualEvent,
       Wrapped<RegistrationDetailsDto?>? registration,
@@ -21799,7 +22139,7 @@ class TicketSelectionDto {
   @JsonKey(name: 'ticketStageId')
   final String ticketStageId;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   @JsonKey(name: 'price')
   final double? price;
   @JsonKey(name: 'name')
@@ -21854,7 +22194,7 @@ extension $TicketSelectionDtoExtension on TicketSelectionDto {
   TicketSelectionDto copyWith(
       {String? ticketProfileId,
       String? ticketStageId,
-      double? quantity,
+      int? quantity,
       double? price,
       String? name,
       String? description,
@@ -21872,7 +22212,7 @@ extension $TicketSelectionDtoExtension on TicketSelectionDto {
   TicketSelectionDto copyWithWrapped(
       {Wrapped<String>? ticketProfileId,
       Wrapped<String>? ticketStageId,
-      Wrapped<double>? quantity,
+      Wrapped<int>? quantity,
       Wrapped<double?>? price,
       Wrapped<String?>? name,
       Wrapped<String?>? description,
@@ -22450,7 +22790,7 @@ class EventGuestDoc {
   )
   final enums.EventGuestDocStatus status;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'invitationId')
   final String? invitationId;
   @JsonKey(name: 'metadata')
@@ -22532,7 +22872,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       EventGuestRegistration? registration,
       EventGuestBilling? billing,
       enums.EventGuestDocStatus? status,
-      double? createdAt,
+      int? createdAt,
       String? invitationId,
       Object? metadata,
       String? id,
@@ -22562,7 +22902,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       Wrapped<EventGuestRegistration?>? registration,
       Wrapped<EventGuestBilling?>? billing,
       Wrapped<enums.EventGuestDocStatus>? status,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
       Wrapped<String?>? id,
@@ -22777,10 +23117,10 @@ class EventTicketProfileCreateDto {
   const EventTicketProfileCreateDto({
     required this.name,
     required this.description,
-    required this.royalties,
+    this.royalties,
     required this.badgeColor,
-    required this.maxLimit,
-    required this.userLimit,
+    this.maxLimit,
+    this.userLimit,
   });
 
   factory EventTicketProfileCreateDto.fromJson(Map<String, dynamic> json) =>
@@ -22794,13 +23134,13 @@ class EventTicketProfileCreateDto {
   @JsonKey(name: 'description')
   final String description;
   @JsonKey(name: 'royalties')
-  final double royalties;
+  final double? royalties;
   @JsonKey(name: 'badgeColor')
   final String badgeColor;
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int? maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int? userLimit;
   static const fromJsonFactory = _$EventTicketProfileCreateDtoFromJson;
 
   @override
@@ -22846,8 +23186,8 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
       String? description,
       double? royalties,
       String? badgeColor,
-      double? maxLimit,
-      double? userLimit}) {
+      int? maxLimit,
+      int? userLimit}) {
     return EventTicketProfileCreateDto(
         name: name ?? this.name,
         description: description ?? this.description,
@@ -22860,10 +23200,10 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
   EventTicketProfileCreateDto copyWithWrapped(
       {Wrapped<String>? name,
       Wrapped<String>? description,
-      Wrapped<double>? royalties,
+      Wrapped<double?>? royalties,
       Wrapped<String>? badgeColor,
-      Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit}) {
+      Wrapped<int?>? maxLimit,
+      Wrapped<int?>? userLimit}) {
     return EventTicketProfileCreateDto(
         name: (name != null ? name.value : this.name),
         description:
@@ -22919,19 +23259,19 @@ class EventTicketProfileDoc {
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'royalties')
-  final Object? royalties;
+  final double? royalties;
   @JsonKey(name: 'badgeColor')
   final String? badgeColor;
   @JsonKey(name: 'characteristics')
   final Object? characteristics;
   @JsonKey(name: 'maxLimit')
-  final Object? maxLimit;
+  final int? maxLimit;
   @JsonKey(name: 'userLimit')
-  final Object userLimit;
+  final int userLimit;
   @JsonKey(name: 'soldCount')
-  final Object soldCount;
+  final int soldCount;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$EventTicketProfileDocFromJson;
@@ -23007,13 +23347,13 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
       String? name,
       String? description,
       String? profile,
-      Object? royalties,
+      double? royalties,
       String? badgeColor,
       Object? characteristics,
-      Object? maxLimit,
-      Object? userLimit,
-      Object? soldCount,
-      double? createdAt,
+      int? maxLimit,
+      int? userLimit,
+      int? soldCount,
+      int? createdAt,
       String? id}) {
     return EventTicketProfileDoc(
         dataType: dataType ?? this.dataType,
@@ -23037,13 +23377,13 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
       Wrapped<String>? name,
       Wrapped<String>? description,
       Wrapped<String>? profile,
-      Wrapped<Object?>? royalties,
+      Wrapped<double?>? royalties,
       Wrapped<String?>? badgeColor,
       Wrapped<Object?>? characteristics,
-      Wrapped<Object?>? maxLimit,
-      Wrapped<Object>? userLimit,
-      Wrapped<Object>? soldCount,
-      Wrapped<double>? createdAt,
+      Wrapped<int?>? maxLimit,
+      Wrapped<int>? userLimit,
+      Wrapped<int>? soldCount,
+      Wrapped<int>? createdAt,
       Wrapped<String>? id}) {
     return EventTicketProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -23069,10 +23409,10 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
 class EventTicketProfileEditDto {
   const EventTicketProfileEditDto({
     required this.description,
-    required this.royalties,
+    this.royalties,
     required this.badgeColor,
-    required this.maxLimit,
-    required this.userLimit,
+    this.maxLimit,
+    this.userLimit,
     required this.name,
     required this.characteristics,
   });
@@ -23086,13 +23426,13 @@ class EventTicketProfileEditDto {
   @JsonKey(name: 'description')
   final String description;
   @JsonKey(name: 'royalties')
-  final double royalties;
+  final double? royalties;
   @JsonKey(name: 'badgeColor')
   final String badgeColor;
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int? maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int? userLimit;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'characteristics')
@@ -23145,8 +23485,8 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
       {String? description,
       double? royalties,
       String? badgeColor,
-      double? maxLimit,
-      double? userLimit,
+      int? maxLimit,
+      int? userLimit,
       String? name,
       Object? characteristics}) {
     return EventTicketProfileEditDto(
@@ -23161,10 +23501,10 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
 
   EventTicketProfileEditDto copyWithWrapped(
       {Wrapped<String>? description,
-      Wrapped<double>? royalties,
+      Wrapped<double?>? royalties,
       Wrapped<String>? badgeColor,
-      Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit,
+      Wrapped<int?>? maxLimit,
+      Wrapped<int?>? userLimit,
       Wrapped<String>? name,
       Wrapped<Object>? characteristics}) {
     return EventTicketProfileEditDto(
@@ -23257,11 +23597,11 @@ class EventStageProfileCreateDto {
     required this.name,
     required this.startTime,
     required this.endTime,
-    required this.maxLimit,
-    required this.userLimit,
-    required this.isEnabled,
-    required this.isWhitelist,
-    required this.requiredApproval,
+    this.maxLimit,
+    this.userLimit,
+    this.isEnabled,
+    this.isWhitelist,
+    this.requiredApproval,
     required this.prices,
   });
 
@@ -23276,19 +23616,19 @@ class EventStageProfileCreateDto {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int? maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int? userLimit;
   @JsonKey(name: 'isEnabled')
-  final bool isEnabled;
+  final bool? isEnabled;
   @JsonKey(name: 'isWhitelist')
-  final bool isWhitelist;
+  final bool? isWhitelist;
   @JsonKey(name: 'requiredApproval')
-  final bool requiredApproval;
+  final bool? requiredApproval;
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPaymentDto>[])
   final List<EgldOrEsdtTokenPaymentDto> prices;
   static const fromJsonFactory = _$EventStageProfileCreateDtoFromJson;
@@ -23349,10 +23689,10 @@ extension $EventStageProfileCreateDtoExtension on EventStageProfileCreateDto {
   EventStageProfileCreateDto copyWith(
       {String? ticketId,
       String? name,
-      double? startTime,
-      double? endTime,
-      double? maxLimit,
-      double? userLimit,
+      int? startTime,
+      int? endTime,
+      int? maxLimit,
+      int? userLimit,
       bool? isEnabled,
       bool? isWhitelist,
       bool? requiredApproval,
@@ -23373,13 +23713,13 @@ extension $EventStageProfileCreateDtoExtension on EventStageProfileCreateDto {
   EventStageProfileCreateDto copyWithWrapped(
       {Wrapped<String>? ticketId,
       Wrapped<String>? name,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
-      Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit,
-      Wrapped<bool>? isEnabled,
-      Wrapped<bool>? isWhitelist,
-      Wrapped<bool>? requiredApproval,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
+      Wrapped<int?>? maxLimit,
+      Wrapped<int?>? userLimit,
+      Wrapped<bool?>? isEnabled,
+      Wrapped<bool?>? isWhitelist,
+      Wrapped<bool?>? requiredApproval,
       Wrapped<List<EgldOrEsdtTokenPaymentDto>>? prices}) {
     return EventStageProfileCreateDto(
         ticketId: (ticketId != null ? ticketId.value : this.ticketId),
@@ -23441,13 +23781,13 @@ class EventStageProfileDoc {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int userLimit;
   @JsonKey(name: 'isEnabled')
   final bool isEnabled;
   @JsonKey(name: 'isWhitelist')
@@ -23457,7 +23797,7 @@ class EventStageProfileDoc {
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment> prices;
   @JsonKey(name: 'soldCount')
-  final double soldCount;
+  final int soldCount;
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$EventStageProfileDocFromJson;
@@ -23535,15 +23875,15 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
       String? eventId,
       String? ticketId,
       String? name,
-      double? startTime,
-      double? endTime,
-      double? maxLimit,
-      double? userLimit,
+      int? startTime,
+      int? endTime,
+      int? maxLimit,
+      int? userLimit,
       bool? isEnabled,
       bool? isWhitelist,
       bool? requiredApproval,
       List<EgldOrEsdtTokenPayment>? prices,
-      double? soldCount,
+      int? soldCount,
       String? id}) {
     return EventStageProfileDoc(
         dataType: dataType ?? this.dataType,
@@ -23567,15 +23907,15 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
       Wrapped<String>? eventId,
       Wrapped<String>? ticketId,
       Wrapped<String>? name,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
-      Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
+      Wrapped<int>? maxLimit,
+      Wrapped<int>? userLimit,
       Wrapped<bool>? isEnabled,
       Wrapped<bool>? isWhitelist,
       Wrapped<bool>? requiredApproval,
       Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
-      Wrapped<double>? soldCount,
+      Wrapped<int>? soldCount,
       Wrapped<String>? id}) {
     return EventStageProfileDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -23601,11 +23941,11 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
 @JsonSerializable(explicitToJson: true)
 class EventStageProfileEditDto {
   const EventStageProfileEditDto({
-    required this.maxLimit,
-    required this.userLimit,
-    required this.isEnabled,
-    required this.isWhitelist,
-    required this.requiredApproval,
+    this.maxLimit,
+    this.userLimit,
+    this.isEnabled,
+    this.isWhitelist,
+    this.requiredApproval,
     required this.prices,
     required this.name,
     required this.startTime,
@@ -23619,23 +23959,23 @@ class EventStageProfileEditDto {
   Map<String, dynamic> toJson() => _$EventStageProfileEditDtoToJson(this);
 
   @JsonKey(name: 'maxLimit')
-  final double maxLimit;
+  final int? maxLimit;
   @JsonKey(name: 'userLimit')
-  final double userLimit;
+  final int? userLimit;
   @JsonKey(name: 'isEnabled')
-  final bool isEnabled;
+  final bool? isEnabled;
   @JsonKey(name: 'isWhitelist')
-  final bool isWhitelist;
+  final bool? isWhitelist;
   @JsonKey(name: 'requiredApproval')
-  final bool requiredApproval;
+  final bool? requiredApproval;
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPaymentDto>[])
   final List<EgldOrEsdtTokenPaymentDto> prices;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   static const fromJsonFactory = _$EventStageProfileEditDtoFromJson;
 
   @override
@@ -23687,15 +24027,15 @@ class EventStageProfileEditDto {
 
 extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
   EventStageProfileEditDto copyWith(
-      {double? maxLimit,
-      double? userLimit,
+      {int? maxLimit,
+      int? userLimit,
       bool? isEnabled,
       bool? isWhitelist,
       bool? requiredApproval,
       List<EgldOrEsdtTokenPaymentDto>? prices,
       String? name,
-      double? startTime,
-      double? endTime}) {
+      int? startTime,
+      int? endTime}) {
     return EventStageProfileEditDto(
         maxLimit: maxLimit ?? this.maxLimit,
         userLimit: userLimit ?? this.userLimit,
@@ -23709,15 +24049,15 @@ extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
   }
 
   EventStageProfileEditDto copyWithWrapped(
-      {Wrapped<double>? maxLimit,
-      Wrapped<double>? userLimit,
-      Wrapped<bool>? isEnabled,
-      Wrapped<bool>? isWhitelist,
-      Wrapped<bool>? requiredApproval,
+      {Wrapped<int?>? maxLimit,
+      Wrapped<int?>? userLimit,
+      Wrapped<bool?>? isEnabled,
+      Wrapped<bool?>? isWhitelist,
+      Wrapped<bool?>? requiredApproval,
       Wrapped<List<EgldOrEsdtTokenPaymentDto>>? prices,
       Wrapped<String>? name,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime}) {
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime}) {
     return EventStageProfileEditDto(
         maxLimit: (maxLimit != null ? maxLimit.value : this.maxLimit),
         userLimit: (userLimit != null ? userLimit.value : this.userLimit),
@@ -23839,7 +24179,7 @@ class StagePrice {
   @JsonKey(name: 'discountedPrice')
   final double discountedPrice;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   static const fromJsonFactory = _$StagePriceFromJson;
 
   @override
@@ -23892,7 +24232,7 @@ extension $StagePriceExtension on StagePrice {
       String? ticketTypeName,
       double? normalPrice,
       double? discountedPrice,
-      double? quantity}) {
+      int? quantity}) {
     return StagePrice(
         stageId: stageId ?? this.stageId,
         stageName: stageName ?? this.stageName,
@@ -23910,7 +24250,7 @@ extension $StagePriceExtension on StagePrice {
       Wrapped<String>? ticketTypeName,
       Wrapped<double>? normalPrice,
       Wrapped<double>? discountedPrice,
-      Wrapped<double>? quantity}) {
+      Wrapped<int>? quantity}) {
     return StagePrice(
         stageId: (stageId != null ? stageId.value : this.stageId),
         stageName: (stageName != null ? stageName.value : this.stageName),
@@ -24258,7 +24598,7 @@ class TicketProfileSummary {
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final double? quantity;
+  final int? quantity;
   static const fromJsonFactory = _$TicketProfileSummaryFromJson;
 
   @override
@@ -24310,7 +24650,7 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
       String? badgeColor,
       Object? characteristics,
       String? ticketId,
-      double? quantity}) {
+      int? quantity}) {
     return TicketProfileSummary(
         name: name ?? this.name,
         description: description ?? this.description,
@@ -24328,7 +24668,7 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
       Wrapped<String?>? badgeColor,
       Wrapped<Object?>? characteristics,
       Wrapped<String>? ticketId,
-      Wrapped<double?>? quantity}) {
+      Wrapped<int?>? quantity}) {
     return TicketProfileSummary(
         name: (name != null ? name.value : this.name),
         description:
@@ -24390,11 +24730,11 @@ class EventInvitationDoc {
   @JsonKey(name: 'tickets', defaultValue: <TicketProfileSummary>[])
   final List<TicketProfileSummary> tickets;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'isClaimed')
   final bool isClaimed;
   @JsonKey(name: 'isUsed')
@@ -24411,7 +24751,7 @@ class EventInvitationDoc {
           value, enums.EventInvitationDocStatus.pending);
 
   @JsonKey(name: 'claimedAt')
-  final double claimedAt;
+  final int claimedAt;
   @JsonKey(name: 'claimedBy')
   final String? claimedBy;
   @JsonKey(name: 'txHash')
@@ -24500,13 +24840,13 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
       String? name,
       String? email,
       List<TicketProfileSummary>? tickets,
-      double? startTime,
-      double? endTime,
-      double? createdAt,
+      int? startTime,
+      int? endTime,
+      int? createdAt,
       bool? isClaimed,
       bool? isUsed,
       enums.EventInvitationDocStatus? status,
-      double? claimedAt,
+      int? claimedAt,
       String? claimedBy,
       String? txHash,
       String? id,
@@ -24536,13 +24876,13 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
       Wrapped<String?>? name,
       Wrapped<String?>? email,
       Wrapped<List<TicketProfileSummary>>? tickets,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
+      Wrapped<int>? createdAt,
       Wrapped<bool>? isClaimed,
       Wrapped<bool>? isUsed,
       Wrapped<enums.EventInvitationDocStatus>? status,
-      Wrapped<double>? claimedAt,
+      Wrapped<int>? claimedAt,
       Wrapped<String?>? claimedBy,
       Wrapped<String?>? txHash,
       Wrapped<String>? id,
@@ -24616,11 +24956,11 @@ class EventInvitation {
   @JsonKey(name: 'tickets', defaultValue: <TicketProfileSummary>[])
   final List<TicketProfileSummary> tickets;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'isClaimed')
   final bool isClaimed;
   @JsonKey(name: 'isUsed')
@@ -24636,7 +24976,7 @@ class EventInvitation {
       eventInvitationStatusFromJson(value, enums.EventInvitationStatus.pending);
 
   @JsonKey(name: 'claimedAt')
-  final double claimedAt;
+  final int claimedAt;
   @JsonKey(name: 'claimedBy')
   final String? claimedBy;
   @JsonKey(name: 'txHash')
@@ -24736,13 +25076,13 @@ extension $EventInvitationExtension on EventInvitation {
       String? name,
       String? email,
       List<TicketProfileSummary>? tickets,
-      double? startTime,
-      double? endTime,
-      double? createdAt,
+      int? startTime,
+      int? endTime,
+      int? createdAt,
       bool? isClaimed,
       bool? isUsed,
       enums.EventInvitationStatus? status,
-      double? claimedAt,
+      int? claimedAt,
       String? claimedBy,
       String? txHash,
       String? id,
@@ -24776,13 +25116,13 @@ extension $EventInvitationExtension on EventInvitation {
       Wrapped<String?>? name,
       Wrapped<String?>? email,
       Wrapped<List<TicketProfileSummary>>? tickets,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime,
+      Wrapped<int>? createdAt,
       Wrapped<bool>? isClaimed,
       Wrapped<bool>? isUsed,
       Wrapped<enums.EventInvitationStatus>? status,
-      Wrapped<double>? claimedAt,
+      Wrapped<int>? claimedAt,
       Wrapped<String?>? claimedBy,
       Wrapped<String?>? txHash,
       Wrapped<String>? id,
@@ -24888,15 +25228,15 @@ class EventVoucherDoc {
     required this.code,
     required this.type,
     required this.amount,
-    required this.maxDiscountAmount,
+    this.maxDiscountAmount,
     required this.maxUses,
     required this.maxUsesPerUser,
     required this.usedCount,
     required this.eventId,
     required this.ticketTypeIds,
     required this.stageIds,
-    required this.minTicketCount,
-    required this.maxTicketCount,
+    this.minTicketCount,
+    this.maxTicketCount,
     required this.startDate,
     required this.endDate,
     required this.isActive,
@@ -24935,13 +25275,13 @@ class EventVoucherDoc {
   @JsonKey(name: 'amount')
   final double amount;
   @JsonKey(name: 'maxDiscountAmount')
-  final double maxDiscountAmount;
+  final double? maxDiscountAmount;
   @JsonKey(name: 'maxUses')
-  final double maxUses;
+  final int maxUses;
   @JsonKey(name: 'maxUsesPerUser')
-  final double maxUsesPerUser;
+  final int maxUsesPerUser;
   @JsonKey(name: 'usedCount')
-  final Object usedCount;
+  final int usedCount;
   @JsonKey(name: 'eventId')
   final String eventId;
   @JsonKey(name: 'ticketTypeIds', defaultValue: <String>[])
@@ -24949,19 +25289,19 @@ class EventVoucherDoc {
   @JsonKey(name: 'stageIds', defaultValue: <String>[])
   final List<String> stageIds;
   @JsonKey(name: 'minTicketCount')
-  final double minTicketCount;
+  final int? minTicketCount;
   @JsonKey(name: 'maxTicketCount')
-  final double maxTicketCount;
+  final int? maxTicketCount;
   @JsonKey(name: 'startDate')
-  final double startDate;
+  final int startDate;
   @JsonKey(name: 'endDate')
-  final double endDate;
-  @JsonKey(name: 'isActive')
-  final Object isActive;
+  final int endDate;
+  @JsonKey(name: 'isActive', defaultValue: true)
+  final bool isActive;
   @JsonKey(name: 'ownerId')
   final String ownerId;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'createdBy')
   final String createdBy;
   static const fromJsonFactory = _$EventVoucherDocFromJson;
@@ -25064,19 +25404,19 @@ extension $EventVoucherDocExtension on EventVoucherDoc {
       enums.EventVoucherDocType? type,
       double? amount,
       double? maxDiscountAmount,
-      double? maxUses,
-      double? maxUsesPerUser,
-      Object? usedCount,
+      int? maxUses,
+      int? maxUsesPerUser,
+      int? usedCount,
       String? eventId,
       List<String>? ticketTypeIds,
       List<String>? stageIds,
-      double? minTicketCount,
-      double? maxTicketCount,
-      double? startDate,
-      double? endDate,
-      Object? isActive,
+      int? minTicketCount,
+      int? maxTicketCount,
+      int? startDate,
+      int? endDate,
+      bool? isActive,
       String? ownerId,
-      double? createdAt,
+      int? createdAt,
       String? createdBy}) {
     return EventVoucherDoc(
         dataType: dataType ?? this.dataType,
@@ -25107,20 +25447,20 @@ extension $EventVoucherDocExtension on EventVoucherDoc {
       Wrapped<String>? code,
       Wrapped<enums.EventVoucherDocType>? type,
       Wrapped<double>? amount,
-      Wrapped<double>? maxDiscountAmount,
-      Wrapped<double>? maxUses,
-      Wrapped<double>? maxUsesPerUser,
-      Wrapped<Object>? usedCount,
+      Wrapped<double?>? maxDiscountAmount,
+      Wrapped<int>? maxUses,
+      Wrapped<int>? maxUsesPerUser,
+      Wrapped<int>? usedCount,
       Wrapped<String>? eventId,
       Wrapped<List<String>>? ticketTypeIds,
       Wrapped<List<String>>? stageIds,
-      Wrapped<double>? minTicketCount,
-      Wrapped<double>? maxTicketCount,
-      Wrapped<double>? startDate,
-      Wrapped<double>? endDate,
-      Wrapped<Object>? isActive,
+      Wrapped<int?>? minTicketCount,
+      Wrapped<int?>? maxTicketCount,
+      Wrapped<int>? startDate,
+      Wrapped<int>? endDate,
+      Wrapped<bool>? isActive,
       Wrapped<String>? ownerId,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? createdAt,
       Wrapped<String>? createdBy}) {
     return EventVoucherDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -25274,7 +25614,7 @@ class EventQuestionDoc {
   @JsonKey(name: 'answers', defaultValue: <String>[])
   final List<String> answers;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   static const fromJsonFactory = _$EventQuestionDocFromJson;
 
   @override
@@ -25335,7 +25675,7 @@ extension $EventQuestionDocExtension on EventQuestionDoc {
       enums.EventQuestionDocAnswerType? answerType,
       bool? requireTime,
       List<String>? answers,
-      double? createdAt}) {
+      int? createdAt}) {
     return EventQuestionDoc(
         dataType: dataType ?? this.dataType,
         id: id ?? this.id,
@@ -25357,7 +25697,7 @@ extension $EventQuestionDocExtension on EventQuestionDoc {
       Wrapped<enums.EventQuestionDocAnswerType>? answerType,
       Wrapped<bool>? requireTime,
       Wrapped<List<String>>? answers,
-      Wrapped<double>? createdAt}) {
+      Wrapped<int>? createdAt}) {
     return EventQuestionDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         id: (id != null ? id.value : this.id),
@@ -25618,7 +25958,7 @@ class EventGuestProfile {
   )
   final enums.EventGuestProfileStatus status;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'invitationId')
   final String? invitationId;
   @JsonKey(name: 'metadata')
@@ -25711,7 +26051,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       EventGuestRegistration? registration,
       EventGuestBilling? billing,
       enums.EventGuestProfileStatus? status,
-      double? createdAt,
+      int? createdAt,
       String? invitationId,
       Object? metadata,
       String? id,
@@ -25745,7 +26085,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       Wrapped<EventGuestRegistration?>? registration,
       Wrapped<EventGuestBilling?>? billing,
       Wrapped<enums.EventGuestProfileStatus>? status,
-      Wrapped<double>? createdAt,
+      Wrapped<int>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
       Wrapped<String?>? id,
@@ -25973,7 +26313,7 @@ class EventUserRoleCreateDto {
   )
   final List<enums.EventUserRoleCreateDtoPermissions> permissions;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   static const fromJsonFactory = _$EventUserRoleCreateDtoFromJson;
 
   @override
@@ -26016,7 +26356,7 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
       String? email,
       List<enums.EventUserRoleCreateDtoRole>? role,
       List<enums.EventUserRoleCreateDtoPermissions>? permissions,
-      double? endTime}) {
+      int? endTime}) {
     return EventUserRoleCreateDto(
         wallet: wallet ?? this.wallet,
         name: name ?? this.name,
@@ -26032,7 +26372,7 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
       Wrapped<String>? email,
       Wrapped<List<enums.EventUserRoleCreateDtoRole>>? role,
       Wrapped<List<enums.EventUserRoleCreateDtoPermissions>>? permissions,
-      Wrapped<double>? endTime}) {
+      Wrapped<int>? endTime}) {
     return EventUserRoleCreateDto(
         wallet: (wallet != null ? wallet.value : this.wallet),
         name: (name != null ? name.value : this.name),
@@ -26059,7 +26399,7 @@ class MyEvents {
   Map<String, dynamic> toJson() => _$MyEventsToJson(this);
 
   @JsonKey(name: 'ticketCount')
-  final double ticketCount;
+  final int ticketCount;
   @JsonKey(
     name: 'status',
     toJson: myEventsStatusToJson,
@@ -26097,7 +26437,7 @@ class MyEvents {
 
 extension $MyEventsExtension on MyEvents {
   MyEvents copyWith(
-      {double? ticketCount,
+      {int? ticketCount,
       enums.MyEventsStatus? status,
       EventProfile? eventProfile}) {
     return MyEvents(
@@ -26107,7 +26447,7 @@ extension $MyEventsExtension on MyEvents {
   }
 
   MyEvents copyWithWrapped(
-      {Wrapped<double>? ticketCount,
+      {Wrapped<int>? ticketCount,
       Wrapped<enums.MyEventsStatus>? status,
       Wrapped<EventProfile>? eventProfile}) {
     return MyEvents(
@@ -26570,9 +26910,9 @@ class EventVoucherCreateDto {
   @JsonKey(name: 'maxDiscountAmount')
   final double? maxDiscountAmount;
   @JsonKey(name: 'maxUses')
-  final double? maxUses;
+  final int? maxUses;
   @JsonKey(name: 'maxUsesPerUser')
-  final double? maxUsesPerUser;
+  final int? maxUsesPerUser;
   @JsonKey(name: 'eventId')
   final String? eventId;
   @JsonKey(name: 'ticketTypeIds', defaultValue: <String>[])
@@ -26580,15 +26920,15 @@ class EventVoucherCreateDto {
   @JsonKey(name: 'stageIds', defaultValue: <String>[])
   final List<String>? stageIds;
   @JsonKey(name: 'minTicketCount')
-  final double? minTicketCount;
+  final int? minTicketCount;
   @JsonKey(name: 'maxTicketCount')
-  final double? maxTicketCount;
+  final int? maxTicketCount;
   @JsonKey(name: 'startDate')
-  final double? startDate;
+  final int? startDate;
   @JsonKey(name: 'endDate')
-  final double? endDate;
-  @JsonKey(name: 'isActive')
-  final Object? isActive;
+  final int? endDate;
+  @JsonKey(name: 'isActive', defaultValue: true)
+  final bool? isActive;
   @JsonKey(name: 'ownerId')
   final String? ownerId;
   static const fromJsonFactory = _$EventVoucherCreateDtoFromJson;
@@ -26669,16 +27009,16 @@ extension $EventVoucherCreateDtoExtension on EventVoucherCreateDto {
       enums.EventVoucherCreateDtoType? type,
       double? amount,
       double? maxDiscountAmount,
-      double? maxUses,
-      double? maxUsesPerUser,
+      int? maxUses,
+      int? maxUsesPerUser,
       String? eventId,
       List<String>? ticketTypeIds,
       List<String>? stageIds,
-      double? minTicketCount,
-      double? maxTicketCount,
-      double? startDate,
-      double? endDate,
-      Object? isActive,
+      int? minTicketCount,
+      int? maxTicketCount,
+      int? startDate,
+      int? endDate,
+      bool? isActive,
       String? ownerId}) {
     return EventVoucherCreateDto(
         code: code ?? this.code,
@@ -26703,16 +27043,16 @@ extension $EventVoucherCreateDtoExtension on EventVoucherCreateDto {
       Wrapped<enums.EventVoucherCreateDtoType?>? type,
       Wrapped<double?>? amount,
       Wrapped<double?>? maxDiscountAmount,
-      Wrapped<double?>? maxUses,
-      Wrapped<double?>? maxUsesPerUser,
+      Wrapped<int?>? maxUses,
+      Wrapped<int?>? maxUsesPerUser,
       Wrapped<String?>? eventId,
       Wrapped<List<String>?>? ticketTypeIds,
       Wrapped<List<String>?>? stageIds,
-      Wrapped<double?>? minTicketCount,
-      Wrapped<double?>? maxTicketCount,
-      Wrapped<double?>? startDate,
-      Wrapped<double?>? endDate,
-      Wrapped<Object?>? isActive,
+      Wrapped<int?>? minTicketCount,
+      Wrapped<int?>? maxTicketCount,
+      Wrapped<int?>? startDate,
+      Wrapped<int?>? endDate,
+      Wrapped<bool?>? isActive,
       Wrapped<String?>? ownerId}) {
     return EventVoucherCreateDto(
         code: (code != null ? code.value : this.code),
@@ -26777,23 +27117,23 @@ class EventVoucherEditDto {
   @JsonKey(name: 'maxDiscountAmount')
   final double? maxDiscountAmount;
   @JsonKey(name: 'maxUses')
-  final double? maxUses;
+  final int? maxUses;
   @JsonKey(name: 'maxUsesPerUser')
-  final double? maxUsesPerUser;
+  final int? maxUsesPerUser;
   @JsonKey(name: 'ticketTypeIds', defaultValue: <String>[])
   final List<String>? ticketTypeIds;
   @JsonKey(name: 'stageIds', defaultValue: <String>[])
   final List<String>? stageIds;
   @JsonKey(name: 'minTicketCount')
-  final double? minTicketCount;
+  final int? minTicketCount;
   @JsonKey(name: 'maxTicketCount')
-  final double? maxTicketCount;
+  final int? maxTicketCount;
   @JsonKey(name: 'startDate')
-  final double? startDate;
+  final int? startDate;
   @JsonKey(name: 'endDate')
-  final double? endDate;
-  @JsonKey(name: 'isActive')
-  final Object? isActive;
+  final int? endDate;
+  @JsonKey(name: 'isActive', defaultValue: true)
+  final bool? isActive;
   @JsonKey(name: 'ownerId')
   final String? ownerId;
   static const fromJsonFactory = _$EventVoucherEditDtoFromJson;
@@ -26866,15 +27206,15 @@ extension $EventVoucherEditDtoExtension on EventVoucherEditDto {
       {enums.EventVoucherEditDtoType? type,
       double? amount,
       double? maxDiscountAmount,
-      double? maxUses,
-      double? maxUsesPerUser,
+      int? maxUses,
+      int? maxUsesPerUser,
       List<String>? ticketTypeIds,
       List<String>? stageIds,
-      double? minTicketCount,
-      double? maxTicketCount,
-      double? startDate,
-      double? endDate,
-      Object? isActive,
+      int? minTicketCount,
+      int? maxTicketCount,
+      int? startDate,
+      int? endDate,
+      bool? isActive,
       String? ownerId}) {
     return EventVoucherEditDto(
         type: type ?? this.type,
@@ -26896,15 +27236,15 @@ extension $EventVoucherEditDtoExtension on EventVoucherEditDto {
       {Wrapped<enums.EventVoucherEditDtoType?>? type,
       Wrapped<double?>? amount,
       Wrapped<double?>? maxDiscountAmount,
-      Wrapped<double?>? maxUses,
-      Wrapped<double?>? maxUsesPerUser,
+      Wrapped<int?>? maxUses,
+      Wrapped<int?>? maxUsesPerUser,
       Wrapped<List<String>?>? ticketTypeIds,
       Wrapped<List<String>?>? stageIds,
-      Wrapped<double?>? minTicketCount,
-      Wrapped<double?>? maxTicketCount,
-      Wrapped<double?>? startDate,
-      Wrapped<double?>? endDate,
-      Wrapped<Object?>? isActive,
+      Wrapped<int?>? minTicketCount,
+      Wrapped<int?>? maxTicketCount,
+      Wrapped<int?>? startDate,
+      Wrapped<int?>? endDate,
+      Wrapped<bool?>? isActive,
       Wrapped<String?>? ownerId}) {
     return EventVoucherEditDto(
         type: (type != null ? type.value : this.type),
@@ -27036,9 +27376,9 @@ class EventGuestAnswerDoc {
   @JsonKey(name: 'answer')
   final Object answer;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'ttl')
-  final double? ttl;
+  final int? ttl;
   static const fromJsonFactory = _$EventGuestAnswerDocFromJson;
 
   @override
@@ -27091,8 +27431,8 @@ extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
       String? questionId,
       String? eventId,
       Object? answer,
-      double? createdAt,
-      double? ttl}) {
+      int? createdAt,
+      int? ttl}) {
     return EventGuestAnswerDoc(
         dataType: dataType ?? this.dataType,
         id: id ?? this.id,
@@ -27111,8 +27451,8 @@ extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
       Wrapped<String>? questionId,
       Wrapped<String>? eventId,
       Wrapped<Object>? answer,
-      Wrapped<double>? createdAt,
-      Wrapped<double?>? ttl}) {
+      Wrapped<int>? createdAt,
+      Wrapped<int?>? ttl}) {
     return EventGuestAnswerDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         id: (id != null ? id.value : this.id),
@@ -27532,11 +27872,11 @@ class EventReferralConfigDoc {
   @JsonKey(name: 'rewardDetails')
   final RewardDetails? rewardDetails;
   @JsonKey(name: 'isSelfService')
-  final Object isSelfService;
+  final bool isSelfService;
   @JsonKey(name: 'isActive')
-  final Object isActive;
+  final bool isActive;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'createdBy')
   final String createdBy;
   static const fromJsonFactory = _$EventReferralConfigDocFromJson;
@@ -27597,9 +27937,9 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
       String? eventId,
       EventVoucherDoc? appliedVoucher,
       RewardDetails? rewardDetails,
-      Object? isSelfService,
-      Object? isActive,
-      double? createdAt,
+      bool? isSelfService,
+      bool? isActive,
+      int? createdAt,
       String? createdBy}) {
     return EventReferralConfigDoc(
         dataType: dataType ?? this.dataType,
@@ -27619,9 +27959,9 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
       Wrapped<String>? eventId,
       Wrapped<EventVoucherDoc?>? appliedVoucher,
       Wrapped<RewardDetails?>? rewardDetails,
-      Wrapped<Object>? isSelfService,
-      Wrapped<Object>? isActive,
-      Wrapped<double>? createdAt,
+      Wrapped<bool>? isSelfService,
+      Wrapped<bool>? isActive,
+      Wrapped<int>? createdAt,
       Wrapped<String>? createdBy}) {
     return EventReferralConfigDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
@@ -27898,11 +28238,11 @@ class EventReferralDoc {
   @JsonKey(name: 'referralConfigId')
   final String referralConfigId;
   @JsonKey(name: 'successfulReferrals')
-  final Object successfulReferrals;
+  final int successfulReferrals;
   @JsonKey(name: 'createdAt')
-  final double createdAt;
+  final int createdAt;
   @JsonKey(name: 'isActive')
-  final Object isActive;
+  final bool isActive;
   static const fromJsonFactory = _$EventReferralDocFromJson;
 
   @override
@@ -27962,9 +28302,9 @@ extension $EventReferralDocExtension on EventReferralDoc {
       String? ownerId,
       String? eventId,
       String? referralConfigId,
-      Object? successfulReferrals,
-      double? createdAt,
-      Object? isActive}) {
+      int? successfulReferrals,
+      int? createdAt,
+      bool? isActive}) {
     return EventReferralDoc(
         dataType: dataType ?? this.dataType,
         id: id ?? this.id,
@@ -27984,9 +28324,9 @@ extension $EventReferralDocExtension on EventReferralDoc {
       Wrapped<String?>? ownerId,
       Wrapped<String>? eventId,
       Wrapped<String>? referralConfigId,
-      Wrapped<Object>? successfulReferrals,
-      Wrapped<double>? createdAt,
-      Wrapped<Object>? isActive}) {
+      Wrapped<int>? successfulReferrals,
+      Wrapped<int>? createdAt,
+      Wrapped<bool>? isActive}) {
     return EventReferralDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         id: (id != null ? id.value : this.id),
@@ -31279,11 +31619,11 @@ class EventGuestCheckIn {
   @JsonKey(name: 'freeTicket', defaultValue: false)
   final bool freeTicket;
   @JsonKey(name: 'receivedAt')
-  final double receivedAt;
+  final int receivedAt;
   @JsonKey(name: 'invitationId')
   final String? invitationId;
   @JsonKey(name: 'timestamp')
-  final double? timestamp;
+  final int? timestamp;
   static const fromJsonFactory = _$EventGuestCheckInFromJson;
 
   @override
@@ -31334,9 +31674,9 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
       TicketProfileSummary? ticketProfile,
       bool? isCheckIn,
       bool? freeTicket,
-      double? receivedAt,
+      int? receivedAt,
       String? invitationId,
-      double? timestamp}) {
+      int? timestamp}) {
     return EventGuestCheckIn(
         ticketId: ticketId ?? this.ticketId,
         ticketProfile: ticketProfile ?? this.ticketProfile,
@@ -31352,9 +31692,9 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
       Wrapped<TicketProfileSummary?>? ticketProfile,
       Wrapped<bool>? isCheckIn,
       Wrapped<bool>? freeTicket,
-      Wrapped<double>? receivedAt,
+      Wrapped<int>? receivedAt,
       Wrapped<String?>? invitationId,
-      Wrapped<double?>? timestamp}) {
+      Wrapped<int?>? timestamp}) {
     return EventGuestCheckIn(
         ticketId: (ticketId != null ? ticketId.value : this.ticketId),
         ticketProfile:
@@ -32127,6 +32467,79 @@ List<enums.MintingListingDtoDataType>?
 
   return mintingListingDtoDataType
       .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? registrationTypeVisibilityNullableToJson(
+    enums.RegistrationTypeVisibility? registrationTypeVisibility) {
+  return registrationTypeVisibility?.value;
+}
+
+String? registrationTypeVisibilityToJson(
+    enums.RegistrationTypeVisibility registrationTypeVisibility) {
+  return registrationTypeVisibility.value;
+}
+
+enums.RegistrationTypeVisibility registrationTypeVisibilityFromJson(
+  Object? registrationTypeVisibility, [
+  enums.RegistrationTypeVisibility? defaultValue,
+]) {
+  return enums.RegistrationTypeVisibility.values
+          .firstWhereOrNull((e) => e.value == registrationTypeVisibility) ??
+      defaultValue ??
+      enums.RegistrationTypeVisibility.swaggerGeneratedUnknown;
+}
+
+enums.RegistrationTypeVisibility? registrationTypeVisibilityNullableFromJson(
+  Object? registrationTypeVisibility, [
+  enums.RegistrationTypeVisibility? defaultValue,
+]) {
+  if (registrationTypeVisibility == null) {
+    return null;
+  }
+  return enums.RegistrationTypeVisibility.values
+          .firstWhereOrNull((e) => e.value == registrationTypeVisibility) ??
+      defaultValue;
+}
+
+String registrationTypeVisibilityExplodedListToJson(
+    List<enums.RegistrationTypeVisibility>? registrationTypeVisibility) {
+  return registrationTypeVisibility?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> registrationTypeVisibilityListToJson(
+    List<enums.RegistrationTypeVisibility>? registrationTypeVisibility) {
+  if (registrationTypeVisibility == null) {
+    return [];
+  }
+
+  return registrationTypeVisibility.map((e) => e.value!).toList();
+}
+
+List<enums.RegistrationTypeVisibility> registrationTypeVisibilityListFromJson(
+  List? registrationTypeVisibility, [
+  List<enums.RegistrationTypeVisibility>? defaultValue,
+]) {
+  if (registrationTypeVisibility == null) {
+    return defaultValue ?? [];
+  }
+
+  return registrationTypeVisibility
+      .map((e) => registrationTypeVisibilityFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.RegistrationTypeVisibility>?
+    registrationTypeVisibilityNullableListFromJson(
+  List? registrationTypeVisibility, [
+  List<enums.RegistrationTypeVisibility>? defaultValue,
+]) {
+  if (registrationTypeVisibility == null) {
+    return defaultValue;
+  }
+
+  return registrationTypeVisibility
+      .map((e) => registrationTypeVisibilityFromJson(e.toString()))
       .toList();
 }
 

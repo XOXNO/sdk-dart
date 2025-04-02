@@ -10196,6 +10196,88 @@ components:
           type: string
         country:
           type: string
+    RegistrationType:
+      type: object
+      properties:
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          description: Visibility of the event registration
+        maxLimit:
+          type: integer
+          description: Maximum number of registrations allowed
+        userLimit:
+          type: integer
+          description: Maximum number of registrations allowed per user
+        soldCount:
+          type: integer
+          description: Current number of tickets sold
+        hasSideEvents:
+          type: boolean
+          description: Whether the event has side events
+        showGuestCount:
+          type: boolean
+          description: Whether to show the guest count
+        requireKYC:
+          type: boolean
+          description: Whether KYC is required for registration
+        refundable:
+          type: boolean
+          description: Whether the event is refundable
+        nameWithNumber:
+          type: boolean
+          description: Whether to show name with number
+        botProtection:
+          type: boolean
+          description: Whether bot protection is enabled
+        isPublished:
+          type: boolean
+          description: Whether the event is published
+        hasWaitlist:
+          type: boolean
+          description: Whether the event has a waitlist
+        requireName:
+          type: boolean
+          description: Whether name is required for registration
+        requireEmail:
+          type: boolean
+          description: Whether email is required for registration
+        requirePhoneNumber:
+          type: boolean
+          description: Whether phone number is required for registration
+        hasCustomQuestions:
+          type: boolean
+          description: Whether the event has custom questions
+        emailSender:
+          type: string
+          description: Email sender for notifications
+      required:
+        - visibility
+        - maxLimit
+        - userLimit
+        - soldCount
+        - hasSideEvents
+        - showGuestCount
+        - requireKYC
+        - refundable
+        - nameWithNumber
+        - botProtection
+        - isPublished
+        - hasWaitlist
+        - requireName
+        - requireEmail
+        - requirePhoneNumber
+        - hasCustomQuestions
+    PremiumType:
+      type: object
+      properties:
+        searchable:
+          type: boolean
+          description: Whether the event is searchable
+      required:
+        - searchable
     EventUserRoleDoc:
       type: object
       properties:
@@ -10251,10 +10333,10 @@ components:
               - event-manager-create-stage
               - event-manager-edit-stage
         createdAt:
-          type: number
+          type: integer
           description: Timestamp for when the user role was created.
         endTime:
-          type: number
+          type: integer
           description: Timestamp for when the user role will expire.
         id:
           type: string
@@ -10274,7 +10356,6 @@ components:
         - role
         - permissions
         - createdAt
-        - endTime
         - id
         - status
     EventProfileDoc:
@@ -10298,7 +10379,7 @@ components:
             - event-user-role
           default: event-profile
         createdAt:
-          type: number
+          type: integer
           description: The time the event was created as a Unix timestamp in seconds.
         creatorAddress:
           type: string
@@ -10307,10 +10388,10 @@ components:
           type: string
           description: Title of the event.
         startTime:
-          type: number
+          type: integer
           description: Start time of the event as a Unix timestamp in seconds.
         endTime:
-          type: number
+          type: integer
           description: End time of the event as a Unix timestamp in seconds.
         descriptionUrl:
           type: string
@@ -10384,13 +10465,15 @@ components:
           type: string
           description: URL to the background image in Azure storage, optional.
         registration:
-          type: object
           description: >-
             Registration details such as visibility, max capacity, and ticket
             limits.
+          allOf:
+            - $ref: '#/components/schemas/RegistrationType'
         premium:
-          type: object
           description: Event premium features
+          allOf:
+            - $ref: '#/components/schemas/PremiumType'
         contractAddress:
           type: string
           description: The address of the contract that manages the event.
@@ -14158,9 +14241,11 @@ components:
             - public
             - private
         maxLimit:
-          type: number
+          type: integer
+          description: Maximum registrations allowed
         userLimit:
-          type: number
+          type: integer
+          description: Maximum registrations per user
         requireKYC:
           type: boolean
         requireName:
@@ -14225,7 +14310,7 @@ components:
           type: string
         startTime:
           type: number
-          minimum: 1743527325
+          minimum: 1743552230
         endTime:
           type: number
         location:
@@ -14328,7 +14413,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: integer
           description: Total number of guests.
           example: 100
         guests:
@@ -14339,6 +14424,19 @@ components:
       required:
         - count
         - guests
+    EventStartPrice:
+      type: object
+      properties:
+        price:
+          type: number
+          description: Starting price of the event ticket.
+        currency:
+          type: string
+          description: Currency of the price.
+          example: USD
+      required:
+        - price
+        - currency
     EventProfile:
       type: object
       properties:
@@ -14360,7 +14458,7 @@ components:
             - event-user-role
           default: event-profile
         createdAt:
-          type: number
+          type: integer
           description: The time the event was created as a Unix timestamp in seconds.
         creatorAddress:
           type: string
@@ -14369,10 +14467,10 @@ components:
           type: string
           description: Title of the event.
         startTime:
-          type: number
+          type: integer
           description: Start time of the event as a Unix timestamp in seconds.
         endTime:
-          type: number
+          type: integer
           description: End time of the event as a Unix timestamp in seconds.
         descriptionUrl:
           type: string
@@ -14446,13 +14544,15 @@ components:
           type: string
           description: URL to the background image in Azure storage, optional.
         registration:
-          type: object
           description: >-
             Registration details such as visibility, max capacity, and ticket
             limits.
+          allOf:
+            - $ref: '#/components/schemas/RegistrationType'
         premium:
-          type: object
           description: Event premium features
+          allOf:
+            - $ref: '#/components/schemas/PremiumType'
         contractAddress:
           type: string
           description: The address of the contract that manages the event.
@@ -14480,11 +14580,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/EventGuestSummary'
         startsFrom:
-          type: object
-          description: The price of the event, if applicable.
-          example:
-            price: 100
-            currency: USD
+          description: The starting price of the event, if applicable.
+          allOf:
+            - $ref: '#/components/schemas/EventStartPrice'
       required:
         - dataType
         - createdAt
@@ -14526,11 +14624,11 @@ components:
           type: string
           example: Event Title
         startTime:
-          type: number
-          example: 1743527325
+          type: integer
+          example: 1743552230
         endTime:
-          type: number
-          example: 1743527325
+          type: integer
+          example: 1743552230
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -14570,7 +14668,7 @@ components:
           type: string
           description: ID of the selected ticket stage
         quantity:
-          type: number
+          type: integer
           description: Quantity of tickets selected for this stage
           minimum: 1
         price:
@@ -14783,13 +14881,13 @@ components:
             - completed
             - partiallyCompleted
         createdAt:
-          type: number
+          type: integer
           description: Timestamp of guest creation.
-          example: 1743527325
+          example: 1743552230
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 24dc565b-a71d-4c5a-af0d-44035a1cf05f
+          example: b2247cd5-d3e8-42b6-9b8c-7f1c736b10a4
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14856,19 +14954,19 @@ components:
           type: string
         royalties:
           type: number
+          description: Royalties percentage (0-90)
         badgeColor:
           type: string
         maxLimit:
-          type: number
+          type: integer
+          description: Maximum limit for this ticket type (0 for unlimited)
         userLimit:
-          type: number
+          type: integer
+          description: Maximum limit per user for this ticket type (0 for unlimited)
       required:
         - name
         - description
-        - royalties
         - badgeColor
-        - maxLimit
-        - userLimit
     EventTicketProfileDoc:
       type: object
       properties:
@@ -14904,7 +15002,7 @@ components:
             URL of the image that will be used as the NFT representing this
             ticket type.
         royalties:
-          type: object
+          type: number
           description: >-
             Royalties set for the mint of this specific NFT ticket type,
             expressed as a percentage.
@@ -14919,28 +15017,28 @@ components:
           type: object
           description: Other characteristics specific to this ticket type.
         maxLimit:
-          type: object
+          type: integer
           description: >-
             Optional maximum number of tickets that can be minted for this
             ticket type.
           example: 1000
         userLimit:
-          type: object
+          type: integer
           default: 0
           description: Limit on the number of tickets a single user can buy for this type.
         soldCount:
-          type: object
+          type: integer
           description: The current count of sold tickets
           example: 1000
           default: 0
         createdAt:
-          type: number
+          type: integer
           description: Timestamp when the ticket type was created.
-          example: 1743527325
+          example: 1743552230
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 64358a5d-f657-4145-bc14-b026797e967e
+          example: 77f5bd09-76e4-4f8c-91ad-1d47e7002ae0
       required:
         - dataType
         - eventId
@@ -14958,22 +15056,22 @@ components:
           type: string
         royalties:
           type: number
+          description: Royalties percentage (0-90)
         badgeColor:
           type: string
         maxLimit:
-          type: number
+          type: integer
+          description: Maximum limit for this ticket type (0 for unlimited)
         userLimit:
-          type: number
+          type: integer
+          description: Maximum limit per user for this ticket type (0 for unlimited)
         name:
           type: string
         characteristics:
           type: object
       required:
         - description
-        - royalties
         - badgeColor
-        - maxLimit
-        - userLimit
         - name
         - characteristics
     EgldOrEsdtTokenPaymentDto:
@@ -15000,21 +15098,28 @@ components:
         name:
           type: string
         startTime:
-          type: number
-          minimum: 1743527325
+          type: integer
+          minimum: 1743552230
+          description: Start time timestamp
         endTime:
-          type: number
-          minimum: 1743613725
+          type: integer
+          minimum: 1743638630
+          description: End time timestamp
         maxLimit:
-          type: number
+          type: integer
+          description: Maximum limit for this stage (0 for unlimited)
         userLimit:
-          type: number
+          type: integer
+          description: Maximum limit per user for this stage (0 for unlimited)
         isEnabled:
           type: boolean
+          description: Is this stage enabled for sales?
         isWhitelist:
           type: boolean
+          description: Is this stage restricted to a whitelist?
         requiredApproval:
           type: boolean
+          description: Does registration/payment require approval?
         prices:
           type: array
           items:
@@ -15024,11 +15129,6 @@ components:
         - name
         - startTime
         - endTime
-        - maxLimit
-        - userLimit
-        - isEnabled
-        - isWhitelist
-        - requiredApproval
         - prices
     EventStageProfileDoc:
       type: object
@@ -15062,20 +15162,20 @@ components:
           type: string
           description: Name of the stage (e.g., Early Bird, Regular).
         startTime:
-          type: number
+          type: integer
           description: Timestamp when this stage starts.
-          example: 1743527325
+          example: 1743552230
         endTime:
-          type: number
+          type: integer
           description: Timestamp when this stage ends.
-          example: 1743527325
+          example: 1743552230
         maxLimit:
-          type: number
+          type: integer
           description: >-
             Limit on the total number of tickets that can be sold during this
             stage.
         userLimit:
-          type: number
+          type: integer
           description: >-
             Limit on the number of tickets a single user can buy during this
             stage.
@@ -15094,12 +15194,12 @@ components:
           items:
             $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
         soldCount:
-          type: number
+          type: integer
           description: Tracks the total number of tickets sold during this stage.
         id:
           type: string
           description: Unique identifier for this stage.
-          example: ce8c3cf0-6145-4df9-b3c5-f604645016aa
+          example: aedb5929-7888-46ff-b323-90cf31b893fc
       required:
         - dataType
         - eventId
@@ -15119,15 +15219,20 @@ components:
       type: object
       properties:
         maxLimit:
-          type: number
+          type: integer
+          description: Maximum limit for this stage (0 for unlimited)
         userLimit:
-          type: number
+          type: integer
+          description: Maximum limit per user for this stage (0 for unlimited)
         isEnabled:
           type: boolean
+          description: Is this stage enabled for sales?
         isWhitelist:
           type: boolean
+          description: Is this stage restricted to a whitelist?
         requiredApproval:
           type: boolean
+          description: Does registration/payment require approval?
         prices:
           type: array
           items:
@@ -15135,17 +15240,12 @@ components:
         name:
           type: string
         startTime:
-          type: number
-          minimum: 1743527325
+          type: integer
+          minimum: 1743552230
         endTime:
-          type: number
-          minimum: 1743613725
+          type: integer
+          minimum: 1743638630
       required:
-        - maxLimit
-        - userLimit
-        - isEnabled
-        - isWhitelist
-        - requiredApproval
         - prices
         - name
         - startTime
@@ -15183,7 +15283,7 @@ components:
         discountedPrice:
           type: number
         quantity:
-          type: number
+          type: integer
       required:
         - stageId
         - stageName
@@ -15283,9 +15383,9 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 5f7abeb9-8719-4d26-86f6-5029b5d197e7
+          example: 14043182-6109-4463-8645-2d42e54da89b
         quantity:
-          type: number
+          type: integer
           description: The number of tickets for this type.
           example: 100
       required:
@@ -15334,17 +15434,17 @@ components:
           items:
             $ref: '#/components/schemas/TicketProfileSummary'
         startTime:
-          type: number
+          type: integer
           description: The start timestamp of the invitation.
           example: 1627849200
         endTime:
-          type: number
+          type: integer
           description: The expiry timestamp of the invitation.
           example: 1627852800
         createdAt:
-          type: number
+          type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1743527325
+          example: 1743552230
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15363,7 +15463,7 @@ components:
             - canceled
           default: pending
         claimedAt:
-          type: number
+          type: integer
           description: The timestamp when the ticket was claimed.
           example: 0
         claimedBy:
@@ -15377,7 +15477,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 3511e17c-7505-4fea-a020-8043316ecde9
+          example: cc267451-3183-4520-872b-2f514f9b3675
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15436,17 +15536,17 @@ components:
           items:
             $ref: '#/components/schemas/TicketProfileSummary'
         startTime:
-          type: number
+          type: integer
           description: The start timestamp of the invitation.
           example: 1627849200
         endTime:
-          type: number
+          type: integer
           description: The expiry timestamp of the invitation.
           example: 1627852800
         createdAt:
-          type: number
+          type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1743527325
+          example: 1743552230
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15465,7 +15565,7 @@ components:
             - canceled
           default: pending
         claimedAt:
-          type: number
+          type: integer
           description: The timestamp when the ticket was claimed.
           example: 0
         claimedBy:
@@ -15479,7 +15579,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 3511e17c-7505-4fea-a020-8043316ecde9
+          example: cc267451-3183-4520-872b-2f514f9b3675
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15563,14 +15663,15 @@ components:
           type: number
           description: Optional maximum discount cap for percentage-based vouchers.
         maxUses:
-          type: number
+          type: integer
           description: Total number of uses allowed for this voucher.
         maxUsesPerUser:
-          type: number
+          type: integer
           description: Maximum uses allowed per user.
         usedCount:
-          type: object
+          type: integer
           description: Tracks the number of times the voucher has been used.
+          default: 0
         eventId:
           type: string
           description: List of specific event IDs where the voucher can be applied.
@@ -15587,31 +15688,32 @@ components:
           items:
             type: string
         minTicketCount:
-          type: number
+          type: integer
           description: Minimum number of tickets required to use the voucher, optional.
         maxTicketCount:
-          type: number
+          type: integer
           description: >-
             Maximum number of tickets in a single transaction where the voucher
             can be applied, optional.
         startDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1743527325
+          example: 1743552230
         endDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher expires.
-          example: 1743527325
+          example: 1743552230
         isActive:
-          type: object
+          type: boolean
           description: Indicates whether the voucher is currently active.
+          default: true
         ownerId:
           type: string
           description: Optional ID of the owner who can use this voucher.
         createdAt:
-          type: number
+          type: integer
           description: Timestamp when the voucher was created.
-          example: 1743527325
+          example: 1743552230
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15621,15 +15723,12 @@ components:
         - code
         - type
         - amount
-        - maxDiscountAmount
         - maxUses
         - maxUsesPerUser
         - usedCount
         - eventId
         - ticketTypeIds
         - stageIds
-        - minTicketCount
-        - maxTicketCount
         - startDate
         - endDate
         - isActive
@@ -15711,9 +15810,9 @@ components:
           items:
             type: string
         createdAt:
-          type: number
+          type: integer
           description: Timestamp of question creation.
-          example: 1743527325
+          example: 1743552230
       required:
         - dataType
         - id
@@ -15862,13 +15961,13 @@ components:
             - completed
             - partiallyCompleted
         createdAt:
-          type: number
+          type: integer
           description: Timestamp of guest creation.
-          example: 1743527325
+          example: 1743552230
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 24dc565b-a71d-4c5a-af0d-44035a1cf05f
+          example: b2247cd5-d3e8-42b6-9b8c-7f1c736b10a4
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15983,7 +16082,7 @@ components:
               - event-manager-create-stage
               - event-manager-edit-stage
         endTime:
-          type: number
+          type: integer
           description: The expiry timestamp of the role.
           example: 1627852800
       required:
@@ -15997,7 +16096,7 @@ components:
       type: object
       properties:
         ticketCount:
-          type: number
+          type: integer
           description: The number of tickets the user has for the event.
           example: 1
         status:
@@ -16185,10 +16284,10 @@ components:
           type: number
           description: Optional maximum discount cap for percentage-based vouchers.
         maxUses:
-          type: number
+          type: integer
           description: Total number of uses allowed for this voucher.
         maxUsesPerUser:
-          type: number
+          type: integer
           description: Maximum uses allowed per user.
         eventId:
           type: string
@@ -16206,23 +16305,23 @@ components:
           items:
             type: string
         minTicketCount:
-          type: number
+          type: integer
           description: Minimum number of tickets required to use the voucher, optional.
         maxTicketCount:
-          type: number
+          type: integer
           description: >-
             Maximum number of tickets in a single transaction where the voucher
             can be applied, optional.
         startDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1743527325
+          example: 1743552230
         endDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher expires.
-          example: 1743527325
+          example: 1743552230
         isActive:
-          type: object
+          type: boolean
           description: Indicates whether the voucher is currently active.
           default: true
         ownerId:
@@ -16244,10 +16343,10 @@ components:
           type: number
           description: Optional maximum discount cap for percentage-based vouchers.
         maxUses:
-          type: number
+          type: integer
           description: Total number of uses allowed for this voucher.
         maxUsesPerUser:
-          type: number
+          type: integer
           description: Maximum uses allowed per user.
         ticketTypeIds:
           description: List of specific ticket type IDs where the voucher can be applied.
@@ -16262,23 +16361,23 @@ components:
           items:
             type: string
         minTicketCount:
-          type: number
+          type: integer
           description: Minimum number of tickets required to use the voucher, optional.
         maxTicketCount:
-          type: number
+          type: integer
           description: >-
             Maximum number of tickets in a single transaction where the voucher
             can be applied, optional.
         startDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1743527325
+          example: 1743552230
         endDate:
-          type: number
+          type: integer
           description: Timestamp when the voucher expires.
-          example: 1743527325
+          example: 1743552230
         isActive:
-          type: object
+          type: boolean
           description: Indicates whether the voucher is currently active.
           default: true
         ownerId:
@@ -16320,7 +16419,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: a8c31b38-77b0-4cba-8535-724e36030da2
+          example: 2e1f4df2-87f3-4734-afc2-80e74a507ec1
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16334,11 +16433,11 @@ components:
           type: object
           description: The actual answer provided by the guest.
         createdAt:
-          type: number
+          type: integer
           description: Timestamp when the answer was provided.
-          example: 1743527325
+          example: 1743552230
         ttl:
-          type: number
+          type: integer
           description: Time to live in seconds. Only set when status is pending.
       required:
         - dataType
@@ -16478,7 +16577,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 7a79dd1b-4878-4e1f-9f2e-1af50ab34a66
+          example: 61dd4864-4791-4e7d-b6d1-96cc02dee9fa
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16495,17 +16594,17 @@ components:
           allOf:
             - $ref: '#/components/schemas/RewardDetails'
         isSelfService:
-          type: object
+          type: boolean
           description: >-
             Indicates whether normal guests can generate and share their unique
             referral codes for this event.
         isActive:
-          type: object
+          type: boolean
           description: Indicates whether the referral program is currently active.
         createdAt:
-          type: number
+          type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1743527325
+          example: 1743552230
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16591,7 +16690,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 4a1cf0a9-84b9-46d6-b6a2-8135512f4215
+          example: 2130c8d8-b285-4a92-afd9-6ab47c37d735
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16605,14 +16704,14 @@ components:
           type: string
           description: The ID of the referral configuration this referral follows.
         successfulReferrals:
-          type: object
+          type: integer
           description: Count of successful paid tickets with referrals.
         createdAt:
-          type: number
+          type: integer
           description: Timestamp when the referral was created.
-          example: 1743527325
+          example: 1743552230
         isActive:
-          type: object
+          type: boolean
           description: Indicates whether the referral code is currently active.
       required:
         - dataType
@@ -17518,7 +17617,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: d18829cc-2da1-443d-9407-737b98c2aefa
+          example: c2e8eb3e-135b-42f0-a3d4-0a801fac9e67
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17533,17 +17632,17 @@ components:
           example: true
           default: false
         receivedAt:
-          type: number
+          type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1743527325
+          example: 1743552230
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: e82c26f3-b539-48ca-bce7-f7c9e5f56870
+          example: 89c2c411-8815-40bd-99e9-2f19427e4f6b
         timestamp:
-          type: number
+          type: integer
           description: Timestamp of check-in.
-          example: 1743527325
+          example: 1743552230
       required:
         - ticketId
         - isCheckIn

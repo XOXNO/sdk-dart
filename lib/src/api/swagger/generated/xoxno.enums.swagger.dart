@@ -23,6 +23,20 @@ enum MintingListingDtoDataType {
   const MintingListingDtoDataType(this.value);
 }
 
+enum RegistrationTypeVisibility {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('public')
+  public('public'),
+  @JsonValue('private')
+  private('private');
+
+  final String? value;
+
+  const RegistrationTypeVisibility(this.value);
+}
+
 enum EventUserRoleDocDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

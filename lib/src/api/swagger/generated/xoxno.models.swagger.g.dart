@@ -1613,6 +1613,57 @@ Map<String, dynamic> _$EventLocationDtoToJson(EventLocationDto instance) =>
       'country': instance.country,
     };
 
+RegistrationType _$RegistrationTypeFromJson(Map<String, dynamic> json) =>
+    RegistrationType(
+      visibility: registrationTypeVisibilityFromJson(json['visibility']),
+      maxLimit: (json['maxLimit'] as num).toInt(),
+      userLimit: (json['userLimit'] as num).toInt(),
+      soldCount: (json['soldCount'] as num).toInt(),
+      hasSideEvents: json['hasSideEvents'] as bool,
+      showGuestCount: json['showGuestCount'] as bool,
+      requireKYC: json['requireKYC'] as bool,
+      refundable: json['refundable'] as bool,
+      nameWithNumber: json['nameWithNumber'] as bool,
+      botProtection: json['botProtection'] as bool,
+      isPublished: json['isPublished'] as bool,
+      hasWaitlist: json['hasWaitlist'] as bool,
+      requireName: json['requireName'] as bool,
+      requireEmail: json['requireEmail'] as bool,
+      requirePhoneNumber: json['requirePhoneNumber'] as bool,
+      hasCustomQuestions: json['hasCustomQuestions'] as bool,
+      emailSender: json['emailSender'] as String?,
+    );
+
+Map<String, dynamic> _$RegistrationTypeToJson(RegistrationType instance) =>
+    <String, dynamic>{
+      'visibility': registrationTypeVisibilityToJson(instance.visibility),
+      'maxLimit': instance.maxLimit,
+      'userLimit': instance.userLimit,
+      'soldCount': instance.soldCount,
+      'hasSideEvents': instance.hasSideEvents,
+      'showGuestCount': instance.showGuestCount,
+      'requireKYC': instance.requireKYC,
+      'refundable': instance.refundable,
+      'nameWithNumber': instance.nameWithNumber,
+      'botProtection': instance.botProtection,
+      'isPublished': instance.isPublished,
+      'hasWaitlist': instance.hasWaitlist,
+      'requireName': instance.requireName,
+      'requireEmail': instance.requireEmail,
+      'requirePhoneNumber': instance.requirePhoneNumber,
+      'hasCustomQuestions': instance.hasCustomQuestions,
+      'emailSender': instance.emailSender,
+    };
+
+PremiumType _$PremiumTypeFromJson(Map<String, dynamic> json) => PremiumType(
+      searchable: json['searchable'] as bool,
+    );
+
+Map<String, dynamic> _$PremiumTypeToJson(PremiumType instance) =>
+    <String, dynamic>{
+      'searchable': instance.searchable,
+    };
+
 EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
     EventUserRoleDoc(
       dataType: eventUserRoleDocDataTypeFromJson(json['dataType']),
@@ -1623,8 +1674,8 @@ EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
       role: eventUserRoleDocRoleListFromJson(json['role'] as List?),
       permissions:
           eventUserRoleDocPermissionsListFromJson(json['permissions'] as List?),
-      createdAt: (json['createdAt'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
+      endTime: (json['endTime'] as num?)?.toInt(),
       id: json['id'] as String,
       status: eventUserRoleDocStatusFromJson(json['status']),
     );
@@ -1649,11 +1700,11 @@ EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
     EventProfileDoc(
       dataType: EventProfileDoc.eventProfileDocDataTypeDataTypeFromJson(
           json['dataType']),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
       creatorAddress: json['creatorAddress'] as String,
       title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
       descriptionUrl: json['descriptionUrl'] as String?,
       location:
           EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
@@ -1664,8 +1715,9 @@ EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
       subCategory:
           eventProfileDocSubCategoryNullableFromJson(json['subCategory']),
       background: json['background'] as String?,
-      registration: json['registration'] as Object,
-      premium: json['premium'] as Object,
+      registration: RegistrationType.fromJson(
+          json['registration'] as Map<String, dynamic>),
+      premium: PremiumType.fromJson(json['premium'] as Map<String, dynamic>),
       contractAddress: json['contractAddress'] as String?,
       collection: json['collection'] as String?,
       seo: json['seo'],
@@ -1693,8 +1745,8 @@ Map<String, dynamic> _$EventProfileDocToJson(EventProfileDoc instance) =>
       'subCategory':
           eventProfileDocSubCategoryNullableToJson(instance.subCategory),
       'background': instance.background,
-      'registration': instance.registration,
-      'premium': instance.premium,
+      'registration': instance.registration.toJson(),
+      'premium': instance.premium.toJson(),
       'contractAddress': instance.contractAddress,
       'collection': instance.collection,
       'seo': instance.seo,
@@ -4387,8 +4439,8 @@ RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
         Map<String, dynamic> json) =>
     RegistrationDetailsDto(
       visibility: registrationDetailsDtoVisibilityFromJson(json['visibility']),
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
+      maxLimit: (json['maxLimit'] as num).toInt(),
+      userLimit: (json['userLimit'] as num).toInt(),
       requireKYC: json['requireKYC'] as bool,
       requireName: json['requireName'] as bool,
       requireEmail: json['requireEmail'] as bool,
@@ -4521,7 +4573,7 @@ Map<String, dynamic> _$EventGuestProfileSummaryToJson(
 
 EventGuestSummary _$EventGuestSummaryFromJson(Map<String, dynamic> json) =>
     EventGuestSummary(
-      count: (json['count'] as num).toDouble(),
+      count: (json['count'] as num).toInt(),
       guests: (json['guests'] as List<dynamic>?)
               ?.map((e) =>
                   EventGuestProfileSummary.fromJson(e as Map<String, dynamic>))
@@ -4535,14 +4587,26 @@ Map<String, dynamic> _$EventGuestSummaryToJson(EventGuestSummary instance) =>
       'guests': instance.guests.map((e) => e.toJson()).toList(),
     };
 
+EventStartPrice _$EventStartPriceFromJson(Map<String, dynamic> json) =>
+    EventStartPrice(
+      price: (json['price'] as num).toDouble(),
+      currency: json['currency'] as String,
+    );
+
+Map<String, dynamic> _$EventStartPriceToJson(EventStartPrice instance) =>
+    <String, dynamic>{
+      'price': instance.price,
+      'currency': instance.currency,
+    };
+
 EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
       dataType:
           EventProfile.eventProfileDataTypeDataTypeFromJson(json['dataType']),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
       creatorAddress: json['creatorAddress'] as String,
       title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
       descriptionUrl: json['descriptionUrl'] as String?,
       location:
           EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
@@ -4552,8 +4616,9 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
       category: eventProfileCategoryFromJson(json['category']),
       subCategory: eventProfileSubCategoryNullableFromJson(json['subCategory']),
       background: json['background'] as String?,
-      registration: json['registration'] as Object,
-      premium: json['premium'] as Object,
+      registration: RegistrationType.fromJson(
+          json['registration'] as Map<String, dynamic>),
+      premium: PremiumType.fromJson(json['premium'] as Map<String, dynamic>),
       contractAddress: json['contractAddress'] as String?,
       collection: json['collection'] as String?,
       seo: json['seo'],
@@ -4570,7 +4635,10 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
           ? null
           : EventGuestSummary.fromJson(
               json['guestSummary'] as Map<String, dynamic>),
-      startsFrom: json['startsFrom'],
+      startsFrom: json['startsFrom'] == null
+          ? null
+          : EventStartPrice.fromJson(
+              json['startsFrom'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
@@ -4590,8 +4658,8 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'subCategory':
           eventProfileSubCategoryNullableToJson(instance.subCategory),
       'background': instance.background,
-      'registration': instance.registration,
-      'premium': instance.premium,
+      'registration': instance.registration.toJson(),
+      'premium': instance.premium.toJson(),
       'contractAddress': instance.contractAddress,
       'collection': instance.collection,
       'seo': instance.seo,
@@ -4599,7 +4667,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'eventPermissions': instance.eventPermissions?.toJson(),
       'creatorProfile': instance.creatorProfile?.toJson(),
       'guestSummary': instance.guestSummary?.toJson(),
-      'startsFrom': instance.startsFrom,
+      'startsFrom': instance.startsFrom?.toJson(),
     };
 
 EventProfileQuery _$EventProfileQueryFromJson(Map<String, dynamic> json) =>
@@ -4622,8 +4690,8 @@ Map<String, dynamic> _$EventProfileQueryToJson(EventProfileQuery instance) =>
 EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
     EventProfileEditDto(
       title: json['title'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
       location:
           EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool?,
@@ -4656,7 +4724,7 @@ TicketSelectionDto _$TicketSelectionDtoFromJson(Map<String, dynamic> json) =>
     TicketSelectionDto(
       ticketProfileId: json['ticketProfileId'] as String,
       ticketStageId: json['ticketStageId'] as String,
-      quantity: (json['quantity'] as num).toDouble(),
+      quantity: (json['quantity'] as num).toInt(),
       price: (json['price'] as num?)?.toDouble(),
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -4805,7 +4873,7 @@ EventGuestDoc _$EventGuestDocFromJson(Map<String, dynamic> json) =>
           ? null
           : EventGuestBilling.fromJson(json['billing'] as Map<String, dynamic>),
       status: eventGuestDocStatusFromJson(json['status']),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
       id: json['id'] as String?,
@@ -4882,10 +4950,10 @@ EventTicketProfileCreateDto _$EventTicketProfileCreateDtoFromJson(
     EventTicketProfileCreateDto(
       name: json['name'] as String,
       description: json['description'] as String,
-      royalties: (json['royalties'] as num).toDouble(),
+      royalties: (json['royalties'] as num?)?.toDouble(),
       badgeColor: json['badgeColor'] as String,
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
+      maxLimit: (json['maxLimit'] as num?)?.toInt(),
+      userLimit: (json['userLimit'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventTicketProfileCreateDtoToJson(
@@ -4909,13 +4977,13 @@ EventTicketProfileDoc _$EventTicketProfileDocFromJson(
       name: json['name'] as String,
       description: json['description'] as String,
       profile: json['profile'] as String,
-      royalties: json['royalties'],
+      royalties: (json['royalties'] as num?)?.toDouble(),
       badgeColor: json['badgeColor'] as String?,
       characteristics: json['characteristics'],
-      maxLimit: json['maxLimit'],
-      userLimit: json['userLimit'] as Object,
-      soldCount: json['soldCount'] as Object,
-      createdAt: (json['createdAt'] as num).toDouble(),
+      maxLimit: (json['maxLimit'] as num?)?.toInt(),
+      userLimit: (json['userLimit'] as num).toInt(),
+      soldCount: (json['soldCount'] as num).toInt(),
+      createdAt: (json['createdAt'] as num).toInt(),
       id: json['id'] as String,
     );
 
@@ -4941,10 +5009,10 @@ EventTicketProfileEditDto _$EventTicketProfileEditDtoFromJson(
         Map<String, dynamic> json) =>
     EventTicketProfileEditDto(
       description: json['description'] as String,
-      royalties: (json['royalties'] as num).toDouble(),
+      royalties: (json['royalties'] as num?)?.toDouble(),
       badgeColor: json['badgeColor'] as String,
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
+      maxLimit: (json['maxLimit'] as num?)?.toInt(),
+      userLimit: (json['userLimit'] as num?)?.toInt(),
       name: json['name'] as String,
       characteristics: json['characteristics'] as Object,
     );
@@ -4982,13 +5050,13 @@ EventStageProfileCreateDto _$EventStageProfileCreateDtoFromJson(
     EventStageProfileCreateDto(
       ticketId: json['ticketId'] as String,
       name: json['name'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
-      isEnabled: json['isEnabled'] as bool,
-      isWhitelist: json['isWhitelist'] as bool,
-      requiredApproval: json['requiredApproval'] as bool,
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
+      maxLimit: (json['maxLimit'] as num?)?.toInt(),
+      userLimit: (json['userLimit'] as num?)?.toInt(),
+      isEnabled: json['isEnabled'] as bool?,
+      isWhitelist: json['isWhitelist'] as bool?,
+      requiredApproval: json['requiredApproval'] as bool?,
       prices: (json['prices'] as List<dynamic>?)
               ?.map((e) =>
                   EgldOrEsdtTokenPaymentDto.fromJson(e as Map<String, dynamic>))
@@ -5020,10 +5088,10 @@ EventStageProfileDoc _$EventStageProfileDocFromJson(
       eventId: json['eventId'] as String,
       ticketId: json['ticketId'] as String,
       name: json['name'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
+      maxLimit: (json['maxLimit'] as num).toInt(),
+      userLimit: (json['userLimit'] as num).toInt(),
       isEnabled: json['isEnabled'] as bool,
       isWhitelist: json['isWhitelist'] as bool,
       requiredApproval: json['requiredApproval'] as bool,
@@ -5032,7 +5100,7 @@ EventStageProfileDoc _$EventStageProfileDocFromJson(
                   EgldOrEsdtTokenPayment.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      soldCount: (json['soldCount'] as num).toDouble(),
+      soldCount: (json['soldCount'] as num).toInt(),
       id: json['id'] as String,
     );
 
@@ -5058,19 +5126,19 @@ Map<String, dynamic> _$EventStageProfileDocToJson(
 EventStageProfileEditDto _$EventStageProfileEditDtoFromJson(
         Map<String, dynamic> json) =>
     EventStageProfileEditDto(
-      maxLimit: (json['maxLimit'] as num).toDouble(),
-      userLimit: (json['userLimit'] as num).toDouble(),
-      isEnabled: json['isEnabled'] as bool,
-      isWhitelist: json['isWhitelist'] as bool,
-      requiredApproval: json['requiredApproval'] as bool,
+      maxLimit: (json['maxLimit'] as num?)?.toInt(),
+      userLimit: (json['userLimit'] as num?)?.toInt(),
+      isEnabled: json['isEnabled'] as bool?,
+      isWhitelist: json['isWhitelist'] as bool?,
+      requiredApproval: json['requiredApproval'] as bool?,
       prices: (json['prices'] as List<dynamic>?)
               ?.map((e) =>
                   EgldOrEsdtTokenPaymentDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
       name: json['name'] as String,
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventStageProfileEditDtoToJson(
@@ -5115,7 +5183,7 @@ StagePrice _$StagePriceFromJson(Map<String, dynamic> json) => StagePrice(
       ticketTypeName: json['ticketTypeName'] as String,
       normalPrice: (json['normalPrice'] as num).toDouble(),
       discountedPrice: (json['discountedPrice'] as num).toDouble(),
-      quantity: (json['quantity'] as num).toDouble(),
+      quantity: (json['quantity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StagePriceToJson(StagePrice instance) =>
@@ -5208,7 +5276,7 @@ TicketProfileSummary _$TicketProfileSummaryFromJson(
       badgeColor: json['badgeColor'] as String?,
       characteristics: json['characteristics'],
       ticketId: json['ticketId'] as String,
-      quantity: (json['quantity'] as num?)?.toDouble(),
+      quantity: (json['quantity'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TicketProfileSummaryToJson(
@@ -5235,14 +5303,14 @@ EventInvitationDoc _$EventInvitationDocFromJson(Map<String, dynamic> json) =>
                   TicketProfileSummary.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
+      createdAt: (json['createdAt'] as num).toInt(),
       isClaimed: json['isClaimed'] as bool,
       isUsed: json['isUsed'] as bool,
       status: EventInvitationDoc.eventInvitationDocStatusStatusFromJson(
           json['status']),
-      claimedAt: (json['claimedAt'] as num).toDouble(),
+      claimedAt: (json['claimedAt'] as num).toInt(),
       claimedBy: json['claimedBy'] as String?,
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
@@ -5281,14 +5349,14 @@ EventInvitation _$EventInvitationFromJson(Map<String, dynamic> json) =>
                   TicketProfileSummary.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
+      createdAt: (json['createdAt'] as num).toInt(),
       isClaimed: json['isClaimed'] as bool,
       isUsed: json['isUsed'] as bool,
       status:
           EventInvitation.eventInvitationStatusStatusFromJson(json['status']),
-      claimedAt: (json['claimedAt'] as num).toDouble(),
+      claimedAt: (json['claimedAt'] as num).toInt(),
       claimedBy: json['claimedBy'] as String?,
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
@@ -5346,10 +5414,10 @@ EventVoucherDoc _$EventVoucherDocFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String,
       type: eventVoucherDocTypeFromJson(json['type']),
       amount: (json['amount'] as num).toDouble(),
-      maxDiscountAmount: (json['maxDiscountAmount'] as num).toDouble(),
-      maxUses: (json['maxUses'] as num).toDouble(),
-      maxUsesPerUser: (json['maxUsesPerUser'] as num).toDouble(),
-      usedCount: json['usedCount'] as Object,
+      maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
+      maxUses: (json['maxUses'] as num).toInt(),
+      maxUsesPerUser: (json['maxUsesPerUser'] as num).toInt(),
+      usedCount: (json['usedCount'] as num).toInt(),
       eventId: json['eventId'] as String,
       ticketTypeIds: (json['ticketTypeIds'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -5359,13 +5427,13 @@ EventVoucherDoc _$EventVoucherDocFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           [],
-      minTicketCount: (json['minTicketCount'] as num).toDouble(),
-      maxTicketCount: (json['maxTicketCount'] as num).toDouble(),
-      startDate: (json['startDate'] as num).toDouble(),
-      endDate: (json['endDate'] as num).toDouble(),
-      isActive: json['isActive'] as Object,
+      minTicketCount: (json['minTicketCount'] as num?)?.toInt(),
+      maxTicketCount: (json['maxTicketCount'] as num?)?.toInt(),
+      startDate: (json['startDate'] as num).toInt(),
+      endDate: (json['endDate'] as num).toInt(),
+      isActive: json['isActive'] as bool? ?? true,
       ownerId: json['ownerId'] as String,
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
       createdBy: json['createdBy'] as String,
     );
 
@@ -5424,7 +5492,7 @@ EventQuestionDoc _$EventQuestionDocFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           [],
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventQuestionDocToJson(EventQuestionDoc instance) =>
@@ -5504,7 +5572,7 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
           ? null
           : EventGuestBilling.fromJson(json['billing'] as Map<String, dynamic>),
       status: eventGuestProfileStatusFromJson(json['status']),
-      createdAt: (json['createdAt'] as num).toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
       id: json['id'] as String?,
@@ -5579,7 +5647,7 @@ EventUserRoleCreateDto _$EventUserRoleCreateDtoFromJson(
       role: eventUserRoleCreateDtoRoleListFromJson(json['role'] as List?),
       permissions: eventUserRoleCreateDtoPermissionsListFromJson(
           json['permissions'] as List?),
-      endTime: (json['endTime'] as num).toDouble(),
+      endTime: (json['endTime'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
@@ -5595,7 +5663,7 @@ Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
     };
 
 MyEvents _$MyEventsFromJson(Map<String, dynamic> json) => MyEvents(
-      ticketCount: (json['ticketCount'] as num).toDouble(),
+      ticketCount: (json['ticketCount'] as num).toInt(),
       status: myEventsStatusFromJson(json['status']),
       eventProfile:
           EventProfile.fromJson(json['eventProfile'] as Map<String, dynamic>),
@@ -5706,8 +5774,8 @@ EventVoucherCreateDto _$EventVoucherCreateDtoFromJson(
       type: eventVoucherCreateDtoTypeNullableFromJson(json['type']),
       amount: (json['amount'] as num?)?.toDouble(),
       maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
-      maxUses: (json['maxUses'] as num?)?.toDouble(),
-      maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
+      maxUses: (json['maxUses'] as num?)?.toInt(),
+      maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toInt(),
       eventId: json['eventId'] as String?,
       ticketTypeIds: (json['ticketTypeIds'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -5717,11 +5785,11 @@ EventVoucherCreateDto _$EventVoucherCreateDtoFromJson(
               ?.map((e) => e as String)
               .toList() ??
           [],
-      minTicketCount: (json['minTicketCount'] as num?)?.toDouble(),
-      maxTicketCount: (json['maxTicketCount'] as num?)?.toDouble(),
-      startDate: (json['startDate'] as num?)?.toDouble(),
-      endDate: (json['endDate'] as num?)?.toDouble(),
-      isActive: json['isActive'],
+      minTicketCount: (json['minTicketCount'] as num?)?.toInt(),
+      maxTicketCount: (json['maxTicketCount'] as num?)?.toInt(),
+      startDate: (json['startDate'] as num?)?.toInt(),
+      endDate: (json['endDate'] as num?)?.toInt(),
+      isActive: json['isActive'] as bool? ?? true,
       ownerId: json['ownerId'] as String?,
     );
 
@@ -5750,8 +5818,8 @@ EventVoucherEditDto _$EventVoucherEditDtoFromJson(Map<String, dynamic> json) =>
       type: eventVoucherEditDtoTypeNullableFromJson(json['type']),
       amount: (json['amount'] as num?)?.toDouble(),
       maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
-      maxUses: (json['maxUses'] as num?)?.toDouble(),
-      maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
+      maxUses: (json['maxUses'] as num?)?.toInt(),
+      maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toInt(),
       ticketTypeIds: (json['ticketTypeIds'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -5760,11 +5828,11 @@ EventVoucherEditDto _$EventVoucherEditDtoFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           [],
-      minTicketCount: (json['minTicketCount'] as num?)?.toDouble(),
-      maxTicketCount: (json['maxTicketCount'] as num?)?.toDouble(),
-      startDate: (json['startDate'] as num?)?.toDouble(),
-      endDate: (json['endDate'] as num?)?.toDouble(),
-      isActive: json['isActive'],
+      minTicketCount: (json['minTicketCount'] as num?)?.toInt(),
+      maxTicketCount: (json['maxTicketCount'] as num?)?.toInt(),
+      startDate: (json['startDate'] as num?)?.toInt(),
+      endDate: (json['endDate'] as num?)?.toInt(),
+      isActive: json['isActive'] as bool? ?? true,
       ownerId: json['ownerId'] as String?,
     );
 
@@ -5811,8 +5879,8 @@ EventGuestAnswerDoc _$EventGuestAnswerDocFromJson(Map<String, dynamic> json) =>
       questionId: json['questionId'] as String,
       eventId: json['eventId'] as String,
       answer: json['answer'] as Object,
-      createdAt: (json['createdAt'] as num).toDouble(),
-      ttl: (json['ttl'] as num?)?.toDouble(),
+      createdAt: (json['createdAt'] as num).toInt(),
+      ttl: (json['ttl'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventGuestAnswerDocToJson(
@@ -5938,9 +6006,9 @@ EventReferralConfigDoc _$EventReferralConfigDocFromJson(
           ? null
           : RewardDetails.fromJson(
               json['rewardDetails'] as Map<String, dynamic>),
-      isSelfService: json['isSelfService'] as Object,
-      isActive: json['isActive'] as Object,
-      createdAt: (json['createdAt'] as num).toDouble(),
+      isSelfService: json['isSelfService'] as bool,
+      isActive: json['isActive'] as bool,
+      createdAt: (json['createdAt'] as num).toInt(),
       createdBy: json['createdBy'] as String,
     );
 
@@ -6025,9 +6093,9 @@ EventReferralDoc _$EventReferralDocFromJson(Map<String, dynamic> json) =>
       ownerId: json['ownerId'] as String?,
       eventId: json['eventId'] as String,
       referralConfigId: json['referralConfigId'] as String,
-      successfulReferrals: json['successfulReferrals'] as Object,
-      createdAt: (json['createdAt'] as num).toDouble(),
-      isActive: json['isActive'] as Object,
+      successfulReferrals: (json['successfulReferrals'] as num).toInt(),
+      createdAt: (json['createdAt'] as num).toInt(),
+      isActive: json['isActive'] as bool,
     );
 
 Map<String, dynamic> _$EventReferralDocToJson(EventReferralDoc instance) =>
@@ -6943,9 +7011,9 @@ EventGuestCheckIn _$EventGuestCheckInFromJson(Map<String, dynamic> json) =>
               json['ticketProfile'] as Map<String, dynamic>),
       isCheckIn: json['isCheckIn'] as bool,
       freeTicket: json['freeTicket'] as bool? ?? false,
-      receivedAt: (json['receivedAt'] as num).toDouble(),
+      receivedAt: (json['receivedAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
-      timestamp: (json['timestamp'] as num?)?.toDouble(),
+      timestamp: (json['timestamp'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventGuestCheckInToJson(EventGuestCheckIn instance) =>
