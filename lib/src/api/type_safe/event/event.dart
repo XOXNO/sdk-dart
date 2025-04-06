@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:xoxno_sdk/src/api/raw/event/event.dart';
 import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
@@ -39,11 +40,11 @@ class EventTypeSafeApi {
 
   Future<EventProfile> setEventProfilePicture({
     required String eventId,
-    required List<int> fileBytes,
+    required File file,
   }) async {
     final data = await _api.setEventProfilePicture(
       eventId: eventId,
-      fileBytes: fileBytes,
+      file: file,
     );
     return EventProfile.fromJson(data);
   }

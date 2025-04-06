@@ -1,11 +1,13 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:mime/mime.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
-import 'package:xoxno_sdk/src/api/client.dart';
+import 'package:xoxno_sdk/src/api/client.dart' as xoxno_client;
 
 class EventRawApi {
-  final Client client;
+  final xoxno_client.Client client;
 
   const EventRawApi(this.client);
 
@@ -58,7 +60,7 @@ class EventRawApi {
   }
 
   Future<Map<String, dynamic>> setEventProfilePicture(
-      {required String eventId, required List<int> fileBytes}) {
+      {required String eventId, required File file}) async {
     final logger = Logger('Xoxno.EventRawApi.setEventProfilePicture');
     logger.finest('set event profile picture');
 
@@ -67,12 +69,18 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/event/$eventId/profile'),
     );
 
+    final mimeType = lookupMimeType(file.path) ?? 'image/png';
+    final bytes = await file.readAsBytes();
+    
     request.files.add(
       http.MultipartFile.fromBytes(
         'file',
-        fileBytes,
+        bytes,
+        filename: file.path.split('/').last,
       ),
     );
+
+    request.headers['Content-Type'] = mimeType;
     return genericSendRequest(client, request);
   }
 
