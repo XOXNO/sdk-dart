@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:mime/mime.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart' as xoxno_client;
 
@@ -69,18 +70,19 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/event/$eventId/profile'),
     );
 
-    final mimeType = lookupMimeType(file.path) ?? 'image/png';
+    final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
+    final mimeTypeParts = mimeTypeStr.split('/');
     final bytes = await file.readAsBytes();
-    
+
     request.files.add(
       http.MultipartFile.fromBytes(
         'file',
         bytes,
         filename: file.path.split('/').last,
+        contentType: MediaType(mimeTypeParts[0], mimeTypeParts[1]),
       ),
     );
 
-    request.headers['Content-Type'] = mimeType;
     return genericSendRequest(client, request);
   }
 
