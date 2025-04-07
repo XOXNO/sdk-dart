@@ -93,7 +93,7 @@ class EventTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<EventGuestRegistration> registerForEvent({
+  Future<EventRegistrationResponseDto> registerForEvent({
     required String eventId,
     required EventGuestRegistrationDto body,
   }) async {
@@ -101,7 +101,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       body: body.toJson(),
     );
-    return EventGuestRegistration.fromJson(data);
+    return EventRegistrationResponseDto.fromJson(data);
   }
 
   Future<EventTicketProfileDoc> createEventTicketType({
