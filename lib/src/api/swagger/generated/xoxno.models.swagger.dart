@@ -21572,6 +21572,414 @@ extension $EventStartPriceExtension on EventStartPrice {
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventGuestRegistration {
+  const EventGuestRegistration({
+    this.email,
+    this.name,
+    this.phone,
+  });
+
+  factory EventGuestRegistration.fromJson(Map<String, dynamic> json) =>
+      _$EventGuestRegistrationFromJson(json);
+
+  static const toJsonFactory = _$EventGuestRegistrationToJson;
+  Map<String, dynamic> toJson() => _$EventGuestRegistrationToJson(this);
+
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'phone')
+  final String? phone;
+  static const fromJsonFactory = _$EventGuestRegistrationFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventGuestRegistration &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(phone) ^
+      runtimeType.hashCode;
+}
+
+extension $EventGuestRegistrationExtension on EventGuestRegistration {
+  EventGuestRegistration copyWith(
+      {String? email, String? name, String? phone}) {
+    return EventGuestRegistration(
+        email: email ?? this.email,
+        name: name ?? this.name,
+        phone: phone ?? this.phone);
+  }
+
+  EventGuestRegistration copyWithWrapped(
+      {Wrapped<String?>? email,
+      Wrapped<String?>? name,
+      Wrapped<String?>? phone}) {
+    return EventGuestRegistration(
+        email: (email != null ? email.value : this.email),
+        name: (name != null ? name.value : this.name),
+        phone: (phone != null ? phone.value : this.phone));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventGuestBilling {
+  const EventGuestBilling({
+    required this.isCompany,
+    required this.name,
+    this.companyRegistrationNumber,
+    this.companyVatNumber,
+    required this.email,
+    required this.country,
+    required this.city,
+    required this.address1,
+    this.address2,
+    this.postalCode,
+  });
+
+  factory EventGuestBilling.fromJson(Map<String, dynamic> json) =>
+      _$EventGuestBillingFromJson(json);
+
+  static const toJsonFactory = _$EventGuestBillingToJson;
+  Map<String, dynamic> toJson() => _$EventGuestBillingToJson(this);
+
+  @JsonKey(name: 'isCompany')
+  final bool isCompany;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'companyRegistrationNumber')
+  final String? companyRegistrationNumber;
+  @JsonKey(name: 'companyVatNumber')
+  final String? companyVatNumber;
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'country')
+  final String country;
+  @JsonKey(name: 'city')
+  final String city;
+  @JsonKey(name: 'address1')
+  final String address1;
+  @JsonKey(name: 'address2')
+  final String? address2;
+  @JsonKey(name: 'postalCode')
+  final String? postalCode;
+  static const fromJsonFactory = _$EventGuestBillingFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventGuestBilling &&
+            (identical(other.isCompany, isCompany) ||
+                const DeepCollectionEquality()
+                    .equals(other.isCompany, isCompany)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.companyRegistrationNumber,
+                    companyRegistrationNumber) ||
+                const DeepCollectionEquality().equals(
+                    other.companyRegistrationNumber,
+                    companyRegistrationNumber)) &&
+            (identical(other.companyVatNumber, companyVatNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.companyVatNumber, companyVatNumber)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.address1, address1) ||
+                const DeepCollectionEquality()
+                    .equals(other.address1, address1)) &&
+            (identical(other.address2, address2) ||
+                const DeepCollectionEquality()
+                    .equals(other.address2, address2)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isCompany) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(companyRegistrationNumber) ^
+      const DeepCollectionEquality().hash(companyVatNumber) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(address1) ^
+      const DeepCollectionEquality().hash(address2) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      runtimeType.hashCode;
+}
+
+extension $EventGuestBillingExtension on EventGuestBilling {
+  EventGuestBilling copyWith(
+      {bool? isCompany,
+      String? name,
+      String? companyRegistrationNumber,
+      String? companyVatNumber,
+      String? email,
+      String? country,
+      String? city,
+      String? address1,
+      String? address2,
+      String? postalCode}) {
+    return EventGuestBilling(
+        isCompany: isCompany ?? this.isCompany,
+        name: name ?? this.name,
+        companyRegistrationNumber:
+            companyRegistrationNumber ?? this.companyRegistrationNumber,
+        companyVatNumber: companyVatNumber ?? this.companyVatNumber,
+        email: email ?? this.email,
+        country: country ?? this.country,
+        city: city ?? this.city,
+        address1: address1 ?? this.address1,
+        address2: address2 ?? this.address2,
+        postalCode: postalCode ?? this.postalCode);
+  }
+
+  EventGuestBilling copyWithWrapped(
+      {Wrapped<bool>? isCompany,
+      Wrapped<String>? name,
+      Wrapped<String?>? companyRegistrationNumber,
+      Wrapped<String?>? companyVatNumber,
+      Wrapped<String>? email,
+      Wrapped<String>? country,
+      Wrapped<String>? city,
+      Wrapped<String>? address1,
+      Wrapped<String?>? address2,
+      Wrapped<String?>? postalCode}) {
+    return EventGuestBilling(
+        isCompany: (isCompany != null ? isCompany.value : this.isCompany),
+        name: (name != null ? name.value : this.name),
+        companyRegistrationNumber: (companyRegistrationNumber != null
+            ? companyRegistrationNumber.value
+            : this.companyRegistrationNumber),
+        companyVatNumber: (companyVatNumber != null
+            ? companyVatNumber.value
+            : this.companyVatNumber),
+        email: (email != null ? email.value : this.email),
+        country: (country != null ? country.value : this.country),
+        city: (city != null ? city.value : this.city),
+        address1: (address1 != null ? address1.value : this.address1),
+        address2: (address2 != null ? address2.value : this.address2),
+        postalCode: (postalCode != null ? postalCode.value : this.postalCode));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventGuestDoc {
+  const EventGuestDoc({
+    required this.dataType,
+    required this.wallet,
+    required this.eventId,
+    required this.ticket,
+    required this.questionnaireFilled,
+    this.registration,
+    this.billing,
+    required this.status,
+    required this.createdAt,
+    this.invitationId,
+    this.metadata,
+    this.id,
+    this.pk,
+  });
+
+  factory EventGuestDoc.fromJson(Map<String, dynamic> json) =>
+      _$EventGuestDocFromJson(json);
+
+  static const toJsonFactory = _$EventGuestDocToJson;
+  Map<String, dynamic> toJson() => _$EventGuestDocToJson(this);
+
+  @JsonKey(
+    name: 'dataType',
+    toJson: eventGuestDocDataTypeToJson,
+    fromJson: eventGuestDocDataTypeDataTypeFromJson,
+  )
+  final enums.EventGuestDocDataType dataType;
+  static enums.EventGuestDocDataType eventGuestDocDataTypeDataTypeFromJson(
+          Object? value) =>
+      eventGuestDocDataTypeFromJson(
+          value, enums.EventGuestDocDataType.eventGuest);
+
+  @JsonKey(name: 'wallet')
+  final String wallet;
+  @JsonKey(name: 'eventId')
+  final String eventId;
+  @JsonKey(name: 'ticket')
+  final Map<String, dynamic> ticket;
+  @JsonKey(name: 'questionnaireFilled')
+  final bool questionnaireFilled;
+  @JsonKey(name: 'registration')
+  final EventGuestRegistration? registration;
+  @JsonKey(name: 'billing')
+  final EventGuestBilling? billing;
+  @JsonKey(
+    name: 'status',
+    toJson: eventGuestDocStatusToJson,
+    fromJson: eventGuestDocStatusFromJson,
+  )
+  final enums.EventGuestDocStatus status;
+  @JsonKey(name: 'createdAt')
+  final int createdAt;
+  @JsonKey(name: 'invitationId')
+  final String? invitationId;
+  @JsonKey(name: 'metadata')
+  final Object? metadata;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'pk')
+  final String? pk;
+  static const fromJsonFactory = _$EventGuestDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventGuestDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality()
+                    .equals(other.dataType, dataType)) &&
+            (identical(other.wallet, wallet) ||
+                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventId, eventId)) &&
+            (identical(other.ticket, ticket) ||
+                const DeepCollectionEquality().equals(other.ticket, ticket)) &&
+            (identical(other.questionnaireFilled, questionnaireFilled) ||
+                const DeepCollectionEquality()
+                    .equals(other.questionnaireFilled, questionnaireFilled)) &&
+            (identical(other.registration, registration) ||
+                const DeepCollectionEquality()
+                    .equals(other.registration, registration)) &&
+            (identical(other.billing, billing) ||
+                const DeepCollectionEquality()
+                    .equals(other.billing, billing)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.invitationId, invitationId) ||
+                const DeepCollectionEquality()
+                    .equals(other.invitationId, invitationId)) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality()
+                    .equals(other.metadata, metadata)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.pk, pk) ||
+                const DeepCollectionEquality().equals(other.pk, pk)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(wallet) ^
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(ticket) ^
+      const DeepCollectionEquality().hash(questionnaireFilled) ^
+      const DeepCollectionEquality().hash(registration) ^
+      const DeepCollectionEquality().hash(billing) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(invitationId) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(pk) ^
+      runtimeType.hashCode;
+}
+
+extension $EventGuestDocExtension on EventGuestDoc {
+  EventGuestDoc copyWith(
+      {enums.EventGuestDocDataType? dataType,
+      String? wallet,
+      String? eventId,
+      Map<String, dynamic>? ticket,
+      bool? questionnaireFilled,
+      EventGuestRegistration? registration,
+      EventGuestBilling? billing,
+      enums.EventGuestDocStatus? status,
+      int? createdAt,
+      String? invitationId,
+      Object? metadata,
+      String? id,
+      String? pk}) {
+    return EventGuestDoc(
+        dataType: dataType ?? this.dataType,
+        wallet: wallet ?? this.wallet,
+        eventId: eventId ?? this.eventId,
+        ticket: ticket ?? this.ticket,
+        questionnaireFilled: questionnaireFilled ?? this.questionnaireFilled,
+        registration: registration ?? this.registration,
+        billing: billing ?? this.billing,
+        status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt,
+        invitationId: invitationId ?? this.invitationId,
+        metadata: metadata ?? this.metadata,
+        id: id ?? this.id,
+        pk: pk ?? this.pk);
+  }
+
+  EventGuestDoc copyWithWrapped(
+      {Wrapped<enums.EventGuestDocDataType>? dataType,
+      Wrapped<String>? wallet,
+      Wrapped<String>? eventId,
+      Wrapped<Map<String, dynamic>>? ticket,
+      Wrapped<bool>? questionnaireFilled,
+      Wrapped<EventGuestRegistration?>? registration,
+      Wrapped<EventGuestBilling?>? billing,
+      Wrapped<enums.EventGuestDocStatus>? status,
+      Wrapped<int>? createdAt,
+      Wrapped<String?>? invitationId,
+      Wrapped<Object?>? metadata,
+      Wrapped<String?>? id,
+      Wrapped<String?>? pk}) {
+    return EventGuestDoc(
+        dataType: (dataType != null ? dataType.value : this.dataType),
+        wallet: (wallet != null ? wallet.value : this.wallet),
+        eventId: (eventId != null ? eventId.value : this.eventId),
+        ticket: (ticket != null ? ticket.value : this.ticket),
+        questionnaireFilled: (questionnaireFilled != null
+            ? questionnaireFilled.value
+            : this.questionnaireFilled),
+        registration:
+            (registration != null ? registration.value : this.registration),
+        billing: (billing != null ? billing.value : this.billing),
+        status: (status != null ? status.value : this.status),
+        createdAt: (createdAt != null ? createdAt.value : this.createdAt),
+        invitationId:
+            (invitationId != null ? invitationId.value : this.invitationId),
+        metadata: (metadata != null ? metadata.value : this.metadata),
+        id: (id != null ? id.value : this.id),
+        pk: (pk != null ? pk.value : this.pk));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventProfile {
   const EventProfile({
     required this.dataType,
@@ -21598,6 +22006,7 @@ class EventProfile {
     this.creatorProfile,
     this.guestSummary,
     this.startsFrom,
+    this.guestProfile,
   });
 
   factory EventProfile.fromJson(Map<String, dynamic> json) =>
@@ -21671,6 +22080,8 @@ class EventProfile {
   final EventGuestSummary? guestSummary;
   @JsonKey(name: 'startsFrom')
   final EventStartPrice? startsFrom;
+  @JsonKey(name: 'guestProfile')
+  final EventGuestDoc? guestProfile;
   static const fromJsonFactory = _$EventProfileFromJson;
 
   @override
@@ -21743,7 +22154,8 @@ class EventProfile {
                 const DeepCollectionEquality()
                     .equals(other.guestSummary, guestSummary)) &&
             (identical(other.startsFrom, startsFrom) ||
-                const DeepCollectionEquality().equals(other.startsFrom, startsFrom)));
+                const DeepCollectionEquality().equals(other.startsFrom, startsFrom)) &&
+            (identical(other.guestProfile, guestProfile) || const DeepCollectionEquality().equals(other.guestProfile, guestProfile)));
   }
 
   @override
@@ -21775,6 +22187,7 @@ class EventProfile {
       const DeepCollectionEquality().hash(creatorProfile) ^
       const DeepCollectionEquality().hash(guestSummary) ^
       const DeepCollectionEquality().hash(startsFrom) ^
+      const DeepCollectionEquality().hash(guestProfile) ^
       runtimeType.hashCode;
 }
 
@@ -21803,7 +22216,8 @@ extension $EventProfileExtension on EventProfile {
       EventUserRoleDoc? eventPermissions,
       CreatorProfileDoc? creatorProfile,
       EventGuestSummary? guestSummary,
-      EventStartPrice? startsFrom}) {
+      EventStartPrice? startsFrom,
+      EventGuestDoc? guestProfile}) {
     return EventProfile(
         dataType: dataType ?? this.dataType,
         createdAt: createdAt ?? this.createdAt,
@@ -21828,7 +22242,8 @@ extension $EventProfileExtension on EventProfile {
         eventPermissions: eventPermissions ?? this.eventPermissions,
         creatorProfile: creatorProfile ?? this.creatorProfile,
         guestSummary: guestSummary ?? this.guestSummary,
-        startsFrom: startsFrom ?? this.startsFrom);
+        startsFrom: startsFrom ?? this.startsFrom,
+        guestProfile: guestProfile ?? this.guestProfile);
   }
 
   EventProfile copyWithWrapped(
@@ -21855,7 +22270,8 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<EventUserRoleDoc?>? eventPermissions,
       Wrapped<CreatorProfileDoc?>? creatorProfile,
       Wrapped<EventGuestSummary?>? guestSummary,
-      Wrapped<EventStartPrice?>? startsFrom}) {
+      Wrapped<EventStartPrice?>? startsFrom,
+      Wrapped<EventGuestDoc?>? guestProfile}) {
     return EventProfile(
         dataType: (dataType != null ? dataType.value : this.dataType),
         createdAt: (createdAt != null ? createdAt.value : this.createdAt),
@@ -21895,7 +22311,9 @@ extension $EventProfileExtension on EventProfile {
             : this.creatorProfile),
         guestSummary:
             (guestSummary != null ? guestSummary.value : this.guestSummary),
-        startsFrom: (startsFrom != null ? startsFrom.value : this.startsFrom));
+        startsFrom: (startsFrom != null ? startsFrom.value : this.startsFrom),
+        guestProfile:
+            (guestProfile != null ? guestProfile.value : this.guestProfile));
   }
 }
 
@@ -22517,414 +22935,6 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
             : this.questionAnswers),
         callbackUrl:
             (callbackUrl != null ? callbackUrl.value : this.callbackUrl));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class EventGuestRegistration {
-  const EventGuestRegistration({
-    this.email,
-    this.name,
-    this.phone,
-  });
-
-  factory EventGuestRegistration.fromJson(Map<String, dynamic> json) =>
-      _$EventGuestRegistrationFromJson(json);
-
-  static const toJsonFactory = _$EventGuestRegistrationToJson;
-  Map<String, dynamic> toJson() => _$EventGuestRegistrationToJson(this);
-
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'phone')
-  final String? phone;
-  static const fromJsonFactory = _$EventGuestRegistrationFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestRegistration &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      runtimeType.hashCode;
-}
-
-extension $EventGuestRegistrationExtension on EventGuestRegistration {
-  EventGuestRegistration copyWith(
-      {String? email, String? name, String? phone}) {
-    return EventGuestRegistration(
-        email: email ?? this.email,
-        name: name ?? this.name,
-        phone: phone ?? this.phone);
-  }
-
-  EventGuestRegistration copyWithWrapped(
-      {Wrapped<String?>? email,
-      Wrapped<String?>? name,
-      Wrapped<String?>? phone}) {
-    return EventGuestRegistration(
-        email: (email != null ? email.value : this.email),
-        name: (name != null ? name.value : this.name),
-        phone: (phone != null ? phone.value : this.phone));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class EventGuestBilling {
-  const EventGuestBilling({
-    required this.isCompany,
-    required this.name,
-    this.companyRegistrationNumber,
-    this.companyVatNumber,
-    required this.email,
-    required this.country,
-    required this.city,
-    required this.address1,
-    this.address2,
-    this.postalCode,
-  });
-
-  factory EventGuestBilling.fromJson(Map<String, dynamic> json) =>
-      _$EventGuestBillingFromJson(json);
-
-  static const toJsonFactory = _$EventGuestBillingToJson;
-  Map<String, dynamic> toJson() => _$EventGuestBillingToJson(this);
-
-  @JsonKey(name: 'isCompany')
-  final bool isCompany;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'companyRegistrationNumber')
-  final String? companyRegistrationNumber;
-  @JsonKey(name: 'companyVatNumber')
-  final String? companyVatNumber;
-  @JsonKey(name: 'email')
-  final String email;
-  @JsonKey(name: 'country')
-  final String country;
-  @JsonKey(name: 'city')
-  final String city;
-  @JsonKey(name: 'address1')
-  final String address1;
-  @JsonKey(name: 'address2')
-  final String? address2;
-  @JsonKey(name: 'postalCode')
-  final String? postalCode;
-  static const fromJsonFactory = _$EventGuestBillingFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestBilling &&
-            (identical(other.isCompany, isCompany) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCompany, isCompany)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.companyRegistrationNumber,
-                    companyRegistrationNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.companyRegistrationNumber,
-                    companyRegistrationNumber)) &&
-            (identical(other.companyVatNumber, companyVatNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.companyVatNumber, companyVatNumber)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality()
-                    .equals(other.country, country)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address1, address1) ||
-                const DeepCollectionEquality()
-                    .equals(other.address1, address1)) &&
-            (identical(other.address2, address2) ||
-                const DeepCollectionEquality()
-                    .equals(other.address2, address2)) &&
-            (identical(other.postalCode, postalCode) ||
-                const DeepCollectionEquality()
-                    .equals(other.postalCode, postalCode)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isCompany) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(companyRegistrationNumber) ^
-      const DeepCollectionEquality().hash(companyVatNumber) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address1) ^
-      const DeepCollectionEquality().hash(address2) ^
-      const DeepCollectionEquality().hash(postalCode) ^
-      runtimeType.hashCode;
-}
-
-extension $EventGuestBillingExtension on EventGuestBilling {
-  EventGuestBilling copyWith(
-      {bool? isCompany,
-      String? name,
-      String? companyRegistrationNumber,
-      String? companyVatNumber,
-      String? email,
-      String? country,
-      String? city,
-      String? address1,
-      String? address2,
-      String? postalCode}) {
-    return EventGuestBilling(
-        isCompany: isCompany ?? this.isCompany,
-        name: name ?? this.name,
-        companyRegistrationNumber:
-            companyRegistrationNumber ?? this.companyRegistrationNumber,
-        companyVatNumber: companyVatNumber ?? this.companyVatNumber,
-        email: email ?? this.email,
-        country: country ?? this.country,
-        city: city ?? this.city,
-        address1: address1 ?? this.address1,
-        address2: address2 ?? this.address2,
-        postalCode: postalCode ?? this.postalCode);
-  }
-
-  EventGuestBilling copyWithWrapped(
-      {Wrapped<bool>? isCompany,
-      Wrapped<String>? name,
-      Wrapped<String?>? companyRegistrationNumber,
-      Wrapped<String?>? companyVatNumber,
-      Wrapped<String>? email,
-      Wrapped<String>? country,
-      Wrapped<String>? city,
-      Wrapped<String>? address1,
-      Wrapped<String?>? address2,
-      Wrapped<String?>? postalCode}) {
-    return EventGuestBilling(
-        isCompany: (isCompany != null ? isCompany.value : this.isCompany),
-        name: (name != null ? name.value : this.name),
-        companyRegistrationNumber: (companyRegistrationNumber != null
-            ? companyRegistrationNumber.value
-            : this.companyRegistrationNumber),
-        companyVatNumber: (companyVatNumber != null
-            ? companyVatNumber.value
-            : this.companyVatNumber),
-        email: (email != null ? email.value : this.email),
-        country: (country != null ? country.value : this.country),
-        city: (city != null ? city.value : this.city),
-        address1: (address1 != null ? address1.value : this.address1),
-        address2: (address2 != null ? address2.value : this.address2),
-        postalCode: (postalCode != null ? postalCode.value : this.postalCode));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class EventGuestDoc {
-  const EventGuestDoc({
-    required this.dataType,
-    required this.wallet,
-    required this.eventId,
-    required this.ticket,
-    required this.questionnaireFilled,
-    this.registration,
-    this.billing,
-    required this.status,
-    required this.createdAt,
-    this.invitationId,
-    this.metadata,
-    this.id,
-    this.pk,
-  });
-
-  factory EventGuestDoc.fromJson(Map<String, dynamic> json) =>
-      _$EventGuestDocFromJson(json);
-
-  static const toJsonFactory = _$EventGuestDocToJson;
-  Map<String, dynamic> toJson() => _$EventGuestDocToJson(this);
-
-  @JsonKey(
-    name: 'dataType',
-    toJson: eventGuestDocDataTypeToJson,
-    fromJson: eventGuestDocDataTypeDataTypeFromJson,
-  )
-  final enums.EventGuestDocDataType dataType;
-  static enums.EventGuestDocDataType eventGuestDocDataTypeDataTypeFromJson(
-          Object? value) =>
-      eventGuestDocDataTypeFromJson(
-          value, enums.EventGuestDocDataType.eventGuest);
-
-  @JsonKey(name: 'wallet')
-  final String wallet;
-  @JsonKey(name: 'eventId')
-  final String eventId;
-  @JsonKey(name: 'ticket')
-  final Map<String, dynamic> ticket;
-  @JsonKey(name: 'questionnaireFilled')
-  final bool questionnaireFilled;
-  @JsonKey(name: 'registration')
-  final EventGuestRegistration? registration;
-  @JsonKey(name: 'billing')
-  final EventGuestBilling? billing;
-  @JsonKey(
-    name: 'status',
-    toJson: eventGuestDocStatusToJson,
-    fromJson: eventGuestDocStatusFromJson,
-  )
-  final enums.EventGuestDocStatus status;
-  @JsonKey(name: 'createdAt')
-  final int createdAt;
-  @JsonKey(name: 'invitationId')
-  final String? invitationId;
-  @JsonKey(name: 'metadata')
-  final Object? metadata;
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'pk')
-  final String? pk;
-  static const fromJsonFactory = _$EventGuestDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality()
-                    .equals(other.dataType, dataType)) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality()
-                    .equals(other.eventId, eventId)) &&
-            (identical(other.ticket, ticket) ||
-                const DeepCollectionEquality().equals(other.ticket, ticket)) &&
-            (identical(other.questionnaireFilled, questionnaireFilled) ||
-                const DeepCollectionEquality()
-                    .equals(other.questionnaireFilled, questionnaireFilled)) &&
-            (identical(other.registration, registration) ||
-                const DeepCollectionEquality()
-                    .equals(other.registration, registration)) &&
-            (identical(other.billing, billing) ||
-                const DeepCollectionEquality()
-                    .equals(other.billing, billing)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality()
-                    .equals(other.createdAt, createdAt)) &&
-            (identical(other.invitationId, invitationId) ||
-                const DeepCollectionEquality()
-                    .equals(other.invitationId, invitationId)) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality()
-                    .equals(other.metadata, metadata)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticket) ^
-      const DeepCollectionEquality().hash(questionnaireFilled) ^
-      const DeepCollectionEquality().hash(registration) ^
-      const DeepCollectionEquality().hash(billing) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(invitationId) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
-}
-
-extension $EventGuestDocExtension on EventGuestDoc {
-  EventGuestDoc copyWith(
-      {enums.EventGuestDocDataType? dataType,
-      String? wallet,
-      String? eventId,
-      Map<String, dynamic>? ticket,
-      bool? questionnaireFilled,
-      EventGuestRegistration? registration,
-      EventGuestBilling? billing,
-      enums.EventGuestDocStatus? status,
-      int? createdAt,
-      String? invitationId,
-      Object? metadata,
-      String? id,
-      String? pk}) {
-    return EventGuestDoc(
-        dataType: dataType ?? this.dataType,
-        wallet: wallet ?? this.wallet,
-        eventId: eventId ?? this.eventId,
-        ticket: ticket ?? this.ticket,
-        questionnaireFilled: questionnaireFilled ?? this.questionnaireFilled,
-        registration: registration ?? this.registration,
-        billing: billing ?? this.billing,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        invitationId: invitationId ?? this.invitationId,
-        metadata: metadata ?? this.metadata,
-        id: id ?? this.id,
-        pk: pk ?? this.pk);
-  }
-
-  EventGuestDoc copyWithWrapped(
-      {Wrapped<enums.EventGuestDocDataType>? dataType,
-      Wrapped<String>? wallet,
-      Wrapped<String>? eventId,
-      Wrapped<Map<String, dynamic>>? ticket,
-      Wrapped<bool>? questionnaireFilled,
-      Wrapped<EventGuestRegistration?>? registration,
-      Wrapped<EventGuestBilling?>? billing,
-      Wrapped<enums.EventGuestDocStatus>? status,
-      Wrapped<int>? createdAt,
-      Wrapped<String?>? invitationId,
-      Wrapped<Object?>? metadata,
-      Wrapped<String?>? id,
-      Wrapped<String?>? pk}) {
-    return EventGuestDoc(
-        dataType: (dataType != null ? dataType.value : this.dataType),
-        wallet: (wallet != null ? wallet.value : this.wallet),
-        eventId: (eventId != null ? eventId.value : this.eventId),
-        ticket: (ticket != null ? ticket.value : this.ticket),
-        questionnaireFilled: (questionnaireFilled != null
-            ? questionnaireFilled.value
-            : this.questionnaireFilled),
-        registration:
-            (registration != null ? registration.value : this.registration),
-        billing: (billing != null ? billing.value : this.billing),
-        status: (status != null ? status.value : this.status),
-        createdAt: (createdAt != null ? createdAt.value : this.createdAt),
-        invitationId:
-            (invitationId != null ? invitationId.value : this.invitationId),
-        metadata: (metadata != null ? metadata.value : this.metadata),
-        id: (id != null ? id.value : this.id),
-        pk: (pk != null ? pk.value : this.pk));
   }
 }
 
@@ -34813,6 +34823,150 @@ List<enums.CreatorProfileDocDataType>?
       .toList();
 }
 
+String? eventGuestDocDataTypeNullableToJson(
+    enums.EventGuestDocDataType? eventGuestDocDataType) {
+  return eventGuestDocDataType?.value;
+}
+
+String? eventGuestDocDataTypeToJson(
+    enums.EventGuestDocDataType eventGuestDocDataType) {
+  return eventGuestDocDataType.value;
+}
+
+enums.EventGuestDocDataType eventGuestDocDataTypeFromJson(
+  Object? eventGuestDocDataType, [
+  enums.EventGuestDocDataType? defaultValue,
+]) {
+  return enums.EventGuestDocDataType.values
+          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
+      defaultValue ??
+      enums.EventGuestDocDataType.swaggerGeneratedUnknown;
+}
+
+enums.EventGuestDocDataType? eventGuestDocDataTypeNullableFromJson(
+  Object? eventGuestDocDataType, [
+  enums.EventGuestDocDataType? defaultValue,
+]) {
+  if (eventGuestDocDataType == null) {
+    return null;
+  }
+  return enums.EventGuestDocDataType.values
+          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
+      defaultValue;
+}
+
+String eventGuestDocDataTypeExplodedListToJson(
+    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
+  return eventGuestDocDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventGuestDocDataTypeListToJson(
+    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
+  if (eventGuestDocDataType == null) {
+    return [];
+  }
+
+  return eventGuestDocDataType.map((e) => e.value!).toList();
+}
+
+List<enums.EventGuestDocDataType> eventGuestDocDataTypeListFromJson(
+  List? eventGuestDocDataType, [
+  List<enums.EventGuestDocDataType>? defaultValue,
+]) {
+  if (eventGuestDocDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventGuestDocDataType
+      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventGuestDocDataType>? eventGuestDocDataTypeNullableListFromJson(
+  List? eventGuestDocDataType, [
+  List<enums.EventGuestDocDataType>? defaultValue,
+]) {
+  if (eventGuestDocDataType == null) {
+    return defaultValue;
+  }
+
+  return eventGuestDocDataType
+      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? eventGuestDocStatusNullableToJson(
+    enums.EventGuestDocStatus? eventGuestDocStatus) {
+  return eventGuestDocStatus?.value;
+}
+
+String? eventGuestDocStatusToJson(
+    enums.EventGuestDocStatus eventGuestDocStatus) {
+  return eventGuestDocStatus.value;
+}
+
+enums.EventGuestDocStatus eventGuestDocStatusFromJson(
+  Object? eventGuestDocStatus, [
+  enums.EventGuestDocStatus? defaultValue,
+]) {
+  return enums.EventGuestDocStatus.values
+          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
+      defaultValue ??
+      enums.EventGuestDocStatus.swaggerGeneratedUnknown;
+}
+
+enums.EventGuestDocStatus? eventGuestDocStatusNullableFromJson(
+  Object? eventGuestDocStatus, [
+  enums.EventGuestDocStatus? defaultValue,
+]) {
+  if (eventGuestDocStatus == null) {
+    return null;
+  }
+  return enums.EventGuestDocStatus.values
+          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
+      defaultValue;
+}
+
+String eventGuestDocStatusExplodedListToJson(
+    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
+  return eventGuestDocStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventGuestDocStatusListToJson(
+    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
+  if (eventGuestDocStatus == null) {
+    return [];
+  }
+
+  return eventGuestDocStatus.map((e) => e.value!).toList();
+}
+
+List<enums.EventGuestDocStatus> eventGuestDocStatusListFromJson(
+  List? eventGuestDocStatus, [
+  List<enums.EventGuestDocStatus>? defaultValue,
+]) {
+  if (eventGuestDocStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventGuestDocStatus
+      .map((e) => eventGuestDocStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventGuestDocStatus>? eventGuestDocStatusNullableListFromJson(
+  List? eventGuestDocStatus, [
+  List<enums.EventGuestDocStatus>? defaultValue,
+]) {
+  if (eventGuestDocStatus == null) {
+    return defaultValue;
+  }
+
+  return eventGuestDocStatus
+      .map((e) => eventGuestDocStatusFromJson(e.toString()))
+      .toList();
+}
+
 String? eventProfileDataTypeNullableToJson(
     enums.EventProfileDataType? eventProfileDataType) {
   return eventProfileDataType?.value;
@@ -35027,150 +35181,6 @@ List<enums.EventProfileSubCategory>?
 
   return eventProfileSubCategory
       .map((e) => eventProfileSubCategoryFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestDocDataTypeNullableToJson(
-    enums.EventGuestDocDataType? eventGuestDocDataType) {
-  return eventGuestDocDataType?.value;
-}
-
-String? eventGuestDocDataTypeToJson(
-    enums.EventGuestDocDataType eventGuestDocDataType) {
-  return eventGuestDocDataType.value;
-}
-
-enums.EventGuestDocDataType eventGuestDocDataTypeFromJson(
-  Object? eventGuestDocDataType, [
-  enums.EventGuestDocDataType? defaultValue,
-]) {
-  return enums.EventGuestDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
-      defaultValue ??
-      enums.EventGuestDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestDocDataType? eventGuestDocDataTypeNullableFromJson(
-  Object? eventGuestDocDataType, [
-  enums.EventGuestDocDataType? defaultValue,
-]) {
-  if (eventGuestDocDataType == null) {
-    return null;
-  }
-  return enums.EventGuestDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
-      defaultValue;
-}
-
-String eventGuestDocDataTypeExplodedListToJson(
-    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
-  return eventGuestDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestDocDataTypeListToJson(
-    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
-  if (eventGuestDocDataType == null) {
-    return [];
-  }
-
-  return eventGuestDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestDocDataType> eventGuestDocDataTypeListFromJson(
-  List? eventGuestDocDataType, [
-  List<enums.EventGuestDocDataType>? defaultValue,
-]) {
-  if (eventGuestDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestDocDataType
-      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestDocDataType>? eventGuestDocDataTypeNullableListFromJson(
-  List? eventGuestDocDataType, [
-  List<enums.EventGuestDocDataType>? defaultValue,
-]) {
-  if (eventGuestDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventGuestDocDataType
-      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestDocStatusNullableToJson(
-    enums.EventGuestDocStatus? eventGuestDocStatus) {
-  return eventGuestDocStatus?.value;
-}
-
-String? eventGuestDocStatusToJson(
-    enums.EventGuestDocStatus eventGuestDocStatus) {
-  return eventGuestDocStatus.value;
-}
-
-enums.EventGuestDocStatus eventGuestDocStatusFromJson(
-  Object? eventGuestDocStatus, [
-  enums.EventGuestDocStatus? defaultValue,
-]) {
-  return enums.EventGuestDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
-      defaultValue ??
-      enums.EventGuestDocStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestDocStatus? eventGuestDocStatusNullableFromJson(
-  Object? eventGuestDocStatus, [
-  enums.EventGuestDocStatus? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return null;
-  }
-  return enums.EventGuestDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
-      defaultValue;
-}
-
-String eventGuestDocStatusExplodedListToJson(
-    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
-  return eventGuestDocStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestDocStatusListToJson(
-    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
-  if (eventGuestDocStatus == null) {
-    return [];
-  }
-
-  return eventGuestDocStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestDocStatus> eventGuestDocStatusListFromJson(
-  List? eventGuestDocStatus, [
-  List<enums.EventGuestDocStatus>? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestDocStatus
-      .map((e) => eventGuestDocStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestDocStatus>? eventGuestDocStatusNullableListFromJson(
-  List? eventGuestDocStatus, [
-  List<enums.EventGuestDocStatus>? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return defaultValue;
-  }
-
-  return eventGuestDocStatus
-      .map((e) => eventGuestDocStatusFromJson(e.toString()))
       .toList();
 }
 

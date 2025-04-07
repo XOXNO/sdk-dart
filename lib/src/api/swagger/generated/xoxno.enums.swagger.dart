@@ -729,6 +729,66 @@ enum CreatorProfileDocDataType {
   const CreatorProfileDocDataType(this.value);
 }
 
+enum EventGuestDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('event-voucher')
+  eventVoucher('event-voucher'),
+  @JsonValue('event-invitation')
+  eventInvitation('event-invitation'),
+  @JsonValue('event-profile')
+  eventProfile('event-profile'),
+  @JsonValue('event-question')
+  eventQuestion('event-question'),
+  @JsonValue('event-question-answer')
+  eventQuestionAnswer('event-question-answer'),
+  @JsonValue('event-ticket-profile')
+  eventTicketProfile('event-ticket-profile'),
+  @JsonValue('event-ticket-stage')
+  eventTicketStage('event-ticket-stage'),
+  @JsonValue('event-guest')
+  eventGuest('event-guest'),
+  @JsonValue('event-referral-config')
+  eventReferralConfig('event-referral-config'),
+  @JsonValue('event-referral-code')
+  eventReferralCode('event-referral-code'),
+  @JsonValue('event-referral-usage')
+  eventReferralUsage('event-referral-usage'),
+  @JsonValue('event-user-role')
+  eventUserRole('event-user-role');
+
+  final String? value;
+
+  const EventGuestDocDataType(this.value);
+}
+
+enum EventGuestDocStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const EventGuestDocStatus(this.value);
+}
+
 enum EventProfileDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -853,66 +913,6 @@ enum EventProfileSubCategory {
   final String? value;
 
   const EventProfileSubCategory(this.value);
-}
-
-enum EventGuestDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('event-voucher')
-  eventVoucher('event-voucher'),
-  @JsonValue('event-invitation')
-  eventInvitation('event-invitation'),
-  @JsonValue('event-profile')
-  eventProfile('event-profile'),
-  @JsonValue('event-question')
-  eventQuestion('event-question'),
-  @JsonValue('event-question-answer')
-  eventQuestionAnswer('event-question-answer'),
-  @JsonValue('event-ticket-profile')
-  eventTicketProfile('event-ticket-profile'),
-  @JsonValue('event-ticket-stage')
-  eventTicketStage('event-ticket-stage'),
-  @JsonValue('event-guest')
-  eventGuest('event-guest'),
-  @JsonValue('event-referral-config')
-  eventReferralConfig('event-referral-config'),
-  @JsonValue('event-referral-code')
-  eventReferralCode('event-referral-code'),
-  @JsonValue('event-referral-usage')
-  eventReferralUsage('event-referral-usage'),
-  @JsonValue('event-user-role')
-  eventUserRole('event-user-role');
-
-  final String? value;
-
-  const EventGuestDocDataType(this.value);
-}
-
-enum EventGuestDocStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const EventGuestDocStatus(this.value);
 }
 
 enum FiatPaymentFormType {
