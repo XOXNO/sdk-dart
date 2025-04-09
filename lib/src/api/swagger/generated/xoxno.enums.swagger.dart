@@ -1,6 +1,132 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
+enum LendingMarketProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingMarketProfileDataType(this.value);
+}
+
+enum LendingEModeCategoryProfileDocDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingEModeCategoryProfileDocDataType(this.value);
+}
+
+enum LendingAccountProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingAccountProfileDataType(this.value);
+}
+
+enum LendingEModeCategoryProfileDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('marketProfile')
+  marketprofile('marketProfile'),
+  @JsonValue('accountProfile')
+  accountprofile('accountProfile'),
+  @JsonValue('emodeCategoryProfile')
+  emodecategoryprofile('emodeCategoryProfile'),
+  @JsonValue('tokenEmodeProfile')
+  tokenemodeprofile('tokenEmodeProfile');
+
+  final String? value;
+
+  const LendingEModeCategoryProfileDataType(this.value);
+}
+
+enum NftSaleInfoMarketplace {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('xoxno')
+  xoxno('xoxno'),
+  @JsonValue('frameit')
+  frameit('frameit'),
+  @JsonValue('deadrare')
+  deadrare('deadrare'),
+  @JsonValue('krogan')
+  krogan('krogan');
+
+  final String? value;
+
+  const NftSaleInfoMarketplace(this.value);
+}
+
+enum NftPropsType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('FungibleESDT')
+  fungibleesdt('FungibleESDT'),
+  @JsonValue('NonFungibleESDT')
+  nonfungibleesdt('NonFungibleESDT'),
+  @JsonValue('SemiFungibleESDT')
+  semifungibleesdt('SemiFungibleESDT'),
+  @JsonValue('MetaESDT')
+  metaesdt('MetaESDT');
+
+  final String? value;
+
+  const NftPropsType(this.value);
+}
+
+enum NftPropsSubType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NonFungibleESDTv2')
+  nonfungibleesdtv2('NonFungibleESDTv2'),
+  @JsonValue('DynamicNonFungibleESDT')
+  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
+  @JsonValue('DynamicSemiFungibleESDT')
+  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
+  @JsonValue('DynamicMetaESDT')
+  dynamicmetaesdt('DynamicMetaESDT');
+
+  final String? value;
+
+  const NftPropsSubType(this.value);
+}
+
 enum MintingListingDtoDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -273,60 +399,6 @@ enum CreatorDetailsDtoDataType {
   const CreatorDetailsDtoDataType(this.value);
 }
 
-enum NftSaleInfoMarketplace {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('xoxno')
-  xoxno('xoxno'),
-  @JsonValue('frameit')
-  frameit('frameit'),
-  @JsonValue('deadrare')
-  deadrare('deadrare'),
-  @JsonValue('krogan')
-  krogan('krogan');
-
-  final String? value;
-
-  const NftSaleInfoMarketplace(this.value);
-}
-
-enum NftPropsType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('FungibleESDT')
-  fungibleesdt('FungibleESDT'),
-  @JsonValue('NonFungibleESDT')
-  nonfungibleesdt('NonFungibleESDT'),
-  @JsonValue('SemiFungibleESDT')
-  semifungibleesdt('SemiFungibleESDT'),
-  @JsonValue('MetaESDT')
-  metaesdt('MetaESDT');
-
-  final String? value;
-
-  const NftPropsType(this.value);
-}
-
-enum NftPropsSubType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('NonFungibleESDTv2')
-  nonfungibleesdtv2('NonFungibleESDTv2'),
-  @JsonValue('DynamicNonFungibleESDT')
-  dynamicnonfungibleesdt('DynamicNonFungibleESDT'),
-  @JsonValue('DynamicSemiFungibleESDT')
-  dynamicsemifungibleesdt('DynamicSemiFungibleESDT'),
-  @JsonValue('DynamicMetaESDT')
-  dynamicmetaesdt('DynamicMetaESDT');
-
-  final String? value;
-
-  const NftPropsSubType(this.value);
-}
-
 enum NftDocType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -501,78 +573,6 @@ enum Web2WalletDtoWalletClientType {
   final String? value;
 
   const Web2WalletDtoWalletClientType(this.value);
-}
-
-enum LendingMarketProfileDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('marketProfile')
-  marketprofile('marketProfile'),
-  @JsonValue('accountProfile')
-  accountprofile('accountProfile'),
-  @JsonValue('emodeCategoryProfile')
-  emodecategoryprofile('emodeCategoryProfile'),
-  @JsonValue('tokenEmodeProfile')
-  tokenemodeprofile('tokenEmodeProfile');
-
-  final String? value;
-
-  const LendingMarketProfileDataType(this.value);
-}
-
-enum LendingEModeCategoryProfileDocDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('marketProfile')
-  marketprofile('marketProfile'),
-  @JsonValue('accountProfile')
-  accountprofile('accountProfile'),
-  @JsonValue('emodeCategoryProfile')
-  emodecategoryprofile('emodeCategoryProfile'),
-  @JsonValue('tokenEmodeProfile')
-  tokenemodeprofile('tokenEmodeProfile');
-
-  final String? value;
-
-  const LendingEModeCategoryProfileDocDataType(this.value);
-}
-
-enum LendingAccountProfileDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('marketProfile')
-  marketprofile('marketProfile'),
-  @JsonValue('accountProfile')
-  accountprofile('accountProfile'),
-  @JsonValue('emodeCategoryProfile')
-  emodecategoryprofile('emodeCategoryProfile'),
-  @JsonValue('tokenEmodeProfile')
-  tokenemodeprofile('tokenEmodeProfile');
-
-  final String? value;
-
-  const LendingAccountProfileDataType(this.value);
-}
-
-enum LendingEModeCategoryProfileDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('marketProfile')
-  marketprofile('marketProfile'),
-  @JsonValue('accountProfile')
-  accountprofile('accountProfile'),
-  @JsonValue('emodeCategoryProfile')
-  emodecategoryprofile('emodeCategoryProfile'),
-  @JsonValue('tokenEmodeProfile')
-  tokenemodeprofile('tokenEmodeProfile');
-
-  final String? value;
-
-  const LendingEModeCategoryProfileDataType(this.value);
 }
 
 enum TransactionProcessStatusStatus {
@@ -1949,32 +1949,6 @@ enum EventVoucherFilterCriteriaDtoType {
   const EventVoucherFilterCriteriaDtoType(this.value);
 }
 
-enum UserStatsGetOrderBy {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('totalVolume')
-  totalvolume('totalVolume');
-
-  final String? value;
-
-  const UserStatsGetOrderBy(this.value);
-}
-
-enum UserStatsGetOrderDirection {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('asc')
-  asc('asc'),
-  @JsonValue('desc')
-  desc('desc');
-
-  final String? value;
-
-  const UserStatsGetOrderDirection(this.value);
-}
-
 enum LendingLeaderboardGetOrderBy {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -2003,4 +1977,30 @@ enum LendingLeaderboardGetOrderDirection {
   final String? value;
 
   const LendingLeaderboardGetOrderDirection(this.value);
+}
+
+enum UserStatsGetOrderBy {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('totalVolume')
+  totalvolume('totalVolume');
+
+  final String? value;
+
+  const UserStatsGetOrderBy(this.value);
+}
+
+enum UserStatsGetOrderDirection {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('asc')
+  asc('asc'),
+  @JsonValue('desc')
+  desc('desc');
+
+  final String? value;
+
+  const UserStatsGetOrderDirection(this.value);
 }

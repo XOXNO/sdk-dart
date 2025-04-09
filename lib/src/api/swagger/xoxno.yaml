@@ -2008,6 +2008,33 @@ paths:
       summary: Fetch Liquid EGLD providers
       tags:
         - LiquidEGLD
+  /liquid/egld/claimRewards:
+    get:
+      operationId: XoxnoEgldLiquidScController_claimEGLDRewards
+      parameters: []
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - LiquidEGLD
   /liquid/egld/simulate-provider-selection:
     post:
       operationId: XoxnoEgldLiquidScController_simulateDelegatorSelection
@@ -2186,6 +2213,997 @@ paths:
       summary: Fetch swap routes
       tags:
         - Ash Aggregator
+  /arda/min-token-quantity:
+    get:
+      operationId: AshAggregatorController_getArdaMinTokenQuantity
+      parameters:
+        - name: originalToken
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: originalTokenValue
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: paymentToken
+          required: true
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Swap routes fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchSwapRoutesResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch swap routes
+      tags:
+        - Ash Aggregator
+  /lending/market/{token}/profile:
+    get:
+      operationId: LendingDataController_retrieveMarketProfile
+      parameters:
+        - name: token
+          required: true
+          in: path
+          description: Token of the lending market
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get lending market profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingMarketProfile'
+      summary: Get lending market profile
+      tags:
+        - Lending And Borrowing
+  /lending/market/query:
+    get:
+      operationId: LendingDataController_retrieveMarketProfiles
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingMarketProfileFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      responses:
+        '200':
+          description: Explore lending markets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingMarketProfileQuery'
+      summary: Get lending markets overview
+      tags:
+        - Lending And Borrowing
+  /user/lending/{address}:
+    get:
+      operationId: LendingDataController_retrieveUserLendingPosition
+      parameters:
+        - name: address
+          required: true
+          in: path
+          description: User address
+          schema:
+            type: string
+        - name: token
+          required: false
+          in: query
+          description: Market token
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User lending positions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingAccountProfile'
+      summary: Get my lending & borrowing positions
+      tags:
+        - Lending And Borrowing
+  /user/lending/position/{identifier}:
+    get:
+      operationId: LendingDataController_retrieveUserLendingSinglePosition
+      parameters:
+        - name: identifier
+          required: true
+          in: path
+          description: NFT identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User lending position
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingAccountProfile'
+      summary: Get single lending & borrowing position
+      tags:
+        - Lending And Borrowing
+  /user/lending/image/{nonce}:
+    get:
+      operationId: LendingDataController_retrieveLendingImage
+      parameters:
+        - name: nonce
+          required: true
+          in: path
+          description: Nonce of the position
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lending picture
+      summary: Get picture of lending position
+      tags:
+        - Lending And Borrowing
+  /lending/market/emode-categories:
+    get:
+      operationId: LendingDataController_retrieveMarketProfilesByCategoryIds
+      parameters:
+        - name: categoryIds
+          required: true
+          in: query
+          description: Comma-separated list of category IDs
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get lending market profiles by category IDs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingEModeCategoryProfile'
+      summary: Get lending market profiles by category IDs
+      tags:
+        - Lending And Borrowing
+  /lending/market/{token}/emode-categories:
+    get:
+      operationId: LendingDataController_retrieveMarketEModeProfiles
+      parameters:
+        - name: token
+          required: true
+          in: path
+          description: E-mode available of the lending market
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get lending market available e-mode profile
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingEModeCategoryProfile'
+      summary: Get lending market available e-mode profile
+      tags:
+        - Lending And Borrowing
+  /lending/market/{token}/analytics:
+    get:
+      operationId: LendingDataController_retrieveMarketAnalytics
+      parameters:
+        - name: token
+          required: true
+          in: path
+          description: E-mode available of the lending market
+          schema:
+            type: string
+        - name: startTime
+          required: false
+          in: query
+          description: Start date as 'yyyy-MM-dd'
+          schema:
+            type: string
+        - name: endTime
+          required: false
+          in: query
+          description: End date as yyyy-MM-dd
+          schema:
+            type: string
+        - name: bin
+          required: false
+          in: query
+          description: Bin size in days, as a number followed by a letter (e.g. 1d)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lending market analytics graph data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingMarketAnalyticsGraph'
+      summary: Get lending market analytics graph data
+      tags:
+        - Lending And Borrowing
+  /lending/leaderboard:
+    get:
+      operationId: LendingDataController_retrieveLendingLeaderboard
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          description: The number of records to skip
+          schema:
+            type: number
+        - name: top
+          required: false
+          in: query
+          description: The number of records to return
+          schema:
+            type: number
+        - name: orderBy
+          required: false
+          in: query
+          description: The field to order by
+          schema:
+            enum:
+              - supplied
+              - borrowed
+              - healthFactor
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          description: The order direction
+          schema:
+            enum:
+              - asc
+              - desc
+            type: string
+        - name: token
+          required: false
+          in: query
+          description: The token to filter by
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of lending positions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingPositionStatus'
+      summary: Get lending position leaderboard
+      tags:
+        - Lending And Borrowing
+        - User
+  /lending/stats:
+    get:
+      operationId: LendingDataController_retrieveLendingStats
+      parameters: []
+      responses:
+        '200':
+          description: Lending protocol stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LendingOverallStats'
+      summary: Get lending protocol stats
+      tags:
+        - Lending And Borrowing
+  /lending/market/prices:
+    get:
+      operationId: LendingDataController_retrieveLendingMarketsPrices
+      parameters:
+        - name: returnAsUsd
+          required: false
+          in: query
+          description: Return prices in USD
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Lending markets prices
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  EGLD: 1
+      summary: Get token prices as EGLD for all lending markets
+      tags:
+        - Lending And Borrowing
+  /nft/query:
+    get:
+      operationId: NftDataController_retrieveNfts
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftDocFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      responses:
+        '200':
+          description: NFT query response for the used filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftCosmosResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch NFTs based on the query filter
+      tags:
+        - NftData
+        - Nft
+  /nft/{identifier}/like:
+    post:
+      operationId: NftDataController_likeNft
+      parameters:
+        - name: identifier
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Like NFT response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LikeNftDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Like an NFT
+      tags:
+        - NftData
+        - Nft
+  /user/{address}/inventory-summary:
+    get:
+      operationId: NftDataController_retrieveUserInventorySummary
+      parameters:
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: activeAuction
+          required: false
+          in: query
+          description: Filter by active auctions
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of inventory summaries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventorySummaryDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get inventory summary for collections by user wallet
+      tags:
+        - NftData
+        - User
+  /user/{address}/offers:
+    get:
+      operationId: NftDataController_retrieveUserOffers
+      parameters:
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: type
+          required: false
+          in: query
+          description: 'Type of offers to retrieve: received | placed'
+          schema:
+            type: string
+        - name: top
+          required: false
+          in: query
+          description: Number of items to retrieve
+          schema:
+            type: number
+        - name: skip
+          required: false
+          in: query
+          description: Number of items to skip
+          schema:
+            type: number
+      responses:
+        '200':
+          description: User offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserOffersResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get user offers
+      tags:
+        - NftData
+        - User
+  /nft/offer/query:
+    get:
+      operationId: NftDataController_retrieveNftOffers
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftOfferDocFilter'
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      responses:
+        '200':
+          description: User offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserOffersResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get nft offers
+      tags:
+        - NftData
+        - Nft
+  /user/{address}/favorite/nfts:
+    get:
+      operationId: NftDataController_retrieveUserFavoriteNfts
+      parameters:
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: top
+          required: false
+          in: query
+          description: Number of items to retrieve
+          schema:
+            type: number
+        - name: skip
+          required: false
+          in: query
+          description: Number of items to skip
+          schema:
+            type: number
+      responses:
+        '200':
+          description: User favorite NFTs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftCosmosResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get the liked NFTs by an user
+      tags:
+        - NftData
+        - User
+  /collection/{collection}/attributes:
+    get:
+      operationId: NftDataController_retrieveCollectionAttributes
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Fetch collection unique attributes and their information
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                  additionalProperties:
+                    type: '#/components/schemas/TraitInfo'
+                example:
+                  Background:
+                    Blue:
+                      onSale: 23
+                  Type:
+                    General:
+                      onSale: 23
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get attributes
+      tags:
+        - NftData
+        - Collection
+  /nft/{identifier}/offers:
+    get:
+      operationId: NftDataController_retrieveSingleNftOffers
+      parameters:
+        - name: identifier
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: skip
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: top
+          required: true
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Single NFT offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSingleNftOfferResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get single NFT offers
+      tags:
+        - NftData
+        - Nft
+  /collection/{collection}/ranks:
+    get:
+      operationId: NftDataController_retrieveCollectionRanks
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of ranks order from 1 to the latest
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CollectionRanksDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch collection ranks
+      tags:
+        - NftData
+        - Collection
+  /collection/{collection}/listings:
+    get:
+      operationId: NftDataController_retrieveCollectionListings
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Listings of a collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingsResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get collection listings
+      tags:
+        - NftData
+        - Collection
+  /nft/pinned:
+    get:
+      operationId: NftDataController_retrievePinnedCollection
+      parameters: []
+      responses:
+        '200':
+          description: Pinned NFTs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NftProps'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get homepage pinned NFTs
+      tags:
+        - NftData
+        - Nft
+  /nft/sign-withdraw:
+    post:
+      operationId: NftDataController_signListingWithdraw
+      parameters:
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignWithdrawDto'
+      responses:
+        '201':
+          description: Signed data and signature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignDataDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get signed data
+      tags:
+        - NftData
+        - Nft
+  /collection/{collection}/sign-offer:
+    post:
+      operationId: NftDataController_signOffer
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignAcceptGlobalOfferDto'
+      responses:
+        '201':
+          description: Signed data and signature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignDataDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get signed data
+      tags:
+        - NftData
+        - Collection
+  /collection/{collection}/sign-mint:
+    post:
+      operationId: NftDataController_signMint
+      parameters:
+        - name: collection
+          required: true
+          in: path
+          schema:
+            type: string
+        - schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignMintDto'
+      responses:
+        '201':
+          description: Signed data and signature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignDataDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get signed data
+      tags:
+        - NftData
+        - Collection
+  /nft/{identifier}:
+    get:
+      operationId: NftDataController_retrieveSingleNft
+      parameters:
+        - name: identifier
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Single NFT response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftProps'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Get a single NFT
+      tags:
+        - NftData
+        - Nft
   /collection/{collection}/profile:
     get:
       operationId: CollectionDataController_retrieveCollectionProfile
@@ -3135,668 +4153,6 @@ paths:
       tags:
         - CollectionData
         - User
-  /nft/query:
-    get:
-      operationId: NftDataController_retrieveNfts
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftDocFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-      responses:
-        '200':
-          description: NFT query response for the used filters
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftCosmosResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Fetch NFTs based on the query filter
-      tags:
-        - NftData
-        - Nft
-  /nft/{identifier}/like:
-    post:
-      operationId: NftDataController_likeNft
-      parameters:
-        - name: identifier
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '201':
-          description: Like NFT response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LikeNftDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Like an NFT
-      tags:
-        - NftData
-        - Nft
-  /user/{address}/inventory-summary:
-    get:
-      operationId: NftDataController_retrieveUserInventorySummary
-      parameters:
-        - name: address
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: activeAuction
-          required: false
-          in: query
-          description: Filter by active auctions
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: List of inventory summaries
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InventorySummaryDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get inventory summary for collections by user wallet
-      tags:
-        - NftData
-        - User
-  /user/{address}/offers:
-    get:
-      operationId: NftDataController_retrieveUserOffers
-      parameters:
-        - name: address
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: type
-          required: false
-          in: query
-          description: 'Type of offers to retrieve: received | placed'
-          schema:
-            type: string
-        - name: top
-          required: false
-          in: query
-          description: Number of items to retrieve
-          schema:
-            type: number
-        - name: skip
-          required: false
-          in: query
-          description: Number of items to skip
-          schema:
-            type: number
-      responses:
-        '200':
-          description: User offers
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetUserOffersResponseDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get user offers
-      tags:
-        - NftData
-        - User
-  /nft/offer/query:
-    get:
-      operationId: NftDataController_retrieveNftOffers
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftOfferDocFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-      responses:
-        '200':
-          description: User offers
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetUserOffersResponseDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get nft offers
-      tags:
-        - NftData
-        - Nft
-  /user/{address}/favorite/nfts:
-    get:
-      operationId: NftDataController_retrieveUserFavoriteNfts
-      parameters:
-        - name: address
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: top
-          required: false
-          in: query
-          description: Number of items to retrieve
-          schema:
-            type: number
-        - name: skip
-          required: false
-          in: query
-          description: Number of items to skip
-          schema:
-            type: number
-      responses:
-        '200':
-          description: User favorite NFTs
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftCosmosResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get the liked NFTs by an user
-      tags:
-        - NftData
-        - User
-  /collection/{collection}/attributes:
-    get:
-      operationId: NftDataController_retrieveCollectionAttributes
-      parameters:
-        - name: collection
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Fetch collection unique attributes and their information
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties:
-                  type: string
-                  additionalProperties:
-                    type: '#/components/schemas/TraitInfo'
-                example:
-                  Background:
-                    Blue:
-                      onSale: 23
-                  Type:
-                    General:
-                      onSale: 23
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get attributes
-      tags:
-        - NftData
-        - Collection
-  /nft/{identifier}/offers:
-    get:
-      operationId: NftDataController_retrieveSingleNftOffers
-      parameters:
-        - name: identifier
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: skip
-          required: true
-          in: query
-          schema:
-            type: number
-        - name: top
-          required: true
-          in: query
-          schema:
-            type: number
-      responses:
-        '200':
-          description: Single NFT offers
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetSingleNftOfferResponseDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get single NFT offers
-      tags:
-        - NftData
-        - Nft
-  /collection/{collection}/ranks:
-    get:
-      operationId: NftDataController_retrieveCollectionRanks
-      parameters:
-        - name: collection
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: List of ranks order from 1 to the latest
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CollectionRanksDTO'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Fetch collection ranks
-      tags:
-        - NftData
-        - Collection
-  /collection/{collection}/listings:
-    get:
-      operationId: NftDataController_retrieveCollectionListings
-      parameters:
-        - name: collection
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Listings of a collection
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListingsResponseDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get collection listings
-      tags:
-        - NftData
-        - Collection
-  /nft/pinned:
-    get:
-      operationId: NftDataController_retrievePinnedCollection
-      parameters: []
-      responses:
-        '200':
-          description: Pinned NFTs
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NftProps'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get homepage pinned NFTs
-      tags:
-        - NftData
-        - Nft
-  /nft/sign-withdraw:
-    post:
-      operationId: NftDataController_signListingWithdraw
-      parameters:
-        - schema: {}
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignWithdrawDto'
-      responses:
-        '201':
-          description: Signed data and signature
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignDataDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Get signed data
-      tags:
-        - NftData
-        - Nft
-  /collection/{collection}/sign-offer:
-    post:
-      operationId: NftDataController_signOffer
-      parameters:
-        - name: collection
-          required: true
-          in: path
-          schema:
-            type: string
-        - schema: {}
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignAcceptGlobalOfferDto'
-      responses:
-        '201':
-          description: Signed data and signature
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignDataDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Get signed data
-      tags:
-        - NftData
-        - Collection
-  /collection/{collection}/sign-mint:
-    post:
-      operationId: NftDataController_signMint
-      parameters:
-        - name: collection
-          required: true
-          in: path
-          schema:
-            type: string
-        - schema: {}
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignMintDto'
-      responses:
-        '201':
-          description: Signed data and signature
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignDataDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Get signed data
-      tags:
-        - NftData
-        - Collection
-  /nft/{identifier}:
-    get:
-      operationId: NftDataController_retrieveSingleNft
-      parameters:
-        - name: identifier
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Single NFT response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftProps'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      summary: Get a single NFT
-      tags:
-        - NftData
-        - Nft
   /pool/{poolId}/profile:
     get:
       operationId: StakingDataController_retrievePoolDetails
@@ -4623,6 +4979,43 @@ paths:
       summary: Global nft search
       tags:
         - Search
+  /lending/market-sc:
+    get:
+      operationId: XoxnoLendingScController_getMarketSCs
+      parameters: []
+      responses:
+        '200':
+          description: Get all market SCs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+        - Lending SC
+  /lending/market/{token}/price/egld:
+    get:
+      operationId: XoxnoLendingScController_getTokenPrice
+      parameters:
+        - name: token
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get lending token price
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  price:
+                    type: string
+                    example: '1234546542142543'
+      tags:
+        - Lending SC
   /user/native-token:
     get:
       operationId: Web2UserDataController_getNativeToken
@@ -5229,325 +5622,6 @@ paths:
       tags:
         - NftActivityData
         - Dune
-  /lending/market-sc:
-    get:
-      operationId: XoxnoLendingScController_getMarketSCs
-      parameters: []
-      responses:
-        '200':
-          description: Get all market SCs
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-      tags:
-        - Lending SC
-  /lending/market/{token}/price/egld:
-    get:
-      operationId: XoxnoLendingScController_getTokenPrice
-      parameters:
-        - name: token
-          required: true
-          in: path
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Get lending token price
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  price:
-                    type: string
-                    example: '1234546542142543'
-      tags:
-        - Lending SC
-  /lending/market/{token}/profile:
-    get:
-      operationId: LendingDataController_retrieveMarketProfile
-      parameters:
-        - name: token
-          required: true
-          in: path
-          description: Token of the lending market
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Get lending market profile
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingMarketProfile'
-      summary: Get lending market profile
-      tags:
-        - Lending And Borrowing
-  /lending/market/query:
-    get:
-      operationId: LendingDataController_retrieveMarketProfiles
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingMarketProfileFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
-      responses:
-        '200':
-          description: Explore lending markets
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingMarketProfileQuery'
-      summary: Get lending markets overview
-      tags:
-        - Lending And Borrowing
-  /user/lending/{address}:
-    get:
-      operationId: LendingDataController_retrieveUserLendingPosition
-      parameters:
-        - name: address
-          required: true
-          in: path
-          description: User address
-          schema:
-            type: string
-        - name: token
-          required: false
-          in: query
-          description: Market token
-          schema:
-            type: string
-      responses:
-        '200':
-          description: User lending positions
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LendingAccountProfile'
-      summary: Get my lending & borrowing positions
-      tags:
-        - Lending And Borrowing
-  /user/lending/position/{identifier}:
-    get:
-      operationId: LendingDataController_retrieveUserLendingSinglePosition
-      parameters:
-        - name: identifier
-          required: true
-          in: path
-          description: NFT identifier
-          schema:
-            type: string
-      responses:
-        '200':
-          description: User lending position
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingAccountProfile'
-      summary: Get single lending & borrowing position
-      tags:
-        - Lending And Borrowing
-  /user/lending/image/{nonce}:
-    get:
-      operationId: LendingDataController_retrieveLendingImage
-      parameters:
-        - name: nonce
-          required: true
-          in: path
-          description: Nonce of the position
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Lending picture
-      summary: Get picture of lending position
-      tags:
-        - Lending And Borrowing
-  /lending/market/emode-categories:
-    get:
-      operationId: LendingDataController_retrieveMarketProfilesByCategoryIds
-      parameters:
-        - name: categoryIds
-          required: true
-          in: query
-          description: Comma-separated list of category IDs
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Get lending market profiles by category IDs
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LendingEModeCategoryProfile'
-      summary: Get lending market profiles by category IDs
-      tags:
-        - Lending And Borrowing
-  /lending/market/{token}/emode-categories:
-    get:
-      operationId: LendingDataController_retrieveMarketEModeProfiles
-      parameters:
-        - name: token
-          required: true
-          in: path
-          description: E-mode available of the lending market
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Get lending market available e-mode profile
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LendingEModeCategoryProfile'
-      summary: Get lending market available e-mode profile
-      tags:
-        - Lending And Borrowing
-  /lending/market/{token}/analytics:
-    get:
-      operationId: LendingDataController_retrieveMarketAnalytics
-      parameters:
-        - name: token
-          required: true
-          in: path
-          description: E-mode available of the lending market
-          schema:
-            type: string
-        - name: startTime
-          required: false
-          in: query
-          description: Start date as 'yyyy-MM-dd'
-          schema:
-            type: string
-        - name: endTime
-          required: false
-          in: query
-          description: End date as yyyy-MM-dd
-          schema:
-            type: string
-        - name: bin
-          required: false
-          in: query
-          description: Bin size in days, as a number followed by a letter (e.g. 1d)
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Lending market analytics graph data
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LendingMarketAnalyticsGraph'
-      summary: Get lending market analytics graph data
-      tags:
-        - Lending And Borrowing
-  /lending/leaderboard:
-    get:
-      operationId: LendingDataController_retrieveLendingLeaderboard
-      parameters:
-        - name: skip
-          required: false
-          in: query
-          description: The number of records to skip
-          schema:
-            type: number
-        - name: top
-          required: false
-          in: query
-          description: The number of records to return
-          schema:
-            type: number
-        - name: orderBy
-          required: false
-          in: query
-          description: The field to order by
-          schema:
-            enum:
-              - supplied
-              - borrowed
-              - healthFactor
-            type: string
-        - name: orderDirection
-          required: false
-          in: query
-          description: The order direction
-          schema:
-            enum:
-              - asc
-              - desc
-            type: string
-        - name: token
-          required: false
-          in: query
-          description: The token to filter by
-          schema:
-            type: string
-      responses:
-        '200':
-          description: List of lending positions
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LendingPositionStatus'
-      summary: Get lending position leaderboard
-      tags:
-        - Lending And Borrowing
-        - User
-  /lending/stats:
-    get:
-      operationId: LendingDataController_retrieveLendingStats
-      parameters: []
-      responses:
-        '200':
-          description: Lending protocol stats
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingOverallStats'
-      summary: Get lending protocol stats
-      tags:
-        - Lending And Borrowing
-  /lending/market/prices:
-    get:
-      operationId: LendingDataController_retrieveLendingMarketsPrices
-      parameters:
-        - name: returnAsUsd
-          required: false
-          in: query
-          description: Return prices in USD
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: Lending markets prices
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  EGLD: 1
-      summary: Get token prices as EGLD for all lending markets
-      tags:
-        - Lending And Borrowing
   /transactions/{txHash}/status:
     get:
       operationId: TransactionController_getTransactionStatus
@@ -9489,540 +9563,6 @@ components:
         - paymentToken
         - bigUintAmount
         - original
-    OtherDataDto:
-      type: object
-      properties:
-        nftCount:
-          type: number
-          example: 5579
-        followCount:
-          type: number
-          example: 200
-        holdersCount:
-          type: number
-          example: 764
-      required:
-        - nftCount
-        - followCount
-        - holdersCount
-    StatisticsDto:
-      type: object
-      properties:
-        other:
-          $ref: '#/components/schemas/OtherDataDto'
-      required:
-        - other
-    CollectionProfileDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          example: collectionProfile
-        collection:
-          type: string
-          example: MICE-a0c447
-        name:
-          type: string
-          example: MiceCity
-        description:
-          type: string
-          example: >-
-            Welcome to the 1980s, set in an alternative Miami populated by mice!
-            Our collection of 8000 uniquely generated retro mice is the ultimate
-            blast from the past, bringing the decade of big hair, excess, pastel
-            suits & neon lights to the MultiversX Blockchain!
-        isVisible:
-          type: boolean
-          example: true
-        isVerified:
-          type: boolean
-          example: true
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilePicture.webp?ts=1679309756
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilebanner.webp
-        statistics:
-          $ref: '#/components/schemas/StatisticsDto'
-        owner:
-          type: string
-          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
-        creator:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
-        isMintable:
-          type: boolean
-          example: true
-        hasStaking:
-          type: boolean
-          example: true
-        id:
-          type: string
-          example: MICE-a0c447-collectionProfile
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        type:
-          type: string
-          example: NonFungibleESDT
-        _ts:
-          type: number
-          example: 1720568178
-      required:
-        - dataType
-        - collection
-        - name
-        - description
-        - isVisible
-        - isVerified
-        - profile
-        - banner
-        - statistics
-        - owner
-        - creator
-        - isMintable
-        - hasStaking
-        - id
-        - socials
-        - type
-        - _ts
-    FloorPriceDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          example: MICE-a0c447
-        price:
-          type: number
-          example: 0.18
-        usdPrice:
-          type: number
-          example: 0.18
-      required:
-        - collection
-        - price
-        - usdPrice
-    PinnedCollectionDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          example: EAPES-8f3c1f
-        name:
-          type: string
-          example: EAPES
-        isVerified:
-          type: boolean
-          example: true
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EAPES-8f3c1f/profilePicture.webp?ts=1691359925
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EAPES-8f3c1f/profilebanner.webp
-        description:
-          type: string
-          example: >-
-            EAPES is a collection of 10,000 unique 3D APEs living on the
-            MultiversX blockchain
-        creator:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgq7gma4udjeh3mwuq4lmk7wccgh0tenxu6yv5qc2csfy
-        isMintable:
-          type: boolean
-          example: false
-      required:
-        - collection
-        - name
-        - isVerified
-        - profile
-        - banner
-        - description
-        - creator
-    CollectionPinnedStatusDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          description: Collection ticker
-        status:
-          type: boolean
-          description: Pinned status
-      required:
-        - collection
-        - status
-    FollowCollectionDto:
-      type: object
-      properties:
-        isFavorite:
-          type: boolean
-          description: Indicates if the collection is favorited
-          example: true
-        collection:
-          type: string
-          description: Collection followed, empty when unfollow
-          example: Mice-213123
-      required:
-        - isFavorite
-    EgldOrEsdtTokenPayment:
-      type: object
-      properties:
-        tokenIdentifier:
-          type: string
-          example: EGLD
-        tokenNonce:
-          type: number
-          example: 0
-        amount:
-          type: string
-          example: '500000000000000000'
-        amountShort:
-          type: number
-          example: 0.5
-        decimals:
-          type: number
-          example: 18
-        usdValue:
-          type: number
-          example: 18.34
-      required:
-        - tokenIdentifier
-        - tokenNonce
-        - amount
-        - amountShort
-        - decimals
-        - usdValue
-    CreatorInfoDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Marcel81
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgqzty6ekd0dwte8r3d45kt78el9yle5vmkys5sr86uws
-        profile:
-          type: string
-          example: https://media.xoxno.com/utils/defaultProfilePic.webp
-      required:
-        - name
-        - contractAddress
-        - profile
-    DropResourceDto:
-      type: object
-      properties:
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
-        startTime:
-          type: number
-          example: 1720587300
-        isSoldOut:
-          type: boolean
-          example: false
-        collectionTag:
-          type: string
-          example: Nfthero
-        collectionSize:
-          type: number
-          example: 4
-        totalNftMinted:
-          type: number
-          example: 0
-        collection:
-          type: string
-          example: 1000-76443d
-        creatorTag:
-          type: string
-          example: Marcel81
-        creatorName:
-          type: string
-          example: Marcel81
-        endTime:
-          type: number
-          example: 1722401700
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
-        creatorInfo:
-          $ref: '#/components/schemas/CreatorInfoDto'
-      required:
-        - prices
-        - startTime
-        - isSoldOut
-        - collectionTag
-        - collectionSize
-        - totalNftMinted
-        - collection
-        - creatorTag
-        - creatorName
-        - endTime
-        - collectionInfo
-        - creatorInfo
-    DropsQueryDto:
-      type: object
-      properties:
-        count:
-          type: number
-          example: null
-        hasMoreResults:
-          type: boolean
-          example: true
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/DropResourceDto'
-      required:
-        - hasMoreResults
-        - resources
-    MintStageDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          example: mintStage
-        collection:
-          type: string
-          example: MICE-a0c447
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
-        collectionTag:
-          type: string
-          example: MiceCity
-        name:
-          type: string
-          example: MiceCity
-        startTime:
-          type: number
-          example: 1645210800
-        endTime:
-          type: number
-          example: 0
-        mintCount:
-          type: number
-          example: 5583
-        mintLimit:
-          type: number
-          example: 8000
-        mintEnabled:
-          type: boolean
-          example: true
-        isWhitelist:
-          type: boolean
-          example: false
-        walletLimit:
-          type: number
-          example: 0
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
-        id:
-          type: string
-          example: MICE-a0c447-MiceCity-mintStage
-        _ts:
-          type: number
-          example: 1720568180
-        walletLimitReached:
-          type: boolean
-          example: false
-        maxBuyable:
-          type: number
-          example: null
-          nullable: true
-      required:
-        - dataType
-        - collection
-        - contractAddress
-        - collectionTag
-        - name
-        - startTime
-        - endTime
-        - mintCount
-        - mintLimit
-        - mintEnabled
-        - isWhitelist
-        - walletLimit
-        - prices
-        - id
-        - _ts
-        - walletLimitReached
-        - maxBuyable
-    DropInfoDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          example: MICE-a0c447
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
-        collectionTag:
-          type: string
-          example: MiceCity
-        nftTransferLimited:
-          type: boolean
-          example: false
-        hasBotProtection:
-          type: boolean
-          example: false
-        kycRequired:
-          type: boolean
-          example: false
-        totalNftMinted:
-          type: number
-          example: 5583
-        collectionSize:
-          type: number
-          example: 8000
-        cid:
-          type: string
-          example: QmWEwSi9AhgMPeu4CJfLpWq1yKSfmERZXt76b429pVSU9R
-        mediaType:
-          type: string
-          example: .png
-        userMintsGlobal:
-          type: number
-          example: 0
-        globalWalletLimit:
-          type: number
-          example: 0
-        mintStages:
-          type: array
-          items:
-            $ref: '#/components/schemas/MintStageDto'
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
-        creatorInfo:
-          $ref: '#/components/schemas/CreatorInfoDto'
-      required:
-        - collection
-        - contractAddress
-        - collectionTag
-        - nftTransferLimited
-        - hasBotProtection
-        - kycRequired
-        - totalNftMinted
-        - collectionSize
-        - cid
-        - mediaType
-        - userMintsGlobal
-        - globalWalletLimit
-        - mintStages
-        - collectionInfo
-        - creatorInfo
-    WalletDetailDto:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Count of NFTs
-          example: 4827
-        weight:
-          type: number
-          description: Weight percentage
-          example: 86.51
-        address:
-          type: string
-          description: Address of the holder
-          example: erd1qqqqqqqqqqqqqpgqvpkd3g3uwludduv3797j54qt6c888wa59w2shntt6z
-        username:
-          type: string
-          description: Username of the holder
-          example: 'Staking: XOXNO'
-        type:
-          type: string
-          description: Type of the holder
-          example: staking
-      required:
-        - count
-        - weight
-        - address
-        - username
-        - type
-    CollectionHoldersDto:
-      type: object
-      properties:
-        totalSupply:
-          type: number
-          description: Total supply of NFTs
-          example: 5580
-        walletDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/WalletDetailDto'
-        onMarket:
-          type: object
-          description: Details of NFTs on market
-          example:
-            count: 211
-            weight: 3.78
-        staked:
-          type: object
-          description: Details of staked NFTs
-          example:
-            count: 4827
-            weight: 86.51
-        otherSCs:
-          type: object
-          description: Details of NFTs in other smart contracts
-          example:
-            count: 10
-            weight: 0.18
-        burnWallet:
-          type: object
-          description: Details of NFTs in burn wallet
-          example:
-            count: 0
-            weight: 0
-        uniqueHolders:
-          type: object
-          description: Details of unique holders
-          example:
-            count: 764
-            weight: 13.69
-        holded:
-          type: object
-          description: Details of holded NFTs
-          example:
-            count: 532
-            weight: 9.53
-            avgPerHodler: 2.18
-      required:
-        - totalSupply
-        - walletDetails
-        - onMarket
-        - staked
-        - otherSCs
-        - burnWallet
-        - uniqueHolders
-        - holded
-    CollectionOwnerDto:
-      type: object
-      properties:
-        owner:
-          type: string
-          description: Owner address
-          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
-      required:
-        - owner
-    AttributeDto:
-      type: object
-      properties:
-        trait_type:
-          type: string
-          example: Divinity
-        value:
-          type: string
-          example: '95'
-      required:
-        - trait_type
-        - value
     OwnerDto:
       type: object
       properties:
@@ -10040,602 +9580,973 @@ components:
         - address
         - profile
         - username
-    ResourceDto:
+    LendingMarketParticipants:
       type: object
       properties:
-        offerId:
+        count:
           type: number
-          example: 156453
-        collection:
-          type: string
-          example: VPRNFT-0a0ee5
-        quantity:
-          type: number
-          example: 1
-        paymentToken:
-          type: string
-          example: EGLD
-        paymentTokenNonce:
-          type: number
-          example: 0
-        price:
-          type: string
-          example: '800000000000000000'
-        priceShort:
-          type: number
-          example: 0.8
-        attributes:
+          description: Count of participants
+          example: 100
+        wallets:
+          description: Wallets of participants
           type: array
           items:
-            $ref: '#/components/schemas/AttributeDto'
-        owner:
-          $ref: '#/components/schemas/OwnerDto'
-        timestamp:
-          type: number
-          example: 1688827110
-        marketplace:
-          type: string
-          example: xoxno
-        uniqueKey:
-          type: string
-          example: VPRNFT-0a0ee5-156453-xoxno-globalOffer
-        isActive:
-          type: boolean
-          example: true
-        usdValue:
-          type: number
-          example: 29.143
+            $ref: '#/components/schemas/OwnerDto'
       required:
-        - offerId
-        - collection
-        - quantity
-        - paymentToken
-        - paymentTokenNonce
-        - price
-        - priceShort
-        - attributes
-        - owner
-        - timestamp
-        - marketplace
-        - uniqueKey
-        - isActive
-        - usdValue
-    GlobalOffersDto:
+        - count
+        - wallets
+    MarketExtraApy:
       type: object
       properties:
-        resources:
+        nativeApy:
+          type: number
+          description: Native APY for derivatives tokes
+          example: 0.03
+        feesApr:
+          type: number
+          description: LP fees APR
+          example: 0.03
+    LendingMarketProfile:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+            - marketProfile
+            - accountProfile
+            - emodeCategoryProfile
+            - tokenEmodeProfile
+          example: marketProfile
+        token:
+          type: string
+          description: Token associated with the lending market
+          example: EGLD
+        name:
+          type: string
+          description: Name of the token
+          example: EGLD
+        decimals:
+          type: number
+          description: Number of decimals for the token
+          example: 18
+        address:
+          type: string
+          description: Address of the lending market
+          example: erd1qqqqqqq
+        baseRate:
+          type: string
+          description: Base interest rate
+          example: 0.02
+        maxBorrowRate:
+          type: string
+          description: Maximum borrow rate
+          example: 0.1
+        slopeRate1:
+          type: string
+          description: Slope rate 1
+          example: 0.04
+        slopeRate2:
+          type: string
+          description: Slope rate 2
+          example: 0.08
+        slopeRate3:
+          type: string
+          description: Slope rate 3
+          example: 0.12
+        midUsageRate:
+          type: string
+          description: Mid usage rate
+          example: 0.5
+        optimalUsageRate:
+          type: string
+          description: Optimal usage rate
+          example: 0.8
+        reserveFactor:
+          type: string
+          description: Reserve factor
+          example: 0.1
+        liquidationFee:
+          type: string
+          description: Liquidation fee
+          example: 0.05
+        ltv:
+          type: string
+          description: Loan-to-value ratio
+          example: 0.75
+        liquidationBonus:
+          type: string
+          description: Liquidation bonus
+          example: 0.1
+        liquidationThreshold:
+          type: string
+          description: Liquidation threshold
+          example: 0.85
+        rewardsReserve:
+          type: object
+          description: Rewards reserves
+          example: '1000000'
+        rewardsReserveShort:
+          type: object
+          description: Rewards reserves (short)
+          example: 500000
+        reserves:
+          type: object
+          description: Reserves
+          example: '1000000'
+        reservesShort:
+          type: object
+          description: Short reserves
+          example: 500000
+        supplyAmount:
+          type: object
+          description: Supply amount
+          example: '2000000'
+        borrowAmount:
+          type: object
+          description: Borrow amount
+          example: '1500000'
+        supplyAmountShort:
+          type: object
+          description: Short supply amount
+          example: 1000000
+        borrowAmountShort:
+          type: object
+          description: Short borrow amount
+          example: 750000
+        vaultAmount:
+          type: object
+          description: Vault amount
+          example: '500000'
+        vaultAmountShort:
+          type: object
+          description: Short vault amount
+          example: 250000
+        supplyCap:
+          type: string
+          description: Supply cap
+          example: '3000000'
+        borrowCap:
+          type: string
+          description: Borrow cap
+          example: '2500000'
+        supplyCapShort:
+          type: object
+          description: Short supply cap
+          example: 1500000
+        borrowCapShort:
+          type: object
+          description: Short borrow cap
+          example: 1250000
+        supplyIndex:
+          type: object
+          description: Supply index
+          example: '1.02'
+        borrowIndex:
+          type: object
+          description: Borrow index
+          example: '1.05'
+        timestamp:
+          type: object
+          description: Timestamp of last market activity
+          example: 1732650682
+        borrowApy:
+          type: object
+          description: Borrow annual percentage yield
+          example: 0.05
+        supplyApy:
+          type: object
+          description: Supply annual percentage yield
+          example: 0.03
+        utilizationRate:
+          type: object
+          description: Utilization rate
+          example: 0.75
+        canBeCollateral:
+          type: boolean
+          description: Indicates if the asset can be used as collateral
+          example: true
+        canBeBorrowed:
+          type: boolean
+          description: Indicates if the asset can be borrowed
+          example: true
+        eMode:
+          type: boolean
+          description: Indicates if eMode is enabled
+          example: false
+        eModeCategories:
+          description: eMode categories associated with the lending market
+          example:
+            - '1'
+            - '2'
           type: array
           items:
-            $ref: '#/components/schemas/ResourceDto'
+            type: array
+        isolated:
+          type: boolean
+          description: Indicates if the asset is isolated
+          example: false
+        maxDebtUsd:
+          type: object
+          description: Maximum debt in USD
+          example: '5000000'
+        maxDebtUsdShort:
+          type: object
+          description: Maximum debt in USD (short)
+          example: 2500000
+        debtCeiling:
+          type: string
+          description: Debt ceiling
+          example: '10000000'
+        debtCeilingShort:
+          type: number
+          description: Debt ceiling (short)
+          example: 5000000
+        siloed:
+          type: boolean
+          description: Indicates if the asset is siloed
+          example: false
+        flashLoan:
+          type: boolean
+          description: Indicates if flash loans are enabled
+          example: true
+        flashLoanFee:
+          type: string
+          description: Flash loan fee
+          example: 0.003
+        canBorrowInIsolation:
+          type: boolean
+          description: Indicates if the asset can be borrowed in isolation
+          example: false
+        eModeCategoryProfiles:
+          description: eMode categories associated with the lending market
+          example: true
+          type: array
+          items:
+            type: array
+        oraclePrice:
+          type: string
+          description: Oracle price
+          example: '100'
+        participants:
+          description: Participants in the lending market
+          allOf:
+            - $ref: '#/components/schemas/LendingMarketParticipants'
+        extraApy:
+          description: Extra APY for derivatives & LP tokens
+          allOf:
+            - $ref: '#/components/schemas/MarketExtraApy'
+      required:
+        - dataType
+        - token
+        - name
+        - decimals
+        - address
+        - baseRate
+        - maxBorrowRate
+        - slopeRate1
+        - slopeRate2
+        - slopeRate3
+        - midUsageRate
+        - optimalUsageRate
+        - reserveFactor
+        - liquidationFee
+        - ltv
+        - liquidationBonus
+        - liquidationThreshold
+        - rewardsReserve
+        - rewardsReserveShort
+        - reserves
+        - reservesShort
+        - supplyAmount
+        - borrowAmount
+        - supplyAmountShort
+        - borrowAmountShort
+        - vaultAmount
+        - vaultAmountShort
+        - supplyCap
+        - borrowCap
+        - supplyCapShort
+        - borrowCapShort
+        - supplyIndex
+        - borrowIndex
+        - timestamp
+        - borrowApy
+        - supplyApy
+        - utilizationRate
+        - canBeCollateral
+        - canBeBorrowed
+        - eMode
+        - eModeCategories
+        - isolated
+        - maxDebtUsd
+        - maxDebtUsdShort
+        - siloed
+        - flashLoan
+        - flashLoanFee
+        - canBorrowInIsolation
+        - eModeCategoryProfiles
+        - oraclePrice
+        - participants
+    LendingMarketProfileQuery:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
+          description: Indicates if there are more documents available
           example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            $ref: '#/components/schemas/LendingMarketProfile'
       required:
-        - resources
         - hasMoreResults
-    MintingListingDto:
+        - resources
+    LendingEModeCategoryProfileDoc:
       type: object
       properties:
         dataType:
           type: string
           enum:
-            - collectionProfile
-            - globalOffer
-            - mintProfile
-            - mintStage
-            - collectionStats
-            - collectionVerification
-          default: mintProfile
-        collection:
+            - marketProfile
+            - accountProfile
+            - emodeCategoryProfile
+            - tokenEmodeProfile
+          example: emodeCategoryProfile
+        ltv:
           type: string
-        contractAddress:
+          description: Loan-to-value ratio
+          example: 0.75
+        liquidationThreshold:
           type: string
-        collectionTag:
+          description: Liquidation threshold
+          example: 0.85
+        liquidationBonus:
           type: string
-        creatorTag:
-          type: string
-        creatorName:
-          type: string
-        cid:
-          type: string
-        mediaType:
-          type: string
-        baseNftName:
-          type: string
-        hasAttributes:
+          description: Liquidation bonus
+          example: 0.1
+        isDeprecated:
           type: boolean
-        ownerTransferred:
-          type: boolean
-        collectionSize:
-          type: number
-        totalNftMinted:
-          type: number
-        globalWalletLimit:
-          type: number
-        royalties:
-          type: number
-        oldVersion:
-          type: boolean
-        nameShuffle:
-          type: boolean
-        nftTransferLimited:
-          type: boolean
-        allowsPublicBurn:
-          type: boolean
-        kycRequired:
-          type: boolean
-        allowsRefund:
-          type: boolean
-        hasBotProtection:
-          type: boolean
-        hasReveal:
-          type: boolean
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
-        startTime:
-          type: object
-        endTime:
-          type: number
-        isSoldOut:
-          type: object
-        tags:
-          oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
+          description: Is eMode deprecated
+          example: false
         id:
           type: string
-        _ts:
-          type: number
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
+          description: EMode category
+          example: '1'
       required:
         - dataType
-        - collection
-        - contractAddress
-        - collectionTag
-        - creatorTag
-        - creatorName
-        - cid
-        - mediaType
-        - baseNftName
-        - hasAttributes
-        - ownerTransferred
-        - collectionSize
-        - totalNftMinted
-        - globalWalletLimit
-        - royalties
-        - oldVersion
-        - nameShuffle
-        - nftTransferLimited
-        - kycRequired
-        - allowsRefund
-        - hasBotProtection
-        - hasReveal
-        - prices
-        - startTime
-        - endTime
-        - isSoldOut
-        - tags
+        - ltv
+        - liquidationThreshold
+        - liquidationBonus
+        - isDeprecated
         - id
-        - _ts
-        - collectionInfo
-    EventLocationDto:
+    PickTypeClass:
       type: object
       properties:
-        address:
+        token:
           type: string
-        placeId:
-          type: string
-        lat:
-          type: number
-          minimum: -90
-          maximum: 90
-          description: Latitude must be between -90 and 90
-        long:
-          type: number
-          minimum: -180
-          maximum: 180
-          description: Longitude must be between -180 and 180
-        instructions:
-          type: string
-        onlineLink:
-          type: string
-        city:
-          type: string
-        country:
-          type: string
-    RegistrationType:
-      type: object
-      properties:
-        visibility:
-          type: string
-          enum:
-            - public
-            - private
-          description: Visibility of the event registration
-        maxLimit:
-          type: integer
-          description: Maximum number of registrations allowed
-        userLimit:
-          type: integer
-          description: Maximum number of registrations allowed per user
-        soldCount:
-          type: integer
-          description: Current number of tickets sold
-        hasSideEvents:
-          type: boolean
-          description: Whether the event has side events
-        showGuestCount:
-          type: boolean
-          description: Whether to show the guest count
-        requireKYC:
-          type: boolean
-          description: Whether KYC is required for registration
-        refundable:
-          type: boolean
-          description: Whether the event is refundable
-        nameWithNumber:
-          type: boolean
-          description: Whether to show name with number
-        botProtection:
-          type: boolean
-          description: Whether bot protection is enabled
-        isPublished:
-          type: boolean
-          description: Whether the event is published
-        hasWaitlist:
-          type: boolean
-          description: Whether the event has a waitlist
-        requireName:
-          type: boolean
-          description: Whether name is required for registration
-        requireEmail:
-          type: boolean
-          description: Whether email is required for registration
-        requirePhoneNumber:
-          type: boolean
-          description: Whether phone number is required for registration
-        hasCustomQuestions:
-          type: boolean
-          description: Whether the event has custom questions
-        emailSender:
-          type: string
-          description: Email sender for notifications
-      required:
-        - visibility
-        - maxLimit
-        - userLimit
-        - hasSideEvents
-        - requireKYC
-        - refundable
-        - nameWithNumber
-        - botProtection
-        - isPublished
-        - requireName
-        - requireEmail
-        - requirePhoneNumber
-    PremiumType:
-      type: object
-      properties:
-        searchable:
-          type: boolean
-          description: Whether the event is searchable
-      required:
-        - searchable
-    EventUserRoleDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          description: Type of the document.
-          enum:
-            - event-voucher
-            - event-invitation
-            - event-profile
-            - event-question
-            - event-question-answer
-            - event-ticket-profile
-            - event-ticket-stage
-            - event-guest
-            - event-referral-config
-            - event-referral-code
-            - event-referral-usage
-            - event-user-role
-        eventId:
-          type: string
-          description: Unique identifier for the event.
-        wallet:
-          type: string
-          description: User wallet address
+          description: Token associated with the lending market
+          example: EGLD
         name:
           type: string
-          description: User name
-        email:
+          description: Name of the token
+          example: EGLD
+        decimals:
+          type: number
+          description: Number of decimals for the token
+          example: 18
+        baseRate:
           type: string
-          description: User email address
-        role:
-          type: array
-          description: Role of the user.
-          items:
-            type: string
-            enum:
-              - event-reader
-              - event-manager
-              - check-in-manager
-        permissions:
-          type: array
-          description: Permissions of the user.
-          items:
-            type: string
-            enum:
-              - event-reader-view
-              - event-manager-edit-page
-              - event-manager-create-ticket
-              - event-manager-edit-ticket
-              - event-manager-delete-ticket
-              - event-manager-edit-guest
-              - event-manager-create-stage
-              - event-manager-edit-stage
-        createdAt:
-          type: integer
-          description: Timestamp for when the user role was created.
-        endTime:
-          type: integer
-          description: Timestamp for when the user role will expire.
-        id:
+          description: Base interest rate
+          example: 0.02
+        maxBorrowRate:
           type: string
-          description: Unique identifier for the document.
-        status:
+          description: Maximum borrow rate
+          example: 0.1
+        slopeRate1:
           type: string
-          description: Status of the user role.
-          enum:
-            - active
-            - pending
+          description: Slope rate 1
+          example: 0.04
+        slopeRate2:
+          type: string
+          description: Slope rate 2
+          example: 0.08
+        slopeRate3:
+          type: string
+          description: Slope rate 3
+          example: 0.12
+        midUsageRate:
+          type: string
+          description: Mid usage rate
+          example: 0.5
+        optimalUsageRate:
+          type: string
+          description: Optimal usage rate
+          example: 0.8
+        reserveFactor:
+          type: string
+          description: Reserve factor
+          example: 0.1
+        rewardsReserve:
+          type: object
+          description: Rewards reserves
+          example: '1000000'
+        reserves:
+          type: object
+          description: Reserves
+          example: '1000000'
+        supplyAmount:
+          type: object
+          description: Supply amount
+          example: '2000000'
+        borrowAmount:
+          type: object
+          description: Borrow amount
+          example: '1500000'
+        vaultAmount:
+          type: object
+          description: Vault amount
+          example: '500000'
+        supplyCap:
+          type: string
+          description: Supply cap
+          example: '3000000'
+        borrowCap:
+          type: string
+          description: Borrow cap
+          example: '2500000'
+        borrowApy:
+          type: object
+          description: Borrow annual percentage yield
+          example: 0.05
+        supplyApy:
+          type: object
+          description: Supply annual percentage yield
+          example: 0.03
+        utilizationRate:
+          type: object
+          description: Utilization rate
+          example: 0.75
+        canBeCollateral:
+          type: boolean
+          description: Indicates if the asset can be used as collateral
+          example: true
+        canBeBorrowed:
+          type: boolean
+          description: Indicates if the asset can be borrowed
+          example: true
+        isolated:
+          type: boolean
+          description: Indicates if the asset is isolated
+          example: false
+        maxDebtUsd:
+          type: object
+          description: Maximum debt in USD
+          example: '5000000'
+        debtCeiling:
+          type: string
+          description: Debt ceiling
+          example: '10000000'
+        siloed:
+          type: boolean
+          description: Indicates if the asset is siloed
+          example: false
+        flashLoanFee:
+          type: string
+          description: Flash loan fee
+          example: 0.003
+        canBorrowInIsolation:
+          type: boolean
+          description: Indicates if the asset can be borrowed in isolation
+          example: false
+        extraApy:
+          description: Extra APY for derivatives & LP tokens
+          allOf:
+            - $ref: '#/components/schemas/MarketExtraApy'
       required:
-        - dataType
-        - eventId
-        - wallet
+        - token
         - name
-        - email
-        - role
-        - permissions
-        - createdAt
-        - id
-        - status
-    EventProfileDoc:
+        - decimals
+        - baseRate
+        - maxBorrowRate
+        - slopeRate1
+        - slopeRate2
+        - slopeRate3
+        - midUsageRate
+        - optimalUsageRate
+        - reserveFactor
+        - rewardsReserve
+        - reserves
+        - supplyAmount
+        - borrowAmount
+        - vaultAmount
+        - supplyCap
+        - borrowCap
+        - borrowApy
+        - supplyApy
+        - utilizationRate
+        - canBeCollateral
+        - canBeBorrowed
+        - isolated
+        - maxDebtUsd
+        - siloed
+        - flashLoanFee
+        - canBorrowInIsolation
+    LendingAccountProfile:
       type: object
       properties:
         dataType:
           type: string
-          description: The type of user data.
           enum:
-            - event-voucher
-            - event-invitation
-            - event-profile
-            - event-question
-            - event-question-answer
-            - event-ticket-profile
-            - event-ticket-stage
-            - event-guest
-            - event-referral-config
-            - event-referral-code
-            - event-referral-usage
-            - event-user-role
-          default: event-profile
-        createdAt:
-          type: integer
-          description: The time the event was created as a Unix timestamp in seconds.
-        creatorAddress:
+            - marketProfile
+            - accountProfile
+            - emodeCategoryProfile
+            - tokenEmodeProfile
+          example: accountProfile
+        identifier:
           type: string
-          description: Wallet address of the creator of the event.
-        title:
+          description: Unique identifier for the lending account
+          example: account123
+        nonce:
+          type: number
+          description: A unique number to ensure uniqueness of the identifier
+          example: 1
+        token:
           type: string
-          description: Title of the event.
-        startTime:
-          type: integer
-          description: Start time of the event as a Unix timestamp in seconds.
-        endTime:
-          type: integer
-          description: End time of the event as a Unix timestamp in seconds.
-        descriptionUrl:
-          type: string
-          description: >-
-            URL to the markdown file in Azure storage containing the event
-            description.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
-        location:
-          description: >-
-            Location details including geo points, address, and optional
-            instructions.
-          allOf:
-            - $ref: '#/components/schemas/EventLocationDto'
-        isVirtualEvent:
-          type: boolean
-          description: Define if the event happens in real life or virtual on Zoom/Meet
-        slug:
-          type: string
-          description: Unique slug for the event URL.
-        profile:
-          type: string
-          description: URL to the profile image in Azure storage.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
-        category:
-          type: string
-          description: Category of the event.
-          enum:
-            - festival
-            - conference
-            - networking
-            - meetup
-            - web3
-            - entertainment
-        subCategory:
-          type: string
-          description: Subcategory of the event.
-          enum:
-            - music
-            - arts-and-culture
-            - food-and-drink
-            - lifestyle-and-wellness
-            - local-and-community
-            - technology-and-innovation
-            - business-and-finance
-            - healthcare-and-science
-            - education-and-learning
-            - marketing-and-media
-            - industry-specific
-            - career-development
-            - investor-and-startups
-            - social-impact
-            - personal-development
-            - hobbies-and-interests
-            - professional-groups
-            - social-gathering
-            - education-and-skills
-            - family-and-kids
-            - blockchain-and-cryptocurrency
-            - metaverse-and-vr
-            - defi-and-finance
-            - dao-and-governance
-            - web3-startups
-            - live-music
-            - comedy-shows
-            - theatre-and-performance
-            - movies
-            - nightlife-and-clubbing
-        background:
-          type: string
-          description: URL to the background image in Azure storage, optional.
-        registration:
-          description: >-
-            Registration details such as visibility, max capacity, and ticket
-            limits.
-          allOf:
-            - $ref: '#/components/schemas/RegistrationType'
-        premium:
-          description: Event premium features
-          allOf:
-            - $ref: '#/components/schemas/PremiumType'
-        contractAddress:
-          type: string
-          description: The address of the contract that manages the event.
-        collection:
-          type: string
-          description: The NFT collection the event is associated with.
-        seo:
+          description: The token associated with the lending account
+          example: EGLD
+        supplyAmount:
           type: object
-          description: >-
-            SEO-related information such as short description, tags, and
-            alternative title.
-        id:
+          description: The amount supplied in the lending account
+          example: '1000'
+        borrowAmount:
+          type: object
+          description: The amount borrowed from the lending account
+          example: '500'
+        supplyAmountShort:
+          type: object
+          description: The short supply amount
+          example: 1000
+        borrowAmountShort:
+          type: object
+          description: The short borrow amount
+          example: 500
+        supplyAccumulatedInterest:
+          type: object
+          description: The amount of supply interest accumulated
+          example: '10'
+        borrowAccumulatedInterest:
+          type: object
+          description: The amount of borrow interest accumulated
+          example: '5'
+        supplyAccumulatedInterestShort:
+          type: object
+          description: The amount of supply interest accumulated
+          example: 10
+        borrowAccumulatedInterestShort:
+          type: object
+          description: The amount of borrow interest accumulated
+          example: 5
+        supplyTimestamp:
+          type: object
+          description: Timestamp of the supply activity
+          example: 0
+        supplyIndex:
+          type: object
+          description: Supply index
+          example: 0
+        borrowTimestamp:
+          type: object
+          description: Timestamp of the borrow activity
+          example: 0
+        borrowIndex:
+          type: object
+          description: Borrow index
+          example: 0
+        entryLiquidationThreshold:
           type: string
-          description: Automatically generated unique identifier for the event.
-        eventPermissions:
-          description: Permissions for the event.
-          allOf:
-            - $ref: '#/components/schemas/EventUserRoleDoc'
-      required:
-        - dataType
-        - createdAt
-        - creatorAddress
-        - title
-        - startTime
-        - endTime
-        - location
-        - isVirtualEvent
-        - slug
-        - profile
-        - category
-        - registration
-        - premium
-        - id
-    CreatorDetailsDto:
-      type: object
-      properties:
-        dataType:
+          description: Entry liquidation threshold
+          example: '780000000000000000000'
+        entryLiquidationBonus:
           type: string
-          description: The type of user data.
-          enum:
-            - userProfile
-            - creatorProfile
-            - userFavorite
-            - userSettings
-            - delegationContractProfile
-          default: creatorProfile
+          description: Entry liquidation bonus
+          example: '800000000000000000000'
+        entryLiquidationFee:
+          type: string
+          description: Entry liquidation fee
+          example: '100000000000000000000'
+        entryLtv:
+          type: string
+          description: Entry loan to value
+          example: '650000000000000000000'
+        isolated:
+          type: boolean
+          description: Indicates if the asset is isolated
+          example: false
+        isVault:
+          type: boolean
+          description: Indicates if position is a vault
+          example: false
+        eModeCategory:
+          type: string
+          description: eMode category
+          example: '1'
         address:
           type: string
-          description: Wallet address of the creator.
-        name:
-          type: string
-          description: Name of the creator.
-        creatorTag:
-          type: string
-          description: Tag of the creator.
-        contractAddress:
-          type: string
-          description: Contract address of the creator.
-        ticketingContractAddress:
-          type: string
-          description: Ticketing Contract address of the creator.
-        profile:
-          type: string
-          description: Profile picture of the creator.
-        banner:
-          type: string
-          description: Banner picture of the creator.
-        joinedDate:
-          type: number
-          description: Join date of the creator as a Unix timestamp in seconds.
-        description:
-          type: string
-          description: Description of the creator.
-        socials:
-          type: object
-          description: Social media links of the creator.
-        id:
-          type: string
-          description: ID of the creator.
-        listing:
-          type: array
-          items:
-            $ref: '#/components/schemas/MintingListingDto'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventProfileDoc'
+          description: Address of the lending account
+          example: erd123
+        eModeCategoryProfile:
+          description: EMode profile
+          allOf:
+            - $ref: '#/components/schemas/LendingEModeCategoryProfileDoc'
+        marketProfile:
+          description: Lending market partial profile
+          allOf:
+            - $ref: '#/components/schemas/PickTypeClass'
       required:
         - dataType
+        - identifier
+        - nonce
+        - token
+        - supplyAmount
+        - borrowAmount
+        - supplyAmountShort
+        - borrowAmountShort
+        - supplyAccumulatedInterest
+        - borrowAccumulatedInterest
+        - supplyAccumulatedInterestShort
+        - borrowAccumulatedInterestShort
+        - supplyTimestamp
+        - supplyIndex
+        - borrowTimestamp
+        - borrowIndex
+        - entryLiquidationThreshold
+        - entryLiquidationBonus
+        - entryLiquidationFee
+        - entryLtv
+        - isolated
+        - isVault
+        - eModeCategory
         - address
-        - name
-        - creatorTag
-        - profile
-        - banner
-        - joinedDate
-        - listing
-        - events
-    EditUserCreatorProfileDto:
+    ShortLendingTokenEModeProfileDoc:
       type: object
       properties:
-        description:
+        token:
           type: string
-          description: User description
-          maxLength: 300
-          example: I am a creator
-        socials:
-          description: Social media profiles
+          description: The token associated with the eMode profile
+          example: EGLD
+        canBeCollateral:
+          type: boolean
+          description: Indicates if the token can be used as collateral
+          example: true
+        canBeBorrowed:
+          type: boolean
+          description: Indicates if the token can be borrowed
+          example: true
+        eModeCategory:
+          type: string
+          description: EMode category of the token
+          example: '1'
+      required:
+        - token
+        - canBeCollateral
+        - canBeBorrowed
+        - eModeCategory
+    LendingEModeCategoryProfile:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+            - marketProfile
+            - accountProfile
+            - emodeCategoryProfile
+            - tokenEmodeProfile
+          example: emodeCategoryProfile
+        ltv:
+          type: string
+          description: Loan-to-value ratio
+          example: 0.75
+        liquidationThreshold:
+          type: string
+          description: Liquidation threshold
+          example: 0.85
+        liquidationBonus:
+          type: string
+          description: Liquidation bonus
+          example: 0.1
+        isDeprecated:
+          type: boolean
+          description: Is eMode deprecated
+          example: false
+        id:
+          type: string
+          description: EMode category
+          example: '1'
+        eModeTokenProfiles:
+          description: EMode profiles
+          type: array
+          items:
+            $ref: '#/components/schemas/ShortLendingTokenEModeProfileDoc'
+      required:
+        - dataType
+        - ltv
+        - liquidationThreshold
+        - liquidationBonus
+        - isDeprecated
+        - id
+        - eModeTokenProfiles
+    LendingMarketAnalyticsGraph:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token of the lending market
+          example: EGLD
+        timestamp:
+          description: Timestamp of the graph point
+          example:
+            - '2023-01-01T00:00:00Z'
+            - '2023-01-02T00:00:00Z'
+            - '2023-01-03T00:00:00Z'
+          type: array
+          items:
+            type: array
+        minSupplyApy:
+          description: Minimum supply APY value for each timestamp
+          example:
+            - 1.2
+            - 1.3
+            - 1.4
+          type: array
+          items:
+            type: array
+        maxSupplyApy:
+          description: Maximum supply APY value for each timestamp
+          example:
+            - 2.2
+            - 2.3
+            - 2.4
+          type: array
+          items:
+            type: array
+        avgSupplyApy:
+          description: Average supply APY value for each timestamp
+          example:
+            - 1.7
+            - 1.8
+            - 1.9
+          type: array
+          items:
+            type: array
+        minBorrowApy:
+          description: Minimum borrow APY value for each timestamp
+          example:
+            - 0.5
+            - 0.6
+            - 0.7
+          type: array
+          items:
+            type: array
+        maxBorrowApy:
+          description: Maximum borrow APY value for each timestamp
+          example:
+            - 1.5
+            - 1.6
+            - 1.7
+          type: array
+          items:
+            type: array
+        avgBorrowApy:
+          description: Average borrow APY value for each timestamp
+          example:
+            - 1
+            - 1.1
+            - 1.2
+          type: array
+          items:
+            type: array
+        minUtilizationRate:
+          description: Minimum utilization rate for each timestamp
+          example:
+            - 0.1
+            - 0.2
+            - 0.3
+          type: array
+          items:
+            type: array
+        maxUtilizationRate:
+          description: Maximum utilization rate for each timestamp
+          example:
+            - 0.4
+            - 0.5
+            - 0.6
+          type: array
+          items:
+            type: array
+        avgUtilizationRate:
+          description: Average utilization rate for each timestamp
+          example:
+            - 0.25
+            - 0.35
+            - 0.45
+          type: array
+          items:
+            type: array
+        minSupplyAmount:
+          description: Minimum supply amount for each timestamp
+          example:
+            - 1000
+            - 1100
+            - 1200
+          type: array
+          items:
+            type: array
+        maxSupplyAmount:
+          description: Maximum supply amount for each timestamp
+          example:
+            - 2000
+            - 2100
+            - 2200
+          type: array
+          items:
+            type: array
+        avgSupplyAmount:
+          description: Average supply amount for each timestamp
+          example:
+            - 1500
+            - 1600
+            - 1700
+          type: array
+          items:
+            type: array
+        minBorrowAmount:
+          description: Minimum borrow amount for each timestamp
+          example:
+            - 500
+            - 600
+            - 700
+          type: array
+          items:
+            type: array
+        maxBorrowAmount:
+          description: Maximum borrow amount for each timestamp
+          example:
+            - 1500
+            - 1600
+            - 1700
+          type: array
+          items:
+            type: array
+        avgBorrowAmount:
+          description: Average borrow amount for each timestamp
+          example:
+            - 1000
+            - 1100
+            - 1200
+          type: array
+          items:
+            type: array
+      required:
+        - token
+        - timestamp
+        - minSupplyApy
+        - maxSupplyApy
+        - avgSupplyApy
+        - minBorrowApy
+        - maxBorrowApy
+        - avgBorrowApy
+        - minUtilizationRate
+        - maxUtilizationRate
+        - avgUtilizationRate
+        - minSupplyAmount
+        - maxSupplyAmount
+        - avgSupplyAmount
+        - minBorrowAmount
+        - maxBorrowAmount
+        - avgBorrowAmount
+    LendingPositionStatus:
+      type: object
+      properties:
+        position:
+          type: number
+          description: The position of the lending account
+          example: 1
+        identifier:
+          type: string
+          description: Unique identifier for the lending account
+          example: account123
+        supplied:
+          type: number
+          description: The USD amount supplied in the lending account
+          example: 100
+        borrowed:
+          type: number
+          description: The USD amount borrowed from the lending account
+          example: 50
+        healthFactor:
+          type: number
+          description: The health factor of the lending account
+          example: 30
+        wallet:
+          description: The owner of the lending account
           allOf:
-            - $ref: '#/components/schemas/SocialsDto'
-        name:
-          type: string
-          description: Creator name
-          maxLength: 30
-          example: Creator Name
+            - $ref: '#/components/schemas/OwnerDto'
+      required:
+        - position
+        - identifier
+        - supplied
+        - borrowed
+        - healthFactor
+        - wallet
+    LendingOverallStats:
+      type: object
+      properties:
+        topMarkets:
+          description: Top markets by supply APY
+          example:
+            - USDC-350c4e
+            - XOXNO-589e09
+            - LXOXNO-a00540
+          type: array
+          items:
+            type: string
+        marketCount:
+          type: number
+          description: Total number of lending markets
+          example: 10
+        participantsCount:
+          type: number
+          description: Total supplied amount
+          example: 10000000
+        bestApy:
+          type: number
+          description: Maximum APY
+          example: 0.04
+        borrowed:
+          type: number
+          description: Total borrowed amount
+          example: 5000000
+        suppliedMargin:
+          type: number
+          description: Total supplied margin over 24h
+          example: 30
+        borrowedMargin:
+          type: number
+          description: Total borrowed margin over 24h
+          example: 15
+      required:
+        - topMarkets
+        - marketCount
+        - participantsCount
+        - bestApy
+        - borrowed
+        - suppliedMargin
+        - borrowedMargin
     OriginalMedia:
       type: object
       properties:
@@ -11445,6 +11356,1136 @@ components:
       required:
         - quantity
         - stage
+    OtherDataDto:
+      type: object
+      properties:
+        nftCount:
+          type: number
+          example: 5579
+        followCount:
+          type: number
+          example: 200
+        holdersCount:
+          type: number
+          example: 764
+      required:
+        - nftCount
+        - followCount
+        - holdersCount
+    StatisticsDto:
+      type: object
+      properties:
+        other:
+          $ref: '#/components/schemas/OtherDataDto'
+      required:
+        - other
+    CollectionProfileDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          example: collectionProfile
+        collection:
+          type: string
+          example: MICE-a0c447
+        name:
+          type: string
+          example: MiceCity
+        description:
+          type: string
+          example: >-
+            Welcome to the 1980s, set in an alternative Miami populated by mice!
+            Our collection of 8000 uniquely generated retro mice is the ultimate
+            blast from the past, bringing the decade of big hair, excess, pastel
+            suits & neon lights to the MultiversX Blockchain!
+        isVisible:
+          type: boolean
+          example: true
+        isVerified:
+          type: boolean
+          example: true
+        profile:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilePicture.webp?ts=1679309756
+        banner:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilebanner.webp
+        statistics:
+          $ref: '#/components/schemas/StatisticsDto'
+        owner:
+          type: string
+          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
+        creator:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
+        isMintable:
+          type: boolean
+          example: true
+        hasStaking:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: MICE-a0c447-collectionProfile
+        socials:
+          $ref: '#/components/schemas/SocialsDto'
+        type:
+          type: string
+          example: NonFungibleESDT
+        _ts:
+          type: number
+          example: 1720568178
+      required:
+        - dataType
+        - collection
+        - name
+        - description
+        - isVisible
+        - isVerified
+        - profile
+        - banner
+        - statistics
+        - owner
+        - creator
+        - isMintable
+        - hasStaking
+        - id
+        - socials
+        - type
+        - _ts
+    FloorPriceDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          example: MICE-a0c447
+        price:
+          type: number
+          example: 0.18
+        usdPrice:
+          type: number
+          example: 0.18
+      required:
+        - collection
+        - price
+        - usdPrice
+    PinnedCollectionDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          example: EAPES-8f3c1f
+        name:
+          type: string
+          example: EAPES
+        isVerified:
+          type: boolean
+          example: true
+        profile:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/EAPES-8f3c1f/profilePicture.webp?ts=1691359925
+        banner:
+          type: string
+          example: >-
+            https://media.xoxno.com/collectionprofile/EAPES-8f3c1f/profilebanner.webp
+        description:
+          type: string
+          example: >-
+            EAPES is a collection of 10,000 unique 3D APEs living on the
+            MultiversX blockchain
+        creator:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgq7gma4udjeh3mwuq4lmk7wccgh0tenxu6yv5qc2csfy
+        isMintable:
+          type: boolean
+          example: false
+      required:
+        - collection
+        - name
+        - isVerified
+        - profile
+        - banner
+        - description
+        - creator
+    CollectionPinnedStatusDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection ticker
+        status:
+          type: boolean
+          description: Pinned status
+      required:
+        - collection
+        - status
+    FollowCollectionDto:
+      type: object
+      properties:
+        isFavorite:
+          type: boolean
+          description: Indicates if the collection is favorited
+          example: true
+        collection:
+          type: string
+          description: Collection followed, empty when unfollow
+          example: Mice-213123
+      required:
+        - isFavorite
+    EgldOrEsdtTokenPayment:
+      type: object
+      properties:
+        tokenIdentifier:
+          type: string
+          example: EGLD
+        tokenNonce:
+          type: number
+          example: 0
+        amount:
+          type: string
+          example: '500000000000000000'
+        amountShort:
+          type: number
+          example: 0.5
+        decimals:
+          type: number
+          example: 18
+        usdValue:
+          type: number
+          example: 18.34
+      required:
+        - tokenIdentifier
+        - tokenNonce
+        - amount
+        - amountShort
+        - decimals
+        - usdValue
+    CreatorInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Marcel81
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqzty6ekd0dwte8r3d45kt78el9yle5vmkys5sr86uws
+        profile:
+          type: string
+          example: https://media.xoxno.com/utils/defaultProfilePic.webp
+      required:
+        - name
+        - contractAddress
+        - profile
+    DropResourceDto:
+      type: object
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
+        startTime:
+          type: number
+          example: 1720587300
+        isSoldOut:
+          type: boolean
+          example: false
+        collectionTag:
+          type: string
+          example: Nfthero
+        collectionSize:
+          type: number
+          example: 4
+        totalNftMinted:
+          type: number
+          example: 0
+        collection:
+          type: string
+          example: 1000-76443d
+        creatorTag:
+          type: string
+          example: Marcel81
+        creatorName:
+          type: string
+          example: Marcel81
+        endTime:
+          type: number
+          example: 1722401700
+        collectionInfo:
+          $ref: '#/components/schemas/CollectionInfoDto'
+        creatorInfo:
+          $ref: '#/components/schemas/CreatorInfoDto'
+      required:
+        - prices
+        - startTime
+        - isSoldOut
+        - collectionTag
+        - collectionSize
+        - totalNftMinted
+        - collection
+        - creatorTag
+        - creatorName
+        - endTime
+        - collectionInfo
+        - creatorInfo
+    DropsQueryDto:
+      type: object
+      properties:
+        count:
+          type: number
+          example: null
+        hasMoreResults:
+          type: boolean
+          example: true
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DropResourceDto'
+      required:
+        - hasMoreResults
+        - resources
+    MintStageDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          example: mintStage
+        collection:
+          type: string
+          example: MICE-a0c447
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
+        collectionTag:
+          type: string
+          example: MiceCity
+        name:
+          type: string
+          example: MiceCity
+        startTime:
+          type: number
+          example: 1645210800
+        endTime:
+          type: number
+          example: 0
+        mintCount:
+          type: number
+          example: 5583
+        mintLimit:
+          type: number
+          example: 8000
+        mintEnabled:
+          type: boolean
+          example: true
+        isWhitelist:
+          type: boolean
+          example: false
+        walletLimit:
+          type: number
+          example: 0
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
+        id:
+          type: string
+          example: MICE-a0c447-MiceCity-mintStage
+        _ts:
+          type: number
+          example: 1720568180
+        walletLimitReached:
+          type: boolean
+          example: false
+        maxBuyable:
+          type: number
+          example: null
+          nullable: true
+      required:
+        - dataType
+        - collection
+        - contractAddress
+        - collectionTag
+        - name
+        - startTime
+        - endTime
+        - mintCount
+        - mintLimit
+        - mintEnabled
+        - isWhitelist
+        - walletLimit
+        - prices
+        - id
+        - _ts
+        - walletLimitReached
+        - maxBuyable
+    DropInfoDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          example: MICE-a0c447
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
+        collectionTag:
+          type: string
+          example: MiceCity
+        nftTransferLimited:
+          type: boolean
+          example: false
+        hasBotProtection:
+          type: boolean
+          example: false
+        kycRequired:
+          type: boolean
+          example: false
+        totalNftMinted:
+          type: number
+          example: 5583
+        collectionSize:
+          type: number
+          example: 8000
+        cid:
+          type: string
+          example: QmWEwSi9AhgMPeu4CJfLpWq1yKSfmERZXt76b429pVSU9R
+        mediaType:
+          type: string
+          example: .png
+        userMintsGlobal:
+          type: number
+          example: 0
+        globalWalletLimit:
+          type: number
+          example: 0
+        mintStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/MintStageDto'
+        collectionInfo:
+          $ref: '#/components/schemas/CollectionInfoDto'
+        creatorInfo:
+          $ref: '#/components/schemas/CreatorInfoDto'
+      required:
+        - collection
+        - contractAddress
+        - collectionTag
+        - nftTransferLimited
+        - hasBotProtection
+        - kycRequired
+        - totalNftMinted
+        - collectionSize
+        - cid
+        - mediaType
+        - userMintsGlobal
+        - globalWalletLimit
+        - mintStages
+        - collectionInfo
+        - creatorInfo
+    WalletDetailDto:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Count of NFTs
+          example: 4827
+        weight:
+          type: number
+          description: Weight percentage
+          example: 86.51
+        address:
+          type: string
+          description: Address of the holder
+          example: erd1qqqqqqqqqqqqqpgqvpkd3g3uwludduv3797j54qt6c888wa59w2shntt6z
+        username:
+          type: string
+          description: Username of the holder
+          example: 'Staking: XOXNO'
+        type:
+          type: string
+          description: Type of the holder
+          example: staking
+      required:
+        - count
+        - weight
+        - address
+        - username
+        - type
+    CollectionHoldersDto:
+      type: object
+      properties:
+        totalSupply:
+          type: number
+          description: Total supply of NFTs
+          example: 5580
+        walletDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/WalletDetailDto'
+        onMarket:
+          type: object
+          description: Details of NFTs on market
+          example:
+            count: 211
+            weight: 3.78
+        staked:
+          type: object
+          description: Details of staked NFTs
+          example:
+            count: 4827
+            weight: 86.51
+        otherSCs:
+          type: object
+          description: Details of NFTs in other smart contracts
+          example:
+            count: 10
+            weight: 0.18
+        burnWallet:
+          type: object
+          description: Details of NFTs in burn wallet
+          example:
+            count: 0
+            weight: 0
+        uniqueHolders:
+          type: object
+          description: Details of unique holders
+          example:
+            count: 764
+            weight: 13.69
+        holded:
+          type: object
+          description: Details of holded NFTs
+          example:
+            count: 532
+            weight: 9.53
+            avgPerHodler: 2.18
+      required:
+        - totalSupply
+        - walletDetails
+        - onMarket
+        - staked
+        - otherSCs
+        - burnWallet
+        - uniqueHolders
+        - holded
+    CollectionOwnerDto:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Owner address
+          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
+      required:
+        - owner
+    AttributeDto:
+      type: object
+      properties:
+        trait_type:
+          type: string
+          example: Divinity
+        value:
+          type: string
+          example: '95'
+      required:
+        - trait_type
+        - value
+    ResourceDto:
+      type: object
+      properties:
+        offerId:
+          type: number
+          example: 156453
+        collection:
+          type: string
+          example: VPRNFT-0a0ee5
+        quantity:
+          type: number
+          example: 1
+        paymentToken:
+          type: string
+          example: EGLD
+        paymentTokenNonce:
+          type: number
+          example: 0
+        price:
+          type: string
+          example: '800000000000000000'
+        priceShort:
+          type: number
+          example: 0.8
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeDto'
+        owner:
+          $ref: '#/components/schemas/OwnerDto'
+        timestamp:
+          type: number
+          example: 1688827110
+        marketplace:
+          type: string
+          example: xoxno
+        uniqueKey:
+          type: string
+          example: VPRNFT-0a0ee5-156453-xoxno-globalOffer
+        isActive:
+          type: boolean
+          example: true
+        usdValue:
+          type: number
+          example: 29.143
+      required:
+        - offerId
+        - collection
+        - quantity
+        - paymentToken
+        - paymentTokenNonce
+        - price
+        - priceShort
+        - attributes
+        - owner
+        - timestamp
+        - marketplace
+        - uniqueKey
+        - isActive
+        - usdValue
+    GlobalOffersDto:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceDto'
+        hasMoreResults:
+          type: boolean
+          example: true
+      required:
+        - resources
+        - hasMoreResults
+    MintingListingDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
+          default: mintProfile
+        collection:
+          type: string
+        contractAddress:
+          type: string
+        collectionTag:
+          type: string
+        creatorTag:
+          type: string
+        creatorName:
+          type: string
+        cid:
+          type: string
+        mediaType:
+          type: string
+        baseNftName:
+          type: string
+        hasAttributes:
+          type: boolean
+        ownerTransferred:
+          type: boolean
+        collectionSize:
+          type: number
+        totalNftMinted:
+          type: number
+        globalWalletLimit:
+          type: number
+        royalties:
+          type: number
+        oldVersion:
+          type: boolean
+        nameShuffle:
+          type: boolean
+        nftTransferLimited:
+          type: boolean
+        allowsPublicBurn:
+          type: boolean
+        kycRequired:
+          type: boolean
+        allowsRefund:
+          type: boolean
+        hasBotProtection:
+          type: boolean
+        hasReveal:
+          type: boolean
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
+        startTime:
+          type: object
+        endTime:
+          type: number
+        isSoldOut:
+          type: object
+        tags:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        id:
+          type: string
+        _ts:
+          type: number
+        collectionInfo:
+          $ref: '#/components/schemas/CollectionInfoDto'
+      required:
+        - dataType
+        - collection
+        - contractAddress
+        - collectionTag
+        - creatorTag
+        - creatorName
+        - cid
+        - mediaType
+        - baseNftName
+        - hasAttributes
+        - ownerTransferred
+        - collectionSize
+        - totalNftMinted
+        - globalWalletLimit
+        - royalties
+        - oldVersion
+        - nameShuffle
+        - nftTransferLimited
+        - kycRequired
+        - allowsRefund
+        - hasBotProtection
+        - hasReveal
+        - prices
+        - startTime
+        - endTime
+        - isSoldOut
+        - tags
+        - id
+        - _ts
+        - collectionInfo
+    EventLocationDto:
+      type: object
+      properties:
+        address:
+          type: string
+        placeId:
+          type: string
+        lat:
+          type: number
+          minimum: -90
+          maximum: 90
+          description: Latitude must be between -90 and 90
+        long:
+          type: number
+          minimum: -180
+          maximum: 180
+          description: Longitude must be between -180 and 180
+        instructions:
+          type: string
+        onlineLink:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+    RegistrationType:
+      type: object
+      properties:
+        visibility:
+          type: string
+          enum:
+            - public
+            - private
+          description: Visibility of the event registration
+        maxLimit:
+          type: integer
+          description: Maximum number of registrations allowed
+        userLimit:
+          type: integer
+          description: Maximum number of registrations allowed per user
+        soldCount:
+          type: integer
+          description: Current number of tickets sold
+        hasSideEvents:
+          type: boolean
+          description: Whether the event has side events
+        showGuestCount:
+          type: boolean
+          description: Whether to show the guest count
+        requireKYC:
+          type: boolean
+          description: Whether KYC is required for registration
+        refundable:
+          type: boolean
+          description: Whether the event is refundable
+        nameWithNumber:
+          type: boolean
+          description: Whether to show name with number
+        botProtection:
+          type: boolean
+          description: Whether bot protection is enabled
+        isPublished:
+          type: boolean
+          description: Whether the event is published
+        hasWaitlist:
+          type: boolean
+          description: Whether the event has a waitlist
+        requireName:
+          type: boolean
+          description: Whether name is required for registration
+        requireEmail:
+          type: boolean
+          description: Whether email is required for registration
+        requirePhoneNumber:
+          type: boolean
+          description: Whether phone number is required for registration
+        hasCustomQuestions:
+          type: boolean
+          description: Whether the event has custom questions
+        emailSender:
+          type: string
+          description: Email sender for notifications
+      required:
+        - visibility
+        - maxLimit
+        - userLimit
+        - hasSideEvents
+        - requireKYC
+        - refundable
+        - nameWithNumber
+        - botProtection
+        - isPublished
+        - requireName
+        - requireEmail
+        - requirePhoneNumber
+    PremiumType:
+      type: object
+      properties:
+        searchable:
+          type: boolean
+          description: Whether the event is searchable
+      required:
+        - searchable
+    EventUserRoleDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Type of the document.
+          enum:
+            - event-voucher
+            - event-invitation
+            - event-profile
+            - event-question
+            - event-question-answer
+            - event-ticket-profile
+            - event-ticket-stage
+            - event-guest
+            - event-referral-config
+            - event-referral-code
+            - event-referral-usage
+            - event-user-role
+        eventId:
+          type: string
+          description: Unique identifier for the event.
+        wallet:
+          type: string
+          description: User wallet address
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email address
+        role:
+          type: array
+          description: Role of the user.
+          items:
+            type: string
+            enum:
+              - event-reader
+              - event-manager
+              - check-in-manager
+        permissions:
+          type: array
+          description: Permissions of the user.
+          items:
+            type: string
+            enum:
+              - event-reader-view
+              - event-manager-edit-page
+              - event-manager-create-ticket
+              - event-manager-edit-ticket
+              - event-manager-delete-ticket
+              - event-manager-edit-guest
+              - event-manager-create-stage
+              - event-manager-edit-stage
+        createdAt:
+          type: integer
+          description: Timestamp for when the user role was created.
+        endTime:
+          type: integer
+          description: Timestamp for when the user role will expire.
+        id:
+          type: string
+          description: Unique identifier for the document.
+        status:
+          type: string
+          description: Status of the user role.
+          enum:
+            - active
+            - pending
+      required:
+        - dataType
+        - eventId
+        - wallet
+        - name
+        - email
+        - role
+        - permissions
+        - createdAt
+        - id
+        - status
+    EventProfileDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: The type of user data.
+          enum:
+            - event-voucher
+            - event-invitation
+            - event-profile
+            - event-question
+            - event-question-answer
+            - event-ticket-profile
+            - event-ticket-stage
+            - event-guest
+            - event-referral-config
+            - event-referral-code
+            - event-referral-usage
+            - event-user-role
+          default: event-profile
+        createdAt:
+          type: integer
+          description: The time the event was created as a Unix timestamp in seconds.
+        creatorAddress:
+          type: string
+          description: Wallet address of the creator of the event.
+        title:
+          type: string
+          description: Title of the event.
+        startTime:
+          type: integer
+          description: Start time of the event as a Unix timestamp in seconds.
+        endTime:
+          type: integer
+          description: End time of the event as a Unix timestamp in seconds.
+        descriptionUrl:
+          type: string
+          description: >-
+            URL to the markdown file in Azure storage containing the event
+            description.
+          default: >-
+            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
+        location:
+          description: >-
+            Location details including geo points, address, and optional
+            instructions.
+          allOf:
+            - $ref: '#/components/schemas/EventLocationDto'
+        isVirtualEvent:
+          type: boolean
+          description: Define if the event happens in real life or virtual on Zoom/Meet
+        slug:
+          type: string
+          description: Unique slug for the event URL.
+        profile:
+          type: string
+          description: URL to the profile image in Azure storage.
+          default: >-
+            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
+        category:
+          type: string
+          description: Category of the event.
+          enum:
+            - festival
+            - conference
+            - networking
+            - meetup
+            - web3
+            - entertainment
+        subCategory:
+          type: string
+          description: Subcategory of the event.
+          enum:
+            - music
+            - arts-and-culture
+            - food-and-drink
+            - lifestyle-and-wellness
+            - local-and-community
+            - technology-and-innovation
+            - business-and-finance
+            - healthcare-and-science
+            - education-and-learning
+            - marketing-and-media
+            - industry-specific
+            - career-development
+            - investor-and-startups
+            - social-impact
+            - personal-development
+            - hobbies-and-interests
+            - professional-groups
+            - social-gathering
+            - education-and-skills
+            - family-and-kids
+            - blockchain-and-cryptocurrency
+            - metaverse-and-vr
+            - defi-and-finance
+            - dao-and-governance
+            - web3-startups
+            - live-music
+            - comedy-shows
+            - theatre-and-performance
+            - movies
+            - nightlife-and-clubbing
+        background:
+          type: string
+          description: URL to the background image in Azure storage, optional.
+        registration:
+          description: >-
+            Registration details such as visibility, max capacity, and ticket
+            limits.
+          allOf:
+            - $ref: '#/components/schemas/RegistrationType'
+        premium:
+          description: Event premium features
+          allOf:
+            - $ref: '#/components/schemas/PremiumType'
+        contractAddress:
+          type: string
+          description: The address of the contract that manages the event.
+        collection:
+          type: string
+          description: The NFT collection the event is associated with.
+        seo:
+          type: object
+          description: >-
+            SEO-related information such as short description, tags, and
+            alternative title.
+        id:
+          type: string
+          description: Automatically generated unique identifier for the event.
+        eventPermissions:
+          description: Permissions for the event.
+          allOf:
+            - $ref: '#/components/schemas/EventUserRoleDoc'
+      required:
+        - dataType
+        - createdAt
+        - creatorAddress
+        - title
+        - startTime
+        - endTime
+        - location
+        - isVirtualEvent
+        - slug
+        - profile
+        - category
+        - registration
+        - premium
+        - id
+    CreatorDetailsDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: The type of user data.
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
+            - delegationContractProfile
+          default: creatorProfile
+        address:
+          type: string
+          description: Wallet address of the creator.
+        name:
+          type: string
+          description: Name of the creator.
+        creatorTag:
+          type: string
+          description: Tag of the creator.
+        contractAddress:
+          type: string
+          description: Contract address of the creator.
+        ticketingContractAddress:
+          type: string
+          description: Ticketing Contract address of the creator.
+        profile:
+          type: string
+          description: Profile picture of the creator.
+        banner:
+          type: string
+          description: Banner picture of the creator.
+        joinedDate:
+          type: number
+          description: Join date of the creator as a Unix timestamp in seconds.
+        description:
+          type: string
+          description: Description of the creator.
+        socials:
+          type: object
+          description: Social media links of the creator.
+        id:
+          type: string
+          description: ID of the creator.
+        listing:
+          type: array
+          items:
+            $ref: '#/components/schemas/MintingListingDto'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventProfileDoc'
+      required:
+        - dataType
+        - address
+        - name
+        - creatorTag
+        - profile
+        - banner
+        - joinedDate
+        - listing
+        - events
+    EditUserCreatorProfileDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: User description
+          maxLength: 300
+          example: I am a creator
+        socials:
+          description: Social media profiles
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
+        name:
+          type: string
+          description: Creator name
+          maxLength: 30
+          example: Creator Name
     Reward:
       type: object
       properties:
@@ -12795,973 +13836,6 @@ components:
             $ref: '#/components/schemas/UserStatsDto'
       required:
         - usersStats
-    LendingMarketParticipants:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Count of participants
-          example: 100
-        wallets:
-          description: Wallets of participants
-          type: array
-          items:
-            $ref: '#/components/schemas/OwnerDto'
-      required:
-        - count
-        - wallets
-    MarketExtraApy:
-      type: object
-      properties:
-        nativeApy:
-          type: number
-          description: Native APY for derivatives tokes
-          example: 0.03
-        feesApr:
-          type: number
-          description: LP fees APR
-          example: 0.03
-    LendingMarketProfile:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-            - marketProfile
-            - accountProfile
-            - emodeCategoryProfile
-            - tokenEmodeProfile
-          example: marketProfile
-        token:
-          type: string
-          description: Token associated with the lending market
-          example: EGLD
-        name:
-          type: string
-          description: Name of the token
-          example: EGLD
-        decimals:
-          type: number
-          description: Number of decimals for the token
-          example: 18
-        address:
-          type: string
-          description: Address of the lending market
-          example: erd1qqqqqqq
-        baseRate:
-          type: string
-          description: Base interest rate
-          example: 0.02
-        maxBorrowRate:
-          type: string
-          description: Maximum borrow rate
-          example: 0.1
-        slopeRate1:
-          type: string
-          description: Slope rate 1
-          example: 0.04
-        slopeRate2:
-          type: string
-          description: Slope rate 2
-          example: 0.08
-        slopeRate3:
-          type: string
-          description: Slope rate 3
-          example: 0.12
-        midUsageRate:
-          type: string
-          description: Mid usage rate
-          example: 0.5
-        optimalUsageRate:
-          type: string
-          description: Optimal usage rate
-          example: 0.8
-        reserveFactor:
-          type: string
-          description: Reserve factor
-          example: 0.1
-        liquidationFee:
-          type: string
-          description: Liquidation fee
-          example: 0.05
-        ltv:
-          type: string
-          description: Loan-to-value ratio
-          example: 0.75
-        liquidationBonus:
-          type: string
-          description: Liquidation bonus
-          example: 0.1
-        liquidationThreshold:
-          type: string
-          description: Liquidation threshold
-          example: 0.85
-        rewardsReserve:
-          type: object
-          description: Rewards reserves
-          example: '1000000'
-        rewardsReserveShort:
-          type: object
-          description: Rewards reserves (short)
-          example: 500000
-        reserves:
-          type: object
-          description: Reserves
-          example: '1000000'
-        reservesShort:
-          type: object
-          description: Short reserves
-          example: 500000
-        supplyAmount:
-          type: object
-          description: Supply amount
-          example: '2000000'
-        borrowAmount:
-          type: object
-          description: Borrow amount
-          example: '1500000'
-        supplyAmountShort:
-          type: object
-          description: Short supply amount
-          example: 1000000
-        borrowAmountShort:
-          type: object
-          description: Short borrow amount
-          example: 750000
-        vaultAmount:
-          type: object
-          description: Vault amount
-          example: '500000'
-        vaultAmountShort:
-          type: object
-          description: Short vault amount
-          example: 250000
-        supplyCap:
-          type: string
-          description: Supply cap
-          example: '3000000'
-        borrowCap:
-          type: string
-          description: Borrow cap
-          example: '2500000'
-        supplyCapShort:
-          type: object
-          description: Short supply cap
-          example: 1500000
-        borrowCapShort:
-          type: object
-          description: Short borrow cap
-          example: 1250000
-        supplyIndex:
-          type: object
-          description: Supply index
-          example: '1.02'
-        borrowIndex:
-          type: object
-          description: Borrow index
-          example: '1.05'
-        timestamp:
-          type: object
-          description: Timestamp of last market activity
-          example: 1732650682
-        borrowApy:
-          type: object
-          description: Borrow annual percentage yield
-          example: 0.05
-        supplyApy:
-          type: object
-          description: Supply annual percentage yield
-          example: 0.03
-        utilizationRate:
-          type: object
-          description: Utilization rate
-          example: 0.75
-        canBeCollateral:
-          type: boolean
-          description: Indicates if the asset can be used as collateral
-          example: true
-        canBeBorrowed:
-          type: boolean
-          description: Indicates if the asset can be borrowed
-          example: true
-        eMode:
-          type: boolean
-          description: Indicates if eMode is enabled
-          example: false
-        eModeCategories:
-          description: eMode categories associated with the lending market
-          example:
-            - '1'
-            - '2'
-          type: array
-          items:
-            type: array
-        isolated:
-          type: boolean
-          description: Indicates if the asset is isolated
-          example: false
-        maxDebtUsd:
-          type: object
-          description: Maximum debt in USD
-          example: '5000000'
-        maxDebtUsdShort:
-          type: object
-          description: Maximum debt in USD (short)
-          example: 2500000
-        debtCeiling:
-          type: string
-          description: Debt ceiling
-          example: '10000000'
-        debtCeilingShort:
-          type: number
-          description: Debt ceiling (short)
-          example: 5000000
-        siloed:
-          type: boolean
-          description: Indicates if the asset is siloed
-          example: false
-        flashLoan:
-          type: boolean
-          description: Indicates if flash loans are enabled
-          example: true
-        flashLoanFee:
-          type: string
-          description: Flash loan fee
-          example: 0.003
-        canBorrowInIsolation:
-          type: boolean
-          description: Indicates if the asset can be borrowed in isolation
-          example: false
-        eModeCategoryProfiles:
-          description: eMode categories associated with the lending market
-          example: true
-          type: array
-          items:
-            type: array
-        oraclePrice:
-          type: string
-          description: Oracle price
-          example: '100'
-        participants:
-          description: Participants in the lending market
-          allOf:
-            - $ref: '#/components/schemas/LendingMarketParticipants'
-        extraApy:
-          description: Extra APY for derivatives & LP tokens
-          allOf:
-            - $ref: '#/components/schemas/MarketExtraApy'
-      required:
-        - dataType
-        - token
-        - name
-        - decimals
-        - address
-        - baseRate
-        - maxBorrowRate
-        - slopeRate1
-        - slopeRate2
-        - slopeRate3
-        - midUsageRate
-        - optimalUsageRate
-        - reserveFactor
-        - liquidationFee
-        - ltv
-        - liquidationBonus
-        - liquidationThreshold
-        - rewardsReserve
-        - rewardsReserveShort
-        - reserves
-        - reservesShort
-        - supplyAmount
-        - borrowAmount
-        - supplyAmountShort
-        - borrowAmountShort
-        - vaultAmount
-        - vaultAmountShort
-        - supplyCap
-        - borrowCap
-        - supplyCapShort
-        - borrowCapShort
-        - supplyIndex
-        - borrowIndex
-        - timestamp
-        - borrowApy
-        - supplyApy
-        - utilizationRate
-        - canBeCollateral
-        - canBeBorrowed
-        - eMode
-        - eModeCategories
-        - isolated
-        - maxDebtUsd
-        - maxDebtUsdShort
-        - siloed
-        - flashLoan
-        - flashLoanFee
-        - canBorrowInIsolation
-        - eModeCategoryProfiles
-        - oraclePrice
-        - participants
-    LendingMarketProfileQuery:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Total number of documents
-          example: 100
-        hasMoreResults:
-          type: boolean
-          description: Indicates if there are more documents available
-          example: true
-        resources:
-          description: List of documents
-          type: array
-          items:
-            $ref: '#/components/schemas/LendingMarketProfile'
-      required:
-        - hasMoreResults
-        - resources
-    LendingEModeCategoryProfileDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-            - marketProfile
-            - accountProfile
-            - emodeCategoryProfile
-            - tokenEmodeProfile
-          example: emodeCategoryProfile
-        ltv:
-          type: string
-          description: Loan-to-value ratio
-          example: 0.75
-        liquidationThreshold:
-          type: string
-          description: Liquidation threshold
-          example: 0.85
-        liquidationBonus:
-          type: string
-          description: Liquidation bonus
-          example: 0.1
-        isDeprecated:
-          type: boolean
-          description: Is eMode deprecated
-          example: false
-        id:
-          type: string
-          description: EMode category
-          example: '1'
-      required:
-        - dataType
-        - ltv
-        - liquidationThreshold
-        - liquidationBonus
-        - isDeprecated
-        - id
-    PickTypeClass:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Token associated with the lending market
-          example: EGLD
-        name:
-          type: string
-          description: Name of the token
-          example: EGLD
-        decimals:
-          type: number
-          description: Number of decimals for the token
-          example: 18
-        baseRate:
-          type: string
-          description: Base interest rate
-          example: 0.02
-        maxBorrowRate:
-          type: string
-          description: Maximum borrow rate
-          example: 0.1
-        slopeRate1:
-          type: string
-          description: Slope rate 1
-          example: 0.04
-        slopeRate2:
-          type: string
-          description: Slope rate 2
-          example: 0.08
-        slopeRate3:
-          type: string
-          description: Slope rate 3
-          example: 0.12
-        midUsageRate:
-          type: string
-          description: Mid usage rate
-          example: 0.5
-        optimalUsageRate:
-          type: string
-          description: Optimal usage rate
-          example: 0.8
-        reserveFactor:
-          type: string
-          description: Reserve factor
-          example: 0.1
-        rewardsReserve:
-          type: object
-          description: Rewards reserves
-          example: '1000000'
-        reserves:
-          type: object
-          description: Reserves
-          example: '1000000'
-        supplyAmount:
-          type: object
-          description: Supply amount
-          example: '2000000'
-        borrowAmount:
-          type: object
-          description: Borrow amount
-          example: '1500000'
-        vaultAmount:
-          type: object
-          description: Vault amount
-          example: '500000'
-        supplyCap:
-          type: string
-          description: Supply cap
-          example: '3000000'
-        borrowCap:
-          type: string
-          description: Borrow cap
-          example: '2500000'
-        borrowApy:
-          type: object
-          description: Borrow annual percentage yield
-          example: 0.05
-        supplyApy:
-          type: object
-          description: Supply annual percentage yield
-          example: 0.03
-        utilizationRate:
-          type: object
-          description: Utilization rate
-          example: 0.75
-        canBeCollateral:
-          type: boolean
-          description: Indicates if the asset can be used as collateral
-          example: true
-        canBeBorrowed:
-          type: boolean
-          description: Indicates if the asset can be borrowed
-          example: true
-        isolated:
-          type: boolean
-          description: Indicates if the asset is isolated
-          example: false
-        maxDebtUsd:
-          type: object
-          description: Maximum debt in USD
-          example: '5000000'
-        debtCeiling:
-          type: string
-          description: Debt ceiling
-          example: '10000000'
-        siloed:
-          type: boolean
-          description: Indicates if the asset is siloed
-          example: false
-        flashLoanFee:
-          type: string
-          description: Flash loan fee
-          example: 0.003
-        canBorrowInIsolation:
-          type: boolean
-          description: Indicates if the asset can be borrowed in isolation
-          example: false
-        extraApy:
-          description: Extra APY for derivatives & LP tokens
-          allOf:
-            - $ref: '#/components/schemas/MarketExtraApy'
-      required:
-        - token
-        - name
-        - decimals
-        - baseRate
-        - maxBorrowRate
-        - slopeRate1
-        - slopeRate2
-        - slopeRate3
-        - midUsageRate
-        - optimalUsageRate
-        - reserveFactor
-        - rewardsReserve
-        - reserves
-        - supplyAmount
-        - borrowAmount
-        - vaultAmount
-        - supplyCap
-        - borrowCap
-        - borrowApy
-        - supplyApy
-        - utilizationRate
-        - canBeCollateral
-        - canBeBorrowed
-        - isolated
-        - maxDebtUsd
-        - siloed
-        - flashLoanFee
-        - canBorrowInIsolation
-    LendingAccountProfile:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-            - marketProfile
-            - accountProfile
-            - emodeCategoryProfile
-            - tokenEmodeProfile
-          example: accountProfile
-        identifier:
-          type: string
-          description: Unique identifier for the lending account
-          example: account123
-        nonce:
-          type: number
-          description: A unique number to ensure uniqueness of the identifier
-          example: 1
-        token:
-          type: string
-          description: The token associated with the lending account
-          example: EGLD
-        supplyAmount:
-          type: object
-          description: The amount supplied in the lending account
-          example: '1000'
-        borrowAmount:
-          type: object
-          description: The amount borrowed from the lending account
-          example: '500'
-        supplyAmountShort:
-          type: object
-          description: The short supply amount
-          example: 1000
-        borrowAmountShort:
-          type: object
-          description: The short borrow amount
-          example: 500
-        supplyAccumulatedInterest:
-          type: object
-          description: The amount of supply interest accumulated
-          example: '10'
-        borrowAccumulatedInterest:
-          type: object
-          description: The amount of borrow interest accumulated
-          example: '5'
-        supplyAccumulatedInterestShort:
-          type: object
-          description: The amount of supply interest accumulated
-          example: 10
-        borrowAccumulatedInterestShort:
-          type: object
-          description: The amount of borrow interest accumulated
-          example: 5
-        supplyTimestamp:
-          type: object
-          description: Timestamp of the supply activity
-          example: 0
-        supplyIndex:
-          type: object
-          description: Supply index
-          example: 0
-        borrowTimestamp:
-          type: object
-          description: Timestamp of the borrow activity
-          example: 0
-        borrowIndex:
-          type: object
-          description: Borrow index
-          example: 0
-        entryLiquidationThreshold:
-          type: string
-          description: Entry liquidation threshold
-          example: '780000000000000000000'
-        entryLiquidationBonus:
-          type: string
-          description: Entry liquidation bonus
-          example: '800000000000000000000'
-        entryLiquidationFee:
-          type: string
-          description: Entry liquidation fee
-          example: '100000000000000000000'
-        entryLtv:
-          type: string
-          description: Entry loan to value
-          example: '650000000000000000000'
-        isolated:
-          type: boolean
-          description: Indicates if the asset is isolated
-          example: false
-        isVault:
-          type: boolean
-          description: Indicates if position is a vault
-          example: false
-        eModeCategory:
-          type: string
-          description: eMode category
-          example: '1'
-        address:
-          type: string
-          description: Address of the lending account
-          example: erd123
-        eModeCategoryProfile:
-          description: EMode profile
-          allOf:
-            - $ref: '#/components/schemas/LendingEModeCategoryProfileDoc'
-        marketProfile:
-          description: Lending market partial profile
-          allOf:
-            - $ref: '#/components/schemas/PickTypeClass'
-      required:
-        - dataType
-        - identifier
-        - nonce
-        - token
-        - supplyAmount
-        - borrowAmount
-        - supplyAmountShort
-        - borrowAmountShort
-        - supplyAccumulatedInterest
-        - borrowAccumulatedInterest
-        - supplyAccumulatedInterestShort
-        - borrowAccumulatedInterestShort
-        - supplyTimestamp
-        - supplyIndex
-        - borrowTimestamp
-        - borrowIndex
-        - entryLiquidationThreshold
-        - entryLiquidationBonus
-        - entryLiquidationFee
-        - entryLtv
-        - isolated
-        - isVault
-        - eModeCategory
-        - address
-    ShortLendingTokenEModeProfileDoc:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The token associated with the eMode profile
-          example: EGLD
-        canBeCollateral:
-          type: boolean
-          description: Indicates if the token can be used as collateral
-          example: true
-        canBeBorrowed:
-          type: boolean
-          description: Indicates if the token can be borrowed
-          example: true
-        eModeCategory:
-          type: string
-          description: EMode category of the token
-          example: '1'
-      required:
-        - token
-        - canBeCollateral
-        - canBeBorrowed
-        - eModeCategory
-    LendingEModeCategoryProfile:
-      type: object
-      properties:
-        dataType:
-          type: string
-          enum:
-            - marketProfile
-            - accountProfile
-            - emodeCategoryProfile
-            - tokenEmodeProfile
-          example: emodeCategoryProfile
-        ltv:
-          type: string
-          description: Loan-to-value ratio
-          example: 0.75
-        liquidationThreshold:
-          type: string
-          description: Liquidation threshold
-          example: 0.85
-        liquidationBonus:
-          type: string
-          description: Liquidation bonus
-          example: 0.1
-        isDeprecated:
-          type: boolean
-          description: Is eMode deprecated
-          example: false
-        id:
-          type: string
-          description: EMode category
-          example: '1'
-        eModeTokenProfiles:
-          description: EMode profiles
-          type: array
-          items:
-            $ref: '#/components/schemas/ShortLendingTokenEModeProfileDoc'
-      required:
-        - dataType
-        - ltv
-        - liquidationThreshold
-        - liquidationBonus
-        - isDeprecated
-        - id
-        - eModeTokenProfiles
-    LendingMarketAnalyticsGraph:
-      type: object
-      properties:
-        token:
-          type: string
-          description: Token of the lending market
-          example: EGLD
-        timestamp:
-          description: Timestamp of the graph point
-          example:
-            - '2023-01-01T00:00:00Z'
-            - '2023-01-02T00:00:00Z'
-            - '2023-01-03T00:00:00Z'
-          type: array
-          items:
-            type: array
-        minSupplyApy:
-          description: Minimum supply APY value for each timestamp
-          example:
-            - 1.2
-            - 1.3
-            - 1.4
-          type: array
-          items:
-            type: array
-        maxSupplyApy:
-          description: Maximum supply APY value for each timestamp
-          example:
-            - 2.2
-            - 2.3
-            - 2.4
-          type: array
-          items:
-            type: array
-        avgSupplyApy:
-          description: Average supply APY value for each timestamp
-          example:
-            - 1.7
-            - 1.8
-            - 1.9
-          type: array
-          items:
-            type: array
-        minBorrowApy:
-          description: Minimum borrow APY value for each timestamp
-          example:
-            - 0.5
-            - 0.6
-            - 0.7
-          type: array
-          items:
-            type: array
-        maxBorrowApy:
-          description: Maximum borrow APY value for each timestamp
-          example:
-            - 1.5
-            - 1.6
-            - 1.7
-          type: array
-          items:
-            type: array
-        avgBorrowApy:
-          description: Average borrow APY value for each timestamp
-          example:
-            - 1
-            - 1.1
-            - 1.2
-          type: array
-          items:
-            type: array
-        minUtilizationRate:
-          description: Minimum utilization rate for each timestamp
-          example:
-            - 0.1
-            - 0.2
-            - 0.3
-          type: array
-          items:
-            type: array
-        maxUtilizationRate:
-          description: Maximum utilization rate for each timestamp
-          example:
-            - 0.4
-            - 0.5
-            - 0.6
-          type: array
-          items:
-            type: array
-        avgUtilizationRate:
-          description: Average utilization rate for each timestamp
-          example:
-            - 0.25
-            - 0.35
-            - 0.45
-          type: array
-          items:
-            type: array
-        minSupplyAmount:
-          description: Minimum supply amount for each timestamp
-          example:
-            - 1000
-            - 1100
-            - 1200
-          type: array
-          items:
-            type: array
-        maxSupplyAmount:
-          description: Maximum supply amount for each timestamp
-          example:
-            - 2000
-            - 2100
-            - 2200
-          type: array
-          items:
-            type: array
-        avgSupplyAmount:
-          description: Average supply amount for each timestamp
-          example:
-            - 1500
-            - 1600
-            - 1700
-          type: array
-          items:
-            type: array
-        minBorrowAmount:
-          description: Minimum borrow amount for each timestamp
-          example:
-            - 500
-            - 600
-            - 700
-          type: array
-          items:
-            type: array
-        maxBorrowAmount:
-          description: Maximum borrow amount for each timestamp
-          example:
-            - 1500
-            - 1600
-            - 1700
-          type: array
-          items:
-            type: array
-        avgBorrowAmount:
-          description: Average borrow amount for each timestamp
-          example:
-            - 1000
-            - 1100
-            - 1200
-          type: array
-          items:
-            type: array
-      required:
-        - token
-        - timestamp
-        - minSupplyApy
-        - maxSupplyApy
-        - avgSupplyApy
-        - minBorrowApy
-        - maxBorrowApy
-        - avgBorrowApy
-        - minUtilizationRate
-        - maxUtilizationRate
-        - avgUtilizationRate
-        - minSupplyAmount
-        - maxSupplyAmount
-        - avgSupplyAmount
-        - minBorrowAmount
-        - maxBorrowAmount
-        - avgBorrowAmount
-    LendingPositionStatus:
-      type: object
-      properties:
-        position:
-          type: number
-          description: The position of the lending account
-          example: 1
-        identifier:
-          type: string
-          description: Unique identifier for the lending account
-          example: account123
-        supplied:
-          type: number
-          description: The USD amount supplied in the lending account
-          example: 100
-        borrowed:
-          type: number
-          description: The USD amount borrowed from the lending account
-          example: 50
-        healthFactor:
-          type: number
-          description: The health factor of the lending account
-          example: 30
-        wallet:
-          description: The owner of the lending account
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-      required:
-        - position
-        - identifier
-        - supplied
-        - borrowed
-        - healthFactor
-        - wallet
-    LendingOverallStats:
-      type: object
-      properties:
-        topMarkets:
-          description: Top markets by supply APY
-          example:
-            - USDC-350c4e
-            - XOXNO-589e09
-            - LXOXNO-a00540
-          type: array
-          items:
-            type: string
-        marketCount:
-          type: number
-          description: Total number of lending markets
-          example: 10
-        participantsCount:
-          type: number
-          description: Total supplied amount
-          example: 10000000
-        bestApy:
-          type: number
-          description: Maximum APY
-          example: 0.04
-        borrowed:
-          type: number
-          description: Total borrowed amount
-          example: 5000000
-        suppliedMargin:
-          type: number
-          description: Total supplied margin over 24h
-          example: 30
-        borrowedMargin:
-          type: number
-          description: Total borrowed margin over 24h
-          example: 15
-      required:
-        - topMarkets
-        - marketCount
-        - participantsCount
-        - bestApy
-        - borrowed
-        - suppliedMargin
-        - borrowedMargin
     TransactionProcessStatus:
       type: object
       properties:
@@ -14357,10 +14431,10 @@ components:
         title:
           type: string
         startTime:
-          type: number
-          minimum: 1744038857
+          type: integer
+          minimum: 1744220863
         endTime:
-          type: number
+          type: integer
         location:
           $ref: '#/components/schemas/EventLocationDto'
         registration:
@@ -14610,11 +14684,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1744038857
+          example: 1744220863
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 27d8ca8a-df79-4f1a-a136-97cbf1cbe685
+          example: 94341cab-298b-4c88-9a62-195f06a8ae0e
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14826,10 +14900,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1744038858
+          example: 1744220864
         endTime:
           type: integer
-          example: 1744038858
+          example: 1744220864
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -15086,11 +15160,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1744038857
+          example: 1744220863
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: f6f87010-b22d-4989-b46a-6751a8235e35
+          example: 39d10475-acff-4e2b-8f28-ad5c5ce37ba2
       required:
         - dataType
         - eventId
@@ -15151,11 +15225,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1744038858
+          minimum: 1744220864
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1744125258
+          minimum: 1744307264
           description: End time timestamp
         maxLimit:
           type: integer
@@ -15216,11 +15290,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1744038857
+          example: 1744220863
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1744038857
+          example: 1744220863
         maxLimit:
           type: integer
           description: >-
@@ -15251,7 +15325,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 14fdc7d3-1286-401a-a244-5834f974ecd7
+          example: a2010bb0-4fac-4d5c-8120-13532bb146f7
       required:
         - dataType
         - eventId
@@ -15293,10 +15367,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1744038858
+          minimum: 1744220864
         endTime:
           type: integer
-          minimum: 1744125258
+          minimum: 1744307264
       required:
         - prices
         - name
@@ -15435,7 +15509,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 4fb10e6c-2698-4d09-ad94-53b1bb3a694c
+          example: 4251672f-d05c-4ff9-afe2-1f602d9ceae1
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -15496,7 +15570,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1744038857
+          example: 1744220863
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15529,7 +15603,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: eedd79fc-2f4b-4ec3-8cc6-de69c149c01a
+          example: f7ec52a3-05c1-4108-b519-d340d315b8ec
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15598,7 +15672,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1744038857
+          example: 1744220863
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15631,7 +15705,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: eedd79fc-2f4b-4ec3-8cc6-de69c149c01a
+          example: f7ec52a3-05c1-4108-b519-d340d315b8ec
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15750,11 +15824,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744038858
+          example: 1744220864
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744038858
+          example: 1744220864
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -15765,7 +15839,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1744038858
+          example: 1744220864
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15864,7 +15938,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1744038857
+          example: 1744220863
       required:
         - dataType
         - id
@@ -16015,11 +16089,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1744038857
+          example: 1744220863
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 27d8ca8a-df79-4f1a-a136-97cbf1cbe685
+          example: 94341cab-298b-4c88-9a62-195f06a8ae0e
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16367,11 +16441,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744038858
+          example: 1744220864
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744038858
+          example: 1744220864
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16423,11 +16497,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744038858
+          example: 1744220864
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744038858
+          example: 1744220864
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16471,7 +16545,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: ebaab0c1-f99c-4b4a-9762-c0b1ac06dbef
+          example: 8b098113-71f3-45f9-9160-9c4d9ecd58a9
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16487,7 +16561,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1744038858
+          example: 1744220864
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -16629,7 +16703,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 8128a46b-ae78-4611-aa2c-4cfaa8598d6a
+          example: 1b4c5c36-c72e-4b82-8c1a-9052ca281e1e
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16656,7 +16730,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1744038858
+          example: 1744220864
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16742,7 +16816,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 3729118e-1d69-4edb-9005-926c99225ae5
+          example: 0f73adf1-6f76-4d42-8d95-a3baa5e20e85
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16761,7 +16835,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1744038858
+          example: 1744220864
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -17669,7 +17743,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 11112b40-b7bb-423c-af82-e1d8a10fd1dd
+          example: ee248532-ff08-4096-8cb7-fb1544431c71
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17686,15 +17760,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1744038857
+          example: 1744220863
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: f15fa2dd-ccc7-4f96-ad57-5adb9c1194b0
+          example: 13f5d392-7a75-453a-aab6-f1ca981c82e0
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1744038857
+          example: 1744220863
       required:
         - ticketId
         - isCheckIn
