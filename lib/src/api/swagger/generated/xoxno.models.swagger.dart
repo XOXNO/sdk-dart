@@ -28704,9 +28704,9 @@ class NftActivityFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final NftActivityFilterCriteriaDto? filters;
   static const fromJsonFactory = _$NftActivityFilterFromJson;
@@ -28755,8 +28755,8 @@ extension $NftActivityFilterExtension on NftActivityFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       NftActivityFilterCriteriaDto? filters}) {
     return NftActivityFilter(
         select: select ?? this.select,
@@ -28773,8 +28773,8 @@ extension $NftActivityFilterExtension on NftActivityFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<NftActivityFilterCriteriaDto?>? filters}) {
     return NftActivityFilter(
         select: (select != null ? select.value : this.select),
@@ -28960,9 +28960,9 @@ class CollectionOffersFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final CollectionOffersFilterCriteriaDto? filters;
   static const fromJsonFactory = _$CollectionOffersFilterFromJson;
@@ -29011,8 +29011,8 @@ extension $CollectionOffersFilterExtension on CollectionOffersFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       CollectionOffersFilterCriteriaDto? filters}) {
     return CollectionOffersFilter(
         select: select ?? this.select,
@@ -29029,8 +29029,8 @@ extension $CollectionOffersFilterExtension on CollectionOffersFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<CollectionOffersFilterCriteriaDto?>? filters}) {
     return CollectionOffersFilter(
         select: (select != null ? select.value : this.select),
@@ -29493,9 +29493,9 @@ class CollectionStatsFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final CollectionStatsFilterCriteriaDto filters;
   static const fromJsonFactory = _$CollectionStatsFilterFromJson;
@@ -29544,8 +29544,8 @@ extension $CollectionStatsFilterExtension on CollectionStatsFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       CollectionStatsFilterCriteriaDto? filters}) {
     return CollectionStatsFilter(
         select: select ?? this.select,
@@ -29562,8 +29562,8 @@ extension $CollectionStatsFilterExtension on CollectionStatsFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<CollectionStatsFilterCriteriaDto>? filters}) {
     return CollectionStatsFilter(
         select: (select != null ? select.value : this.select),
@@ -29903,9 +29903,9 @@ class NftDocFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final NftDocFilterCriteriaDto filters;
   @JsonKey(name: 'applyNftExtraDetails')
@@ -29961,8 +29961,8 @@ extension $NftDocFilterExtension on NftDocFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       NftDocFilterCriteriaDto? filters,
       bool? applyNftExtraDetails}) {
     return NftDocFilter(
@@ -29982,8 +29982,8 @@ extension $NftDocFilterExtension on NftDocFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<NftDocFilterCriteriaDto>? filters,
       Wrapped<bool?>? applyNftExtraDetails}) {
     return NftDocFilter(
@@ -30150,9 +30150,9 @@ class NftOfferDocFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final NftOfferDocFilterCriteria filters;
   static const fromJsonFactory = _$NftOfferDocFilterFromJson;
@@ -30201,8 +30201,8 @@ extension $NftOfferDocFilterExtension on NftOfferDocFilter {
       List<enums.NftOfferDocFilterOrderBy>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       NftOfferDocFilterCriteria? filters}) {
     return NftOfferDocFilter(
         select: select ?? this.select,
@@ -30219,8 +30219,8 @@ extension $NftOfferDocFilterExtension on NftOfferDocFilter {
       Wrapped<List<enums.NftOfferDocFilterOrderBy>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<NftOfferDocFilterCriteria>? filters}) {
     return NftOfferDocFilter(
         select: (select != null ? select.value : this.select),
@@ -30368,9 +30368,9 @@ class EventGuestFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final EventGuestFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventGuestFilterFromJson;
@@ -30419,8 +30419,8 @@ extension $EventGuestFilterExtension on EventGuestFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       EventGuestFilterCriteriaDto? filters}) {
     return EventGuestFilter(
         select: select ?? this.select,
@@ -30437,8 +30437,8 @@ extension $EventGuestFilterExtension on EventGuestFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<EventGuestFilterCriteriaDto>? filters}) {
     return EventGuestFilter(
         select: (select != null ? select.value : this.select),
@@ -30608,9 +30608,9 @@ class EventInvitationFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final EventInvitationFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventInvitationFilterFromJson;
@@ -30659,8 +30659,8 @@ extension $EventInvitationFilterExtension on EventInvitationFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       EventInvitationFilterCriteriaDto? filters}) {
     return EventInvitationFilter(
         select: select ?? this.select,
@@ -30677,8 +30677,8 @@ extension $EventInvitationFilterExtension on EventInvitationFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<EventInvitationFilterCriteriaDto>? filters}) {
     return EventInvitationFilter(
         select: (select != null ? select.value : this.select),
@@ -30872,9 +30872,9 @@ class EventVoucherFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final EventVoucherFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventVoucherFilterFromJson;
@@ -30923,8 +30923,8 @@ extension $EventVoucherFilterExtension on EventVoucherFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       EventVoucherFilterCriteriaDto? filters}) {
     return EventVoucherFilter(
         select: select ?? this.select,
@@ -30941,8 +30941,8 @@ extension $EventVoucherFilterExtension on EventVoucherFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<EventVoucherFilterCriteriaDto>? filters}) {
     return EventVoucherFilter(
         select: (select != null ? select.value : this.select),
@@ -31148,9 +31148,9 @@ class EventProfileFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final EventProfileFilterCriteriaDto filters;
   @JsonKey(name: 'extraProperties')
@@ -31206,8 +31206,8 @@ extension $EventProfileFilterExtension on EventProfileFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       EventProfileFilterCriteriaDto? filters,
       EventExtraProperties? extraProperties}) {
     return EventProfileFilter(
@@ -31226,8 +31226,8 @@ extension $EventProfileFilterExtension on EventProfileFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<EventProfileFilterCriteriaDto>? filters,
       Wrapped<EventExtraProperties?>? extraProperties}) {
     return EventProfileFilter(
@@ -31504,9 +31504,9 @@ class LendingMarketProfileFilter {
   @JsonKey(name: 'strictSelect', defaultValue: false)
   final bool? strictSelect;
   @JsonKey(name: 'top')
-  final double? top;
+  final int? top;
   @JsonKey(name: 'skip')
-  final double? skip;
+  final int? skip;
   @JsonKey(name: 'filters')
   final LendingMarketProfileFilterCriteriaDto filters;
   @JsonKey(name: 'extraProperties')
@@ -31562,8 +31562,8 @@ extension $LendingMarketProfileFilterExtension on LendingMarketProfileFilter {
       List<String>? orderBy,
       bool? includeCount,
       bool? strictSelect,
-      double? top,
-      double? skip,
+      int? top,
+      int? skip,
       LendingMarketProfileFilterCriteriaDto? filters,
       LendingMarketProfileExtraProperties? extraProperties}) {
     return LendingMarketProfileFilter(
@@ -31582,8 +31582,8 @@ extension $LendingMarketProfileFilterExtension on LendingMarketProfileFilter {
       Wrapped<List<String>?>? orderBy,
       Wrapped<bool?>? includeCount,
       Wrapped<bool?>? strictSelect,
-      Wrapped<double?>? top,
-      Wrapped<double?>? skip,
+      Wrapped<int?>? top,
+      Wrapped<int?>? skip,
       Wrapped<LendingMarketProfileFilterCriteriaDto>? filters,
       Wrapped<LendingMarketProfileExtraProperties?>? extraProperties}) {
     return LendingMarketProfileFilter(

@@ -6216,8 +6216,8 @@ NftActivityFilter _$NftActivityFilterFromJson(Map<String, dynamic> json) =>
           [],
       includeCount: json['includeCount'] as bool?,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: json['filters'] == null
           ? null
           : NftActivityFilterCriteriaDto.fromJson(
@@ -6296,8 +6296,8 @@ CollectionOffersFilter _$CollectionOffersFilterFromJson(
           [],
       includeCount: json['includeCount'] as bool?,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: json['filters'] == null
           ? null
           : CollectionOffersFilterCriteriaDto.fromJson(
@@ -6425,8 +6425,8 @@ CollectionStatsFilter _$CollectionStatsFilterFromJson(
           [],
       includeCount: json['includeCount'] as bool?,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: CollectionStatsFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
     );
@@ -6551,8 +6551,8 @@ NftDocFilter _$NftDocFilterFromJson(Map<String, dynamic> json) => NftDocFilter(
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: NftDocFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
       applyNftExtraDetails: json['applyNftExtraDetails'] as bool?,
@@ -6624,8 +6624,8 @@ NftOfferDocFilter _$NftOfferDocFilterFromJson(Map<String, dynamic> json) =>
           json['orderBy'] as List?),
       includeCount: json['includeCount'] as bool?,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: NftOfferDocFilterCriteria.fromJson(
           json['filters'] as Map<String, dynamic>),
     );
@@ -6685,8 +6685,8 @@ EventGuestFilter _$EventGuestFilterFromJson(Map<String, dynamic> json) =>
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: EventGuestFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
     );
@@ -6754,8 +6754,8 @@ EventInvitationFilter _$EventInvitationFilterFromJson(
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: EventInvitationFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
     );
@@ -6820,8 +6820,8 @@ EventVoucherFilter _$EventVoucherFilterFromJson(Map<String, dynamic> json) =>
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: EventVoucherFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
     );
@@ -6896,8 +6896,8 @@ EventProfileFilter _$EventProfileFilterFromJson(Map<String, dynamic> json) =>
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: EventProfileFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
       extraProperties: json['extraProperties'] == null
@@ -6984,8 +6984,8 @@ LendingMarketProfileFilter _$LendingMarketProfileFilterFromJson(
           [],
       includeCount: json['includeCount'] as bool? ?? false,
       strictSelect: json['strictSelect'] as bool? ?? false,
-      top: (json['top'] as num?)?.toDouble(),
-      skip: (json['skip'] as num?)?.toDouble(),
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
       filters: LendingMarketProfileFilterCriteriaDto.fromJson(
           json['filters'] as Map<String, dynamic>),
       extraProperties: json['extraProperties'] == null
