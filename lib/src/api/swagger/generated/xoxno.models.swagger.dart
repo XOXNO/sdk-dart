@@ -13618,15 +13618,15 @@ extension $PremiumTypeExtension on PremiumType {
 class EventUserRoleDoc {
   const EventUserRoleDoc({
     required this.dataType,
-    required this.eventId,
-    required this.wallet,
-    required this.name,
-    required this.email,
+    this.eventId,
+    this.wallet,
+    this.name,
+    this.email,
     required this.role,
     required this.permissions,
-    required this.createdAt,
+    this.createdAt,
     this.endTime,
-    required this.id,
+    this.id,
     required this.status,
   });
 
@@ -13643,13 +13643,13 @@ class EventUserRoleDoc {
   )
   final enums.EventUserRoleDocDataType dataType;
   @JsonKey(name: 'eventId')
-  final String eventId;
+  final String? eventId;
   @JsonKey(name: 'wallet')
-  final String wallet;
+  final String? wallet;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'email')
-  final String email;
+  final String? email;
   @JsonKey(
     name: 'role',
     toJson: eventUserRoleDocRoleListToJson,
@@ -13663,11 +13663,11 @@ class EventUserRoleDoc {
   )
   final List<enums.EventUserRoleDocPermissions> permissions;
   @JsonKey(name: 'createdAt')
-  final int createdAt;
+  final int? createdAt;
   @JsonKey(name: 'endTime')
   final int? endTime;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(
     name: 'status',
     toJson: eventUserRoleDocStatusToJson,
@@ -13757,15 +13757,15 @@ extension $EventUserRoleDocExtension on EventUserRoleDoc {
 
   EventUserRoleDoc copyWithWrapped(
       {Wrapped<enums.EventUserRoleDocDataType>? dataType,
-      Wrapped<String>? eventId,
-      Wrapped<String>? wallet,
-      Wrapped<String>? name,
-      Wrapped<String>? email,
+      Wrapped<String?>? eventId,
+      Wrapped<String?>? wallet,
+      Wrapped<String?>? name,
+      Wrapped<String?>? email,
       Wrapped<List<enums.EventUserRoleDocRole>>? role,
       Wrapped<List<enums.EventUserRoleDocPermissions>>? permissions,
-      Wrapped<int>? createdAt,
+      Wrapped<int?>? createdAt,
       Wrapped<int?>? endTime,
-      Wrapped<String>? id,
+      Wrapped<String?>? id,
       Wrapped<enums.EventUserRoleDocStatus>? status}) {
     return EventUserRoleDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),

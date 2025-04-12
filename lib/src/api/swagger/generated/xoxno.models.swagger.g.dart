@@ -2852,16 +2852,16 @@ Map<String, dynamic> _$PremiumTypeToJson(PremiumType instance) =>
 EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
     EventUserRoleDoc(
       dataType: eventUserRoleDocDataTypeFromJson(json['dataType']),
-      eventId: json['eventId'] as String,
-      wallet: json['wallet'] as String,
-      name: json['name'] as String,
-      email: json['email'] as String,
+      eventId: json['eventId'] as String?,
+      wallet: json['wallet'] as String?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
       role: eventUserRoleDocRoleListFromJson(json['role'] as List?),
       permissions:
           eventUserRoleDocPermissionsListFromJson(json['permissions'] as List?),
-      createdAt: (json['createdAt'] as num).toInt(),
+      createdAt: (json['createdAt'] as num?)?.toInt(),
       endTime: (json['endTime'] as num?)?.toInt(),
-      id: json['id'] as String,
+      id: json['id'] as String?,
       status: eventUserRoleDocStatusFromJson(json['status']),
     );
 
