@@ -21836,10 +21836,10 @@ class EventGuestDoc {
   final EventGuestBilling? billing;
   @JsonKey(
     name: 'status',
-    toJson: eventGuestDocStatusToJson,
-    fromJson: eventGuestDocStatusFromJson,
+    toJson: eventGuestStatusToJson,
+    fromJson: eventGuestStatusFromJson,
   )
-  final enums.EventGuestDocStatus status;
+  final enums.EventGuestStatus status;
   @JsonKey(name: 'createdAt')
   final int createdAt;
   @JsonKey(name: 'invitationId')
@@ -21922,7 +21922,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       bool? questionnaireFilled,
       EventGuestRegistration? registration,
       EventGuestBilling? billing,
-      enums.EventGuestDocStatus? status,
+      enums.EventGuestStatus? status,
       int? createdAt,
       String? invitationId,
       Object? metadata,
@@ -21952,7 +21952,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
       Wrapped<bool>? questionnaireFilled,
       Wrapped<EventGuestRegistration?>? registration,
       Wrapped<EventGuestBilling?>? billing,
-      Wrapped<enums.EventGuestDocStatus>? status,
+      Wrapped<enums.EventGuestStatus>? status,
       Wrapped<int>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
@@ -25963,10 +25963,10 @@ class EventGuestProfile {
   final EventGuestBilling? billing;
   @JsonKey(
     name: 'status',
-    toJson: eventGuestProfileStatusToJson,
-    fromJson: eventGuestProfileStatusFromJson,
+    toJson: eventGuestStatusToJson,
+    fromJson: eventGuestStatusFromJson,
   )
-  final enums.EventGuestProfileStatus status;
+  final enums.EventGuestStatus status;
   @JsonKey(name: 'createdAt')
   final int createdAt;
   @JsonKey(name: 'invitationId')
@@ -26060,7 +26060,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       bool? questionnaireFilled,
       EventGuestRegistration? registration,
       EventGuestBilling? billing,
-      enums.EventGuestProfileStatus? status,
+      enums.EventGuestStatus? status,
       int? createdAt,
       String? invitationId,
       Object? metadata,
@@ -26094,7 +26094,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
       Wrapped<bool>? questionnaireFilled,
       Wrapped<EventGuestRegistration?>? registration,
       Wrapped<EventGuestBilling?>? billing,
-      Wrapped<enums.EventGuestProfileStatus>? status,
+      Wrapped<enums.EventGuestStatus>? status,
       Wrapped<int>? createdAt,
       Wrapped<String?>? invitationId,
       Wrapped<Object?>? metadata,
@@ -26222,10 +26222,10 @@ class EventGuestExport {
   final String phone;
   @JsonKey(
     name: 'status',
-    toJson: eventGuestExportStatusToJson,
-    fromJson: eventGuestExportStatusFromJson,
+    toJson: eventGuestStatusToJson,
+    fromJson: eventGuestStatusFromJson,
   )
-  final enums.EventGuestExportStatus status;
+  final enums.EventGuestStatus status;
   static const fromJsonFactory = _$EventGuestExportFromJson;
 
   @override
@@ -26263,7 +26263,7 @@ extension $EventGuestExportExtension on EventGuestExport {
       String? email,
       String? name,
       String? phone,
-      enums.EventGuestExportStatus? status}) {
+      enums.EventGuestStatus? status}) {
     return EventGuestExport(
         wallet: wallet ?? this.wallet,
         email: email ?? this.email,
@@ -26277,7 +26277,7 @@ extension $EventGuestExportExtension on EventGuestExport {
       Wrapped<String?>? email,
       Wrapped<String>? name,
       Wrapped<String>? phone,
-      Wrapped<enums.EventGuestExportStatus>? status}) {
+      Wrapped<enums.EventGuestStatus>? status}) {
     return EventGuestExport(
         wallet: (wallet != null ? wallet.value : this.wallet),
         email: (email != null ? email.value : this.email),
@@ -26412,10 +26412,10 @@ class MyEvents {
   final int ticketCount;
   @JsonKey(
     name: 'status',
-    toJson: myEventsStatusToJson,
-    fromJson: myEventsStatusFromJson,
+    toJson: eventGuestStatusToJson,
+    fromJson: eventGuestStatusFromJson,
   )
-  final enums.MyEventsStatus status;
+  final enums.EventGuestStatus status;
   @JsonKey(name: 'eventProfile')
   final EventProfile eventProfile;
   static const fromJsonFactory = _$MyEventsFromJson;
@@ -26448,7 +26448,7 @@ class MyEvents {
 extension $MyEventsExtension on MyEvents {
   MyEvents copyWith(
       {int? ticketCount,
-      enums.MyEventsStatus? status,
+      enums.EventGuestStatus? status,
       EventProfile? eventProfile}) {
     return MyEvents(
         ticketCount: ticketCount ?? this.ticketCount,
@@ -26458,7 +26458,7 @@ extension $MyEventsExtension on MyEvents {
 
   MyEvents copyWithWrapped(
       {Wrapped<int>? ticketCount,
-      Wrapped<enums.MyEventsStatus>? status,
+      Wrapped<enums.EventGuestStatus>? status,
       Wrapped<EventProfile>? eventProfile}) {
     return MyEvents(
         ticketCount:
@@ -30260,10 +30260,10 @@ class EventGuestFilterCriteriaDto {
   final List<String>? eventId;
   @JsonKey(
     name: 'status',
-    toJson: eventGuestFilterCriteriaDtoStatusListToJson,
-    fromJson: eventGuestFilterCriteriaDtoStatusListFromJson,
+    toJson: eventGuestStatusListToJson,
+    fromJson: eventGuestStatusListFromJson,
   )
-  final List<enums.EventGuestFilterCriteriaDtoStatus>? status;
+  final List<enums.EventGuestStatus>? status;
   @JsonKey(name: 'questionnaireFilled')
   final bool? questionnaireFilled;
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
@@ -30310,7 +30310,7 @@ extension $EventGuestFilterCriteriaDtoExtension on EventGuestFilterCriteriaDto {
       {String? searchText,
       List<String>? wallet,
       List<String>? eventId,
-      List<enums.EventGuestFilterCriteriaDtoStatus>? status,
+      List<enums.EventGuestStatus>? status,
       bool? questionnaireFilled,
       List<RangeFilter>? range}) {
     return EventGuestFilterCriteriaDto(
@@ -30326,7 +30326,7 @@ extension $EventGuestFilterCriteriaDtoExtension on EventGuestFilterCriteriaDto {
       {Wrapped<String?>? searchText,
       Wrapped<List<String>?>? wallet,
       Wrapped<List<String>?>? eventId,
-      Wrapped<List<enums.EventGuestFilterCriteriaDtoStatus>?>? status,
+      Wrapped<List<enums.EventGuestStatus>?>? status,
       Wrapped<bool?>? questionnaireFilled,
       Wrapped<List<RangeFilter>?>? range}) {
     return EventGuestFilterCriteriaDto(
@@ -34823,6 +34823,77 @@ List<enums.CreatorProfileDocDataType>?
       .toList();
 }
 
+String? eventGuestStatusNullableToJson(
+    enums.EventGuestStatus? eventGuestStatus) {
+  return eventGuestStatus?.value;
+}
+
+String? eventGuestStatusToJson(enums.EventGuestStatus eventGuestStatus) {
+  return eventGuestStatus.value;
+}
+
+enums.EventGuestStatus eventGuestStatusFromJson(
+  Object? eventGuestStatus, [
+  enums.EventGuestStatus? defaultValue,
+]) {
+  return enums.EventGuestStatus.values
+          .firstWhereOrNull((e) => e.value == eventGuestStatus) ??
+      defaultValue ??
+      enums.EventGuestStatus.swaggerGeneratedUnknown;
+}
+
+enums.EventGuestStatus? eventGuestStatusNullableFromJson(
+  Object? eventGuestStatus, [
+  enums.EventGuestStatus? defaultValue,
+]) {
+  if (eventGuestStatus == null) {
+    return null;
+  }
+  return enums.EventGuestStatus.values
+          .firstWhereOrNull((e) => e.value == eventGuestStatus) ??
+      defaultValue;
+}
+
+String eventGuestStatusExplodedListToJson(
+    List<enums.EventGuestStatus>? eventGuestStatus) {
+  return eventGuestStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> eventGuestStatusListToJson(
+    List<enums.EventGuestStatus>? eventGuestStatus) {
+  if (eventGuestStatus == null) {
+    return [];
+  }
+
+  return eventGuestStatus.map((e) => e.value!).toList();
+}
+
+List<enums.EventGuestStatus> eventGuestStatusListFromJson(
+  List? eventGuestStatus, [
+  List<enums.EventGuestStatus>? defaultValue,
+]) {
+  if (eventGuestStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return eventGuestStatus
+      .map((e) => eventGuestStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.EventGuestStatus>? eventGuestStatusNullableListFromJson(
+  List? eventGuestStatus, [
+  List<enums.EventGuestStatus>? defaultValue,
+]) {
+  if (eventGuestStatus == null) {
+    return defaultValue;
+  }
+
+  return eventGuestStatus
+      .map((e) => eventGuestStatusFromJson(e.toString()))
+      .toList();
+}
+
 String? eventGuestDocDataTypeNullableToJson(
     enums.EventGuestDocDataType? eventGuestDocDataType) {
   return eventGuestDocDataType?.value;
@@ -34892,78 +34963,6 @@ List<enums.EventGuestDocDataType>? eventGuestDocDataTypeNullableListFromJson(
 
   return eventGuestDocDataType
       .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestDocStatusNullableToJson(
-    enums.EventGuestDocStatus? eventGuestDocStatus) {
-  return eventGuestDocStatus?.value;
-}
-
-String? eventGuestDocStatusToJson(
-    enums.EventGuestDocStatus eventGuestDocStatus) {
-  return eventGuestDocStatus.value;
-}
-
-enums.EventGuestDocStatus eventGuestDocStatusFromJson(
-  Object? eventGuestDocStatus, [
-  enums.EventGuestDocStatus? defaultValue,
-]) {
-  return enums.EventGuestDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
-      defaultValue ??
-      enums.EventGuestDocStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestDocStatus? eventGuestDocStatusNullableFromJson(
-  Object? eventGuestDocStatus, [
-  enums.EventGuestDocStatus? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return null;
-  }
-  return enums.EventGuestDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocStatus) ??
-      defaultValue;
-}
-
-String eventGuestDocStatusExplodedListToJson(
-    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
-  return eventGuestDocStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestDocStatusListToJson(
-    List<enums.EventGuestDocStatus>? eventGuestDocStatus) {
-  if (eventGuestDocStatus == null) {
-    return [];
-  }
-
-  return eventGuestDocStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestDocStatus> eventGuestDocStatusListFromJson(
-  List? eventGuestDocStatus, [
-  List<enums.EventGuestDocStatus>? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestDocStatus
-      .map((e) => eventGuestDocStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestDocStatus>? eventGuestDocStatusNullableListFromJson(
-  List? eventGuestDocStatus, [
-  List<enums.EventGuestDocStatus>? defaultValue,
-]) {
-  if (eventGuestDocStatus == null) {
-    return defaultValue;
-  }
-
-  return eventGuestDocStatus
-      .map((e) => eventGuestDocStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -36215,151 +36214,6 @@ List<enums.EventGuestProfileDataType>?
       .toList();
 }
 
-String? eventGuestProfileStatusNullableToJson(
-    enums.EventGuestProfileStatus? eventGuestProfileStatus) {
-  return eventGuestProfileStatus?.value;
-}
-
-String? eventGuestProfileStatusToJson(
-    enums.EventGuestProfileStatus eventGuestProfileStatus) {
-  return eventGuestProfileStatus.value;
-}
-
-enums.EventGuestProfileStatus eventGuestProfileStatusFromJson(
-  Object? eventGuestProfileStatus, [
-  enums.EventGuestProfileStatus? defaultValue,
-]) {
-  return enums.EventGuestProfileStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestProfileStatus) ??
-      defaultValue ??
-      enums.EventGuestProfileStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestProfileStatus? eventGuestProfileStatusNullableFromJson(
-  Object? eventGuestProfileStatus, [
-  enums.EventGuestProfileStatus? defaultValue,
-]) {
-  if (eventGuestProfileStatus == null) {
-    return null;
-  }
-  return enums.EventGuestProfileStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestProfileStatus) ??
-      defaultValue;
-}
-
-String eventGuestProfileStatusExplodedListToJson(
-    List<enums.EventGuestProfileStatus>? eventGuestProfileStatus) {
-  return eventGuestProfileStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestProfileStatusListToJson(
-    List<enums.EventGuestProfileStatus>? eventGuestProfileStatus) {
-  if (eventGuestProfileStatus == null) {
-    return [];
-  }
-
-  return eventGuestProfileStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestProfileStatus> eventGuestProfileStatusListFromJson(
-  List? eventGuestProfileStatus, [
-  List<enums.EventGuestProfileStatus>? defaultValue,
-]) {
-  if (eventGuestProfileStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestProfileStatus
-      .map((e) => eventGuestProfileStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestProfileStatus>?
-    eventGuestProfileStatusNullableListFromJson(
-  List? eventGuestProfileStatus, [
-  List<enums.EventGuestProfileStatus>? defaultValue,
-]) {
-  if (eventGuestProfileStatus == null) {
-    return defaultValue;
-  }
-
-  return eventGuestProfileStatus
-      .map((e) => eventGuestProfileStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestExportStatusNullableToJson(
-    enums.EventGuestExportStatus? eventGuestExportStatus) {
-  return eventGuestExportStatus?.value;
-}
-
-String? eventGuestExportStatusToJson(
-    enums.EventGuestExportStatus eventGuestExportStatus) {
-  return eventGuestExportStatus.value;
-}
-
-enums.EventGuestExportStatus eventGuestExportStatusFromJson(
-  Object? eventGuestExportStatus, [
-  enums.EventGuestExportStatus? defaultValue,
-]) {
-  return enums.EventGuestExportStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestExportStatus) ??
-      defaultValue ??
-      enums.EventGuestExportStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestExportStatus? eventGuestExportStatusNullableFromJson(
-  Object? eventGuestExportStatus, [
-  enums.EventGuestExportStatus? defaultValue,
-]) {
-  if (eventGuestExportStatus == null) {
-    return null;
-  }
-  return enums.EventGuestExportStatus.values
-          .firstWhereOrNull((e) => e.value == eventGuestExportStatus) ??
-      defaultValue;
-}
-
-String eventGuestExportStatusExplodedListToJson(
-    List<enums.EventGuestExportStatus>? eventGuestExportStatus) {
-  return eventGuestExportStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestExportStatusListToJson(
-    List<enums.EventGuestExportStatus>? eventGuestExportStatus) {
-  if (eventGuestExportStatus == null) {
-    return [];
-  }
-
-  return eventGuestExportStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestExportStatus> eventGuestExportStatusListFromJson(
-  List? eventGuestExportStatus, [
-  List<enums.EventGuestExportStatus>? defaultValue,
-]) {
-  if (eventGuestExportStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestExportStatus
-      .map((e) => eventGuestExportStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestExportStatus>? eventGuestExportStatusNullableListFromJson(
-  List? eventGuestExportStatus, [
-  List<enums.EventGuestExportStatus>? defaultValue,
-]) {
-  if (eventGuestExportStatus == null) {
-    return defaultValue;
-  }
-
-  return eventGuestExportStatus
-      .map((e) => eventGuestExportStatusFromJson(e.toString()))
-      .toList();
-}
-
 String? eventUserRoleCreateDtoRoleNullableToJson(
     enums.EventUserRoleCreateDtoRole? eventUserRoleCreateDtoRole) {
   return eventUserRoleCreateDtoRole?.value;
@@ -36510,76 +36364,6 @@ List<enums.EventUserRoleCreateDtoPermissions>?
 
   return eventUserRoleCreateDtoPermissions
       .map((e) => eventUserRoleCreateDtoPermissionsFromJson(e.toString()))
-      .toList();
-}
-
-String? myEventsStatusNullableToJson(enums.MyEventsStatus? myEventsStatus) {
-  return myEventsStatus?.value;
-}
-
-String? myEventsStatusToJson(enums.MyEventsStatus myEventsStatus) {
-  return myEventsStatus.value;
-}
-
-enums.MyEventsStatus myEventsStatusFromJson(
-  Object? myEventsStatus, [
-  enums.MyEventsStatus? defaultValue,
-]) {
-  return enums.MyEventsStatus.values
-          .firstWhereOrNull((e) => e.value == myEventsStatus) ??
-      defaultValue ??
-      enums.MyEventsStatus.swaggerGeneratedUnknown;
-}
-
-enums.MyEventsStatus? myEventsStatusNullableFromJson(
-  Object? myEventsStatus, [
-  enums.MyEventsStatus? defaultValue,
-]) {
-  if (myEventsStatus == null) {
-    return null;
-  }
-  return enums.MyEventsStatus.values
-          .firstWhereOrNull((e) => e.value == myEventsStatus) ??
-      defaultValue;
-}
-
-String myEventsStatusExplodedListToJson(
-    List<enums.MyEventsStatus>? myEventsStatus) {
-  return myEventsStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> myEventsStatusListToJson(
-    List<enums.MyEventsStatus>? myEventsStatus) {
-  if (myEventsStatus == null) {
-    return [];
-  }
-
-  return myEventsStatus.map((e) => e.value!).toList();
-}
-
-List<enums.MyEventsStatus> myEventsStatusListFromJson(
-  List? myEventsStatus, [
-  List<enums.MyEventsStatus>? defaultValue,
-]) {
-  if (myEventsStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return myEventsStatus
-      .map((e) => myEventsStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.MyEventsStatus>? myEventsStatusNullableListFromJson(
-  List? myEventsStatus, [
-  List<enums.MyEventsStatus>? defaultValue,
-]) {
-  if (myEventsStatus == null) {
-    return defaultValue;
-  }
-
-  return myEventsStatus
-      .map((e) => myEventsStatusFromJson(e.toString()))
       .toList();
 }
 
@@ -38086,86 +37870,6 @@ List<enums.NftOfferDocFilterOrderBy>?
 
   return nftOfferDocFilterOrderBy
       .map((e) => nftOfferDocFilterOrderByFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestFilterCriteriaDtoStatusNullableToJson(
-    enums.EventGuestFilterCriteriaDtoStatus?
-        eventGuestFilterCriteriaDtoStatus) {
-  return eventGuestFilterCriteriaDtoStatus?.value;
-}
-
-String? eventGuestFilterCriteriaDtoStatusToJson(
-    enums.EventGuestFilterCriteriaDtoStatus eventGuestFilterCriteriaDtoStatus) {
-  return eventGuestFilterCriteriaDtoStatus.value;
-}
-
-enums.EventGuestFilterCriteriaDtoStatus
-    eventGuestFilterCriteriaDtoStatusFromJson(
-  Object? eventGuestFilterCriteriaDtoStatus, [
-  enums.EventGuestFilterCriteriaDtoStatus? defaultValue,
-]) {
-  return enums.EventGuestFilterCriteriaDtoStatus.values.firstWhereOrNull(
-          (e) => e.value == eventGuestFilterCriteriaDtoStatus) ??
-      defaultValue ??
-      enums.EventGuestFilterCriteriaDtoStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestFilterCriteriaDtoStatus?
-    eventGuestFilterCriteriaDtoStatusNullableFromJson(
-  Object? eventGuestFilterCriteriaDtoStatus, [
-  enums.EventGuestFilterCriteriaDtoStatus? defaultValue,
-]) {
-  if (eventGuestFilterCriteriaDtoStatus == null) {
-    return null;
-  }
-  return enums.EventGuestFilterCriteriaDtoStatus.values.firstWhereOrNull(
-          (e) => e.value == eventGuestFilterCriteriaDtoStatus) ??
-      defaultValue;
-}
-
-String eventGuestFilterCriteriaDtoStatusExplodedListToJson(
-    List<enums.EventGuestFilterCriteriaDtoStatus>?
-        eventGuestFilterCriteriaDtoStatus) {
-  return eventGuestFilterCriteriaDtoStatus?.map((e) => e.value!).join(',') ??
-      '';
-}
-
-List<String> eventGuestFilterCriteriaDtoStatusListToJson(
-    List<enums.EventGuestFilterCriteriaDtoStatus>?
-        eventGuestFilterCriteriaDtoStatus) {
-  if (eventGuestFilterCriteriaDtoStatus == null) {
-    return [];
-  }
-
-  return eventGuestFilterCriteriaDtoStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestFilterCriteriaDtoStatus>
-    eventGuestFilterCriteriaDtoStatusListFromJson(
-  List? eventGuestFilterCriteriaDtoStatus, [
-  List<enums.EventGuestFilterCriteriaDtoStatus>? defaultValue,
-]) {
-  if (eventGuestFilterCriteriaDtoStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestFilterCriteriaDtoStatus
-      .map((e) => eventGuestFilterCriteriaDtoStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestFilterCriteriaDtoStatus>?
-    eventGuestFilterCriteriaDtoStatusNullableListFromJson(
-  List? eventGuestFilterCriteriaDtoStatus, [
-  List<enums.EventGuestFilterCriteriaDtoStatus>? defaultValue,
-]) {
-  if (eventGuestFilterCriteriaDtoStatus == null) {
-    return defaultValue;
-  }
-
-  return eventGuestFilterCriteriaDtoStatus
-      .map((e) => eventGuestFilterCriteriaDtoStatusFromJson(e.toString()))
       .toList();
 }
 

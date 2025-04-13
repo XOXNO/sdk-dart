@@ -729,6 +729,32 @@ enum CreatorProfileDocDataType {
   const CreatorProfileDocDataType(this.value);
 }
 
+enum EventGuestStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('pending')
+  pending('pending'),
+  @JsonValue('pendingApproval')
+  pendingapproval('pendingApproval'),
+  @JsonValue('inviteClaimed')
+  inviteclaimed('inviteClaimed'),
+  @JsonValue('partiallyActive')
+  partiallyactive('partiallyActive'),
+  @JsonValue('rejected')
+  rejected('rejected'),
+  @JsonValue('active')
+  active('active'),
+  @JsonValue('completed')
+  completed('completed'),
+  @JsonValue('partiallyCompleted')
+  partiallycompleted('partiallyCompleted');
+
+  final String? value;
+
+  const EventGuestStatus(this.value);
+}
+
 enum EventGuestDocDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -761,32 +787,6 @@ enum EventGuestDocDataType {
   final String? value;
 
   const EventGuestDocDataType(this.value);
-}
-
-enum EventGuestDocStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const EventGuestDocStatus(this.value);
 }
 
 enum EventProfileDataType {
@@ -1293,58 +1293,6 @@ enum EventGuestProfileDataType {
   const EventGuestProfileDataType(this.value);
 }
 
-enum EventGuestProfileStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const EventGuestProfileStatus(this.value);
-}
-
-enum EventGuestExportStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const EventGuestExportStatus(this.value);
-}
-
 enum EventUserRoleCreateDtoRole {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -1385,32 +1333,6 @@ enum EventUserRoleCreateDtoPermissions {
   final String? value;
 
   const EventUserRoleCreateDtoPermissions(this.value);
-}
-
-enum MyEventsStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const MyEventsStatus(this.value);
 }
 
 enum BageQRDataType {
@@ -1889,32 +1811,6 @@ enum NftOfferDocFilterOrderBy {
   final String? value;
 
   const NftOfferDocFilterOrderBy(this.value);
-}
-
-enum EventGuestFilterCriteriaDtoStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('pending')
-  pending('pending'),
-  @JsonValue('pendingApproval')
-  pendingapproval('pendingApproval'),
-  @JsonValue('inviteClaimed')
-  inviteclaimed('inviteClaimed'),
-  @JsonValue('partiallyActive')
-  partiallyactive('partiallyActive'),
-  @JsonValue('rejected')
-  rejected('rejected'),
-  @JsonValue('active')
-  active('active'),
-  @JsonValue('completed')
-  completed('completed'),
-  @JsonValue('partiallyCompleted')
-  partiallycompleted('partiallyCompleted');
-
-  final String? value;
-
-  const EventGuestFilterCriteriaDtoStatus(this.value);
 }
 
 enum EventInvitationFilterCriteriaDtoStatus {

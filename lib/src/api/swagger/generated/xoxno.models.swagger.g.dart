@@ -4658,7 +4658,7 @@ EventGuestDoc _$EventGuestDocFromJson(Map<String, dynamic> json) =>
       billing: json['billing'] == null
           ? null
           : EventGuestBilling.fromJson(json['billing'] as Map<String, dynamic>),
-      status: eventGuestDocStatusFromJson(json['status']),
+      status: eventGuestStatusFromJson(json['status']),
       createdAt: (json['createdAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
@@ -4675,7 +4675,7 @@ Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
       'questionnaireFilled': instance.questionnaireFilled,
       'registration': instance.registration?.toJson(),
       'billing': instance.billing?.toJson(),
-      'status': eventGuestDocStatusToJson(instance.status),
+      'status': eventGuestStatusToJson(instance.status),
       'createdAt': instance.createdAt,
       'invitationId': instance.invitationId,
       'metadata': instance.metadata,
@@ -5576,7 +5576,7 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
       billing: json['billing'] == null
           ? null
           : EventGuestBilling.fromJson(json['billing'] as Map<String, dynamic>),
-      status: eventGuestProfileStatusFromJson(json['status']),
+      status: eventGuestStatusFromJson(json['status']),
       createdAt: (json['createdAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
       metadata: json['metadata'],
@@ -5595,7 +5595,7 @@ Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
       'questionnaireFilled': instance.questionnaireFilled,
       'registration': instance.registration?.toJson(),
       'billing': instance.billing?.toJson(),
-      'status': eventGuestProfileStatusToJson(instance.status),
+      'status': eventGuestStatusToJson(instance.status),
       'createdAt': instance.createdAt,
       'invitationId': instance.invitationId,
       'metadata': instance.metadata,
@@ -5631,7 +5631,7 @@ EventGuestExport _$EventGuestExportFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       name: json['name'] as String,
       phone: json['phone'] as String,
-      status: eventGuestExportStatusFromJson(json['status']),
+      status: eventGuestStatusFromJson(json['status']),
     );
 
 Map<String, dynamic> _$EventGuestExportToJson(EventGuestExport instance) =>
@@ -5640,7 +5640,7 @@ Map<String, dynamic> _$EventGuestExportToJson(EventGuestExport instance) =>
       'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
-      'status': eventGuestExportStatusToJson(instance.status),
+      'status': eventGuestStatusToJson(instance.status),
     };
 
 EventUserRoleCreateDto _$EventUserRoleCreateDtoFromJson(
@@ -5669,14 +5669,14 @@ Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
 
 MyEvents _$MyEventsFromJson(Map<String, dynamic> json) => MyEvents(
       ticketCount: (json['ticketCount'] as num).toInt(),
-      status: myEventsStatusFromJson(json['status']),
+      status: eventGuestStatusFromJson(json['status']),
       eventProfile:
           EventProfile.fromJson(json['eventProfile'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MyEventsToJson(MyEvents instance) => <String, dynamic>{
       'ticketCount': instance.ticketCount,
-      'status': myEventsStatusToJson(instance.status),
+      'status': eventGuestStatusToJson(instance.status),
       'eventProfile': instance.eventProfile.toJson(),
     };
 
@@ -6653,8 +6653,7 @@ EventGuestFilterCriteriaDto _$EventGuestFilterCriteriaDtoFromJson(
               ?.map((e) => e as String)
               .toList() ??
           [],
-      status: eventGuestFilterCriteriaDtoStatusListFromJson(
-          json['status'] as List?),
+      status: eventGuestStatusListFromJson(json['status'] as List?),
       questionnaireFilled: json['questionnaireFilled'] as bool?,
       range: (json['range'] as List<dynamic>?)
               ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
@@ -6668,7 +6667,7 @@ Map<String, dynamic> _$EventGuestFilterCriteriaDtoToJson(
       'searchText': instance.searchText,
       'wallet': instance.wallet,
       'eventId': instance.eventId,
-      'status': eventGuestFilterCriteriaDtoStatusListToJson(instance.status),
+      'status': eventGuestStatusListToJson(instance.status),
       'questionnaireFilled': instance.questionnaireFilled,
       'range': instance.range?.map((e) => e.toJson()).toList(),
     };
