@@ -5562,10 +5562,10 @@ class LendingMarketProfile {
 
   @JsonKey(
     name: 'dataType',
-    toJson: lendingMarketProfileDataTypeToJson,
-    fromJson: lendingMarketProfileDataTypeFromJson,
+    toJson: lendingDataTypeToJson,
+    fromJson: lendingDataTypeFromJson,
   )
-  final enums.LendingMarketProfileDataType dataType;
+  final enums.LendingDataType dataType;
   @JsonKey(name: 'token')
   final String token;
   @JsonKey(name: 'name')
@@ -5841,7 +5841,7 @@ class LendingMarketProfile {
 
 extension $LendingMarketProfileExtension on LendingMarketProfile {
   LendingMarketProfile copyWith(
-      {enums.LendingMarketProfileDataType? dataType,
+      {enums.LendingDataType? dataType,
       String? token,
       String? name,
       double? decimals,
@@ -5954,7 +5954,7 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
   }
 
   LendingMarketProfile copyWithWrapped(
-      {Wrapped<enums.LendingMarketProfileDataType>? dataType,
+      {Wrapped<enums.LendingDataType>? dataType,
       Wrapped<String>? token,
       Wrapped<String>? name,
       Wrapped<double>? decimals,
@@ -6206,10 +6206,10 @@ class LendingEModeCategoryProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: lendingEModeCategoryProfileDocDataTypeToJson,
-    fromJson: lendingEModeCategoryProfileDocDataTypeFromJson,
+    toJson: lendingDataTypeToJson,
+    fromJson: lendingDataTypeFromJson,
   )
-  final enums.LendingEModeCategoryProfileDocDataType dataType;
+  final enums.LendingDataType dataType;
   @JsonKey(name: 'ltv')
   final String ltv;
   @JsonKey(name: 'liquidationThreshold')
@@ -6261,7 +6261,7 @@ class LendingEModeCategoryProfileDoc {
 extension $LendingEModeCategoryProfileDocExtension
     on LendingEModeCategoryProfileDoc {
   LendingEModeCategoryProfileDoc copyWith(
-      {enums.LendingEModeCategoryProfileDocDataType? dataType,
+      {enums.LendingDataType? dataType,
       String? ltv,
       String? liquidationThreshold,
       String? liquidationBonus,
@@ -6277,7 +6277,7 @@ extension $LendingEModeCategoryProfileDocExtension
   }
 
   LendingEModeCategoryProfileDoc copyWithWrapped(
-      {Wrapped<enums.LendingEModeCategoryProfileDocDataType>? dataType,
+      {Wrapped<enums.LendingDataType>? dataType,
       Wrapped<String>? ltv,
       Wrapped<String>? liquidationThreshold,
       Wrapped<String>? liquidationBonus,
@@ -6706,10 +6706,10 @@ class LendingAccountProfile {
 
   @JsonKey(
     name: 'dataType',
-    toJson: lendingAccountProfileDataTypeToJson,
-    fromJson: lendingAccountProfileDataTypeFromJson,
+    toJson: lendingDataTypeToJson,
+    fromJson: lendingDataTypeFromJson,
   )
-  final enums.LendingAccountProfileDataType dataType;
+  final enums.LendingDataType dataType;
   @JsonKey(name: 'identifier')
   final String identifier;
   @JsonKey(name: 'nonce')
@@ -6864,7 +6864,7 @@ class LendingAccountProfile {
 
 extension $LendingAccountProfileExtension on LendingAccountProfile {
   LendingAccountProfile copyWith(
-      {enums.LendingAccountProfileDataType? dataType,
+      {enums.LendingDataType? dataType,
       String? identifier,
       double? nonce,
       String? token,
@@ -6926,7 +6926,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
   }
 
   LendingAccountProfile copyWithWrapped(
-      {Wrapped<enums.LendingAccountProfileDataType>? dataType,
+      {Wrapped<enums.LendingDataType>? dataType,
       Wrapped<String>? identifier,
       Wrapped<double>? nonce,
       Wrapped<String>? token,
@@ -7119,10 +7119,10 @@ class LendingEModeCategoryProfile {
 
   @JsonKey(
     name: 'dataType',
-    toJson: lendingEModeCategoryProfileDataTypeToJson,
-    fromJson: lendingEModeCategoryProfileDataTypeFromJson,
+    toJson: lendingDataTypeToJson,
+    fromJson: lendingDataTypeFromJson,
   )
-  final enums.LendingEModeCategoryProfileDataType dataType;
+  final enums.LendingDataType dataType;
   @JsonKey(name: 'ltv')
   final String ltv;
   @JsonKey(name: 'liquidationThreshold')
@@ -7181,7 +7181,7 @@ class LendingEModeCategoryProfile {
 
 extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
   LendingEModeCategoryProfile copyWith(
-      {enums.LendingEModeCategoryProfileDataType? dataType,
+      {enums.LendingDataType? dataType,
       String? ltv,
       String? liquidationThreshold,
       String? liquidationBonus,
@@ -7199,7 +7199,7 @@ extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
   }
 
   LendingEModeCategoryProfile copyWithWrapped(
-      {Wrapped<enums.LendingEModeCategoryProfileDataType>? dataType,
+      {Wrapped<enums.LendingDataType>? dataType,
       Wrapped<String>? ltv,
       Wrapped<String>? liquidationThreshold,
       Wrapped<String>? liquidationBonus,
@@ -7879,10 +7879,10 @@ class NftSaleInfo {
   final double quantity;
   @JsonKey(
     name: 'marketplace',
-    toJson: nftSaleInfoMarketplaceToJson,
-    fromJson: nftSaleInfoMarketplaceFromJson,
+    toJson: marketplacesOnSaleNamesToJson,
+    fromJson: marketplacesOnSaleNamesFromJson,
   )
-  final enums.NftSaleInfoMarketplace marketplace;
+  final enums.MarketplacesOnSaleNames marketplace;
   @JsonKey(name: 'royalties')
   final double royalties;
   static const fromJsonFactory = _$NftSaleInfoFromJson;
@@ -7998,7 +7998,7 @@ extension $NftSaleInfoExtension on NftSaleInfo {
       double? maxBidUsdValue,
       double? currentBidShort,
       double? quantity,
-      enums.NftSaleInfoMarketplace? marketplace,
+      enums.MarketplacesOnSaleNames? marketplace,
       double? royalties}) {
     return NftSaleInfo(
         auctionId: auctionId ?? this.auctionId,
@@ -8042,7 +8042,7 @@ extension $NftSaleInfoExtension on NftSaleInfo {
       Wrapped<double?>? maxBidUsdValue,
       Wrapped<double?>? currentBidShort,
       Wrapped<double>? quantity,
-      Wrapped<enums.NftSaleInfoMarketplace>? marketplace,
+      Wrapped<enums.MarketplacesOnSaleNames>? marketplace,
       Wrapped<double>? royalties}) {
     return NftSaleInfo(
         auctionId: (auctionId != null ? auctionId.value : this.auctionId),
@@ -8846,16 +8846,16 @@ class NftProps {
   final double nonce;
   @JsonKey(
     name: 'type',
-    toJson: nftPropsTypeToJson,
-    fromJson: nftPropsTypeFromJson,
+    toJson: esdtTokenTypeToJson,
+    fromJson: esdtTokenTypeFromJson,
   )
-  final enums.NftPropsType type;
+  final enums.EsdtTokenType type;
   @JsonKey(
     name: 'subType',
-    toJson: nftPropsSubTypeNullableToJson,
-    fromJson: nftPropsSubTypeNullableFromJson,
+    toJson: esdtTokenSubTypeNullableToJson,
+    fromJson: esdtTokenSubTypeNullableFromJson,
   )
-  final enums.NftPropsSubType? subType;
+  final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
   final double? supply;
   @JsonKey(name: 'supplyLong')
@@ -9040,8 +9040,8 @@ extension $NftPropsExtension on NftProps {
       String? originalCollection,
       String? attributes,
       double? nonce,
-      enums.NftPropsType? type,
-      enums.NftPropsSubType? subType,
+      enums.EsdtTokenType? type,
+      enums.EsdtTokenSubType? subType,
       double? supply,
       String? supplyLong,
       String? name,
@@ -9110,8 +9110,8 @@ extension $NftPropsExtension on NftProps {
       Wrapped<String?>? originalCollection,
       Wrapped<String?>? attributes,
       Wrapped<double>? nonce,
-      Wrapped<enums.NftPropsType>? type,
-      Wrapped<enums.NftPropsSubType?>? subType,
+      Wrapped<enums.EsdtTokenType>? type,
+      Wrapped<enums.EsdtTokenSubType?>? subType,
       Wrapped<double?>? supply,
       Wrapped<String?>? supplyLong,
       Wrapped<String>? name,
@@ -12856,14 +12856,13 @@ class MintingListingDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: mintingListingDtoDataTypeToJson,
-    fromJson: mintingListingDtoDataTypeDataTypeFromJson,
+    toJson: collectionDataTypeToJson,
+    fromJson: collectionDataTypeDataTypeFromJson,
   )
-  final enums.MintingListingDtoDataType dataType;
-  static enums.MintingListingDtoDataType
-      mintingListingDtoDataTypeDataTypeFromJson(Object? value) =>
-          mintingListingDtoDataTypeFromJson(
-              value, enums.MintingListingDtoDataType.mintprofile);
+  final enums.CollectionDataType dataType;
+  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
+          Object? value) =>
+      collectionDataTypeFromJson(value, enums.CollectionDataType.mintprofile);
 
   @JsonKey(name: 'collection')
   final String collection;
@@ -13048,7 +13047,7 @@ class MintingListingDto {
 
 extension $MintingListingDtoExtension on MintingListingDto {
   MintingListingDto copyWith(
-      {enums.MintingListingDtoDataType? dataType,
+      {enums.CollectionDataType? dataType,
       String? collection,
       String? contractAddress,
       String? collectionTag,
@@ -13114,7 +13113,7 @@ extension $MintingListingDtoExtension on MintingListingDto {
   }
 
   MintingListingDto copyWithWrapped(
-      {Wrapped<enums.MintingListingDtoDataType>? dataType,
+      {Wrapped<enums.CollectionDataType>? dataType,
       Wrapped<String>? collection,
       Wrapped<String>? contractAddress,
       Wrapped<String>? collectionTag,
@@ -13357,10 +13356,10 @@ class RegistrationType {
 
   @JsonKey(
     name: 'visibility',
-    toJson: registrationTypeVisibilityToJson,
-    fromJson: registrationTypeVisibilityFromJson,
+    toJson: visibilityToJson,
+    fromJson: visibilityFromJson,
   )
-  final enums.RegistrationTypeVisibility visibility;
+  final enums.Visibility visibility;
   @JsonKey(name: 'maxLimit')
   final int maxLimit;
   @JsonKey(name: 'userLimit')
@@ -13479,7 +13478,7 @@ class RegistrationType {
 
 extension $RegistrationTypeExtension on RegistrationType {
   RegistrationType copyWith(
-      {enums.RegistrationTypeVisibility? visibility,
+      {enums.Visibility? visibility,
       int? maxLimit,
       int? userLimit,
       int? soldCount,
@@ -13517,7 +13516,7 @@ extension $RegistrationTypeExtension on RegistrationType {
   }
 
   RegistrationType copyWithWrapped(
-      {Wrapped<enums.RegistrationTypeVisibility>? visibility,
+      {Wrapped<enums.Visibility>? visibility,
       Wrapped<int>? maxLimit,
       Wrapped<int>? userLimit,
       Wrapped<int?>? soldCount,
@@ -13638,10 +13637,10 @@ class EventUserRoleDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventUserRoleDocDataTypeToJson,
-    fromJson: eventUserRoleDocDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeFromJson,
   )
-  final enums.EventUserRoleDocDataType dataType;
+  final enums.TicketingDataType dataType;
   @JsonKey(name: 'eventId')
   final String? eventId;
   @JsonKey(name: 'wallet')
@@ -13652,16 +13651,16 @@ class EventUserRoleDoc {
   final String? email;
   @JsonKey(
     name: 'role',
-    toJson: eventUserRoleDocRoleListToJson,
-    fromJson: eventUserRoleDocRoleListFromJson,
+    toJson: eventUserRolesListToJson,
+    fromJson: eventUserRolesListFromJson,
   )
-  final List<enums.EventUserRoleDocRole> role;
+  final List<enums.EventUserRoles> role;
   @JsonKey(
     name: 'permissions',
-    toJson: eventUserRoleDocPermissionsListToJson,
-    fromJson: eventUserRoleDocPermissionsListFromJson,
+    toJson: eventUserRolePermissionListToJson,
+    fromJson: eventUserRolePermissionListFromJson,
   )
-  final List<enums.EventUserRoleDocPermissions> permissions;
+  final List<enums.EventUserRolePermission> permissions;
   @JsonKey(name: 'createdAt')
   final int? createdAt;
   @JsonKey(name: 'endTime')
@@ -13670,10 +13669,10 @@ class EventUserRoleDoc {
   final String? id;
   @JsonKey(
     name: 'status',
-    toJson: eventUserRoleDocStatusToJson,
-    fromJson: eventUserRoleDocStatusFromJson,
+    toJson: roleStatusToJson,
+    fromJson: roleStatusFromJson,
   )
-  final enums.EventUserRoleDocStatus status;
+  final enums.RoleStatus status;
   static const fromJsonFactory = _$EventUserRoleDocFromJson;
 
   @override
@@ -13730,17 +13729,17 @@ class EventUserRoleDoc {
 
 extension $EventUserRoleDocExtension on EventUserRoleDoc {
   EventUserRoleDoc copyWith(
-      {enums.EventUserRoleDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? eventId,
       String? wallet,
       String? name,
       String? email,
-      List<enums.EventUserRoleDocRole>? role,
-      List<enums.EventUserRoleDocPermissions>? permissions,
+      List<enums.EventUserRoles>? role,
+      List<enums.EventUserRolePermission>? permissions,
       int? createdAt,
       int? endTime,
       String? id,
-      enums.EventUserRoleDocStatus? status}) {
+      enums.RoleStatus? status}) {
     return EventUserRoleDoc(
         dataType: dataType ?? this.dataType,
         eventId: eventId ?? this.eventId,
@@ -13756,17 +13755,17 @@ extension $EventUserRoleDocExtension on EventUserRoleDoc {
   }
 
   EventUserRoleDoc copyWithWrapped(
-      {Wrapped<enums.EventUserRoleDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String?>? eventId,
       Wrapped<String?>? wallet,
       Wrapped<String?>? name,
       Wrapped<String?>? email,
-      Wrapped<List<enums.EventUserRoleDocRole>>? role,
-      Wrapped<List<enums.EventUserRoleDocPermissions>>? permissions,
+      Wrapped<List<enums.EventUserRoles>>? role,
+      Wrapped<List<enums.EventUserRolePermission>>? permissions,
       Wrapped<int?>? createdAt,
       Wrapped<int?>? endTime,
       Wrapped<String?>? id,
-      Wrapped<enums.EventUserRoleDocStatus>? status}) {
+      Wrapped<enums.RoleStatus>? status}) {
     return EventUserRoleDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         eventId: (eventId != null ? eventId.value : this.eventId),
@@ -13817,14 +13816,13 @@ class EventProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventProfileDocDataTypeToJson,
-    fromJson: eventProfileDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventProfileDocDataType dataType;
-  static enums.EventProfileDocDataType eventProfileDocDataTypeDataTypeFromJson(
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
           Object? value) =>
-      eventProfileDocDataTypeFromJson(
-          value, enums.EventProfileDocDataType.eventProfile);
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventProfile);
 
   @JsonKey(name: 'createdAt')
   final int createdAt;
@@ -13848,16 +13846,16 @@ class EventProfileDoc {
   final String profile;
   @JsonKey(
     name: 'category',
-    toJson: eventProfileDocCategoryToJson,
-    fromJson: eventProfileDocCategoryFromJson,
+    toJson: eventCategoryToJson,
+    fromJson: eventCategoryFromJson,
   )
-  final enums.EventProfileDocCategory category;
+  final enums.EventCategory category;
   @JsonKey(
     name: 'subCategory',
-    toJson: eventProfileDocSubCategoryNullableToJson,
-    fromJson: eventProfileDocSubCategoryNullableFromJson,
+    toJson: eventSubCategoryNullableToJson,
+    fromJson: eventSubCategoryNullableFromJson,
   )
-  final enums.EventProfileDocSubCategory? subCategory;
+  final enums.EventSubCategory? subCategory;
   @JsonKey(name: 'background')
   final String? background;
   @JsonKey(name: 'registration')
@@ -13972,7 +13970,7 @@ class EventProfileDoc {
 
 extension $EventProfileDocExtension on EventProfileDoc {
   EventProfileDoc copyWith(
-      {enums.EventProfileDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       int? createdAt,
       String? creatorAddress,
       String? title,
@@ -13983,8 +13981,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       bool? isVirtualEvent,
       String? slug,
       String? profile,
-      enums.EventProfileDocCategory? category,
-      enums.EventProfileDocSubCategory? subCategory,
+      enums.EventCategory? category,
+      enums.EventSubCategory? subCategory,
       String? background,
       RegistrationType? registration,
       PremiumType? premium,
@@ -14018,7 +14016,7 @@ extension $EventProfileDocExtension on EventProfileDoc {
   }
 
   EventProfileDoc copyWithWrapped(
-      {Wrapped<enums.EventProfileDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<int>? createdAt,
       Wrapped<String>? creatorAddress,
       Wrapped<String>? title,
@@ -14029,8 +14027,8 @@ extension $EventProfileDocExtension on EventProfileDoc {
       Wrapped<bool>? isVirtualEvent,
       Wrapped<String>? slug,
       Wrapped<String>? profile,
-      Wrapped<enums.EventProfileDocCategory>? category,
-      Wrapped<enums.EventProfileDocSubCategory?>? subCategory,
+      Wrapped<enums.EventCategory>? category,
+      Wrapped<enums.EventSubCategory?>? subCategory,
       Wrapped<String?>? background,
       Wrapped<RegistrationType>? registration,
       Wrapped<PremiumType>? premium,
@@ -14103,14 +14101,12 @@ class CreatorDetailsDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: creatorDetailsDtoDataTypeToJson,
-    fromJson: creatorDetailsDtoDataTypeDataTypeFromJson,
+    toJson: userDataTypeToJson,
+    fromJson: userDataTypeDataTypeFromJson,
   )
-  final enums.CreatorDetailsDtoDataType dataType;
-  static enums.CreatorDetailsDtoDataType
-      creatorDetailsDtoDataTypeDataTypeFromJson(Object? value) =>
-          creatorDetailsDtoDataTypeFromJson(
-              value, enums.CreatorDetailsDtoDataType.creatorprofile);
+  final enums.UserDataType dataType;
+  static enums.UserDataType userDataTypeDataTypeFromJson(Object? value) =>
+      userDataTypeFromJson(value, enums.UserDataType.creatorprofile);
 
   @JsonKey(name: 'address')
   final String address;
@@ -14210,7 +14206,7 @@ class CreatorDetailsDto {
 
 extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
   CreatorDetailsDto copyWith(
-      {enums.CreatorDetailsDtoDataType? dataType,
+      {enums.UserDataType? dataType,
       String? address,
       String? name,
       String? creatorTag,
@@ -14243,7 +14239,7 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
   }
 
   CreatorDetailsDto copyWithWrapped(
-      {Wrapped<enums.CreatorDetailsDtoDataType>? dataType,
+      {Wrapped<enums.UserDataType>? dataType,
       Wrapped<String>? address,
       Wrapped<String>? name,
       Wrapped<String>? creatorTag,
@@ -14864,16 +14860,16 @@ class NftDoc {
   final double nonce;
   @JsonKey(
     name: 'type',
-    toJson: nftDocTypeToJson,
-    fromJson: nftDocTypeFromJson,
+    toJson: esdtTokenTypeToJson,
+    fromJson: esdtTokenTypeFromJson,
   )
-  final enums.NftDocType type;
+  final enums.EsdtTokenType type;
   @JsonKey(
     name: 'subType',
-    toJson: nftDocSubTypeNullableToJson,
-    fromJson: nftDocSubTypeNullableFromJson,
+    toJson: esdtTokenSubTypeNullableToJson,
+    fromJson: esdtTokenSubTypeNullableFromJson,
   )
-  final enums.NftDocSubType? subType;
+  final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
   final double? supply;
   @JsonKey(name: 'supplyLong')
@@ -15028,8 +15024,8 @@ extension $NftDocExtension on NftDoc {
       String? originalCollection,
       String? attributes,
       double? nonce,
-      enums.NftDocType? type,
-      enums.NftDocSubType? subType,
+      enums.EsdtTokenType? type,
+      enums.EsdtTokenSubType? subType,
       double? supply,
       String? supplyLong,
       String? name,
@@ -15084,8 +15080,8 @@ extension $NftDocExtension on NftDoc {
       Wrapped<String?>? originalCollection,
       Wrapped<String?>? attributes,
       Wrapped<double>? nonce,
-      Wrapped<enums.NftDocType>? type,
-      Wrapped<enums.NftDocSubType?>? subType,
+      Wrapped<enums.EsdtTokenType>? type,
+      Wrapped<enums.EsdtTokenSubType?>? subType,
       Wrapped<double?>? supply,
       Wrapped<String?>? supplyLong,
       Wrapped<String>? name,
@@ -15481,14 +15477,12 @@ class StakingCreatorDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: stakingCreatorDocDataTypeToJson,
-    fromJson: stakingCreatorDocDataTypeDataTypeFromJson,
+    toJson: stakingDataTypeToJson,
+    fromJson: stakingDataTypeDataTypeFromJson,
   )
-  final enums.StakingCreatorDocDataType dataType;
-  static enums.StakingCreatorDocDataType
-      stakingCreatorDocDataTypeDataTypeFromJson(Object? value) =>
-          stakingCreatorDocDataTypeFromJson(
-              value, enums.StakingCreatorDocDataType.creator);
+  final enums.StakingDataType dataType;
+  static enums.StakingDataType stakingDataTypeDataTypeFromJson(Object? value) =>
+      stakingDataTypeFromJson(value, enums.StakingDataType.creator);
 
   @JsonKey(name: 'address')
   final String address;
@@ -15545,7 +15539,7 @@ class StakingCreatorDoc {
 
 extension $StakingCreatorDocExtension on StakingCreatorDoc {
   StakingCreatorDoc copyWith(
-      {enums.StakingCreatorDocDataType? dataType,
+      {enums.StakingDataType? dataType,
       String? address,
       List<double>? ownedPools,
       List<String>? ownedCollections,
@@ -15563,7 +15557,7 @@ extension $StakingCreatorDocExtension on StakingCreatorDoc {
   }
 
   StakingCreatorDoc copyWithWrapped(
-      {Wrapped<enums.StakingCreatorDocDataType>? dataType,
+      {Wrapped<enums.StakingDataType>? dataType,
       Wrapped<String>? address,
       Wrapped<List<double>>? ownedPools,
       Wrapped<List<String>>? ownedCollections,
@@ -15804,14 +15798,13 @@ class CollectionMintProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionMintProfileDocDataTypeToJson,
-    fromJson: collectionMintProfileDocDataTypeDataTypeFromJson,
+    toJson: collectionDataTypeToJson,
+    fromJson: collectionDataTypeDataTypeFromJson,
   )
-  final enums.CollectionMintProfileDocDataType dataType;
-  static enums.CollectionMintProfileDocDataType
-      collectionMintProfileDocDataTypeDataTypeFromJson(Object? value) =>
-          collectionMintProfileDocDataTypeFromJson(
-              value, enums.CollectionMintProfileDocDataType.mintprofile);
+  final enums.CollectionDataType dataType;
+  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
+          Object? value) =>
+      collectionDataTypeFromJson(value, enums.CollectionDataType.mintprofile);
 
   @JsonKey(name: 'collection')
   final String collection;
@@ -15992,7 +15985,7 @@ class CollectionMintProfileDoc {
 
 extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
   CollectionMintProfileDoc copyWith(
-      {enums.CollectionMintProfileDocDataType? dataType,
+      {enums.CollectionDataType? dataType,
       String? collection,
       String? contractAddress,
       String? collectionTag,
@@ -16056,7 +16049,7 @@ extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
   }
 
   CollectionMintProfileDoc copyWithWrapped(
-      {Wrapped<enums.CollectionMintProfileDocDataType>? dataType,
+      {Wrapped<enums.CollectionDataType>? dataType,
       Wrapped<String>? collection,
       Wrapped<String>? contractAddress,
       Wrapped<String>? collectionTag,
@@ -16775,13 +16768,12 @@ class Web2UserWallet {
 
   @JsonKey(
     name: 'type',
-    toJson: web2UserWalletTypeToJson,
-    fromJson: web2UserWalletTypeTypeFromJson,
+    toJson: linkedAccountTypeToJson,
+    fromJson: linkedAccountTypeTypeFromJson,
   )
-  final enums.Web2UserWalletType type;
-  static enums.Web2UserWalletType web2UserWalletTypeTypeFromJson(
-          Object? value) =>
-      web2UserWalletTypeFromJson(value, enums.Web2UserWalletType.wallet);
+  final enums.LinkedAccountType type;
+  static enums.LinkedAccountType linkedAccountTypeTypeFromJson(Object? value) =>
+      linkedAccountTypeFromJson(value, enums.LinkedAccountType.wallet);
 
   @JsonKey(name: 'address')
   final String address;
@@ -16793,10 +16785,10 @@ class Web2UserWallet {
   final String chain;
   @JsonKey(
     name: 'walletClientType',
-    toJson: web2UserWalletWalletClientTypeToJson,
-    fromJson: web2UserWalletWalletClientTypeFromJson,
+    toJson: walletClientTypeToJson,
+    fromJson: walletClientTypeFromJson,
   )
-  final enums.Web2UserWalletWalletClientType walletClientType;
+  final enums.WalletClientType walletClientType;
   @JsonKey(name: 'recoveryMethod')
   final String? recoveryMethod;
   @JsonKey(name: 'id')
@@ -16847,12 +16839,12 @@ class Web2UserWallet {
 
 extension $Web2UserWalletExtension on Web2UserWallet {
   Web2UserWallet copyWith(
-      {enums.Web2UserWalletType? type,
+      {enums.LinkedAccountType? type,
       String? address,
       double? index,
       String? signature,
       String? chain,
-      enums.Web2UserWalletWalletClientType? walletClientType,
+      enums.WalletClientType? walletClientType,
       String? recoveryMethod,
       String? id}) {
     return Web2UserWallet(
@@ -16867,12 +16859,12 @@ extension $Web2UserWalletExtension on Web2UserWallet {
   }
 
   Web2UserWallet copyWithWrapped(
-      {Wrapped<enums.Web2UserWalletType>? type,
+      {Wrapped<enums.LinkedAccountType>? type,
       Wrapped<String>? address,
       Wrapped<double?>? index,
       Wrapped<String?>? signature,
       Wrapped<String>? chain,
-      Wrapped<enums.Web2UserWalletWalletClientType>? walletClientType,
+      Wrapped<enums.WalletClientType>? walletClientType,
       Wrapped<String?>? recoveryMethod,
       Wrapped<String?>? id}) {
     return Web2UserWallet(
@@ -16910,10 +16902,10 @@ class Web2UserAccount {
 
   @JsonKey(
     name: 'type',
-    toJson: web2UserAccountTypeToJson,
-    fromJson: web2UserAccountTypeFromJson,
+    toJson: linkedAccountTypeToJson,
+    fromJson: linkedAccountTypeFromJson,
   )
-  final enums.Web2UserAccountType type;
+  final enums.LinkedAccountType type;
   @JsonKey(name: 'subject')
   final String subject;
   @JsonKey(name: 'name')
@@ -16963,7 +16955,7 @@ class Web2UserAccount {
 
 extension $Web2UserAccountExtension on Web2UserAccount {
   Web2UserAccount copyWith(
-      {enums.Web2UserAccountType? type,
+      {enums.LinkedAccountType? type,
       String? subject,
       String? name,
       String? profilePicture,
@@ -16979,7 +16971,7 @@ extension $Web2UserAccountExtension on Web2UserAccount {
   }
 
   Web2UserAccount copyWithWrapped(
-      {Wrapped<enums.Web2UserAccountType>? type,
+      {Wrapped<enums.LinkedAccountType>? type,
       Wrapped<String>? subject,
       Wrapped<String?>? name,
       Wrapped<String?>? profilePicture,
@@ -17162,10 +17154,10 @@ class Web2WalletDto {
 
   @JsonKey(
     name: 'type',
-    toJson: web2WalletDtoTypeToJson,
-    fromJson: web2WalletDtoTypeFromJson,
+    toJson: linkedAccountTypeToJson,
+    fromJson: linkedAccountTypeFromJson,
   )
-  final enums.Web2WalletDtoType type;
+  final enums.LinkedAccountType type;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'chain')
@@ -17176,10 +17168,10 @@ class Web2WalletDto {
   final String? authToken;
   @JsonKey(
     name: 'walletClientType',
-    toJson: web2WalletDtoWalletClientTypeToJson,
-    fromJson: web2WalletDtoWalletClientTypeFromJson,
+    toJson: walletClientTypeToJson,
+    fromJson: walletClientTypeFromJson,
   )
-  final enums.Web2WalletDtoWalletClientType walletClientType;
+  final enums.WalletClientType walletClientType;
   @JsonKey(name: 'index')
   final double? index;
   @JsonKey(name: 'recoveryMethod')
@@ -17231,12 +17223,12 @@ class Web2WalletDto {
 
 extension $Web2WalletDtoExtension on Web2WalletDto {
   Web2WalletDto copyWith(
-      {enums.Web2WalletDtoType? type,
+      {enums.LinkedAccountType? type,
       String? address,
       String? chain,
       String? signature,
       String? authToken,
-      enums.Web2WalletDtoWalletClientType? walletClientType,
+      enums.WalletClientType? walletClientType,
       double? index,
       String? recoveryMethod}) {
     return Web2WalletDto(
@@ -17251,12 +17243,12 @@ extension $Web2WalletDtoExtension on Web2WalletDto {
   }
 
   Web2WalletDto copyWithWrapped(
-      {Wrapped<enums.Web2WalletDtoType>? type,
+      {Wrapped<enums.LinkedAccountType>? type,
       Wrapped<String>? address,
       Wrapped<String>? chain,
       Wrapped<String?>? signature,
       Wrapped<String?>? authToken,
-      Wrapped<enums.Web2WalletDtoWalletClientType>? walletClientType,
+      Wrapped<enums.WalletClientType>? walletClientType,
       Wrapped<double?>? index,
       Wrapped<String?>? recoveryMethod}) {
     return Web2WalletDto(
@@ -18735,10 +18727,10 @@ class TransactionProcessStatus {
   final Object reason;
   @JsonKey(
     name: 'status',
-    toJson: transactionProcessStatusStatusToJson,
-    fromJson: transactionProcessStatusStatusFromJson,
+    toJson: transactionStatusToJson,
+    fromJson: transactionStatusFromJson,
   )
-  final enums.TransactionProcessStatusStatus status;
+  final enums.TransactionStatus status;
   static const fromJsonFactory = _$TransactionProcessStatusFromJson;
 
   @override
@@ -18763,14 +18755,13 @@ class TransactionProcessStatus {
 
 extension $TransactionProcessStatusExtension on TransactionProcessStatus {
   TransactionProcessStatus copyWith(
-      {Object? reason, enums.TransactionProcessStatusStatus? status}) {
+      {Object? reason, enums.TransactionStatus? status}) {
     return TransactionProcessStatus(
         reason: reason ?? this.reason, status: status ?? this.status);
   }
 
   TransactionProcessStatus copyWithWrapped(
-      {Wrapped<Object>? reason,
-      Wrapped<enums.TransactionProcessStatusStatus>? status}) {
+      {Wrapped<Object>? reason, Wrapped<enums.TransactionStatus>? status}) {
     return TransactionProcessStatus(
         reason: (reason != null ? reason.value : this.reason),
         status: (status != null ? status.value : this.status));
@@ -19008,10 +18999,10 @@ class TransactionSendResult {
   final double senderShard;
   @JsonKey(
     name: 'status',
-    toJson: transactionSendResultStatusToJson,
-    fromJson: transactionSendResultStatusFromJson,
+    toJson: transactionStatusToJson,
+    fromJson: transactionStatusFromJson,
   )
-  final enums.TransactionSendResultStatus status;
+  final enums.TransactionStatus status;
   @JsonKey(name: 'txHash')
   final String txHash;
   static const fromJsonFactory = _$TransactionSendResultFromJson;
@@ -19057,7 +19048,7 @@ extension $TransactionSendResultExtension on TransactionSendResult {
       double? receiverShard,
       String? sender,
       double? senderShard,
-      enums.TransactionSendResultStatus? status,
+      enums.TransactionStatus? status,
       String? txHash}) {
     return TransactionSendResult(
         receiver: receiver ?? this.receiver,
@@ -19073,7 +19064,7 @@ extension $TransactionSendResultExtension on TransactionSendResult {
       Wrapped<double>? receiverShard,
       Wrapped<String>? sender,
       Wrapped<double>? senderShard,
-      Wrapped<enums.TransactionSendResultStatus>? status,
+      Wrapped<enums.TransactionStatus>? status,
       Wrapped<String>? txHash}) {
     return TransactionSendResult(
         receiver: (receiver != null ? receiver.value : this.receiver),
@@ -19102,10 +19093,10 @@ class BatchTransactionResponse {
 
   @JsonKey(
     name: 'status',
-    toJson: batchTransactionResponseStatusToJson,
-    fromJson: batchTransactionResponseStatusFromJson,
+    toJson: transactionStatusToJson,
+    fromJson: transactionStatusFromJson,
   )
-  final enums.BatchTransactionResponseStatus status;
+  final enums.TransactionStatus status;
   @JsonKey(name: 'txHash')
   final String txHash;
   static const fromJsonFactory = _$BatchTransactionResponseFromJson;
@@ -19132,14 +19123,13 @@ class BatchTransactionResponse {
 
 extension $BatchTransactionResponseExtension on BatchTransactionResponse {
   BatchTransactionResponse copyWith(
-      {enums.BatchTransactionResponseStatus? status, String? txHash}) {
+      {enums.TransactionStatus? status, String? txHash}) {
     return BatchTransactionResponse(
         status: status ?? this.status, txHash: txHash ?? this.txHash);
   }
 
   BatchTransactionResponse copyWithWrapped(
-      {Wrapped<enums.BatchTransactionResponseStatus>? status,
-      Wrapped<String>? txHash}) {
+      {Wrapped<enums.TransactionStatus>? status, Wrapped<String>? txHash}) {
     return BatchTransactionResponse(
         status: (status != null ? status.value : this.status),
         txHash: (txHash != null ? txHash.value : this.txHash));
@@ -20310,10 +20300,10 @@ class NotificationAssetDto {
 
   @JsonKey(
     name: 'type',
-    toJson: notificationAssetDtoTypeToJson,
-    fromJson: notificationAssetDtoTypeFromJson,
+    toJson: notificationAssetTypeToJson,
+    fromJson: notificationAssetTypeFromJson,
   )
-  final enums.NotificationAssetDtoType type;
+  final enums.NotificationAssetType type;
   @JsonKey(name: 'collection')
   final String? collection;
   @JsonKey(name: 'identifier')
@@ -20363,7 +20353,7 @@ class NotificationAssetDto {
 
 extension $NotificationAssetDtoExtension on NotificationAssetDto {
   NotificationAssetDto copyWith(
-      {enums.NotificationAssetDtoType? type,
+      {enums.NotificationAssetType? type,
       String? collection,
       String? identifier,
       String? address,
@@ -20379,7 +20369,7 @@ extension $NotificationAssetDtoExtension on NotificationAssetDto {
   }
 
   NotificationAssetDto copyWithWrapped(
-      {Wrapped<enums.NotificationAssetDtoType>? type,
+      {Wrapped<enums.NotificationAssetType>? type,
       Wrapped<String?>? collection,
       Wrapped<String?>? identifier,
       Wrapped<String?>? address,
@@ -20541,10 +20531,10 @@ class NotificationDoc {
   final String source;
   @JsonKey(
     name: 'activityType',
-    toJson: notificationDocActivityTypeToJson,
-    fromJson: notificationDocActivityTypeFromJson,
+    toJson: marketplaceActivityToJson,
+    fromJson: marketplaceActivityFromJson,
   )
-  final enums.NotificationDocActivityType activityType;
+  final enums.MarketplaceActivity activityType;
   @JsonKey(name: 'owner')
   final String owner;
   @JsonKey(name: 'message')
@@ -20628,7 +20618,7 @@ extension $NotificationDocExtension on NotificationDoc {
       {String? dataType,
       String? txHash,
       String? source,
-      enums.NotificationDocActivityType? activityType,
+      enums.MarketplaceActivity? activityType,
       String? owner,
       String? message,
       NotificationAssetDto? asset,
@@ -20658,7 +20648,7 @@ extension $NotificationDocExtension on NotificationDoc {
       {Wrapped<String>? dataType,
       Wrapped<String>? txHash,
       Wrapped<String>? source,
-      Wrapped<enums.NotificationDocActivityType>? activityType,
+      Wrapped<enums.MarketplaceActivity>? activityType,
       Wrapped<String>? owner,
       Wrapped<String?>? message,
       Wrapped<NotificationAssetDto>? asset,
@@ -20816,10 +20806,10 @@ class RegistrationDetailsDto {
 
   @JsonKey(
     name: 'visibility',
-    toJson: registrationDetailsDtoVisibilityToJson,
-    fromJson: registrationDetailsDtoVisibilityFromJson,
+    toJson: visibilityToJson,
+    fromJson: visibilityFromJson,
   )
-  final enums.RegistrationDetailsDtoVisibility visibility;
+  final enums.Visibility visibility;
   @JsonKey(name: 'maxLimit')
   final int maxLimit;
   @JsonKey(name: 'userLimit')
@@ -20920,7 +20910,7 @@ class RegistrationDetailsDto {
 
 extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
   RegistrationDetailsDto copyWith(
-      {enums.RegistrationDetailsDtoVisibility? visibility,
+      {enums.Visibility? visibility,
       int? maxLimit,
       int? userLimit,
       bool? requireKYC,
@@ -20952,7 +20942,7 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
   }
 
   RegistrationDetailsDto copyWithWrapped(
-      {Wrapped<enums.RegistrationDetailsDtoVisibility>? visibility,
+      {Wrapped<enums.Visibility>? visibility,
       Wrapped<int>? maxLimit,
       Wrapped<int>? userLimit,
       Wrapped<bool>? requireKYC,
@@ -21229,14 +21219,12 @@ class CreatorProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: creatorProfileDocDataTypeToJson,
-    fromJson: creatorProfileDocDataTypeDataTypeFromJson,
+    toJson: userDataTypeToJson,
+    fromJson: userDataTypeDataTypeFromJson,
   )
-  final enums.CreatorProfileDocDataType dataType;
-  static enums.CreatorProfileDocDataType
-      creatorProfileDocDataTypeDataTypeFromJson(Object? value) =>
-          creatorProfileDocDataTypeFromJson(
-              value, enums.CreatorProfileDocDataType.creatorprofile);
+  final enums.UserDataType dataType;
+  static enums.UserDataType userDataTypeDataTypeFromJson(Object? value) =>
+      userDataTypeFromJson(value, enums.UserDataType.creatorprofile);
 
   @JsonKey(name: 'address')
   final String address;
@@ -21325,7 +21313,7 @@ class CreatorProfileDoc {
 
 extension $CreatorProfileDocExtension on CreatorProfileDoc {
   CreatorProfileDoc copyWith(
-      {enums.CreatorProfileDocDataType? dataType,
+      {enums.UserDataType? dataType,
       String? address,
       String? name,
       String? creatorTag,
@@ -21354,7 +21342,7 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
   }
 
   CreatorProfileDoc copyWithWrapped(
-      {Wrapped<enums.CreatorProfileDocDataType>? dataType,
+      {Wrapped<enums.UserDataType>? dataType,
       Wrapped<String>? address,
       Wrapped<String>? name,
       Wrapped<String>? creatorTag,
@@ -21813,14 +21801,13 @@ class EventGuestDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventGuestDocDataTypeToJson,
-    fromJson: eventGuestDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventGuestDocDataType dataType;
-  static enums.EventGuestDocDataType eventGuestDocDataTypeDataTypeFromJson(
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
           Object? value) =>
-      eventGuestDocDataTypeFromJson(
-          value, enums.EventGuestDocDataType.eventGuest);
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventGuest);
 
   @JsonKey(name: 'wallet')
   final String wallet;
@@ -21915,7 +21902,7 @@ class EventGuestDoc {
 
 extension $EventGuestDocExtension on EventGuestDoc {
   EventGuestDoc copyWith(
-      {enums.EventGuestDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? wallet,
       String? eventId,
       Map<String, dynamic>? ticket,
@@ -21945,7 +21932,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
   }
 
   EventGuestDoc copyWithWrapped(
-      {Wrapped<enums.EventGuestDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? wallet,
       Wrapped<String>? eventId,
       Wrapped<Map<String, dynamic>>? ticket,
@@ -22017,14 +22004,13 @@ class EventProfile {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventProfileDataTypeToJson,
-    fromJson: eventProfileDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventProfileDataType dataType;
-  static enums.EventProfileDataType eventProfileDataTypeDataTypeFromJson(
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
           Object? value) =>
-      eventProfileDataTypeFromJson(
-          value, enums.EventProfileDataType.eventProfile);
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventProfile);
 
   @JsonKey(name: 'createdAt')
   final int createdAt;
@@ -22048,16 +22034,16 @@ class EventProfile {
   final String profile;
   @JsonKey(
     name: 'category',
-    toJson: eventProfileCategoryToJson,
-    fromJson: eventProfileCategoryFromJson,
+    toJson: eventCategoryToJson,
+    fromJson: eventCategoryFromJson,
   )
-  final enums.EventProfileCategory category;
+  final enums.EventCategory category;
   @JsonKey(
     name: 'subCategory',
-    toJson: eventProfileSubCategoryNullableToJson,
-    fromJson: eventProfileSubCategoryNullableFromJson,
+    toJson: eventSubCategoryNullableToJson,
+    fromJson: eventSubCategoryNullableFromJson,
   )
-  final enums.EventProfileSubCategory? subCategory;
+  final enums.EventSubCategory? subCategory;
   @JsonKey(name: 'background')
   final String? background;
   @JsonKey(name: 'registration')
@@ -22193,7 +22179,7 @@ class EventProfile {
 
 extension $EventProfileExtension on EventProfile {
   EventProfile copyWith(
-      {enums.EventProfileDataType? dataType,
+      {enums.TicketingDataType? dataType,
       int? createdAt,
       String? creatorAddress,
       String? title,
@@ -22204,8 +22190,8 @@ extension $EventProfileExtension on EventProfile {
       bool? isVirtualEvent,
       String? slug,
       String? profile,
-      enums.EventProfileCategory? category,
-      enums.EventProfileSubCategory? subCategory,
+      enums.EventCategory? category,
+      enums.EventSubCategory? subCategory,
       String? background,
       RegistrationType? registration,
       PremiumType? premium,
@@ -22247,7 +22233,7 @@ extension $EventProfileExtension on EventProfile {
   }
 
   EventProfile copyWithWrapped(
-      {Wrapped<enums.EventProfileDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<int>? createdAt,
       Wrapped<String>? creatorAddress,
       Wrapped<String>? title,
@@ -22258,8 +22244,8 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<bool>? isVirtualEvent,
       Wrapped<String>? slug,
       Wrapped<String>? profile,
-      Wrapped<enums.EventProfileCategory>? category,
-      Wrapped<enums.EventProfileSubCategory?>? subCategory,
+      Wrapped<enums.EventCategory>? category,
+      Wrapped<enums.EventSubCategory?>? subCategory,
       Wrapped<String?>? background,
       Wrapped<RegistrationType>? registration,
       Wrapped<PremiumType>? premium,
@@ -22953,10 +22939,10 @@ class FiatPaymentForm {
 
   @JsonKey(
     name: 'type',
-    toJson: fiatPaymentFormTypeToJson,
-    fromJson: fiatPaymentFormTypeFromJson,
+    toJson: paymentProviderToJson,
+    fromJson: paymentProviderFromJson,
   )
-  final enums.FiatPaymentFormType type;
+  final enums.PaymentProvider type;
   @JsonKey(name: 'data')
   final dynamic data;
   static const fromJsonFactory = _$FiatPaymentFormFromJson;
@@ -22982,12 +22968,12 @@ class FiatPaymentForm {
 }
 
 extension $FiatPaymentFormExtension on FiatPaymentForm {
-  FiatPaymentForm copyWith({enums.FiatPaymentFormType? type, dynamic data}) {
+  FiatPaymentForm copyWith({enums.PaymentProvider? type, dynamic data}) {
     return FiatPaymentForm(type: type ?? this.type, data: data ?? this.data);
   }
 
   FiatPaymentForm copyWithWrapped(
-      {Wrapped<enums.FiatPaymentFormType>? type, Wrapped<dynamic>? data}) {
+      {Wrapped<enums.PaymentProvider>? type, Wrapped<dynamic>? data}) {
     return FiatPaymentForm(
         type: (type != null ? type.value : this.type),
         data: (data != null ? data.value : this.data));
@@ -23251,14 +23237,14 @@ class EventTicketProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventTicketProfileDocDataTypeToJson,
-    fromJson: eventTicketProfileDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventTicketProfileDocDataType dataType;
-  static enums.EventTicketProfileDocDataType
-      eventTicketProfileDocDataTypeDataTypeFromJson(Object? value) =>
-          eventTicketProfileDocDataTypeFromJson(
-              value, enums.EventTicketProfileDocDataType.eventTicketProfile);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(
+          value, enums.TicketingDataType.eventTicketProfile);
 
   @JsonKey(name: 'eventId')
   final String eventId;
@@ -23352,7 +23338,7 @@ class EventTicketProfileDoc {
 
 extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
   EventTicketProfileDoc copyWith(
-      {enums.EventTicketProfileDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? eventId,
       String? name,
       String? description,
@@ -23382,7 +23368,7 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
   }
 
   EventTicketProfileDoc copyWithWrapped(
-      {Wrapped<enums.EventTicketProfileDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? eventId,
       Wrapped<String>? name,
       Wrapped<String>? description,
@@ -23775,14 +23761,14 @@ class EventStageProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventStageProfileDocDataTypeToJson,
-    fromJson: eventStageProfileDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventStageProfileDocDataType dataType;
-  static enums.EventStageProfileDocDataType
-      eventStageProfileDocDataTypeDataTypeFromJson(Object? value) =>
-          eventStageProfileDocDataTypeFromJson(
-              value, enums.EventStageProfileDocDataType.eventTicketStage);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(
+          value, enums.TicketingDataType.eventTicketStage);
 
   @JsonKey(name: 'eventId')
   final String eventId;
@@ -23881,7 +23867,7 @@ class EventStageProfileDoc {
 
 extension $EventStageProfileDocExtension on EventStageProfileDoc {
   EventStageProfileDoc copyWith(
-      {enums.EventStageProfileDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? eventId,
       String? ticketId,
       String? name,
@@ -23913,7 +23899,7 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
   }
 
   EventStageProfileDoc copyWithWrapped(
-      {Wrapped<enums.EventStageProfileDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? eventId,
       Wrapped<String>? ticketId,
       Wrapped<String>? name,
@@ -24722,14 +24708,13 @@ class EventInvitationDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventInvitationDocDataTypeToJson,
-    fromJson: eventInvitationDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventInvitationDocDataType dataType;
-  static enums.EventInvitationDocDataType
-      eventInvitationDocDataTypeDataTypeFromJson(Object? value) =>
-          eventInvitationDocDataTypeFromJson(
-              value, enums.EventInvitationDocDataType.eventInvitation);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventInvitation);
 
   @JsonKey(name: 'eventId')
   final String eventId;
@@ -24751,14 +24736,13 @@ class EventInvitationDoc {
   final bool isUsed;
   @JsonKey(
     name: 'status',
-    toJson: eventInvitationDocStatusToJson,
-    fromJson: eventInvitationDocStatusStatusFromJson,
+    toJson: eventInvitationStatusToJson,
+    fromJson: eventInvitationStatusStatusFromJson,
   )
-  final enums.EventInvitationDocStatus status;
-  static enums.EventInvitationDocStatus eventInvitationDocStatusStatusFromJson(
+  final enums.EventInvitationStatus status;
+  static enums.EventInvitationStatus eventInvitationStatusStatusFromJson(
           Object? value) =>
-      eventInvitationDocStatusFromJson(
-          value, enums.EventInvitationDocStatus.pending);
+      eventInvitationStatusFromJson(value, enums.EventInvitationStatus.pending);
 
   @JsonKey(name: 'claimedAt')
   final int claimedAt;
@@ -24845,7 +24829,7 @@ class EventInvitationDoc {
 
 extension $EventInvitationDocExtension on EventInvitationDoc {
   EventInvitationDoc copyWith(
-      {enums.EventInvitationDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? eventId,
       String? name,
       String? email,
@@ -24855,7 +24839,7 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
       int? createdAt,
       bool? isClaimed,
       bool? isUsed,
-      enums.EventInvitationDocStatus? status,
+      enums.EventInvitationStatus? status,
       int? claimedAt,
       String? claimedBy,
       String? txHash,
@@ -24881,7 +24865,7 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
   }
 
   EventInvitationDoc copyWithWrapped(
-      {Wrapped<enums.EventInvitationDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? eventId,
       Wrapped<String?>? name,
       Wrapped<String?>? email,
@@ -24891,7 +24875,7 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
       Wrapped<int>? createdAt,
       Wrapped<bool>? isClaimed,
       Wrapped<bool>? isUsed,
-      Wrapped<enums.EventInvitationDocStatus>? status,
+      Wrapped<enums.EventInvitationStatus>? status,
       Wrapped<int>? claimedAt,
       Wrapped<String?>? claimedBy,
       Wrapped<String?>? txHash,
@@ -24948,14 +24932,13 @@ class EventInvitation {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventInvitationDataTypeToJson,
-    fromJson: eventInvitationDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventInvitationDataType dataType;
-  static enums.EventInvitationDataType eventInvitationDataTypeDataTypeFromJson(
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
           Object? value) =>
-      eventInvitationDataTypeFromJson(
-          value, enums.EventInvitationDataType.eventInvitation);
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventInvitation);
 
   @JsonKey(name: 'eventId')
   final String eventId;
@@ -25081,7 +25064,7 @@ class EventInvitation {
 
 extension $EventInvitationExtension on EventInvitation {
   EventInvitation copyWith(
-      {enums.EventInvitationDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? eventId,
       String? name,
       String? email,
@@ -25121,7 +25104,7 @@ extension $EventInvitationExtension on EventInvitation {
   }
 
   EventInvitation copyWithWrapped(
-      {Wrapped<enums.EventInvitationDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? eventId,
       Wrapped<String?>? name,
       Wrapped<String?>? email,
@@ -25263,14 +25246,13 @@ class EventVoucherDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventVoucherDocDataTypeToJson,
-    fromJson: eventVoucherDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventVoucherDocDataType dataType;
-  static enums.EventVoucherDocDataType eventVoucherDocDataTypeDataTypeFromJson(
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
           Object? value) =>
-      eventVoucherDocDataTypeFromJson(
-          value, enums.EventVoucherDocDataType.eventVoucher);
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventVoucher);
 
   @JsonKey(name: 'id')
   final String id;
@@ -25278,10 +25260,10 @@ class EventVoucherDoc {
   final String code;
   @JsonKey(
     name: 'type',
-    toJson: eventVoucherDocTypeToJson,
-    fromJson: eventVoucherDocTypeFromJson,
+    toJson: voucherTypeToJson,
+    fromJson: voucherTypeFromJson,
   )
-  final enums.EventVoucherDocType type;
+  final enums.VoucherType type;
   @JsonKey(name: 'amount')
   final double amount;
   @JsonKey(name: 'maxDiscountAmount')
@@ -25408,10 +25390,10 @@ class EventVoucherDoc {
 
 extension $EventVoucherDocExtension on EventVoucherDoc {
   EventVoucherDoc copyWith(
-      {enums.EventVoucherDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? id,
       String? code,
-      enums.EventVoucherDocType? type,
+      enums.VoucherType? type,
       double? amount,
       double? maxDiscountAmount,
       int? maxUses,
@@ -25452,10 +25434,10 @@ extension $EventVoucherDocExtension on EventVoucherDoc {
   }
 
   EventVoucherDoc copyWithWrapped(
-      {Wrapped<enums.EventVoucherDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? id,
       Wrapped<String>? code,
-      Wrapped<enums.EventVoucherDocType>? type,
+      Wrapped<enums.VoucherType>? type,
       Wrapped<double>? amount,
       Wrapped<double?>? maxDiscountAmount,
       Wrapped<int>? maxUses,
@@ -25596,14 +25578,13 @@ class EventQuestionDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventQuestionDocDataTypeToJson,
-    fromJson: eventQuestionDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventQuestionDocDataType dataType;
-  static enums.EventQuestionDocDataType
-      eventQuestionDocDataTypeDataTypeFromJson(Object? value) =>
-          eventQuestionDocDataTypeFromJson(
-              value, enums.EventQuestionDocDataType.eventQuestion);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventQuestion);
 
   @JsonKey(name: 'id')
   final String id;
@@ -25615,10 +25596,10 @@ class EventQuestionDoc {
   final bool required;
   @JsonKey(
     name: 'answerType',
-    toJson: eventQuestionDocAnswerTypeToJson,
-    fromJson: eventQuestionDocAnswerTypeFromJson,
+    toJson: eventQuestionAnswerTypeToJson,
+    fromJson: eventQuestionAnswerTypeFromJson,
   )
-  final enums.EventQuestionDocAnswerType answerType;
+  final enums.EventQuestionAnswerType answerType;
   @JsonKey(name: 'requireTime')
   final bool requireTime;
   @JsonKey(name: 'answers', defaultValue: <String>[])
@@ -25677,12 +25658,12 @@ class EventQuestionDoc {
 
 extension $EventQuestionDocExtension on EventQuestionDoc {
   EventQuestionDoc copyWith(
-      {enums.EventQuestionDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? id,
       String? eventId,
       String? title,
       bool? required,
-      enums.EventQuestionDocAnswerType? answerType,
+      enums.EventQuestionAnswerType? answerType,
       bool? requireTime,
       List<String>? answers,
       int? createdAt}) {
@@ -25699,12 +25680,12 @@ extension $EventQuestionDocExtension on EventQuestionDoc {
   }
 
   EventQuestionDoc copyWithWrapped(
-      {Wrapped<enums.EventQuestionDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? id,
       Wrapped<String>? eventId,
       Wrapped<String>? title,
       Wrapped<bool>? required,
-      Wrapped<enums.EventQuestionDocAnswerType>? answerType,
+      Wrapped<enums.EventQuestionAnswerType>? answerType,
       Wrapped<bool>? requireTime,
       Wrapped<List<String>>? answers,
       Wrapped<int>? createdAt}) {
@@ -25744,10 +25725,10 @@ class EventQuestionCreateDto {
   final bool required;
   @JsonKey(
     name: 'answerType',
-    toJson: eventQuestionCreateDtoAnswerTypeToJson,
-    fromJson: eventQuestionCreateDtoAnswerTypeFromJson,
+    toJson: eventQuestionAnswerTypeToJson,
+    fromJson: eventQuestionAnswerTypeFromJson,
   )
-  final enums.EventQuestionCreateDtoAnswerType answerType;
+  final enums.EventQuestionAnswerType answerType;
   @JsonKey(name: 'requireTime')
   final bool requireTime;
   @JsonKey(name: 'answers', defaultValue: <String>[])
@@ -25790,7 +25771,7 @@ extension $EventQuestionCreateDtoExtension on EventQuestionCreateDto {
   EventQuestionCreateDto copyWith(
       {String? title,
       bool? required,
-      enums.EventQuestionCreateDtoAnswerType? answerType,
+      enums.EventQuestionAnswerType? answerType,
       bool? requireTime,
       List<String>? answers}) {
     return EventQuestionCreateDto(
@@ -25804,7 +25785,7 @@ extension $EventQuestionCreateDtoExtension on EventQuestionCreateDto {
   EventQuestionCreateDto copyWithWrapped(
       {Wrapped<String>? title,
       Wrapped<bool>? required,
-      Wrapped<enums.EventQuestionCreateDtoAnswerType>? answerType,
+      Wrapped<enums.EventQuestionAnswerType>? answerType,
       Wrapped<bool>? requireTime,
       Wrapped<List<String>?>? answers}) {
     return EventQuestionCreateDto(
@@ -25839,10 +25820,10 @@ class EventQuestionEditDto {
   final bool? required;
   @JsonKey(
     name: 'answerType',
-    toJson: eventQuestionEditDtoAnswerTypeNullableToJson,
-    fromJson: eventQuestionEditDtoAnswerTypeNullableFromJson,
+    toJson: eventQuestionAnswerTypeNullableToJson,
+    fromJson: eventQuestionAnswerTypeNullableFromJson,
   )
-  final enums.EventQuestionEditDtoAnswerType? answerType;
+  final enums.EventQuestionAnswerType? answerType;
   @JsonKey(name: 'requireTime')
   final bool requireTime;
   @JsonKey(name: 'answers', defaultValue: <String>[])
@@ -25885,7 +25866,7 @@ extension $EventQuestionEditDtoExtension on EventQuestionEditDto {
   EventQuestionEditDto copyWith(
       {String? title,
       bool? required,
-      enums.EventQuestionEditDtoAnswerType? answerType,
+      enums.EventQuestionAnswerType? answerType,
       bool? requireTime,
       List<String>? answers}) {
     return EventQuestionEditDto(
@@ -25899,7 +25880,7 @@ extension $EventQuestionEditDtoExtension on EventQuestionEditDto {
   EventQuestionEditDto copyWithWrapped(
       {Wrapped<String?>? title,
       Wrapped<bool?>? required,
-      Wrapped<enums.EventQuestionEditDtoAnswerType?>? answerType,
+      Wrapped<enums.EventQuestionAnswerType?>? answerType,
       Wrapped<bool>? requireTime,
       Wrapped<List<String>?>? answers}) {
     return EventQuestionEditDto(
@@ -25940,14 +25921,13 @@ class EventGuestProfile {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventGuestProfileDataTypeToJson,
-    fromJson: eventGuestProfileDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventGuestProfileDataType dataType;
-  static enums.EventGuestProfileDataType
-      eventGuestProfileDataTypeDataTypeFromJson(Object? value) =>
-          eventGuestProfileDataTypeFromJson(
-              value, enums.EventGuestProfileDataType.eventGuest);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(value, enums.TicketingDataType.eventGuest);
 
   @JsonKey(name: 'wallet')
   final String wallet;
@@ -26053,7 +26033,7 @@ class EventGuestProfile {
 
 extension $EventGuestProfileExtension on EventGuestProfile {
   EventGuestProfile copyWith(
-      {enums.EventGuestProfileDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? wallet,
       String? eventId,
       Map<String, dynamic>? ticket,
@@ -26087,7 +26067,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
   }
 
   EventGuestProfile copyWithWrapped(
-      {Wrapped<enums.EventGuestProfileDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? wallet,
       Wrapped<String>? eventId,
       Wrapped<Map<String, dynamic>>? ticket,
@@ -26312,16 +26292,16 @@ class EventUserRoleCreateDto {
   final String email;
   @JsonKey(
     name: 'role',
-    toJson: eventUserRoleCreateDtoRoleListToJson,
-    fromJson: eventUserRoleCreateDtoRoleListFromJson,
+    toJson: eventUserRolesListToJson,
+    fromJson: eventUserRolesListFromJson,
   )
-  final List<enums.EventUserRoleCreateDtoRole> role;
+  final List<enums.EventUserRoles> role;
   @JsonKey(
     name: 'permissions',
-    toJson: eventUserRoleCreateDtoPermissionsListToJson,
-    fromJson: eventUserRoleCreateDtoPermissionsListFromJson,
+    toJson: eventUserRolePermissionListToJson,
+    fromJson: eventUserRolePermissionListFromJson,
   )
-  final List<enums.EventUserRoleCreateDtoPermissions> permissions;
+  final List<enums.EventUserRolePermission> permissions;
   @JsonKey(name: 'endTime')
   final int endTime;
   static const fromJsonFactory = _$EventUserRoleCreateDtoFromJson;
@@ -26364,8 +26344,8 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
       {String? wallet,
       String? name,
       String? email,
-      List<enums.EventUserRoleCreateDtoRole>? role,
-      List<enums.EventUserRoleCreateDtoPermissions>? permissions,
+      List<enums.EventUserRoles>? role,
+      List<enums.EventUserRolePermission>? permissions,
       int? endTime}) {
     return EventUserRoleCreateDto(
         wallet: wallet ?? this.wallet,
@@ -26380,8 +26360,8 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
       {Wrapped<String>? wallet,
       Wrapped<String>? name,
       Wrapped<String>? email,
-      Wrapped<List<enums.EventUserRoleCreateDtoRole>>? role,
-      Wrapped<List<enums.EventUserRoleCreateDtoPermissions>>? permissions,
+      Wrapped<List<enums.EventUserRoles>>? role,
+      Wrapped<List<enums.EventUserRolePermission>>? permissions,
       Wrapped<int>? endTime}) {
     return EventUserRoleCreateDto(
         wallet: (wallet != null ? wallet.value : this.wallet),
@@ -26553,10 +26533,10 @@ class BageQRData {
 
   @JsonKey(
     name: 'type',
-    toJson: bageQRDataTypeToJson,
-    fromJson: bageQRDataTypeFromJson,
+    toJson: eventTicketQrTypeToJson,
+    fromJson: eventTicketQrTypeFromJson,
   )
-  final enums.BageQRDataType type;
+  final enums.EventTicketQrType type;
   @JsonKey(name: 'data')
   final String data;
   static const fromJsonFactory = _$BageQRDataFromJson;
@@ -26582,12 +26562,12 @@ class BageQRData {
 }
 
 extension $BageQRDataExtension on BageQRData {
-  BageQRData copyWith({enums.BageQRDataType? type, String? data}) {
+  BageQRData copyWith({enums.EventTicketQrType? type, String? data}) {
     return BageQRData(type: type ?? this.type, data: data ?? this.data);
   }
 
   BageQRData copyWithWrapped(
-      {Wrapped<enums.BageQRDataType>? type, Wrapped<String>? data}) {
+      {Wrapped<enums.EventTicketQrType>? type, Wrapped<String>? data}) {
     return BageQRData(
         type: (type != null ? type.value : this.type),
         data: (data != null ? data.value : this.data));
@@ -26608,10 +26588,10 @@ class QRBody {
 
   @JsonKey(
     name: 'type',
-    toJson: qRBodyTypeToJson,
-    fromJson: qRBodyTypeFromJson,
+    toJson: eventTicketQrTypeToJson,
+    fromJson: eventTicketQrTypeFromJson,
   )
-  final enums.QRBodyType type;
+  final enums.EventTicketQrType type;
   @JsonKey(name: 'data')
   final String data;
   static const fromJsonFactory = _$QRBodyFromJson;
@@ -26637,12 +26617,12 @@ class QRBody {
 }
 
 extension $QRBodyExtension on QRBody {
-  QRBody copyWith({enums.QRBodyType? type, String? data}) {
+  QRBody copyWith({enums.EventTicketQrType? type, String? data}) {
     return QRBody(type: type ?? this.type, data: data ?? this.data);
   }
 
   QRBody copyWithWrapped(
-      {Wrapped<enums.QRBodyType>? type, Wrapped<String>? data}) {
+      {Wrapped<enums.EventTicketQrType>? type, Wrapped<String>? data}) {
     return QRBody(
         type: (type != null ? type.value : this.type),
         data: (data != null ? data.value : this.data));
@@ -26777,22 +26757,22 @@ class TicketValidationResult {
 
   @JsonKey(
     name: 'status',
-    toJson: ticketValidationResultStatusToJson,
-    fromJson: ticketValidationResultStatusFromJson,
+    toJson: eventScanStatusToJson,
+    fromJson: eventScanStatusFromJson,
   )
-  final enums.TicketValidationResultStatus status;
+  final enums.EventScanStatus status;
   @JsonKey(
     name: 'type',
-    toJson: ticketValidationResultTypeToJson,
-    fromJson: ticketValidationResultTypeFromJson,
+    toJson: eventTicketQrTypeToJson,
+    fromJson: eventTicketQrTypeFromJson,
   )
-  final enums.TicketValidationResultType type;
+  final enums.EventTicketQrType type;
   @JsonKey(
     name: 'message',
-    toJson: ticketValidationResultMessageToJson,
-    fromJson: ticketValidationResultMessageFromJson,
+    toJson: eventScanMessageToJson,
+    fromJson: eventScanMessageFromJson,
   )
-  final enums.TicketValidationResultMessage message;
+  final enums.EventScanMessage message;
   @JsonKey(name: 'guest')
   final EventGuestProfile guest;
   @JsonKey(name: 'invitation')
@@ -26843,9 +26823,9 @@ class TicketValidationResult {
 
 extension $TicketValidationResultExtension on TicketValidationResult {
   TicketValidationResult copyWith(
-      {enums.TicketValidationResultStatus? status,
-      enums.TicketValidationResultType? type,
-      enums.TicketValidationResultMessage? message,
+      {enums.EventScanStatus? status,
+      enums.EventTicketQrType? type,
+      enums.EventScanMessage? message,
       EventGuestProfile? guest,
       EventInvitationDoc? invitation,
       NftDoc? nfts,
@@ -26861,9 +26841,9 @@ extension $TicketValidationResultExtension on TicketValidationResult {
   }
 
   TicketValidationResult copyWithWrapped(
-      {Wrapped<enums.TicketValidationResultStatus>? status,
-      Wrapped<enums.TicketValidationResultType>? type,
-      Wrapped<enums.TicketValidationResultMessage>? message,
+      {Wrapped<enums.EventScanStatus>? status,
+      Wrapped<enums.EventTicketQrType>? type,
+      Wrapped<enums.EventScanMessage>? message,
       Wrapped<EventGuestProfile>? guest,
       Wrapped<EventInvitationDoc>? invitation,
       Wrapped<NftDoc>? nfts,
@@ -26911,10 +26891,10 @@ class EventVoucherCreateDto {
   final String? code;
   @JsonKey(
     name: 'type',
-    toJson: eventVoucherCreateDtoTypeNullableToJson,
-    fromJson: eventVoucherCreateDtoTypeNullableFromJson,
+    toJson: voucherTypeNullableToJson,
+    fromJson: voucherTypeNullableFromJson,
   )
-  final enums.EventVoucherCreateDtoType? type;
+  final enums.VoucherType? type;
   @JsonKey(name: 'amount')
   final double? amount;
   @JsonKey(name: 'maxDiscountAmount')
@@ -27016,7 +26996,7 @@ class EventVoucherCreateDto {
 extension $EventVoucherCreateDtoExtension on EventVoucherCreateDto {
   EventVoucherCreateDto copyWith(
       {String? code,
-      enums.EventVoucherCreateDtoType? type,
+      enums.VoucherType? type,
       double? amount,
       double? maxDiscountAmount,
       int? maxUses,
@@ -27050,7 +27030,7 @@ extension $EventVoucherCreateDtoExtension on EventVoucherCreateDto {
 
   EventVoucherCreateDto copyWithWrapped(
       {Wrapped<String?>? code,
-      Wrapped<enums.EventVoucherCreateDtoType?>? type,
+      Wrapped<enums.VoucherType?>? type,
       Wrapped<double?>? amount,
       Wrapped<double?>? maxDiscountAmount,
       Wrapped<int?>? maxUses,
@@ -27118,10 +27098,10 @@ class EventVoucherEditDto {
 
   @JsonKey(
     name: 'type',
-    toJson: eventVoucherEditDtoTypeNullableToJson,
-    fromJson: eventVoucherEditDtoTypeNullableFromJson,
+    toJson: voucherTypeNullableToJson,
+    fromJson: voucherTypeNullableFromJson,
   )
-  final enums.EventVoucherEditDtoType? type;
+  final enums.VoucherType? type;
   @JsonKey(name: 'amount')
   final double? amount;
   @JsonKey(name: 'maxDiscountAmount')
@@ -27213,7 +27193,7 @@ class EventVoucherEditDto {
 
 extension $EventVoucherEditDtoExtension on EventVoucherEditDto {
   EventVoucherEditDto copyWith(
-      {enums.EventVoucherEditDtoType? type,
+      {enums.VoucherType? type,
       double? amount,
       double? maxDiscountAmount,
       int? maxUses,
@@ -27243,7 +27223,7 @@ extension $EventVoucherEditDtoExtension on EventVoucherEditDto {
   }
 
   EventVoucherEditDto copyWithWrapped(
-      {Wrapped<enums.EventVoucherEditDtoType?>? type,
+      {Wrapped<enums.VoucherType?>? type,
       Wrapped<double?>? amount,
       Wrapped<double?>? maxDiscountAmount,
       Wrapped<int?>? maxUses,
@@ -27366,14 +27346,14 @@ class EventGuestAnswerDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventGuestAnswerDocDataTypeToJson,
-    fromJson: eventGuestAnswerDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventGuestAnswerDocDataType dataType;
-  static enums.EventGuestAnswerDocDataType
-      eventGuestAnswerDocDataTypeDataTypeFromJson(Object? value) =>
-          eventGuestAnswerDocDataTypeFromJson(
-              value, enums.EventGuestAnswerDocDataType.eventQuestionAnswer);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(
+          value, enums.TicketingDataType.eventQuestionAnswer);
 
   @JsonKey(name: 'id')
   final String id;
@@ -27435,7 +27415,7 @@ class EventGuestAnswerDoc {
 
 extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
   EventGuestAnswerDoc copyWith(
-      {enums.EventGuestAnswerDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? id,
       String? wallet,
       String? questionId,
@@ -27455,7 +27435,7 @@ extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
   }
 
   EventGuestAnswerDoc copyWithWrapped(
-      {Wrapped<enums.EventGuestAnswerDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? id,
       Wrapped<String>? wallet,
       Wrapped<String>? questionId,
@@ -27678,10 +27658,10 @@ class RewardDetails {
   final enums.RewardDetailsRewardType rewardType;
   @JsonKey(
     name: 'conditionType',
-    toJson: rewardDetailsConditionTypeToJson,
-    fromJson: rewardDetailsConditionTypeFromJson,
+    toJson: referralConditionTypeToJson,
+    fromJson: referralConditionTypeFromJson,
   )
-  final enums.RewardDetailsConditionType conditionType;
+  final enums.ReferralConditionType conditionType;
   @JsonKey(name: 'condition')
   final double condition;
   @JsonKey(name: 'currency')
@@ -27727,7 +27707,7 @@ class RewardDetails {
 extension $RewardDetailsExtension on RewardDetails {
   RewardDetails copyWith(
       {enums.RewardDetailsRewardType? rewardType,
-      enums.RewardDetailsConditionType? conditionType,
+      enums.ReferralConditionType? conditionType,
       double? condition,
       String? currency,
       EventVoucherDoc? voucherInfo}) {
@@ -27741,7 +27721,7 @@ extension $RewardDetailsExtension on RewardDetails {
 
   RewardDetails copyWithWrapped(
       {Wrapped<enums.RewardDetailsRewardType>? rewardType,
-      Wrapped<enums.RewardDetailsConditionType>? conditionType,
+      Wrapped<enums.ReferralConditionType>? conditionType,
       Wrapped<double>? condition,
       Wrapped<String>? currency,
       Wrapped<EventVoucherDoc?>? voucherInfo}) {
@@ -27864,14 +27844,14 @@ class EventReferralConfigDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventReferralConfigDocDataTypeToJson,
-    fromJson: eventReferralConfigDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventReferralConfigDocDataType dataType;
-  static enums.EventReferralConfigDocDataType
-      eventReferralConfigDocDataTypeDataTypeFromJson(Object? value) =>
-          eventReferralConfigDocDataTypeFromJson(
-              value, enums.EventReferralConfigDocDataType.eventReferralConfig);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(
+          value, enums.TicketingDataType.eventReferralConfig);
 
   @JsonKey(name: 'id')
   final String id;
@@ -27942,7 +27922,7 @@ class EventReferralConfigDoc {
 
 extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
   EventReferralConfigDoc copyWith(
-      {enums.EventReferralConfigDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? id,
       String? eventId,
       EventVoucherDoc? appliedVoucher,
@@ -27964,7 +27944,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
   }
 
   EventReferralConfigDoc copyWithWrapped(
-      {Wrapped<enums.EventReferralConfigDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? id,
       Wrapped<String>? eventId,
       Wrapped<EventVoucherDoc?>? appliedVoucher,
@@ -28228,14 +28208,14 @@ class EventReferralDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: eventReferralDocDataTypeToJson,
-    fromJson: eventReferralDocDataTypeDataTypeFromJson,
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeDataTypeFromJson,
   )
-  final enums.EventReferralDocDataType dataType;
-  static enums.EventReferralDocDataType
-      eventReferralDocDataTypeDataTypeFromJson(Object? value) =>
-          eventReferralDocDataTypeFromJson(
-              value, enums.EventReferralDocDataType.eventReferralCode);
+  final enums.TicketingDataType dataType;
+  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
+          Object? value) =>
+      ticketingDataTypeFromJson(
+          value, enums.TicketingDataType.eventReferralCode);
 
   @JsonKey(name: 'id')
   final String id;
@@ -28306,7 +28286,7 @@ class EventReferralDoc {
 
 extension $EventReferralDocExtension on EventReferralDoc {
   EventReferralDoc copyWith(
-      {enums.EventReferralDocDataType? dataType,
+      {enums.TicketingDataType? dataType,
       String? id,
       String? referralCode,
       String? ownerId,
@@ -28328,7 +28308,7 @@ extension $EventReferralDocExtension on EventReferralDoc {
   }
 
   EventReferralDoc copyWithWrapped(
-      {Wrapped<enums.EventReferralDocDataType>? dataType,
+      {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? id,
       Wrapped<String>? referralCode,
       Wrapped<String?>? ownerId,
@@ -28572,16 +28552,16 @@ class NftActivityFilterCriteriaDto {
   final List<String>? to;
   @JsonKey(
     name: 'activityType',
-    toJson: nftActivityFilterCriteriaDtoActivityTypeListToJson,
-    fromJson: nftActivityFilterCriteriaDtoActivityTypeListFromJson,
+    toJson: nftActivityTypeListToJson,
+    fromJson: nftActivityTypeListFromJson,
   )
-  final List<enums.NftActivityFilterCriteriaDtoActivityType>? activityType;
+  final List<enums.NftActivityType>? activityType;
   @JsonKey(
     name: 'source',
-    toJson: nftActivityFilterCriteriaDtoSourceListToJson,
-    fromJson: nftActivityFilterCriteriaDtoSourceListFromJson,
+    toJson: nftActivityEventSourceListToJson,
+    fromJson: nftActivityEventSourceListFromJson,
   )
-  final List<enums.NftActivityFilterCriteriaDtoSource>? source;
+  final List<enums.NftActivityEventSource>? source;
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   @JsonKey(name: 'activityData')
@@ -28636,8 +28616,8 @@ extension $NftActivityFilterCriteriaDtoExtension
       List<String>? activityAddress,
       List<String>? from,
       List<String>? to,
-      List<enums.NftActivityFilterCriteriaDtoActivityType>? activityType,
-      List<enums.NftActivityFilterCriteriaDtoSource>? source,
+      List<enums.NftActivityType>? activityType,
+      List<enums.NftActivityEventSource>? source,
       List<RangeFilter>? range,
       ActivityDataDto? activityData}) {
     return NftActivityFilterCriteriaDto(
@@ -28656,9 +28636,8 @@ extension $NftActivityFilterCriteriaDtoExtension
       Wrapped<List<String>?>? activityAddress,
       Wrapped<List<String>?>? from,
       Wrapped<List<String>?>? to,
-      Wrapped<List<enums.NftActivityFilterCriteriaDtoActivityType>?>?
-          activityType,
-      Wrapped<List<enums.NftActivityFilterCriteriaDtoSource>?>? source,
+      Wrapped<List<enums.NftActivityType>?>? activityType,
+      Wrapped<List<enums.NftActivityEventSource>?>? source,
       Wrapped<List<RangeFilter>?>? range,
       Wrapped<ActivityDataDto?>? activityData}) {
     return NftActivityFilterCriteriaDto(
@@ -28813,10 +28792,10 @@ class CollectionOffersFilterCriteriaDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionOffersFilterCriteriaDtoDataTypeNullableToJson,
-    fromJson: collectionOffersFilterCriteriaDtoDataTypeNullableFromJson,
+    toJson: collectionDataTypeNullableToJson,
+    fromJson: collectionDataTypeNullableFromJson,
   )
-  final enums.CollectionOffersFilterCriteriaDtoDataType? dataType;
+  final enums.CollectionDataType? dataType;
   @JsonKey(name: 'collection', defaultValue: <String>[])
   final List<String>? collection;
   @JsonKey(name: 'offerId', defaultValue: <double>[])
@@ -28886,7 +28865,7 @@ class CollectionOffersFilterCriteriaDto {
 extension $CollectionOffersFilterCriteriaDtoExtension
     on CollectionOffersFilterCriteriaDto {
   CollectionOffersFilterCriteriaDto copyWith(
-      {enums.CollectionOffersFilterCriteriaDtoDataType? dataType,
+      {enums.CollectionDataType? dataType,
       List<String>? collection,
       List<double>? offerId,
       List<String>? owner,
@@ -28908,7 +28887,7 @@ extension $CollectionOffersFilterCriteriaDtoExtension
   }
 
   CollectionOffersFilterCriteriaDto copyWithWrapped(
-      {Wrapped<enums.CollectionOffersFilterCriteriaDtoDataType?>? dataType,
+      {Wrapped<enums.CollectionDataType?>? dataType,
       Wrapped<List<String>?>? collection,
       Wrapped<List<double>?>? offerId,
       Wrapped<List<String>?>? owner,
@@ -29106,10 +29085,10 @@ class CollectionStatsFilterCriteriaDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionStatsFilterCriteriaDtoDataTypeNullableToJson,
-    fromJson: collectionStatsFilterCriteriaDtoDataTypeNullableFromJson,
+    toJson: collectionDataTypeNullableToJson,
+    fromJson: collectionDataTypeNullableFromJson,
   )
-  final enums.CollectionStatsFilterCriteriaDtoDataType? dataType;
+  final enums.CollectionDataType? dataType;
   @JsonKey(name: 'collection', defaultValue: <String>[])
   final List<String>? collection;
   @JsonKey(name: 'verifiedOnly')
@@ -29150,7 +29129,7 @@ class CollectionStatsFilterCriteriaDto {
 extension $CollectionStatsFilterCriteriaDtoExtension
     on CollectionStatsFilterCriteriaDto {
   CollectionStatsFilterCriteriaDto copyWith(
-      {enums.CollectionStatsFilterCriteriaDtoDataType? dataType,
+      {enums.CollectionDataType? dataType,
       List<String>? collection,
       bool? verifiedOnly,
       List<RangeFilter>? range}) {
@@ -29162,7 +29141,7 @@ extension $CollectionStatsFilterCriteriaDtoExtension
   }
 
   CollectionStatsFilterCriteriaDto copyWithWrapped(
-      {Wrapped<enums.CollectionStatsFilterCriteriaDtoDataType?>? dataType,
+      {Wrapped<enums.CollectionDataType?>? dataType,
       Wrapped<List<String>?>? collection,
       Wrapped<bool?>? verifiedOnly,
       Wrapped<List<RangeFilter>?>? range}) {
@@ -29210,14 +29189,14 @@ class CollectionProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionProfileDocDataTypeToJson,
-    fromJson: collectionProfileDocDataTypeDataTypeFromJson,
+    toJson: collectionDataTypeToJson,
+    fromJson: collectionDataTypeDataTypeFromJson,
   )
-  final enums.CollectionProfileDocDataType dataType;
-  static enums.CollectionProfileDocDataType
-      collectionProfileDocDataTypeDataTypeFromJson(Object? value) =>
-          collectionProfileDocDataTypeFromJson(
-              value, enums.CollectionProfileDocDataType.collectionprofile);
+  final enums.CollectionDataType dataType;
+  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
+          Object? value) =>
+      collectionDataTypeFromJson(
+          value, enums.CollectionDataType.collectionprofile);
 
   @JsonKey(name: 'collection')
   final Object collection;
@@ -29233,16 +29212,16 @@ class CollectionProfileDoc {
   final SocialsDto socials;
   @JsonKey(
     name: 'type',
-    toJson: collectionProfileDocTypeToJson,
-    fromJson: collectionProfileDocTypeFromJson,
+    toJson: esdtTokenTypeToJson,
+    fromJson: esdtTokenTypeFromJson,
   )
-  final enums.CollectionProfileDocType type;
+  final enums.EsdtTokenType type;
   @JsonKey(
     name: 'subType',
-    toJson: collectionProfileDocSubTypeToJson,
-    fromJson: collectionProfileDocSubTypeFromJson,
+    toJson: esdtTokenSubTypeToJson,
+    fromJson: esdtTokenSubTypeFromJson,
   )
-  final enums.CollectionProfileDocSubType subType;
+  final enums.EsdtTokenSubType subType;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -29368,15 +29347,15 @@ class CollectionProfileDoc {
 
 extension $CollectionProfileDocExtension on CollectionProfileDoc {
   CollectionProfileDoc copyWith(
-      {enums.CollectionProfileDocDataType? dataType,
+      {enums.CollectionDataType? dataType,
       Object? collection,
       Object? name,
       Object? description,
       Object? isVisible,
       Object? isVerified,
       SocialsDto? socials,
-      enums.CollectionProfileDocType? type,
-      enums.CollectionProfileDocSubType? subType,
+      enums.EsdtTokenType? type,
+      enums.EsdtTokenSubType? subType,
       String? profile,
       String? banner,
       StatisticsDto? statistics,
@@ -29416,15 +29395,15 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
   }
 
   CollectionProfileDoc copyWithWrapped(
-      {Wrapped<enums.CollectionProfileDocDataType>? dataType,
+      {Wrapped<enums.CollectionDataType>? dataType,
       Wrapped<Object>? collection,
       Wrapped<Object>? name,
       Wrapped<Object>? description,
       Wrapped<Object>? isVisible,
       Wrapped<Object>? isVerified,
       Wrapped<SocialsDto>? socials,
-      Wrapped<enums.CollectionProfileDocType>? type,
-      Wrapped<enums.CollectionProfileDocSubType>? subType,
+      Wrapped<enums.EsdtTokenType>? type,
+      Wrapped<enums.EsdtTokenSubType>? subType,
       Wrapped<String>? profile,
       Wrapped<String>? banner,
       Wrapped<StatisticsDto>? statistics,
@@ -30484,10 +30463,10 @@ class EventInvitationFilterCriteriaDto {
   final List<String>? email;
   @JsonKey(
     name: 'status',
-    toJson: eventInvitationFilterCriteriaDtoStatusListToJson,
-    fromJson: eventInvitationFilterCriteriaDtoStatusListFromJson,
+    toJson: eventInvitationStatusListToJson,
+    fromJson: eventInvitationStatusListFromJson,
   )
-  final List<enums.EventInvitationFilterCriteriaDtoStatus>? status;
+  final List<enums.EventInvitationStatus>? status;
   @JsonKey(name: 'isClaimed')
   final bool? isClaimed;
   @JsonKey(name: 'isUsed')
@@ -30545,7 +30524,7 @@ extension $EventInvitationFilterCriteriaDtoExtension
       List<String>? claimedBy,
       List<String>? eventId,
       List<String>? email,
-      List<enums.EventInvitationFilterCriteriaDtoStatus>? status,
+      List<enums.EventInvitationStatus>? status,
       bool? isClaimed,
       bool? isUsed,
       List<RangeFilter>? range}) {
@@ -30565,7 +30544,7 @@ extension $EventInvitationFilterCriteriaDtoExtension
       Wrapped<List<String>?>? claimedBy,
       Wrapped<List<String>?>? eventId,
       Wrapped<List<String>?>? email,
-      Wrapped<List<enums.EventInvitationFilterCriteriaDtoStatus>?>? status,
+      Wrapped<List<enums.EventInvitationStatus>?>? status,
       Wrapped<bool?>? isClaimed,
       Wrapped<bool?>? isUsed,
       Wrapped<List<RangeFilter>?>? range}) {
@@ -30720,10 +30699,10 @@ class EventVoucherFilterCriteriaDto {
   final List<String>? code;
   @JsonKey(
     name: 'type',
-    toJson: eventVoucherFilterCriteriaDtoTypeListToJson,
-    fromJson: eventVoucherFilterCriteriaDtoTypeListFromJson,
+    toJson: voucherTypeListToJson,
+    fromJson: voucherTypeListFromJson,
   )
-  final List<enums.EventVoucherFilterCriteriaDtoType>? type;
+  final List<enums.VoucherType>? type;
   @JsonKey(name: 'amount')
   final double? amount;
   @JsonKey(name: 'maxDiscountAmount')
@@ -30795,7 +30774,7 @@ extension $EventVoucherFilterCriteriaDtoExtension
   EventVoucherFilterCriteriaDto copyWith(
       {String? searchText,
       List<String>? code,
-      List<enums.EventVoucherFilterCriteriaDtoType>? type,
+      List<enums.VoucherType>? type,
       double? amount,
       double? maxDiscountAmount,
       double? maxUses,
@@ -30819,7 +30798,7 @@ extension $EventVoucherFilterCriteriaDtoExtension
   EventVoucherFilterCriteriaDto copyWithWrapped(
       {Wrapped<String?>? searchText,
       Wrapped<List<String>?>? code,
-      Wrapped<List<enums.EventVoucherFilterCriteriaDtoType>?>? type,
+      Wrapped<List<enums.VoucherType>?>? type,
       Wrapped<double?>? amount,
       Wrapped<double?>? maxDiscountAmount,
       Wrapped<double?>? maxUses,
@@ -32407,2419 +32386,1541 @@ extension $LendingMarketTokenPriceEgldGet$ResponseExtension
   }
 }
 
-String? lendingMarketProfileDataTypeNullableToJson(
-    enums.LendingMarketProfileDataType? lendingMarketProfileDataType) {
-  return lendingMarketProfileDataType?.value;
+String? lendingDataTypeNullableToJson(enums.LendingDataType? lendingDataType) {
+  return lendingDataType?.value;
 }
 
-String? lendingMarketProfileDataTypeToJson(
-    enums.LendingMarketProfileDataType lendingMarketProfileDataType) {
-  return lendingMarketProfileDataType.value;
+String? lendingDataTypeToJson(enums.LendingDataType lendingDataType) {
+  return lendingDataType.value;
 }
 
-enums.LendingMarketProfileDataType lendingMarketProfileDataTypeFromJson(
-  Object? lendingMarketProfileDataType, [
-  enums.LendingMarketProfileDataType? defaultValue,
+enums.LendingDataType lendingDataTypeFromJson(
+  Object? lendingDataType, [
+  enums.LendingDataType? defaultValue,
 ]) {
-  return enums.LendingMarketProfileDataType.values
-          .firstWhereOrNull((e) => e.value == lendingMarketProfileDataType) ??
+  return enums.LendingDataType.values
+          .firstWhereOrNull((e) => e.value == lendingDataType) ??
       defaultValue ??
-      enums.LendingMarketProfileDataType.swaggerGeneratedUnknown;
+      enums.LendingDataType.swaggerGeneratedUnknown;
 }
 
-enums.LendingMarketProfileDataType?
-    lendingMarketProfileDataTypeNullableFromJson(
-  Object? lendingMarketProfileDataType, [
-  enums.LendingMarketProfileDataType? defaultValue,
+enums.LendingDataType? lendingDataTypeNullableFromJson(
+  Object? lendingDataType, [
+  enums.LendingDataType? defaultValue,
 ]) {
-  if (lendingMarketProfileDataType == null) {
+  if (lendingDataType == null) {
     return null;
   }
-  return enums.LendingMarketProfileDataType.values
-          .firstWhereOrNull((e) => e.value == lendingMarketProfileDataType) ??
+  return enums.LendingDataType.values
+          .firstWhereOrNull((e) => e.value == lendingDataType) ??
       defaultValue;
 }
 
-String lendingMarketProfileDataTypeExplodedListToJson(
-    List<enums.LendingMarketProfileDataType>? lendingMarketProfileDataType) {
-  return lendingMarketProfileDataType?.map((e) => e.value!).join(',') ?? '';
+String lendingDataTypeExplodedListToJson(
+    List<enums.LendingDataType>? lendingDataType) {
+  return lendingDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> lendingMarketProfileDataTypeListToJson(
-    List<enums.LendingMarketProfileDataType>? lendingMarketProfileDataType) {
-  if (lendingMarketProfileDataType == null) {
+List<String> lendingDataTypeListToJson(
+    List<enums.LendingDataType>? lendingDataType) {
+  if (lendingDataType == null) {
     return [];
   }
 
-  return lendingMarketProfileDataType.map((e) => e.value!).toList();
+  return lendingDataType.map((e) => e.value!).toList();
 }
 
-List<enums.LendingMarketProfileDataType>
-    lendingMarketProfileDataTypeListFromJson(
-  List? lendingMarketProfileDataType, [
-  List<enums.LendingMarketProfileDataType>? defaultValue,
+List<enums.LendingDataType> lendingDataTypeListFromJson(
+  List? lendingDataType, [
+  List<enums.LendingDataType>? defaultValue,
 ]) {
-  if (lendingMarketProfileDataType == null) {
+  if (lendingDataType == null) {
     return defaultValue ?? [];
   }
 
-  return lendingMarketProfileDataType
-      .map((e) => lendingMarketProfileDataTypeFromJson(e.toString()))
+  return lendingDataType
+      .map((e) => lendingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.LendingMarketProfileDataType>?
-    lendingMarketProfileDataTypeNullableListFromJson(
-  List? lendingMarketProfileDataType, [
-  List<enums.LendingMarketProfileDataType>? defaultValue,
+List<enums.LendingDataType>? lendingDataTypeNullableListFromJson(
+  List? lendingDataType, [
+  List<enums.LendingDataType>? defaultValue,
 ]) {
-  if (lendingMarketProfileDataType == null) {
+  if (lendingDataType == null) {
     return defaultValue;
   }
 
-  return lendingMarketProfileDataType
-      .map((e) => lendingMarketProfileDataTypeFromJson(e.toString()))
+  return lendingDataType
+      .map((e) => lendingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-String? lendingEModeCategoryProfileDocDataTypeNullableToJson(
-    enums.LendingEModeCategoryProfileDocDataType?
-        lendingEModeCategoryProfileDocDataType) {
-  return lendingEModeCategoryProfileDocDataType?.value;
+String? lendingPositionOrderByColumnNullableToJson(
+    enums.LendingPositionOrderByColumn? lendingPositionOrderByColumn) {
+  return lendingPositionOrderByColumn?.value;
 }
 
-String? lendingEModeCategoryProfileDocDataTypeToJson(
-    enums.LendingEModeCategoryProfileDocDataType
-        lendingEModeCategoryProfileDocDataType) {
-  return lendingEModeCategoryProfileDocDataType.value;
+String? lendingPositionOrderByColumnToJson(
+    enums.LendingPositionOrderByColumn lendingPositionOrderByColumn) {
+  return lendingPositionOrderByColumn.value;
 }
 
-enums.LendingEModeCategoryProfileDocDataType
-    lendingEModeCategoryProfileDocDataTypeFromJson(
-  Object? lendingEModeCategoryProfileDocDataType, [
-  enums.LendingEModeCategoryProfileDocDataType? defaultValue,
+enums.LendingPositionOrderByColumn lendingPositionOrderByColumnFromJson(
+  Object? lendingPositionOrderByColumn, [
+  enums.LendingPositionOrderByColumn? defaultValue,
 ]) {
-  return enums.LendingEModeCategoryProfileDocDataType.values.firstWhereOrNull(
-          (e) => e.value == lendingEModeCategoryProfileDocDataType) ??
+  return enums.LendingPositionOrderByColumn.values
+          .firstWhereOrNull((e) => e.value == lendingPositionOrderByColumn) ??
       defaultValue ??
-      enums.LendingEModeCategoryProfileDocDataType.swaggerGeneratedUnknown;
+      enums.LendingPositionOrderByColumn.swaggerGeneratedUnknown;
 }
 
-enums.LendingEModeCategoryProfileDocDataType?
-    lendingEModeCategoryProfileDocDataTypeNullableFromJson(
-  Object? lendingEModeCategoryProfileDocDataType, [
-  enums.LendingEModeCategoryProfileDocDataType? defaultValue,
+enums.LendingPositionOrderByColumn?
+    lendingPositionOrderByColumnNullableFromJson(
+  Object? lendingPositionOrderByColumn, [
+  enums.LendingPositionOrderByColumn? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDocDataType == null) {
+  if (lendingPositionOrderByColumn == null) {
     return null;
   }
-  return enums.LendingEModeCategoryProfileDocDataType.values.firstWhereOrNull(
-          (e) => e.value == lendingEModeCategoryProfileDocDataType) ??
+  return enums.LendingPositionOrderByColumn.values
+          .firstWhereOrNull((e) => e.value == lendingPositionOrderByColumn) ??
       defaultValue;
 }
 
-String lendingEModeCategoryProfileDocDataTypeExplodedListToJson(
-    List<enums.LendingEModeCategoryProfileDocDataType>?
-        lendingEModeCategoryProfileDocDataType) {
-  return lendingEModeCategoryProfileDocDataType
-          ?.map((e) => e.value!)
-          .join(',') ??
-      '';
+String lendingPositionOrderByColumnExplodedListToJson(
+    List<enums.LendingPositionOrderByColumn>? lendingPositionOrderByColumn) {
+  return lendingPositionOrderByColumn?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> lendingEModeCategoryProfileDocDataTypeListToJson(
-    List<enums.LendingEModeCategoryProfileDocDataType>?
-        lendingEModeCategoryProfileDocDataType) {
-  if (lendingEModeCategoryProfileDocDataType == null) {
+List<String> lendingPositionOrderByColumnListToJson(
+    List<enums.LendingPositionOrderByColumn>? lendingPositionOrderByColumn) {
+  if (lendingPositionOrderByColumn == null) {
     return [];
   }
 
-  return lendingEModeCategoryProfileDocDataType.map((e) => e.value!).toList();
+  return lendingPositionOrderByColumn.map((e) => e.value!).toList();
 }
 
-List<enums.LendingEModeCategoryProfileDocDataType>
-    lendingEModeCategoryProfileDocDataTypeListFromJson(
-  List? lendingEModeCategoryProfileDocDataType, [
-  List<enums.LendingEModeCategoryProfileDocDataType>? defaultValue,
+List<enums.LendingPositionOrderByColumn>
+    lendingPositionOrderByColumnListFromJson(
+  List? lendingPositionOrderByColumn, [
+  List<enums.LendingPositionOrderByColumn>? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDocDataType == null) {
+  if (lendingPositionOrderByColumn == null) {
     return defaultValue ?? [];
   }
 
-  return lendingEModeCategoryProfileDocDataType
-      .map((e) => lendingEModeCategoryProfileDocDataTypeFromJson(e.toString()))
+  return lendingPositionOrderByColumn
+      .map((e) => lendingPositionOrderByColumnFromJson(e.toString()))
       .toList();
 }
 
-List<enums.LendingEModeCategoryProfileDocDataType>?
-    lendingEModeCategoryProfileDocDataTypeNullableListFromJson(
-  List? lendingEModeCategoryProfileDocDataType, [
-  List<enums.LendingEModeCategoryProfileDocDataType>? defaultValue,
+List<enums.LendingPositionOrderByColumn>?
+    lendingPositionOrderByColumnNullableListFromJson(
+  List? lendingPositionOrderByColumn, [
+  List<enums.LendingPositionOrderByColumn>? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDocDataType == null) {
+  if (lendingPositionOrderByColumn == null) {
     return defaultValue;
   }
 
-  return lendingEModeCategoryProfileDocDataType
-      .map((e) => lendingEModeCategoryProfileDocDataTypeFromJson(e.toString()))
+  return lendingPositionOrderByColumn
+      .map((e) => lendingPositionOrderByColumnFromJson(e.toString()))
       .toList();
 }
 
-String? lendingAccountProfileDataTypeNullableToJson(
-    enums.LendingAccountProfileDataType? lendingAccountProfileDataType) {
-  return lendingAccountProfileDataType?.value;
+String? kustoOrderDirectionNullableToJson(
+    enums.KustoOrderDirection? kustoOrderDirection) {
+  return kustoOrderDirection?.value;
 }
 
-String? lendingAccountProfileDataTypeToJson(
-    enums.LendingAccountProfileDataType lendingAccountProfileDataType) {
-  return lendingAccountProfileDataType.value;
+String? kustoOrderDirectionToJson(
+    enums.KustoOrderDirection kustoOrderDirection) {
+  return kustoOrderDirection.value;
 }
 
-enums.LendingAccountProfileDataType lendingAccountProfileDataTypeFromJson(
-  Object? lendingAccountProfileDataType, [
-  enums.LendingAccountProfileDataType? defaultValue,
+enums.KustoOrderDirection kustoOrderDirectionFromJson(
+  Object? kustoOrderDirection, [
+  enums.KustoOrderDirection? defaultValue,
 ]) {
-  return enums.LendingAccountProfileDataType.values
-          .firstWhereOrNull((e) => e.value == lendingAccountProfileDataType) ??
+  return enums.KustoOrderDirection.values
+          .firstWhereOrNull((e) => e.value == kustoOrderDirection) ??
       defaultValue ??
-      enums.LendingAccountProfileDataType.swaggerGeneratedUnknown;
+      enums.KustoOrderDirection.swaggerGeneratedUnknown;
 }
 
-enums.LendingAccountProfileDataType?
-    lendingAccountProfileDataTypeNullableFromJson(
-  Object? lendingAccountProfileDataType, [
-  enums.LendingAccountProfileDataType? defaultValue,
+enums.KustoOrderDirection? kustoOrderDirectionNullableFromJson(
+  Object? kustoOrderDirection, [
+  enums.KustoOrderDirection? defaultValue,
 ]) {
-  if (lendingAccountProfileDataType == null) {
+  if (kustoOrderDirection == null) {
     return null;
   }
-  return enums.LendingAccountProfileDataType.values
-          .firstWhereOrNull((e) => e.value == lendingAccountProfileDataType) ??
+  return enums.KustoOrderDirection.values
+          .firstWhereOrNull((e) => e.value == kustoOrderDirection) ??
       defaultValue;
 }
 
-String lendingAccountProfileDataTypeExplodedListToJson(
-    List<enums.LendingAccountProfileDataType>? lendingAccountProfileDataType) {
-  return lendingAccountProfileDataType?.map((e) => e.value!).join(',') ?? '';
+String kustoOrderDirectionExplodedListToJson(
+    List<enums.KustoOrderDirection>? kustoOrderDirection) {
+  return kustoOrderDirection?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> lendingAccountProfileDataTypeListToJson(
-    List<enums.LendingAccountProfileDataType>? lendingAccountProfileDataType) {
-  if (lendingAccountProfileDataType == null) {
+List<String> kustoOrderDirectionListToJson(
+    List<enums.KustoOrderDirection>? kustoOrderDirection) {
+  if (kustoOrderDirection == null) {
     return [];
   }
 
-  return lendingAccountProfileDataType.map((e) => e.value!).toList();
+  return kustoOrderDirection.map((e) => e.value!).toList();
 }
 
-List<enums.LendingAccountProfileDataType>
-    lendingAccountProfileDataTypeListFromJson(
-  List? lendingAccountProfileDataType, [
-  List<enums.LendingAccountProfileDataType>? defaultValue,
+List<enums.KustoOrderDirection> kustoOrderDirectionListFromJson(
+  List? kustoOrderDirection, [
+  List<enums.KustoOrderDirection>? defaultValue,
 ]) {
-  if (lendingAccountProfileDataType == null) {
+  if (kustoOrderDirection == null) {
     return defaultValue ?? [];
   }
 
-  return lendingAccountProfileDataType
-      .map((e) => lendingAccountProfileDataTypeFromJson(e.toString()))
+  return kustoOrderDirection
+      .map((e) => kustoOrderDirectionFromJson(e.toString()))
       .toList();
 }
 
-List<enums.LendingAccountProfileDataType>?
-    lendingAccountProfileDataTypeNullableListFromJson(
-  List? lendingAccountProfileDataType, [
-  List<enums.LendingAccountProfileDataType>? defaultValue,
+List<enums.KustoOrderDirection>? kustoOrderDirectionNullableListFromJson(
+  List? kustoOrderDirection, [
+  List<enums.KustoOrderDirection>? defaultValue,
 ]) {
-  if (lendingAccountProfileDataType == null) {
+  if (kustoOrderDirection == null) {
     return defaultValue;
   }
 
-  return lendingAccountProfileDataType
-      .map((e) => lendingAccountProfileDataTypeFromJson(e.toString()))
+  return kustoOrderDirection
+      .map((e) => kustoOrderDirectionFromJson(e.toString()))
       .toList();
 }
 
-String? lendingEModeCategoryProfileDataTypeNullableToJson(
-    enums.LendingEModeCategoryProfileDataType?
-        lendingEModeCategoryProfileDataType) {
-  return lendingEModeCategoryProfileDataType?.value;
+String? esdtTokenTypeNullableToJson(enums.EsdtTokenType? esdtTokenType) {
+  return esdtTokenType?.value;
 }
 
-String? lendingEModeCategoryProfileDataTypeToJson(
-    enums.LendingEModeCategoryProfileDataType
-        lendingEModeCategoryProfileDataType) {
-  return lendingEModeCategoryProfileDataType.value;
+String? esdtTokenTypeToJson(enums.EsdtTokenType esdtTokenType) {
+  return esdtTokenType.value;
 }
 
-enums.LendingEModeCategoryProfileDataType
-    lendingEModeCategoryProfileDataTypeFromJson(
-  Object? lendingEModeCategoryProfileDataType, [
-  enums.LendingEModeCategoryProfileDataType? defaultValue,
+enums.EsdtTokenType esdtTokenTypeFromJson(
+  Object? esdtTokenType, [
+  enums.EsdtTokenType? defaultValue,
 ]) {
-  return enums.LendingEModeCategoryProfileDataType.values.firstWhereOrNull(
-          (e) => e.value == lendingEModeCategoryProfileDataType) ??
+  return enums.EsdtTokenType.values
+          .firstWhereOrNull((e) => e.value == esdtTokenType) ??
       defaultValue ??
-      enums.LendingEModeCategoryProfileDataType.swaggerGeneratedUnknown;
+      enums.EsdtTokenType.swaggerGeneratedUnknown;
 }
 
-enums.LendingEModeCategoryProfileDataType?
-    lendingEModeCategoryProfileDataTypeNullableFromJson(
-  Object? lendingEModeCategoryProfileDataType, [
-  enums.LendingEModeCategoryProfileDataType? defaultValue,
+enums.EsdtTokenType? esdtTokenTypeNullableFromJson(
+  Object? esdtTokenType, [
+  enums.EsdtTokenType? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDataType == null) {
+  if (esdtTokenType == null) {
     return null;
   }
-  return enums.LendingEModeCategoryProfileDataType.values.firstWhereOrNull(
-          (e) => e.value == lendingEModeCategoryProfileDataType) ??
+  return enums.EsdtTokenType.values
+          .firstWhereOrNull((e) => e.value == esdtTokenType) ??
       defaultValue;
 }
 
-String lendingEModeCategoryProfileDataTypeExplodedListToJson(
-    List<enums.LendingEModeCategoryProfileDataType>?
-        lendingEModeCategoryProfileDataType) {
-  return lendingEModeCategoryProfileDataType?.map((e) => e.value!).join(',') ??
-      '';
+String esdtTokenTypeExplodedListToJson(
+    List<enums.EsdtTokenType>? esdtTokenType) {
+  return esdtTokenType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> lendingEModeCategoryProfileDataTypeListToJson(
-    List<enums.LendingEModeCategoryProfileDataType>?
-        lendingEModeCategoryProfileDataType) {
-  if (lendingEModeCategoryProfileDataType == null) {
+List<String> esdtTokenTypeListToJson(List<enums.EsdtTokenType>? esdtTokenType) {
+  if (esdtTokenType == null) {
     return [];
   }
 
-  return lendingEModeCategoryProfileDataType.map((e) => e.value!).toList();
+  return esdtTokenType.map((e) => e.value!).toList();
 }
 
-List<enums.LendingEModeCategoryProfileDataType>
-    lendingEModeCategoryProfileDataTypeListFromJson(
-  List? lendingEModeCategoryProfileDataType, [
-  List<enums.LendingEModeCategoryProfileDataType>? defaultValue,
+List<enums.EsdtTokenType> esdtTokenTypeListFromJson(
+  List? esdtTokenType, [
+  List<enums.EsdtTokenType>? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDataType == null) {
+  if (esdtTokenType == null) {
     return defaultValue ?? [];
   }
 
-  return lendingEModeCategoryProfileDataType
-      .map((e) => lendingEModeCategoryProfileDataTypeFromJson(e.toString()))
-      .toList();
+  return esdtTokenType.map((e) => esdtTokenTypeFromJson(e.toString())).toList();
 }
 
-List<enums.LendingEModeCategoryProfileDataType>?
-    lendingEModeCategoryProfileDataTypeNullableListFromJson(
-  List? lendingEModeCategoryProfileDataType, [
-  List<enums.LendingEModeCategoryProfileDataType>? defaultValue,
+List<enums.EsdtTokenType>? esdtTokenTypeNullableListFromJson(
+  List? esdtTokenType, [
+  List<enums.EsdtTokenType>? defaultValue,
 ]) {
-  if (lendingEModeCategoryProfileDataType == null) {
+  if (esdtTokenType == null) {
     return defaultValue;
   }
 
-  return lendingEModeCategoryProfileDataType
-      .map((e) => lendingEModeCategoryProfileDataTypeFromJson(e.toString()))
-      .toList();
+  return esdtTokenType.map((e) => esdtTokenTypeFromJson(e.toString())).toList();
 }
 
-String? nftSaleInfoMarketplaceNullableToJson(
-    enums.NftSaleInfoMarketplace? nftSaleInfoMarketplace) {
-  return nftSaleInfoMarketplace?.value;
+String? esdtTokenSubTypeNullableToJson(
+    enums.EsdtTokenSubType? esdtTokenSubType) {
+  return esdtTokenSubType?.value;
 }
 
-String? nftSaleInfoMarketplaceToJson(
-    enums.NftSaleInfoMarketplace nftSaleInfoMarketplace) {
-  return nftSaleInfoMarketplace.value;
+String? esdtTokenSubTypeToJson(enums.EsdtTokenSubType esdtTokenSubType) {
+  return esdtTokenSubType.value;
 }
 
-enums.NftSaleInfoMarketplace nftSaleInfoMarketplaceFromJson(
-  Object? nftSaleInfoMarketplace, [
-  enums.NftSaleInfoMarketplace? defaultValue,
+enums.EsdtTokenSubType esdtTokenSubTypeFromJson(
+  Object? esdtTokenSubType, [
+  enums.EsdtTokenSubType? defaultValue,
 ]) {
-  return enums.NftSaleInfoMarketplace.values
-          .firstWhereOrNull((e) => e.value == nftSaleInfoMarketplace) ??
+  return enums.EsdtTokenSubType.values
+          .firstWhereOrNull((e) => e.value == esdtTokenSubType) ??
       defaultValue ??
-      enums.NftSaleInfoMarketplace.swaggerGeneratedUnknown;
+      enums.EsdtTokenSubType.swaggerGeneratedUnknown;
 }
 
-enums.NftSaleInfoMarketplace? nftSaleInfoMarketplaceNullableFromJson(
-  Object? nftSaleInfoMarketplace, [
-  enums.NftSaleInfoMarketplace? defaultValue,
+enums.EsdtTokenSubType? esdtTokenSubTypeNullableFromJson(
+  Object? esdtTokenSubType, [
+  enums.EsdtTokenSubType? defaultValue,
 ]) {
-  if (nftSaleInfoMarketplace == null) {
+  if (esdtTokenSubType == null) {
     return null;
   }
-  return enums.NftSaleInfoMarketplace.values
-          .firstWhereOrNull((e) => e.value == nftSaleInfoMarketplace) ??
+  return enums.EsdtTokenSubType.values
+          .firstWhereOrNull((e) => e.value == esdtTokenSubType) ??
       defaultValue;
 }
 
-String nftSaleInfoMarketplaceExplodedListToJson(
-    List<enums.NftSaleInfoMarketplace>? nftSaleInfoMarketplace) {
-  return nftSaleInfoMarketplace?.map((e) => e.value!).join(',') ?? '';
+String esdtTokenSubTypeExplodedListToJson(
+    List<enums.EsdtTokenSubType>? esdtTokenSubType) {
+  return esdtTokenSubType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> nftSaleInfoMarketplaceListToJson(
-    List<enums.NftSaleInfoMarketplace>? nftSaleInfoMarketplace) {
-  if (nftSaleInfoMarketplace == null) {
+List<String> esdtTokenSubTypeListToJson(
+    List<enums.EsdtTokenSubType>? esdtTokenSubType) {
+  if (esdtTokenSubType == null) {
     return [];
   }
 
-  return nftSaleInfoMarketplace.map((e) => e.value!).toList();
+  return esdtTokenSubType.map((e) => e.value!).toList();
 }
 
-List<enums.NftSaleInfoMarketplace> nftSaleInfoMarketplaceListFromJson(
-  List? nftSaleInfoMarketplace, [
-  List<enums.NftSaleInfoMarketplace>? defaultValue,
+List<enums.EsdtTokenSubType> esdtTokenSubTypeListFromJson(
+  List? esdtTokenSubType, [
+  List<enums.EsdtTokenSubType>? defaultValue,
 ]) {
-  if (nftSaleInfoMarketplace == null) {
+  if (esdtTokenSubType == null) {
     return defaultValue ?? [];
   }
 
-  return nftSaleInfoMarketplace
-      .map((e) => nftSaleInfoMarketplaceFromJson(e.toString()))
+  return esdtTokenSubType
+      .map((e) => esdtTokenSubTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.NftSaleInfoMarketplace>? nftSaleInfoMarketplaceNullableListFromJson(
-  List? nftSaleInfoMarketplace, [
-  List<enums.NftSaleInfoMarketplace>? defaultValue,
+List<enums.EsdtTokenSubType>? esdtTokenSubTypeNullableListFromJson(
+  List? esdtTokenSubType, [
+  List<enums.EsdtTokenSubType>? defaultValue,
 ]) {
-  if (nftSaleInfoMarketplace == null) {
+  if (esdtTokenSubType == null) {
     return defaultValue;
   }
 
-  return nftSaleInfoMarketplace
-      .map((e) => nftSaleInfoMarketplaceFromJson(e.toString()))
+  return esdtTokenSubType
+      .map((e) => esdtTokenSubTypeFromJson(e.toString()))
       .toList();
 }
 
-String? nftPropsTypeNullableToJson(enums.NftPropsType? nftPropsType) {
-  return nftPropsType?.value;
+String? marketplacesOnSaleNamesNullableToJson(
+    enums.MarketplacesOnSaleNames? marketplacesOnSaleNames) {
+  return marketplacesOnSaleNames?.value;
 }
 
-String? nftPropsTypeToJson(enums.NftPropsType nftPropsType) {
-  return nftPropsType.value;
+String? marketplacesOnSaleNamesToJson(
+    enums.MarketplacesOnSaleNames marketplacesOnSaleNames) {
+  return marketplacesOnSaleNames.value;
 }
 
-enums.NftPropsType nftPropsTypeFromJson(
-  Object? nftPropsType, [
-  enums.NftPropsType? defaultValue,
+enums.MarketplacesOnSaleNames marketplacesOnSaleNamesFromJson(
+  Object? marketplacesOnSaleNames, [
+  enums.MarketplacesOnSaleNames? defaultValue,
 ]) {
-  return enums.NftPropsType.values
-          .firstWhereOrNull((e) => e.value == nftPropsType) ??
+  return enums.MarketplacesOnSaleNames.values
+          .firstWhereOrNull((e) => e.value == marketplacesOnSaleNames) ??
       defaultValue ??
-      enums.NftPropsType.swaggerGeneratedUnknown;
+      enums.MarketplacesOnSaleNames.swaggerGeneratedUnknown;
 }
 
-enums.NftPropsType? nftPropsTypeNullableFromJson(
-  Object? nftPropsType, [
-  enums.NftPropsType? defaultValue,
+enums.MarketplacesOnSaleNames? marketplacesOnSaleNamesNullableFromJson(
+  Object? marketplacesOnSaleNames, [
+  enums.MarketplacesOnSaleNames? defaultValue,
 ]) {
-  if (nftPropsType == null) {
+  if (marketplacesOnSaleNames == null) {
     return null;
   }
-  return enums.NftPropsType.values
-          .firstWhereOrNull((e) => e.value == nftPropsType) ??
+  return enums.MarketplacesOnSaleNames.values
+          .firstWhereOrNull((e) => e.value == marketplacesOnSaleNames) ??
       defaultValue;
 }
 
-String nftPropsTypeExplodedListToJson(List<enums.NftPropsType>? nftPropsType) {
-  return nftPropsType?.map((e) => e.value!).join(',') ?? '';
+String marketplacesOnSaleNamesExplodedListToJson(
+    List<enums.MarketplacesOnSaleNames>? marketplacesOnSaleNames) {
+  return marketplacesOnSaleNames?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> nftPropsTypeListToJson(List<enums.NftPropsType>? nftPropsType) {
-  if (nftPropsType == null) {
+List<String> marketplacesOnSaleNamesListToJson(
+    List<enums.MarketplacesOnSaleNames>? marketplacesOnSaleNames) {
+  if (marketplacesOnSaleNames == null) {
     return [];
   }
 
-  return nftPropsType.map((e) => e.value!).toList();
+  return marketplacesOnSaleNames.map((e) => e.value!).toList();
 }
 
-List<enums.NftPropsType> nftPropsTypeListFromJson(
-  List? nftPropsType, [
-  List<enums.NftPropsType>? defaultValue,
+List<enums.MarketplacesOnSaleNames> marketplacesOnSaleNamesListFromJson(
+  List? marketplacesOnSaleNames, [
+  List<enums.MarketplacesOnSaleNames>? defaultValue,
 ]) {
-  if (nftPropsType == null) {
+  if (marketplacesOnSaleNames == null) {
     return defaultValue ?? [];
   }
 
-  return nftPropsType.map((e) => nftPropsTypeFromJson(e.toString())).toList();
+  return marketplacesOnSaleNames
+      .map((e) => marketplacesOnSaleNamesFromJson(e.toString()))
+      .toList();
 }
 
-List<enums.NftPropsType>? nftPropsTypeNullableListFromJson(
-  List? nftPropsType, [
-  List<enums.NftPropsType>? defaultValue,
+List<enums.MarketplacesOnSaleNames>?
+    marketplacesOnSaleNamesNullableListFromJson(
+  List? marketplacesOnSaleNames, [
+  List<enums.MarketplacesOnSaleNames>? defaultValue,
 ]) {
-  if (nftPropsType == null) {
+  if (marketplacesOnSaleNames == null) {
     return defaultValue;
   }
 
-  return nftPropsType.map((e) => nftPropsTypeFromJson(e.toString())).toList();
+  return marketplacesOnSaleNames
+      .map((e) => marketplacesOnSaleNamesFromJson(e.toString()))
+      .toList();
 }
 
-String? nftPropsSubTypeNullableToJson(enums.NftPropsSubType? nftPropsSubType) {
-  return nftPropsSubType?.value;
+String? userDataTypeNullableToJson(enums.UserDataType? userDataType) {
+  return userDataType?.value;
 }
 
-String? nftPropsSubTypeToJson(enums.NftPropsSubType nftPropsSubType) {
-  return nftPropsSubType.value;
+String? userDataTypeToJson(enums.UserDataType userDataType) {
+  return userDataType.value;
 }
 
-enums.NftPropsSubType nftPropsSubTypeFromJson(
-  Object? nftPropsSubType, [
-  enums.NftPropsSubType? defaultValue,
+enums.UserDataType userDataTypeFromJson(
+  Object? userDataType, [
+  enums.UserDataType? defaultValue,
 ]) {
-  return enums.NftPropsSubType.values
-          .firstWhereOrNull((e) => e.value == nftPropsSubType) ??
+  return enums.UserDataType.values
+          .firstWhereOrNull((e) => e.value == userDataType) ??
       defaultValue ??
-      enums.NftPropsSubType.swaggerGeneratedUnknown;
+      enums.UserDataType.swaggerGeneratedUnknown;
 }
 
-enums.NftPropsSubType? nftPropsSubTypeNullableFromJson(
-  Object? nftPropsSubType, [
-  enums.NftPropsSubType? defaultValue,
+enums.UserDataType? userDataTypeNullableFromJson(
+  Object? userDataType, [
+  enums.UserDataType? defaultValue,
 ]) {
-  if (nftPropsSubType == null) {
+  if (userDataType == null) {
     return null;
   }
-  return enums.NftPropsSubType.values
-          .firstWhereOrNull((e) => e.value == nftPropsSubType) ??
+  return enums.UserDataType.values
+          .firstWhereOrNull((e) => e.value == userDataType) ??
       defaultValue;
 }
 
-String nftPropsSubTypeExplodedListToJson(
-    List<enums.NftPropsSubType>? nftPropsSubType) {
-  return nftPropsSubType?.map((e) => e.value!).join(',') ?? '';
+String userDataTypeExplodedListToJson(List<enums.UserDataType>? userDataType) {
+  return userDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> nftPropsSubTypeListToJson(
-    List<enums.NftPropsSubType>? nftPropsSubType) {
-  if (nftPropsSubType == null) {
+List<String> userDataTypeListToJson(List<enums.UserDataType>? userDataType) {
+  if (userDataType == null) {
     return [];
   }
 
-  return nftPropsSubType.map((e) => e.value!).toList();
+  return userDataType.map((e) => e.value!).toList();
 }
 
-List<enums.NftPropsSubType> nftPropsSubTypeListFromJson(
-  List? nftPropsSubType, [
-  List<enums.NftPropsSubType>? defaultValue,
+List<enums.UserDataType> userDataTypeListFromJson(
+  List? userDataType, [
+  List<enums.UserDataType>? defaultValue,
 ]) {
-  if (nftPropsSubType == null) {
+  if (userDataType == null) {
     return defaultValue ?? [];
   }
 
-  return nftPropsSubType
-      .map((e) => nftPropsSubTypeFromJson(e.toString()))
-      .toList();
+  return userDataType.map((e) => userDataTypeFromJson(e.toString())).toList();
 }
 
-List<enums.NftPropsSubType>? nftPropsSubTypeNullableListFromJson(
-  List? nftPropsSubType, [
-  List<enums.NftPropsSubType>? defaultValue,
+List<enums.UserDataType>? userDataTypeNullableListFromJson(
+  List? userDataType, [
+  List<enums.UserDataType>? defaultValue,
 ]) {
-  if (nftPropsSubType == null) {
+  if (userDataType == null) {
     return defaultValue;
   }
 
-  return nftPropsSubType
-      .map((e) => nftPropsSubTypeFromJson(e.toString()))
-      .toList();
+  return userDataType.map((e) => userDataTypeFromJson(e.toString())).toList();
 }
 
-String? mintingListingDtoDataTypeNullableToJson(
-    enums.MintingListingDtoDataType? mintingListingDtoDataType) {
-  return mintingListingDtoDataType?.value;
+String? collectionDataTypeNullableToJson(
+    enums.CollectionDataType? collectionDataType) {
+  return collectionDataType?.value;
 }
 
-String? mintingListingDtoDataTypeToJson(
-    enums.MintingListingDtoDataType mintingListingDtoDataType) {
-  return mintingListingDtoDataType.value;
+String? collectionDataTypeToJson(enums.CollectionDataType collectionDataType) {
+  return collectionDataType.value;
 }
 
-enums.MintingListingDtoDataType mintingListingDtoDataTypeFromJson(
-  Object? mintingListingDtoDataType, [
-  enums.MintingListingDtoDataType? defaultValue,
+enums.CollectionDataType collectionDataTypeFromJson(
+  Object? collectionDataType, [
+  enums.CollectionDataType? defaultValue,
 ]) {
-  return enums.MintingListingDtoDataType.values
-          .firstWhereOrNull((e) => e.value == mintingListingDtoDataType) ??
+  return enums.CollectionDataType.values
+          .firstWhereOrNull((e) => e.value == collectionDataType) ??
       defaultValue ??
-      enums.MintingListingDtoDataType.swaggerGeneratedUnknown;
+      enums.CollectionDataType.swaggerGeneratedUnknown;
 }
 
-enums.MintingListingDtoDataType? mintingListingDtoDataTypeNullableFromJson(
-  Object? mintingListingDtoDataType, [
-  enums.MintingListingDtoDataType? defaultValue,
+enums.CollectionDataType? collectionDataTypeNullableFromJson(
+  Object? collectionDataType, [
+  enums.CollectionDataType? defaultValue,
 ]) {
-  if (mintingListingDtoDataType == null) {
+  if (collectionDataType == null) {
     return null;
   }
-  return enums.MintingListingDtoDataType.values
-          .firstWhereOrNull((e) => e.value == mintingListingDtoDataType) ??
+  return enums.CollectionDataType.values
+          .firstWhereOrNull((e) => e.value == collectionDataType) ??
       defaultValue;
 }
 
-String mintingListingDtoDataTypeExplodedListToJson(
-    List<enums.MintingListingDtoDataType>? mintingListingDtoDataType) {
-  return mintingListingDtoDataType?.map((e) => e.value!).join(',') ?? '';
+String collectionDataTypeExplodedListToJson(
+    List<enums.CollectionDataType>? collectionDataType) {
+  return collectionDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> mintingListingDtoDataTypeListToJson(
-    List<enums.MintingListingDtoDataType>? mintingListingDtoDataType) {
-  if (mintingListingDtoDataType == null) {
+List<String> collectionDataTypeListToJson(
+    List<enums.CollectionDataType>? collectionDataType) {
+  if (collectionDataType == null) {
     return [];
   }
 
-  return mintingListingDtoDataType.map((e) => e.value!).toList();
+  return collectionDataType.map((e) => e.value!).toList();
 }
 
-List<enums.MintingListingDtoDataType> mintingListingDtoDataTypeListFromJson(
-  List? mintingListingDtoDataType, [
-  List<enums.MintingListingDtoDataType>? defaultValue,
+List<enums.CollectionDataType> collectionDataTypeListFromJson(
+  List? collectionDataType, [
+  List<enums.CollectionDataType>? defaultValue,
 ]) {
-  if (mintingListingDtoDataType == null) {
+  if (collectionDataType == null) {
     return defaultValue ?? [];
   }
 
-  return mintingListingDtoDataType
-      .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
+  return collectionDataType
+      .map((e) => collectionDataTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.MintingListingDtoDataType>?
-    mintingListingDtoDataTypeNullableListFromJson(
-  List? mintingListingDtoDataType, [
-  List<enums.MintingListingDtoDataType>? defaultValue,
+List<enums.CollectionDataType>? collectionDataTypeNullableListFromJson(
+  List? collectionDataType, [
+  List<enums.CollectionDataType>? defaultValue,
 ]) {
-  if (mintingListingDtoDataType == null) {
+  if (collectionDataType == null) {
     return defaultValue;
   }
 
-  return mintingListingDtoDataType
-      .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
+  return collectionDataType
+      .map((e) => collectionDataTypeFromJson(e.toString()))
       .toList();
 }
 
-String? registrationTypeVisibilityNullableToJson(
-    enums.RegistrationTypeVisibility? registrationTypeVisibility) {
-  return registrationTypeVisibility?.value;
+String? ticketingDataTypeNullableToJson(
+    enums.TicketingDataType? ticketingDataType) {
+  return ticketingDataType?.value;
 }
 
-String? registrationTypeVisibilityToJson(
-    enums.RegistrationTypeVisibility registrationTypeVisibility) {
-  return registrationTypeVisibility.value;
+String? ticketingDataTypeToJson(enums.TicketingDataType ticketingDataType) {
+  return ticketingDataType.value;
 }
 
-enums.RegistrationTypeVisibility registrationTypeVisibilityFromJson(
-  Object? registrationTypeVisibility, [
-  enums.RegistrationTypeVisibility? defaultValue,
+enums.TicketingDataType ticketingDataTypeFromJson(
+  Object? ticketingDataType, [
+  enums.TicketingDataType? defaultValue,
 ]) {
-  return enums.RegistrationTypeVisibility.values
-          .firstWhereOrNull((e) => e.value == registrationTypeVisibility) ??
+  return enums.TicketingDataType.values
+          .firstWhereOrNull((e) => e.value == ticketingDataType) ??
       defaultValue ??
-      enums.RegistrationTypeVisibility.swaggerGeneratedUnknown;
+      enums.TicketingDataType.swaggerGeneratedUnknown;
 }
 
-enums.RegistrationTypeVisibility? registrationTypeVisibilityNullableFromJson(
-  Object? registrationTypeVisibility, [
-  enums.RegistrationTypeVisibility? defaultValue,
+enums.TicketingDataType? ticketingDataTypeNullableFromJson(
+  Object? ticketingDataType, [
+  enums.TicketingDataType? defaultValue,
 ]) {
-  if (registrationTypeVisibility == null) {
+  if (ticketingDataType == null) {
     return null;
   }
-  return enums.RegistrationTypeVisibility.values
-          .firstWhereOrNull((e) => e.value == registrationTypeVisibility) ??
+  return enums.TicketingDataType.values
+          .firstWhereOrNull((e) => e.value == ticketingDataType) ??
       defaultValue;
 }
 
-String registrationTypeVisibilityExplodedListToJson(
-    List<enums.RegistrationTypeVisibility>? registrationTypeVisibility) {
-  return registrationTypeVisibility?.map((e) => e.value!).join(',') ?? '';
+String ticketingDataTypeExplodedListToJson(
+    List<enums.TicketingDataType>? ticketingDataType) {
+  return ticketingDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> registrationTypeVisibilityListToJson(
-    List<enums.RegistrationTypeVisibility>? registrationTypeVisibility) {
-  if (registrationTypeVisibility == null) {
+List<String> ticketingDataTypeListToJson(
+    List<enums.TicketingDataType>? ticketingDataType) {
+  if (ticketingDataType == null) {
     return [];
   }
 
-  return registrationTypeVisibility.map((e) => e.value!).toList();
+  return ticketingDataType.map((e) => e.value!).toList();
 }
 
-List<enums.RegistrationTypeVisibility> registrationTypeVisibilityListFromJson(
-  List? registrationTypeVisibility, [
-  List<enums.RegistrationTypeVisibility>? defaultValue,
+List<enums.TicketingDataType> ticketingDataTypeListFromJson(
+  List? ticketingDataType, [
+  List<enums.TicketingDataType>? defaultValue,
 ]) {
-  if (registrationTypeVisibility == null) {
+  if (ticketingDataType == null) {
     return defaultValue ?? [];
   }
 
-  return registrationTypeVisibility
-      .map((e) => registrationTypeVisibilityFromJson(e.toString()))
+  return ticketingDataType
+      .map((e) => ticketingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.RegistrationTypeVisibility>?
-    registrationTypeVisibilityNullableListFromJson(
-  List? registrationTypeVisibility, [
-  List<enums.RegistrationTypeVisibility>? defaultValue,
+List<enums.TicketingDataType>? ticketingDataTypeNullableListFromJson(
+  List? ticketingDataType, [
+  List<enums.TicketingDataType>? defaultValue,
 ]) {
-  if (registrationTypeVisibility == null) {
+  if (ticketingDataType == null) {
     return defaultValue;
   }
 
-  return registrationTypeVisibility
-      .map((e) => registrationTypeVisibilityFromJson(e.toString()))
+  return ticketingDataType
+      .map((e) => ticketingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-String? eventUserRoleDocDataTypeNullableToJson(
-    enums.EventUserRoleDocDataType? eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType?.value;
+String? eventCategoryNullableToJson(enums.EventCategory? eventCategory) {
+  return eventCategory?.value;
 }
 
-String? eventUserRoleDocDataTypeToJson(
-    enums.EventUserRoleDocDataType eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType.value;
+String? eventCategoryToJson(enums.EventCategory eventCategory) {
+  return eventCategory.value;
 }
 
-enums.EventUserRoleDocDataType eventUserRoleDocDataTypeFromJson(
-  Object? eventUserRoleDocDataType, [
-  enums.EventUserRoleDocDataType? defaultValue,
+enums.EventCategory eventCategoryFromJson(
+  Object? eventCategory, [
+  enums.EventCategory? defaultValue,
 ]) {
-  return enums.EventUserRoleDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
+  return enums.EventCategory.values
+          .firstWhereOrNull((e) => e.value == eventCategory) ??
       defaultValue ??
-      enums.EventUserRoleDocDataType.swaggerGeneratedUnknown;
+      enums.EventCategory.swaggerGeneratedUnknown;
 }
 
-enums.EventUserRoleDocDataType? eventUserRoleDocDataTypeNullableFromJson(
-  Object? eventUserRoleDocDataType, [
-  enums.EventUserRoleDocDataType? defaultValue,
+enums.EventCategory? eventCategoryNullableFromJson(
+  Object? eventCategory, [
+  enums.EventCategory? defaultValue,
 ]) {
-  if (eventUserRoleDocDataType == null) {
+  if (eventCategory == null) {
     return null;
   }
-  return enums.EventUserRoleDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocDataType) ??
+  return enums.EventCategory.values
+          .firstWhereOrNull((e) => e.value == eventCategory) ??
       defaultValue;
 }
 
-String eventUserRoleDocDataTypeExplodedListToJson(
-    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
-  return eventUserRoleDocDataType?.map((e) => e.value!).join(',') ?? '';
+String eventCategoryExplodedListToJson(
+    List<enums.EventCategory>? eventCategory) {
+  return eventCategory?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventUserRoleDocDataTypeListToJson(
-    List<enums.EventUserRoleDocDataType>? eventUserRoleDocDataType) {
-  if (eventUserRoleDocDataType == null) {
+List<String> eventCategoryListToJson(List<enums.EventCategory>? eventCategory) {
+  if (eventCategory == null) {
     return [];
   }
 
-  return eventUserRoleDocDataType.map((e) => e.value!).toList();
+  return eventCategory.map((e) => e.value!).toList();
 }
 
-List<enums.EventUserRoleDocDataType> eventUserRoleDocDataTypeListFromJson(
-  List? eventUserRoleDocDataType, [
-  List<enums.EventUserRoleDocDataType>? defaultValue,
+List<enums.EventCategory> eventCategoryListFromJson(
+  List? eventCategory, [
+  List<enums.EventCategory>? defaultValue,
 ]) {
-  if (eventUserRoleDocDataType == null) {
+  if (eventCategory == null) {
     return defaultValue ?? [];
   }
 
-  return eventUserRoleDocDataType
-      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
-      .toList();
+  return eventCategory.map((e) => eventCategoryFromJson(e.toString())).toList();
 }
 
-List<enums.EventUserRoleDocDataType>?
-    eventUserRoleDocDataTypeNullableListFromJson(
-  List? eventUserRoleDocDataType, [
-  List<enums.EventUserRoleDocDataType>? defaultValue,
+List<enums.EventCategory>? eventCategoryNullableListFromJson(
+  List? eventCategory, [
+  List<enums.EventCategory>? defaultValue,
 ]) {
-  if (eventUserRoleDocDataType == null) {
+  if (eventCategory == null) {
     return defaultValue;
   }
 
-  return eventUserRoleDocDataType
-      .map((e) => eventUserRoleDocDataTypeFromJson(e.toString()))
-      .toList();
+  return eventCategory.map((e) => eventCategoryFromJson(e.toString())).toList();
 }
 
-String? eventUserRoleDocRoleNullableToJson(
-    enums.EventUserRoleDocRole? eventUserRoleDocRole) {
-  return eventUserRoleDocRole?.value;
+String? eventSubCategoryNullableToJson(
+    enums.EventSubCategory? eventSubCategory) {
+  return eventSubCategory?.value;
 }
 
-String? eventUserRoleDocRoleToJson(
-    enums.EventUserRoleDocRole eventUserRoleDocRole) {
-  return eventUserRoleDocRole.value;
+String? eventSubCategoryToJson(enums.EventSubCategory eventSubCategory) {
+  return eventSubCategory.value;
 }
 
-enums.EventUserRoleDocRole eventUserRoleDocRoleFromJson(
-  Object? eventUserRoleDocRole, [
-  enums.EventUserRoleDocRole? defaultValue,
+enums.EventSubCategory eventSubCategoryFromJson(
+  Object? eventSubCategory, [
+  enums.EventSubCategory? defaultValue,
 ]) {
-  return enums.EventUserRoleDocRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
+  return enums.EventSubCategory.values
+          .firstWhereOrNull((e) => e.value == eventSubCategory) ??
       defaultValue ??
-      enums.EventUserRoleDocRole.swaggerGeneratedUnknown;
+      enums.EventSubCategory.swaggerGeneratedUnknown;
 }
 
-enums.EventUserRoleDocRole? eventUserRoleDocRoleNullableFromJson(
-  Object? eventUserRoleDocRole, [
-  enums.EventUserRoleDocRole? defaultValue,
+enums.EventSubCategory? eventSubCategoryNullableFromJson(
+  Object? eventSubCategory, [
+  enums.EventSubCategory? defaultValue,
 ]) {
-  if (eventUserRoleDocRole == null) {
+  if (eventSubCategory == null) {
     return null;
   }
-  return enums.EventUserRoleDocRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocRole) ??
+  return enums.EventSubCategory.values
+          .firstWhereOrNull((e) => e.value == eventSubCategory) ??
       defaultValue;
 }
 
-String eventUserRoleDocRoleExplodedListToJson(
-    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
-  return eventUserRoleDocRole?.map((e) => e.value!).join(',') ?? '';
+String eventSubCategoryExplodedListToJson(
+    List<enums.EventSubCategory>? eventSubCategory) {
+  return eventSubCategory?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventUserRoleDocRoleListToJson(
-    List<enums.EventUserRoleDocRole>? eventUserRoleDocRole) {
-  if (eventUserRoleDocRole == null) {
+List<String> eventSubCategoryListToJson(
+    List<enums.EventSubCategory>? eventSubCategory) {
+  if (eventSubCategory == null) {
     return [];
   }
 
-  return eventUserRoleDocRole.map((e) => e.value!).toList();
+  return eventSubCategory.map((e) => e.value!).toList();
 }
 
-List<enums.EventUserRoleDocRole> eventUserRoleDocRoleListFromJson(
-  List? eventUserRoleDocRole, [
-  List<enums.EventUserRoleDocRole>? defaultValue,
+List<enums.EventSubCategory> eventSubCategoryListFromJson(
+  List? eventSubCategory, [
+  List<enums.EventSubCategory>? defaultValue,
 ]) {
-  if (eventUserRoleDocRole == null) {
+  if (eventSubCategory == null) {
     return defaultValue ?? [];
   }
 
-  return eventUserRoleDocRole
-      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
+  return eventSubCategory
+      .map((e) => eventSubCategoryFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventUserRoleDocRole>? eventUserRoleDocRoleNullableListFromJson(
-  List? eventUserRoleDocRole, [
-  List<enums.EventUserRoleDocRole>? defaultValue,
+List<enums.EventSubCategory>? eventSubCategoryNullableListFromJson(
+  List? eventSubCategory, [
+  List<enums.EventSubCategory>? defaultValue,
 ]) {
-  if (eventUserRoleDocRole == null) {
+  if (eventSubCategory == null) {
     return defaultValue;
   }
 
-  return eventUserRoleDocRole
-      .map((e) => eventUserRoleDocRoleFromJson(e.toString()))
+  return eventSubCategory
+      .map((e) => eventSubCategoryFromJson(e.toString()))
       .toList();
 }
 
-String? eventUserRoleDocPermissionsNullableToJson(
-    enums.EventUserRoleDocPermissions? eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions?.value;
+String? visibilityNullableToJson(enums.Visibility? visibility) {
+  return visibility?.value;
 }
 
-String? eventUserRoleDocPermissionsToJson(
-    enums.EventUserRoleDocPermissions eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions.value;
+String? visibilityToJson(enums.Visibility visibility) {
+  return visibility.value;
 }
 
-enums.EventUserRoleDocPermissions eventUserRoleDocPermissionsFromJson(
-  Object? eventUserRoleDocPermissions, [
-  enums.EventUserRoleDocPermissions? defaultValue,
+enums.Visibility visibilityFromJson(
+  Object? visibility, [
+  enums.Visibility? defaultValue,
 ]) {
-  return enums.EventUserRoleDocPermissions.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
+  return enums.Visibility.values
+          .firstWhereOrNull((e) => e.value == visibility) ??
       defaultValue ??
-      enums.EventUserRoleDocPermissions.swaggerGeneratedUnknown;
+      enums.Visibility.swaggerGeneratedUnknown;
 }
 
-enums.EventUserRoleDocPermissions? eventUserRoleDocPermissionsNullableFromJson(
-  Object? eventUserRoleDocPermissions, [
-  enums.EventUserRoleDocPermissions? defaultValue,
+enums.Visibility? visibilityNullableFromJson(
+  Object? visibility, [
+  enums.Visibility? defaultValue,
 ]) {
-  if (eventUserRoleDocPermissions == null) {
+  if (visibility == null) {
     return null;
   }
-  return enums.EventUserRoleDocPermissions.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocPermissions) ??
+  return enums.Visibility.values
+          .firstWhereOrNull((e) => e.value == visibility) ??
       defaultValue;
 }
 
-String eventUserRoleDocPermissionsExplodedListToJson(
-    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
-  return eventUserRoleDocPermissions?.map((e) => e.value!).join(',') ?? '';
+String visibilityExplodedListToJson(List<enums.Visibility>? visibility) {
+  return visibility?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventUserRoleDocPermissionsListToJson(
-    List<enums.EventUserRoleDocPermissions>? eventUserRoleDocPermissions) {
-  if (eventUserRoleDocPermissions == null) {
+List<String> visibilityListToJson(List<enums.Visibility>? visibility) {
+  if (visibility == null) {
     return [];
   }
 
-  return eventUserRoleDocPermissions.map((e) => e.value!).toList();
+  return visibility.map((e) => e.value!).toList();
 }
 
-List<enums.EventUserRoleDocPermissions> eventUserRoleDocPermissionsListFromJson(
-  List? eventUserRoleDocPermissions, [
-  List<enums.EventUserRoleDocPermissions>? defaultValue,
+List<enums.Visibility> visibilityListFromJson(
+  List? visibility, [
+  List<enums.Visibility>? defaultValue,
 ]) {
-  if (eventUserRoleDocPermissions == null) {
+  if (visibility == null) {
     return defaultValue ?? [];
   }
 
-  return eventUserRoleDocPermissions
-      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
-      .toList();
+  return visibility.map((e) => visibilityFromJson(e.toString())).toList();
 }
 
-List<enums.EventUserRoleDocPermissions>?
-    eventUserRoleDocPermissionsNullableListFromJson(
-  List? eventUserRoleDocPermissions, [
-  List<enums.EventUserRoleDocPermissions>? defaultValue,
+List<enums.Visibility>? visibilityNullableListFromJson(
+  List? visibility, [
+  List<enums.Visibility>? defaultValue,
 ]) {
-  if (eventUserRoleDocPermissions == null) {
+  if (visibility == null) {
     return defaultValue;
   }
 
-  return eventUserRoleDocPermissions
-      .map((e) => eventUserRoleDocPermissionsFromJson(e.toString()))
-      .toList();
+  return visibility.map((e) => visibilityFromJson(e.toString())).toList();
 }
 
-String? eventUserRoleDocStatusNullableToJson(
-    enums.EventUserRoleDocStatus? eventUserRoleDocStatus) {
-  return eventUserRoleDocStatus?.value;
+String? eventUserRolesNullableToJson(enums.EventUserRoles? eventUserRoles) {
+  return eventUserRoles?.value;
 }
 
-String? eventUserRoleDocStatusToJson(
-    enums.EventUserRoleDocStatus eventUserRoleDocStatus) {
-  return eventUserRoleDocStatus.value;
+String? eventUserRolesToJson(enums.EventUserRoles eventUserRoles) {
+  return eventUserRoles.value;
 }
 
-enums.EventUserRoleDocStatus eventUserRoleDocStatusFromJson(
-  Object? eventUserRoleDocStatus, [
-  enums.EventUserRoleDocStatus? defaultValue,
+enums.EventUserRoles eventUserRolesFromJson(
+  Object? eventUserRoles, [
+  enums.EventUserRoles? defaultValue,
 ]) {
-  return enums.EventUserRoleDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocStatus) ??
+  return enums.EventUserRoles.values
+          .firstWhereOrNull((e) => e.value == eventUserRoles) ??
       defaultValue ??
-      enums.EventUserRoleDocStatus.swaggerGeneratedUnknown;
+      enums.EventUserRoles.swaggerGeneratedUnknown;
 }
 
-enums.EventUserRoleDocStatus? eventUserRoleDocStatusNullableFromJson(
-  Object? eventUserRoleDocStatus, [
-  enums.EventUserRoleDocStatus? defaultValue,
+enums.EventUserRoles? eventUserRolesNullableFromJson(
+  Object? eventUserRoles, [
+  enums.EventUserRoles? defaultValue,
 ]) {
-  if (eventUserRoleDocStatus == null) {
+  if (eventUserRoles == null) {
     return null;
   }
-  return enums.EventUserRoleDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleDocStatus) ??
+  return enums.EventUserRoles.values
+          .firstWhereOrNull((e) => e.value == eventUserRoles) ??
       defaultValue;
 }
 
-String eventUserRoleDocStatusExplodedListToJson(
-    List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatus) {
-  return eventUserRoleDocStatus?.map((e) => e.value!).join(',') ?? '';
+String eventUserRolesExplodedListToJson(
+    List<enums.EventUserRoles>? eventUserRoles) {
+  return eventUserRoles?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventUserRoleDocStatusListToJson(
-    List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatus) {
-  if (eventUserRoleDocStatus == null) {
+List<String> eventUserRolesListToJson(
+    List<enums.EventUserRoles>? eventUserRoles) {
+  if (eventUserRoles == null) {
     return [];
   }
 
-  return eventUserRoleDocStatus.map((e) => e.value!).toList();
+  return eventUserRoles.map((e) => e.value!).toList();
 }
 
-List<enums.EventUserRoleDocStatus> eventUserRoleDocStatusListFromJson(
-  List? eventUserRoleDocStatus, [
-  List<enums.EventUserRoleDocStatus>? defaultValue,
+List<enums.EventUserRoles> eventUserRolesListFromJson(
+  List? eventUserRoles, [
+  List<enums.EventUserRoles>? defaultValue,
 ]) {
-  if (eventUserRoleDocStatus == null) {
+  if (eventUserRoles == null) {
     return defaultValue ?? [];
   }
 
-  return eventUserRoleDocStatus
-      .map((e) => eventUserRoleDocStatusFromJson(e.toString()))
+  return eventUserRoles
+      .map((e) => eventUserRolesFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventUserRoleDocStatus>? eventUserRoleDocStatusNullableListFromJson(
-  List? eventUserRoleDocStatus, [
-  List<enums.EventUserRoleDocStatus>? defaultValue,
+List<enums.EventUserRoles>? eventUserRolesNullableListFromJson(
+  List? eventUserRoles, [
+  List<enums.EventUserRoles>? defaultValue,
 ]) {
-  if (eventUserRoleDocStatus == null) {
+  if (eventUserRoles == null) {
     return defaultValue;
   }
 
-  return eventUserRoleDocStatus
-      .map((e) => eventUserRoleDocStatusFromJson(e.toString()))
+  return eventUserRoles
+      .map((e) => eventUserRolesFromJson(e.toString()))
       .toList();
 }
 
-String? eventProfileDocDataTypeNullableToJson(
-    enums.EventProfileDocDataType? eventProfileDocDataType) {
-  return eventProfileDocDataType?.value;
+String? eventUserRolePermissionNullableToJson(
+    enums.EventUserRolePermission? eventUserRolePermission) {
+  return eventUserRolePermission?.value;
 }
 
-String? eventProfileDocDataTypeToJson(
-    enums.EventProfileDocDataType eventProfileDocDataType) {
-  return eventProfileDocDataType.value;
+String? eventUserRolePermissionToJson(
+    enums.EventUserRolePermission eventUserRolePermission) {
+  return eventUserRolePermission.value;
 }
 
-enums.EventProfileDocDataType eventProfileDocDataTypeFromJson(
-  Object? eventProfileDocDataType, [
-  enums.EventProfileDocDataType? defaultValue,
+enums.EventUserRolePermission eventUserRolePermissionFromJson(
+  Object? eventUserRolePermission, [
+  enums.EventUserRolePermission? defaultValue,
 ]) {
-  return enums.EventProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocDataType) ??
+  return enums.EventUserRolePermission.values
+          .firstWhereOrNull((e) => e.value == eventUserRolePermission) ??
       defaultValue ??
-      enums.EventProfileDocDataType.swaggerGeneratedUnknown;
+      enums.EventUserRolePermission.swaggerGeneratedUnknown;
 }
 
-enums.EventProfileDocDataType? eventProfileDocDataTypeNullableFromJson(
-  Object? eventProfileDocDataType, [
-  enums.EventProfileDocDataType? defaultValue,
+enums.EventUserRolePermission? eventUserRolePermissionNullableFromJson(
+  Object? eventUserRolePermission, [
+  enums.EventUserRolePermission? defaultValue,
 ]) {
-  if (eventProfileDocDataType == null) {
+  if (eventUserRolePermission == null) {
     return null;
   }
-  return enums.EventProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocDataType) ??
+  return enums.EventUserRolePermission.values
+          .firstWhereOrNull((e) => e.value == eventUserRolePermission) ??
       defaultValue;
 }
 
-String eventProfileDocDataTypeExplodedListToJson(
-    List<enums.EventProfileDocDataType>? eventProfileDocDataType) {
-  return eventProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
+String eventUserRolePermissionExplodedListToJson(
+    List<enums.EventUserRolePermission>? eventUserRolePermission) {
+  return eventUserRolePermission?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventProfileDocDataTypeListToJson(
-    List<enums.EventProfileDocDataType>? eventProfileDocDataType) {
-  if (eventProfileDocDataType == null) {
+List<String> eventUserRolePermissionListToJson(
+    List<enums.EventUserRolePermission>? eventUserRolePermission) {
+  if (eventUserRolePermission == null) {
     return [];
   }
 
-  return eventProfileDocDataType.map((e) => e.value!).toList();
+  return eventUserRolePermission.map((e) => e.value!).toList();
 }
 
-List<enums.EventProfileDocDataType> eventProfileDocDataTypeListFromJson(
-  List? eventProfileDocDataType, [
-  List<enums.EventProfileDocDataType>? defaultValue,
+List<enums.EventUserRolePermission> eventUserRolePermissionListFromJson(
+  List? eventUserRolePermission, [
+  List<enums.EventUserRolePermission>? defaultValue,
 ]) {
-  if (eventProfileDocDataType == null) {
+  if (eventUserRolePermission == null) {
     return defaultValue ?? [];
   }
 
-  return eventProfileDocDataType
-      .map((e) => eventProfileDocDataTypeFromJson(e.toString()))
+  return eventUserRolePermission
+      .map((e) => eventUserRolePermissionFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventProfileDocDataType>?
-    eventProfileDocDataTypeNullableListFromJson(
-  List? eventProfileDocDataType, [
-  List<enums.EventProfileDocDataType>? defaultValue,
+List<enums.EventUserRolePermission>?
+    eventUserRolePermissionNullableListFromJson(
+  List? eventUserRolePermission, [
+  List<enums.EventUserRolePermission>? defaultValue,
 ]) {
-  if (eventProfileDocDataType == null) {
+  if (eventUserRolePermission == null) {
     return defaultValue;
   }
 
-  return eventProfileDocDataType
-      .map((e) => eventProfileDocDataTypeFromJson(e.toString()))
+  return eventUserRolePermission
+      .map((e) => eventUserRolePermissionFromJson(e.toString()))
       .toList();
 }
 
-String? eventProfileDocCategoryNullableToJson(
-    enums.EventProfileDocCategory? eventProfileDocCategory) {
-  return eventProfileDocCategory?.value;
+String? roleStatusNullableToJson(enums.RoleStatus? roleStatus) {
+  return roleStatus?.value;
 }
 
-String? eventProfileDocCategoryToJson(
-    enums.EventProfileDocCategory eventProfileDocCategory) {
-  return eventProfileDocCategory.value;
+String? roleStatusToJson(enums.RoleStatus roleStatus) {
+  return roleStatus.value;
 }
 
-enums.EventProfileDocCategory eventProfileDocCategoryFromJson(
-  Object? eventProfileDocCategory, [
-  enums.EventProfileDocCategory? defaultValue,
+enums.RoleStatus roleStatusFromJson(
+  Object? roleStatus, [
+  enums.RoleStatus? defaultValue,
 ]) {
-  return enums.EventProfileDocCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocCategory) ??
+  return enums.RoleStatus.values
+          .firstWhereOrNull((e) => e.value == roleStatus) ??
       defaultValue ??
-      enums.EventProfileDocCategory.swaggerGeneratedUnknown;
+      enums.RoleStatus.swaggerGeneratedUnknown;
 }
 
-enums.EventProfileDocCategory? eventProfileDocCategoryNullableFromJson(
-  Object? eventProfileDocCategory, [
-  enums.EventProfileDocCategory? defaultValue,
+enums.RoleStatus? roleStatusNullableFromJson(
+  Object? roleStatus, [
+  enums.RoleStatus? defaultValue,
 ]) {
-  if (eventProfileDocCategory == null) {
+  if (roleStatus == null) {
     return null;
   }
-  return enums.EventProfileDocCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocCategory) ??
+  return enums.RoleStatus.values
+          .firstWhereOrNull((e) => e.value == roleStatus) ??
       defaultValue;
 }
 
-String eventProfileDocCategoryExplodedListToJson(
-    List<enums.EventProfileDocCategory>? eventProfileDocCategory) {
-  return eventProfileDocCategory?.map((e) => e.value!).join(',') ?? '';
+String roleStatusExplodedListToJson(List<enums.RoleStatus>? roleStatus) {
+  return roleStatus?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventProfileDocCategoryListToJson(
-    List<enums.EventProfileDocCategory>? eventProfileDocCategory) {
-  if (eventProfileDocCategory == null) {
+List<String> roleStatusListToJson(List<enums.RoleStatus>? roleStatus) {
+  if (roleStatus == null) {
     return [];
   }
 
-  return eventProfileDocCategory.map((e) => e.value!).toList();
+  return roleStatus.map((e) => e.value!).toList();
 }
 
-List<enums.EventProfileDocCategory> eventProfileDocCategoryListFromJson(
-  List? eventProfileDocCategory, [
-  List<enums.EventProfileDocCategory>? defaultValue,
+List<enums.RoleStatus> roleStatusListFromJson(
+  List? roleStatus, [
+  List<enums.RoleStatus>? defaultValue,
 ]) {
-  if (eventProfileDocCategory == null) {
+  if (roleStatus == null) {
     return defaultValue ?? [];
   }
 
-  return eventProfileDocCategory
-      .map((e) => eventProfileDocCategoryFromJson(e.toString()))
-      .toList();
+  return roleStatus.map((e) => roleStatusFromJson(e.toString())).toList();
 }
 
-List<enums.EventProfileDocCategory>?
-    eventProfileDocCategoryNullableListFromJson(
-  List? eventProfileDocCategory, [
-  List<enums.EventProfileDocCategory>? defaultValue,
+List<enums.RoleStatus>? roleStatusNullableListFromJson(
+  List? roleStatus, [
+  List<enums.RoleStatus>? defaultValue,
 ]) {
-  if (eventProfileDocCategory == null) {
+  if (roleStatus == null) {
     return defaultValue;
   }
 
-  return eventProfileDocCategory
-      .map((e) => eventProfileDocCategoryFromJson(e.toString()))
-      .toList();
+  return roleStatus.map((e) => roleStatusFromJson(e.toString())).toList();
 }
 
-String? eventProfileDocSubCategoryNullableToJson(
-    enums.EventProfileDocSubCategory? eventProfileDocSubCategory) {
-  return eventProfileDocSubCategory?.value;
+String? stakingDataTypeNullableToJson(enums.StakingDataType? stakingDataType) {
+  return stakingDataType?.value;
 }
 
-String? eventProfileDocSubCategoryToJson(
-    enums.EventProfileDocSubCategory eventProfileDocSubCategory) {
-  return eventProfileDocSubCategory.value;
+String? stakingDataTypeToJson(enums.StakingDataType stakingDataType) {
+  return stakingDataType.value;
 }
 
-enums.EventProfileDocSubCategory eventProfileDocSubCategoryFromJson(
-  Object? eventProfileDocSubCategory, [
-  enums.EventProfileDocSubCategory? defaultValue,
+enums.StakingDataType stakingDataTypeFromJson(
+  Object? stakingDataType, [
+  enums.StakingDataType? defaultValue,
 ]) {
-  return enums.EventProfileDocSubCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocSubCategory) ??
+  return enums.StakingDataType.values
+          .firstWhereOrNull((e) => e.value == stakingDataType) ??
       defaultValue ??
-      enums.EventProfileDocSubCategory.swaggerGeneratedUnknown;
+      enums.StakingDataType.swaggerGeneratedUnknown;
 }
 
-enums.EventProfileDocSubCategory? eventProfileDocSubCategoryNullableFromJson(
-  Object? eventProfileDocSubCategory, [
-  enums.EventProfileDocSubCategory? defaultValue,
+enums.StakingDataType? stakingDataTypeNullableFromJson(
+  Object? stakingDataType, [
+  enums.StakingDataType? defaultValue,
 ]) {
-  if (eventProfileDocSubCategory == null) {
+  if (stakingDataType == null) {
     return null;
   }
-  return enums.EventProfileDocSubCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileDocSubCategory) ??
+  return enums.StakingDataType.values
+          .firstWhereOrNull((e) => e.value == stakingDataType) ??
       defaultValue;
 }
 
-String eventProfileDocSubCategoryExplodedListToJson(
-    List<enums.EventProfileDocSubCategory>? eventProfileDocSubCategory) {
-  return eventProfileDocSubCategory?.map((e) => e.value!).join(',') ?? '';
+String stakingDataTypeExplodedListToJson(
+    List<enums.StakingDataType>? stakingDataType) {
+  return stakingDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventProfileDocSubCategoryListToJson(
-    List<enums.EventProfileDocSubCategory>? eventProfileDocSubCategory) {
-  if (eventProfileDocSubCategory == null) {
+List<String> stakingDataTypeListToJson(
+    List<enums.StakingDataType>? stakingDataType) {
+  if (stakingDataType == null) {
     return [];
   }
 
-  return eventProfileDocSubCategory.map((e) => e.value!).toList();
+  return stakingDataType.map((e) => e.value!).toList();
 }
 
-List<enums.EventProfileDocSubCategory> eventProfileDocSubCategoryListFromJson(
-  List? eventProfileDocSubCategory, [
-  List<enums.EventProfileDocSubCategory>? defaultValue,
+List<enums.StakingDataType> stakingDataTypeListFromJson(
+  List? stakingDataType, [
+  List<enums.StakingDataType>? defaultValue,
 ]) {
-  if (eventProfileDocSubCategory == null) {
+  if (stakingDataType == null) {
     return defaultValue ?? [];
   }
 
-  return eventProfileDocSubCategory
-      .map((e) => eventProfileDocSubCategoryFromJson(e.toString()))
+  return stakingDataType
+      .map((e) => stakingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventProfileDocSubCategory>?
-    eventProfileDocSubCategoryNullableListFromJson(
-  List? eventProfileDocSubCategory, [
-  List<enums.EventProfileDocSubCategory>? defaultValue,
+List<enums.StakingDataType>? stakingDataTypeNullableListFromJson(
+  List? stakingDataType, [
+  List<enums.StakingDataType>? defaultValue,
 ]) {
-  if (eventProfileDocSubCategory == null) {
+  if (stakingDataType == null) {
     return defaultValue;
   }
 
-  return eventProfileDocSubCategory
-      .map((e) => eventProfileDocSubCategoryFromJson(e.toString()))
+  return stakingDataType
+      .map((e) => stakingDataTypeFromJson(e.toString()))
       .toList();
 }
 
-String? creatorDetailsDtoDataTypeNullableToJson(
-    enums.CreatorDetailsDtoDataType? creatorDetailsDtoDataType) {
-  return creatorDetailsDtoDataType?.value;
+String? linkedAccountTypeNullableToJson(
+    enums.LinkedAccountType? linkedAccountType) {
+  return linkedAccountType?.value;
 }
 
-String? creatorDetailsDtoDataTypeToJson(
-    enums.CreatorDetailsDtoDataType creatorDetailsDtoDataType) {
-  return creatorDetailsDtoDataType.value;
+String? linkedAccountTypeToJson(enums.LinkedAccountType linkedAccountType) {
+  return linkedAccountType.value;
 }
 
-enums.CreatorDetailsDtoDataType creatorDetailsDtoDataTypeFromJson(
-  Object? creatorDetailsDtoDataType, [
-  enums.CreatorDetailsDtoDataType? defaultValue,
+enums.LinkedAccountType linkedAccountTypeFromJson(
+  Object? linkedAccountType, [
+  enums.LinkedAccountType? defaultValue,
 ]) {
-  return enums.CreatorDetailsDtoDataType.values
-          .firstWhereOrNull((e) => e.value == creatorDetailsDtoDataType) ??
+  return enums.LinkedAccountType.values
+          .firstWhereOrNull((e) => e.value == linkedAccountType) ??
       defaultValue ??
-      enums.CreatorDetailsDtoDataType.swaggerGeneratedUnknown;
+      enums.LinkedAccountType.swaggerGeneratedUnknown;
 }
 
-enums.CreatorDetailsDtoDataType? creatorDetailsDtoDataTypeNullableFromJson(
-  Object? creatorDetailsDtoDataType, [
-  enums.CreatorDetailsDtoDataType? defaultValue,
+enums.LinkedAccountType? linkedAccountTypeNullableFromJson(
+  Object? linkedAccountType, [
+  enums.LinkedAccountType? defaultValue,
 ]) {
-  if (creatorDetailsDtoDataType == null) {
+  if (linkedAccountType == null) {
     return null;
   }
-  return enums.CreatorDetailsDtoDataType.values
-          .firstWhereOrNull((e) => e.value == creatorDetailsDtoDataType) ??
+  return enums.LinkedAccountType.values
+          .firstWhereOrNull((e) => e.value == linkedAccountType) ??
       defaultValue;
 }
 
-String creatorDetailsDtoDataTypeExplodedListToJson(
-    List<enums.CreatorDetailsDtoDataType>? creatorDetailsDtoDataType) {
-  return creatorDetailsDtoDataType?.map((e) => e.value!).join(',') ?? '';
+String linkedAccountTypeExplodedListToJson(
+    List<enums.LinkedAccountType>? linkedAccountType) {
+  return linkedAccountType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> creatorDetailsDtoDataTypeListToJson(
-    List<enums.CreatorDetailsDtoDataType>? creatorDetailsDtoDataType) {
-  if (creatorDetailsDtoDataType == null) {
+List<String> linkedAccountTypeListToJson(
+    List<enums.LinkedAccountType>? linkedAccountType) {
+  if (linkedAccountType == null) {
     return [];
   }
 
-  return creatorDetailsDtoDataType.map((e) => e.value!).toList();
+  return linkedAccountType.map((e) => e.value!).toList();
 }
 
-List<enums.CreatorDetailsDtoDataType> creatorDetailsDtoDataTypeListFromJson(
-  List? creatorDetailsDtoDataType, [
-  List<enums.CreatorDetailsDtoDataType>? defaultValue,
+List<enums.LinkedAccountType> linkedAccountTypeListFromJson(
+  List? linkedAccountType, [
+  List<enums.LinkedAccountType>? defaultValue,
 ]) {
-  if (creatorDetailsDtoDataType == null) {
+  if (linkedAccountType == null) {
     return defaultValue ?? [];
   }
 
-  return creatorDetailsDtoDataType
-      .map((e) => creatorDetailsDtoDataTypeFromJson(e.toString()))
+  return linkedAccountType
+      .map((e) => linkedAccountTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.CreatorDetailsDtoDataType>?
-    creatorDetailsDtoDataTypeNullableListFromJson(
-  List? creatorDetailsDtoDataType, [
-  List<enums.CreatorDetailsDtoDataType>? defaultValue,
+List<enums.LinkedAccountType>? linkedAccountTypeNullableListFromJson(
+  List? linkedAccountType, [
+  List<enums.LinkedAccountType>? defaultValue,
 ]) {
-  if (creatorDetailsDtoDataType == null) {
+  if (linkedAccountType == null) {
     return defaultValue;
   }
 
-  return creatorDetailsDtoDataType
-      .map((e) => creatorDetailsDtoDataTypeFromJson(e.toString()))
+  return linkedAccountType
+      .map((e) => linkedAccountTypeFromJson(e.toString()))
       .toList();
 }
 
-String? nftDocTypeNullableToJson(enums.NftDocType? nftDocType) {
-  return nftDocType?.value;
+String? walletClientTypeNullableToJson(
+    enums.WalletClientType? walletClientType) {
+  return walletClientType?.value;
 }
 
-String? nftDocTypeToJson(enums.NftDocType nftDocType) {
-  return nftDocType.value;
+String? walletClientTypeToJson(enums.WalletClientType walletClientType) {
+  return walletClientType.value;
 }
 
-enums.NftDocType nftDocTypeFromJson(
-  Object? nftDocType, [
-  enums.NftDocType? defaultValue,
+enums.WalletClientType walletClientTypeFromJson(
+  Object? walletClientType, [
+  enums.WalletClientType? defaultValue,
 ]) {
-  return enums.NftDocType.values
-          .firstWhereOrNull((e) => e.value == nftDocType) ??
+  return enums.WalletClientType.values
+          .firstWhereOrNull((e) => e.value == walletClientType) ??
       defaultValue ??
-      enums.NftDocType.swaggerGeneratedUnknown;
+      enums.WalletClientType.swaggerGeneratedUnknown;
 }
 
-enums.NftDocType? nftDocTypeNullableFromJson(
-  Object? nftDocType, [
-  enums.NftDocType? defaultValue,
+enums.WalletClientType? walletClientTypeNullableFromJson(
+  Object? walletClientType, [
+  enums.WalletClientType? defaultValue,
 ]) {
-  if (nftDocType == null) {
+  if (walletClientType == null) {
     return null;
   }
-  return enums.NftDocType.values
-          .firstWhereOrNull((e) => e.value == nftDocType) ??
+  return enums.WalletClientType.values
+          .firstWhereOrNull((e) => e.value == walletClientType) ??
       defaultValue;
 }
 
-String nftDocTypeExplodedListToJson(List<enums.NftDocType>? nftDocType) {
-  return nftDocType?.map((e) => e.value!).join(',') ?? '';
+String walletClientTypeExplodedListToJson(
+    List<enums.WalletClientType>? walletClientType) {
+  return walletClientType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> nftDocTypeListToJson(List<enums.NftDocType>? nftDocType) {
-  if (nftDocType == null) {
+List<String> walletClientTypeListToJson(
+    List<enums.WalletClientType>? walletClientType) {
+  if (walletClientType == null) {
     return [];
   }
 
-  return nftDocType.map((e) => e.value!).toList();
+  return walletClientType.map((e) => e.value!).toList();
 }
 
-List<enums.NftDocType> nftDocTypeListFromJson(
-  List? nftDocType, [
-  List<enums.NftDocType>? defaultValue,
+List<enums.WalletClientType> walletClientTypeListFromJson(
+  List? walletClientType, [
+  List<enums.WalletClientType>? defaultValue,
 ]) {
-  if (nftDocType == null) {
+  if (walletClientType == null) {
     return defaultValue ?? [];
   }
 
-  return nftDocType.map((e) => nftDocTypeFromJson(e.toString())).toList();
+  return walletClientType
+      .map((e) => walletClientTypeFromJson(e.toString()))
+      .toList();
 }
 
-List<enums.NftDocType>? nftDocTypeNullableListFromJson(
-  List? nftDocType, [
-  List<enums.NftDocType>? defaultValue,
+List<enums.WalletClientType>? walletClientTypeNullableListFromJson(
+  List? walletClientType, [
+  List<enums.WalletClientType>? defaultValue,
 ]) {
-  if (nftDocType == null) {
+  if (walletClientType == null) {
     return defaultValue;
   }
 
-  return nftDocType.map((e) => nftDocTypeFromJson(e.toString())).toList();
+  return walletClientType
+      .map((e) => walletClientTypeFromJson(e.toString()))
+      .toList();
 }
 
-String? nftDocSubTypeNullableToJson(enums.NftDocSubType? nftDocSubType) {
-  return nftDocSubType?.value;
+String? userStatsOrderByColumnNullableToJson(
+    enums.UserStatsOrderByColumn? userStatsOrderByColumn) {
+  return userStatsOrderByColumn?.value;
 }
 
-String? nftDocSubTypeToJson(enums.NftDocSubType nftDocSubType) {
-  return nftDocSubType.value;
+String? userStatsOrderByColumnToJson(
+    enums.UserStatsOrderByColumn userStatsOrderByColumn) {
+  return userStatsOrderByColumn.value;
 }
 
-enums.NftDocSubType nftDocSubTypeFromJson(
-  Object? nftDocSubType, [
-  enums.NftDocSubType? defaultValue,
+enums.UserStatsOrderByColumn userStatsOrderByColumnFromJson(
+  Object? userStatsOrderByColumn, [
+  enums.UserStatsOrderByColumn? defaultValue,
 ]) {
-  return enums.NftDocSubType.values
-          .firstWhereOrNull((e) => e.value == nftDocSubType) ??
+  return enums.UserStatsOrderByColumn.values
+          .firstWhereOrNull((e) => e.value == userStatsOrderByColumn) ??
       defaultValue ??
-      enums.NftDocSubType.swaggerGeneratedUnknown;
+      enums.UserStatsOrderByColumn.swaggerGeneratedUnknown;
 }
 
-enums.NftDocSubType? nftDocSubTypeNullableFromJson(
-  Object? nftDocSubType, [
-  enums.NftDocSubType? defaultValue,
+enums.UserStatsOrderByColumn? userStatsOrderByColumnNullableFromJson(
+  Object? userStatsOrderByColumn, [
+  enums.UserStatsOrderByColumn? defaultValue,
 ]) {
-  if (nftDocSubType == null) {
+  if (userStatsOrderByColumn == null) {
     return null;
   }
-  return enums.NftDocSubType.values
-          .firstWhereOrNull((e) => e.value == nftDocSubType) ??
+  return enums.UserStatsOrderByColumn.values
+          .firstWhereOrNull((e) => e.value == userStatsOrderByColumn) ??
       defaultValue;
 }
 
-String nftDocSubTypeExplodedListToJson(
-    List<enums.NftDocSubType>? nftDocSubType) {
-  return nftDocSubType?.map((e) => e.value!).join(',') ?? '';
+String userStatsOrderByColumnExplodedListToJson(
+    List<enums.UserStatsOrderByColumn>? userStatsOrderByColumn) {
+  return userStatsOrderByColumn?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> nftDocSubTypeListToJson(List<enums.NftDocSubType>? nftDocSubType) {
-  if (nftDocSubType == null) {
+List<String> userStatsOrderByColumnListToJson(
+    List<enums.UserStatsOrderByColumn>? userStatsOrderByColumn) {
+  if (userStatsOrderByColumn == null) {
     return [];
   }
 
-  return nftDocSubType.map((e) => e.value!).toList();
+  return userStatsOrderByColumn.map((e) => e.value!).toList();
 }
 
-List<enums.NftDocSubType> nftDocSubTypeListFromJson(
-  List? nftDocSubType, [
-  List<enums.NftDocSubType>? defaultValue,
+List<enums.UserStatsOrderByColumn> userStatsOrderByColumnListFromJson(
+  List? userStatsOrderByColumn, [
+  List<enums.UserStatsOrderByColumn>? defaultValue,
 ]) {
-  if (nftDocSubType == null) {
+  if (userStatsOrderByColumn == null) {
     return defaultValue ?? [];
   }
 
-  return nftDocSubType.map((e) => nftDocSubTypeFromJson(e.toString())).toList();
+  return userStatsOrderByColumn
+      .map((e) => userStatsOrderByColumnFromJson(e.toString()))
+      .toList();
 }
 
-List<enums.NftDocSubType>? nftDocSubTypeNullableListFromJson(
-  List? nftDocSubType, [
-  List<enums.NftDocSubType>? defaultValue,
+List<enums.UserStatsOrderByColumn>? userStatsOrderByColumnNullableListFromJson(
+  List? userStatsOrderByColumn, [
+  List<enums.UserStatsOrderByColumn>? defaultValue,
 ]) {
-  if (nftDocSubType == null) {
+  if (userStatsOrderByColumn == null) {
     return defaultValue;
   }
 
-  return nftDocSubType.map((e) => nftDocSubTypeFromJson(e.toString())).toList();
+  return userStatsOrderByColumn
+      .map((e) => userStatsOrderByColumnFromJson(e.toString()))
+      .toList();
 }
 
-String? stakingCreatorDocDataTypeNullableToJson(
-    enums.StakingCreatorDocDataType? stakingCreatorDocDataType) {
-  return stakingCreatorDocDataType?.value;
+String? transactionStatusNullableToJson(
+    enums.TransactionStatus? transactionStatus) {
+  return transactionStatus?.value;
 }
 
-String? stakingCreatorDocDataTypeToJson(
-    enums.StakingCreatorDocDataType stakingCreatorDocDataType) {
-  return stakingCreatorDocDataType.value;
+String? transactionStatusToJson(enums.TransactionStatus transactionStatus) {
+  return transactionStatus.value;
 }
 
-enums.StakingCreatorDocDataType stakingCreatorDocDataTypeFromJson(
-  Object? stakingCreatorDocDataType, [
-  enums.StakingCreatorDocDataType? defaultValue,
+enums.TransactionStatus transactionStatusFromJson(
+  Object? transactionStatus, [
+  enums.TransactionStatus? defaultValue,
 ]) {
-  return enums.StakingCreatorDocDataType.values
-          .firstWhereOrNull((e) => e.value == stakingCreatorDocDataType) ??
+  return enums.TransactionStatus.values
+          .firstWhereOrNull((e) => e.value == transactionStatus) ??
       defaultValue ??
-      enums.StakingCreatorDocDataType.swaggerGeneratedUnknown;
+      enums.TransactionStatus.swaggerGeneratedUnknown;
 }
 
-enums.StakingCreatorDocDataType? stakingCreatorDocDataTypeNullableFromJson(
-  Object? stakingCreatorDocDataType, [
-  enums.StakingCreatorDocDataType? defaultValue,
+enums.TransactionStatus? transactionStatusNullableFromJson(
+  Object? transactionStatus, [
+  enums.TransactionStatus? defaultValue,
 ]) {
-  if (stakingCreatorDocDataType == null) {
+  if (transactionStatus == null) {
     return null;
   }
-  return enums.StakingCreatorDocDataType.values
-          .firstWhereOrNull((e) => e.value == stakingCreatorDocDataType) ??
+  return enums.TransactionStatus.values
+          .firstWhereOrNull((e) => e.value == transactionStatus) ??
       defaultValue;
 }
 
-String stakingCreatorDocDataTypeExplodedListToJson(
-    List<enums.StakingCreatorDocDataType>? stakingCreatorDocDataType) {
-  return stakingCreatorDocDataType?.map((e) => e.value!).join(',') ?? '';
+String transactionStatusExplodedListToJson(
+    List<enums.TransactionStatus>? transactionStatus) {
+  return transactionStatus?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> stakingCreatorDocDataTypeListToJson(
-    List<enums.StakingCreatorDocDataType>? stakingCreatorDocDataType) {
-  if (stakingCreatorDocDataType == null) {
+List<String> transactionStatusListToJson(
+    List<enums.TransactionStatus>? transactionStatus) {
+  if (transactionStatus == null) {
     return [];
   }
 
-  return stakingCreatorDocDataType.map((e) => e.value!).toList();
+  return transactionStatus.map((e) => e.value!).toList();
 }
 
-List<enums.StakingCreatorDocDataType> stakingCreatorDocDataTypeListFromJson(
-  List? stakingCreatorDocDataType, [
-  List<enums.StakingCreatorDocDataType>? defaultValue,
+List<enums.TransactionStatus> transactionStatusListFromJson(
+  List? transactionStatus, [
+  List<enums.TransactionStatus>? defaultValue,
 ]) {
-  if (stakingCreatorDocDataType == null) {
+  if (transactionStatus == null) {
     return defaultValue ?? [];
   }
 
-  return stakingCreatorDocDataType
-      .map((e) => stakingCreatorDocDataTypeFromJson(e.toString()))
+  return transactionStatus
+      .map((e) => transactionStatusFromJson(e.toString()))
       .toList();
 }
 
-List<enums.StakingCreatorDocDataType>?
-    stakingCreatorDocDataTypeNullableListFromJson(
-  List? stakingCreatorDocDataType, [
-  List<enums.StakingCreatorDocDataType>? defaultValue,
+List<enums.TransactionStatus>? transactionStatusNullableListFromJson(
+  List? transactionStatus, [
+  List<enums.TransactionStatus>? defaultValue,
 ]) {
-  if (stakingCreatorDocDataType == null) {
+  if (transactionStatus == null) {
     return defaultValue;
   }
 
-  return stakingCreatorDocDataType
-      .map((e) => stakingCreatorDocDataTypeFromJson(e.toString()))
+  return transactionStatus
+      .map((e) => transactionStatusFromJson(e.toString()))
       .toList();
 }
 
-String? collectionMintProfileDocDataTypeNullableToJson(
-    enums.CollectionMintProfileDocDataType? collectionMintProfileDocDataType) {
-  return collectionMintProfileDocDataType?.value;
+String? marketplaceActivityNullableToJson(
+    enums.MarketplaceActivity? marketplaceActivity) {
+  return marketplaceActivity?.value;
 }
 
-String? collectionMintProfileDocDataTypeToJson(
-    enums.CollectionMintProfileDocDataType collectionMintProfileDocDataType) {
-  return collectionMintProfileDocDataType.value;
+String? marketplaceActivityToJson(
+    enums.MarketplaceActivity marketplaceActivity) {
+  return marketplaceActivity.value;
 }
 
-enums.CollectionMintProfileDocDataType collectionMintProfileDocDataTypeFromJson(
-  Object? collectionMintProfileDocDataType, [
-  enums.CollectionMintProfileDocDataType? defaultValue,
+enums.MarketplaceActivity marketplaceActivityFromJson(
+  Object? marketplaceActivity, [
+  enums.MarketplaceActivity? defaultValue,
 ]) {
-  return enums.CollectionMintProfileDocDataType.values.firstWhereOrNull(
-          (e) => e.value == collectionMintProfileDocDataType) ??
+  return enums.MarketplaceActivity.values
+          .firstWhereOrNull((e) => e.value == marketplaceActivity) ??
       defaultValue ??
-      enums.CollectionMintProfileDocDataType.swaggerGeneratedUnknown;
+      enums.MarketplaceActivity.swaggerGeneratedUnknown;
 }
 
-enums.CollectionMintProfileDocDataType?
-    collectionMintProfileDocDataTypeNullableFromJson(
-  Object? collectionMintProfileDocDataType, [
-  enums.CollectionMintProfileDocDataType? defaultValue,
+enums.MarketplaceActivity? marketplaceActivityNullableFromJson(
+  Object? marketplaceActivity, [
+  enums.MarketplaceActivity? defaultValue,
 ]) {
-  if (collectionMintProfileDocDataType == null) {
+  if (marketplaceActivity == null) {
     return null;
   }
-  return enums.CollectionMintProfileDocDataType.values.firstWhereOrNull(
-          (e) => e.value == collectionMintProfileDocDataType) ??
+  return enums.MarketplaceActivity.values
+          .firstWhereOrNull((e) => e.value == marketplaceActivity) ??
       defaultValue;
 }
 
-String collectionMintProfileDocDataTypeExplodedListToJson(
-    List<enums.CollectionMintProfileDocDataType>?
-        collectionMintProfileDocDataType) {
-  return collectionMintProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
+String marketplaceActivityExplodedListToJson(
+    List<enums.MarketplaceActivity>? marketplaceActivity) {
+  return marketplaceActivity?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> collectionMintProfileDocDataTypeListToJson(
-    List<enums.CollectionMintProfileDocDataType>?
-        collectionMintProfileDocDataType) {
-  if (collectionMintProfileDocDataType == null) {
+List<String> marketplaceActivityListToJson(
+    List<enums.MarketplaceActivity>? marketplaceActivity) {
+  if (marketplaceActivity == null) {
     return [];
   }
 
-  return collectionMintProfileDocDataType.map((e) => e.value!).toList();
+  return marketplaceActivity.map((e) => e.value!).toList();
 }
 
-List<enums.CollectionMintProfileDocDataType>
-    collectionMintProfileDocDataTypeListFromJson(
-  List? collectionMintProfileDocDataType, [
-  List<enums.CollectionMintProfileDocDataType>? defaultValue,
+List<enums.MarketplaceActivity> marketplaceActivityListFromJson(
+  List? marketplaceActivity, [
+  List<enums.MarketplaceActivity>? defaultValue,
 ]) {
-  if (collectionMintProfileDocDataType == null) {
+  if (marketplaceActivity == null) {
     return defaultValue ?? [];
   }
 
-  return collectionMintProfileDocDataType
-      .map((e) => collectionMintProfileDocDataTypeFromJson(e.toString()))
+  return marketplaceActivity
+      .map((e) => marketplaceActivityFromJson(e.toString()))
       .toList();
 }
 
-List<enums.CollectionMintProfileDocDataType>?
-    collectionMintProfileDocDataTypeNullableListFromJson(
-  List? collectionMintProfileDocDataType, [
-  List<enums.CollectionMintProfileDocDataType>? defaultValue,
+List<enums.MarketplaceActivity>? marketplaceActivityNullableListFromJson(
+  List? marketplaceActivity, [
+  List<enums.MarketplaceActivity>? defaultValue,
 ]) {
-  if (collectionMintProfileDocDataType == null) {
+  if (marketplaceActivity == null) {
     return defaultValue;
   }
 
-  return collectionMintProfileDocDataType
-      .map((e) => collectionMintProfileDocDataTypeFromJson(e.toString()))
+  return marketplaceActivity
+      .map((e) => marketplaceActivityFromJson(e.toString()))
       .toList();
 }
 
-String? web2UserWalletTypeNullableToJson(
-    enums.Web2UserWalletType? web2UserWalletType) {
-  return web2UserWalletType?.value;
+String? notificationAssetTypeNullableToJson(
+    enums.NotificationAssetType? notificationAssetType) {
+  return notificationAssetType?.value;
 }
 
-String? web2UserWalletTypeToJson(enums.Web2UserWalletType web2UserWalletType) {
-  return web2UserWalletType.value;
+String? notificationAssetTypeToJson(
+    enums.NotificationAssetType notificationAssetType) {
+  return notificationAssetType.value;
 }
 
-enums.Web2UserWalletType web2UserWalletTypeFromJson(
-  Object? web2UserWalletType, [
-  enums.Web2UserWalletType? defaultValue,
+enums.NotificationAssetType notificationAssetTypeFromJson(
+  Object? notificationAssetType, [
+  enums.NotificationAssetType? defaultValue,
 ]) {
-  return enums.Web2UserWalletType.values
-          .firstWhereOrNull((e) => e.value == web2UserWalletType) ??
+  return enums.NotificationAssetType.values
+          .firstWhereOrNull((e) => e.value == notificationAssetType) ??
       defaultValue ??
-      enums.Web2UserWalletType.swaggerGeneratedUnknown;
+      enums.NotificationAssetType.swaggerGeneratedUnknown;
 }
 
-enums.Web2UserWalletType? web2UserWalletTypeNullableFromJson(
-  Object? web2UserWalletType, [
-  enums.Web2UserWalletType? defaultValue,
+enums.NotificationAssetType? notificationAssetTypeNullableFromJson(
+  Object? notificationAssetType, [
+  enums.NotificationAssetType? defaultValue,
 ]) {
-  if (web2UserWalletType == null) {
+  if (notificationAssetType == null) {
     return null;
   }
-  return enums.Web2UserWalletType.values
-          .firstWhereOrNull((e) => e.value == web2UserWalletType) ??
+  return enums.NotificationAssetType.values
+          .firstWhereOrNull((e) => e.value == notificationAssetType) ??
       defaultValue;
 }
 
-String web2UserWalletTypeExplodedListToJson(
-    List<enums.Web2UserWalletType>? web2UserWalletType) {
-  return web2UserWalletType?.map((e) => e.value!).join(',') ?? '';
+String notificationAssetTypeExplodedListToJson(
+    List<enums.NotificationAssetType>? notificationAssetType) {
+  return notificationAssetType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> web2UserWalletTypeListToJson(
-    List<enums.Web2UserWalletType>? web2UserWalletType) {
-  if (web2UserWalletType == null) {
+List<String> notificationAssetTypeListToJson(
+    List<enums.NotificationAssetType>? notificationAssetType) {
+  if (notificationAssetType == null) {
     return [];
   }
 
-  return web2UserWalletType.map((e) => e.value!).toList();
+  return notificationAssetType.map((e) => e.value!).toList();
 }
 
-List<enums.Web2UserWalletType> web2UserWalletTypeListFromJson(
-  List? web2UserWalletType, [
-  List<enums.Web2UserWalletType>? defaultValue,
+List<enums.NotificationAssetType> notificationAssetTypeListFromJson(
+  List? notificationAssetType, [
+  List<enums.NotificationAssetType>? defaultValue,
 ]) {
-  if (web2UserWalletType == null) {
+  if (notificationAssetType == null) {
     return defaultValue ?? [];
   }
 
-  return web2UserWalletType
-      .map((e) => web2UserWalletTypeFromJson(e.toString()))
+  return notificationAssetType
+      .map((e) => notificationAssetTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.Web2UserWalletType>? web2UserWalletTypeNullableListFromJson(
-  List? web2UserWalletType, [
-  List<enums.Web2UserWalletType>? defaultValue,
+List<enums.NotificationAssetType>? notificationAssetTypeNullableListFromJson(
+  List? notificationAssetType, [
+  List<enums.NotificationAssetType>? defaultValue,
 ]) {
-  if (web2UserWalletType == null) {
+  if (notificationAssetType == null) {
     return defaultValue;
   }
 
-  return web2UserWalletType
-      .map((e) => web2UserWalletTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? web2UserWalletWalletClientTypeNullableToJson(
-    enums.Web2UserWalletWalletClientType? web2UserWalletWalletClientType) {
-  return web2UserWalletWalletClientType?.value;
-}
-
-String? web2UserWalletWalletClientTypeToJson(
-    enums.Web2UserWalletWalletClientType web2UserWalletWalletClientType) {
-  return web2UserWalletWalletClientType.value;
-}
-
-enums.Web2UserWalletWalletClientType web2UserWalletWalletClientTypeFromJson(
-  Object? web2UserWalletWalletClientType, [
-  enums.Web2UserWalletWalletClientType? defaultValue,
-]) {
-  return enums.Web2UserWalletWalletClientType.values
-          .firstWhereOrNull((e) => e.value == web2UserWalletWalletClientType) ??
-      defaultValue ??
-      enums.Web2UserWalletWalletClientType.swaggerGeneratedUnknown;
-}
-
-enums.Web2UserWalletWalletClientType?
-    web2UserWalletWalletClientTypeNullableFromJson(
-  Object? web2UserWalletWalletClientType, [
-  enums.Web2UserWalletWalletClientType? defaultValue,
-]) {
-  if (web2UserWalletWalletClientType == null) {
-    return null;
-  }
-  return enums.Web2UserWalletWalletClientType.values
-          .firstWhereOrNull((e) => e.value == web2UserWalletWalletClientType) ??
-      defaultValue;
-}
-
-String web2UserWalletWalletClientTypeExplodedListToJson(
-    List<enums.Web2UserWalletWalletClientType>?
-        web2UserWalletWalletClientType) {
-  return web2UserWalletWalletClientType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> web2UserWalletWalletClientTypeListToJson(
-    List<enums.Web2UserWalletWalletClientType>?
-        web2UserWalletWalletClientType) {
-  if (web2UserWalletWalletClientType == null) {
-    return [];
-  }
-
-  return web2UserWalletWalletClientType.map((e) => e.value!).toList();
-}
-
-List<enums.Web2UserWalletWalletClientType>
-    web2UserWalletWalletClientTypeListFromJson(
-  List? web2UserWalletWalletClientType, [
-  List<enums.Web2UserWalletWalletClientType>? defaultValue,
-]) {
-  if (web2UserWalletWalletClientType == null) {
-    return defaultValue ?? [];
-  }
-
-  return web2UserWalletWalletClientType
-      .map((e) => web2UserWalletWalletClientTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.Web2UserWalletWalletClientType>?
-    web2UserWalletWalletClientTypeNullableListFromJson(
-  List? web2UserWalletWalletClientType, [
-  List<enums.Web2UserWalletWalletClientType>? defaultValue,
-]) {
-  if (web2UserWalletWalletClientType == null) {
-    return defaultValue;
-  }
-
-  return web2UserWalletWalletClientType
-      .map((e) => web2UserWalletWalletClientTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? web2UserAccountTypeNullableToJson(
-    enums.Web2UserAccountType? web2UserAccountType) {
-  return web2UserAccountType?.value;
-}
-
-String? web2UserAccountTypeToJson(
-    enums.Web2UserAccountType web2UserAccountType) {
-  return web2UserAccountType.value;
-}
-
-enums.Web2UserAccountType web2UserAccountTypeFromJson(
-  Object? web2UserAccountType, [
-  enums.Web2UserAccountType? defaultValue,
-]) {
-  return enums.Web2UserAccountType.values
-          .firstWhereOrNull((e) => e.value == web2UserAccountType) ??
-      defaultValue ??
-      enums.Web2UserAccountType.swaggerGeneratedUnknown;
-}
-
-enums.Web2UserAccountType? web2UserAccountTypeNullableFromJson(
-  Object? web2UserAccountType, [
-  enums.Web2UserAccountType? defaultValue,
-]) {
-  if (web2UserAccountType == null) {
-    return null;
-  }
-  return enums.Web2UserAccountType.values
-          .firstWhereOrNull((e) => e.value == web2UserAccountType) ??
-      defaultValue;
-}
-
-String web2UserAccountTypeExplodedListToJson(
-    List<enums.Web2UserAccountType>? web2UserAccountType) {
-  return web2UserAccountType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> web2UserAccountTypeListToJson(
-    List<enums.Web2UserAccountType>? web2UserAccountType) {
-  if (web2UserAccountType == null) {
-    return [];
-  }
-
-  return web2UserAccountType.map((e) => e.value!).toList();
-}
-
-List<enums.Web2UserAccountType> web2UserAccountTypeListFromJson(
-  List? web2UserAccountType, [
-  List<enums.Web2UserAccountType>? defaultValue,
-]) {
-  if (web2UserAccountType == null) {
-    return defaultValue ?? [];
-  }
-
-  return web2UserAccountType
-      .map((e) => web2UserAccountTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.Web2UserAccountType>? web2UserAccountTypeNullableListFromJson(
-  List? web2UserAccountType, [
-  List<enums.Web2UserAccountType>? defaultValue,
-]) {
-  if (web2UserAccountType == null) {
-    return defaultValue;
-  }
-
-  return web2UserAccountType
-      .map((e) => web2UserAccountTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? web2WalletDtoTypeNullableToJson(
-    enums.Web2WalletDtoType? web2WalletDtoType) {
-  return web2WalletDtoType?.value;
-}
-
-String? web2WalletDtoTypeToJson(enums.Web2WalletDtoType web2WalletDtoType) {
-  return web2WalletDtoType.value;
-}
-
-enums.Web2WalletDtoType web2WalletDtoTypeFromJson(
-  Object? web2WalletDtoType, [
-  enums.Web2WalletDtoType? defaultValue,
-]) {
-  return enums.Web2WalletDtoType.values
-          .firstWhereOrNull((e) => e.value == web2WalletDtoType) ??
-      defaultValue ??
-      enums.Web2WalletDtoType.swaggerGeneratedUnknown;
-}
-
-enums.Web2WalletDtoType? web2WalletDtoTypeNullableFromJson(
-  Object? web2WalletDtoType, [
-  enums.Web2WalletDtoType? defaultValue,
-]) {
-  if (web2WalletDtoType == null) {
-    return null;
-  }
-  return enums.Web2WalletDtoType.values
-          .firstWhereOrNull((e) => e.value == web2WalletDtoType) ??
-      defaultValue;
-}
-
-String web2WalletDtoTypeExplodedListToJson(
-    List<enums.Web2WalletDtoType>? web2WalletDtoType) {
-  return web2WalletDtoType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> web2WalletDtoTypeListToJson(
-    List<enums.Web2WalletDtoType>? web2WalletDtoType) {
-  if (web2WalletDtoType == null) {
-    return [];
-  }
-
-  return web2WalletDtoType.map((e) => e.value!).toList();
-}
-
-List<enums.Web2WalletDtoType> web2WalletDtoTypeListFromJson(
-  List? web2WalletDtoType, [
-  List<enums.Web2WalletDtoType>? defaultValue,
-]) {
-  if (web2WalletDtoType == null) {
-    return defaultValue ?? [];
-  }
-
-  return web2WalletDtoType
-      .map((e) => web2WalletDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.Web2WalletDtoType>? web2WalletDtoTypeNullableListFromJson(
-  List? web2WalletDtoType, [
-  List<enums.Web2WalletDtoType>? defaultValue,
-]) {
-  if (web2WalletDtoType == null) {
-    return defaultValue;
-  }
-
-  return web2WalletDtoType
-      .map((e) => web2WalletDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? web2WalletDtoWalletClientTypeNullableToJson(
-    enums.Web2WalletDtoWalletClientType? web2WalletDtoWalletClientType) {
-  return web2WalletDtoWalletClientType?.value;
-}
-
-String? web2WalletDtoWalletClientTypeToJson(
-    enums.Web2WalletDtoWalletClientType web2WalletDtoWalletClientType) {
-  return web2WalletDtoWalletClientType.value;
-}
-
-enums.Web2WalletDtoWalletClientType web2WalletDtoWalletClientTypeFromJson(
-  Object? web2WalletDtoWalletClientType, [
-  enums.Web2WalletDtoWalletClientType? defaultValue,
-]) {
-  return enums.Web2WalletDtoWalletClientType.values
-          .firstWhereOrNull((e) => e.value == web2WalletDtoWalletClientType) ??
-      defaultValue ??
-      enums.Web2WalletDtoWalletClientType.swaggerGeneratedUnknown;
-}
-
-enums.Web2WalletDtoWalletClientType?
-    web2WalletDtoWalletClientTypeNullableFromJson(
-  Object? web2WalletDtoWalletClientType, [
-  enums.Web2WalletDtoWalletClientType? defaultValue,
-]) {
-  if (web2WalletDtoWalletClientType == null) {
-    return null;
-  }
-  return enums.Web2WalletDtoWalletClientType.values
-          .firstWhereOrNull((e) => e.value == web2WalletDtoWalletClientType) ??
-      defaultValue;
-}
-
-String web2WalletDtoWalletClientTypeExplodedListToJson(
-    List<enums.Web2WalletDtoWalletClientType>? web2WalletDtoWalletClientType) {
-  return web2WalletDtoWalletClientType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> web2WalletDtoWalletClientTypeListToJson(
-    List<enums.Web2WalletDtoWalletClientType>? web2WalletDtoWalletClientType) {
-  if (web2WalletDtoWalletClientType == null) {
-    return [];
-  }
-
-  return web2WalletDtoWalletClientType.map((e) => e.value!).toList();
-}
-
-List<enums.Web2WalletDtoWalletClientType>
-    web2WalletDtoWalletClientTypeListFromJson(
-  List? web2WalletDtoWalletClientType, [
-  List<enums.Web2WalletDtoWalletClientType>? defaultValue,
-]) {
-  if (web2WalletDtoWalletClientType == null) {
-    return defaultValue ?? [];
-  }
-
-  return web2WalletDtoWalletClientType
-      .map((e) => web2WalletDtoWalletClientTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.Web2WalletDtoWalletClientType>?
-    web2WalletDtoWalletClientTypeNullableListFromJson(
-  List? web2WalletDtoWalletClientType, [
-  List<enums.Web2WalletDtoWalletClientType>? defaultValue,
-]) {
-  if (web2WalletDtoWalletClientType == null) {
-    return defaultValue;
-  }
-
-  return web2WalletDtoWalletClientType
-      .map((e) => web2WalletDtoWalletClientTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? transactionProcessStatusStatusNullableToJson(
-    enums.TransactionProcessStatusStatus? transactionProcessStatusStatus) {
-  return transactionProcessStatusStatus?.value;
-}
-
-String? transactionProcessStatusStatusToJson(
-    enums.TransactionProcessStatusStatus transactionProcessStatusStatus) {
-  return transactionProcessStatusStatus.value;
-}
-
-enums.TransactionProcessStatusStatus transactionProcessStatusStatusFromJson(
-  Object? transactionProcessStatusStatus, [
-  enums.TransactionProcessStatusStatus? defaultValue,
-]) {
-  return enums.TransactionProcessStatusStatus.values
-          .firstWhereOrNull((e) => e.value == transactionProcessStatusStatus) ??
-      defaultValue ??
-      enums.TransactionProcessStatusStatus.swaggerGeneratedUnknown;
-}
-
-enums.TransactionProcessStatusStatus?
-    transactionProcessStatusStatusNullableFromJson(
-  Object? transactionProcessStatusStatus, [
-  enums.TransactionProcessStatusStatus? defaultValue,
-]) {
-  if (transactionProcessStatusStatus == null) {
-    return null;
-  }
-  return enums.TransactionProcessStatusStatus.values
-          .firstWhereOrNull((e) => e.value == transactionProcessStatusStatus) ??
-      defaultValue;
-}
-
-String transactionProcessStatusStatusExplodedListToJson(
-    List<enums.TransactionProcessStatusStatus>?
-        transactionProcessStatusStatus) {
-  return transactionProcessStatusStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> transactionProcessStatusStatusListToJson(
-    List<enums.TransactionProcessStatusStatus>?
-        transactionProcessStatusStatus) {
-  if (transactionProcessStatusStatus == null) {
-    return [];
-  }
-
-  return transactionProcessStatusStatus.map((e) => e.value!).toList();
-}
-
-List<enums.TransactionProcessStatusStatus>
-    transactionProcessStatusStatusListFromJson(
-  List? transactionProcessStatusStatus, [
-  List<enums.TransactionProcessStatusStatus>? defaultValue,
-]) {
-  if (transactionProcessStatusStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return transactionProcessStatusStatus
-      .map((e) => transactionProcessStatusStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.TransactionProcessStatusStatus>?
-    transactionProcessStatusStatusNullableListFromJson(
-  List? transactionProcessStatusStatus, [
-  List<enums.TransactionProcessStatusStatus>? defaultValue,
-]) {
-  if (transactionProcessStatusStatus == null) {
-    return defaultValue;
-  }
-
-  return transactionProcessStatusStatus
-      .map((e) => transactionProcessStatusStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? transactionSendResultStatusNullableToJson(
-    enums.TransactionSendResultStatus? transactionSendResultStatus) {
-  return transactionSendResultStatus?.value;
-}
-
-String? transactionSendResultStatusToJson(
-    enums.TransactionSendResultStatus transactionSendResultStatus) {
-  return transactionSendResultStatus.value;
-}
-
-enums.TransactionSendResultStatus transactionSendResultStatusFromJson(
-  Object? transactionSendResultStatus, [
-  enums.TransactionSendResultStatus? defaultValue,
-]) {
-  return enums.TransactionSendResultStatus.values
-          .firstWhereOrNull((e) => e.value == transactionSendResultStatus) ??
-      defaultValue ??
-      enums.TransactionSendResultStatus.swaggerGeneratedUnknown;
-}
-
-enums.TransactionSendResultStatus? transactionSendResultStatusNullableFromJson(
-  Object? transactionSendResultStatus, [
-  enums.TransactionSendResultStatus? defaultValue,
-]) {
-  if (transactionSendResultStatus == null) {
-    return null;
-  }
-  return enums.TransactionSendResultStatus.values
-          .firstWhereOrNull((e) => e.value == transactionSendResultStatus) ??
-      defaultValue;
-}
-
-String transactionSendResultStatusExplodedListToJson(
-    List<enums.TransactionSendResultStatus>? transactionSendResultStatus) {
-  return transactionSendResultStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> transactionSendResultStatusListToJson(
-    List<enums.TransactionSendResultStatus>? transactionSendResultStatus) {
-  if (transactionSendResultStatus == null) {
-    return [];
-  }
-
-  return transactionSendResultStatus.map((e) => e.value!).toList();
-}
-
-List<enums.TransactionSendResultStatus> transactionSendResultStatusListFromJson(
-  List? transactionSendResultStatus, [
-  List<enums.TransactionSendResultStatus>? defaultValue,
-]) {
-  if (transactionSendResultStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return transactionSendResultStatus
-      .map((e) => transactionSendResultStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.TransactionSendResultStatus>?
-    transactionSendResultStatusNullableListFromJson(
-  List? transactionSendResultStatus, [
-  List<enums.TransactionSendResultStatus>? defaultValue,
-]) {
-  if (transactionSendResultStatus == null) {
-    return defaultValue;
-  }
-
-  return transactionSendResultStatus
-      .map((e) => transactionSendResultStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? batchTransactionResponseStatusNullableToJson(
-    enums.BatchTransactionResponseStatus? batchTransactionResponseStatus) {
-  return batchTransactionResponseStatus?.value;
-}
-
-String? batchTransactionResponseStatusToJson(
-    enums.BatchTransactionResponseStatus batchTransactionResponseStatus) {
-  return batchTransactionResponseStatus.value;
-}
-
-enums.BatchTransactionResponseStatus batchTransactionResponseStatusFromJson(
-  Object? batchTransactionResponseStatus, [
-  enums.BatchTransactionResponseStatus? defaultValue,
-]) {
-  return enums.BatchTransactionResponseStatus.values
-          .firstWhereOrNull((e) => e.value == batchTransactionResponseStatus) ??
-      defaultValue ??
-      enums.BatchTransactionResponseStatus.swaggerGeneratedUnknown;
-}
-
-enums.BatchTransactionResponseStatus?
-    batchTransactionResponseStatusNullableFromJson(
-  Object? batchTransactionResponseStatus, [
-  enums.BatchTransactionResponseStatus? defaultValue,
-]) {
-  if (batchTransactionResponseStatus == null) {
-    return null;
-  }
-  return enums.BatchTransactionResponseStatus.values
-          .firstWhereOrNull((e) => e.value == batchTransactionResponseStatus) ??
-      defaultValue;
-}
-
-String batchTransactionResponseStatusExplodedListToJson(
-    List<enums.BatchTransactionResponseStatus>?
-        batchTransactionResponseStatus) {
-  return batchTransactionResponseStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> batchTransactionResponseStatusListToJson(
-    List<enums.BatchTransactionResponseStatus>?
-        batchTransactionResponseStatus) {
-  if (batchTransactionResponseStatus == null) {
-    return [];
-  }
-
-  return batchTransactionResponseStatus.map((e) => e.value!).toList();
-}
-
-List<enums.BatchTransactionResponseStatus>
-    batchTransactionResponseStatusListFromJson(
-  List? batchTransactionResponseStatus, [
-  List<enums.BatchTransactionResponseStatus>? defaultValue,
-]) {
-  if (batchTransactionResponseStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return batchTransactionResponseStatus
-      .map((e) => batchTransactionResponseStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.BatchTransactionResponseStatus>?
-    batchTransactionResponseStatusNullableListFromJson(
-  List? batchTransactionResponseStatus, [
-  List<enums.BatchTransactionResponseStatus>? defaultValue,
-]) {
-  if (batchTransactionResponseStatus == null) {
-    return defaultValue;
-  }
-
-  return batchTransactionResponseStatus
-      .map((e) => batchTransactionResponseStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? notificationAssetDtoTypeNullableToJson(
-    enums.NotificationAssetDtoType? notificationAssetDtoType) {
-  return notificationAssetDtoType?.value;
-}
-
-String? notificationAssetDtoTypeToJson(
-    enums.NotificationAssetDtoType notificationAssetDtoType) {
-  return notificationAssetDtoType.value;
-}
-
-enums.NotificationAssetDtoType notificationAssetDtoTypeFromJson(
-  Object? notificationAssetDtoType, [
-  enums.NotificationAssetDtoType? defaultValue,
-]) {
-  return enums.NotificationAssetDtoType.values
-          .firstWhereOrNull((e) => e.value == notificationAssetDtoType) ??
-      defaultValue ??
-      enums.NotificationAssetDtoType.swaggerGeneratedUnknown;
-}
-
-enums.NotificationAssetDtoType? notificationAssetDtoTypeNullableFromJson(
-  Object? notificationAssetDtoType, [
-  enums.NotificationAssetDtoType? defaultValue,
-]) {
-  if (notificationAssetDtoType == null) {
-    return null;
-  }
-  return enums.NotificationAssetDtoType.values
-          .firstWhereOrNull((e) => e.value == notificationAssetDtoType) ??
-      defaultValue;
-}
-
-String notificationAssetDtoTypeExplodedListToJson(
-    List<enums.NotificationAssetDtoType>? notificationAssetDtoType) {
-  return notificationAssetDtoType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> notificationAssetDtoTypeListToJson(
-    List<enums.NotificationAssetDtoType>? notificationAssetDtoType) {
-  if (notificationAssetDtoType == null) {
-    return [];
-  }
-
-  return notificationAssetDtoType.map((e) => e.value!).toList();
-}
-
-List<enums.NotificationAssetDtoType> notificationAssetDtoTypeListFromJson(
-  List? notificationAssetDtoType, [
-  List<enums.NotificationAssetDtoType>? defaultValue,
-]) {
-  if (notificationAssetDtoType == null) {
-    return defaultValue ?? [];
-  }
-
-  return notificationAssetDtoType
-      .map((e) => notificationAssetDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.NotificationAssetDtoType>?
-    notificationAssetDtoTypeNullableListFromJson(
-  List? notificationAssetDtoType, [
-  List<enums.NotificationAssetDtoType>? defaultValue,
-]) {
-  if (notificationAssetDtoType == null) {
-    return defaultValue;
-  }
-
-  return notificationAssetDtoType
-      .map((e) => notificationAssetDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? notificationDocActivityTypeNullableToJson(
-    enums.NotificationDocActivityType? notificationDocActivityType) {
-  return notificationDocActivityType?.value;
-}
-
-String? notificationDocActivityTypeToJson(
-    enums.NotificationDocActivityType notificationDocActivityType) {
-  return notificationDocActivityType.value;
-}
-
-enums.NotificationDocActivityType notificationDocActivityTypeFromJson(
-  Object? notificationDocActivityType, [
-  enums.NotificationDocActivityType? defaultValue,
-]) {
-  return enums.NotificationDocActivityType.values
-          .firstWhereOrNull((e) => e.value == notificationDocActivityType) ??
-      defaultValue ??
-      enums.NotificationDocActivityType.swaggerGeneratedUnknown;
-}
-
-enums.NotificationDocActivityType? notificationDocActivityTypeNullableFromJson(
-  Object? notificationDocActivityType, [
-  enums.NotificationDocActivityType? defaultValue,
-]) {
-  if (notificationDocActivityType == null) {
-    return null;
-  }
-  return enums.NotificationDocActivityType.values
-          .firstWhereOrNull((e) => e.value == notificationDocActivityType) ??
-      defaultValue;
-}
-
-String notificationDocActivityTypeExplodedListToJson(
-    List<enums.NotificationDocActivityType>? notificationDocActivityType) {
-  return notificationDocActivityType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> notificationDocActivityTypeListToJson(
-    List<enums.NotificationDocActivityType>? notificationDocActivityType) {
-  if (notificationDocActivityType == null) {
-    return [];
-  }
-
-  return notificationDocActivityType.map((e) => e.value!).toList();
-}
-
-List<enums.NotificationDocActivityType> notificationDocActivityTypeListFromJson(
-  List? notificationDocActivityType, [
-  List<enums.NotificationDocActivityType>? defaultValue,
-]) {
-  if (notificationDocActivityType == null) {
-    return defaultValue ?? [];
-  }
-
-  return notificationDocActivityType
-      .map((e) => notificationDocActivityTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.NotificationDocActivityType>?
-    notificationDocActivityTypeNullableListFromJson(
-  List? notificationDocActivityType, [
-  List<enums.NotificationDocActivityType>? defaultValue,
-]) {
-  if (notificationDocActivityType == null) {
-    return defaultValue;
-  }
-
-  return notificationDocActivityType
-      .map((e) => notificationDocActivityTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? registrationDetailsDtoVisibilityNullableToJson(
-    enums.RegistrationDetailsDtoVisibility? registrationDetailsDtoVisibility) {
-  return registrationDetailsDtoVisibility?.value;
-}
-
-String? registrationDetailsDtoVisibilityToJson(
-    enums.RegistrationDetailsDtoVisibility registrationDetailsDtoVisibility) {
-  return registrationDetailsDtoVisibility.value;
-}
-
-enums.RegistrationDetailsDtoVisibility registrationDetailsDtoVisibilityFromJson(
-  Object? registrationDetailsDtoVisibility, [
-  enums.RegistrationDetailsDtoVisibility? defaultValue,
-]) {
-  return enums.RegistrationDetailsDtoVisibility.values.firstWhereOrNull(
-          (e) => e.value == registrationDetailsDtoVisibility) ??
-      defaultValue ??
-      enums.RegistrationDetailsDtoVisibility.swaggerGeneratedUnknown;
-}
-
-enums.RegistrationDetailsDtoVisibility?
-    registrationDetailsDtoVisibilityNullableFromJson(
-  Object? registrationDetailsDtoVisibility, [
-  enums.RegistrationDetailsDtoVisibility? defaultValue,
-]) {
-  if (registrationDetailsDtoVisibility == null) {
-    return null;
-  }
-  return enums.RegistrationDetailsDtoVisibility.values.firstWhereOrNull(
-          (e) => e.value == registrationDetailsDtoVisibility) ??
-      defaultValue;
-}
-
-String registrationDetailsDtoVisibilityExplodedListToJson(
-    List<enums.RegistrationDetailsDtoVisibility>?
-        registrationDetailsDtoVisibility) {
-  return registrationDetailsDtoVisibility?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> registrationDetailsDtoVisibilityListToJson(
-    List<enums.RegistrationDetailsDtoVisibility>?
-        registrationDetailsDtoVisibility) {
-  if (registrationDetailsDtoVisibility == null) {
-    return [];
-  }
-
-  return registrationDetailsDtoVisibility.map((e) => e.value!).toList();
-}
-
-List<enums.RegistrationDetailsDtoVisibility>
-    registrationDetailsDtoVisibilityListFromJson(
-  List? registrationDetailsDtoVisibility, [
-  List<enums.RegistrationDetailsDtoVisibility>? defaultValue,
-]) {
-  if (registrationDetailsDtoVisibility == null) {
-    return defaultValue ?? [];
-  }
-
-  return registrationDetailsDtoVisibility
-      .map((e) => registrationDetailsDtoVisibilityFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.RegistrationDetailsDtoVisibility>?
-    registrationDetailsDtoVisibilityNullableListFromJson(
-  List? registrationDetailsDtoVisibility, [
-  List<enums.RegistrationDetailsDtoVisibility>? defaultValue,
-]) {
-  if (registrationDetailsDtoVisibility == null) {
-    return defaultValue;
-  }
-
-  return registrationDetailsDtoVisibility
-      .map((e) => registrationDetailsDtoVisibilityFromJson(e.toString()))
-      .toList();
-}
-
-String? creatorProfileDocDataTypeNullableToJson(
-    enums.CreatorProfileDocDataType? creatorProfileDocDataType) {
-  return creatorProfileDocDataType?.value;
-}
-
-String? creatorProfileDocDataTypeToJson(
-    enums.CreatorProfileDocDataType creatorProfileDocDataType) {
-  return creatorProfileDocDataType.value;
-}
-
-enums.CreatorProfileDocDataType creatorProfileDocDataTypeFromJson(
-  Object? creatorProfileDocDataType, [
-  enums.CreatorProfileDocDataType? defaultValue,
-]) {
-  return enums.CreatorProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == creatorProfileDocDataType) ??
-      defaultValue ??
-      enums.CreatorProfileDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.CreatorProfileDocDataType? creatorProfileDocDataTypeNullableFromJson(
-  Object? creatorProfileDocDataType, [
-  enums.CreatorProfileDocDataType? defaultValue,
-]) {
-  if (creatorProfileDocDataType == null) {
-    return null;
-  }
-  return enums.CreatorProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == creatorProfileDocDataType) ??
-      defaultValue;
-}
-
-String creatorProfileDocDataTypeExplodedListToJson(
-    List<enums.CreatorProfileDocDataType>? creatorProfileDocDataType) {
-  return creatorProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> creatorProfileDocDataTypeListToJson(
-    List<enums.CreatorProfileDocDataType>? creatorProfileDocDataType) {
-  if (creatorProfileDocDataType == null) {
-    return [];
-  }
-
-  return creatorProfileDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.CreatorProfileDocDataType> creatorProfileDocDataTypeListFromJson(
-  List? creatorProfileDocDataType, [
-  List<enums.CreatorProfileDocDataType>? defaultValue,
-]) {
-  if (creatorProfileDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return creatorProfileDocDataType
-      .map((e) => creatorProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CreatorProfileDocDataType>?
-    creatorProfileDocDataTypeNullableListFromJson(
-  List? creatorProfileDocDataType, [
-  List<enums.CreatorProfileDocDataType>? defaultValue,
-]) {
-  if (creatorProfileDocDataType == null) {
-    return defaultValue;
-  }
-
-  return creatorProfileDocDataType
-      .map((e) => creatorProfileDocDataTypeFromJson(e.toString()))
+  return notificationAssetType
+      .map((e) => notificationAssetTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -34894,733 +33995,73 @@ List<enums.EventGuestStatus>? eventGuestStatusNullableListFromJson(
       .toList();
 }
 
-String? eventGuestDocDataTypeNullableToJson(
-    enums.EventGuestDocDataType? eventGuestDocDataType) {
-  return eventGuestDocDataType?.value;
+String? paymentProviderNullableToJson(enums.PaymentProvider? paymentProvider) {
+  return paymentProvider?.value;
 }
 
-String? eventGuestDocDataTypeToJson(
-    enums.EventGuestDocDataType eventGuestDocDataType) {
-  return eventGuestDocDataType.value;
+String? paymentProviderToJson(enums.PaymentProvider paymentProvider) {
+  return paymentProvider.value;
 }
 
-enums.EventGuestDocDataType eventGuestDocDataTypeFromJson(
-  Object? eventGuestDocDataType, [
-  enums.EventGuestDocDataType? defaultValue,
+enums.PaymentProvider paymentProviderFromJson(
+  Object? paymentProvider, [
+  enums.PaymentProvider? defaultValue,
 ]) {
-  return enums.EventGuestDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
+  return enums.PaymentProvider.values
+          .firstWhereOrNull((e) => e.value == paymentProvider) ??
       defaultValue ??
-      enums.EventGuestDocDataType.swaggerGeneratedUnknown;
+      enums.PaymentProvider.swaggerGeneratedUnknown;
 }
 
-enums.EventGuestDocDataType? eventGuestDocDataTypeNullableFromJson(
-  Object? eventGuestDocDataType, [
-  enums.EventGuestDocDataType? defaultValue,
+enums.PaymentProvider? paymentProviderNullableFromJson(
+  Object? paymentProvider, [
+  enums.PaymentProvider? defaultValue,
 ]) {
-  if (eventGuestDocDataType == null) {
+  if (paymentProvider == null) {
     return null;
   }
-  return enums.EventGuestDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestDocDataType) ??
+  return enums.PaymentProvider.values
+          .firstWhereOrNull((e) => e.value == paymentProvider) ??
       defaultValue;
 }
 
-String eventGuestDocDataTypeExplodedListToJson(
-    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
-  return eventGuestDocDataType?.map((e) => e.value!).join(',') ?? '';
+String paymentProviderExplodedListToJson(
+    List<enums.PaymentProvider>? paymentProvider) {
+  return paymentProvider?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventGuestDocDataTypeListToJson(
-    List<enums.EventGuestDocDataType>? eventGuestDocDataType) {
-  if (eventGuestDocDataType == null) {
+List<String> paymentProviderListToJson(
+    List<enums.PaymentProvider>? paymentProvider) {
+  if (paymentProvider == null) {
     return [];
   }
 
-  return eventGuestDocDataType.map((e) => e.value!).toList();
+  return paymentProvider.map((e) => e.value!).toList();
 }
 
-List<enums.EventGuestDocDataType> eventGuestDocDataTypeListFromJson(
-  List? eventGuestDocDataType, [
-  List<enums.EventGuestDocDataType>? defaultValue,
+List<enums.PaymentProvider> paymentProviderListFromJson(
+  List? paymentProvider, [
+  List<enums.PaymentProvider>? defaultValue,
 ]) {
-  if (eventGuestDocDataType == null) {
+  if (paymentProvider == null) {
     return defaultValue ?? [];
   }
 
-  return eventGuestDocDataType
-      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
+  return paymentProvider
+      .map((e) => paymentProviderFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventGuestDocDataType>? eventGuestDocDataTypeNullableListFromJson(
-  List? eventGuestDocDataType, [
-  List<enums.EventGuestDocDataType>? defaultValue,
+List<enums.PaymentProvider>? paymentProviderNullableListFromJson(
+  List? paymentProvider, [
+  List<enums.PaymentProvider>? defaultValue,
 ]) {
-  if (eventGuestDocDataType == null) {
+  if (paymentProvider == null) {
     return defaultValue;
   }
 
-  return eventGuestDocDataType
-      .map((e) => eventGuestDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventProfileDataTypeNullableToJson(
-    enums.EventProfileDataType? eventProfileDataType) {
-  return eventProfileDataType?.value;
-}
-
-String? eventProfileDataTypeToJson(
-    enums.EventProfileDataType eventProfileDataType) {
-  return eventProfileDataType.value;
-}
-
-enums.EventProfileDataType eventProfileDataTypeFromJson(
-  Object? eventProfileDataType, [
-  enums.EventProfileDataType? defaultValue,
-]) {
-  return enums.EventProfileDataType.values
-          .firstWhereOrNull((e) => e.value == eventProfileDataType) ??
-      defaultValue ??
-      enums.EventProfileDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventProfileDataType? eventProfileDataTypeNullableFromJson(
-  Object? eventProfileDataType, [
-  enums.EventProfileDataType? defaultValue,
-]) {
-  if (eventProfileDataType == null) {
-    return null;
-  }
-  return enums.EventProfileDataType.values
-          .firstWhereOrNull((e) => e.value == eventProfileDataType) ??
-      defaultValue;
-}
-
-String eventProfileDataTypeExplodedListToJson(
-    List<enums.EventProfileDataType>? eventProfileDataType) {
-  return eventProfileDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventProfileDataTypeListToJson(
-    List<enums.EventProfileDataType>? eventProfileDataType) {
-  if (eventProfileDataType == null) {
-    return [];
-  }
-
-  return eventProfileDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventProfileDataType> eventProfileDataTypeListFromJson(
-  List? eventProfileDataType, [
-  List<enums.EventProfileDataType>? defaultValue,
-]) {
-  if (eventProfileDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventProfileDataType
-      .map((e) => eventProfileDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventProfileDataType>? eventProfileDataTypeNullableListFromJson(
-  List? eventProfileDataType, [
-  List<enums.EventProfileDataType>? defaultValue,
-]) {
-  if (eventProfileDataType == null) {
-    return defaultValue;
-  }
-
-  return eventProfileDataType
-      .map((e) => eventProfileDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventProfileCategoryNullableToJson(
-    enums.EventProfileCategory? eventProfileCategory) {
-  return eventProfileCategory?.value;
-}
-
-String? eventProfileCategoryToJson(
-    enums.EventProfileCategory eventProfileCategory) {
-  return eventProfileCategory.value;
-}
-
-enums.EventProfileCategory eventProfileCategoryFromJson(
-  Object? eventProfileCategory, [
-  enums.EventProfileCategory? defaultValue,
-]) {
-  return enums.EventProfileCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileCategory) ??
-      defaultValue ??
-      enums.EventProfileCategory.swaggerGeneratedUnknown;
-}
-
-enums.EventProfileCategory? eventProfileCategoryNullableFromJson(
-  Object? eventProfileCategory, [
-  enums.EventProfileCategory? defaultValue,
-]) {
-  if (eventProfileCategory == null) {
-    return null;
-  }
-  return enums.EventProfileCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileCategory) ??
-      defaultValue;
-}
-
-String eventProfileCategoryExplodedListToJson(
-    List<enums.EventProfileCategory>? eventProfileCategory) {
-  return eventProfileCategory?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventProfileCategoryListToJson(
-    List<enums.EventProfileCategory>? eventProfileCategory) {
-  if (eventProfileCategory == null) {
-    return [];
-  }
-
-  return eventProfileCategory.map((e) => e.value!).toList();
-}
-
-List<enums.EventProfileCategory> eventProfileCategoryListFromJson(
-  List? eventProfileCategory, [
-  List<enums.EventProfileCategory>? defaultValue,
-]) {
-  if (eventProfileCategory == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventProfileCategory
-      .map((e) => eventProfileCategoryFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventProfileCategory>? eventProfileCategoryNullableListFromJson(
-  List? eventProfileCategory, [
-  List<enums.EventProfileCategory>? defaultValue,
-]) {
-  if (eventProfileCategory == null) {
-    return defaultValue;
-  }
-
-  return eventProfileCategory
-      .map((e) => eventProfileCategoryFromJson(e.toString()))
-      .toList();
-}
-
-String? eventProfileSubCategoryNullableToJson(
-    enums.EventProfileSubCategory? eventProfileSubCategory) {
-  return eventProfileSubCategory?.value;
-}
-
-String? eventProfileSubCategoryToJson(
-    enums.EventProfileSubCategory eventProfileSubCategory) {
-  return eventProfileSubCategory.value;
-}
-
-enums.EventProfileSubCategory eventProfileSubCategoryFromJson(
-  Object? eventProfileSubCategory, [
-  enums.EventProfileSubCategory? defaultValue,
-]) {
-  return enums.EventProfileSubCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileSubCategory) ??
-      defaultValue ??
-      enums.EventProfileSubCategory.swaggerGeneratedUnknown;
-}
-
-enums.EventProfileSubCategory? eventProfileSubCategoryNullableFromJson(
-  Object? eventProfileSubCategory, [
-  enums.EventProfileSubCategory? defaultValue,
-]) {
-  if (eventProfileSubCategory == null) {
-    return null;
-  }
-  return enums.EventProfileSubCategory.values
-          .firstWhereOrNull((e) => e.value == eventProfileSubCategory) ??
-      defaultValue;
-}
-
-String eventProfileSubCategoryExplodedListToJson(
-    List<enums.EventProfileSubCategory>? eventProfileSubCategory) {
-  return eventProfileSubCategory?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventProfileSubCategoryListToJson(
-    List<enums.EventProfileSubCategory>? eventProfileSubCategory) {
-  if (eventProfileSubCategory == null) {
-    return [];
-  }
-
-  return eventProfileSubCategory.map((e) => e.value!).toList();
-}
-
-List<enums.EventProfileSubCategory> eventProfileSubCategoryListFromJson(
-  List? eventProfileSubCategory, [
-  List<enums.EventProfileSubCategory>? defaultValue,
-]) {
-  if (eventProfileSubCategory == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventProfileSubCategory
-      .map((e) => eventProfileSubCategoryFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventProfileSubCategory>?
-    eventProfileSubCategoryNullableListFromJson(
-  List? eventProfileSubCategory, [
-  List<enums.EventProfileSubCategory>? defaultValue,
-]) {
-  if (eventProfileSubCategory == null) {
-    return defaultValue;
-  }
-
-  return eventProfileSubCategory
-      .map((e) => eventProfileSubCategoryFromJson(e.toString()))
-      .toList();
-}
-
-String? fiatPaymentFormTypeNullableToJson(
-    enums.FiatPaymentFormType? fiatPaymentFormType) {
-  return fiatPaymentFormType?.value;
-}
-
-String? fiatPaymentFormTypeToJson(
-    enums.FiatPaymentFormType fiatPaymentFormType) {
-  return fiatPaymentFormType.value;
-}
-
-enums.FiatPaymentFormType fiatPaymentFormTypeFromJson(
-  Object? fiatPaymentFormType, [
-  enums.FiatPaymentFormType? defaultValue,
-]) {
-  return enums.FiatPaymentFormType.values
-          .firstWhereOrNull((e) => e.value == fiatPaymentFormType) ??
-      defaultValue ??
-      enums.FiatPaymentFormType.swaggerGeneratedUnknown;
-}
-
-enums.FiatPaymentFormType? fiatPaymentFormTypeNullableFromJson(
-  Object? fiatPaymentFormType, [
-  enums.FiatPaymentFormType? defaultValue,
-]) {
-  if (fiatPaymentFormType == null) {
-    return null;
-  }
-  return enums.FiatPaymentFormType.values
-          .firstWhereOrNull((e) => e.value == fiatPaymentFormType) ??
-      defaultValue;
-}
-
-String fiatPaymentFormTypeExplodedListToJson(
-    List<enums.FiatPaymentFormType>? fiatPaymentFormType) {
-  return fiatPaymentFormType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> fiatPaymentFormTypeListToJson(
-    List<enums.FiatPaymentFormType>? fiatPaymentFormType) {
-  if (fiatPaymentFormType == null) {
-    return [];
-  }
-
-  return fiatPaymentFormType.map((e) => e.value!).toList();
-}
-
-List<enums.FiatPaymentFormType> fiatPaymentFormTypeListFromJson(
-  List? fiatPaymentFormType, [
-  List<enums.FiatPaymentFormType>? defaultValue,
-]) {
-  if (fiatPaymentFormType == null) {
-    return defaultValue ?? [];
-  }
-
-  return fiatPaymentFormType
-      .map((e) => fiatPaymentFormTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.FiatPaymentFormType>? fiatPaymentFormTypeNullableListFromJson(
-  List? fiatPaymentFormType, [
-  List<enums.FiatPaymentFormType>? defaultValue,
-]) {
-  if (fiatPaymentFormType == null) {
-    return defaultValue;
-  }
-
-  return fiatPaymentFormType
-      .map((e) => fiatPaymentFormTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventTicketProfileDocDataTypeNullableToJson(
-    enums.EventTicketProfileDocDataType? eventTicketProfileDocDataType) {
-  return eventTicketProfileDocDataType?.value;
-}
-
-String? eventTicketProfileDocDataTypeToJson(
-    enums.EventTicketProfileDocDataType eventTicketProfileDocDataType) {
-  return eventTicketProfileDocDataType.value;
-}
-
-enums.EventTicketProfileDocDataType eventTicketProfileDocDataTypeFromJson(
-  Object? eventTicketProfileDocDataType, [
-  enums.EventTicketProfileDocDataType? defaultValue,
-]) {
-  return enums.EventTicketProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventTicketProfileDocDataType) ??
-      defaultValue ??
-      enums.EventTicketProfileDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventTicketProfileDocDataType?
-    eventTicketProfileDocDataTypeNullableFromJson(
-  Object? eventTicketProfileDocDataType, [
-  enums.EventTicketProfileDocDataType? defaultValue,
-]) {
-  if (eventTicketProfileDocDataType == null) {
-    return null;
-  }
-  return enums.EventTicketProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventTicketProfileDocDataType) ??
-      defaultValue;
-}
-
-String eventTicketProfileDocDataTypeExplodedListToJson(
-    List<enums.EventTicketProfileDocDataType>? eventTicketProfileDocDataType) {
-  return eventTicketProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventTicketProfileDocDataTypeListToJson(
-    List<enums.EventTicketProfileDocDataType>? eventTicketProfileDocDataType) {
-  if (eventTicketProfileDocDataType == null) {
-    return [];
-  }
-
-  return eventTicketProfileDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventTicketProfileDocDataType>
-    eventTicketProfileDocDataTypeListFromJson(
-  List? eventTicketProfileDocDataType, [
-  List<enums.EventTicketProfileDocDataType>? defaultValue,
-]) {
-  if (eventTicketProfileDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventTicketProfileDocDataType
-      .map((e) => eventTicketProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventTicketProfileDocDataType>?
-    eventTicketProfileDocDataTypeNullableListFromJson(
-  List? eventTicketProfileDocDataType, [
-  List<enums.EventTicketProfileDocDataType>? defaultValue,
-]) {
-  if (eventTicketProfileDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventTicketProfileDocDataType
-      .map((e) => eventTicketProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventStageProfileDocDataTypeNullableToJson(
-    enums.EventStageProfileDocDataType? eventStageProfileDocDataType) {
-  return eventStageProfileDocDataType?.value;
-}
-
-String? eventStageProfileDocDataTypeToJson(
-    enums.EventStageProfileDocDataType eventStageProfileDocDataType) {
-  return eventStageProfileDocDataType.value;
-}
-
-enums.EventStageProfileDocDataType eventStageProfileDocDataTypeFromJson(
-  Object? eventStageProfileDocDataType, [
-  enums.EventStageProfileDocDataType? defaultValue,
-]) {
-  return enums.EventStageProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventStageProfileDocDataType) ??
-      defaultValue ??
-      enums.EventStageProfileDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventStageProfileDocDataType?
-    eventStageProfileDocDataTypeNullableFromJson(
-  Object? eventStageProfileDocDataType, [
-  enums.EventStageProfileDocDataType? defaultValue,
-]) {
-  if (eventStageProfileDocDataType == null) {
-    return null;
-  }
-  return enums.EventStageProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventStageProfileDocDataType) ??
-      defaultValue;
-}
-
-String eventStageProfileDocDataTypeExplodedListToJson(
-    List<enums.EventStageProfileDocDataType>? eventStageProfileDocDataType) {
-  return eventStageProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventStageProfileDocDataTypeListToJson(
-    List<enums.EventStageProfileDocDataType>? eventStageProfileDocDataType) {
-  if (eventStageProfileDocDataType == null) {
-    return [];
-  }
-
-  return eventStageProfileDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventStageProfileDocDataType>
-    eventStageProfileDocDataTypeListFromJson(
-  List? eventStageProfileDocDataType, [
-  List<enums.EventStageProfileDocDataType>? defaultValue,
-]) {
-  if (eventStageProfileDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventStageProfileDocDataType
-      .map((e) => eventStageProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventStageProfileDocDataType>?
-    eventStageProfileDocDataTypeNullableListFromJson(
-  List? eventStageProfileDocDataType, [
-  List<enums.EventStageProfileDocDataType>? defaultValue,
-]) {
-  if (eventStageProfileDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventStageProfileDocDataType
-      .map((e) => eventStageProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventInvitationDocDataTypeNullableToJson(
-    enums.EventInvitationDocDataType? eventInvitationDocDataType) {
-  return eventInvitationDocDataType?.value;
-}
-
-String? eventInvitationDocDataTypeToJson(
-    enums.EventInvitationDocDataType eventInvitationDocDataType) {
-  return eventInvitationDocDataType.value;
-}
-
-enums.EventInvitationDocDataType eventInvitationDocDataTypeFromJson(
-  Object? eventInvitationDocDataType, [
-  enums.EventInvitationDocDataType? defaultValue,
-]) {
-  return enums.EventInvitationDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDocDataType) ??
-      defaultValue ??
-      enums.EventInvitationDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventInvitationDocDataType? eventInvitationDocDataTypeNullableFromJson(
-  Object? eventInvitationDocDataType, [
-  enums.EventInvitationDocDataType? defaultValue,
-]) {
-  if (eventInvitationDocDataType == null) {
-    return null;
-  }
-  return enums.EventInvitationDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDocDataType) ??
-      defaultValue;
-}
-
-String eventInvitationDocDataTypeExplodedListToJson(
-    List<enums.EventInvitationDocDataType>? eventInvitationDocDataType) {
-  return eventInvitationDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventInvitationDocDataTypeListToJson(
-    List<enums.EventInvitationDocDataType>? eventInvitationDocDataType) {
-  if (eventInvitationDocDataType == null) {
-    return [];
-  }
-
-  return eventInvitationDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventInvitationDocDataType> eventInvitationDocDataTypeListFromJson(
-  List? eventInvitationDocDataType, [
-  List<enums.EventInvitationDocDataType>? defaultValue,
-]) {
-  if (eventInvitationDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventInvitationDocDataType
-      .map((e) => eventInvitationDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventInvitationDocDataType>?
-    eventInvitationDocDataTypeNullableListFromJson(
-  List? eventInvitationDocDataType, [
-  List<enums.EventInvitationDocDataType>? defaultValue,
-]) {
-  if (eventInvitationDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventInvitationDocDataType
-      .map((e) => eventInvitationDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventInvitationDocStatusNullableToJson(
-    enums.EventInvitationDocStatus? eventInvitationDocStatus) {
-  return eventInvitationDocStatus?.value;
-}
-
-String? eventInvitationDocStatusToJson(
-    enums.EventInvitationDocStatus eventInvitationDocStatus) {
-  return eventInvitationDocStatus.value;
-}
-
-enums.EventInvitationDocStatus eventInvitationDocStatusFromJson(
-  Object? eventInvitationDocStatus, [
-  enums.EventInvitationDocStatus? defaultValue,
-]) {
-  return enums.EventInvitationDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDocStatus) ??
-      defaultValue ??
-      enums.EventInvitationDocStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventInvitationDocStatus? eventInvitationDocStatusNullableFromJson(
-  Object? eventInvitationDocStatus, [
-  enums.EventInvitationDocStatus? defaultValue,
-]) {
-  if (eventInvitationDocStatus == null) {
-    return null;
-  }
-  return enums.EventInvitationDocStatus.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDocStatus) ??
-      defaultValue;
-}
-
-String eventInvitationDocStatusExplodedListToJson(
-    List<enums.EventInvitationDocStatus>? eventInvitationDocStatus) {
-  return eventInvitationDocStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventInvitationDocStatusListToJson(
-    List<enums.EventInvitationDocStatus>? eventInvitationDocStatus) {
-  if (eventInvitationDocStatus == null) {
-    return [];
-  }
-
-  return eventInvitationDocStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventInvitationDocStatus> eventInvitationDocStatusListFromJson(
-  List? eventInvitationDocStatus, [
-  List<enums.EventInvitationDocStatus>? defaultValue,
-]) {
-  if (eventInvitationDocStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventInvitationDocStatus
-      .map((e) => eventInvitationDocStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventInvitationDocStatus>?
-    eventInvitationDocStatusNullableListFromJson(
-  List? eventInvitationDocStatus, [
-  List<enums.EventInvitationDocStatus>? defaultValue,
-]) {
-  if (eventInvitationDocStatus == null) {
-    return defaultValue;
-  }
-
-  return eventInvitationDocStatus
-      .map((e) => eventInvitationDocStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? eventInvitationDataTypeNullableToJson(
-    enums.EventInvitationDataType? eventInvitationDataType) {
-  return eventInvitationDataType?.value;
-}
-
-String? eventInvitationDataTypeToJson(
-    enums.EventInvitationDataType eventInvitationDataType) {
-  return eventInvitationDataType.value;
-}
-
-enums.EventInvitationDataType eventInvitationDataTypeFromJson(
-  Object? eventInvitationDataType, [
-  enums.EventInvitationDataType? defaultValue,
-]) {
-  return enums.EventInvitationDataType.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDataType) ??
-      defaultValue ??
-      enums.EventInvitationDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventInvitationDataType? eventInvitationDataTypeNullableFromJson(
-  Object? eventInvitationDataType, [
-  enums.EventInvitationDataType? defaultValue,
-]) {
-  if (eventInvitationDataType == null) {
-    return null;
-  }
-  return enums.EventInvitationDataType.values
-          .firstWhereOrNull((e) => e.value == eventInvitationDataType) ??
-      defaultValue;
-}
-
-String eventInvitationDataTypeExplodedListToJson(
-    List<enums.EventInvitationDataType>? eventInvitationDataType) {
-  return eventInvitationDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventInvitationDataTypeListToJson(
-    List<enums.EventInvitationDataType>? eventInvitationDataType) {
-  if (eventInvitationDataType == null) {
-    return [];
-  }
-
-  return eventInvitationDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventInvitationDataType> eventInvitationDataTypeListFromJson(
-  List? eventInvitationDataType, [
-  List<enums.EventInvitationDataType>? defaultValue,
-]) {
-  if (eventInvitationDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventInvitationDataType
-      .map((e) => eventInvitationDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventInvitationDataType>?
-    eventInvitationDataTypeNullableListFromJson(
-  List? eventInvitationDataType, [
-  List<enums.EventInvitationDataType>? defaultValue,
-]) {
-  if (eventInvitationDataType == null) {
-    return defaultValue;
-  }
-
-  return eventInvitationDataType
-      .map((e) => eventInvitationDataTypeFromJson(e.toString()))
+  return paymentProvider
+      .map((e) => paymentProviderFromJson(e.toString()))
       .toList();
 }
 
@@ -35696,1250 +34137,424 @@ List<enums.EventInvitationStatus>? eventInvitationStatusNullableListFromJson(
       .toList();
 }
 
-String? eventVoucherDocDataTypeNullableToJson(
-    enums.EventVoucherDocDataType? eventVoucherDocDataType) {
-  return eventVoucherDocDataType?.value;
+String? voucherTypeNullableToJson(enums.VoucherType? voucherType) {
+  return voucherType?.value;
 }
 
-String? eventVoucherDocDataTypeToJson(
-    enums.EventVoucherDocDataType eventVoucherDocDataType) {
-  return eventVoucherDocDataType.value;
+String? voucherTypeToJson(enums.VoucherType voucherType) {
+  return voucherType.value;
 }
 
-enums.EventVoucherDocDataType eventVoucherDocDataTypeFromJson(
-  Object? eventVoucherDocDataType, [
-  enums.EventVoucherDocDataType? defaultValue,
+enums.VoucherType voucherTypeFromJson(
+  Object? voucherType, [
+  enums.VoucherType? defaultValue,
 ]) {
-  return enums.EventVoucherDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherDocDataType) ??
+  return enums.VoucherType.values
+          .firstWhereOrNull((e) => e.value == voucherType) ??
       defaultValue ??
-      enums.EventVoucherDocDataType.swaggerGeneratedUnknown;
+      enums.VoucherType.swaggerGeneratedUnknown;
 }
 
-enums.EventVoucherDocDataType? eventVoucherDocDataTypeNullableFromJson(
-  Object? eventVoucherDocDataType, [
-  enums.EventVoucherDocDataType? defaultValue,
+enums.VoucherType? voucherTypeNullableFromJson(
+  Object? voucherType, [
+  enums.VoucherType? defaultValue,
 ]) {
-  if (eventVoucherDocDataType == null) {
+  if (voucherType == null) {
     return null;
   }
-  return enums.EventVoucherDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherDocDataType) ??
+  return enums.VoucherType.values
+          .firstWhereOrNull((e) => e.value == voucherType) ??
       defaultValue;
 }
 
-String eventVoucherDocDataTypeExplodedListToJson(
-    List<enums.EventVoucherDocDataType>? eventVoucherDocDataType) {
-  return eventVoucherDocDataType?.map((e) => e.value!).join(',') ?? '';
+String voucherTypeExplodedListToJson(List<enums.VoucherType>? voucherType) {
+  return voucherType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventVoucherDocDataTypeListToJson(
-    List<enums.EventVoucherDocDataType>? eventVoucherDocDataType) {
-  if (eventVoucherDocDataType == null) {
+List<String> voucherTypeListToJson(List<enums.VoucherType>? voucherType) {
+  if (voucherType == null) {
     return [];
   }
 
-  return eventVoucherDocDataType.map((e) => e.value!).toList();
+  return voucherType.map((e) => e.value!).toList();
 }
 
-List<enums.EventVoucherDocDataType> eventVoucherDocDataTypeListFromJson(
-  List? eventVoucherDocDataType, [
-  List<enums.EventVoucherDocDataType>? defaultValue,
+List<enums.VoucherType> voucherTypeListFromJson(
+  List? voucherType, [
+  List<enums.VoucherType>? defaultValue,
 ]) {
-  if (eventVoucherDocDataType == null) {
+  if (voucherType == null) {
     return defaultValue ?? [];
   }
 
-  return eventVoucherDocDataType
-      .map((e) => eventVoucherDocDataTypeFromJson(e.toString()))
-      .toList();
+  return voucherType.map((e) => voucherTypeFromJson(e.toString())).toList();
 }
 
-List<enums.EventVoucherDocDataType>?
-    eventVoucherDocDataTypeNullableListFromJson(
-  List? eventVoucherDocDataType, [
-  List<enums.EventVoucherDocDataType>? defaultValue,
+List<enums.VoucherType>? voucherTypeNullableListFromJson(
+  List? voucherType, [
+  List<enums.VoucherType>? defaultValue,
 ]) {
-  if (eventVoucherDocDataType == null) {
+  if (voucherType == null) {
     return defaultValue;
   }
 
-  return eventVoucherDocDataType
-      .map((e) => eventVoucherDocDataTypeFromJson(e.toString()))
-      .toList();
+  return voucherType.map((e) => voucherTypeFromJson(e.toString())).toList();
 }
 
-String? eventVoucherDocTypeNullableToJson(
-    enums.EventVoucherDocType? eventVoucherDocType) {
-  return eventVoucherDocType?.value;
+String? eventQuestionAnswerTypeNullableToJson(
+    enums.EventQuestionAnswerType? eventQuestionAnswerType) {
+  return eventQuestionAnswerType?.value;
 }
 
-String? eventVoucherDocTypeToJson(
-    enums.EventVoucherDocType eventVoucherDocType) {
-  return eventVoucherDocType.value;
+String? eventQuestionAnswerTypeToJson(
+    enums.EventQuestionAnswerType eventQuestionAnswerType) {
+  return eventQuestionAnswerType.value;
 }
 
-enums.EventVoucherDocType eventVoucherDocTypeFromJson(
-  Object? eventVoucherDocType, [
-  enums.EventVoucherDocType? defaultValue,
+enums.EventQuestionAnswerType eventQuestionAnswerTypeFromJson(
+  Object? eventQuestionAnswerType, [
+  enums.EventQuestionAnswerType? defaultValue,
 ]) {
-  return enums.EventVoucherDocType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherDocType) ??
+  return enums.EventQuestionAnswerType.values
+          .firstWhereOrNull((e) => e.value == eventQuestionAnswerType) ??
       defaultValue ??
-      enums.EventVoucherDocType.swaggerGeneratedUnknown;
+      enums.EventQuestionAnswerType.swaggerGeneratedUnknown;
 }
 
-enums.EventVoucherDocType? eventVoucherDocTypeNullableFromJson(
-  Object? eventVoucherDocType, [
-  enums.EventVoucherDocType? defaultValue,
+enums.EventQuestionAnswerType? eventQuestionAnswerTypeNullableFromJson(
+  Object? eventQuestionAnswerType, [
+  enums.EventQuestionAnswerType? defaultValue,
 ]) {
-  if (eventVoucherDocType == null) {
+  if (eventQuestionAnswerType == null) {
     return null;
   }
-  return enums.EventVoucherDocType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherDocType) ??
+  return enums.EventQuestionAnswerType.values
+          .firstWhereOrNull((e) => e.value == eventQuestionAnswerType) ??
       defaultValue;
 }
 
-String eventVoucherDocTypeExplodedListToJson(
-    List<enums.EventVoucherDocType>? eventVoucherDocType) {
-  return eventVoucherDocType?.map((e) => e.value!).join(',') ?? '';
+String eventQuestionAnswerTypeExplodedListToJson(
+    List<enums.EventQuestionAnswerType>? eventQuestionAnswerType) {
+  return eventQuestionAnswerType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventVoucherDocTypeListToJson(
-    List<enums.EventVoucherDocType>? eventVoucherDocType) {
-  if (eventVoucherDocType == null) {
+List<String> eventQuestionAnswerTypeListToJson(
+    List<enums.EventQuestionAnswerType>? eventQuestionAnswerType) {
+  if (eventQuestionAnswerType == null) {
     return [];
   }
 
-  return eventVoucherDocType.map((e) => e.value!).toList();
+  return eventQuestionAnswerType.map((e) => e.value!).toList();
 }
 
-List<enums.EventVoucherDocType> eventVoucherDocTypeListFromJson(
-  List? eventVoucherDocType, [
-  List<enums.EventVoucherDocType>? defaultValue,
+List<enums.EventQuestionAnswerType> eventQuestionAnswerTypeListFromJson(
+  List? eventQuestionAnswerType, [
+  List<enums.EventQuestionAnswerType>? defaultValue,
 ]) {
-  if (eventVoucherDocType == null) {
+  if (eventQuestionAnswerType == null) {
     return defaultValue ?? [];
   }
 
-  return eventVoucherDocType
-      .map((e) => eventVoucherDocTypeFromJson(e.toString()))
+  return eventQuestionAnswerType
+      .map((e) => eventQuestionAnswerTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventVoucherDocType>? eventVoucherDocTypeNullableListFromJson(
-  List? eventVoucherDocType, [
-  List<enums.EventVoucherDocType>? defaultValue,
+List<enums.EventQuestionAnswerType>?
+    eventQuestionAnswerTypeNullableListFromJson(
+  List? eventQuestionAnswerType, [
+  List<enums.EventQuestionAnswerType>? defaultValue,
 ]) {
-  if (eventVoucherDocType == null) {
+  if (eventQuestionAnswerType == null) {
     return defaultValue;
   }
 
-  return eventVoucherDocType
-      .map((e) => eventVoucherDocTypeFromJson(e.toString()))
+  return eventQuestionAnswerType
+      .map((e) => eventQuestionAnswerTypeFromJson(e.toString()))
       .toList();
 }
 
-String? eventQuestionDocDataTypeNullableToJson(
-    enums.EventQuestionDocDataType? eventQuestionDocDataType) {
-  return eventQuestionDocDataType?.value;
+String? eventTicketQrTypeNullableToJson(
+    enums.EventTicketQrType? eventTicketQrType) {
+  return eventTicketQrType?.value;
 }
 
-String? eventQuestionDocDataTypeToJson(
-    enums.EventQuestionDocDataType eventQuestionDocDataType) {
-  return eventQuestionDocDataType.value;
+String? eventTicketQrTypeToJson(enums.EventTicketQrType eventTicketQrType) {
+  return eventTicketQrType.value;
 }
 
-enums.EventQuestionDocDataType eventQuestionDocDataTypeFromJson(
-  Object? eventQuestionDocDataType, [
-  enums.EventQuestionDocDataType? defaultValue,
+enums.EventTicketQrType eventTicketQrTypeFromJson(
+  Object? eventTicketQrType, [
+  enums.EventTicketQrType? defaultValue,
 ]) {
-  return enums.EventQuestionDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionDocDataType) ??
+  return enums.EventTicketQrType.values
+          .firstWhereOrNull((e) => e.value == eventTicketQrType) ??
       defaultValue ??
-      enums.EventQuestionDocDataType.swaggerGeneratedUnknown;
+      enums.EventTicketQrType.swaggerGeneratedUnknown;
 }
 
-enums.EventQuestionDocDataType? eventQuestionDocDataTypeNullableFromJson(
-  Object? eventQuestionDocDataType, [
-  enums.EventQuestionDocDataType? defaultValue,
+enums.EventTicketQrType? eventTicketQrTypeNullableFromJson(
+  Object? eventTicketQrType, [
+  enums.EventTicketQrType? defaultValue,
 ]) {
-  if (eventQuestionDocDataType == null) {
+  if (eventTicketQrType == null) {
     return null;
   }
-  return enums.EventQuestionDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionDocDataType) ??
+  return enums.EventTicketQrType.values
+          .firstWhereOrNull((e) => e.value == eventTicketQrType) ??
       defaultValue;
 }
 
-String eventQuestionDocDataTypeExplodedListToJson(
-    List<enums.EventQuestionDocDataType>? eventQuestionDocDataType) {
-  return eventQuestionDocDataType?.map((e) => e.value!).join(',') ?? '';
+String eventTicketQrTypeExplodedListToJson(
+    List<enums.EventTicketQrType>? eventTicketQrType) {
+  return eventTicketQrType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventQuestionDocDataTypeListToJson(
-    List<enums.EventQuestionDocDataType>? eventQuestionDocDataType) {
-  if (eventQuestionDocDataType == null) {
+List<String> eventTicketQrTypeListToJson(
+    List<enums.EventTicketQrType>? eventTicketQrType) {
+  if (eventTicketQrType == null) {
     return [];
   }
 
-  return eventQuestionDocDataType.map((e) => e.value!).toList();
+  return eventTicketQrType.map((e) => e.value!).toList();
 }
 
-List<enums.EventQuestionDocDataType> eventQuestionDocDataTypeListFromJson(
-  List? eventQuestionDocDataType, [
-  List<enums.EventQuestionDocDataType>? defaultValue,
+List<enums.EventTicketQrType> eventTicketQrTypeListFromJson(
+  List? eventTicketQrType, [
+  List<enums.EventTicketQrType>? defaultValue,
 ]) {
-  if (eventQuestionDocDataType == null) {
+  if (eventTicketQrType == null) {
     return defaultValue ?? [];
   }
 
-  return eventQuestionDocDataType
-      .map((e) => eventQuestionDocDataTypeFromJson(e.toString()))
+  return eventTicketQrType
+      .map((e) => eventTicketQrTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventQuestionDocDataType>?
-    eventQuestionDocDataTypeNullableListFromJson(
-  List? eventQuestionDocDataType, [
-  List<enums.EventQuestionDocDataType>? defaultValue,
+List<enums.EventTicketQrType>? eventTicketQrTypeNullableListFromJson(
+  List? eventTicketQrType, [
+  List<enums.EventTicketQrType>? defaultValue,
 ]) {
-  if (eventQuestionDocDataType == null) {
+  if (eventTicketQrType == null) {
     return defaultValue;
   }
 
-  return eventQuestionDocDataType
-      .map((e) => eventQuestionDocDataTypeFromJson(e.toString()))
+  return eventTicketQrType
+      .map((e) => eventTicketQrTypeFromJson(e.toString()))
       .toList();
 }
 
-String? eventQuestionDocAnswerTypeNullableToJson(
-    enums.EventQuestionDocAnswerType? eventQuestionDocAnswerType) {
-  return eventQuestionDocAnswerType?.value;
+String? eventScanStatusNullableToJson(enums.EventScanStatus? eventScanStatus) {
+  return eventScanStatus?.value;
 }
 
-String? eventQuestionDocAnswerTypeToJson(
-    enums.EventQuestionDocAnswerType eventQuestionDocAnswerType) {
-  return eventQuestionDocAnswerType.value;
+String? eventScanStatusToJson(enums.EventScanStatus eventScanStatus) {
+  return eventScanStatus.value;
 }
 
-enums.EventQuestionDocAnswerType eventQuestionDocAnswerTypeFromJson(
-  Object? eventQuestionDocAnswerType, [
-  enums.EventQuestionDocAnswerType? defaultValue,
+enums.EventScanStatus eventScanStatusFromJson(
+  Object? eventScanStatus, [
+  enums.EventScanStatus? defaultValue,
 ]) {
-  return enums.EventQuestionDocAnswerType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionDocAnswerType) ??
+  return enums.EventScanStatus.values
+          .firstWhereOrNull((e) => e.value == eventScanStatus) ??
       defaultValue ??
-      enums.EventQuestionDocAnswerType.swaggerGeneratedUnknown;
+      enums.EventScanStatus.swaggerGeneratedUnknown;
 }
 
-enums.EventQuestionDocAnswerType? eventQuestionDocAnswerTypeNullableFromJson(
-  Object? eventQuestionDocAnswerType, [
-  enums.EventQuestionDocAnswerType? defaultValue,
+enums.EventScanStatus? eventScanStatusNullableFromJson(
+  Object? eventScanStatus, [
+  enums.EventScanStatus? defaultValue,
 ]) {
-  if (eventQuestionDocAnswerType == null) {
+  if (eventScanStatus == null) {
     return null;
   }
-  return enums.EventQuestionDocAnswerType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionDocAnswerType) ??
+  return enums.EventScanStatus.values
+          .firstWhereOrNull((e) => e.value == eventScanStatus) ??
       defaultValue;
 }
 
-String eventQuestionDocAnswerTypeExplodedListToJson(
-    List<enums.EventQuestionDocAnswerType>? eventQuestionDocAnswerType) {
-  return eventQuestionDocAnswerType?.map((e) => e.value!).join(',') ?? '';
+String eventScanStatusExplodedListToJson(
+    List<enums.EventScanStatus>? eventScanStatus) {
+  return eventScanStatus?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventQuestionDocAnswerTypeListToJson(
-    List<enums.EventQuestionDocAnswerType>? eventQuestionDocAnswerType) {
-  if (eventQuestionDocAnswerType == null) {
+List<String> eventScanStatusListToJson(
+    List<enums.EventScanStatus>? eventScanStatus) {
+  if (eventScanStatus == null) {
     return [];
   }
 
-  return eventQuestionDocAnswerType.map((e) => e.value!).toList();
+  return eventScanStatus.map((e) => e.value!).toList();
 }
 
-List<enums.EventQuestionDocAnswerType> eventQuestionDocAnswerTypeListFromJson(
-  List? eventQuestionDocAnswerType, [
-  List<enums.EventQuestionDocAnswerType>? defaultValue,
+List<enums.EventScanStatus> eventScanStatusListFromJson(
+  List? eventScanStatus, [
+  List<enums.EventScanStatus>? defaultValue,
 ]) {
-  if (eventQuestionDocAnswerType == null) {
+  if (eventScanStatus == null) {
     return defaultValue ?? [];
   }
 
-  return eventQuestionDocAnswerType
-      .map((e) => eventQuestionDocAnswerTypeFromJson(e.toString()))
+  return eventScanStatus
+      .map((e) => eventScanStatusFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventQuestionDocAnswerType>?
-    eventQuestionDocAnswerTypeNullableListFromJson(
-  List? eventQuestionDocAnswerType, [
-  List<enums.EventQuestionDocAnswerType>? defaultValue,
+List<enums.EventScanStatus>? eventScanStatusNullableListFromJson(
+  List? eventScanStatus, [
+  List<enums.EventScanStatus>? defaultValue,
 ]) {
-  if (eventQuestionDocAnswerType == null) {
+  if (eventScanStatus == null) {
     return defaultValue;
   }
 
-  return eventQuestionDocAnswerType
-      .map((e) => eventQuestionDocAnswerTypeFromJson(e.toString()))
+  return eventScanStatus
+      .map((e) => eventScanStatusFromJson(e.toString()))
       .toList();
 }
 
-String? eventQuestionCreateDtoAnswerTypeNullableToJson(
-    enums.EventQuestionCreateDtoAnswerType? eventQuestionCreateDtoAnswerType) {
-  return eventQuestionCreateDtoAnswerType?.value;
+String? eventScanMessageNullableToJson(
+    enums.EventScanMessage? eventScanMessage) {
+  return eventScanMessage?.value;
 }
 
-String? eventQuestionCreateDtoAnswerTypeToJson(
-    enums.EventQuestionCreateDtoAnswerType eventQuestionCreateDtoAnswerType) {
-  return eventQuestionCreateDtoAnswerType.value;
+String? eventScanMessageToJson(enums.EventScanMessage eventScanMessage) {
+  return eventScanMessage.value;
 }
 
-enums.EventQuestionCreateDtoAnswerType eventQuestionCreateDtoAnswerTypeFromJson(
-  Object? eventQuestionCreateDtoAnswerType, [
-  enums.EventQuestionCreateDtoAnswerType? defaultValue,
+enums.EventScanMessage eventScanMessageFromJson(
+  Object? eventScanMessage, [
+  enums.EventScanMessage? defaultValue,
 ]) {
-  return enums.EventQuestionCreateDtoAnswerType.values.firstWhereOrNull(
-          (e) => e.value == eventQuestionCreateDtoAnswerType) ??
+  return enums.EventScanMessage.values
+          .firstWhereOrNull((e) => e.value == eventScanMessage) ??
       defaultValue ??
-      enums.EventQuestionCreateDtoAnswerType.swaggerGeneratedUnknown;
+      enums.EventScanMessage.swaggerGeneratedUnknown;
 }
 
-enums.EventQuestionCreateDtoAnswerType?
-    eventQuestionCreateDtoAnswerTypeNullableFromJson(
-  Object? eventQuestionCreateDtoAnswerType, [
-  enums.EventQuestionCreateDtoAnswerType? defaultValue,
+enums.EventScanMessage? eventScanMessageNullableFromJson(
+  Object? eventScanMessage, [
+  enums.EventScanMessage? defaultValue,
 ]) {
-  if (eventQuestionCreateDtoAnswerType == null) {
+  if (eventScanMessage == null) {
     return null;
   }
-  return enums.EventQuestionCreateDtoAnswerType.values.firstWhereOrNull(
-          (e) => e.value == eventQuestionCreateDtoAnswerType) ??
+  return enums.EventScanMessage.values
+          .firstWhereOrNull((e) => e.value == eventScanMessage) ??
       defaultValue;
 }
 
-String eventQuestionCreateDtoAnswerTypeExplodedListToJson(
-    List<enums.EventQuestionCreateDtoAnswerType>?
-        eventQuestionCreateDtoAnswerType) {
-  return eventQuestionCreateDtoAnswerType?.map((e) => e.value!).join(',') ?? '';
+String eventScanMessageExplodedListToJson(
+    List<enums.EventScanMessage>? eventScanMessage) {
+  return eventScanMessage?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventQuestionCreateDtoAnswerTypeListToJson(
-    List<enums.EventQuestionCreateDtoAnswerType>?
-        eventQuestionCreateDtoAnswerType) {
-  if (eventQuestionCreateDtoAnswerType == null) {
+List<String> eventScanMessageListToJson(
+    List<enums.EventScanMessage>? eventScanMessage) {
+  if (eventScanMessage == null) {
     return [];
   }
 
-  return eventQuestionCreateDtoAnswerType.map((e) => e.value!).toList();
+  return eventScanMessage.map((e) => e.value!).toList();
 }
 
-List<enums.EventQuestionCreateDtoAnswerType>
-    eventQuestionCreateDtoAnswerTypeListFromJson(
-  List? eventQuestionCreateDtoAnswerType, [
-  List<enums.EventQuestionCreateDtoAnswerType>? defaultValue,
+List<enums.EventScanMessage> eventScanMessageListFromJson(
+  List? eventScanMessage, [
+  List<enums.EventScanMessage>? defaultValue,
 ]) {
-  if (eventQuestionCreateDtoAnswerType == null) {
+  if (eventScanMessage == null) {
     return defaultValue ?? [];
   }
 
-  return eventQuestionCreateDtoAnswerType
-      .map((e) => eventQuestionCreateDtoAnswerTypeFromJson(e.toString()))
+  return eventScanMessage
+      .map((e) => eventScanMessageFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventQuestionCreateDtoAnswerType>?
-    eventQuestionCreateDtoAnswerTypeNullableListFromJson(
-  List? eventQuestionCreateDtoAnswerType, [
-  List<enums.EventQuestionCreateDtoAnswerType>? defaultValue,
+List<enums.EventScanMessage>? eventScanMessageNullableListFromJson(
+  List? eventScanMessage, [
+  List<enums.EventScanMessage>? defaultValue,
 ]) {
-  if (eventQuestionCreateDtoAnswerType == null) {
+  if (eventScanMessage == null) {
     return defaultValue;
   }
 
-  return eventQuestionCreateDtoAnswerType
-      .map((e) => eventQuestionCreateDtoAnswerTypeFromJson(e.toString()))
+  return eventScanMessage
+      .map((e) => eventScanMessageFromJson(e.toString()))
       .toList();
 }
 
-String? eventQuestionEditDtoAnswerTypeNullableToJson(
-    enums.EventQuestionEditDtoAnswerType? eventQuestionEditDtoAnswerType) {
-  return eventQuestionEditDtoAnswerType?.value;
+String? referralConditionTypeNullableToJson(
+    enums.ReferralConditionType? referralConditionType) {
+  return referralConditionType?.value;
 }
 
-String? eventQuestionEditDtoAnswerTypeToJson(
-    enums.EventQuestionEditDtoAnswerType eventQuestionEditDtoAnswerType) {
-  return eventQuestionEditDtoAnswerType.value;
+String? referralConditionTypeToJson(
+    enums.ReferralConditionType referralConditionType) {
+  return referralConditionType.value;
 }
 
-enums.EventQuestionEditDtoAnswerType eventQuestionEditDtoAnswerTypeFromJson(
-  Object? eventQuestionEditDtoAnswerType, [
-  enums.EventQuestionEditDtoAnswerType? defaultValue,
+enums.ReferralConditionType referralConditionTypeFromJson(
+  Object? referralConditionType, [
+  enums.ReferralConditionType? defaultValue,
 ]) {
-  return enums.EventQuestionEditDtoAnswerType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionEditDtoAnswerType) ??
+  return enums.ReferralConditionType.values
+          .firstWhereOrNull((e) => e.value == referralConditionType) ??
       defaultValue ??
-      enums.EventQuestionEditDtoAnswerType.swaggerGeneratedUnknown;
+      enums.ReferralConditionType.swaggerGeneratedUnknown;
 }
 
-enums.EventQuestionEditDtoAnswerType?
-    eventQuestionEditDtoAnswerTypeNullableFromJson(
-  Object? eventQuestionEditDtoAnswerType, [
-  enums.EventQuestionEditDtoAnswerType? defaultValue,
+enums.ReferralConditionType? referralConditionTypeNullableFromJson(
+  Object? referralConditionType, [
+  enums.ReferralConditionType? defaultValue,
 ]) {
-  if (eventQuestionEditDtoAnswerType == null) {
+  if (referralConditionType == null) {
     return null;
   }
-  return enums.EventQuestionEditDtoAnswerType.values
-          .firstWhereOrNull((e) => e.value == eventQuestionEditDtoAnswerType) ??
+  return enums.ReferralConditionType.values
+          .firstWhereOrNull((e) => e.value == referralConditionType) ??
       defaultValue;
 }
 
-String eventQuestionEditDtoAnswerTypeExplodedListToJson(
-    List<enums.EventQuestionEditDtoAnswerType>?
-        eventQuestionEditDtoAnswerType) {
-  return eventQuestionEditDtoAnswerType?.map((e) => e.value!).join(',') ?? '';
+String referralConditionTypeExplodedListToJson(
+    List<enums.ReferralConditionType>? referralConditionType) {
+  return referralConditionType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventQuestionEditDtoAnswerTypeListToJson(
-    List<enums.EventQuestionEditDtoAnswerType>?
-        eventQuestionEditDtoAnswerType) {
-  if (eventQuestionEditDtoAnswerType == null) {
+List<String> referralConditionTypeListToJson(
+    List<enums.ReferralConditionType>? referralConditionType) {
+  if (referralConditionType == null) {
     return [];
   }
 
-  return eventQuestionEditDtoAnswerType.map((e) => e.value!).toList();
+  return referralConditionType.map((e) => e.value!).toList();
 }
 
-List<enums.EventQuestionEditDtoAnswerType>
-    eventQuestionEditDtoAnswerTypeListFromJson(
-  List? eventQuestionEditDtoAnswerType, [
-  List<enums.EventQuestionEditDtoAnswerType>? defaultValue,
+List<enums.ReferralConditionType> referralConditionTypeListFromJson(
+  List? referralConditionType, [
+  List<enums.ReferralConditionType>? defaultValue,
 ]) {
-  if (eventQuestionEditDtoAnswerType == null) {
+  if (referralConditionType == null) {
     return defaultValue ?? [];
   }
 
-  return eventQuestionEditDtoAnswerType
-      .map((e) => eventQuestionEditDtoAnswerTypeFromJson(e.toString()))
+  return referralConditionType
+      .map((e) => referralConditionTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventQuestionEditDtoAnswerType>?
-    eventQuestionEditDtoAnswerTypeNullableListFromJson(
-  List? eventQuestionEditDtoAnswerType, [
-  List<enums.EventQuestionEditDtoAnswerType>? defaultValue,
+List<enums.ReferralConditionType>? referralConditionTypeNullableListFromJson(
+  List? referralConditionType, [
+  List<enums.ReferralConditionType>? defaultValue,
 ]) {
-  if (eventQuestionEditDtoAnswerType == null) {
+  if (referralConditionType == null) {
     return defaultValue;
   }
 
-  return eventQuestionEditDtoAnswerType
-      .map((e) => eventQuestionEditDtoAnswerTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestProfileDataTypeNullableToJson(
-    enums.EventGuestProfileDataType? eventGuestProfileDataType) {
-  return eventGuestProfileDataType?.value;
-}
-
-String? eventGuestProfileDataTypeToJson(
-    enums.EventGuestProfileDataType eventGuestProfileDataType) {
-  return eventGuestProfileDataType.value;
-}
-
-enums.EventGuestProfileDataType eventGuestProfileDataTypeFromJson(
-  Object? eventGuestProfileDataType, [
-  enums.EventGuestProfileDataType? defaultValue,
-]) {
-  return enums.EventGuestProfileDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestProfileDataType) ??
-      defaultValue ??
-      enums.EventGuestProfileDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestProfileDataType? eventGuestProfileDataTypeNullableFromJson(
-  Object? eventGuestProfileDataType, [
-  enums.EventGuestProfileDataType? defaultValue,
-]) {
-  if (eventGuestProfileDataType == null) {
-    return null;
-  }
-  return enums.EventGuestProfileDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestProfileDataType) ??
-      defaultValue;
-}
-
-String eventGuestProfileDataTypeExplodedListToJson(
-    List<enums.EventGuestProfileDataType>? eventGuestProfileDataType) {
-  return eventGuestProfileDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestProfileDataTypeListToJson(
-    List<enums.EventGuestProfileDataType>? eventGuestProfileDataType) {
-  if (eventGuestProfileDataType == null) {
-    return [];
-  }
-
-  return eventGuestProfileDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestProfileDataType> eventGuestProfileDataTypeListFromJson(
-  List? eventGuestProfileDataType, [
-  List<enums.EventGuestProfileDataType>? defaultValue,
-]) {
-  if (eventGuestProfileDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestProfileDataType
-      .map((e) => eventGuestProfileDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestProfileDataType>?
-    eventGuestProfileDataTypeNullableListFromJson(
-  List? eventGuestProfileDataType, [
-  List<enums.EventGuestProfileDataType>? defaultValue,
-]) {
-  if (eventGuestProfileDataType == null) {
-    return defaultValue;
-  }
-
-  return eventGuestProfileDataType
-      .map((e) => eventGuestProfileDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventUserRoleCreateDtoRoleNullableToJson(
-    enums.EventUserRoleCreateDtoRole? eventUserRoleCreateDtoRole) {
-  return eventUserRoleCreateDtoRole?.value;
-}
-
-String? eventUserRoleCreateDtoRoleToJson(
-    enums.EventUserRoleCreateDtoRole eventUserRoleCreateDtoRole) {
-  return eventUserRoleCreateDtoRole.value;
-}
-
-enums.EventUserRoleCreateDtoRole eventUserRoleCreateDtoRoleFromJson(
-  Object? eventUserRoleCreateDtoRole, [
-  enums.EventUserRoleCreateDtoRole? defaultValue,
-]) {
-  return enums.EventUserRoleCreateDtoRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleCreateDtoRole) ??
-      defaultValue ??
-      enums.EventUserRoleCreateDtoRole.swaggerGeneratedUnknown;
-}
-
-enums.EventUserRoleCreateDtoRole? eventUserRoleCreateDtoRoleNullableFromJson(
-  Object? eventUserRoleCreateDtoRole, [
-  enums.EventUserRoleCreateDtoRole? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoRole == null) {
-    return null;
-  }
-  return enums.EventUserRoleCreateDtoRole.values
-          .firstWhereOrNull((e) => e.value == eventUserRoleCreateDtoRole) ??
-      defaultValue;
-}
-
-String eventUserRoleCreateDtoRoleExplodedListToJson(
-    List<enums.EventUserRoleCreateDtoRole>? eventUserRoleCreateDtoRole) {
-  return eventUserRoleCreateDtoRole?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventUserRoleCreateDtoRoleListToJson(
-    List<enums.EventUserRoleCreateDtoRole>? eventUserRoleCreateDtoRole) {
-  if (eventUserRoleCreateDtoRole == null) {
-    return [];
-  }
-
-  return eventUserRoleCreateDtoRole.map((e) => e.value!).toList();
-}
-
-List<enums.EventUserRoleCreateDtoRole> eventUserRoleCreateDtoRoleListFromJson(
-  List? eventUserRoleCreateDtoRole, [
-  List<enums.EventUserRoleCreateDtoRole>? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoRole == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventUserRoleCreateDtoRole
-      .map((e) => eventUserRoleCreateDtoRoleFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventUserRoleCreateDtoRole>?
-    eventUserRoleCreateDtoRoleNullableListFromJson(
-  List? eventUserRoleCreateDtoRole, [
-  List<enums.EventUserRoleCreateDtoRole>? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoRole == null) {
-    return defaultValue;
-  }
-
-  return eventUserRoleCreateDtoRole
-      .map((e) => eventUserRoleCreateDtoRoleFromJson(e.toString()))
-      .toList();
-}
-
-String? eventUserRoleCreateDtoPermissionsNullableToJson(
-    enums.EventUserRoleCreateDtoPermissions?
-        eventUserRoleCreateDtoPermissions) {
-  return eventUserRoleCreateDtoPermissions?.value;
-}
-
-String? eventUserRoleCreateDtoPermissionsToJson(
-    enums.EventUserRoleCreateDtoPermissions eventUserRoleCreateDtoPermissions) {
-  return eventUserRoleCreateDtoPermissions.value;
-}
-
-enums.EventUserRoleCreateDtoPermissions
-    eventUserRoleCreateDtoPermissionsFromJson(
-  Object? eventUserRoleCreateDtoPermissions, [
-  enums.EventUserRoleCreateDtoPermissions? defaultValue,
-]) {
-  return enums.EventUserRoleCreateDtoPermissions.values.firstWhereOrNull(
-          (e) => e.value == eventUserRoleCreateDtoPermissions) ??
-      defaultValue ??
-      enums.EventUserRoleCreateDtoPermissions.swaggerGeneratedUnknown;
-}
-
-enums.EventUserRoleCreateDtoPermissions?
-    eventUserRoleCreateDtoPermissionsNullableFromJson(
-  Object? eventUserRoleCreateDtoPermissions, [
-  enums.EventUserRoleCreateDtoPermissions? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoPermissions == null) {
-    return null;
-  }
-  return enums.EventUserRoleCreateDtoPermissions.values.firstWhereOrNull(
-          (e) => e.value == eventUserRoleCreateDtoPermissions) ??
-      defaultValue;
-}
-
-String eventUserRoleCreateDtoPermissionsExplodedListToJson(
-    List<enums.EventUserRoleCreateDtoPermissions>?
-        eventUserRoleCreateDtoPermissions) {
-  return eventUserRoleCreateDtoPermissions?.map((e) => e.value!).join(',') ??
-      '';
-}
-
-List<String> eventUserRoleCreateDtoPermissionsListToJson(
-    List<enums.EventUserRoleCreateDtoPermissions>?
-        eventUserRoleCreateDtoPermissions) {
-  if (eventUserRoleCreateDtoPermissions == null) {
-    return [];
-  }
-
-  return eventUserRoleCreateDtoPermissions.map((e) => e.value!).toList();
-}
-
-List<enums.EventUserRoleCreateDtoPermissions>
-    eventUserRoleCreateDtoPermissionsListFromJson(
-  List? eventUserRoleCreateDtoPermissions, [
-  List<enums.EventUserRoleCreateDtoPermissions>? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoPermissions == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventUserRoleCreateDtoPermissions
-      .map((e) => eventUserRoleCreateDtoPermissionsFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventUserRoleCreateDtoPermissions>?
-    eventUserRoleCreateDtoPermissionsNullableListFromJson(
-  List? eventUserRoleCreateDtoPermissions, [
-  List<enums.EventUserRoleCreateDtoPermissions>? defaultValue,
-]) {
-  if (eventUserRoleCreateDtoPermissions == null) {
-    return defaultValue;
-  }
-
-  return eventUserRoleCreateDtoPermissions
-      .map((e) => eventUserRoleCreateDtoPermissionsFromJson(e.toString()))
-      .toList();
-}
-
-String? bageQRDataTypeNullableToJson(enums.BageQRDataType? bageQRDataType) {
-  return bageQRDataType?.value;
-}
-
-String? bageQRDataTypeToJson(enums.BageQRDataType bageQRDataType) {
-  return bageQRDataType.value;
-}
-
-enums.BageQRDataType bageQRDataTypeFromJson(
-  Object? bageQRDataType, [
-  enums.BageQRDataType? defaultValue,
-]) {
-  return enums.BageQRDataType.values
-          .firstWhereOrNull((e) => e.value == bageQRDataType) ??
-      defaultValue ??
-      enums.BageQRDataType.swaggerGeneratedUnknown;
-}
-
-enums.BageQRDataType? bageQRDataTypeNullableFromJson(
-  Object? bageQRDataType, [
-  enums.BageQRDataType? defaultValue,
-]) {
-  if (bageQRDataType == null) {
-    return null;
-  }
-  return enums.BageQRDataType.values
-          .firstWhereOrNull((e) => e.value == bageQRDataType) ??
-      defaultValue;
-}
-
-String bageQRDataTypeExplodedListToJson(
-    List<enums.BageQRDataType>? bageQRDataType) {
-  return bageQRDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> bageQRDataTypeListToJson(
-    List<enums.BageQRDataType>? bageQRDataType) {
-  if (bageQRDataType == null) {
-    return [];
-  }
-
-  return bageQRDataType.map((e) => e.value!).toList();
-}
-
-List<enums.BageQRDataType> bageQRDataTypeListFromJson(
-  List? bageQRDataType, [
-  List<enums.BageQRDataType>? defaultValue,
-]) {
-  if (bageQRDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return bageQRDataType
-      .map((e) => bageQRDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.BageQRDataType>? bageQRDataTypeNullableListFromJson(
-  List? bageQRDataType, [
-  List<enums.BageQRDataType>? defaultValue,
-]) {
-  if (bageQRDataType == null) {
-    return defaultValue;
-  }
-
-  return bageQRDataType
-      .map((e) => bageQRDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? qRBodyTypeNullableToJson(enums.QRBodyType? qRBodyType) {
-  return qRBodyType?.value;
-}
-
-String? qRBodyTypeToJson(enums.QRBodyType qRBodyType) {
-  return qRBodyType.value;
-}
-
-enums.QRBodyType qRBodyTypeFromJson(
-  Object? qRBodyType, [
-  enums.QRBodyType? defaultValue,
-]) {
-  return enums.QRBodyType.values
-          .firstWhereOrNull((e) => e.value == qRBodyType) ??
-      defaultValue ??
-      enums.QRBodyType.swaggerGeneratedUnknown;
-}
-
-enums.QRBodyType? qRBodyTypeNullableFromJson(
-  Object? qRBodyType, [
-  enums.QRBodyType? defaultValue,
-]) {
-  if (qRBodyType == null) {
-    return null;
-  }
-  return enums.QRBodyType.values
-          .firstWhereOrNull((e) => e.value == qRBodyType) ??
-      defaultValue;
-}
-
-String qRBodyTypeExplodedListToJson(List<enums.QRBodyType>? qRBodyType) {
-  return qRBodyType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> qRBodyTypeListToJson(List<enums.QRBodyType>? qRBodyType) {
-  if (qRBodyType == null) {
-    return [];
-  }
-
-  return qRBodyType.map((e) => e.value!).toList();
-}
-
-List<enums.QRBodyType> qRBodyTypeListFromJson(
-  List? qRBodyType, [
-  List<enums.QRBodyType>? defaultValue,
-]) {
-  if (qRBodyType == null) {
-    return defaultValue ?? [];
-  }
-
-  return qRBodyType.map((e) => qRBodyTypeFromJson(e.toString())).toList();
-}
-
-List<enums.QRBodyType>? qRBodyTypeNullableListFromJson(
-  List? qRBodyType, [
-  List<enums.QRBodyType>? defaultValue,
-]) {
-  if (qRBodyType == null) {
-    return defaultValue;
-  }
-
-  return qRBodyType.map((e) => qRBodyTypeFromJson(e.toString())).toList();
-}
-
-String? ticketValidationResultStatusNullableToJson(
-    enums.TicketValidationResultStatus? ticketValidationResultStatus) {
-  return ticketValidationResultStatus?.value;
-}
-
-String? ticketValidationResultStatusToJson(
-    enums.TicketValidationResultStatus ticketValidationResultStatus) {
-  return ticketValidationResultStatus.value;
-}
-
-enums.TicketValidationResultStatus ticketValidationResultStatusFromJson(
-  Object? ticketValidationResultStatus, [
-  enums.TicketValidationResultStatus? defaultValue,
-]) {
-  return enums.TicketValidationResultStatus.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultStatus) ??
-      defaultValue ??
-      enums.TicketValidationResultStatus.swaggerGeneratedUnknown;
-}
-
-enums.TicketValidationResultStatus?
-    ticketValidationResultStatusNullableFromJson(
-  Object? ticketValidationResultStatus, [
-  enums.TicketValidationResultStatus? defaultValue,
-]) {
-  if (ticketValidationResultStatus == null) {
-    return null;
-  }
-  return enums.TicketValidationResultStatus.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultStatus) ??
-      defaultValue;
-}
-
-String ticketValidationResultStatusExplodedListToJson(
-    List<enums.TicketValidationResultStatus>? ticketValidationResultStatus) {
-  return ticketValidationResultStatus?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> ticketValidationResultStatusListToJson(
-    List<enums.TicketValidationResultStatus>? ticketValidationResultStatus) {
-  if (ticketValidationResultStatus == null) {
-    return [];
-  }
-
-  return ticketValidationResultStatus.map((e) => e.value!).toList();
-}
-
-List<enums.TicketValidationResultStatus>
-    ticketValidationResultStatusListFromJson(
-  List? ticketValidationResultStatus, [
-  List<enums.TicketValidationResultStatus>? defaultValue,
-]) {
-  if (ticketValidationResultStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return ticketValidationResultStatus
-      .map((e) => ticketValidationResultStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.TicketValidationResultStatus>?
-    ticketValidationResultStatusNullableListFromJson(
-  List? ticketValidationResultStatus, [
-  List<enums.TicketValidationResultStatus>? defaultValue,
-]) {
-  if (ticketValidationResultStatus == null) {
-    return defaultValue;
-  }
-
-  return ticketValidationResultStatus
-      .map((e) => ticketValidationResultStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? ticketValidationResultTypeNullableToJson(
-    enums.TicketValidationResultType? ticketValidationResultType) {
-  return ticketValidationResultType?.value;
-}
-
-String? ticketValidationResultTypeToJson(
-    enums.TicketValidationResultType ticketValidationResultType) {
-  return ticketValidationResultType.value;
-}
-
-enums.TicketValidationResultType ticketValidationResultTypeFromJson(
-  Object? ticketValidationResultType, [
-  enums.TicketValidationResultType? defaultValue,
-]) {
-  return enums.TicketValidationResultType.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultType) ??
-      defaultValue ??
-      enums.TicketValidationResultType.swaggerGeneratedUnknown;
-}
-
-enums.TicketValidationResultType? ticketValidationResultTypeNullableFromJson(
-  Object? ticketValidationResultType, [
-  enums.TicketValidationResultType? defaultValue,
-]) {
-  if (ticketValidationResultType == null) {
-    return null;
-  }
-  return enums.TicketValidationResultType.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultType) ??
-      defaultValue;
-}
-
-String ticketValidationResultTypeExplodedListToJson(
-    List<enums.TicketValidationResultType>? ticketValidationResultType) {
-  return ticketValidationResultType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> ticketValidationResultTypeListToJson(
-    List<enums.TicketValidationResultType>? ticketValidationResultType) {
-  if (ticketValidationResultType == null) {
-    return [];
-  }
-
-  return ticketValidationResultType.map((e) => e.value!).toList();
-}
-
-List<enums.TicketValidationResultType> ticketValidationResultTypeListFromJson(
-  List? ticketValidationResultType, [
-  List<enums.TicketValidationResultType>? defaultValue,
-]) {
-  if (ticketValidationResultType == null) {
-    return defaultValue ?? [];
-  }
-
-  return ticketValidationResultType
-      .map((e) => ticketValidationResultTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.TicketValidationResultType>?
-    ticketValidationResultTypeNullableListFromJson(
-  List? ticketValidationResultType, [
-  List<enums.TicketValidationResultType>? defaultValue,
-]) {
-  if (ticketValidationResultType == null) {
-    return defaultValue;
-  }
-
-  return ticketValidationResultType
-      .map((e) => ticketValidationResultTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? ticketValidationResultMessageNullableToJson(
-    enums.TicketValidationResultMessage? ticketValidationResultMessage) {
-  return ticketValidationResultMessage?.value;
-}
-
-String? ticketValidationResultMessageToJson(
-    enums.TicketValidationResultMessage ticketValidationResultMessage) {
-  return ticketValidationResultMessage.value;
-}
-
-enums.TicketValidationResultMessage ticketValidationResultMessageFromJson(
-  Object? ticketValidationResultMessage, [
-  enums.TicketValidationResultMessage? defaultValue,
-]) {
-  return enums.TicketValidationResultMessage.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultMessage) ??
-      defaultValue ??
-      enums.TicketValidationResultMessage.swaggerGeneratedUnknown;
-}
-
-enums.TicketValidationResultMessage?
-    ticketValidationResultMessageNullableFromJson(
-  Object? ticketValidationResultMessage, [
-  enums.TicketValidationResultMessage? defaultValue,
-]) {
-  if (ticketValidationResultMessage == null) {
-    return null;
-  }
-  return enums.TicketValidationResultMessage.values
-          .firstWhereOrNull((e) => e.value == ticketValidationResultMessage) ??
-      defaultValue;
-}
-
-String ticketValidationResultMessageExplodedListToJson(
-    List<enums.TicketValidationResultMessage>? ticketValidationResultMessage) {
-  return ticketValidationResultMessage?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> ticketValidationResultMessageListToJson(
-    List<enums.TicketValidationResultMessage>? ticketValidationResultMessage) {
-  if (ticketValidationResultMessage == null) {
-    return [];
-  }
-
-  return ticketValidationResultMessage.map((e) => e.value!).toList();
-}
-
-List<enums.TicketValidationResultMessage>
-    ticketValidationResultMessageListFromJson(
-  List? ticketValidationResultMessage, [
-  List<enums.TicketValidationResultMessage>? defaultValue,
-]) {
-  if (ticketValidationResultMessage == null) {
-    return defaultValue ?? [];
-  }
-
-  return ticketValidationResultMessage
-      .map((e) => ticketValidationResultMessageFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.TicketValidationResultMessage>?
-    ticketValidationResultMessageNullableListFromJson(
-  List? ticketValidationResultMessage, [
-  List<enums.TicketValidationResultMessage>? defaultValue,
-]) {
-  if (ticketValidationResultMessage == null) {
-    return defaultValue;
-  }
-
-  return ticketValidationResultMessage
-      .map((e) => ticketValidationResultMessageFromJson(e.toString()))
-      .toList();
-}
-
-String? eventVoucherCreateDtoTypeNullableToJson(
-    enums.EventVoucherCreateDtoType? eventVoucherCreateDtoType) {
-  return eventVoucherCreateDtoType?.value;
-}
-
-String? eventVoucherCreateDtoTypeToJson(
-    enums.EventVoucherCreateDtoType eventVoucherCreateDtoType) {
-  return eventVoucherCreateDtoType.value;
-}
-
-enums.EventVoucherCreateDtoType eventVoucherCreateDtoTypeFromJson(
-  Object? eventVoucherCreateDtoType, [
-  enums.EventVoucherCreateDtoType? defaultValue,
-]) {
-  return enums.EventVoucherCreateDtoType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherCreateDtoType) ??
-      defaultValue ??
-      enums.EventVoucherCreateDtoType.swaggerGeneratedUnknown;
-}
-
-enums.EventVoucherCreateDtoType? eventVoucherCreateDtoTypeNullableFromJson(
-  Object? eventVoucherCreateDtoType, [
-  enums.EventVoucherCreateDtoType? defaultValue,
-]) {
-  if (eventVoucherCreateDtoType == null) {
-    return null;
-  }
-  return enums.EventVoucherCreateDtoType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherCreateDtoType) ??
-      defaultValue;
-}
-
-String eventVoucherCreateDtoTypeExplodedListToJson(
-    List<enums.EventVoucherCreateDtoType>? eventVoucherCreateDtoType) {
-  return eventVoucherCreateDtoType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventVoucherCreateDtoTypeListToJson(
-    List<enums.EventVoucherCreateDtoType>? eventVoucherCreateDtoType) {
-  if (eventVoucherCreateDtoType == null) {
-    return [];
-  }
-
-  return eventVoucherCreateDtoType.map((e) => e.value!).toList();
-}
-
-List<enums.EventVoucherCreateDtoType> eventVoucherCreateDtoTypeListFromJson(
-  List? eventVoucherCreateDtoType, [
-  List<enums.EventVoucherCreateDtoType>? defaultValue,
-]) {
-  if (eventVoucherCreateDtoType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventVoucherCreateDtoType
-      .map((e) => eventVoucherCreateDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventVoucherCreateDtoType>?
-    eventVoucherCreateDtoTypeNullableListFromJson(
-  List? eventVoucherCreateDtoType, [
-  List<enums.EventVoucherCreateDtoType>? defaultValue,
-]) {
-  if (eventVoucherCreateDtoType == null) {
-    return defaultValue;
-  }
-
-  return eventVoucherCreateDtoType
-      .map((e) => eventVoucherCreateDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventVoucherEditDtoTypeNullableToJson(
-    enums.EventVoucherEditDtoType? eventVoucherEditDtoType) {
-  return eventVoucherEditDtoType?.value;
-}
-
-String? eventVoucherEditDtoTypeToJson(
-    enums.EventVoucherEditDtoType eventVoucherEditDtoType) {
-  return eventVoucherEditDtoType.value;
-}
-
-enums.EventVoucherEditDtoType eventVoucherEditDtoTypeFromJson(
-  Object? eventVoucherEditDtoType, [
-  enums.EventVoucherEditDtoType? defaultValue,
-]) {
-  return enums.EventVoucherEditDtoType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherEditDtoType) ??
-      defaultValue ??
-      enums.EventVoucherEditDtoType.swaggerGeneratedUnknown;
-}
-
-enums.EventVoucherEditDtoType? eventVoucherEditDtoTypeNullableFromJson(
-  Object? eventVoucherEditDtoType, [
-  enums.EventVoucherEditDtoType? defaultValue,
-]) {
-  if (eventVoucherEditDtoType == null) {
-    return null;
-  }
-  return enums.EventVoucherEditDtoType.values
-          .firstWhereOrNull((e) => e.value == eventVoucherEditDtoType) ??
-      defaultValue;
-}
-
-String eventVoucherEditDtoTypeExplodedListToJson(
-    List<enums.EventVoucherEditDtoType>? eventVoucherEditDtoType) {
-  return eventVoucherEditDtoType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventVoucherEditDtoTypeListToJson(
-    List<enums.EventVoucherEditDtoType>? eventVoucherEditDtoType) {
-  if (eventVoucherEditDtoType == null) {
-    return [];
-  }
-
-  return eventVoucherEditDtoType.map((e) => e.value!).toList();
-}
-
-List<enums.EventVoucherEditDtoType> eventVoucherEditDtoTypeListFromJson(
-  List? eventVoucherEditDtoType, [
-  List<enums.EventVoucherEditDtoType>? defaultValue,
-]) {
-  if (eventVoucherEditDtoType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventVoucherEditDtoType
-      .map((e) => eventVoucherEditDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventVoucherEditDtoType>?
-    eventVoucherEditDtoTypeNullableListFromJson(
-  List? eventVoucherEditDtoType, [
-  List<enums.EventVoucherEditDtoType>? defaultValue,
-]) {
-  if (eventVoucherEditDtoType == null) {
-    return defaultValue;
-  }
-
-  return eventVoucherEditDtoType
-      .map((e) => eventVoucherEditDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventGuestAnswerDocDataTypeNullableToJson(
-    enums.EventGuestAnswerDocDataType? eventGuestAnswerDocDataType) {
-  return eventGuestAnswerDocDataType?.value;
-}
-
-String? eventGuestAnswerDocDataTypeToJson(
-    enums.EventGuestAnswerDocDataType eventGuestAnswerDocDataType) {
-  return eventGuestAnswerDocDataType.value;
-}
-
-enums.EventGuestAnswerDocDataType eventGuestAnswerDocDataTypeFromJson(
-  Object? eventGuestAnswerDocDataType, [
-  enums.EventGuestAnswerDocDataType? defaultValue,
-]) {
-  return enums.EventGuestAnswerDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestAnswerDocDataType) ??
-      defaultValue ??
-      enums.EventGuestAnswerDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventGuestAnswerDocDataType? eventGuestAnswerDocDataTypeNullableFromJson(
-  Object? eventGuestAnswerDocDataType, [
-  enums.EventGuestAnswerDocDataType? defaultValue,
-]) {
-  if (eventGuestAnswerDocDataType == null) {
-    return null;
-  }
-  return enums.EventGuestAnswerDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventGuestAnswerDocDataType) ??
-      defaultValue;
-}
-
-String eventGuestAnswerDocDataTypeExplodedListToJson(
-    List<enums.EventGuestAnswerDocDataType>? eventGuestAnswerDocDataType) {
-  return eventGuestAnswerDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventGuestAnswerDocDataTypeListToJson(
-    List<enums.EventGuestAnswerDocDataType>? eventGuestAnswerDocDataType) {
-  if (eventGuestAnswerDocDataType == null) {
-    return [];
-  }
-
-  return eventGuestAnswerDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventGuestAnswerDocDataType> eventGuestAnswerDocDataTypeListFromJson(
-  List? eventGuestAnswerDocDataType, [
-  List<enums.EventGuestAnswerDocDataType>? defaultValue,
-]) {
-  if (eventGuestAnswerDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventGuestAnswerDocDataType
-      .map((e) => eventGuestAnswerDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventGuestAnswerDocDataType>?
-    eventGuestAnswerDocDataTypeNullableListFromJson(
-  List? eventGuestAnswerDocDataType, [
-  List<enums.EventGuestAnswerDocDataType>? defaultValue,
-]) {
-  if (eventGuestAnswerDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventGuestAnswerDocDataType
-      .map((e) => eventGuestAnswerDocDataTypeFromJson(e.toString()))
+  return referralConditionType
+      .map((e) => referralConditionTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -37016,787 +34631,145 @@ List<enums.RewardDetailsRewardType>?
       .toList();
 }
 
-String? rewardDetailsConditionTypeNullableToJson(
-    enums.RewardDetailsConditionType? rewardDetailsConditionType) {
-  return rewardDetailsConditionType?.value;
+String? nftActivityTypeNullableToJson(enums.NftActivityType? nftActivityType) {
+  return nftActivityType?.value;
 }
 
-String? rewardDetailsConditionTypeToJson(
-    enums.RewardDetailsConditionType rewardDetailsConditionType) {
-  return rewardDetailsConditionType.value;
+String? nftActivityTypeToJson(enums.NftActivityType nftActivityType) {
+  return nftActivityType.value;
 }
 
-enums.RewardDetailsConditionType rewardDetailsConditionTypeFromJson(
-  Object? rewardDetailsConditionType, [
-  enums.RewardDetailsConditionType? defaultValue,
+enums.NftActivityType nftActivityTypeFromJson(
+  Object? nftActivityType, [
+  enums.NftActivityType? defaultValue,
 ]) {
-  return enums.RewardDetailsConditionType.values
-          .firstWhereOrNull((e) => e.value == rewardDetailsConditionType) ??
+  return enums.NftActivityType.values
+          .firstWhereOrNull((e) => e.value == nftActivityType) ??
       defaultValue ??
-      enums.RewardDetailsConditionType.swaggerGeneratedUnknown;
+      enums.NftActivityType.swaggerGeneratedUnknown;
 }
 
-enums.RewardDetailsConditionType? rewardDetailsConditionTypeNullableFromJson(
-  Object? rewardDetailsConditionType, [
-  enums.RewardDetailsConditionType? defaultValue,
+enums.NftActivityType? nftActivityTypeNullableFromJson(
+  Object? nftActivityType, [
+  enums.NftActivityType? defaultValue,
 ]) {
-  if (rewardDetailsConditionType == null) {
+  if (nftActivityType == null) {
     return null;
   }
-  return enums.RewardDetailsConditionType.values
-          .firstWhereOrNull((e) => e.value == rewardDetailsConditionType) ??
+  return enums.NftActivityType.values
+          .firstWhereOrNull((e) => e.value == nftActivityType) ??
       defaultValue;
 }
 
-String rewardDetailsConditionTypeExplodedListToJson(
-    List<enums.RewardDetailsConditionType>? rewardDetailsConditionType) {
-  return rewardDetailsConditionType?.map((e) => e.value!).join(',') ?? '';
+String nftActivityTypeExplodedListToJson(
+    List<enums.NftActivityType>? nftActivityType) {
+  return nftActivityType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> rewardDetailsConditionTypeListToJson(
-    List<enums.RewardDetailsConditionType>? rewardDetailsConditionType) {
-  if (rewardDetailsConditionType == null) {
+List<String> nftActivityTypeListToJson(
+    List<enums.NftActivityType>? nftActivityType) {
+  if (nftActivityType == null) {
     return [];
   }
 
-  return rewardDetailsConditionType.map((e) => e.value!).toList();
+  return nftActivityType.map((e) => e.value!).toList();
 }
 
-List<enums.RewardDetailsConditionType> rewardDetailsConditionTypeListFromJson(
-  List? rewardDetailsConditionType, [
-  List<enums.RewardDetailsConditionType>? defaultValue,
+List<enums.NftActivityType> nftActivityTypeListFromJson(
+  List? nftActivityType, [
+  List<enums.NftActivityType>? defaultValue,
 ]) {
-  if (rewardDetailsConditionType == null) {
+  if (nftActivityType == null) {
     return defaultValue ?? [];
   }
 
-  return rewardDetailsConditionType
-      .map((e) => rewardDetailsConditionTypeFromJson(e.toString()))
+  return nftActivityType
+      .map((e) => nftActivityTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.RewardDetailsConditionType>?
-    rewardDetailsConditionTypeNullableListFromJson(
-  List? rewardDetailsConditionType, [
-  List<enums.RewardDetailsConditionType>? defaultValue,
+List<enums.NftActivityType>? nftActivityTypeNullableListFromJson(
+  List? nftActivityType, [
+  List<enums.NftActivityType>? defaultValue,
 ]) {
-  if (rewardDetailsConditionType == null) {
+  if (nftActivityType == null) {
     return defaultValue;
   }
 
-  return rewardDetailsConditionType
-      .map((e) => rewardDetailsConditionTypeFromJson(e.toString()))
+  return nftActivityType
+      .map((e) => nftActivityTypeFromJson(e.toString()))
       .toList();
 }
 
-String? eventReferralConfigDocDataTypeNullableToJson(
-    enums.EventReferralConfigDocDataType? eventReferralConfigDocDataType) {
-  return eventReferralConfigDocDataType?.value;
+String? nftActivityEventSourceNullableToJson(
+    enums.NftActivityEventSource? nftActivityEventSource) {
+  return nftActivityEventSource?.value;
 }
 
-String? eventReferralConfigDocDataTypeToJson(
-    enums.EventReferralConfigDocDataType eventReferralConfigDocDataType) {
-  return eventReferralConfigDocDataType.value;
+String? nftActivityEventSourceToJson(
+    enums.NftActivityEventSource nftActivityEventSource) {
+  return nftActivityEventSource.value;
 }
 
-enums.EventReferralConfigDocDataType eventReferralConfigDocDataTypeFromJson(
-  Object? eventReferralConfigDocDataType, [
-  enums.EventReferralConfigDocDataType? defaultValue,
+enums.NftActivityEventSource nftActivityEventSourceFromJson(
+  Object? nftActivityEventSource, [
+  enums.NftActivityEventSource? defaultValue,
 ]) {
-  return enums.EventReferralConfigDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventReferralConfigDocDataType) ??
+  return enums.NftActivityEventSource.values
+          .firstWhereOrNull((e) => e.value == nftActivityEventSource) ??
       defaultValue ??
-      enums.EventReferralConfigDocDataType.swaggerGeneratedUnknown;
+      enums.NftActivityEventSource.swaggerGeneratedUnknown;
 }
 
-enums.EventReferralConfigDocDataType?
-    eventReferralConfigDocDataTypeNullableFromJson(
-  Object? eventReferralConfigDocDataType, [
-  enums.EventReferralConfigDocDataType? defaultValue,
+enums.NftActivityEventSource? nftActivityEventSourceNullableFromJson(
+  Object? nftActivityEventSource, [
+  enums.NftActivityEventSource? defaultValue,
 ]) {
-  if (eventReferralConfigDocDataType == null) {
+  if (nftActivityEventSource == null) {
     return null;
   }
-  return enums.EventReferralConfigDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventReferralConfigDocDataType) ??
+  return enums.NftActivityEventSource.values
+          .firstWhereOrNull((e) => e.value == nftActivityEventSource) ??
       defaultValue;
 }
 
-String eventReferralConfigDocDataTypeExplodedListToJson(
-    List<enums.EventReferralConfigDocDataType>?
-        eventReferralConfigDocDataType) {
-  return eventReferralConfigDocDataType?.map((e) => e.value!).join(',') ?? '';
+String nftActivityEventSourceExplodedListToJson(
+    List<enums.NftActivityEventSource>? nftActivityEventSource) {
+  return nftActivityEventSource?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> eventReferralConfigDocDataTypeListToJson(
-    List<enums.EventReferralConfigDocDataType>?
-        eventReferralConfigDocDataType) {
-  if (eventReferralConfigDocDataType == null) {
+List<String> nftActivityEventSourceListToJson(
+    List<enums.NftActivityEventSource>? nftActivityEventSource) {
+  if (nftActivityEventSource == null) {
     return [];
   }
 
-  return eventReferralConfigDocDataType.map((e) => e.value!).toList();
+  return nftActivityEventSource.map((e) => e.value!).toList();
 }
 
-List<enums.EventReferralConfigDocDataType>
-    eventReferralConfigDocDataTypeListFromJson(
-  List? eventReferralConfigDocDataType, [
-  List<enums.EventReferralConfigDocDataType>? defaultValue,
+List<enums.NftActivityEventSource> nftActivityEventSourceListFromJson(
+  List? nftActivityEventSource, [
+  List<enums.NftActivityEventSource>? defaultValue,
 ]) {
-  if (eventReferralConfigDocDataType == null) {
+  if (nftActivityEventSource == null) {
     return defaultValue ?? [];
   }
 
-  return eventReferralConfigDocDataType
-      .map((e) => eventReferralConfigDocDataTypeFromJson(e.toString()))
+  return nftActivityEventSource
+      .map((e) => nftActivityEventSourceFromJson(e.toString()))
       .toList();
 }
 
-List<enums.EventReferralConfigDocDataType>?
-    eventReferralConfigDocDataTypeNullableListFromJson(
-  List? eventReferralConfigDocDataType, [
-  List<enums.EventReferralConfigDocDataType>? defaultValue,
+List<enums.NftActivityEventSource>? nftActivityEventSourceNullableListFromJson(
+  List? nftActivityEventSource, [
+  List<enums.NftActivityEventSource>? defaultValue,
 ]) {
-  if (eventReferralConfigDocDataType == null) {
+  if (nftActivityEventSource == null) {
     return defaultValue;
   }
 
-  return eventReferralConfigDocDataType
-      .map((e) => eventReferralConfigDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? eventReferralDocDataTypeNullableToJson(
-    enums.EventReferralDocDataType? eventReferralDocDataType) {
-  return eventReferralDocDataType?.value;
-}
-
-String? eventReferralDocDataTypeToJson(
-    enums.EventReferralDocDataType eventReferralDocDataType) {
-  return eventReferralDocDataType.value;
-}
-
-enums.EventReferralDocDataType eventReferralDocDataTypeFromJson(
-  Object? eventReferralDocDataType, [
-  enums.EventReferralDocDataType? defaultValue,
-]) {
-  return enums.EventReferralDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventReferralDocDataType) ??
-      defaultValue ??
-      enums.EventReferralDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.EventReferralDocDataType? eventReferralDocDataTypeNullableFromJson(
-  Object? eventReferralDocDataType, [
-  enums.EventReferralDocDataType? defaultValue,
-]) {
-  if (eventReferralDocDataType == null) {
-    return null;
-  }
-  return enums.EventReferralDocDataType.values
-          .firstWhereOrNull((e) => e.value == eventReferralDocDataType) ??
-      defaultValue;
-}
-
-String eventReferralDocDataTypeExplodedListToJson(
-    List<enums.EventReferralDocDataType>? eventReferralDocDataType) {
-  return eventReferralDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> eventReferralDocDataTypeListToJson(
-    List<enums.EventReferralDocDataType>? eventReferralDocDataType) {
-  if (eventReferralDocDataType == null) {
-    return [];
-  }
-
-  return eventReferralDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.EventReferralDocDataType> eventReferralDocDataTypeListFromJson(
-  List? eventReferralDocDataType, [
-  List<enums.EventReferralDocDataType>? defaultValue,
-]) {
-  if (eventReferralDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventReferralDocDataType
-      .map((e) => eventReferralDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventReferralDocDataType>?
-    eventReferralDocDataTypeNullableListFromJson(
-  List? eventReferralDocDataType, [
-  List<enums.EventReferralDocDataType>? defaultValue,
-]) {
-  if (eventReferralDocDataType == null) {
-    return defaultValue;
-  }
-
-  return eventReferralDocDataType
-      .map((e) => eventReferralDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? nftActivityFilterCriteriaDtoActivityTypeNullableToJson(
-    enums.NftActivityFilterCriteriaDtoActivityType?
-        nftActivityFilterCriteriaDtoActivityType) {
-  return nftActivityFilterCriteriaDtoActivityType?.value;
-}
-
-String? nftActivityFilterCriteriaDtoActivityTypeToJson(
-    enums.NftActivityFilterCriteriaDtoActivityType
-        nftActivityFilterCriteriaDtoActivityType) {
-  return nftActivityFilterCriteriaDtoActivityType.value;
-}
-
-enums.NftActivityFilterCriteriaDtoActivityType
-    nftActivityFilterCriteriaDtoActivityTypeFromJson(
-  Object? nftActivityFilterCriteriaDtoActivityType, [
-  enums.NftActivityFilterCriteriaDtoActivityType? defaultValue,
-]) {
-  return enums.NftActivityFilterCriteriaDtoActivityType.values.firstWhereOrNull(
-          (e) => e.value == nftActivityFilterCriteriaDtoActivityType) ??
-      defaultValue ??
-      enums.NftActivityFilterCriteriaDtoActivityType.swaggerGeneratedUnknown;
-}
-
-enums.NftActivityFilterCriteriaDtoActivityType?
-    nftActivityFilterCriteriaDtoActivityTypeNullableFromJson(
-  Object? nftActivityFilterCriteriaDtoActivityType, [
-  enums.NftActivityFilterCriteriaDtoActivityType? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoActivityType == null) {
-    return null;
-  }
-  return enums.NftActivityFilterCriteriaDtoActivityType.values.firstWhereOrNull(
-          (e) => e.value == nftActivityFilterCriteriaDtoActivityType) ??
-      defaultValue;
-}
-
-String nftActivityFilterCriteriaDtoActivityTypeExplodedListToJson(
-    List<enums.NftActivityFilterCriteriaDtoActivityType>?
-        nftActivityFilterCriteriaDtoActivityType) {
-  return nftActivityFilterCriteriaDtoActivityType
-          ?.map((e) => e.value!)
-          .join(',') ??
-      '';
-}
-
-List<String> nftActivityFilterCriteriaDtoActivityTypeListToJson(
-    List<enums.NftActivityFilterCriteriaDtoActivityType>?
-        nftActivityFilterCriteriaDtoActivityType) {
-  if (nftActivityFilterCriteriaDtoActivityType == null) {
-    return [];
-  }
-
-  return nftActivityFilterCriteriaDtoActivityType.map((e) => e.value!).toList();
-}
-
-List<enums.NftActivityFilterCriteriaDtoActivityType>
-    nftActivityFilterCriteriaDtoActivityTypeListFromJson(
-  List? nftActivityFilterCriteriaDtoActivityType, [
-  List<enums.NftActivityFilterCriteriaDtoActivityType>? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoActivityType == null) {
-    return defaultValue ?? [];
-  }
-
-  return nftActivityFilterCriteriaDtoActivityType
-      .map(
-          (e) => nftActivityFilterCriteriaDtoActivityTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.NftActivityFilterCriteriaDtoActivityType>?
-    nftActivityFilterCriteriaDtoActivityTypeNullableListFromJson(
-  List? nftActivityFilterCriteriaDtoActivityType, [
-  List<enums.NftActivityFilterCriteriaDtoActivityType>? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoActivityType == null) {
-    return defaultValue;
-  }
-
-  return nftActivityFilterCriteriaDtoActivityType
-      .map(
-          (e) => nftActivityFilterCriteriaDtoActivityTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? nftActivityFilterCriteriaDtoSourceNullableToJson(
-    enums.NftActivityFilterCriteriaDtoSource?
-        nftActivityFilterCriteriaDtoSource) {
-  return nftActivityFilterCriteriaDtoSource?.value;
-}
-
-String? nftActivityFilterCriteriaDtoSourceToJson(
-    enums.NftActivityFilterCriteriaDtoSource
-        nftActivityFilterCriteriaDtoSource) {
-  return nftActivityFilterCriteriaDtoSource.value;
-}
-
-enums.NftActivityFilterCriteriaDtoSource
-    nftActivityFilterCriteriaDtoSourceFromJson(
-  Object? nftActivityFilterCriteriaDtoSource, [
-  enums.NftActivityFilterCriteriaDtoSource? defaultValue,
-]) {
-  return enums.NftActivityFilterCriteriaDtoSource.values.firstWhereOrNull(
-          (e) => e.value == nftActivityFilterCriteriaDtoSource) ??
-      defaultValue ??
-      enums.NftActivityFilterCriteriaDtoSource.swaggerGeneratedUnknown;
-}
-
-enums.NftActivityFilterCriteriaDtoSource?
-    nftActivityFilterCriteriaDtoSourceNullableFromJson(
-  Object? nftActivityFilterCriteriaDtoSource, [
-  enums.NftActivityFilterCriteriaDtoSource? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoSource == null) {
-    return null;
-  }
-  return enums.NftActivityFilterCriteriaDtoSource.values.firstWhereOrNull(
-          (e) => e.value == nftActivityFilterCriteriaDtoSource) ??
-      defaultValue;
-}
-
-String nftActivityFilterCriteriaDtoSourceExplodedListToJson(
-    List<enums.NftActivityFilterCriteriaDtoSource>?
-        nftActivityFilterCriteriaDtoSource) {
-  return nftActivityFilterCriteriaDtoSource?.map((e) => e.value!).join(',') ??
-      '';
-}
-
-List<String> nftActivityFilterCriteriaDtoSourceListToJson(
-    List<enums.NftActivityFilterCriteriaDtoSource>?
-        nftActivityFilterCriteriaDtoSource) {
-  if (nftActivityFilterCriteriaDtoSource == null) {
-    return [];
-  }
-
-  return nftActivityFilterCriteriaDtoSource.map((e) => e.value!).toList();
-}
-
-List<enums.NftActivityFilterCriteriaDtoSource>
-    nftActivityFilterCriteriaDtoSourceListFromJson(
-  List? nftActivityFilterCriteriaDtoSource, [
-  List<enums.NftActivityFilterCriteriaDtoSource>? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoSource == null) {
-    return defaultValue ?? [];
-  }
-
-  return nftActivityFilterCriteriaDtoSource
-      .map((e) => nftActivityFilterCriteriaDtoSourceFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.NftActivityFilterCriteriaDtoSource>?
-    nftActivityFilterCriteriaDtoSourceNullableListFromJson(
-  List? nftActivityFilterCriteriaDtoSource, [
-  List<enums.NftActivityFilterCriteriaDtoSource>? defaultValue,
-]) {
-  if (nftActivityFilterCriteriaDtoSource == null) {
-    return defaultValue;
-  }
-
-  return nftActivityFilterCriteriaDtoSource
-      .map((e) => nftActivityFilterCriteriaDtoSourceFromJson(e.toString()))
-      .toList();
-}
-
-String? collectionOffersFilterCriteriaDtoDataTypeNullableToJson(
-    enums.CollectionOffersFilterCriteriaDtoDataType?
-        collectionOffersFilterCriteriaDtoDataType) {
-  return collectionOffersFilterCriteriaDtoDataType?.value;
-}
-
-String? collectionOffersFilterCriteriaDtoDataTypeToJson(
-    enums.CollectionOffersFilterCriteriaDtoDataType
-        collectionOffersFilterCriteriaDtoDataType) {
-  return collectionOffersFilterCriteriaDtoDataType.value;
-}
-
-enums.CollectionOffersFilterCriteriaDtoDataType
-    collectionOffersFilterCriteriaDtoDataTypeFromJson(
-  Object? collectionOffersFilterCriteriaDtoDataType, [
-  enums.CollectionOffersFilterCriteriaDtoDataType? defaultValue,
-]) {
-  return enums.CollectionOffersFilterCriteriaDtoDataType.values
-          .firstWhereOrNull(
-              (e) => e.value == collectionOffersFilterCriteriaDtoDataType) ??
-      defaultValue ??
-      enums.CollectionOffersFilterCriteriaDtoDataType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionOffersFilterCriteriaDtoDataType?
-    collectionOffersFilterCriteriaDtoDataTypeNullableFromJson(
-  Object? collectionOffersFilterCriteriaDtoDataType, [
-  enums.CollectionOffersFilterCriteriaDtoDataType? defaultValue,
-]) {
-  if (collectionOffersFilterCriteriaDtoDataType == null) {
-    return null;
-  }
-  return enums.CollectionOffersFilterCriteriaDtoDataType.values
-          .firstWhereOrNull(
-              (e) => e.value == collectionOffersFilterCriteriaDtoDataType) ??
-      defaultValue;
-}
-
-String collectionOffersFilterCriteriaDtoDataTypeExplodedListToJson(
-    List<enums.CollectionOffersFilterCriteriaDtoDataType>?
-        collectionOffersFilterCriteriaDtoDataType) {
-  return collectionOffersFilterCriteriaDtoDataType
-          ?.map((e) => e.value!)
-          .join(',') ??
-      '';
-}
-
-List<String> collectionOffersFilterCriteriaDtoDataTypeListToJson(
-    List<enums.CollectionOffersFilterCriteriaDtoDataType>?
-        collectionOffersFilterCriteriaDtoDataType) {
-  if (collectionOffersFilterCriteriaDtoDataType == null) {
-    return [];
-  }
-
-  return collectionOffersFilterCriteriaDtoDataType
-      .map((e) => e.value!)
-      .toList();
-}
-
-List<enums.CollectionOffersFilterCriteriaDtoDataType>
-    collectionOffersFilterCriteriaDtoDataTypeListFromJson(
-  List? collectionOffersFilterCriteriaDtoDataType, [
-  List<enums.CollectionOffersFilterCriteriaDtoDataType>? defaultValue,
-]) {
-  if (collectionOffersFilterCriteriaDtoDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionOffersFilterCriteriaDtoDataType
-      .map((e) =>
-          collectionOffersFilterCriteriaDtoDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CollectionOffersFilterCriteriaDtoDataType>?
-    collectionOffersFilterCriteriaDtoDataTypeNullableListFromJson(
-  List? collectionOffersFilterCriteriaDtoDataType, [
-  List<enums.CollectionOffersFilterCriteriaDtoDataType>? defaultValue,
-]) {
-  if (collectionOffersFilterCriteriaDtoDataType == null) {
-    return defaultValue;
-  }
-
-  return collectionOffersFilterCriteriaDtoDataType
-      .map((e) =>
-          collectionOffersFilterCriteriaDtoDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? collectionStatsFilterCriteriaDtoDataTypeNullableToJson(
-    enums.CollectionStatsFilterCriteriaDtoDataType?
-        collectionStatsFilterCriteriaDtoDataType) {
-  return collectionStatsFilterCriteriaDtoDataType?.value;
-}
-
-String? collectionStatsFilterCriteriaDtoDataTypeToJson(
-    enums.CollectionStatsFilterCriteriaDtoDataType
-        collectionStatsFilterCriteriaDtoDataType) {
-  return collectionStatsFilterCriteriaDtoDataType.value;
-}
-
-enums.CollectionStatsFilterCriteriaDtoDataType
-    collectionStatsFilterCriteriaDtoDataTypeFromJson(
-  Object? collectionStatsFilterCriteriaDtoDataType, [
-  enums.CollectionStatsFilterCriteriaDtoDataType? defaultValue,
-]) {
-  return enums.CollectionStatsFilterCriteriaDtoDataType.values.firstWhereOrNull(
-          (e) => e.value == collectionStatsFilterCriteriaDtoDataType) ??
-      defaultValue ??
-      enums.CollectionStatsFilterCriteriaDtoDataType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionStatsFilterCriteriaDtoDataType?
-    collectionStatsFilterCriteriaDtoDataTypeNullableFromJson(
-  Object? collectionStatsFilterCriteriaDtoDataType, [
-  enums.CollectionStatsFilterCriteriaDtoDataType? defaultValue,
-]) {
-  if (collectionStatsFilterCriteriaDtoDataType == null) {
-    return null;
-  }
-  return enums.CollectionStatsFilterCriteriaDtoDataType.values.firstWhereOrNull(
-          (e) => e.value == collectionStatsFilterCriteriaDtoDataType) ??
-      defaultValue;
-}
-
-String collectionStatsFilterCriteriaDtoDataTypeExplodedListToJson(
-    List<enums.CollectionStatsFilterCriteriaDtoDataType>?
-        collectionStatsFilterCriteriaDtoDataType) {
-  return collectionStatsFilterCriteriaDtoDataType
-          ?.map((e) => e.value!)
-          .join(',') ??
-      '';
-}
-
-List<String> collectionStatsFilterCriteriaDtoDataTypeListToJson(
-    List<enums.CollectionStatsFilterCriteriaDtoDataType>?
-        collectionStatsFilterCriteriaDtoDataType) {
-  if (collectionStatsFilterCriteriaDtoDataType == null) {
-    return [];
-  }
-
-  return collectionStatsFilterCriteriaDtoDataType.map((e) => e.value!).toList();
-}
-
-List<enums.CollectionStatsFilterCriteriaDtoDataType>
-    collectionStatsFilterCriteriaDtoDataTypeListFromJson(
-  List? collectionStatsFilterCriteriaDtoDataType, [
-  List<enums.CollectionStatsFilterCriteriaDtoDataType>? defaultValue,
-]) {
-  if (collectionStatsFilterCriteriaDtoDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionStatsFilterCriteriaDtoDataType
-      .map(
-          (e) => collectionStatsFilterCriteriaDtoDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CollectionStatsFilterCriteriaDtoDataType>?
-    collectionStatsFilterCriteriaDtoDataTypeNullableListFromJson(
-  List? collectionStatsFilterCriteriaDtoDataType, [
-  List<enums.CollectionStatsFilterCriteriaDtoDataType>? defaultValue,
-]) {
-  if (collectionStatsFilterCriteriaDtoDataType == null) {
-    return defaultValue;
-  }
-
-  return collectionStatsFilterCriteriaDtoDataType
-      .map(
-          (e) => collectionStatsFilterCriteriaDtoDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? collectionProfileDocDataTypeNullableToJson(
-    enums.CollectionProfileDocDataType? collectionProfileDocDataType) {
-  return collectionProfileDocDataType?.value;
-}
-
-String? collectionProfileDocDataTypeToJson(
-    enums.CollectionProfileDocDataType collectionProfileDocDataType) {
-  return collectionProfileDocDataType.value;
-}
-
-enums.CollectionProfileDocDataType collectionProfileDocDataTypeFromJson(
-  Object? collectionProfileDocDataType, [
-  enums.CollectionProfileDocDataType? defaultValue,
-]) {
-  return enums.CollectionProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocDataType) ??
-      defaultValue ??
-      enums.CollectionProfileDocDataType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionProfileDocDataType?
-    collectionProfileDocDataTypeNullableFromJson(
-  Object? collectionProfileDocDataType, [
-  enums.CollectionProfileDocDataType? defaultValue,
-]) {
-  if (collectionProfileDocDataType == null) {
-    return null;
-  }
-  return enums.CollectionProfileDocDataType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocDataType) ??
-      defaultValue;
-}
-
-String collectionProfileDocDataTypeExplodedListToJson(
-    List<enums.CollectionProfileDocDataType>? collectionProfileDocDataType) {
-  return collectionProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> collectionProfileDocDataTypeListToJson(
-    List<enums.CollectionProfileDocDataType>? collectionProfileDocDataType) {
-  if (collectionProfileDocDataType == null) {
-    return [];
-  }
-
-  return collectionProfileDocDataType.map((e) => e.value!).toList();
-}
-
-List<enums.CollectionProfileDocDataType>
-    collectionProfileDocDataTypeListFromJson(
-  List? collectionProfileDocDataType, [
-  List<enums.CollectionProfileDocDataType>? defaultValue,
-]) {
-  if (collectionProfileDocDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionProfileDocDataType
-      .map((e) => collectionProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CollectionProfileDocDataType>?
-    collectionProfileDocDataTypeNullableListFromJson(
-  List? collectionProfileDocDataType, [
-  List<enums.CollectionProfileDocDataType>? defaultValue,
-]) {
-  if (collectionProfileDocDataType == null) {
-    return defaultValue;
-  }
-
-  return collectionProfileDocDataType
-      .map((e) => collectionProfileDocDataTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? collectionProfileDocTypeNullableToJson(
-    enums.CollectionProfileDocType? collectionProfileDocType) {
-  return collectionProfileDocType?.value;
-}
-
-String? collectionProfileDocTypeToJson(
-    enums.CollectionProfileDocType collectionProfileDocType) {
-  return collectionProfileDocType.value;
-}
-
-enums.CollectionProfileDocType collectionProfileDocTypeFromJson(
-  Object? collectionProfileDocType, [
-  enums.CollectionProfileDocType? defaultValue,
-]) {
-  return enums.CollectionProfileDocType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocType) ??
-      defaultValue ??
-      enums.CollectionProfileDocType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionProfileDocType? collectionProfileDocTypeNullableFromJson(
-  Object? collectionProfileDocType, [
-  enums.CollectionProfileDocType? defaultValue,
-]) {
-  if (collectionProfileDocType == null) {
-    return null;
-  }
-  return enums.CollectionProfileDocType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocType) ??
-      defaultValue;
-}
-
-String collectionProfileDocTypeExplodedListToJson(
-    List<enums.CollectionProfileDocType>? collectionProfileDocType) {
-  return collectionProfileDocType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> collectionProfileDocTypeListToJson(
-    List<enums.CollectionProfileDocType>? collectionProfileDocType) {
-  if (collectionProfileDocType == null) {
-    return [];
-  }
-
-  return collectionProfileDocType.map((e) => e.value!).toList();
-}
-
-List<enums.CollectionProfileDocType> collectionProfileDocTypeListFromJson(
-  List? collectionProfileDocType, [
-  List<enums.CollectionProfileDocType>? defaultValue,
-]) {
-  if (collectionProfileDocType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionProfileDocType
-      .map((e) => collectionProfileDocTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CollectionProfileDocType>?
-    collectionProfileDocTypeNullableListFromJson(
-  List? collectionProfileDocType, [
-  List<enums.CollectionProfileDocType>? defaultValue,
-]) {
-  if (collectionProfileDocType == null) {
-    return defaultValue;
-  }
-
-  return collectionProfileDocType
-      .map((e) => collectionProfileDocTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? collectionProfileDocSubTypeNullableToJson(
-    enums.CollectionProfileDocSubType? collectionProfileDocSubType) {
-  return collectionProfileDocSubType?.value;
-}
-
-String? collectionProfileDocSubTypeToJson(
-    enums.CollectionProfileDocSubType collectionProfileDocSubType) {
-  return collectionProfileDocSubType.value;
-}
-
-enums.CollectionProfileDocSubType collectionProfileDocSubTypeFromJson(
-  Object? collectionProfileDocSubType, [
-  enums.CollectionProfileDocSubType? defaultValue,
-]) {
-  return enums.CollectionProfileDocSubType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocSubType) ??
-      defaultValue ??
-      enums.CollectionProfileDocSubType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionProfileDocSubType? collectionProfileDocSubTypeNullableFromJson(
-  Object? collectionProfileDocSubType, [
-  enums.CollectionProfileDocSubType? defaultValue,
-]) {
-  if (collectionProfileDocSubType == null) {
-    return null;
-  }
-  return enums.CollectionProfileDocSubType.values
-          .firstWhereOrNull((e) => e.value == collectionProfileDocSubType) ??
-      defaultValue;
-}
-
-String collectionProfileDocSubTypeExplodedListToJson(
-    List<enums.CollectionProfileDocSubType>? collectionProfileDocSubType) {
-  return collectionProfileDocSubType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> collectionProfileDocSubTypeListToJson(
-    List<enums.CollectionProfileDocSubType>? collectionProfileDocSubType) {
-  if (collectionProfileDocSubType == null) {
-    return [];
-  }
-
-  return collectionProfileDocSubType.map((e) => e.value!).toList();
-}
-
-List<enums.CollectionProfileDocSubType> collectionProfileDocSubTypeListFromJson(
-  List? collectionProfileDocSubType, [
-  List<enums.CollectionProfileDocSubType>? defaultValue,
-]) {
-  if (collectionProfileDocSubType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionProfileDocSubType
-      .map((e) => collectionProfileDocSubTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.CollectionProfileDocSubType>?
-    collectionProfileDocSubTypeNullableListFromJson(
-  List? collectionProfileDocSubType, [
-  List<enums.CollectionProfileDocSubType>? defaultValue,
-]) {
-  if (collectionProfileDocSubType == null) {
-    return defaultValue;
-  }
-
-  return collectionProfileDocSubType
-      .map((e) => collectionProfileDocSubTypeFromJson(e.toString()))
+  return nftActivityEventSource
+      .map((e) => nftActivityEventSourceFromJson(e.toString()))
       .toList();
 }
 
@@ -37870,470 +34843,6 @@ List<enums.NftOfferDocFilterOrderBy>?
 
   return nftOfferDocFilterOrderBy
       .map((e) => nftOfferDocFilterOrderByFromJson(e.toString()))
-      .toList();
-}
-
-String? eventInvitationFilterCriteriaDtoStatusNullableToJson(
-    enums.EventInvitationFilterCriteriaDtoStatus?
-        eventInvitationFilterCriteriaDtoStatus) {
-  return eventInvitationFilterCriteriaDtoStatus?.value;
-}
-
-String? eventInvitationFilterCriteriaDtoStatusToJson(
-    enums.EventInvitationFilterCriteriaDtoStatus
-        eventInvitationFilterCriteriaDtoStatus) {
-  return eventInvitationFilterCriteriaDtoStatus.value;
-}
-
-enums.EventInvitationFilterCriteriaDtoStatus
-    eventInvitationFilterCriteriaDtoStatusFromJson(
-  Object? eventInvitationFilterCriteriaDtoStatus, [
-  enums.EventInvitationFilterCriteriaDtoStatus? defaultValue,
-]) {
-  return enums.EventInvitationFilterCriteriaDtoStatus.values.firstWhereOrNull(
-          (e) => e.value == eventInvitationFilterCriteriaDtoStatus) ??
-      defaultValue ??
-      enums.EventInvitationFilterCriteriaDtoStatus.swaggerGeneratedUnknown;
-}
-
-enums.EventInvitationFilterCriteriaDtoStatus?
-    eventInvitationFilterCriteriaDtoStatusNullableFromJson(
-  Object? eventInvitationFilterCriteriaDtoStatus, [
-  enums.EventInvitationFilterCriteriaDtoStatus? defaultValue,
-]) {
-  if (eventInvitationFilterCriteriaDtoStatus == null) {
-    return null;
-  }
-  return enums.EventInvitationFilterCriteriaDtoStatus.values.firstWhereOrNull(
-          (e) => e.value == eventInvitationFilterCriteriaDtoStatus) ??
-      defaultValue;
-}
-
-String eventInvitationFilterCriteriaDtoStatusExplodedListToJson(
-    List<enums.EventInvitationFilterCriteriaDtoStatus>?
-        eventInvitationFilterCriteriaDtoStatus) {
-  return eventInvitationFilterCriteriaDtoStatus
-          ?.map((e) => e.value!)
-          .join(',') ??
-      '';
-}
-
-List<String> eventInvitationFilterCriteriaDtoStatusListToJson(
-    List<enums.EventInvitationFilterCriteriaDtoStatus>?
-        eventInvitationFilterCriteriaDtoStatus) {
-  if (eventInvitationFilterCriteriaDtoStatus == null) {
-    return [];
-  }
-
-  return eventInvitationFilterCriteriaDtoStatus.map((e) => e.value!).toList();
-}
-
-List<enums.EventInvitationFilterCriteriaDtoStatus>
-    eventInvitationFilterCriteriaDtoStatusListFromJson(
-  List? eventInvitationFilterCriteriaDtoStatus, [
-  List<enums.EventInvitationFilterCriteriaDtoStatus>? defaultValue,
-]) {
-  if (eventInvitationFilterCriteriaDtoStatus == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventInvitationFilterCriteriaDtoStatus
-      .map((e) => eventInvitationFilterCriteriaDtoStatusFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventInvitationFilterCriteriaDtoStatus>?
-    eventInvitationFilterCriteriaDtoStatusNullableListFromJson(
-  List? eventInvitationFilterCriteriaDtoStatus, [
-  List<enums.EventInvitationFilterCriteriaDtoStatus>? defaultValue,
-]) {
-  if (eventInvitationFilterCriteriaDtoStatus == null) {
-    return defaultValue;
-  }
-
-  return eventInvitationFilterCriteriaDtoStatus
-      .map((e) => eventInvitationFilterCriteriaDtoStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? eventVoucherFilterCriteriaDtoTypeNullableToJson(
-    enums.EventVoucherFilterCriteriaDtoType?
-        eventVoucherFilterCriteriaDtoType) {
-  return eventVoucherFilterCriteriaDtoType?.value;
-}
-
-String? eventVoucherFilterCriteriaDtoTypeToJson(
-    enums.EventVoucherFilterCriteriaDtoType eventVoucherFilterCriteriaDtoType) {
-  return eventVoucherFilterCriteriaDtoType.value;
-}
-
-enums.EventVoucherFilterCriteriaDtoType
-    eventVoucherFilterCriteriaDtoTypeFromJson(
-  Object? eventVoucherFilterCriteriaDtoType, [
-  enums.EventVoucherFilterCriteriaDtoType? defaultValue,
-]) {
-  return enums.EventVoucherFilterCriteriaDtoType.values.firstWhereOrNull(
-          (e) => e.value == eventVoucherFilterCriteriaDtoType) ??
-      defaultValue ??
-      enums.EventVoucherFilterCriteriaDtoType.swaggerGeneratedUnknown;
-}
-
-enums.EventVoucherFilterCriteriaDtoType?
-    eventVoucherFilterCriteriaDtoTypeNullableFromJson(
-  Object? eventVoucherFilterCriteriaDtoType, [
-  enums.EventVoucherFilterCriteriaDtoType? defaultValue,
-]) {
-  if (eventVoucherFilterCriteriaDtoType == null) {
-    return null;
-  }
-  return enums.EventVoucherFilterCriteriaDtoType.values.firstWhereOrNull(
-          (e) => e.value == eventVoucherFilterCriteriaDtoType) ??
-      defaultValue;
-}
-
-String eventVoucherFilterCriteriaDtoTypeExplodedListToJson(
-    List<enums.EventVoucherFilterCriteriaDtoType>?
-        eventVoucherFilterCriteriaDtoType) {
-  return eventVoucherFilterCriteriaDtoType?.map((e) => e.value!).join(',') ??
-      '';
-}
-
-List<String> eventVoucherFilterCriteriaDtoTypeListToJson(
-    List<enums.EventVoucherFilterCriteriaDtoType>?
-        eventVoucherFilterCriteriaDtoType) {
-  if (eventVoucherFilterCriteriaDtoType == null) {
-    return [];
-  }
-
-  return eventVoucherFilterCriteriaDtoType.map((e) => e.value!).toList();
-}
-
-List<enums.EventVoucherFilterCriteriaDtoType>
-    eventVoucherFilterCriteriaDtoTypeListFromJson(
-  List? eventVoucherFilterCriteriaDtoType, [
-  List<enums.EventVoucherFilterCriteriaDtoType>? defaultValue,
-]) {
-  if (eventVoucherFilterCriteriaDtoType == null) {
-    return defaultValue ?? [];
-  }
-
-  return eventVoucherFilterCriteriaDtoType
-      .map((e) => eventVoucherFilterCriteriaDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.EventVoucherFilterCriteriaDtoType>?
-    eventVoucherFilterCriteriaDtoTypeNullableListFromJson(
-  List? eventVoucherFilterCriteriaDtoType, [
-  List<enums.EventVoucherFilterCriteriaDtoType>? defaultValue,
-]) {
-  if (eventVoucherFilterCriteriaDtoType == null) {
-    return defaultValue;
-  }
-
-  return eventVoucherFilterCriteriaDtoType
-      .map((e) => eventVoucherFilterCriteriaDtoTypeFromJson(e.toString()))
-      .toList();
-}
-
-String? lendingLeaderboardGetOrderByNullableToJson(
-    enums.LendingLeaderboardGetOrderBy? lendingLeaderboardGetOrderBy) {
-  return lendingLeaderboardGetOrderBy?.value;
-}
-
-String? lendingLeaderboardGetOrderByToJson(
-    enums.LendingLeaderboardGetOrderBy lendingLeaderboardGetOrderBy) {
-  return lendingLeaderboardGetOrderBy.value;
-}
-
-enums.LendingLeaderboardGetOrderBy lendingLeaderboardGetOrderByFromJson(
-  Object? lendingLeaderboardGetOrderBy, [
-  enums.LendingLeaderboardGetOrderBy? defaultValue,
-]) {
-  return enums.LendingLeaderboardGetOrderBy.values
-          .firstWhereOrNull((e) => e.value == lendingLeaderboardGetOrderBy) ??
-      defaultValue ??
-      enums.LendingLeaderboardGetOrderBy.swaggerGeneratedUnknown;
-}
-
-enums.LendingLeaderboardGetOrderBy?
-    lendingLeaderboardGetOrderByNullableFromJson(
-  Object? lendingLeaderboardGetOrderBy, [
-  enums.LendingLeaderboardGetOrderBy? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderBy == null) {
-    return null;
-  }
-  return enums.LendingLeaderboardGetOrderBy.values
-          .firstWhereOrNull((e) => e.value == lendingLeaderboardGetOrderBy) ??
-      defaultValue;
-}
-
-String lendingLeaderboardGetOrderByExplodedListToJson(
-    List<enums.LendingLeaderboardGetOrderBy>? lendingLeaderboardGetOrderBy) {
-  return lendingLeaderboardGetOrderBy?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> lendingLeaderboardGetOrderByListToJson(
-    List<enums.LendingLeaderboardGetOrderBy>? lendingLeaderboardGetOrderBy) {
-  if (lendingLeaderboardGetOrderBy == null) {
-    return [];
-  }
-
-  return lendingLeaderboardGetOrderBy.map((e) => e.value!).toList();
-}
-
-List<enums.LendingLeaderboardGetOrderBy>
-    lendingLeaderboardGetOrderByListFromJson(
-  List? lendingLeaderboardGetOrderBy, [
-  List<enums.LendingLeaderboardGetOrderBy>? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderBy == null) {
-    return defaultValue ?? [];
-  }
-
-  return lendingLeaderboardGetOrderBy
-      .map((e) => lendingLeaderboardGetOrderByFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.LendingLeaderboardGetOrderBy>?
-    lendingLeaderboardGetOrderByNullableListFromJson(
-  List? lendingLeaderboardGetOrderBy, [
-  List<enums.LendingLeaderboardGetOrderBy>? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderBy == null) {
-    return defaultValue;
-  }
-
-  return lendingLeaderboardGetOrderBy
-      .map((e) => lendingLeaderboardGetOrderByFromJson(e.toString()))
-      .toList();
-}
-
-String? lendingLeaderboardGetOrderDirectionNullableToJson(
-    enums.LendingLeaderboardGetOrderDirection?
-        lendingLeaderboardGetOrderDirection) {
-  return lendingLeaderboardGetOrderDirection?.value;
-}
-
-String? lendingLeaderboardGetOrderDirectionToJson(
-    enums.LendingLeaderboardGetOrderDirection
-        lendingLeaderboardGetOrderDirection) {
-  return lendingLeaderboardGetOrderDirection.value;
-}
-
-enums.LendingLeaderboardGetOrderDirection
-    lendingLeaderboardGetOrderDirectionFromJson(
-  Object? lendingLeaderboardGetOrderDirection, [
-  enums.LendingLeaderboardGetOrderDirection? defaultValue,
-]) {
-  return enums.LendingLeaderboardGetOrderDirection.values.firstWhereOrNull(
-          (e) => e.value == lendingLeaderboardGetOrderDirection) ??
-      defaultValue ??
-      enums.LendingLeaderboardGetOrderDirection.swaggerGeneratedUnknown;
-}
-
-enums.LendingLeaderboardGetOrderDirection?
-    lendingLeaderboardGetOrderDirectionNullableFromJson(
-  Object? lendingLeaderboardGetOrderDirection, [
-  enums.LendingLeaderboardGetOrderDirection? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderDirection == null) {
-    return null;
-  }
-  return enums.LendingLeaderboardGetOrderDirection.values.firstWhereOrNull(
-          (e) => e.value == lendingLeaderboardGetOrderDirection) ??
-      defaultValue;
-}
-
-String lendingLeaderboardGetOrderDirectionExplodedListToJson(
-    List<enums.LendingLeaderboardGetOrderDirection>?
-        lendingLeaderboardGetOrderDirection) {
-  return lendingLeaderboardGetOrderDirection?.map((e) => e.value!).join(',') ??
-      '';
-}
-
-List<String> lendingLeaderboardGetOrderDirectionListToJson(
-    List<enums.LendingLeaderboardGetOrderDirection>?
-        lendingLeaderboardGetOrderDirection) {
-  if (lendingLeaderboardGetOrderDirection == null) {
-    return [];
-  }
-
-  return lendingLeaderboardGetOrderDirection.map((e) => e.value!).toList();
-}
-
-List<enums.LendingLeaderboardGetOrderDirection>
-    lendingLeaderboardGetOrderDirectionListFromJson(
-  List? lendingLeaderboardGetOrderDirection, [
-  List<enums.LendingLeaderboardGetOrderDirection>? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderDirection == null) {
-    return defaultValue ?? [];
-  }
-
-  return lendingLeaderboardGetOrderDirection
-      .map((e) => lendingLeaderboardGetOrderDirectionFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.LendingLeaderboardGetOrderDirection>?
-    lendingLeaderboardGetOrderDirectionNullableListFromJson(
-  List? lendingLeaderboardGetOrderDirection, [
-  List<enums.LendingLeaderboardGetOrderDirection>? defaultValue,
-]) {
-  if (lendingLeaderboardGetOrderDirection == null) {
-    return defaultValue;
-  }
-
-  return lendingLeaderboardGetOrderDirection
-      .map((e) => lendingLeaderboardGetOrderDirectionFromJson(e.toString()))
-      .toList();
-}
-
-String? userStatsGetOrderByNullableToJson(
-    enums.UserStatsGetOrderBy? userStatsGetOrderBy) {
-  return userStatsGetOrderBy?.value;
-}
-
-String? userStatsGetOrderByToJson(
-    enums.UserStatsGetOrderBy userStatsGetOrderBy) {
-  return userStatsGetOrderBy.value;
-}
-
-enums.UserStatsGetOrderBy userStatsGetOrderByFromJson(
-  Object? userStatsGetOrderBy, [
-  enums.UserStatsGetOrderBy? defaultValue,
-]) {
-  return enums.UserStatsGetOrderBy.values
-          .firstWhereOrNull((e) => e.value == userStatsGetOrderBy) ??
-      defaultValue ??
-      enums.UserStatsGetOrderBy.swaggerGeneratedUnknown;
-}
-
-enums.UserStatsGetOrderBy? userStatsGetOrderByNullableFromJson(
-  Object? userStatsGetOrderBy, [
-  enums.UserStatsGetOrderBy? defaultValue,
-]) {
-  if (userStatsGetOrderBy == null) {
-    return null;
-  }
-  return enums.UserStatsGetOrderBy.values
-          .firstWhereOrNull((e) => e.value == userStatsGetOrderBy) ??
-      defaultValue;
-}
-
-String userStatsGetOrderByExplodedListToJson(
-    List<enums.UserStatsGetOrderBy>? userStatsGetOrderBy) {
-  return userStatsGetOrderBy?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> userStatsGetOrderByListToJson(
-    List<enums.UserStatsGetOrderBy>? userStatsGetOrderBy) {
-  if (userStatsGetOrderBy == null) {
-    return [];
-  }
-
-  return userStatsGetOrderBy.map((e) => e.value!).toList();
-}
-
-List<enums.UserStatsGetOrderBy> userStatsGetOrderByListFromJson(
-  List? userStatsGetOrderBy, [
-  List<enums.UserStatsGetOrderBy>? defaultValue,
-]) {
-  if (userStatsGetOrderBy == null) {
-    return defaultValue ?? [];
-  }
-
-  return userStatsGetOrderBy
-      .map((e) => userStatsGetOrderByFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.UserStatsGetOrderBy>? userStatsGetOrderByNullableListFromJson(
-  List? userStatsGetOrderBy, [
-  List<enums.UserStatsGetOrderBy>? defaultValue,
-]) {
-  if (userStatsGetOrderBy == null) {
-    return defaultValue;
-  }
-
-  return userStatsGetOrderBy
-      .map((e) => userStatsGetOrderByFromJson(e.toString()))
-      .toList();
-}
-
-String? userStatsGetOrderDirectionNullableToJson(
-    enums.UserStatsGetOrderDirection? userStatsGetOrderDirection) {
-  return userStatsGetOrderDirection?.value;
-}
-
-String? userStatsGetOrderDirectionToJson(
-    enums.UserStatsGetOrderDirection userStatsGetOrderDirection) {
-  return userStatsGetOrderDirection.value;
-}
-
-enums.UserStatsGetOrderDirection userStatsGetOrderDirectionFromJson(
-  Object? userStatsGetOrderDirection, [
-  enums.UserStatsGetOrderDirection? defaultValue,
-]) {
-  return enums.UserStatsGetOrderDirection.values
-          .firstWhereOrNull((e) => e.value == userStatsGetOrderDirection) ??
-      defaultValue ??
-      enums.UserStatsGetOrderDirection.swaggerGeneratedUnknown;
-}
-
-enums.UserStatsGetOrderDirection? userStatsGetOrderDirectionNullableFromJson(
-  Object? userStatsGetOrderDirection, [
-  enums.UserStatsGetOrderDirection? defaultValue,
-]) {
-  if (userStatsGetOrderDirection == null) {
-    return null;
-  }
-  return enums.UserStatsGetOrderDirection.values
-          .firstWhereOrNull((e) => e.value == userStatsGetOrderDirection) ??
-      defaultValue;
-}
-
-String userStatsGetOrderDirectionExplodedListToJson(
-    List<enums.UserStatsGetOrderDirection>? userStatsGetOrderDirection) {
-  return userStatsGetOrderDirection?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> userStatsGetOrderDirectionListToJson(
-    List<enums.UserStatsGetOrderDirection>? userStatsGetOrderDirection) {
-  if (userStatsGetOrderDirection == null) {
-    return [];
-  }
-
-  return userStatsGetOrderDirection.map((e) => e.value!).toList();
-}
-
-List<enums.UserStatsGetOrderDirection> userStatsGetOrderDirectionListFromJson(
-  List? userStatsGetOrderDirection, [
-  List<enums.UserStatsGetOrderDirection>? defaultValue,
-]) {
-  if (userStatsGetOrderDirection == null) {
-    return defaultValue ?? [];
-  }
-
-  return userStatsGetOrderDirection
-      .map((e) => userStatsGetOrderDirectionFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.UserStatsGetOrderDirection>?
-    userStatsGetOrderDirectionNullableListFromJson(
-  List? userStatsGetOrderDirection, [
-  List<enums.UserStatsGetOrderDirection>? defaultValue,
-]) {
-  if (userStatsGetOrderDirection == null) {
-    return defaultValue;
-  }
-
-  return userStatsGetOrderDirection
-      .map((e) => userStatsGetOrderDirectionFromJson(e.toString()))
       .toList();
 }
 
