@@ -43,7 +43,7 @@ Future<void> main() async {
     renewableTokens: RenewableTokens(),
   );
   final rawJWT =
-      'eyJhbGciOiJSUzI1NiIsImtpZCI6IjcxMTE1MjM1YTZjNjE0NTRlZmRlZGM0NWE3N2U0MzUxMzY3ZWViZTAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20veG94bm8tbW9iaWxlIiwiYXVkIjoieG94bm8tbW9iaWxlIiwiYXV0aF90aW1lIjoxNzQ0NDU5MjI3LCJ1c2VyX2lkIjoiVldOY3dEUmpScE80QVhiVmlSNnpnWU9qbHVoMSIsInN1YiI6IlZXTmN3RFJqUnBPNEFYYlZpUjZ6Z1lPamx1aDEiLCJpYXQiOjE3NDQ0NTkyMjcsImV4cCI6MTc0NDQ2MjgyNywiZW1haWwiOiJzaGFzaGFua3NtYXl5YUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJhcHBsZS5jb20iOlsiMDAwNzQ1LjE4YzFiNGRlY2I5NjQzOGM5NjFlZGE5ZTA0ZTQ4YTJiLjA0NTMiXSwiZ29vZ2xlLmNvbSI6WyIxMTQ0MTAzNDMwMzI1OTgwODg1OTUiXSwiZW1haWwiOlsic2hhc2hhbmtzbWF5eWFAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.CUEMFUOOHSfxe_Odmx5QWUdSuBjjLYCp1RF4mjzeZ4z3ZP82rX4a2EN-rkSsSDGvLAQeb4GwIRXKyTZgaCZuffNnCL1aShIy_1NYxtiybVulRwPORP7Qm0VG7yfr-KM_fuU9z_X4As9uTwihxwKDSkm0owLxKGhCSTJ4ng9R1xHJnb_Hhg1eVj1Rf7i9arNgKgmq4kkuele5UKhpLqvy53xhDqZlhrIdIiQsnOLuG6cNxKJL0sfUfph-U5UlbHMF6kAZnLZ5f5CZM8ZEKcq2j7BeIBNO5jJeYVjjEoEDpQnIgTK1OMGNm5nJmF4aJDXM4UQR7Phg_T9dSGKxdgM93A';
+      'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg1NzA4MWNhOWNiYjM3YzIzNDk4ZGQzOTQzYmYzNzFhMDU4ODNkMjgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20veG94bm8tbW9iaWxlIiwiYXVkIjoieG94bm8tbW9iaWxlIiwiYXV0aF90aW1lIjoxNzQ0NzE2MDg2LCJ1c2VyX2lkIjoiVldOY3dEUmpScE80QVhiVmlSNnpnWU9qbHVoMSIsInN1YiI6IlZXTmN3RFJqUnBPNEFYYlZpUjZ6Z1lPamx1aDEiLCJpYXQiOjE3NDQ3MzgwNDksImV4cCI6MTc0NDc0MTY0OSwiZW1haWwiOiJzaGFzaGFua3NtYXl5YUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJhcHBsZS5jb20iOlsiMDAwNzQ1LjE4YzFiNGRlY2I5NjQzOGM5NjFlZGE5ZTA0ZTQ4YTJiLjA0NTMiXSwiZ29vZ2xlLmNvbSI6WyIxMTQ0MTAzNDMwMzI1OTgwODg1OTUiXSwiZW1haWwiOlsic2hhc2hhbmtzbWF5eWFAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.S9X9RM72xsDBjgFpoln4BY-ge4ExvC2uXfC3y7E0L3sGpH_jigNdxGF2mNs7ITAPpVaFy247MP1lluYjK3J2WZbGxXfH-DDY09pdfhhSasob-PxFYJXd0imRS7sCWBUW-E9W4tWTyUN-oKz91nFKTqaio0JYfCAce46bCc9R8HNJ63LEDT7yU1gl-Pd7cF90vGrM0u9pwj_3LsKYuHgJdf2S3dkgYcki9vh63aNs_rN2vFROvIwzRT67I4HNeS4JKYZFJCJnasBe4ToigW7eZwVUO1QgxhZiANkia6C-aGrCiNhF3sglPHWGrR0abSTTin1X6a1uTcpfQYA43IklMQ';
   client.jwt = rawJWT;
 
   final rawApi = xoxno.RawApi(client: client);
@@ -60,7 +60,11 @@ Future<void> main() async {
     //         extraProperties: EventExtraProperties(
     //             creatorProfile: true, guestSummary: true)));
     // var tokenss = await sdk.api.event.getMyEvents(true);//.getEventStages(eventId: "bd2eb3a8-65cb-48b9-932a-c7af7d5bed2e", isEnabled: true);
-    var user = await sdk.api.event.getEventById(eventId: "aab11bc4-69b0-42b2-915c-14ae82dd9227");
+    var user = await sdk.api.event.getEventInvitations(
+        eventId: "aab11bc4-69b0-42b2-915c-14ae82dd9227",
+        filter: EventInvitationFilter(
+          filters: EventInvitationFilterCriteriaDto(),
+        ));
     // logger.info(tokens);
     logger.info(user);
 

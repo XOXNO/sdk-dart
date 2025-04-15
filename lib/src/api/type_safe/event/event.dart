@@ -244,6 +244,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       filter: f,
     );
+    print(data);
     return EventInvitationQuery.fromJson(data);
   }
 

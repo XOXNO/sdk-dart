@@ -4968,9 +4968,9 @@ EventTicketProfileDoc _$EventTicketProfileDocFromJson(
       dataType: EventTicketProfileDoc.ticketingDataTypeDataTypeFromJson(
           json['dataType']),
       eventId: json['eventId'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String,
-      profile: json['profile'] as String,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      profile: json['profile'] as String?,
       royalties: (json['royalties'] as num?)?.toDouble(),
       badgeColor: json['badgeColor'] as String?,
       characteristics: json['characteristics'],
@@ -5263,9 +5263,9 @@ Map<String, dynamic> _$EventInvitationCreateDtoToJson(
 TicketProfileSummary _$TicketProfileSummaryFromJson(
         Map<String, dynamic> json) =>
     TicketProfileSummary(
-      name: json['name'] as String,
-      description: json['description'] as String,
-      profile: json['profile'] as String,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      profile: json['profile'] as String?,
       badgeColor: json['badgeColor'] as String?,
       characteristics: json['characteristics'],
       ticketId: json['ticketId'] as String,
@@ -5307,7 +5307,7 @@ EventInvitationDoc _$EventInvitationDocFromJson(Map<String, dynamic> json) =>
       claimedBy: json['claimedBy'] as String?,
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
-      pk: json['pk'] as String,
+      pk: json['pk'] as String?,
     );
 
 Map<String, dynamic> _$EventInvitationDocToJson(EventInvitationDoc instance) =>
@@ -5353,7 +5353,7 @@ EventInvitation _$EventInvitationFromJson(Map<String, dynamic> json) =>
       claimedBy: json['claimedBy'] as String?,
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
-      pk: json['pk'] as String,
+      pk: json['pk'] as String?,
       profile: json['profile'] as String?,
       herotag: json['herotag'] as String?,
     );

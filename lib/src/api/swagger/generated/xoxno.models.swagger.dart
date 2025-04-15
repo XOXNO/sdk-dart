@@ -23216,9 +23216,9 @@ class EventTicketProfileDoc {
   const EventTicketProfileDoc({
     required this.dataType,
     required this.eventId,
-    required this.name,
-    required this.description,
-    required this.profile,
+    this.name,
+    this.description,
+    this.profile,
     this.royalties,
     this.badgeColor,
     this.characteristics,
@@ -23249,11 +23249,11 @@ class EventTicketProfileDoc {
   @JsonKey(name: 'eventId')
   final String eventId;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'profile')
-  final String profile;
+  final String? profile;
   @JsonKey(name: 'royalties')
   final double? royalties;
   @JsonKey(name: 'badgeColor')
@@ -23370,9 +23370,9 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
   EventTicketProfileDoc copyWithWrapped(
       {Wrapped<enums.TicketingDataType>? dataType,
       Wrapped<String>? eventId,
-      Wrapped<String>? name,
-      Wrapped<String>? description,
-      Wrapped<String>? profile,
+      Wrapped<String?>? name,
+      Wrapped<String?>? description,
+      Wrapped<String?>? profile,
       Wrapped<double?>? royalties,
       Wrapped<String?>? badgeColor,
       Wrapped<Object?>? characteristics,
@@ -24566,9 +24566,9 @@ extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
 @JsonSerializable(explicitToJson: true)
 class TicketProfileSummary {
   const TicketProfileSummary({
-    required this.name,
-    required this.description,
-    required this.profile,
+    this.name,
+    this.description,
+    this.profile,
     this.badgeColor,
     this.characteristics,
     required this.ticketId,
@@ -24582,11 +24582,11 @@ class TicketProfileSummary {
   Map<String, dynamic> toJson() => _$TicketProfileSummaryToJson(this);
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'profile')
-  final String profile;
+  final String? profile;
   @JsonKey(name: 'badgeColor')
   final String? badgeColor;
   @JsonKey(name: 'characteristics')
@@ -24658,9 +24658,9 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
   }
 
   TicketProfileSummary copyWithWrapped(
-      {Wrapped<String>? name,
-      Wrapped<String>? description,
-      Wrapped<String>? profile,
+      {Wrapped<String?>? name,
+      Wrapped<String?>? description,
+      Wrapped<String?>? profile,
       Wrapped<String?>? badgeColor,
       Wrapped<Object?>? characteristics,
       Wrapped<String>? ticketId,
@@ -24697,7 +24697,7 @@ class EventInvitationDoc {
     this.claimedBy,
     this.txHash,
     required this.id,
-    required this.pk,
+    this.pk,
   });
 
   factory EventInvitationDoc.fromJson(Map<String, dynamic> json) =>
@@ -24753,7 +24753,7 @@ class EventInvitationDoc {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   static const fromJsonFactory = _$EventInvitationDocFromJson;
 
   @override
@@ -24880,7 +24880,7 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
       Wrapped<String?>? claimedBy,
       Wrapped<String?>? txHash,
       Wrapped<String>? id,
-      Wrapped<String>? pk}) {
+      Wrapped<String?>? pk}) {
     return EventInvitationDoc(
         dataType: (dataType != null ? dataType.value : this.dataType),
         eventId: (eventId != null ? eventId.value : this.eventId),
@@ -24919,7 +24919,7 @@ class EventInvitation {
     this.claimedBy,
     this.txHash,
     required this.id,
-    required this.pk,
+    this.pk,
     this.profile,
     this.herotag,
   });
@@ -24977,7 +24977,7 @@ class EventInvitation {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   @JsonKey(name: 'profile')
   final String? profile;
   @JsonKey(name: 'herotag')
@@ -25119,7 +25119,7 @@ extension $EventInvitationExtension on EventInvitation {
       Wrapped<String?>? claimedBy,
       Wrapped<String?>? txHash,
       Wrapped<String>? id,
-      Wrapped<String>? pk,
+      Wrapped<String?>? pk,
       Wrapped<String?>? profile,
       Wrapped<String?>? herotag}) {
     return EventInvitation(
