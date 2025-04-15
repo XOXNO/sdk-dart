@@ -63,7 +63,11 @@ Future<void> main() async {
     var user = await sdk.api.event.getEventInvitations(
         eventId: "aab11bc4-69b0-42b2-915c-14ae82dd9227",
         filter: EventInvitationFilter(
-          filters: EventInvitationFilterCriteriaDto(),
+          top: 1,
+          skip: 0,
+          filters: EventInvitationFilterCriteriaDto(
+            eventId: ["aab11bc4-69b0-42b2-915c-14ae82dd9227"],
+          ),
         ));
     // logger.info(tokens);
     logger.info(user);
