@@ -36,8 +36,7 @@ class TransactionsRawApi {
     );
   }
 
-  Future<List<dynamic>> batchTransactions(
-      {required final List body}) {
+  Future<List<dynamic>> batchTransactions({required final List body}) {
     final logger = Logger('Xoxno.TransactionsRawApi.batchTransactions');
     logger.finest('batch transactions');
     return genericPost(

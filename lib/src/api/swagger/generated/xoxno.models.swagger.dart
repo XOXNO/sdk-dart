@@ -2368,6 +2368,114 @@ extension $UserSettingsDocExtension on UserSettingsDoc {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NotificationPreferencesPostDto {
+  const NotificationPreferencesPostDto({
+    required this.sales,
+    required this.bids,
+    required this.offersReceived,
+    required this.offersAccepted,
+    required this.offersRejected,
+    required this.deposits,
+  });
+
+  factory NotificationPreferencesPostDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationPreferencesPostDtoFromJson(json);
+
+  static const toJsonFactory = _$NotificationPreferencesPostDtoToJson;
+  Map<String, dynamic> toJson() => _$NotificationPreferencesPostDtoToJson(this);
+
+  @JsonKey(name: 'sales')
+  final bool sales;
+  @JsonKey(name: 'bids')
+  final bool bids;
+  @JsonKey(name: 'offersReceived')
+  final bool offersReceived;
+  @JsonKey(name: 'offersAccepted')
+  final bool offersAccepted;
+  @JsonKey(name: 'offersRejected')
+  final bool offersRejected;
+  @JsonKey(name: 'deposits')
+  final bool deposits;
+  static const fromJsonFactory = _$NotificationPreferencesPostDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationPreferencesPostDto &&
+            (identical(other.sales, sales) ||
+                const DeepCollectionEquality().equals(other.sales, sales)) &&
+            (identical(other.bids, bids) ||
+                const DeepCollectionEquality().equals(other.bids, bids)) &&
+            (identical(other.offersReceived, offersReceived) ||
+                const DeepCollectionEquality()
+                    .equals(other.offersReceived, offersReceived)) &&
+            (identical(other.offersAccepted, offersAccepted) ||
+                const DeepCollectionEquality()
+                    .equals(other.offersAccepted, offersAccepted)) &&
+            (identical(other.offersRejected, offersRejected) ||
+                const DeepCollectionEquality()
+                    .equals(other.offersRejected, offersRejected)) &&
+            (identical(other.deposits, deposits) ||
+                const DeepCollectionEquality()
+                    .equals(other.deposits, deposits)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sales) ^
+      const DeepCollectionEquality().hash(bids) ^
+      const DeepCollectionEquality().hash(offersReceived) ^
+      const DeepCollectionEquality().hash(offersAccepted) ^
+      const DeepCollectionEquality().hash(offersRejected) ^
+      const DeepCollectionEquality().hash(deposits) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationPreferencesPostDtoExtension
+    on NotificationPreferencesPostDto {
+  NotificationPreferencesPostDto copyWith(
+      {bool? sales,
+      bool? bids,
+      bool? offersReceived,
+      bool? offersAccepted,
+      bool? offersRejected,
+      bool? deposits}) {
+    return NotificationPreferencesPostDto(
+        sales: sales ?? this.sales,
+        bids: bids ?? this.bids,
+        offersReceived: offersReceived ?? this.offersReceived,
+        offersAccepted: offersAccepted ?? this.offersAccepted,
+        offersRejected: offersRejected ?? this.offersRejected,
+        deposits: deposits ?? this.deposits);
+  }
+
+  NotificationPreferencesPostDto copyWithWrapped(
+      {Wrapped<bool>? sales,
+      Wrapped<bool>? bids,
+      Wrapped<bool>? offersReceived,
+      Wrapped<bool>? offersAccepted,
+      Wrapped<bool>? offersRejected,
+      Wrapped<bool>? deposits}) {
+    return NotificationPreferencesPostDto(
+        sales: (sales != null ? sales.value : this.sales),
+        bids: (bids != null ? bids.value : this.bids),
+        offersReceived: (offersReceived != null
+            ? offersReceived.value
+            : this.offersReceived),
+        offersAccepted: (offersAccepted != null
+            ? offersAccepted.value
+            : this.offersAccepted),
+        offersRejected: (offersRejected != null
+            ? offersRejected.value
+            : this.offersRejected),
+        deposits: (deposits != null ? deposits.value : this.deposits));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class SetEmailDto {
   const SetEmailDto({
     required this.enabled,
@@ -4536,8 +4644,8 @@ class SwapDto {
   final String assetOut;
   @JsonKey(name: 'functionName')
   final String functionName;
-  @JsonKey(name: 'arguments', defaultValue: <String>[])
-  final List<String> arguments;
+  @JsonKey(name: 'arguments', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> arguments;
   static const fromJsonFactory = _$SwapDtoFromJson;
 
   @override
@@ -4598,7 +4706,7 @@ extension $SwapDtoExtension on SwapDto {
       String? assetIn,
       String? assetOut,
       String? functionName,
-      List<String>? arguments}) {
+      List<List<Object?>>? arguments}) {
     return SwapDto(
         poolId: poolId ?? this.poolId,
         assetInIndex: assetInIndex ?? this.assetInIndex,
@@ -4620,7 +4728,7 @@ extension $SwapDtoExtension on SwapDto {
       Wrapped<String>? assetIn,
       Wrapped<String>? assetOut,
       Wrapped<String>? functionName,
-      Wrapped<List<String>>? arguments}) {
+      Wrapped<List<List<Object?>>>? arguments}) {
     return SwapDto(
         poolId: (poolId != null ? poolId.value : this.poolId),
         assetInIndex:
@@ -5321,73 +5429,6 @@ extension $FetchSwapRoutesResponseDtoExtension on FetchSwapRoutesResponseDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class OwnerDto {
-  const OwnerDto({
-    required this.address,
-    required this.profile,
-    required this.username,
-  });
-
-  factory OwnerDto.fromJson(Map<String, dynamic> json) =>
-      _$OwnerDtoFromJson(json);
-
-  static const toJsonFactory = _$OwnerDtoToJson;
-  Map<String, dynamic> toJson() => _$OwnerDtoToJson(this);
-
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'username')
-  final String username;
-  static const fromJsonFactory = _$OwnerDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OwnerDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality()
-                    .equals(other.profile, profile)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(username) ^
-      runtimeType.hashCode;
-}
-
-extension $OwnerDtoExtension on OwnerDto {
-  OwnerDto copyWith({String? address, String? profile, String? username}) {
-    return OwnerDto(
-        address: address ?? this.address,
-        profile: profile ?? this.profile,
-        username: username ?? this.username);
-  }
-
-  OwnerDto copyWithWrapped(
-      {Wrapped<String>? address,
-      Wrapped<String>? profile,
-      Wrapped<String>? username}) {
-    return OwnerDto(
-        address: (address != null ? address.value : this.address),
-        profile: (profile != null ? profile.value : this.profile),
-        username: (username != null ? username.value : this.username));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class LendingMarketParticipants {
   const LendingMarketParticipants({
     required this.count,
@@ -5402,8 +5443,8 @@ class LendingMarketParticipants {
 
   @JsonKey(name: 'count')
   final double count;
-  @JsonKey(name: 'wallets', defaultValue: <OwnerDto>[])
-  final List<OwnerDto> wallets;
+  @JsonKey(name: 'wallets', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> wallets;
   static const fromJsonFactory = _$LendingMarketParticipantsFromJson;
 
   @override
@@ -5427,13 +5468,14 @@ class LendingMarketParticipants {
 }
 
 extension $LendingMarketParticipantsExtension on LendingMarketParticipants {
-  LendingMarketParticipants copyWith({double? count, List<OwnerDto>? wallets}) {
+  LendingMarketParticipants copyWith(
+      {double? count, List<List<Object?>>? wallets}) {
     return LendingMarketParticipants(
         count: count ?? this.count, wallets: wallets ?? this.wallets);
   }
 
   LendingMarketParticipants copyWithWrapped(
-      {Wrapped<double>? count, Wrapped<List<OwnerDto>>? wallets}) {
+      {Wrapped<double>? count, Wrapped<List<List<Object?>>>? wallets}) {
     return LendingMarketParticipants(
         count: (count != null ? count.value : this.count),
         wallets: (wallets != null ? wallets.value : this.wallets));
@@ -7472,6 +7514,73 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
 }
 
 @JsonSerializable(explicitToJson: true)
+class OwnerDto {
+  const OwnerDto({
+    required this.address,
+    required this.profile,
+    required this.username,
+  });
+
+  factory OwnerDto.fromJson(Map<String, dynamic> json) =>
+      _$OwnerDtoFromJson(json);
+
+  static const toJsonFactory = _$OwnerDtoToJson;
+  Map<String, dynamic> toJson() => _$OwnerDtoToJson(this);
+
+  @JsonKey(name: 'address')
+  final String address;
+  @JsonKey(name: 'profile')
+  final String profile;
+  @JsonKey(name: 'username')
+  final String username;
+  static const fromJsonFactory = _$OwnerDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is OwnerDto &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality()
+                    .equals(other.profile, profile)) &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality()
+                    .equals(other.username, username)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(username) ^
+      runtimeType.hashCode;
+}
+
+extension $OwnerDtoExtension on OwnerDto {
+  OwnerDto copyWith({String? address, String? profile, String? username}) {
+    return OwnerDto(
+        address: address ?? this.address,
+        profile: profile ?? this.profile,
+        username: username ?? this.username);
+  }
+
+  OwnerDto copyWithWrapped(
+      {Wrapped<String>? address,
+      Wrapped<String>? profile,
+      Wrapped<String>? username}) {
+    return OwnerDto(
+        address: (address != null ? address.value : this.address),
+        profile: (profile != null ? profile.value : this.profile),
+        username: (username != null ? username.value : this.username));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LendingPositionStatus {
   const LendingPositionStatus({
     required this.position,
@@ -8870,7 +8979,7 @@ class NftProps {
   final List<String>? uris;
   @JsonKey(name: 'creator')
   final OwnerDto? creator;
-  @JsonKey(name: 'wasProcessed', defaultValue: false)
+  @JsonKey(name: 'wasProcessed')
   final bool wasProcessed;
   @JsonKey(name: 'media')
   final NftMedia? media;
@@ -8878,9 +8987,9 @@ class NftProps {
   final OwnerDto? currentOwner;
   @JsonKey(name: 'owner')
   final OwnerDto owner;
-  @JsonKey(name: 'onSale', defaultValue: false)
+  @JsonKey(name: 'onSale')
   final bool onSale;
-  @JsonKey(name: 'isTicket', defaultValue: false)
+  @JsonKey(name: 'isTicket')
   final bool? isTicket;
   @JsonKey(name: 'saleInfo')
   final NftSaleInfo? saleInfo;
@@ -10191,7 +10300,7 @@ extension $RarityDtoExtension on RarityDto {
 @JsonSerializable(explicitToJson: true)
 class MetadataDto {
   const MetadataDto({
-    this.attributes,
+    required this.rarity,
   });
 
   factory MetadataDto.fromJson(Map<String, dynamic> json) =>
@@ -10200,17 +10309,16 @@ class MetadataDto {
   static const toJsonFactory = _$MetadataDtoToJson;
   Map<String, dynamic> toJson() => _$MetadataDtoToJson(this);
 
-  @JsonKey(name: 'attributes', defaultValue: <NftMetadataAttributes>[])
-  final List<NftMetadataAttributes>? attributes;
+  @JsonKey(name: 'rarity')
+  final RarityDto rarity;
   static const fromJsonFactory = _$MetadataDtoFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is MetadataDto &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality()
-                    .equals(other.attributes, attributes)));
+            (identical(other.rarity, rarity) ||
+                const DeepCollectionEquality().equals(other.rarity, rarity)));
   }
 
   @override
@@ -10218,18 +10326,16 @@ class MetadataDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(attributes) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(rarity) ^ runtimeType.hashCode;
 }
 
 extension $MetadataDtoExtension on MetadataDto {
-  MetadataDto copyWith({List<NftMetadataAttributes>? attributes}) {
-    return MetadataDto(attributes: attributes ?? this.attributes);
+  MetadataDto copyWith({RarityDto? rarity}) {
+    return MetadataDto(rarity: rarity ?? this.rarity);
   }
 
-  MetadataDto copyWithWrapped(
-      {Wrapped<List<NftMetadataAttributes>?>? attributes}) {
-    return MetadataDto(
-        attributes: (attributes != null ? attributes.value : this.attributes));
+  MetadataDto copyWithWrapped({Wrapped<RarityDto>? rarity}) {
+    return MetadataDto(rarity: (rarity != null ? rarity.value : this.rarity));
   }
 }
 
@@ -12857,13 +12963,9 @@ class MintingListingDto {
   @JsonKey(
     name: 'dataType',
     toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeDataTypeFromJson,
+    fromJson: collectionDataTypeFromJson,
   )
   final enums.CollectionDataType dataType;
-  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
-          Object? value) =>
-      collectionDataTypeFromJson(value, enums.CollectionDataType.mintprofile);
-
   @JsonKey(name: 'collection')
   final String collection;
   @JsonKey(name: 'contractAddress')
@@ -14102,12 +14204,9 @@ class CreatorDetailsDto {
   @JsonKey(
     name: 'dataType',
     toJson: userDataTypeToJson,
-    fromJson: userDataTypeDataTypeFromJson,
+    fromJson: userDataTypeFromJson,
   )
   final enums.UserDataType dataType;
-  static enums.UserDataType userDataTypeDataTypeFromJson(Object? value) =>
-      userDataTypeFromJson(value, enums.UserDataType.creatorprofile);
-
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'name')
@@ -14884,7 +14983,7 @@ class NftDoc {
   final List<String>? uris;
   @JsonKey(name: 'creator')
   final OwnerDto? creator;
-  @JsonKey(name: 'wasProcessed', defaultValue: false)
+  @JsonKey(name: 'wasProcessed')
   final bool wasProcessed;
   @JsonKey(name: 'media')
   final NftMedia? media;
@@ -14892,9 +14991,9 @@ class NftDoc {
   final OwnerDto? currentOwner;
   @JsonKey(name: 'owner')
   final OwnerDto owner;
-  @JsonKey(name: 'onSale', defaultValue: false)
+  @JsonKey(name: 'onSale')
   final bool onSale;
-  @JsonKey(name: 'isTicket', defaultValue: false)
+  @JsonKey(name: 'isTicket')
   final bool? isTicket;
   @JsonKey(name: 'saleInfo')
   final NftSaleInfo? saleInfo;
@@ -15478,12 +15577,9 @@ class StakingCreatorDoc {
   @JsonKey(
     name: 'dataType',
     toJson: stakingDataTypeToJson,
-    fromJson: stakingDataTypeDataTypeFromJson,
+    fromJson: stakingDataTypeFromJson,
   )
   final enums.StakingDataType dataType;
-  static enums.StakingDataType stakingDataTypeDataTypeFromJson(Object? value) =>
-      stakingDataTypeFromJson(value, enums.StakingDataType.creator);
-
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'ownedPools', defaultValue: <double>[])
@@ -15799,13 +15895,9 @@ class CollectionMintProfileDoc {
   @JsonKey(
     name: 'dataType',
     toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeDataTypeFromJson,
+    fromJson: collectionDataTypeFromJson,
   )
   final enums.CollectionDataType dataType;
-  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
-          Object? value) =>
-      collectionDataTypeFromJson(value, enums.CollectionDataType.mintprofile);
-
   @JsonKey(name: 'collection')
   final String collection;
   @JsonKey(name: 'contractAddress')
@@ -16769,12 +16861,9 @@ class Web2UserWallet {
   @JsonKey(
     name: 'type',
     toJson: linkedAccountTypeToJson,
-    fromJson: linkedAccountTypeTypeFromJson,
+    fromJson: linkedAccountTypeFromJson,
   )
   final enums.LinkedAccountType type;
-  static enums.LinkedAccountType linkedAccountTypeTypeFromJson(Object? value) =>
-      linkedAccountTypeFromJson(value, enums.LinkedAccountType.wallet);
-
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'index')
@@ -21220,12 +21309,9 @@ class CreatorProfileDoc {
   @JsonKey(
     name: 'dataType',
     toJson: userDataTypeToJson,
-    fromJson: userDataTypeDataTypeFromJson,
+    fromJson: userDataTypeFromJson,
   )
   final enums.UserDataType dataType;
-  static enums.UserDataType userDataTypeDataTypeFromJson(Object? value) =>
-      userDataTypeFromJson(value, enums.UserDataType.creatorprofile);
-
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'name')
@@ -22925,6 +23011,123 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TwispayPaymentFormData {
+  const TwispayPaymentFormData({
+    required this.base64JsonRequest,
+    required this.base64Checksum,
+  });
+
+  factory TwispayPaymentFormData.fromJson(Map<String, dynamic> json) =>
+      _$TwispayPaymentFormDataFromJson(json);
+
+  static const toJsonFactory = _$TwispayPaymentFormDataToJson;
+  Map<String, dynamic> toJson() => _$TwispayPaymentFormDataToJson(this);
+
+  @JsonKey(name: 'base64JsonRequest')
+  final String base64JsonRequest;
+  @JsonKey(name: 'base64Checksum')
+  final Object base64Checksum;
+  static const fromJsonFactory = _$TwispayPaymentFormDataFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TwispayPaymentFormData &&
+            (identical(other.base64JsonRequest, base64JsonRequest) ||
+                const DeepCollectionEquality()
+                    .equals(other.base64JsonRequest, base64JsonRequest)) &&
+            (identical(other.base64Checksum, base64Checksum) ||
+                const DeepCollectionEquality()
+                    .equals(other.base64Checksum, base64Checksum)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(base64JsonRequest) ^
+      const DeepCollectionEquality().hash(base64Checksum) ^
+      runtimeType.hashCode;
+}
+
+extension $TwispayPaymentFormDataExtension on TwispayPaymentFormData {
+  TwispayPaymentFormData copyWith(
+      {String? base64JsonRequest, Object? base64Checksum}) {
+    return TwispayPaymentFormData(
+        base64JsonRequest: base64JsonRequest ?? this.base64JsonRequest,
+        base64Checksum: base64Checksum ?? this.base64Checksum);
+  }
+
+  TwispayPaymentFormData copyWithWrapped(
+      {Wrapped<String>? base64JsonRequest, Wrapped<Object>? base64Checksum}) {
+    return TwispayPaymentFormData(
+        base64JsonRequest: (base64JsonRequest != null
+            ? base64JsonRequest.value
+            : this.base64JsonRequest),
+        base64Checksum: (base64Checksum != null
+            ? base64Checksum.value
+            : this.base64Checksum));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class StripePaymentFormData {
+  const StripePaymentFormData({
+    required this.sessionId,
+    required this.publicKey,
+  });
+
+  factory StripePaymentFormData.fromJson(Map<String, dynamic> json) =>
+      _$StripePaymentFormDataFromJson(json);
+
+  static const toJsonFactory = _$StripePaymentFormDataToJson;
+  Map<String, dynamic> toJson() => _$StripePaymentFormDataToJson(this);
+
+  @JsonKey(name: 'sessionId')
+  final String sessionId;
+  @JsonKey(name: 'publicKey')
+  final String publicKey;
+  static const fromJsonFactory = _$StripePaymentFormDataFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is StripePaymentFormData &&
+            (identical(other.sessionId, sessionId) ||
+                const DeepCollectionEquality()
+                    .equals(other.sessionId, sessionId)) &&
+            (identical(other.publicKey, publicKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.publicKey, publicKey)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(sessionId) ^
+      const DeepCollectionEquality().hash(publicKey) ^
+      runtimeType.hashCode;
+}
+
+extension $StripePaymentFormDataExtension on StripePaymentFormData {
+  StripePaymentFormData copyWith({String? sessionId, String? publicKey}) {
+    return StripePaymentFormData(
+        sessionId: sessionId ?? this.sessionId,
+        publicKey: publicKey ?? this.publicKey);
+  }
+
+  StripePaymentFormData copyWithWrapped(
+      {Wrapped<String>? sessionId, Wrapped<String>? publicKey}) {
+    return StripePaymentFormData(
+        sessionId: (sessionId != null ? sessionId.value : this.sessionId),
+        publicKey: (publicKey != null ? publicKey.value : this.publicKey));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class FiatPaymentForm {
   const FiatPaymentForm({
     required this.type,
@@ -23238,14 +23441,9 @@ class EventTicketProfileDoc {
   @JsonKey(
     name: 'dataType',
     toJson: ticketingDataTypeToJson,
-    fromJson: ticketingDataTypeDataTypeFromJson,
+    fromJson: ticketingDataTypeFromJson,
   )
   final enums.TicketingDataType dataType;
-  static enums.TicketingDataType ticketingDataTypeDataTypeFromJson(
-          Object? value) =>
-      ticketingDataTypeFromJson(
-          value, enums.TicketingDataType.eventTicketProfile);
-
   @JsonKey(name: 'eventId')
   final String eventId;
   @JsonKey(name: 'name')
@@ -28936,7 +29134,7 @@ class CollectionOffersFilter {
   final List<String>? orderBy;
   @JsonKey(name: 'includeCount')
   final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
+  @JsonKey(name: 'strictSelect')
   final bool? strictSelect;
   @JsonKey(name: 'top')
   final int? top;
@@ -29190,14 +29388,9 @@ class CollectionProfileDoc {
   @JsonKey(
     name: 'dataType',
     toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeDataTypeFromJson,
+    fromJson: collectionDataTypeFromJson,
   )
   final enums.CollectionDataType dataType;
-  static enums.CollectionDataType collectionDataTypeDataTypeFromJson(
-          Object? value) =>
-      collectionDataTypeFromJson(
-          value, enums.CollectionDataType.collectionprofile);
-
   @JsonKey(name: 'collection')
   final Object collection;
   @JsonKey(name: 'name')
@@ -29469,7 +29662,7 @@ class CollectionStatsFilter {
   final List<String>? orderBy;
   @JsonKey(name: 'includeCount')
   final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
+  @JsonKey(name: 'strictSelect')
   final bool? strictSelect;
   @JsonKey(name: 'top')
   final int? top;
@@ -29641,6 +29834,51 @@ extension $SaleInfoFilterDtoExtension on SaleInfoFilterDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class MetadataAttributesDto {
+  const MetadataAttributesDto({
+    this.attributes,
+  });
+
+  factory MetadataAttributesDto.fromJson(Map<String, dynamic> json) =>
+      _$MetadataAttributesDtoFromJson(json);
+
+  static const toJsonFactory = _$MetadataAttributesDtoToJson;
+  Map<String, dynamic> toJson() => _$MetadataAttributesDtoToJson(this);
+
+  @JsonKey(name: 'attributes', defaultValue: <NftMetadataAttributes>[])
+  final List<NftMetadataAttributes>? attributes;
+  static const fromJsonFactory = _$MetadataAttributesDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MetadataAttributesDto &&
+            (identical(other.attributes, attributes) ||
+                const DeepCollectionEquality()
+                    .equals(other.attributes, attributes)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(attributes) ^ runtimeType.hashCode;
+}
+
+extension $MetadataAttributesDtoExtension on MetadataAttributesDto {
+  MetadataAttributesDto copyWith({List<NftMetadataAttributes>? attributes}) {
+    return MetadataAttributesDto(attributes: attributes ?? this.attributes);
+  }
+
+  MetadataAttributesDto copyWithWrapped(
+      {Wrapped<List<NftMetadataAttributes>?>? attributes}) {
+    return MetadataAttributesDto(
+        attributes: (attributes != null ? attributes.value : this.attributes));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class NftDocFilterCriteriaDto {
   const NftDocFilterCriteriaDto({
     this.dataType,
@@ -29688,7 +29926,7 @@ class NftDocFilterCriteriaDto {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   @JsonKey(name: 'metadata')
-  final MetadataDto? metadata;
+  final MetadataAttributesDto? metadata;
   @JsonKey(name: 'wasProcessed')
   final bool? wasProcessed;
   @JsonKey(name: 'cp_staked')
@@ -29786,7 +30024,7 @@ extension $NftDocFilterCriteriaDtoExtension on NftDocFilterCriteriaDto {
       List<String>? currentOwner,
       SaleInfoFilterDto? saleInfo,
       List<RangeFilter>? range,
-      MetadataDto? metadata,
+      MetadataAttributesDto? metadata,
       bool? wasProcessed,
       bool? cpStaked,
       bool? activeAuction,
@@ -29822,7 +30060,7 @@ extension $NftDocFilterCriteriaDtoExtension on NftDocFilterCriteriaDto {
       Wrapped<List<String>?>? currentOwner,
       Wrapped<SaleInfoFilterDto?>? saleInfo,
       Wrapped<List<RangeFilter>?>? range,
-      Wrapped<MetadataDto?>? metadata,
+      Wrapped<MetadataAttributesDto?>? metadata,
       Wrapped<bool?>? wasProcessed,
       Wrapped<bool?>? cpStaked,
       Wrapped<bool?>? activeAuction,
@@ -29877,9 +30115,9 @@ class NftDocFilter {
   final List<String>? select;
   @JsonKey(name: 'orderBy', defaultValue: <String>[])
   final List<String>? orderBy;
-  @JsonKey(name: 'includeCount', defaultValue: false)
+  @JsonKey(name: 'includeCount')
   final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
+  @JsonKey(name: 'strictSelect')
   final bool? strictSelect;
   @JsonKey(name: 'top')
   final int? top;
@@ -30117,16 +30355,12 @@ class NftOfferDocFilter {
   @JsonKey(
     name: 'orderBy',
     toJson: nftOfferDocFilterOrderByListToJson,
-    fromJson: nftOfferDocFilterOrderByOrderByListFromJson,
+    fromJson: nftOfferDocFilterOrderByListFromJson,
   )
   final List<enums.NftOfferDocFilterOrderBy>? orderBy;
-  static List<enums.NftOfferDocFilterOrderBy>
-      nftOfferDocFilterOrderByOrderByListFromJson(List? value) =>
-          nftOfferDocFilterOrderByListFromJson(value, []);
-
   @JsonKey(name: 'includeCount')
   final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
+  @JsonKey(name: 'strictSelect')
   final bool? strictSelect;
   @JsonKey(name: 'top')
   final int? top;
@@ -30848,7 +31082,7 @@ class EventVoucherFilter {
   final List<String>? orderBy;
   @JsonKey(name: 'includeCount', defaultValue: false)
   final bool? includeCount;
-  @JsonKey(name: 'strictSelect', defaultValue: false)
+  @JsonKey(name: 'strictSelect')
   final bool? strictSelect;
   @JsonKey(name: 'top')
   final int? top;

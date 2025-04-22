@@ -10,6 +10,7 @@ import 'package:xoxno_sdk/src/api/type_safe/tokens/tokens.dart';
 import 'package:xoxno_sdk/src/api/type_safe/transactions/transactions.dart';
 import 'package:xoxno_sdk/src/api/type_safe/user/user.dart';
 import 'package:xoxno_sdk/src/api/type_safe/event/event.dart';
+
 class TypeSafeApi {
   final RawApi rawApi;
 

@@ -10,6 +10,7 @@ import 'package:xoxno_sdk/src/api/raw/transactions/transactions.dart';
 import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 import 'package:xoxno_sdk/src/api/raw/event/event.dart';
+
 class RawApi {
   final Client client;
 

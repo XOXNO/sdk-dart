@@ -3,8 +3,7 @@ paths:
   /user/login:
     post:
       operationId: UserDataController_loginUser
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -116,8 +115,7 @@ paths:
   /user/network-account:
     post:
       operationId: UserDataController_retrieveBulkUserMvxAccount
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -125,7 +123,7 @@ paths:
             schema:
               type: array
               items:
-                type: string
+                $ref: '#/components/schemas/'
       responses:
         '201':
           description: User bulk network info response
@@ -233,7 +231,6 @@ paths:
           in: path
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -342,13 +339,17 @@ paths:
     patch:
       operationId: UserDataController_setNotificationPreferences
       parameters:
-        - schema: {}
+        - name: unsubscribeToken
+          required: true
+          in: query
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NotificationPreferencesDto'
+              $ref: '#/components/schemas/NotificationPreferencesPostDto'
       responses:
         '200':
           description: User notification settings saved successfully
@@ -382,8 +383,7 @@ paths:
   /user/me/settings/email:
     patch:
       operationId: UserDataController_updateEmailSettings
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -456,8 +456,7 @@ paths:
   /user/me/settings/phone:
     patch:
       operationId: UserDataController_updatePhoneSettings
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -497,8 +496,7 @@ paths:
   /user/me/settings/verify-email:
     post:
       operationId: UserDataController_verifyEmailAddress
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -802,7 +800,6 @@ paths:
           in: path
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -1029,16 +1026,6 @@ paths:
           in: path
           schema:
             type: string
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CollectionStatsFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
       responses:
         '200':
           description: Explore collections statistics response
@@ -2256,17 +2243,7 @@ paths:
   /lending/market/query:
     get:
       operationId: LendingDataController_retrieveMarketProfiles
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LendingMarketProfileFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Explore lending markets
@@ -2511,17 +2488,7 @@ paths:
   /nft/query:
     get:
       operationId: NftDataController_retrieveNfts
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftDocFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: NFT query response for the used filters
@@ -2696,17 +2663,7 @@ paths:
   /nft/offer/query:
     get:
       operationId: NftDataController_retrieveNftOffers
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftOfferDocFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: User offers
@@ -2803,9 +2760,12 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  type: string
+                  type: object
                   additionalProperties:
-                    type: '#/components/schemas/TraitInfo'
+                    type: object
+                    properties:
+                      onSale:
+                        type: number
                 example:
                   Background:
                     Blue:
@@ -2999,8 +2959,7 @@ paths:
   /nft/sign-withdraw:
     post:
       operationId: NftDataController_signListingWithdraw
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -3047,7 +3006,6 @@ paths:
           in: path
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -3094,7 +3052,6 @@ paths:
           in: path
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -3216,7 +3173,6 @@ paths:
           in: path
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -3960,17 +3916,7 @@ paths:
   /collection/stats/query:
     get:
       operationId: CollectionDataController_retrieveCollectionStatistics
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CollectionStatsFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Explore collections statistics response
@@ -4003,17 +3949,7 @@ paths:
   /collection/global-offer/query:
     get:
       operationId: CollectionDataController_retrieveCollectionOffers
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CollectionOffersFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Global offers response
@@ -4742,17 +4678,7 @@ paths:
   /search:
     get:
       operationId: SearchDataController_globalSearch
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FilterQueryDto'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Global search response
@@ -4784,17 +4710,7 @@ paths:
   /user/search:
     get:
       operationId: SearchDataController_userSearch
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FilterQueryDto'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Global user search response
@@ -4826,17 +4742,7 @@ paths:
   /collection/search:
     get:
       operationId: SearchDataController_collectionSearch
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FilterQueryDto'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Global collection search response
@@ -4868,17 +4774,7 @@ paths:
   /collection/drops/search:
     get:
       operationId: SearchDataController_collectionDropsSearch
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FilterQueryDto'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Global collection drops search response
@@ -4910,17 +4806,7 @@ paths:
   /nft/search/query:
     get:
       operationId: SearchDataController_nftSearch
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftDocFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: ''
@@ -5095,8 +4981,7 @@ paths:
   /user/web2/wallet:
     post:
       operationId: Web2UserDataController_createWeb2UserWallet
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -5136,8 +5021,7 @@ paths:
   /user/web2/wallet-link:
     post:
       operationId: Web2UserDataController_linkExternalWallet
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -5250,17 +5134,7 @@ paths:
   /activity/query:
     get:
       operationId: NftActivityDataController_retrieveNftActivity
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NftActivityFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Activity history response
@@ -5623,8 +5497,7 @@ paths:
   /transactions:
     post:
       operationId: TransactionController_createTransaction
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -5662,8 +5535,7 @@ paths:
   /transactions/batch:
     post:
       operationId: TransactionController_createTransactionBatch
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -5705,8 +5577,7 @@ paths:
   /user/chat/message:
     post:
       operationId: ChatDataController_sendChatMessage
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -6240,8 +6111,7 @@ paths:
   /event:
     post:
       operationId: TicketingDataController_createEvent
-      parameters:
-        - schema: {}
+      parameters: []
       requestBody:
         required: true
         content:
@@ -6291,7 +6161,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6313,17 +6182,7 @@ paths:
   /event/profile/query:
     get:
       operationId: TicketingDataController_getEvents
-      parameters:
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventProfileFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+      parameters: []
       responses:
         '200':
           description: Event profile
@@ -6510,7 +6369,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6536,9 +6394,9 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6623,7 +6481,6 @@ paths:
           description: ID of the ticket
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6689,9 +6546,9 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6782,7 +6639,6 @@ paths:
           description: ID of the stage
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6911,7 +6767,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -6944,16 +6799,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventInvitationFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
       responses:
         '200':
           description: Event invitation details
@@ -7004,16 +6849,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventVoucherFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
       responses:
         '200':
           description: List of vouchers for the event
@@ -7060,7 +6895,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7095,7 +6929,6 @@ paths:
           description: ID of the question
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7157,7 +6990,6 @@ paths:
           description: ID of the invitation
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7214,16 +7046,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - name: filter
-          required: true
-          in: query
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventGuestFilter'
-          description: >-
-            A JSON object representing the filter criteria. Example:
-            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
       responses:
         '200':
           description: Event guest details
@@ -7298,7 +7120,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7355,12 +7176,7 @@ paths:
         - name: address
           required: true
           in: path
-          schema:
-            type: string
-        - name: roleId
-          required: true
-          in: path
-          description: ID of the role
+          description: Address of the user role to delete
           schema:
             type: string
       responses:
@@ -7485,7 +7301,7 @@ paths:
       parameters:
         - name: extended
           required: true
-          in: path
+          in: query
           description: Get also created events or events that the user is part of as a team
           schema:
             type: boolean
@@ -7564,7 +7380,13 @@ paths:
   /event/{eventId}/voucher:
     post:
       operationId: TicketingDataController_createEventVoucher
-      parameters: []
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -7654,7 +7476,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7680,11 +7501,13 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
         - name: guestId
           required: true
           in: path
+          description: Guest wallet address
           schema:
             type: string
       responses:
@@ -7711,7 +7534,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7741,11 +7563,13 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
         - name: ticketId
           required: true
           in: path
+          description: ID of the ticket
           schema:
             type: string
       responses:
@@ -7763,11 +7587,13 @@ paths:
         - name: eventId
           required: true
           in: path
+          description: ID of the event
           schema:
             type: string
         - name: address
           required: true
           in: path
+          description: Guest wallet address
           schema:
             type: string
       responses:
@@ -7806,7 +7632,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7842,7 +7667,6 @@ paths:
           description: ID of the referral configuration
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7929,7 +7753,6 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -7965,7 +7788,6 @@ paths:
           description: Referral code
           schema:
             type: string
-        - schema: {}
       requestBody:
         required: true
         content:
@@ -8047,7 +7869,7 @@ paths:
       operationId: TicketingDataController_getSelfServicedReferrals
       parameters:
         - name: eventId
-          required: false
+          required: true
           in: path
           description: ID of the event
           schema:
@@ -8418,28 +8240,22 @@ components:
       properties:
         sales:
           type: boolean
-          description: Notification preference for sales
-          example: true
+          example: false
         bids:
           type: boolean
-          description: Notification preference for bids
-          example: true
+          example: false
         offersReceived:
           type: boolean
-          description: Notification preference for offers received
-          example: true
+          example: false
         offersAccepted:
           type: boolean
-          description: Notification preference for offers accepted
-          example: true
+          example: false
         offersRejected:
           type: boolean
-          description: Notification preference for offers rejected
-          example: true
+          example: false
         deposits:
           type: boolean
-          description: Notification preference for deposits
-          example: true
+          example: false
       required:
         - sales
         - bids
@@ -8706,6 +8522,40 @@ components:
         - emailNotifications
         - notificationPreferences
         - id
+    NotificationPreferencesPostDto:
+      type: object
+      properties:
+        sales:
+          type: boolean
+          description: Notification preference for sales
+          example: true
+        bids:
+          type: boolean
+          description: Notification preference for bids
+          example: true
+        offersReceived:
+          type: boolean
+          description: Notification preference for offers received
+          example: true
+        offersAccepted:
+          type: boolean
+          description: Notification preference for offers accepted
+          example: true
+        offersRejected:
+          type: boolean
+          description: Notification preference for offers rejected
+          example: true
+        deposits:
+          type: boolean
+          description: Notification preference for deposits
+          example: true
+      required:
+        - sales
+        - bids
+        - offersReceived
+        - offersAccepted
+        - offersRejected
+        - deposits
     SetEmailDto:
       type: object
       properties:
@@ -9318,9 +9168,9 @@ components:
             - ''
             - UEFEQVdBTi1hMTdmNTg=
             - V0VHTEQtYmQ0ZDc5
-          type: array
           items:
-            type: string
+            type: array
+          type: array
       required:
         - poolId
         - assetInIndex
@@ -9531,23 +9381,6 @@ components:
         - accountProfile
         - emodeCategoryProfile
         - tokenEmodeProfile
-    OwnerDto:
-      type: object
-      properties:
-        address:
-          type: string
-          example: erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/userprofile/erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam/profilePicture.webp
-        username:
-          type: string
-          example: '@sospvp'
-      required:
-        - address
-        - profile
-        - username
     LendingMarketParticipants:
       type: object
       properties:
@@ -9557,9 +9390,9 @@ components:
           example: 100
         wallets:
           description: Wallets of participants
-          type: array
           items:
-            $ref: '#/components/schemas/OwnerDto'
+            type: array
+          type: array
       required:
         - count
         - wallets
@@ -9739,12 +9572,12 @@ components:
           example: false
         eModeCategories:
           description: eMode categories associated with the lending market
+          items:
+            type: array
           example:
             - '1'
             - '2'
           type: array
-          items:
-            type: array
         isolated:
           type: boolean
           description: Indicates if the asset is isolated
@@ -9783,10 +9616,10 @@ components:
           example: false
         eModeCategoryProfiles:
           description: eMode categories associated with the lending market
-          example: true
-          type: array
           items:
             type: array
+          example: true
+          type: array
         oraclePrice:
           type: string
           description: Oracle price
@@ -10265,144 +10098,144 @@ components:
             - '2023-01-01T00:00:00Z'
             - '2023-01-02T00:00:00Z'
             - '2023-01-03T00:00:00Z'
-          type: array
           items:
             type: array
+          type: array
         minSupplyApy:
           description: Minimum supply APY value for each timestamp
           example:
             - 1.2
             - 1.3
             - 1.4
-          type: array
           items:
             type: array
+          type: array
         maxSupplyApy:
           description: Maximum supply APY value for each timestamp
           example:
             - 2.2
             - 2.3
             - 2.4
-          type: array
           items:
             type: array
+          type: array
         avgSupplyApy:
           description: Average supply APY value for each timestamp
           example:
             - 1.7
             - 1.8
             - 1.9
-          type: array
           items:
             type: array
+          type: array
         minBorrowApy:
           description: Minimum borrow APY value for each timestamp
           example:
             - 0.5
             - 0.6
             - 0.7
-          type: array
           items:
             type: array
+          type: array
         maxBorrowApy:
           description: Maximum borrow APY value for each timestamp
           example:
             - 1.5
             - 1.6
             - 1.7
-          type: array
           items:
             type: array
+          type: array
         avgBorrowApy:
           description: Average borrow APY value for each timestamp
           example:
             - 1
             - 1.1
             - 1.2
-          type: array
           items:
             type: array
+          type: array
         minUtilizationRate:
           description: Minimum utilization rate for each timestamp
           example:
             - 0.1
             - 0.2
             - 0.3
-          type: array
           items:
             type: array
+          type: array
         maxUtilizationRate:
           description: Maximum utilization rate for each timestamp
           example:
             - 0.4
             - 0.5
             - 0.6
-          type: array
           items:
             type: array
+          type: array
         avgUtilizationRate:
           description: Average utilization rate for each timestamp
           example:
             - 0.25
             - 0.35
             - 0.45
-          type: array
           items:
             type: array
+          type: array
         minSupplyAmount:
           description: Minimum supply amount for each timestamp
           example:
             - 1000
             - 1100
             - 1200
-          type: array
           items:
             type: array
+          type: array
         maxSupplyAmount:
           description: Maximum supply amount for each timestamp
           example:
             - 2000
             - 2100
             - 2200
-          type: array
           items:
             type: array
+          type: array
         avgSupplyAmount:
           description: Average supply amount for each timestamp
           example:
             - 1500
             - 1600
             - 1700
-          type: array
           items:
             type: array
+          type: array
         minBorrowAmount:
           description: Minimum borrow amount for each timestamp
           example:
             - 500
             - 600
             - 700
-          type: array
           items:
             type: array
+          type: array
         maxBorrowAmount:
           description: Maximum borrow amount for each timestamp
           example:
             - 1500
             - 1600
             - 1700
-          type: array
           items:
             type: array
+          type: array
         avgBorrowAmount:
           description: Average borrow amount for each timestamp
           example:
             - 1000
             - 1100
             - 1200
-          type: array
           items:
             type: array
+          type: array
       required:
         - token
         - timestamp
@@ -10432,6 +10265,23 @@ components:
       enum:
         - asc
         - desc
+    OwnerDto:
+      type: object
+      properties:
+        address:
+          type: string
+          example: erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam
+        profile:
+          type: string
+          example: >-
+            https://media.xoxno.com/userprofile/erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam/profilePicture.webp
+        username:
+          type: string
+          example: '@sospvp'
+      required:
+        - address
+        - profile
+        - username
     LendingPositionStatus:
       type: object
       properties:
@@ -10517,6 +10367,7 @@ components:
         - NonFungibleESDT
         - SemiFungibleESDT
         - MetaESDT
+      description: The type of the asset
     EsdtTokenSubType:
       type: string
       enum:
@@ -10524,6 +10375,7 @@ components:
         - DynamicNonFungibleESDT
         - DynamicSemiFungibleESDT
         - DynamicMetaESDT
+      description: The sub-type of the asset
     OriginalMedia:
       type: object
       properties:
@@ -10689,19 +10541,14 @@ components:
       properties:
         reversedCutFees:
           type: object
-          default: false
         reversedRoyalties:
           type: object
-          default: false
         customRoyalties:
           type: object
-          default: false
         minRoyalties:
           type: object
-          default: 0
         maxRoyalties:
           type: object
-          default: 0
         extraFees:
           $ref: '#/components/schemas/CollectionExtraFeesConfig'
         adminAddress:
@@ -10815,7 +10662,6 @@ components:
             - $ref: '#/components/schemas/OwnerDto'
         wasProcessed:
           type: boolean
-          default: false
           description: >-
             Indicates if the specific asset has the media processed and
             optimized WEBP/AVIF
@@ -10833,11 +10679,9 @@ components:
             - $ref: '#/components/schemas/OwnerDto'
         onSale:
           type: boolean
-          default: false
           description: Indicates if the specific asset is on sale or not
         isTicket:
           type: boolean
-          default: false
           description: Indicates if the specific asset is a ticket
         saleInfo:
           description: When onSale = true, saleInfo keeps the info about the listing
@@ -11192,10 +11036,10 @@ components:
     MetadataDto:
       type: object
       properties:
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NftMetadataAttributes'
+        rarity:
+          $ref: '#/components/schemas/RarityDto'
+      required:
+        - rarity
     MediaDto:
       type: object
       properties:
@@ -11943,6 +11787,7 @@ components:
         - userFavorite
         - userSettings
         - delegationContractProfile
+      description: The type of user data.
     CollectionDataType:
       type: string
       enum:
@@ -11956,7 +11801,6 @@ components:
       type: object
       properties:
         dataType:
-          default: mintProfile
           allOf:
             - $ref: '#/components/schemas/CollectionDataType'
         collection:
@@ -12071,6 +11915,7 @@ components:
         - event-referral-code
         - event-referral-usage
         - event-user-role
+      description: The type of user data.
     EventLocationDto:
       type: object
       properties:
@@ -12105,6 +11950,7 @@ components:
         - meetup
         - web3
         - entertainment
+      description: Category of the event.
     EventSubCategory:
       type: string
       enum:
@@ -12138,11 +11984,13 @@ components:
         - theatre-and-performance
         - movies
         - nightlife-and-clubbing
+      description: Subcategory of the event.
     Visibility:
       type: string
       enum:
         - public
         - private
+      description: Visibility of the event registration
     RegistrationType:
       type: object
       properties:
@@ -12225,6 +12073,7 @@ components:
         - event-reader
         - event-manager
         - check-in-manager
+      description: Role of the user.
     EventUserRolePermission:
       type: string
       enum:
@@ -12236,11 +12085,13 @@ components:
         - event-manager-edit-guest
         - event-manager-create-stage
         - event-manager-edit-stage
+      description: Permissions of the user.
     RoleStatus:
       type: string
       enum:
         - active
         - pending
+      description: Status of the user role.
     EventUserRoleDoc:
       type: object
       properties:
@@ -12317,7 +12168,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -12334,7 +12185,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -12394,7 +12245,6 @@ components:
       properties:
         dataType:
           description: The type of user data.
-          default: creatorProfile
           allOf:
             - $ref: '#/components/schemas/UserDataType'
         address:
@@ -12710,7 +12560,6 @@ components:
             - $ref: '#/components/schemas/OwnerDto'
         wasProcessed:
           type: boolean
-          default: false
           description: >-
             Indicates if the specific asset has the media processed and
             optimized WEBP/AVIF
@@ -12728,11 +12577,9 @@ components:
             - $ref: '#/components/schemas/OwnerDto'
         onSale:
           type: boolean
-          default: false
           description: Indicates if the specific asset is on sale or not
         isTicket:
           type: boolean
-          default: false
           description: Indicates if the specific asset is a ticket
         saleInfo:
           description: When onSale = true, saleInfo keeps the info about the listing
@@ -12887,7 +12734,6 @@ components:
       type: object
       properties:
         dataType:
-          default: creator
           allOf:
             - $ref: '#/components/schemas/StakingDataType'
         address:
@@ -12956,7 +12802,6 @@ components:
       type: object
       properties:
         dataType:
-          default: mintProfile
           allOf:
             - $ref: '#/components/schemas/CollectionDataType'
         collection:
@@ -13238,11 +13083,11 @@ components:
         - ledger
         - extension
         - native
+      description: Type of wallet client
     Web2UserWallet:
       type: object
       properties:
         type:
-          default: wallet
           allOf:
             - $ref: '#/components/schemas/LinkedAccountType'
         address:
@@ -13267,7 +13112,6 @@ components:
         id:
           type: string
           description: Unique identifier for the wallet
-          default: auto-generated UUID
       required:
         - type
         - address
@@ -13325,7 +13169,6 @@ components:
             type: string
         hasNativeWallet:
           type: object
-          default: false
           description: Indicates if the user has a native wallet
         wallet:
           description: User's wallet information
@@ -13807,13 +13650,13 @@ components:
         - invalid
         - fail
         - notFound
+      description: The status of the transaction
     TransactionProcessStatus:
       type: object
       properties:
         reason:
           type: object
           description: The error reason
-          default: ''
         status:
           description: The status of the transaction
           allOf:
@@ -13830,7 +13673,6 @@ components:
         data:
           type: object
           description: The transaction data
-          default: ''
         gasLimit:
           type: number
           description: The gas limit for the transaction
@@ -14260,7 +14102,6 @@ components:
       properties:
         dataType:
           type: string
-          default: notification
         txHash:
           type: string
         source:
@@ -14278,7 +14119,6 @@ components:
           $ref: '#/components/schemas/NotificationActivityDto'
         isRead:
           type: object
-          default: false
         timestamp:
           type: number
         id:
@@ -14392,7 +14232,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1744900197
+          minimum: 1744926639
         endTime:
           type: integer
         location:
@@ -14420,7 +14260,6 @@ components:
       properties:
         dataType:
           description: The type of user data.
-          default: creatorProfile
           allOf:
             - $ref: '#/components/schemas/UserDataType'
         address:
@@ -14577,6 +14416,7 @@ components:
         - active
         - completed
         - partiallyCompleted
+      description: Current status of the guest document
     EventGuestDoc:
       type: object
       properties:
@@ -14628,11 +14468,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1744900197
+          example: 1744926639
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 8ab9e1f7-7ed7-4f0f-a620-3d1f28a42a31
+          example: f6e8f641-bb04-4f74-8ab8-de345f360e26
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14681,7 +14521,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -14698,7 +14538,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -14796,10 +14636,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1744900198
+          example: 1744926639
         endTime:
           type: integer
-          example: 1744900198
+          example: 1744926639
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -14929,6 +14769,26 @@ components:
           description: Callback URL
           allOf:
             - $ref: '#/components/schemas/CallbackUrl'
+    TwispayPaymentFormData:
+      type: object
+      properties:
+        base64JsonRequest:
+          type: string
+        base64Checksum:
+          type: object
+      required:
+        - base64JsonRequest
+        - base64Checksum
+    StripePaymentFormData:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        publicKey:
+          type: string
+      required:
+        - sessionId
+        - publicKey
     PaymentProvider:
       type: string
       enum:
@@ -14997,7 +14857,6 @@ components:
       properties:
         dataType:
           description: The type of event data.
-          default: event-ticket-profile
           allOf:
             - $ref: '#/components/schemas/TicketingDataType'
         eventId:
@@ -15020,7 +14879,6 @@ components:
             Royalties set for the mint of this specific NFT ticket type,
             expressed as a percentage.
           example: 5
-          default: 0
         badgeColor:
           type: string
           description: >-
@@ -15037,21 +14895,19 @@ components:
           example: 1000
         userLimit:
           type: integer
-          default: 0
           description: Limit on the number of tickets a single user can buy for this type.
         soldCount:
           type: integer
           description: The current count of sold tickets
           example: 1000
-          default: 0
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1744900197
+          example: 1744926639
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 60c4f28a-602d-41f2-b3f3-92ccfb154beb
+          example: e2e7e31b-73fc-4374-b9a1-2646f52e1684
       required:
         - dataType
         - eventId
@@ -15109,11 +14965,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1744900198
+          minimum: 1744926639
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1744986598
+          minimum: 1745013039
           description: End time timestamp
         maxLimit:
           type: integer
@@ -15162,11 +15018,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1744900197
+          example: 1744926639
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1744900197
+          example: 1744926639
         maxLimit:
           type: integer
           description: >-
@@ -15197,7 +15053,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: b4bd6e17-686f-456f-8a6e-bcdb691a617a
+          example: 4b1dc7ef-3776-4769-8018-02eaf5225b3c
       required:
         - dataType
         - eventId
@@ -15239,10 +15095,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1744900198
+          minimum: 1744926639
         endTime:
           type: integer
-          minimum: 1744986598
+          minimum: 1745013039
       required:
         - prices
         - name
@@ -15381,7 +15237,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 0fa9cab7-87be-4037-b450-4fa5825e8102
+          example: 336ca448-5ccf-4271-96c2-033e04ee648f
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -15395,6 +15251,7 @@ components:
         - accepted
         - declined
         - canceled
+      description: The status of the ticket invitation.
     EventInvitationDoc:
       type: object
       properties:
@@ -15434,7 +15291,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1744900197
+          example: 1744926639
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15463,7 +15320,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 4fcfa16e-04ec-4a0c-969a-be7687294bc0
+          example: bd218943-436b-4e95-b1e3-f9a4e8a29eef
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15519,7 +15376,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1744900197
+          example: 1744926639
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15548,7 +15405,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 4fcfa16e-04ec-4a0c-969a-be7687294bc0
+          example: bd218943-436b-4e95-b1e3-f9a4e8a29eef
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15597,6 +15454,7 @@ components:
       enum:
         - fixed
         - percentage
+      description: Type of discount provided by the voucher.
     EventVoucherDoc:
       type: object
       properties:
@@ -15630,7 +15488,6 @@ components:
         usedCount:
           type: integer
           description: Tracks the number of times the voucher has been used.
-          default: 0
         eventId:
           type: string
           description: List of specific event IDs where the voucher can be applied.
@@ -15657,11 +15514,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744900198
+          example: 1744926639
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744900198
+          example: 1744926639
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -15672,7 +15529,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1744900198
+          example: 1744926639
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15723,6 +15580,7 @@ components:
         - checkbox
         - time
         - date
+      description: Type of answer expected (e.g., text, textarea, radio, checkbox, etc.).
     EventQuestionDoc:
       type: object
       properties:
@@ -15762,7 +15620,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1744900197
+          example: 1744926639
       required:
         - dataType
         - id
@@ -15877,11 +15735,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1744900197
+          example: 1744926639
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 8ab9e1f7-7ed7-4f0f-a620-3d1f28a42a31
+          example: f6e8f641-bb04-4f74-8ab8-de345f360e26
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16030,6 +15888,7 @@ components:
         - offline
         - google
         - manual
+      description: The type of the QR code.
     BageQRData:
       type: object
       properties:
@@ -16091,6 +15950,7 @@ components:
         - error
         - success
         - select
+      description: Staus of the scan
     EventScanMessage:
       type: string
       enum:
@@ -16111,6 +15971,7 @@ components:
         - valid-check-in
         - select-tickets
         - tickets-valid
+      description: QR Code type
     TicketValidationResult:
       type: object
       properties:
@@ -16199,11 +16060,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744900198
+          example: 1744926639
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744900198
+          example: 1744926639
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16253,11 +16114,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1744900198
+          example: 1744926639
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1744900198
+          example: 1744926639
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16289,7 +16150,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: b661e05f-715d-4200-aba5-b3c111698c2f
+          example: 74f8689f-14ce-4c86-8a30-2a6cb51f7da3
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16305,7 +16166,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1744900198
+          example: 1744926639
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -16369,6 +16230,7 @@ components:
       enum:
         - ticketsSoldCount
         - revenueCount
+      description: Condition type representing the activation of the voucher
     RewardDetails:
       type: object
       properties:
@@ -16438,7 +16300,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: da4eca1d-d5f9-4310-90dd-109ec50dcbb3
+          example: 863413f3-41ce-4501-81f5-8eafd96b4abd
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16465,7 +16327,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1744900198
+          example: 1744926639
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16539,7 +16401,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: e6178206-0606-4ff1-92a7-8c3b7ef2cc9c
+          example: 16404905-5e0e-4270-930e-61cefeceec88
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16558,7 +16420,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1744900198
+          example: 1744926639
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -16688,12 +16550,10 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
         strictSelect:
@@ -16701,14 +16561,10 @@ components:
           default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
-          default: {}
-          allOf:
-            - $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
+          $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
     CollectionOffersFilterCriteriaDto:
       type: object
       properties:
@@ -16761,27 +16617,20 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
         strictSelect:
           type: boolean
-          default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
-          default: {}
-          allOf:
-            - $ref: '#/components/schemas/CollectionOffersFilterCriteriaDto'
+          $ref: '#/components/schemas/CollectionOffersFilterCriteriaDto'
     FilterQueryDto:
       type: object
       properties:
@@ -16813,7 +16662,6 @@ components:
       type: object
       properties:
         dataType:
-          default: collectionProfile
           allOf:
             - $ref: '#/components/schemas/CollectionDataType'
         collection:
@@ -16828,11 +16676,9 @@ components:
         isVisible:
           type: object
           description: Collection visibility
-          default: true
         isVerified:
           type: object
           description: Collection verification
-          default: false
         socials:
           $ref: '#/components/schemas/SocialsDto'
         type:
@@ -16843,39 +16689,26 @@ components:
             - $ref: '#/components/schemas/EsdtTokenSubType'
         profile:
           type: string
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
         banner:
           type: string
-          default: https://trustmarket.blob.core.windows.net/utils/defaultBanner.webp
         statistics:
-          default:
-            other:
-              nftCount: 0
-              followCount: 0
-          allOf:
-            - $ref: '#/components/schemas/StatisticsDto'
+          $ref: '#/components/schemas/StatisticsDto'
         owner:
           type: object
           description: Owner wallet address
-          default: ''
         creator:
           type: object
           description: Creator wallet address
-          default: ''
         isMintable:
           type: object
-          default: false
         hasStaking:
           type: object
-          default: false
         roles:
           type: object
           description: Collection roles
         isEvent:
           type: object
           description: Indicates if this collection is an event
-          default: false
         eventId:
           type: string
           description: Event Id associate with this collection
@@ -16883,10 +16716,8 @@ components:
           $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
         id:
           type: object
-          default: Collection ID
         _ts:
           type: object
-          default: 0
       required:
         - dataType
         - collection
@@ -16915,27 +16746,20 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
         strictSelect:
           type: boolean
-          default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
-          default: {}
-          allOf:
-            - $ref: '#/components/schemas/CollectionStatsFilterCriteriaDto'
+          $ref: '#/components/schemas/CollectionStatsFilterCriteriaDto'
       required:
         - filters
     SaleInfoFilterDto:
@@ -16959,6 +16783,13 @@ components:
           type: array
           items:
             type: string
+    MetadataAttributesDto:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NftMetadataAttributes'
     NftDocFilterCriteriaDto:
       type: object
       properties:
@@ -17000,7 +16831,7 @@ components:
           items:
             $ref: '#/components/schemas/RangeFilter'
         metadata:
-          $ref: '#/components/schemas/MetadataDto'
+          $ref: '#/components/schemas/MetadataAttributesDto'
         wasProcessed:
           type: boolean
           example: true
@@ -17023,28 +16854,20 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
-          default: false
         strictSelect:
           type: boolean
-          default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
-          default: {}
-          allOf:
-            - $ref: '#/components/schemas/NftDocFilterCriteriaDto'
+          $ref: '#/components/schemas/NftDocFilterCriteriaDto'
         applyNftExtraDetails:
           type: boolean
       required:
@@ -17087,25 +16910,20 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
             enum:
               - priceShort desc
-          default: []
         includeCount:
           type: boolean
         strictSelect:
           type: boolean
-          default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           $ref: '#/components/schemas/NftOfferDocFilterCriteria'
       required:
@@ -17140,12 +16958,10 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
           default: false
@@ -17154,10 +16970,8 @@ components:
           default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           $ref: '#/components/schemas/EventGuestFilterCriteriaDto'
       required:
@@ -17198,12 +17012,10 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
           default: false
@@ -17212,10 +17024,8 @@ components:
           default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           $ref: '#/components/schemas/EventInvitationFilterCriteriaDto'
       required:
@@ -17266,25 +17076,20 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
           default: false
           description: Include total count of results.
         strictSelect:
           type: boolean
-          default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           description: Criteria to filter event vouchers.
           allOf:
@@ -17328,12 +17133,10 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
           default: false
@@ -17342,10 +17145,8 @@ components:
           default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           $ref: '#/components/schemas/EventProfileFilterCriteriaDto'
         extraProperties:
@@ -17397,12 +17198,10 @@ components:
           type: array
           items:
             type: string
-          default: []
         orderBy:
           type: array
           items:
             type: string
-          default: []
         includeCount:
           type: boolean
           default: false
@@ -17411,10 +17210,8 @@ components:
           default: false
         top:
           type: integer
-          default: 25
         skip:
           type: integer
-          default: 0
         filters:
           $ref: '#/components/schemas/LendingMarketProfileFilterCriteriaDto'
         extraProperties:
@@ -17427,7 +17224,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: e642926e-aeab-49ac-aa5f-2b305a926351
+          example: 32c7bff3-42c7-4352-96d5-9f197ca9237e
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17444,15 +17241,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1744900197
+          example: 1744926639
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 7e6bf383-ea31-48dd-955f-4d4a88dc7773
+          example: ffbd38bb-fda0-4883-85bc-7b591f36aa78
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1744900197
+          example: 1744926639
       required:
         - ticketId
         - isCheckIn

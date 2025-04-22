@@ -71,7 +71,8 @@ class CollectionTypeSafeApi {
   }
 
   // TODO(kevin): missing return type
-  Future<Map<String, num>> floorPrice({required final List<String> collections}) async {
+  Future<Map<String, num>> floorPrice(
+      {required final List<String> collections}) async {
     final data = await _api.floorPrice(collections: collections);
     return data;
   }
@@ -89,7 +90,9 @@ class CollectionTypeSafeApi {
   Future<List<CollectionProfileDto>> query({final String filter = '{}'}) async {
     final data = await _api.query(filter: filter);
 
-    return data.map((element) => CollectionProfileDto.fromJson(element)).toList();
+    return data
+        .map((element) => CollectionProfileDto.fromJson(element))
+        .toList();
   }
 
   Future<DropsQueryDto> dropsQuery({final String filter = ''}) async {

@@ -4,9 +4,10 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.7.0
 
 dependencies:
+  intl: ^0.20.1
   chopper: ^8.1.0
   clock: ^1.1.1
   dart_jsonwebtoken: ^3.2.0
