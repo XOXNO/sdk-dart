@@ -13,9 +13,7 @@ class StakingRawApi {
     logger.finest('profile');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/pool/$poolId/profile',
-      ),
+      generateUri(path: '${client.baseUrl}/pool/$poolId/profile'),
     );
   }
 
@@ -27,10 +25,9 @@ class StakingRawApi {
     logger.finest('update profile');
     return genericPatch(
       client,
-      generateUri(
-        path: '${client.baseUrl}/pool/$poolId/profile',
-      ),
+      generateUri(path: '${client.baseUrl}/pool/$poolId/profile'),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -39,9 +36,7 @@ class StakingRawApi {
     logger.finest('whitelist');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/pool/$poolId/whitelist',
-      ),
+      generateUri(path: '${client.baseUrl}/pool/$poolId/whitelist'),
     );
   }
 
@@ -53,17 +48,10 @@ class StakingRawApi {
     logger.finest('upload picture');
     final request = http.MultipartRequest(
       'PUT',
-      generateUri(
-        path: '${client.baseUrl}/pool/$poolId/upload-picture',
-      ),
+      generateUri(path: '${client.baseUrl}/pool/$poolId/upload-picture'),
     );
 
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 }

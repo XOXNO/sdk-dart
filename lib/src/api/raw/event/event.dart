@@ -12,8 +12,9 @@ class EventRawApi {
 
   const EventRawApi(this.client);
 
-  Future<Map<String, dynamic>> createEvent(
-      {required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createEvent({
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createEvent');
     logger.finest('create event');
     return genericPost(
@@ -33,35 +34,36 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getEvents({
-    final String filter = '',
-  }) {
+  Future<Map<String, dynamic>> getEvents({final String filter = ''}) {
     final logger = Logger('Xoxno.EventRawApi.getEvents');
     logger.finest('get events');
     return genericGet(
       client,
       generateUri(
         path: '${client.baseUrl}/event/profile/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
 
-  Future<Map<String, dynamic>> editEvent(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> editEvent({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.editEvent');
     logger.finest('edit event');
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
-  Future<Map<String, dynamic>> setEventProfilePicture(
-      {required String eventId, required File file}) async {
+  Future<Map<String, dynamic>> setEventProfilePicture({
+    required String eventId,
+    required File file,
+  }) async {
     final logger = Logger('Xoxno.EventRawApi.setEventProfilePicture');
     logger.finest('set event profile picture');
 
@@ -98,10 +100,7 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/event/$eventId/background'),
     );
 
-    request.files.add(http.MultipartFile.fromBytes(
-      'file',
-      fileBytes,
-    ));
+    request.files.add(http.MultipartFile.fromBytes('file', fileBytes));
 
     return genericSendRequest(client, request);
   }
@@ -118,10 +117,7 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/event/$eventId/description'),
     );
 
-    request.files.add(http.MultipartFile.fromBytes(
-      'file',
-      fileBytes,
-    ));
+    request.files.add(http.MultipartFile.fromBytes('file', fileBytes));
 
     return genericSendRequest(client, request);
   }
@@ -138,27 +134,29 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/event/$eventId/description/image'),
     );
 
-    request.files.add(http.MultipartFile.fromBytes(
-      'file',
-      fileBytes,
-    ));
+    request.files.add(http.MultipartFile.fromBytes('file', fileBytes));
 
     return genericSendRequest(client, request);
   }
 
-  Future<Map<String, dynamic>> deleteEventDescriptionImage(
-      {required String eventId, required String imageId}) {
+  Future<Map<String, dynamic>> deleteEventDescriptionImage({
+    required String eventId,
+    required String imageId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.deleteEventDescriptionImage');
     logger.finest('delete event description image');
     return genericDelete(
       client,
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/description/image/$imageId'),
+        path: '${client.baseUrl}/event/$eventId/description/image/$imageId',
+      ),
     );
   }
 
-  Future<Map<String, dynamic>> registerForEvent(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> registerForEvent({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.registerForEvent');
     logger.finest('register for event');
     return genericPost(
@@ -169,8 +167,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createEventTicketType(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createEventTicketType({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createEventTicketType');
     logger.finest('create event ticket type');
     return genericPost(
@@ -181,8 +181,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getEventTicketById(
-      {required String eventId, required String ticketId}) {
+  Future<Map<String, dynamic>> getEventTicketById({
+    required String eventId,
+    required String ticketId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getEventTicketById');
     logger.finest('get event ticket by id');
     return genericGet(
@@ -200,16 +202,18 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> editEventTicket(
-      {required String eventId,
-      required String ticketId,
-      required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> editEventTicket({
+    required String eventId,
+    required String ticketId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.editEventTicket');
     logger.finest('edit event ticket');
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/ticket/$ticketId'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -224,19 +228,19 @@ class EventRawApi {
     final request = http.MultipartRequest(
       'PUT',
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/ticket/$ticketId/profile'),
+        path: '${client.baseUrl}/event/$eventId/ticket/$ticketId/profile',
+      ),
     );
 
-    request.files.add(http.MultipartFile.fromBytes(
-      'file',
-      fileBytes,
-    ));
+    request.files.add(http.MultipartFile.fromBytes('file', fileBytes));
 
     return genericSendRequest(client, request);
   }
 
-  Future<Map<String, dynamic>> createEventTicketStage(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createEventTicketStage({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createEventTicketStage');
     logger.finest('create event ticket stage');
     return genericPost(
@@ -247,8 +251,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getEventStageById(
-      {required String eventId, required String stageId}) {
+  Future<Map<String, dynamic>> getEventStageById({
+    required String eventId,
+    required String stageId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getEventStageById');
     logger.finest('get event stage by id');
     return genericGet(
@@ -274,21 +280,25 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> editEventStage(
-      {required String eventId,
-      required String stageId,
-      required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> editEventStage({
+    required String eventId,
+    required String stageId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.editEventStage');
     logger.finest('edit event stage');
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/stage/$stageId'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
-  Future<Map<String, dynamic>> deleteEventStage(
-      {required String eventId, required String stageId}) {
+  Future<Map<String, dynamic>> deleteEventStage({
+    required String eventId,
+    required String stageId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.deleteEventStage');
     logger.finest('delete event stage');
     return genericDelete(
@@ -297,8 +307,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> calculateTicketPrices(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> calculateTicketPrices({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.calculateTicketPrices');
     logger.finest('calculate ticket prices');
     return genericPost(
@@ -309,8 +321,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> validateDiscountCode(
-      {required String eventId, required String discountCode}) {
+  Future<Map<String, dynamic>> validateDiscountCode({
+    required String eventId,
+    required String discountCode,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.validateDiscountCode');
     logger.finest('validate discount code');
     return genericPost(
@@ -330,8 +344,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createInvitation(
-      {required String eventId, required List<Map<String, dynamic>> body}) {
+  Future<Map<String, dynamic>> createInvitation({
+    required String eventId,
+    required List<Map<String, dynamic>> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createInvitation');
     logger.finest('create invitation');
     return genericPost(
@@ -352,9 +368,7 @@ class EventRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/event/$eventId/invite/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
@@ -381,9 +395,7 @@ class EventRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/event/$eventId/voucher/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
@@ -397,8 +409,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createEventQuestion(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createEventQuestion({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createEventQuestion');
     logger.finest('create event question');
     return genericPost(
@@ -409,54 +423,65 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> editEventQuestion(
-      {required String eventId,
-      required String questionId,
-      required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> editEventQuestion({
+    required String eventId,
+    required String questionId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.editEventQuestion');
     logger.finest('edit event question');
     return genericPatch(
       client,
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/question/$questionId'),
-      body: json.encode(body),
-    );
-  }
-
-  Future<Map<String, dynamic>> deleteEventQuestion(
-      {required String eventId, required String questionId}) {
-    final logger = Logger('Xoxno.EventRawApi.deleteEventQuestion');
-    logger.finest('delete event question');
-    return genericDelete(
-      client,
-      generateUri(
-          path: '${client.baseUrl}/event/$eventId/question/$questionId'),
-    );
-  }
-
-  Future<Map<String, dynamic>> claimInvitation(
-      {required String eventId,
-      required String inviteId,
-      required Map<String, dynamic> body}) {
-    final logger = Logger('Xoxno.EventRawApi.claimInvitation');
-    logger.finest('claim invitation');
-    return genericPost(
-      client,
-      generateUri(
-          path: '${client.baseUrl}/event/$eventId/invite/$inviteId/claim'),
+        path: '${client.baseUrl}/event/$eventId/question/$questionId',
+      ),
       body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
 
-  Future<Map<String, dynamic>> cancelInvitation(
-      {required String eventId, required String inviteId}) {
+  Future<Map<String, dynamic>> deleteEventQuestion({
+    required String eventId,
+    required String questionId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.deleteEventQuestion');
+    logger.finest('delete event question');
+    return genericDelete(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/question/$questionId',
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> claimInvitation({
+    required String eventId,
+    required String inviteId,
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.claimInvitation');
+    logger.finest('claim invitation');
+    return genericPost(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/invite/$inviteId/claim',
+      ),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> cancelInvitation({
+    required String eventId,
+    required String inviteId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.cancelInvitation');
     logger.finest('cancel invitation');
     return genericPost(
       client,
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/invite/$inviteId/cancel'),
+        path: '${client.baseUrl}/event/$eventId/invite/$inviteId/cancel',
+      ),
     );
   }
 
@@ -470,15 +495,15 @@ class EventRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/event/$eventId/guest/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
 
-  Future<Map<String, dynamic>> getEventGuest(
-      {required String eventId, required String address}) {
+  Future<Map<String, dynamic>> getEventGuest({
+    required String eventId,
+    required String address,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getEventGuest');
     logger.finest('get event guest');
     return genericGet(
@@ -487,8 +512,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createUserRole(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createUserRole({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createUserRole');
     logger.finest('create user role');
     return genericPost(
@@ -499,8 +526,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> deleteRole(
-      {required String eventId, required String address}) {
+  Future<Map<String, dynamic>> deleteRole({
+    required String eventId,
+    required String address,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.deleteRole');
     logger.finest('delete role');
     return genericDelete(
@@ -518,8 +547,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> acceptRole(
-      {required String eventId, required String roleId}) {
+  Future<Map<String, dynamic>> acceptRole({
+    required String eventId,
+    required String roleId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.acceptRole');
     logger.finest('accept role');
     return genericPost(
@@ -528,8 +559,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getEventUserRole(
-      {required String eventId, required String address}) {
+  Future<Map<String, dynamic>> getEventUserRole({
+    required String eventId,
+    required String address,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getEventUserRole');
     logger.finest('get event user role');
     return genericGet(
@@ -547,8 +580,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getEventUserRolesById(
-      {required String eventId, required String roleId}) {
+  Future<Map<String, dynamic>> getEventUserRolesById({
+    required String eventId,
+    required String roleId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getEventUserRolesById');
     logger.finest('get event user roles by id');
     return genericGet(
@@ -564,9 +599,7 @@ class EventRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/user/me/event',
-        queryParameters: [
-          'extended=$extended',
-        ],
+        queryParameters: ['extended=$extended'],
       ),
     );
   }
@@ -589,8 +622,10 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> eventScanTickets(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> eventScanTickets({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.eventScanTickets');
     logger.finest('event scan tickets');
     return genericPost(
@@ -601,8 +636,9 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createEventVoucher(
-      {required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> createEventVoucher({
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.createEventVoucher');
     logger.finest('create event voucher');
     return genericPost(
@@ -613,33 +649,41 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> editEventVoucher(
-      {required String eventId,
-      required String voucherCode,
-      required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> editEventVoucher({
+    required String eventId,
+    required String voucherCode,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.editEventVoucher');
     logger.finest('edit event voucher');
     return genericPatch(
       client,
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/voucher/$voucherCode'),
+        path: '${client.baseUrl}/event/$eventId/voucher/$voucherCode',
+      ),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 
-  Future<Map<String, dynamic>> deleteEventVoucher(
-      {required String eventId, required String voucherCode}) {
+  Future<Map<String, dynamic>> deleteEventVoucher({
+    required String eventId,
+    required String voucherCode,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.deleteEventVoucher');
     logger.finest('delete event voucher');
     return genericDelete(
       client,
       generateUri(
-          path: '${client.baseUrl}/event/$eventId/voucher/$voucherCode'),
+        path: '${client.baseUrl}/event/$eventId/voucher/$voucherCode',
+      ),
     );
   }
 
-  Future<Map<String, dynamic>> manualCheckIn(
-      {required String eventId, required Map<String, dynamic> body}) {
+  Future<Map<String, dynamic>> manualCheckIn({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.manualCheckIn');
     logger.finest('manual check-in');
     return genericPost(
@@ -650,15 +694,18 @@ class EventRawApi {
     );
   }
 
-  Future<List<dynamic>> getAnsweredQuestions(
-      {required String eventId, required String guestId}) {
+  Future<List<dynamic>> getAnsweredQuestions({
+    required String eventId,
+    required String guestId,
+  }) {
     final logger = Logger('Xoxno.EventRawApi.getAnsweredQuestions');
     logger.finest('get answered questions');
     return genericGet(
       client,
       generateUri(
-          path:
-              '${client.baseUrl}/event/$eventId/guest/$guestId/answered-questions'),
+        path:
+            '${client.baseUrl}/event/$eventId/guest/$guestId/answered-questions',
+      ),
     );
   }
 
@@ -672,6 +719,7 @@ class EventRawApi {
       client,
       generateUri(path: '${client.baseUrl}/event/$eventId/guest/approve'),
       body: json.encode(body),
+      headers: {'content-type': 'application/json'},
     );
   }
 }

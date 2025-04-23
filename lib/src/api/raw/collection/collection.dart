@@ -14,9 +14,7 @@ class CollectionRawApi {
     logger.finest('attributes');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/attributes',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/attributes'),
     );
   }
 
@@ -25,9 +23,7 @@ class CollectionRawApi {
     logger.finest('ranks');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/ranks',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/ranks'),
     );
   }
 
@@ -36,9 +32,7 @@ class CollectionRawApi {
     logger.finest('listings');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/listings',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/listings'),
     );
   }
 
@@ -50,9 +44,7 @@ class CollectionRawApi {
     logger.finest('sign offer');
     return genericPost(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/sign-offer',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/sign-offer'),
       body: body,
       headers: {'content-type': 'application/json'},
     );
@@ -66,9 +58,7 @@ class CollectionRawApi {
     logger.finest('sign mint');
     return genericPost(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/sign-mint',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/sign-mint'),
       body: body,
       headers: {'content-type': 'application/json'},
     );
@@ -79,9 +69,7 @@ class CollectionRawApi {
     logger.finest('profile');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/profile',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/profile'),
     );
   }
 
@@ -93,10 +81,9 @@ class CollectionRawApi {
     logger.finest('update profile');
     return genericPatch(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/profile',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/profile'),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -110,9 +97,7 @@ class CollectionRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/collection/$collection/floor-price',
-        queryParameters: [
-          'token=$token',
-        ],
+        queryParameters: ['token=$token'],
       ),
     );
   }
@@ -128,7 +113,7 @@ class CollectionRawApi {
         path: '${client.baseUrl}/collection/floor-price',
         queryParameters: [
           if (collections.isNotEmpty)
-            'collection=${collections.take(10).join(',')}'
+            'collection=${collections.take(10).join(',')}',
         ],
       ),
     );
@@ -139,22 +124,17 @@ class CollectionRawApi {
     logger.finest('pinned');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/pinned',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/pinned'),
     );
   }
 
-  Future<Map<String, dynamic>> follow({
-    required final String collection,
-  }) {
+  Future<Map<String, dynamic>> follow({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.follow');
     logger.finest('follow');
     return genericPatch(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/follow',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/follow'),
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -165,9 +145,7 @@ class CollectionRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/collection/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
@@ -179,9 +157,7 @@ class CollectionRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/collection/drops/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
@@ -191,9 +167,7 @@ class CollectionRawApi {
     logger.finest('drop info');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/drops-info',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/drops-info'),
     );
   }
 
@@ -223,12 +197,7 @@ class CollectionRawApi {
         path: '${client.baseUrl}/collection/$collection/upload-picture',
       ),
     );
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
@@ -245,12 +214,7 @@ class CollectionRawApi {
       ),
     );
 
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
@@ -267,9 +231,7 @@ class CollectionRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> resetBanner({
-    required final String collection,
-  }) {
+  Future<Map<String, dynamic>> resetBanner({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.resetBanner');
     logger.finest('reset banner');
     return genericPut(
@@ -295,60 +257,44 @@ class CollectionRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> owner({
-    required final String collection,
-  }) {
+  Future<Map<String, dynamic>> owner({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.owner');
     logger.finest('owner');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/owner',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/owner'),
     );
   }
 
-  Future<Map<String, dynamic>> stats({
-    required final String collection,
-  }) {
+  Future<Map<String, dynamic>> stats({required final String collection}) {
     final logger = Logger('Xoxno.CollectionRawApi.stats');
     logger.finest('stats');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/$collection/stats',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/$collection/stats'),
     );
   }
 
-  Future<Map<String, dynamic>> statsQuery({
-    final String filter = '',
-  }) {
+  Future<Map<String, dynamic>> statsQuery({final String filter = ''}) {
     final logger = Logger('Xoxno.CollectionRawApi.statsQuery');
     logger.finest('stats query');
     return genericGet(
       client,
       generateUri(
         path: '${client.baseUrl}/collection/stats/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
 
-  Future<Map<String, dynamic>> globalOfferQuery({
-    final String filter = '',
-  }) {
+  Future<Map<String, dynamic>> globalOfferQuery({final String filter = ''}) {
     final logger = Logger('Xoxno.CollectionRawApi.globalOfferQuery');
     logger.finest('global offer query');
     return genericGet(
       client,
       generateUri(
         path: '${client.baseUrl}/collection/global-offer/query',
-        queryParameters: [
-          if (filter.isNotEmpty) 'filter=$filter',
-        ],
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
       ),
     );
   }
@@ -371,9 +317,7 @@ class CollectionRawApi {
     logger.finest('staking explore');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/collection/staking/explore',
-      ),
+      generateUri(path: '${client.baseUrl}/collection/staking/explore'),
     );
   }
 

@@ -26936,15 +26936,97 @@ extension $EventCheckInQRExtension on EventCheckInQR {
 }
 
 @JsonSerializable(explicitToJson: true)
+class TicketSelection {
+  const TicketSelection({
+    required this.identifier,
+    required this.ticketId,
+    required this.quantity,
+    this.ticketProfile,
+  });
+
+  factory TicketSelection.fromJson(Map<String, dynamic> json) =>
+      _$TicketSelectionFromJson(json);
+
+  static const toJsonFactory = _$TicketSelectionToJson;
+  Map<String, dynamic> toJson() => _$TicketSelectionToJson(this);
+
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'ticketId')
+  final String ticketId;
+  @JsonKey(name: 'quantity')
+  final double quantity;
+  @JsonKey(name: 'ticketProfile')
+  final TicketProfileSummary? ticketProfile;
+  static const fromJsonFactory = _$TicketSelectionFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TicketSelection &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality()
+                    .equals(other.identifier, identifier)) &&
+            (identical(other.ticketId, ticketId) ||
+                const DeepCollectionEquality()
+                    .equals(other.ticketId, ticketId)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.ticketProfile, ticketProfile) ||
+                const DeepCollectionEquality()
+                    .equals(other.ticketProfile, ticketProfile)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(identifier) ^
+      const DeepCollectionEquality().hash(ticketId) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(ticketProfile) ^
+      runtimeType.hashCode;
+}
+
+extension $TicketSelectionExtension on TicketSelection {
+  TicketSelection copyWith(
+      {String? identifier,
+      String? ticketId,
+      double? quantity,
+      TicketProfileSummary? ticketProfile}) {
+    return TicketSelection(
+        identifier: identifier ?? this.identifier,
+        ticketId: ticketId ?? this.ticketId,
+        quantity: quantity ?? this.quantity,
+        ticketProfile: ticketProfile ?? this.ticketProfile);
+  }
+
+  TicketSelection copyWithWrapped(
+      {Wrapped<String>? identifier,
+      Wrapped<String>? ticketId,
+      Wrapped<double>? quantity,
+      Wrapped<TicketProfileSummary?>? ticketProfile}) {
+    return TicketSelection(
+        identifier: (identifier != null ? identifier.value : this.identifier),
+        ticketId: (ticketId != null ? ticketId.value : this.ticketId),
+        quantity: (quantity != null ? quantity.value : this.quantity),
+        ticketProfile:
+            (ticketProfile != null ? ticketProfile.value : this.ticketProfile));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class TicketValidationResult {
   const TicketValidationResult({
     required this.status,
     required this.type,
     required this.message,
-    required this.guest,
-    required this.invitation,
-    required this.nfts,
-    required this.availableTickets,
+    this.guest,
+    this.invitation,
+    this.nfts,
+    this.availableTickets,
   });
 
   factory TicketValidationResult.fromJson(Map<String, dynamic> json) =>
@@ -26972,13 +27054,13 @@ class TicketValidationResult {
   )
   final enums.EventScanMessage message;
   @JsonKey(name: 'guest')
-  final EventGuestProfile guest;
+  final EventGuestProfile? guest;
   @JsonKey(name: 'invitation')
-  final EventInvitationDoc invitation;
-  @JsonKey(name: 'nfts')
-  final NftDoc nfts;
-  @JsonKey(name: 'availableTickets', defaultValue: <String>[])
-  final List<String> availableTickets;
+  final EventInvitationDoc? invitation;
+  @JsonKey(name: 'nfts', defaultValue: <NftDoc>[])
+  final List<NftDoc>? nfts;
+  @JsonKey(name: 'availableTickets', defaultValue: <TicketSelection>[])
+  final List<TicketSelection>? availableTickets;
   static const fromJsonFactory = _$TicketValidationResultFromJson;
 
   @override
@@ -27026,8 +27108,8 @@ extension $TicketValidationResultExtension on TicketValidationResult {
       enums.EventScanMessage? message,
       EventGuestProfile? guest,
       EventInvitationDoc? invitation,
-      NftDoc? nfts,
-      List<String>? availableTickets}) {
+      List<NftDoc>? nfts,
+      List<TicketSelection>? availableTickets}) {
     return TicketValidationResult(
         status: status ?? this.status,
         type: type ?? this.type,
@@ -27042,10 +27124,10 @@ extension $TicketValidationResultExtension on TicketValidationResult {
       {Wrapped<enums.EventScanStatus>? status,
       Wrapped<enums.EventTicketQrType>? type,
       Wrapped<enums.EventScanMessage>? message,
-      Wrapped<EventGuestProfile>? guest,
-      Wrapped<EventInvitationDoc>? invitation,
-      Wrapped<NftDoc>? nfts,
-      Wrapped<List<String>>? availableTickets}) {
+      Wrapped<EventGuestProfile?>? guest,
+      Wrapped<EventInvitationDoc?>? invitation,
+      Wrapped<List<NftDoc>?>? nfts,
+      Wrapped<List<TicketSelection>?>? availableTickets}) {
     return TicketValidationResult(
         status: (status != null ? status.value : this.status),
         type: (type != null ? type.value : this.type),

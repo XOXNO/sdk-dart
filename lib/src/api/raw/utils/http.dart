@@ -36,8 +36,9 @@ Future<T> genericPatch<T>(
   final Client client,
   final Uri uri, {
   final Object? body,
+  final Map<String, String>? headers,
 }) async {
-  final response = await client.patch(uri, body: body);
+  final response = await client.patch(uri, body: body, headers: headers);
   _genericLogResponse(response);
   return _genericCatchException<T>(response);
 }

@@ -5769,18 +5769,44 @@ Map<String, dynamic> _$EventCheckInQRToJson(EventCheckInQR instance) =>
       'tickets': instance.tickets.map((e) => e.toJson()).toList(),
     };
 
+TicketSelection _$TicketSelectionFromJson(Map<String, dynamic> json) =>
+    TicketSelection(
+      identifier: json['identifier'] as String,
+      ticketId: json['ticketId'] as String,
+      quantity: (json['quantity'] as num).toDouble(),
+      ticketProfile: json['ticketProfile'] == null
+          ? null
+          : TicketProfileSummary.fromJson(
+              json['ticketProfile'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TicketSelectionToJson(TicketSelection instance) =>
+    <String, dynamic>{
+      'identifier': instance.identifier,
+      'ticketId': instance.ticketId,
+      'quantity': instance.quantity,
+      'ticketProfile': instance.ticketProfile?.toJson(),
+    };
+
 TicketValidationResult _$TicketValidationResultFromJson(
         Map<String, dynamic> json) =>
     TicketValidationResult(
       status: eventScanStatusFromJson(json['status']),
       type: eventTicketQrTypeFromJson(json['type']),
       message: eventScanMessageFromJson(json['message']),
-      guest: EventGuestProfile.fromJson(json['guest'] as Map<String, dynamic>),
-      invitation: EventInvitationDoc.fromJson(
-          json['invitation'] as Map<String, dynamic>),
-      nfts: NftDoc.fromJson(json['nfts'] as Map<String, dynamic>),
+      guest: json['guest'] == null
+          ? null
+          : EventGuestProfile.fromJson(json['guest'] as Map<String, dynamic>),
+      invitation: json['invitation'] == null
+          ? null
+          : EventInvitationDoc.fromJson(
+              json['invitation'] as Map<String, dynamic>),
+      nfts: (json['nfts'] as List<dynamic>?)
+              ?.map((e) => NftDoc.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       availableTickets: (json['availableTickets'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => TicketSelection.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
@@ -5791,10 +5817,11 @@ Map<String, dynamic> _$TicketValidationResultToJson(
       'status': eventScanStatusToJson(instance.status),
       'type': eventTicketQrTypeToJson(instance.type),
       'message': eventScanMessageToJson(instance.message),
-      'guest': instance.guest.toJson(),
-      'invitation': instance.invitation.toJson(),
-      'nfts': instance.nfts.toJson(),
-      'availableTickets': instance.availableTickets,
+      'guest': instance.guest?.toJson(),
+      'invitation': instance.invitation?.toJson(),
+      'nfts': instance.nfts?.map((e) => e.toJson()).toList(),
+      'availableTickets':
+          instance.availableTickets?.map((e) => e.toJson()).toList(),
     };
 
 EventVoucherCreateDto _$EventVoucherCreateDtoFromJson(

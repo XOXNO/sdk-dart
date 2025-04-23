@@ -26,10 +26,7 @@ class UserRawApi {
   Future<Map<String, dynamic>> getWeb2UserData() {
     final logger = Logger('Xoxno.UserRawApi.getWeb2UserData');
     logger.finest('getWeb2UserData');
-    return genericGet(
-      client,
-      generateUri(path: '${client.baseUrl}/user/web2'),
-    );
+    return genericGet(client, generateUri(path: '${client.baseUrl}/user/web2'));
   }
 
   Future<Map<String, dynamic>> createWeb2UserWallet({
@@ -39,13 +36,9 @@ class UserRawApi {
     logger.finest('createWeb2UserWallet');
     return genericPost(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/web2/wallet',
-      ),
+      generateUri(path: '${client.baseUrl}/user/web2/wallet'),
       body: json.encode(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
     );
   }
 
@@ -58,8 +51,9 @@ class UserRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> networkAccountForAddress(
-      {required final String address}) {
+  Future<Map<String, dynamic>> networkAccountForAddress({
+    required final String address,
+  }) {
     final logger = Logger('Xoxno.UserRawApi.networkAccountForAddress');
     logger.finest('network account for address');
     return genericGet(
@@ -114,16 +108,14 @@ class UserRawApi {
       client,
       generateUri(path: '${client.baseUrl}/user/$address/profile'),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
   Future<Map<String, dynamic>> me() {
     final logger = Logger('Xoxno.UserRawApi.me');
     logger.finest('me');
-    return genericGet(
-      client,
-      generateUri(path: '${client.baseUrl}/user/me'),
-    );
+    return genericGet(client, generateUri(path: '${client.baseUrl}/user/me'));
   }
 
   Future<Map<String, dynamic>> meSettings() {
@@ -146,6 +138,7 @@ class UserRawApi {
         path: '${client.baseUrl}/user/me/settings/notification-preferences',
       ),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -156,10 +149,9 @@ class UserRawApi {
     logger.finest('update settings email');
     return genericPatch(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/me/settings/email',
-      ),
+      generateUri(path: '${client.baseUrl}/user/me/settings/email'),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -170,9 +162,7 @@ class UserRawApi {
     logger.finest('update settings email');
     return genericDelete(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/me/settings/email',
-      ),
+      generateUri(path: '${client.baseUrl}/user/me/settings/email'),
       body: body,
     );
   }
@@ -184,9 +174,7 @@ class UserRawApi {
     logger.finest('verify email');
     return genericPost(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/me/settings/verify-email',
-      ),
+      generateUri(path: '${client.baseUrl}/user/me/settings/verify-email'),
       body: body,
       headers: {'content-type': 'application/json'},
     );
@@ -200,16 +188,9 @@ class UserRawApi {
     logger.finest('upload picture');
     final request = http.MultipartRequest(
       'PUT',
-      generateUri(
-        path: '${client.baseUrl}/user/$address/upload-picture',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/upload-picture'),
     );
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
@@ -221,47 +202,33 @@ class UserRawApi {
     logger.finest('upload banner');
     final request = http.MultipartRequest(
       'PUT',
-      generateUri(
-        path: '${client.baseUrl}/user/$address/upload-banner',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/upload-banner'),
     );
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
-  Future<Map<String, dynamic>> resetPicture({
-    required final String address,
-  }) {
+  Future<Map<String, dynamic>> resetPicture({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.resetPicture');
     logger.finest('reset picture');
     return genericPut(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$address/reset-picture',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/reset-picture'),
     );
   }
 
-  Future<Map<String, dynamic>> resetBanner({
-    required final String address,
-  }) {
+  Future<Map<String, dynamic>> resetBanner({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.resetBanner');
     logger.finest('reset banner');
     return genericPut(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$address/reset-banner',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/reset-banner'),
     );
   }
 
-  Future<Map<String, dynamic>> creatorIsRegistered(
-      {required final String tag}) {
+  Future<Map<String, dynamic>> creatorIsRegistered({
+    required final String tag,
+  }) {
     final logger = Logger('Xoxno.UserRawApi.creatorIsRegistered');
     logger.finest('creator is registered');
     return genericGet(
@@ -289,6 +256,7 @@ class UserRawApi {
       client,
       generateUri(path: '${client.baseUrl}/user/$address/creator/profile'),
       body: body,
+      headers: {'content-type': 'application/json'},
     );
   }
 
@@ -305,12 +273,7 @@ class UserRawApi {
       ),
     );
 
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
@@ -327,12 +290,7 @@ class UserRawApi {
       ),
     );
 
-    request.files.add(
-      http.MultipartFile.fromBytes(
-        'file',
-        bytes,
-      ),
-    );
+    request.files.add(http.MultipartFile.fromBytes('file', bytes));
     return genericSendRequest(client, request);
   }
 
@@ -356,9 +314,7 @@ class UserRawApi {
     logger.finest('creator reset banner');
     return genericPut(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$address/creator/reset-banner',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/creator/reset-banner'),
     );
   }
 
@@ -367,9 +323,7 @@ class UserRawApi {
     logger.finest('favorite collections');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$address/favorite/collections',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/favorite/collections'),
     );
   }
 
@@ -382,9 +336,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> follow({
-    required final String address,
-  }) {
+  Future<List> follow({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.follow');
     logger.finest('follow');
     return genericPost(
@@ -402,15 +354,18 @@ class UserRawApi {
     );
   }
 
-  Future<List> inventorySummary(
-      {required final String address, final bool? activeAuctions}) {
+  Future<List> inventorySummary({
+    required final String address,
+    final bool? activeAuctions,
+  }) {
     final logger = Logger('Xoxno.UserRawApi.inventorySummary');
     logger.finest('inventory summary');
     return genericGet(
       client,
       generateUri(
-          path: '${client.baseUrl}/user/$address/inventory-summary',
-          queryParameters: ['activeAuctions=$activeAuctions']),
+        path: '${client.baseUrl}/user/$address/inventory-summary',
+        queryParameters: ['activeAuctions=$activeAuctions'],
+      ),
     );
   }
 
@@ -454,9 +409,7 @@ class UserRawApi {
     );
   }
 
-  Future<List> creatorListing({
-    required final String scAddress,
-  }) {
+  Future<List> creatorListing({required final String scAddress}) {
     final logger = Logger('Xoxno.UserRawApi.creatorListing');
     logger.finest('creator listing');
     return genericGet(
@@ -465,9 +418,7 @@ class UserRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> creatorDetails({
-    required final String address,
-  }) {
+  Future<Map<String, dynamic>> creatorDetails({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.creatorDetails');
     logger.finest('creator details');
     return genericGet(
@@ -484,7 +435,8 @@ class UserRawApi {
     return genericGet(
       client,
       generateUri(
-          path: '${client.baseUrl}/user/$address/staking/available-pools'),
+        path: '${client.baseUrl}/user/$address/staking/available-pools',
+      ),
     );
   }
 
@@ -496,13 +448,12 @@ class UserRawApi {
     return genericGet(
       client,
       generateUri(
-          path: '${client.baseUrl}/user/$address/staking/owned-collections'),
+        path: '${client.baseUrl}/user/$address/staking/owned-collections',
+      ),
     );
   }
 
-  Future<List<dynamic>> stakingOwnedPools({
-    required final String address,
-  }) {
+  Future<List<dynamic>> stakingOwnedPools({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.stakingOwnedPools');
     logger.finest('staking owned pools');
     return genericGet(
@@ -511,9 +462,7 @@ class UserRawApi {
     );
   }
 
-  Future<List<dynamic>> stakingSummary({
-    required final String address,
-  }) {
+  Future<List<dynamic>> stakingSummary({required final String address}) {
     final logger = Logger('Xoxno.UserRawApi.stakingSummary');
     logger.finest('staking summary');
     return genericGet(
@@ -558,9 +507,7 @@ class UserRawApi {
       client,
       generateUri(
         path: '${client.baseUrl}/user/$address/staking/pool/$id/nfts',
-        queryParameters: [
-          if (status.isNotEmpty) 'status=$status',
-        ],
+        queryParameters: [if (status.isNotEmpty) 'status=$status'],
       ),
     );
   }
@@ -572,9 +519,7 @@ class UserRawApi {
     logger.finest('owned services');
     return await genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$creatorTag/owned-services',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$creatorTag/owned-services'),
     );
   }
 
@@ -585,9 +530,7 @@ class UserRawApi {
     logger.finest('analytics volume');
     return await genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/$address/analytics/volume',
-      ),
+      generateUri(path: '${client.baseUrl}/user/$address/analytics/volume'),
     );
   }
 
@@ -638,9 +581,7 @@ class UserRawApi {
     logger.finest('me xoxno drop');
     return genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/me/xoxno-drop',
-      ),
+      generateUri(path: '${client.baseUrl}/user/me/xoxno-drop'),
     );
   }
 
@@ -667,9 +608,7 @@ class UserRawApi {
     logger.finest('notifications unread count');
     return await genericGet(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/notifications/unread-count',
-      ),
+      generateUri(path: '${client.baseUrl}/user/notifications/unread-count'),
     );
   }
 
@@ -678,9 +617,7 @@ class UserRawApi {
     logger.finest('notifications clear');
     return await genericDelete(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/notifications/clear',
-      ),
+      generateUri(path: '${client.baseUrl}/user/notifications/clear'),
     );
   }
 
@@ -689,9 +626,8 @@ class UserRawApi {
     logger.finest('notifications read');
     return await genericPatch(
       client,
-      generateUri(
-        path: '${client.baseUrl}/user/notifications/read',
-      ),
+      generateUri(path: '${client.baseUrl}/user/notifications/read'),
+      headers: {'content-type': 'application/json'},
     );
   }
 }
