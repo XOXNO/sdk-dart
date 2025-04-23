@@ -709,7 +709,7 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> approveOrRejectGuestRegistration({
+  Future<List<dynamic>> approveOrRejectGuestRegistration({
     required String eventId,
     required List<Map<String, dynamic>> body,
   }) {

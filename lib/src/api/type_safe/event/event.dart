@@ -9,8 +9,9 @@ class EventTypeSafeApi {
 
   const EventTypeSafeApi(this._api);
 
-  Future<EventProfile> createEvent(
-      {required EventProfileCreateDto body}) async {
+  Future<EventProfile> createEvent({
+    required EventProfileCreateDto body,
+  }) async {
     final data = await _api.createEvent(body: body.toJson());
     return EventProfile.fromJson(data);
   }
@@ -20,8 +21,9 @@ class EventTypeSafeApi {
     return EventProfile.fromJson(data);
   }
 
-  Future<EventProfileQuery> getEvents(
-      {required EventProfileFilter? filter}) async {
+  Future<EventProfileQuery> getEvents({
+    required EventProfileFilter? filter,
+  }) async {
     final f = switch (filter?.toJson()) {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
@@ -213,10 +215,7 @@ class EventTypeSafeApi {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
     };
-    final data = await _api.getEventGuests(
-      eventId: eventId,
-      filter: f,
-    );
+    final data = await _api.getEventGuests(eventId: eventId, filter: f);
     return EventGuestProfileQuery.fromJson(data);
   }
 
@@ -224,10 +223,7 @@ class EventTypeSafeApi {
     required String eventId,
     required String address,
   }) async {
-    final data = await _api.getEventGuest(
-      eventId: eventId,
-      address: address,
-    );
+    final data = await _api.getEventGuest(eventId: eventId, address: address);
     return EventGuestProfile.fromJson(data);
   }
 
@@ -239,10 +235,7 @@ class EventTypeSafeApi {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
     };
-    final data = await _api.getEventInvitations(
-      eventId: eventId,
-      filter: f,
-    );
+    final data = await _api.getEventInvitations(eventId: eventId, filter: f);
     return EventInvitationQuery.fromJson(data);
   }
 
@@ -265,10 +258,7 @@ class EventTypeSafeApi {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
     };
-    final data = await _api.getEventVouchers(
-      eventId: eventId,
-      filter: f,
-    );
+    final data = await _api.getEventVouchers(eventId: eventId, filter: f);
     return EventVoucherQuery.fromJson(data);
   }
 
@@ -364,7 +354,7 @@ class EventTypeSafeApi {
     return TicketValidationResult.fromJson(data);
   }
 
-  Future<EventGuestProfile> approveOrRejectGuestRegistration({
+  Future<List<EventGuestProfile>> approveOrRejectGuestRegistration({
     required String eventId,
     required List<EventGuestApproveDto> body,
   }) async {
@@ -372,7 +362,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       body: body.map((item) => item.toJson()).toList(),
     );
-    return EventGuestProfile.fromJson(data);
+    return data.map((item) => EventGuestProfile.fromJson(item)).toList();
   }
 
   Future<SuccessDto> deleteEventStage({
@@ -493,9 +483,7 @@ class EventTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<SuccessDto> rejectEventGuest({
-    required String eventId,
-  }) async {
+  Future<SuccessDto> rejectEventGuest({required String eventId}) async {
     final data = await _api.deleteGuest(eventId: eventId);
     return SuccessDto.fromJson(data);
   }
@@ -512,8 +500,10 @@ class EventTypeSafeApi {
     required String eventId,
     required String address,
   }) async {
-    final data =
-        await _api.getEventUserRole(eventId: eventId, address: address);
+    final data = await _api.getEventUserRole(
+      eventId: eventId,
+      address: address,
+    );
     return EventUserRoleDoc.fromJson(data);
   }
 
@@ -526,14 +516,14 @@ class EventTypeSafeApi {
     required String eventId,
     required String guestId,
   }) async {
-    final data =
-        await _api.getAnsweredQuestions(eventId: eventId, guestId: guestId);
+    final data = await _api.getAnsweredQuestions(
+      eventId: eventId,
+      guestId: guestId,
+    );
     return data.map((e) => AnsweredQuestionWithDetails.fromJson(e)).toList();
   }
 
-  Future<CreatorDetailsDto> getCreatorEvents({
-    required String address,
-  }) async {
+  Future<CreatorDetailsDto> getCreatorEvents({required String address}) async {
     final data = await _api.getCreatorEvents(address: address);
     return CreatorDetailsDto.fromJson(data);
   }
