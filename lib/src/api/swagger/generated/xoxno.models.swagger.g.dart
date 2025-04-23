@@ -5799,7 +5799,7 @@ TicketValidationResult _$TicketValidationResultFromJson(
           : EventGuestProfile.fromJson(json['guest'] as Map<String, dynamic>),
       invitation: json['invitation'] == null
           ? null
-          : EventInvitationDoc.fromJson(
+          : EventInvitation.fromJson(
               json['invitation'] as Map<String, dynamic>),
       nfts: (json['nfts'] as List<dynamic>?)
               ?.map((e) => NftDoc.fromJson(e as Map<String, dynamic>))

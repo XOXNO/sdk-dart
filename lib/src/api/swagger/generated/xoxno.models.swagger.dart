@@ -27056,7 +27056,7 @@ class TicketValidationResult {
   @JsonKey(name: 'guest')
   final EventGuestProfile? guest;
   @JsonKey(name: 'invitation')
-  final EventInvitationDoc? invitation;
+  final EventInvitation? invitation;
   @JsonKey(name: 'nfts', defaultValue: <NftDoc>[])
   final List<NftDoc>? nfts;
   @JsonKey(name: 'availableTickets', defaultValue: <TicketSelection>[])
@@ -27107,7 +27107,7 @@ extension $TicketValidationResultExtension on TicketValidationResult {
       enums.EventTicketQrType? type,
       enums.EventScanMessage? message,
       EventGuestProfile? guest,
-      EventInvitationDoc? invitation,
+      EventInvitation? invitation,
       List<NftDoc>? nfts,
       List<TicketSelection>? availableTickets}) {
     return TicketValidationResult(
@@ -27125,7 +27125,7 @@ extension $TicketValidationResultExtension on TicketValidationResult {
       Wrapped<enums.EventTicketQrType>? type,
       Wrapped<enums.EventScanMessage>? message,
       Wrapped<EventGuestProfile?>? guest,
-      Wrapped<EventInvitationDoc?>? invitation,
+      Wrapped<EventInvitation?>? invitation,
       Wrapped<List<NftDoc>?>? nfts,
       Wrapped<List<TicketSelection>?>? availableTickets}) {
     return TicketValidationResult(
