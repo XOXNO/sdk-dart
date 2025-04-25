@@ -31907,6 +31907,7 @@ class EventGuestCheckIn {
     required this.receivedAt,
     this.invitationId,
     this.timestamp,
+    this.quantity,
   });
 
   factory EventGuestCheckIn.fromJson(Map<String, dynamic> json) =>
@@ -31929,6 +31930,8 @@ class EventGuestCheckIn {
   final String? invitationId;
   @JsonKey(name: 'timestamp')
   final int? timestamp;
+  @JsonKey(name: 'quantity')
+  final int? quantity;
   static const fromJsonFactory = _$EventGuestCheckInFromJson;
 
   @override
@@ -31955,7 +31958,10 @@ class EventGuestCheckIn {
                     .equals(other.invitationId, invitationId)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                    .equals(other.timestamp, timestamp)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)));
   }
 
   @override
@@ -31970,6 +31976,7 @@ class EventGuestCheckIn {
       const DeepCollectionEquality().hash(receivedAt) ^
       const DeepCollectionEquality().hash(invitationId) ^
       const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(quantity) ^
       runtimeType.hashCode;
 }
 
@@ -31981,7 +31988,8 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
       bool? freeTicket,
       int? receivedAt,
       String? invitationId,
-      int? timestamp}) {
+      int? timestamp,
+      int? quantity}) {
     return EventGuestCheckIn(
         ticketId: ticketId ?? this.ticketId,
         ticketProfile: ticketProfile ?? this.ticketProfile,
@@ -31989,7 +31997,8 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
         freeTicket: freeTicket ?? this.freeTicket,
         receivedAt: receivedAt ?? this.receivedAt,
         invitationId: invitationId ?? this.invitationId,
-        timestamp: timestamp ?? this.timestamp);
+        timestamp: timestamp ?? this.timestamp,
+        quantity: quantity ?? this.quantity);
   }
 
   EventGuestCheckIn copyWithWrapped(
@@ -31999,7 +32008,8 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
       Wrapped<bool>? freeTicket,
       Wrapped<int>? receivedAt,
       Wrapped<String?>? invitationId,
-      Wrapped<int?>? timestamp}) {
+      Wrapped<int?>? timestamp,
+      Wrapped<int?>? quantity}) {
     return EventGuestCheckIn(
         ticketId: (ticketId != null ? ticketId.value : this.ticketId),
         ticketProfile:
@@ -32009,7 +32019,8 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
         receivedAt: (receivedAt != null ? receivedAt.value : this.receivedAt),
         invitationId:
             (invitationId != null ? invitationId.value : this.invitationId),
-        timestamp: (timestamp != null ? timestamp.value : this.timestamp));
+        timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+        quantity: (quantity != null ? quantity.value : this.quantity));
   }
 }
 

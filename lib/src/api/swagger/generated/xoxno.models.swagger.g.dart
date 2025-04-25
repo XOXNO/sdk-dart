@@ -7073,6 +7073,7 @@ EventGuestCheckIn _$EventGuestCheckInFromJson(Map<String, dynamic> json) =>
       receivedAt: (json['receivedAt'] as num).toInt(),
       invitationId: json['invitationId'] as String?,
       timestamp: (json['timestamp'] as num?)?.toInt(),
+      quantity: (json['quantity'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventGuestCheckInToJson(EventGuestCheckIn instance) =>
@@ -7084,6 +7085,7 @@ Map<String, dynamic> _$EventGuestCheckInToJson(EventGuestCheckIn instance) =>
       'receivedAt': instance.receivedAt,
       'invitationId': instance.invitationId,
       'timestamp': instance.timestamp,
+      'quantity': instance.quantity,
     };
 
 UserAddressUploadPicturePut$RequestBody
