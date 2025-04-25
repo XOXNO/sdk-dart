@@ -24769,7 +24769,7 @@ class TicketProfileSummary {
     this.profile,
     this.badgeColor,
     this.characteristics,
-    required this.ticketId,
+    this.ticketId,
     this.quantity,
   });
 
@@ -24790,7 +24790,7 @@ class TicketProfileSummary {
   @JsonKey(name: 'characteristics')
   final Object? characteristics;
   @JsonKey(name: 'ticketId')
-  final String ticketId;
+  final String? ticketId;
   @JsonKey(name: 'quantity')
   final int? quantity;
   static const fromJsonFactory = _$TicketProfileSummaryFromJson;
@@ -24861,7 +24861,7 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
       Wrapped<String?>? profile,
       Wrapped<String?>? badgeColor,
       Wrapped<Object?>? characteristics,
-      Wrapped<String>? ticketId,
+      Wrapped<String?>? ticketId,
       Wrapped<int?>? quantity}) {
     return TicketProfileSummary(
         name: (name != null ? name.value : this.name),

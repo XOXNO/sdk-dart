@@ -5308,7 +5308,7 @@ TicketProfileSummary _$TicketProfileSummaryFromJson(
       profile: json['profile'] as String?,
       badgeColor: json['badgeColor'] as String?,
       characteristics: json['characteristics'],
-      ticketId: json['ticketId'] as String,
+      ticketId: json['ticketId'] as String?,
       quantity: (json['quantity'] as num?)?.toInt(),
     );
 
