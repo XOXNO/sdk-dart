@@ -1144,9 +1144,11 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
       reserves: json['reserves'] as Object,
       reservesShort: json['reservesShort'] as Object,
       supplyAmount: json['supplyAmount'] as Object,
+      supplyAmountScaled: json['supplyAmountScaled'] as Object,
       borrowAmount: json['borrowAmount'] as Object,
       supplyAmountShort: json['supplyAmountShort'] as Object,
       borrowAmountShort: json['borrowAmountShort'] as Object,
+      borrowAmountScaled: json['borrowAmountScaled'] as Object,
       vaultAmount: json['vaultAmount'] as Object,
       vaultAmountShort: json['vaultAmountShort'] as Object,
       supplyCap: json['supplyCap'] as String,
@@ -1212,9 +1214,11 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
       'reserves': instance.reserves,
       'reservesShort': instance.reservesShort,
       'supplyAmount': instance.supplyAmount,
+      'supplyAmountScaled': instance.supplyAmountScaled,
       'borrowAmount': instance.borrowAmount,
       'supplyAmountShort': instance.supplyAmountShort,
       'borrowAmountShort': instance.borrowAmountShort,
+      'borrowAmountScaled': instance.borrowAmountScaled,
       'vaultAmount': instance.vaultAmount,
       'vaultAmountShort': instance.vaultAmountShort,
       'supplyCap': instance.supplyCap,
@@ -1366,15 +1370,11 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
       nonce: (json['nonce'] as num).toDouble(),
       token: json['token'] as String,
       supplyAmount: json['supplyAmount'] as Object,
+      supplyAmountScaled: json['supplyAmountScaled'] as Object,
       borrowAmount: json['borrowAmount'] as Object,
+      borrowAmountScaled: json['borrowAmountScaled'] as Object,
       supplyAmountShort: json['supplyAmountShort'] as Object,
       borrowAmountShort: json['borrowAmountShort'] as Object,
-      supplyAccumulatedInterest: json['supplyAccumulatedInterest'] as Object,
-      borrowAccumulatedInterest: json['borrowAccumulatedInterest'] as Object,
-      supplyAccumulatedInterestShort:
-          json['supplyAccumulatedInterestShort'] as Object,
-      borrowAccumulatedInterestShort:
-          json['borrowAccumulatedInterestShort'] as Object,
       supplyTimestamp: json['supplyTimestamp'] as Object,
       supplyIndex: json['supplyIndex'] as Object,
       borrowTimestamp: json['borrowTimestamp'] as Object,
@@ -1384,7 +1384,7 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
       entryLiquidationFee: json['entryLiquidationFee'] as String,
       entryLtv: json['entryLtv'] as String,
       isolated: json['isolated'] as bool,
-      isVault: json['isVault'] as bool,
+      positionMode: positionModeFromJson(json['positionMode']),
       eModeCategory: json['eModeCategory'] as String,
       address: json['address'] as String,
       eModeCategoryProfile: json['eModeCategoryProfile'] == null
@@ -1405,13 +1405,11 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
       'nonce': instance.nonce,
       'token': instance.token,
       'supplyAmount': instance.supplyAmount,
+      'supplyAmountScaled': instance.supplyAmountScaled,
       'borrowAmount': instance.borrowAmount,
+      'borrowAmountScaled': instance.borrowAmountScaled,
       'supplyAmountShort': instance.supplyAmountShort,
       'borrowAmountShort': instance.borrowAmountShort,
-      'supplyAccumulatedInterest': instance.supplyAccumulatedInterest,
-      'borrowAccumulatedInterest': instance.borrowAccumulatedInterest,
-      'supplyAccumulatedInterestShort': instance.supplyAccumulatedInterestShort,
-      'borrowAccumulatedInterestShort': instance.borrowAccumulatedInterestShort,
       'supplyTimestamp': instance.supplyTimestamp,
       'supplyIndex': instance.supplyIndex,
       'borrowTimestamp': instance.borrowTimestamp,
@@ -1421,7 +1419,7 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
       'entryLiquidationFee': instance.entryLiquidationFee,
       'entryLtv': instance.entryLtv,
       'isolated': instance.isolated,
-      'isVault': instance.isVault,
+      'positionMode': positionModeToJson(instance.positionMode),
       'eModeCategory': instance.eModeCategory,
       'address': instance.address,
       'eModeCategoryProfile': instance.eModeCategoryProfile?.toJson(),
@@ -3756,6 +3754,12 @@ Map<String, dynamic> _$ActivityHistoryDtoToJson(ActivityHistoryDto instance) =>
       'hasMoreResults': instance.hasMoreResults,
     };
 
+NftActivityDoc _$NftActivityDocFromJson(Map<String, dynamic> json) =>
+    NftActivityDoc();
+
+Map<String, dynamic> _$NftActivityDocToJson(NftActivityDoc instance) =>
+    <String, dynamic>{};
+
 AnalyticsVolumeDto _$AnalyticsVolumeDtoFromJson(Map<String, dynamic> json) =>
     AnalyticsVolumeDto(
       marketplace: json['marketplace'] as String,
@@ -5269,7 +5273,7 @@ Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
 
 Ticket _$TicketFromJson(Map<String, dynamic> json) => Ticket(
       ticketId: json['ticketId'] as String,
-      quantity: (json['quantity'] as num).toDouble(),
+      quantity: (json['quantity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$TicketToJson(Ticket instance) => <String, dynamic>{
@@ -5286,8 +5290,8 @@ EventInvitationCreateDto _$EventInvitationCreateDtoFromJson(
               ?.map((e) => Ticket.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      startTime: (json['startTime'] as num).toDouble(),
-      endTime: (json['endTime'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      endTime: (json['endTime'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventInvitationCreateDtoToJson(

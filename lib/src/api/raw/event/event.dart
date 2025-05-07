@@ -344,7 +344,7 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> createInvitation({
+  Future<List<dynamic>> createInvitation({
     required String eventId,
     required List<Map<String, dynamic>> body,
   }) {

@@ -19,6 +19,26 @@ enum LendingDataType {
   const LendingDataType(this.value);
 }
 
+enum PositionMode {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('None')
+  none('None'),
+  @JsonValue('Normal')
+  normal('Normal'),
+  @JsonValue('Multiply')
+  multiply('Multiply'),
+  @JsonValue('Long')
+  long('Long'),
+  @JsonValue('Short')
+  short('Short');
+
+  final String? value;
+
+  const PositionMode(this.value);
+}
+
 enum LendingPositionOrderByColumn {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

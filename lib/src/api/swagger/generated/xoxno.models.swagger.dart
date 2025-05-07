@@ -5562,9 +5562,11 @@ class LendingMarketProfile {
     required this.reserves,
     required this.reservesShort,
     required this.supplyAmount,
+    required this.supplyAmountScaled,
     required this.borrowAmount,
     required this.supplyAmountShort,
     required this.borrowAmountShort,
+    required this.borrowAmountScaled,
     required this.vaultAmount,
     required this.vaultAmountShort,
     required this.supplyCap,
@@ -5650,12 +5652,16 @@ class LendingMarketProfile {
   final Object reservesShort;
   @JsonKey(name: 'supplyAmount')
   final Object supplyAmount;
+  @JsonKey(name: 'supplyAmountScaled')
+  final Object supplyAmountScaled;
   @JsonKey(name: 'borrowAmount')
   final Object borrowAmount;
   @JsonKey(name: 'supplyAmountShort')
   final Object supplyAmountShort;
   @JsonKey(name: 'borrowAmountShort')
   final Object borrowAmountShort;
+  @JsonKey(name: 'borrowAmountScaled')
+  final Object borrowAmountScaled;
   @JsonKey(name: 'vaultAmount')
   final Object vaultAmount;
   @JsonKey(name: 'vaultAmountShort')
@@ -5783,11 +5789,13 @@ class LendingMarketProfile {
             (identical(other.supplyAmount, supplyAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyAmount, supplyAmount)) &&
-            (identical(other.borrowAmount, borrowAmount) ||
+            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
                 const DeepCollectionEquality()
-                    .equals(other.borrowAmount, borrowAmount)) &&
+                    .equals(other.supplyAmountScaled, supplyAmountScaled)) &&
+            (identical(other.borrowAmount, borrowAmount) || const DeepCollectionEquality().equals(other.borrowAmount, borrowAmount)) &&
             (identical(other.supplyAmountShort, supplyAmountShort) || const DeepCollectionEquality().equals(other.supplyAmountShort, supplyAmountShort)) &&
             (identical(other.borrowAmountShort, borrowAmountShort) || const DeepCollectionEquality().equals(other.borrowAmountShort, borrowAmountShort)) &&
+            (identical(other.borrowAmountScaled, borrowAmountScaled) || const DeepCollectionEquality().equals(other.borrowAmountScaled, borrowAmountScaled)) &&
             (identical(other.vaultAmount, vaultAmount) || const DeepCollectionEquality().equals(other.vaultAmount, vaultAmount)) &&
             (identical(other.vaultAmountShort, vaultAmountShort) || const DeepCollectionEquality().equals(other.vaultAmountShort, vaultAmountShort)) &&
             (identical(other.supplyCap, supplyCap) || const DeepCollectionEquality().equals(other.supplyCap, supplyCap)) &&
@@ -5846,9 +5854,11 @@ class LendingMarketProfile {
       const DeepCollectionEquality().hash(reserves) ^
       const DeepCollectionEquality().hash(reservesShort) ^
       const DeepCollectionEquality().hash(supplyAmount) ^
+      const DeepCollectionEquality().hash(supplyAmountScaled) ^
       const DeepCollectionEquality().hash(borrowAmount) ^
       const DeepCollectionEquality().hash(supplyAmountShort) ^
       const DeepCollectionEquality().hash(borrowAmountShort) ^
+      const DeepCollectionEquality().hash(borrowAmountScaled) ^
       const DeepCollectionEquality().hash(vaultAmount) ^
       const DeepCollectionEquality().hash(vaultAmountShort) ^
       const DeepCollectionEquality().hash(supplyCap) ^
@@ -5905,9 +5915,11 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       Object? reserves,
       Object? reservesShort,
       Object? supplyAmount,
+      Object? supplyAmountScaled,
       Object? borrowAmount,
       Object? supplyAmountShort,
       Object? borrowAmountShort,
+      Object? borrowAmountScaled,
       Object? vaultAmount,
       Object? vaultAmountShort,
       String? supplyCap,
@@ -5960,9 +5972,11 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
         reserves: reserves ?? this.reserves,
         reservesShort: reservesShort ?? this.reservesShort,
         supplyAmount: supplyAmount ?? this.supplyAmount,
+        supplyAmountScaled: supplyAmountScaled ?? this.supplyAmountScaled,
         borrowAmount: borrowAmount ?? this.borrowAmount,
         supplyAmountShort: supplyAmountShort ?? this.supplyAmountShort,
         borrowAmountShort: borrowAmountShort ?? this.borrowAmountShort,
+        borrowAmountScaled: borrowAmountScaled ?? this.borrowAmountScaled,
         vaultAmount: vaultAmount ?? this.vaultAmount,
         vaultAmountShort: vaultAmountShort ?? this.vaultAmountShort,
         supplyCap: supplyCap ?? this.supplyCap,
@@ -6018,9 +6032,11 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       Wrapped<Object>? reserves,
       Wrapped<Object>? reservesShort,
       Wrapped<Object>? supplyAmount,
+      Wrapped<Object>? supplyAmountScaled,
       Wrapped<Object>? borrowAmount,
       Wrapped<Object>? supplyAmountShort,
       Wrapped<Object>? borrowAmountShort,
+      Wrapped<Object>? borrowAmountScaled,
       Wrapped<Object>? vaultAmount,
       Wrapped<Object>? vaultAmountShort,
       Wrapped<String>? supplyCap,
@@ -6090,6 +6106,9 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
             (reservesShort != null ? reservesShort.value : this.reservesShort),
         supplyAmount:
             (supplyAmount != null ? supplyAmount.value : this.supplyAmount),
+        supplyAmountScaled: (supplyAmountScaled != null
+            ? supplyAmountScaled.value
+            : this.supplyAmountScaled),
         borrowAmount:
             (borrowAmount != null ? borrowAmount.value : this.borrowAmount),
         supplyAmountShort: (supplyAmountShort != null
@@ -6098,6 +6117,9 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
         borrowAmountShort: (borrowAmountShort != null
             ? borrowAmountShort.value
             : this.borrowAmountShort),
+        borrowAmountScaled: (borrowAmountScaled != null
+            ? borrowAmountScaled.value
+            : this.borrowAmountScaled),
         vaultAmount:
             (vaultAmount != null ? vaultAmount.value : this.vaultAmount),
         vaultAmountShort: (vaultAmountShort != null
@@ -6717,13 +6739,11 @@ class LendingAccountProfile {
     required this.nonce,
     required this.token,
     required this.supplyAmount,
+    required this.supplyAmountScaled,
     required this.borrowAmount,
+    required this.borrowAmountScaled,
     required this.supplyAmountShort,
     required this.borrowAmountShort,
-    required this.supplyAccumulatedInterest,
-    required this.borrowAccumulatedInterest,
-    required this.supplyAccumulatedInterestShort,
-    required this.borrowAccumulatedInterestShort,
     required this.supplyTimestamp,
     required this.supplyIndex,
     required this.borrowTimestamp,
@@ -6733,7 +6753,7 @@ class LendingAccountProfile {
     required this.entryLiquidationFee,
     required this.entryLtv,
     required this.isolated,
-    required this.isVault,
+    required this.positionMode,
     required this.eModeCategory,
     required this.address,
     this.eModeCategoryProfile,
@@ -6760,20 +6780,16 @@ class LendingAccountProfile {
   final String token;
   @JsonKey(name: 'supplyAmount')
   final Object supplyAmount;
+  @JsonKey(name: 'supplyAmountScaled')
+  final Object supplyAmountScaled;
   @JsonKey(name: 'borrowAmount')
   final Object borrowAmount;
+  @JsonKey(name: 'borrowAmountScaled')
+  final Object borrowAmountScaled;
   @JsonKey(name: 'supplyAmountShort')
   final Object supplyAmountShort;
   @JsonKey(name: 'borrowAmountShort')
   final Object borrowAmountShort;
-  @JsonKey(name: 'supplyAccumulatedInterest')
-  final Object supplyAccumulatedInterest;
-  @JsonKey(name: 'borrowAccumulatedInterest')
-  final Object borrowAccumulatedInterest;
-  @JsonKey(name: 'supplyAccumulatedInterestShort')
-  final Object supplyAccumulatedInterestShort;
-  @JsonKey(name: 'borrowAccumulatedInterestShort')
-  final Object borrowAccumulatedInterestShort;
   @JsonKey(name: 'supplyTimestamp')
   final Object supplyTimestamp;
   @JsonKey(name: 'supplyIndex')
@@ -6792,8 +6808,12 @@ class LendingAccountProfile {
   final String entryLtv;
   @JsonKey(name: 'isolated')
   final bool isolated;
-  @JsonKey(name: 'isVault')
-  final bool isVault;
+  @JsonKey(
+    name: 'positionMode',
+    toJson: positionModeToJson,
+    fromJson: positionModeFromJson,
+  )
+  final enums.PositionMode positionMode;
   @JsonKey(name: 'eModeCategory')
   final String eModeCategory;
   @JsonKey(name: 'address')
@@ -6821,31 +6841,21 @@ class LendingAccountProfile {
             (identical(other.supplyAmount, supplyAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyAmount, supplyAmount)) &&
+            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
+                const DeepCollectionEquality()
+                    .equals(other.supplyAmountScaled, supplyAmountScaled)) &&
             (identical(other.borrowAmount, borrowAmount) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowAmount, borrowAmount)) &&
+            (identical(other.borrowAmountScaled, borrowAmountScaled) ||
+                const DeepCollectionEquality()
+                    .equals(other.borrowAmountScaled, borrowAmountScaled)) &&
             (identical(other.supplyAmountShort, supplyAmountShort) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyAmountShort, supplyAmountShort)) &&
             (identical(other.borrowAmountShort, borrowAmountShort) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowAmountShort, borrowAmountShort)) &&
-            (identical(other.supplyAccumulatedInterest, supplyAccumulatedInterest) ||
-                const DeepCollectionEquality().equals(
-                    other.supplyAccumulatedInterest,
-                    supplyAccumulatedInterest)) &&
-            (identical(other.borrowAccumulatedInterest, borrowAccumulatedInterest) ||
-                const DeepCollectionEquality().equals(
-                    other.borrowAccumulatedInterest,
-                    borrowAccumulatedInterest)) &&
-            (identical(other.supplyAccumulatedInterestShort, supplyAccumulatedInterestShort) ||
-                const DeepCollectionEquality().equals(
-                    other.supplyAccumulatedInterestShort,
-                    supplyAccumulatedInterestShort)) &&
-            (identical(other.borrowAccumulatedInterestShort, borrowAccumulatedInterestShort) ||
-                const DeepCollectionEquality().equals(
-                    other.borrowAccumulatedInterestShort,
-                    borrowAccumulatedInterestShort)) &&
             (identical(other.supplyTimestamp, supplyTimestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.supplyTimestamp, supplyTimestamp)) &&
@@ -6858,13 +6868,28 @@ class LendingAccountProfile {
             (identical(other.borrowIndex, borrowIndex) ||
                 const DeepCollectionEquality()
                     .equals(other.borrowIndex, borrowIndex)) &&
-            (identical(other.entryLiquidationThreshold, entryLiquidationThreshold) || const DeepCollectionEquality().equals(other.entryLiquidationThreshold, entryLiquidationThreshold)) &&
-            (identical(other.entryLiquidationBonus, entryLiquidationBonus) || const DeepCollectionEquality().equals(other.entryLiquidationBonus, entryLiquidationBonus)) &&
-            (identical(other.entryLiquidationFee, entryLiquidationFee) || const DeepCollectionEquality().equals(other.entryLiquidationFee, entryLiquidationFee)) &&
-            (identical(other.entryLtv, entryLtv) || const DeepCollectionEquality().equals(other.entryLtv, entryLtv)) &&
-            (identical(other.isolated, isolated) || const DeepCollectionEquality().equals(other.isolated, isolated)) &&
-            (identical(other.isVault, isVault) || const DeepCollectionEquality().equals(other.isVault, isVault)) &&
-            (identical(other.eModeCategory, eModeCategory) || const DeepCollectionEquality().equals(other.eModeCategory, eModeCategory)) &&
+            (identical(other.entryLiquidationThreshold, entryLiquidationThreshold) ||
+                const DeepCollectionEquality().equals(
+                    other.entryLiquidationThreshold,
+                    entryLiquidationThreshold)) &&
+            (identical(other.entryLiquidationBonus, entryLiquidationBonus) ||
+                const DeepCollectionEquality().equals(
+                    other.entryLiquidationBonus, entryLiquidationBonus)) &&
+            (identical(other.entryLiquidationFee, entryLiquidationFee) ||
+                const DeepCollectionEquality()
+                    .equals(other.entryLiquidationFee, entryLiquidationFee)) &&
+            (identical(other.entryLtv, entryLtv) ||
+                const DeepCollectionEquality()
+                    .equals(other.entryLtv, entryLtv)) &&
+            (identical(other.isolated, isolated) ||
+                const DeepCollectionEquality()
+                    .equals(other.isolated, isolated)) &&
+            (identical(other.positionMode, positionMode) ||
+                const DeepCollectionEquality()
+                    .equals(other.positionMode, positionMode)) &&
+            (identical(other.eModeCategory, eModeCategory) ||
+                const DeepCollectionEquality()
+                    .equals(other.eModeCategory, eModeCategory)) &&
             (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
             (identical(other.eModeCategoryProfile, eModeCategoryProfile) || const DeepCollectionEquality().equals(other.eModeCategoryProfile, eModeCategoryProfile)) &&
             (identical(other.marketProfile, marketProfile) || const DeepCollectionEquality().equals(other.marketProfile, marketProfile)));
@@ -6880,13 +6905,11 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(nonce) ^
       const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(supplyAmount) ^
+      const DeepCollectionEquality().hash(supplyAmountScaled) ^
       const DeepCollectionEquality().hash(borrowAmount) ^
+      const DeepCollectionEquality().hash(borrowAmountScaled) ^
       const DeepCollectionEquality().hash(supplyAmountShort) ^
       const DeepCollectionEquality().hash(borrowAmountShort) ^
-      const DeepCollectionEquality().hash(supplyAccumulatedInterest) ^
-      const DeepCollectionEquality().hash(borrowAccumulatedInterest) ^
-      const DeepCollectionEquality().hash(supplyAccumulatedInterestShort) ^
-      const DeepCollectionEquality().hash(borrowAccumulatedInterestShort) ^
       const DeepCollectionEquality().hash(supplyTimestamp) ^
       const DeepCollectionEquality().hash(supplyIndex) ^
       const DeepCollectionEquality().hash(borrowTimestamp) ^
@@ -6896,7 +6919,7 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(entryLiquidationFee) ^
       const DeepCollectionEquality().hash(entryLtv) ^
       const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(isVault) ^
+      const DeepCollectionEquality().hash(positionMode) ^
       const DeepCollectionEquality().hash(eModeCategory) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(eModeCategoryProfile) ^
@@ -6911,13 +6934,11 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       double? nonce,
       String? token,
       Object? supplyAmount,
+      Object? supplyAmountScaled,
       Object? borrowAmount,
+      Object? borrowAmountScaled,
       Object? supplyAmountShort,
       Object? borrowAmountShort,
-      Object? supplyAccumulatedInterest,
-      Object? borrowAccumulatedInterest,
-      Object? supplyAccumulatedInterestShort,
-      Object? borrowAccumulatedInterestShort,
       Object? supplyTimestamp,
       Object? supplyIndex,
       Object? borrowTimestamp,
@@ -6927,7 +6948,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       String? entryLiquidationFee,
       String? entryLtv,
       bool? isolated,
-      bool? isVault,
+      enums.PositionMode? positionMode,
       String? eModeCategory,
       String? address,
       LendingEModeCategoryProfileDoc? eModeCategoryProfile,
@@ -6938,17 +6959,11 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         nonce: nonce ?? this.nonce,
         token: token ?? this.token,
         supplyAmount: supplyAmount ?? this.supplyAmount,
+        supplyAmountScaled: supplyAmountScaled ?? this.supplyAmountScaled,
         borrowAmount: borrowAmount ?? this.borrowAmount,
+        borrowAmountScaled: borrowAmountScaled ?? this.borrowAmountScaled,
         supplyAmountShort: supplyAmountShort ?? this.supplyAmountShort,
         borrowAmountShort: borrowAmountShort ?? this.borrowAmountShort,
-        supplyAccumulatedInterest:
-            supplyAccumulatedInterest ?? this.supplyAccumulatedInterest,
-        borrowAccumulatedInterest:
-            borrowAccumulatedInterest ?? this.borrowAccumulatedInterest,
-        supplyAccumulatedInterestShort: supplyAccumulatedInterestShort ??
-            this.supplyAccumulatedInterestShort,
-        borrowAccumulatedInterestShort: borrowAccumulatedInterestShort ??
-            this.borrowAccumulatedInterestShort,
         supplyTimestamp: supplyTimestamp ?? this.supplyTimestamp,
         supplyIndex: supplyIndex ?? this.supplyIndex,
         borrowTimestamp: borrowTimestamp ?? this.borrowTimestamp,
@@ -6960,7 +6975,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         entryLiquidationFee: entryLiquidationFee ?? this.entryLiquidationFee,
         entryLtv: entryLtv ?? this.entryLtv,
         isolated: isolated ?? this.isolated,
-        isVault: isVault ?? this.isVault,
+        positionMode: positionMode ?? this.positionMode,
         eModeCategory: eModeCategory ?? this.eModeCategory,
         address: address ?? this.address,
         eModeCategoryProfile: eModeCategoryProfile ?? this.eModeCategoryProfile,
@@ -6973,13 +6988,11 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Wrapped<double>? nonce,
       Wrapped<String>? token,
       Wrapped<Object>? supplyAmount,
+      Wrapped<Object>? supplyAmountScaled,
       Wrapped<Object>? borrowAmount,
+      Wrapped<Object>? borrowAmountScaled,
       Wrapped<Object>? supplyAmountShort,
       Wrapped<Object>? borrowAmountShort,
-      Wrapped<Object>? supplyAccumulatedInterest,
-      Wrapped<Object>? borrowAccumulatedInterest,
-      Wrapped<Object>? supplyAccumulatedInterestShort,
-      Wrapped<Object>? borrowAccumulatedInterestShort,
       Wrapped<Object>? supplyTimestamp,
       Wrapped<Object>? supplyIndex,
       Wrapped<Object>? borrowTimestamp,
@@ -6989,7 +7002,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Wrapped<String>? entryLiquidationFee,
       Wrapped<String>? entryLtv,
       Wrapped<bool>? isolated,
-      Wrapped<bool>? isVault,
+      Wrapped<enums.PositionMode>? positionMode,
       Wrapped<String>? eModeCategory,
       Wrapped<String>? address,
       Wrapped<LendingEModeCategoryProfileDoc?>? eModeCategoryProfile,
@@ -7001,26 +7014,20 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         token: (token != null ? token.value : this.token),
         supplyAmount:
             (supplyAmount != null ? supplyAmount.value : this.supplyAmount),
+        supplyAmountScaled: (supplyAmountScaled != null
+            ? supplyAmountScaled.value
+            : this.supplyAmountScaled),
         borrowAmount:
             (borrowAmount != null ? borrowAmount.value : this.borrowAmount),
+        borrowAmountScaled: (borrowAmountScaled != null
+            ? borrowAmountScaled.value
+            : this.borrowAmountScaled),
         supplyAmountShort: (supplyAmountShort != null
             ? supplyAmountShort.value
             : this.supplyAmountShort),
         borrowAmountShort: (borrowAmountShort != null
             ? borrowAmountShort.value
             : this.borrowAmountShort),
-        supplyAccumulatedInterest: (supplyAccumulatedInterest != null
-            ? supplyAccumulatedInterest.value
-            : this.supplyAccumulatedInterest),
-        borrowAccumulatedInterest: (borrowAccumulatedInterest != null
-            ? borrowAccumulatedInterest.value
-            : this.borrowAccumulatedInterest),
-        supplyAccumulatedInterestShort: (supplyAccumulatedInterestShort != null
-            ? supplyAccumulatedInterestShort.value
-            : this.supplyAccumulatedInterestShort),
-        borrowAccumulatedInterestShort: (borrowAccumulatedInterestShort != null
-            ? borrowAccumulatedInterestShort.value
-            : this.borrowAccumulatedInterestShort),
         supplyTimestamp: (supplyTimestamp != null
             ? supplyTimestamp.value
             : this.supplyTimestamp),
@@ -7042,7 +7049,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
             : this.entryLiquidationFee),
         entryLtv: (entryLtv != null ? entryLtv.value : this.entryLtv),
         isolated: (isolated != null ? isolated.value : this.isolated),
-        isVault: (isVault != null ? isVault.value : this.isVault),
+        positionMode:
+            (positionMode != null ? positionMode.value : this.positionMode),
         eModeCategory:
             (eModeCategory != null ? eModeCategory.value : this.eModeCategory),
         address: (address != null ? address.value : this.address),
@@ -17865,6 +17873,25 @@ extension $ActivityHistoryDtoExtension on ActivityHistoryDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NftActivityDoc {
+  const NftActivityDoc();
+
+  factory NftActivityDoc.fromJson(Map<String, dynamic> json) =>
+      _$NftActivityDocFromJson(json);
+
+  static const toJsonFactory = _$NftActivityDocToJson;
+  Map<String, dynamic> toJson() => _$NftActivityDocToJson(this);
+
+  static const fromJsonFactory = _$NftActivityDocFromJson;
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
 class AnalyticsVolumeDto {
   const AnalyticsVolumeDto({
     required this.marketplace,
@@ -24632,7 +24659,7 @@ class Ticket {
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   static const fromJsonFactory = _$TicketFromJson;
 
   @override
@@ -24658,14 +24685,13 @@ class Ticket {
 }
 
 extension $TicketExtension on Ticket {
-  Ticket copyWith({String? ticketId, double? quantity}) {
+  Ticket copyWith({String? ticketId, int? quantity}) {
     return Ticket(
         ticketId: ticketId ?? this.ticketId,
         quantity: quantity ?? this.quantity);
   }
 
-  Ticket copyWithWrapped(
-      {Wrapped<String>? ticketId, Wrapped<double>? quantity}) {
+  Ticket copyWithWrapped({Wrapped<String>? ticketId, Wrapped<int>? quantity}) {
     return Ticket(
         ticketId: (ticketId != null ? ticketId.value : this.ticketId),
         quantity: (quantity != null ? quantity.value : this.quantity));
@@ -24695,9 +24721,9 @@ class EventInvitationCreateDto {
   @JsonKey(name: 'tickets', defaultValue: <Ticket>[])
   final List<Ticket> tickets;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'endTime')
-  final double endTime;
+  final int endTime;
   static const fromJsonFactory = _$EventInvitationCreateDtoFromJson;
 
   @override
@@ -24736,8 +24762,8 @@ extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
       {String? name,
       String? email,
       List<Ticket>? tickets,
-      double? startTime,
-      double? endTime}) {
+      int? startTime,
+      int? endTime}) {
     return EventInvitationCreateDto(
         name: name ?? this.name,
         email: email ?? this.email,
@@ -24750,8 +24776,8 @@ extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
       {Wrapped<String>? name,
       Wrapped<String>? email,
       Wrapped<List<Ticket>>? tickets,
-      Wrapped<double>? startTime,
-      Wrapped<double>? endTime}) {
+      Wrapped<int>? startTime,
+      Wrapped<int>? endTime}) {
     return EventInvitationCreateDto(
         name: (name != null ? name.value : this.name),
         email: (email != null ? email.value : this.email),
@@ -32781,6 +32807,70 @@ List<enums.LendingDataType>? lendingDataTypeNullableListFromJson(
   return lendingDataType
       .map((e) => lendingDataTypeFromJson(e.toString()))
       .toList();
+}
+
+String? positionModeNullableToJson(enums.PositionMode? positionMode) {
+  return positionMode?.value;
+}
+
+String? positionModeToJson(enums.PositionMode positionMode) {
+  return positionMode.value;
+}
+
+enums.PositionMode positionModeFromJson(
+  Object? positionMode, [
+  enums.PositionMode? defaultValue,
+]) {
+  return enums.PositionMode.values
+          .firstWhereOrNull((e) => e.value == positionMode) ??
+      defaultValue ??
+      enums.PositionMode.swaggerGeneratedUnknown;
+}
+
+enums.PositionMode? positionModeNullableFromJson(
+  Object? positionMode, [
+  enums.PositionMode? defaultValue,
+]) {
+  if (positionMode == null) {
+    return null;
+  }
+  return enums.PositionMode.values
+          .firstWhereOrNull((e) => e.value == positionMode) ??
+      defaultValue;
+}
+
+String positionModeExplodedListToJson(List<enums.PositionMode>? positionMode) {
+  return positionMode?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> positionModeListToJson(List<enums.PositionMode>? positionMode) {
+  if (positionMode == null) {
+    return [];
+  }
+
+  return positionMode.map((e) => e.value!).toList();
+}
+
+List<enums.PositionMode> positionModeListFromJson(
+  List? positionMode, [
+  List<enums.PositionMode>? defaultValue,
+]) {
+  if (positionMode == null) {
+    return defaultValue ?? [];
+  }
+
+  return positionMode.map((e) => positionModeFromJson(e.toString())).toList();
+}
+
+List<enums.PositionMode>? positionModeNullableListFromJson(
+  List? positionMode, [
+  List<enums.PositionMode>? defaultValue,
+]) {
+  if (positionMode == null) {
+    return defaultValue;
+  }
+
+  return positionMode.map((e) => positionModeFromJson(e.toString())).toList();
 }
 
 String? lendingPositionOrderByColumnNullableToJson(

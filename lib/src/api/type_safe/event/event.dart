@@ -398,7 +398,7 @@ class EventTypeSafeApi {
     return DiscountCodeValidationResponse.fromJson(data);
   }
 
-  Future<EventInvitation> createInvitation({
+  Future<List<EventInvitation>> createInvitation({
     required String eventId,
     required List<EventInvitationCreateDto> body,
   }) async {
@@ -406,7 +406,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       body: body.map((item) => item.toJson()).toList(),
     );
-    return EventInvitation.fromJson(data);
+    return data.map((item) => EventInvitation.fromJson(item)).toList();
   }
 
   Future<List<EventQuestionDoc>> getEventQuestions({
