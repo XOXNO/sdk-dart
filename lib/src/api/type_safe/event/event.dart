@@ -239,11 +239,11 @@ class EventTypeSafeApi {
     return EventInvitationQuery.fromJson(data);
   }
 
-  Future<EventInvitation> getVoucherData({
+  Future<EventInvitation> getInvitationData({
     required String eventId,
     required String inviteId,
   }) async {
-    final data = await _api.getVoucherData(
+    final data = await _api.getInvitationData(
       eventId: eventId,
       inviteId: inviteId,
     );

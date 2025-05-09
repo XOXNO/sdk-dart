@@ -373,7 +373,7 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getVoucherData({
+  Future<Map<String, dynamic>> getInvitationData({
     required String eventId,
     required String inviteId,
   }) {
