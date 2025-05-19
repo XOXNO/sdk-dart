@@ -220,8 +220,8 @@ class EventRawApi {
   Future<Map<String, dynamic>> uploadEventTicketImage({
     required String eventId,
     required String ticketId,
-    required List<int> fileBytes,
-  }) {
+    required File file,
+  }) async {
     final logger = Logger('Xoxno.EventRawApi.uploadEventTicketImage');
     logger.finest('upload event ticket image');
 
@@ -232,7 +232,18 @@ class EventRawApi {
       ),
     );
 
-    request.files.add(http.MultipartFile.fromBytes('file', fileBytes));
+    final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
+    final mimeTypeParts = mimeTypeStr.split('/');
+    final bytes = await file.readAsBytes();
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+        filename: file.path.split('/').last,
+        contentType: MediaType(mimeTypeParts[0], mimeTypeParts[1]),
+      ),
+    );
 
     return genericSendRequest(client, request);
   }

@@ -151,12 +151,12 @@ class EventTypeSafeApi {
   Future<EventTicketProfileDoc> uploadEventTicketImage({
     required String eventId,
     required String ticketId,
-    required List<int> fileBytes,
+    required File file,
   }) async {
     final data = await _api.uploadEventTicketImage(
       eventId: eventId,
       ticketId: ticketId,
-      fileBytes: fileBytes,
+      file: file,
     );
     return EventTicketProfileDoc.fromJson(data);
   }
