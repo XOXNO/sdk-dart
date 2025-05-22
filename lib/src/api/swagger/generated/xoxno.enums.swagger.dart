@@ -1,6 +1,30 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
+enum TokenCategory {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('all')
+  all('all'),
+  @JsonValue('trade')
+  trade('trade'),
+  @JsonValue('staking')
+  staking('staking'),
+  @JsonValue('p2p')
+  p2p('p2p'),
+  @JsonValue('fiat')
+  fiat('fiat'),
+  @JsonValue('minting')
+  minting('minting'),
+  @JsonValue('userInventory')
+  userinventory('userInventory');
+
+  final String? value;
+
+  const TokenCategory(this.value);
+}
+
 enum LendingDataType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

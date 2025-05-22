@@ -1387,6 +1387,12 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
       positionMode: positionModeFromJson(json['positionMode']),
       eModeCategory: json['eModeCategory'] as String,
       address: json['address'] as String,
+      leverageInitialSupply: (json['leverageInitialSupply'] as num).toDouble(),
+      leverageInitialSupplyPrice:
+          (json['leverageInitialSupplyPrice'] as num).toDouble(),
+      leverageInitialBorrow: (json['leverageInitialBorrow'] as num).toDouble(),
+      leverageInitialBorrowPrice:
+          (json['leverageInitialBorrowPrice'] as num).toDouble(),
       eModeCategoryProfile: json['eModeCategoryProfile'] == null
           ? null
           : LendingEModeCategoryProfileDoc.fromJson(
@@ -1422,6 +1428,10 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
       'positionMode': positionModeToJson(instance.positionMode),
       'eModeCategory': instance.eModeCategory,
       'address': instance.address,
+      'leverageInitialSupply': instance.leverageInitialSupply,
+      'leverageInitialSupplyPrice': instance.leverageInitialSupplyPrice,
+      'leverageInitialBorrow': instance.leverageInitialBorrow,
+      'leverageInitialBorrowPrice': instance.leverageInitialBorrowPrice,
       'eModeCategoryProfile': instance.eModeCategoryProfile?.toJson(),
       'marketProfile': instance.marketProfile?.toJson(),
     };

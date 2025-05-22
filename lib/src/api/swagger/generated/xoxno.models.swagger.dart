@@ -6756,6 +6756,10 @@ class LendingAccountProfile {
     required this.positionMode,
     required this.eModeCategory,
     required this.address,
+    required this.leverageInitialSupply,
+    required this.leverageInitialSupplyPrice,
+    required this.leverageInitialBorrow,
+    required this.leverageInitialBorrowPrice,
     this.eModeCategoryProfile,
     this.marketProfile,
   });
@@ -6818,6 +6822,14 @@ class LendingAccountProfile {
   final String eModeCategory;
   @JsonKey(name: 'address')
   final String address;
+  @JsonKey(name: 'leverageInitialSupply')
+  final double leverageInitialSupply;
+  @JsonKey(name: 'leverageInitialSupplyPrice')
+  final double leverageInitialSupplyPrice;
+  @JsonKey(name: 'leverageInitialBorrow')
+  final double leverageInitialBorrow;
+  @JsonKey(name: 'leverageInitialBorrowPrice')
+  final double leverageInitialBorrowPrice;
   @JsonKey(name: 'eModeCategoryProfile')
   final LendingEModeCategoryProfileDoc? eModeCategoryProfile;
   @JsonKey(name: 'marketProfile')
@@ -6891,6 +6903,10 @@ class LendingAccountProfile {
                 const DeepCollectionEquality()
                     .equals(other.eModeCategory, eModeCategory)) &&
             (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.leverageInitialSupply, leverageInitialSupply) || const DeepCollectionEquality().equals(other.leverageInitialSupply, leverageInitialSupply)) &&
+            (identical(other.leverageInitialSupplyPrice, leverageInitialSupplyPrice) || const DeepCollectionEquality().equals(other.leverageInitialSupplyPrice, leverageInitialSupplyPrice)) &&
+            (identical(other.leverageInitialBorrow, leverageInitialBorrow) || const DeepCollectionEquality().equals(other.leverageInitialBorrow, leverageInitialBorrow)) &&
+            (identical(other.leverageInitialBorrowPrice, leverageInitialBorrowPrice) || const DeepCollectionEquality().equals(other.leverageInitialBorrowPrice, leverageInitialBorrowPrice)) &&
             (identical(other.eModeCategoryProfile, eModeCategoryProfile) || const DeepCollectionEquality().equals(other.eModeCategoryProfile, eModeCategoryProfile)) &&
             (identical(other.marketProfile, marketProfile) || const DeepCollectionEquality().equals(other.marketProfile, marketProfile)));
   }
@@ -6922,6 +6938,10 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(positionMode) ^
       const DeepCollectionEquality().hash(eModeCategory) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(leverageInitialSupply) ^
+      const DeepCollectionEquality().hash(leverageInitialSupplyPrice) ^
+      const DeepCollectionEquality().hash(leverageInitialBorrow) ^
+      const DeepCollectionEquality().hash(leverageInitialBorrowPrice) ^
       const DeepCollectionEquality().hash(eModeCategoryProfile) ^
       const DeepCollectionEquality().hash(marketProfile) ^
       runtimeType.hashCode;
@@ -6951,6 +6971,10 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       enums.PositionMode? positionMode,
       String? eModeCategory,
       String? address,
+      double? leverageInitialSupply,
+      double? leverageInitialSupplyPrice,
+      double? leverageInitialBorrow,
+      double? leverageInitialBorrowPrice,
       LendingEModeCategoryProfileDoc? eModeCategoryProfile,
       PickTypeClass? marketProfile}) {
     return LendingAccountProfile(
@@ -6978,6 +7002,14 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         positionMode: positionMode ?? this.positionMode,
         eModeCategory: eModeCategory ?? this.eModeCategory,
         address: address ?? this.address,
+        leverageInitialSupply:
+            leverageInitialSupply ?? this.leverageInitialSupply,
+        leverageInitialSupplyPrice:
+            leverageInitialSupplyPrice ?? this.leverageInitialSupplyPrice,
+        leverageInitialBorrow:
+            leverageInitialBorrow ?? this.leverageInitialBorrow,
+        leverageInitialBorrowPrice:
+            leverageInitialBorrowPrice ?? this.leverageInitialBorrowPrice,
         eModeCategoryProfile: eModeCategoryProfile ?? this.eModeCategoryProfile,
         marketProfile: marketProfile ?? this.marketProfile);
   }
@@ -7005,6 +7037,10 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       Wrapped<enums.PositionMode>? positionMode,
       Wrapped<String>? eModeCategory,
       Wrapped<String>? address,
+      Wrapped<double>? leverageInitialSupply,
+      Wrapped<double>? leverageInitialSupplyPrice,
+      Wrapped<double>? leverageInitialBorrow,
+      Wrapped<double>? leverageInitialBorrowPrice,
       Wrapped<LendingEModeCategoryProfileDoc?>? eModeCategoryProfile,
       Wrapped<PickTypeClass?>? marketProfile}) {
     return LendingAccountProfile(
@@ -7054,6 +7090,18 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
         eModeCategory:
             (eModeCategory != null ? eModeCategory.value : this.eModeCategory),
         address: (address != null ? address.value : this.address),
+        leverageInitialSupply: (leverageInitialSupply != null
+            ? leverageInitialSupply.value
+            : this.leverageInitialSupply),
+        leverageInitialSupplyPrice: (leverageInitialSupplyPrice != null
+            ? leverageInitialSupplyPrice.value
+            : this.leverageInitialSupplyPrice),
+        leverageInitialBorrow: (leverageInitialBorrow != null
+            ? leverageInitialBorrow.value
+            : this.leverageInitialBorrow),
+        leverageInitialBorrowPrice: (leverageInitialBorrowPrice != null
+            ? leverageInitialBorrowPrice.value
+            : this.leverageInitialBorrowPrice),
         eModeCategoryProfile: (eModeCategoryProfile != null
             ? eModeCategoryProfile.value
             : this.eModeCategoryProfile),
@@ -32737,6 +32785,71 @@ extension $LendingMarketTokenPriceEgldGet$ResponseExtension
     return LendingMarketTokenPriceEgldGet$Response(
         price: (price != null ? price.value : this.price));
   }
+}
+
+String? tokenCategoryNullableToJson(enums.TokenCategory? tokenCategory) {
+  return tokenCategory?.value;
+}
+
+String? tokenCategoryToJson(enums.TokenCategory tokenCategory) {
+  return tokenCategory.value;
+}
+
+enums.TokenCategory tokenCategoryFromJson(
+  Object? tokenCategory, [
+  enums.TokenCategory? defaultValue,
+]) {
+  return enums.TokenCategory.values
+          .firstWhereOrNull((e) => e.value == tokenCategory) ??
+      defaultValue ??
+      enums.TokenCategory.swaggerGeneratedUnknown;
+}
+
+enums.TokenCategory? tokenCategoryNullableFromJson(
+  Object? tokenCategory, [
+  enums.TokenCategory? defaultValue,
+]) {
+  if (tokenCategory == null) {
+    return null;
+  }
+  return enums.TokenCategory.values
+          .firstWhereOrNull((e) => e.value == tokenCategory) ??
+      defaultValue;
+}
+
+String tokenCategoryExplodedListToJson(
+    List<enums.TokenCategory>? tokenCategory) {
+  return tokenCategory?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> tokenCategoryListToJson(List<enums.TokenCategory>? tokenCategory) {
+  if (tokenCategory == null) {
+    return [];
+  }
+
+  return tokenCategory.map((e) => e.value!).toList();
+}
+
+List<enums.TokenCategory> tokenCategoryListFromJson(
+  List? tokenCategory, [
+  List<enums.TokenCategory>? defaultValue,
+]) {
+  if (tokenCategory == null) {
+    return defaultValue ?? [];
+  }
+
+  return tokenCategory.map((e) => tokenCategoryFromJson(e.toString())).toList();
+}
+
+List<enums.TokenCategory>? tokenCategoryNullableListFromJson(
+  List? tokenCategory, [
+  List<enums.TokenCategory>? defaultValue,
+]) {
+  if (tokenCategory == null) {
+    return defaultValue;
+  }
+
+  return tokenCategory.map((e) => tokenCategoryFromJson(e.toString())).toList();
 }
 
 String? lendingDataTypeNullableToJson(enums.LendingDataType? lendingDataType) {
