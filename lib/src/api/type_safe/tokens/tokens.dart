@@ -1,6 +1,6 @@
 import 'package:xoxno_sdk/src/api/raw/tokens/tokens.dart';
 import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
-import 'package:xoxno_sdk/src/api/type_safe/tokens/category.dart';
+import 'package:xoxno_sdk/xoxno_sdk.dart';
 
 class TokensTypeSafeApi {
   final TokensRawApi _api;
