@@ -18,5 +18,4 @@ export 'package:xoxno_sdk/src/api/raw/transactions/transactions.dart';
 export 'package:xoxno_sdk/src/api/raw/user/user.dart';
 export 'package:xoxno_sdk/src/api/raw/api.dart';
 
-export 'package:xoxno_sdk/src/api/type_safe/tokens/category.dart';
 export 'package:xoxno_sdk/src/api/type_safe/api.dart';
