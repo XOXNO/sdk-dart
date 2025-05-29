@@ -13772,6 +13772,76 @@ extension $PremiumTypeExtension on PremiumType {
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventSeoDto {
+  const EventSeoDto({
+    this.description,
+    this.tags,
+    this.alternativeTitle,
+  });
+
+  factory EventSeoDto.fromJson(Map<String, dynamic> json) =>
+      _$EventSeoDtoFromJson(json);
+
+  static const toJsonFactory = _$EventSeoDtoToJson;
+  Map<String, dynamic> toJson() => _$EventSeoDtoToJson(this);
+
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'tags', defaultValue: <String>[])
+  final List<String>? tags;
+  @JsonKey(name: 'alternativeTitle')
+  final String? alternativeTitle;
+  static const fromJsonFactory = _$EventSeoDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventSeoDto &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.tags, tags) ||
+                const DeepCollectionEquality().equals(other.tags, tags)) &&
+            (identical(other.alternativeTitle, alternativeTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.alternativeTitle, alternativeTitle)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(tags) ^
+      const DeepCollectionEquality().hash(alternativeTitle) ^
+      runtimeType.hashCode;
+}
+
+extension $EventSeoDtoExtension on EventSeoDto {
+  EventSeoDto copyWith(
+      {String? description, List<String>? tags, String? alternativeTitle}) {
+    return EventSeoDto(
+        description: description ?? this.description,
+        tags: tags ?? this.tags,
+        alternativeTitle: alternativeTitle ?? this.alternativeTitle);
+  }
+
+  EventSeoDto copyWithWrapped(
+      {Wrapped<String?>? description,
+      Wrapped<List<String>?>? tags,
+      Wrapped<String?>? alternativeTitle}) {
+    return EventSeoDto(
+        description:
+            (description != null ? description.value : this.description),
+        tags: (tags != null ? tags.value : this.tags),
+        alternativeTitle: (alternativeTitle != null
+            ? alternativeTitle.value
+            : this.alternativeTitle));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventUserRoleDoc {
   const EventUserRoleDoc({
     required this.dataType,
@@ -14025,7 +14095,7 @@ class EventProfileDoc {
   @JsonKey(name: 'collection')
   final String? collection;
   @JsonKey(name: 'seo')
-  final Object? seo;
+  final EventSeoDto? seo;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'eventPermissions')
@@ -14146,7 +14216,7 @@ extension $EventProfileDocExtension on EventProfileDoc {
       PremiumType? premium,
       String? contractAddress,
       String? collection,
-      Object? seo,
+      EventSeoDto? seo,
       String? id,
       EventUserRoleDoc? eventPermissions}) {
     return EventProfileDoc(
@@ -14192,7 +14262,7 @@ extension $EventProfileDocExtension on EventProfileDoc {
       Wrapped<PremiumType>? premium,
       Wrapped<String?>? contractAddress,
       Wrapped<String?>? collection,
-      Wrapped<Object?>? seo,
+      Wrapped<EventSeoDto?>? seo,
       Wrapped<String>? id,
       Wrapped<EventUserRoleDoc?>? eventPermissions}) {
     return EventProfileDoc(
@@ -21151,76 +21221,6 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EventSeoDto {
-  const EventSeoDto({
-    required this.description,
-    required this.tags,
-    required this.alternativeTitle,
-  });
-
-  factory EventSeoDto.fromJson(Map<String, dynamic> json) =>
-      _$EventSeoDtoFromJson(json);
-
-  static const toJsonFactory = _$EventSeoDtoToJson;
-  Map<String, dynamic> toJson() => _$EventSeoDtoToJson(this);
-
-  @JsonKey(name: 'description')
-  final String description;
-  @JsonKey(name: 'tags', defaultValue: <String>[])
-  final List<String> tags;
-  @JsonKey(name: 'alternativeTitle')
-  final String alternativeTitle;
-  static const fromJsonFactory = _$EventSeoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventSeoDto &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.alternativeTitle, alternativeTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.alternativeTitle, alternativeTitle)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(alternativeTitle) ^
-      runtimeType.hashCode;
-}
-
-extension $EventSeoDtoExtension on EventSeoDto {
-  EventSeoDto copyWith(
-      {String? description, List<String>? tags, String? alternativeTitle}) {
-    return EventSeoDto(
-        description: description ?? this.description,
-        tags: tags ?? this.tags,
-        alternativeTitle: alternativeTitle ?? this.alternativeTitle);
-  }
-
-  EventSeoDto copyWithWrapped(
-      {Wrapped<String>? description,
-      Wrapped<List<String>>? tags,
-      Wrapped<String>? alternativeTitle}) {
-    return EventSeoDto(
-        description:
-            (description != null ? description.value : this.description),
-        tags: (tags != null ? tags.value : this.tags),
-        alternativeTitle: (alternativeTitle != null
-            ? alternativeTitle.value
-            : this.alternativeTitle));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class EventProfileCreateDto {
   const EventProfileCreateDto({
     required this.title,
@@ -22224,7 +22224,7 @@ class EventProfile {
   @JsonKey(name: 'collection')
   final String? collection;
   @JsonKey(name: 'seo')
-  final Object? seo;
+  final EventSeoDto? seo;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'eventPermissions')
@@ -22366,7 +22366,7 @@ extension $EventProfileExtension on EventProfile {
       PremiumType? premium,
       String? contractAddress,
       String? collection,
-      Object? seo,
+      EventSeoDto? seo,
       String? id,
       EventUserRoleDoc? eventPermissions,
       CreatorProfileDoc? creatorProfile,
@@ -22420,7 +22420,7 @@ extension $EventProfileExtension on EventProfile {
       Wrapped<PremiumType>? premium,
       Wrapped<String?>? contractAddress,
       Wrapped<String?>? collection,
-      Wrapped<Object?>? seo,
+      Wrapped<EventSeoDto?>? seo,
       Wrapped<String>? id,
       Wrapped<EventUserRoleDoc?>? eventPermissions,
       Wrapped<CreatorProfileDoc?>? creatorProfile,

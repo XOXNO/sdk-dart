@@ -2872,6 +2872,21 @@ Map<String, dynamic> _$PremiumTypeToJson(PremiumType instance) =>
       'searchable': instance.searchable,
     };
 
+EventSeoDto _$EventSeoDtoFromJson(Map<String, dynamic> json) => EventSeoDto(
+      description: json['description'] as String?,
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      alternativeTitle: json['alternativeTitle'] as String?,
+    );
+
+Map<String, dynamic> _$EventSeoDtoToJson(EventSeoDto instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'tags': instance.tags,
+      'alternativeTitle': instance.alternativeTitle,
+    };
+
 EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
     EventUserRoleDoc(
       dataType: ticketingDataTypeFromJson(json['dataType']),
@@ -2926,7 +2941,9 @@ EventProfileDoc _$EventProfileDocFromJson(Map<String, dynamic> json) =>
       premium: PremiumType.fromJson(json['premium'] as Map<String, dynamic>),
       contractAddress: json['contractAddress'] as String?,
       collection: json['collection'] as String?,
-      seo: json['seo'],
+      seo: json['seo'] == null
+          ? null
+          : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
       id: json['id'] as String,
       eventPermissions: json['eventPermissions'] == null
           ? null
@@ -2954,7 +2971,7 @@ Map<String, dynamic> _$EventProfileDocToJson(EventProfileDoc instance) =>
       'premium': instance.premium.toJson(),
       'contractAddress': instance.contractAddress,
       'collection': instance.collection,
-      'seo': instance.seo,
+      'seo': instance.seo?.toJson(),
       'id': instance.id,
       'eventPermissions': instance.eventPermissions?.toJson(),
     };
@@ -4492,21 +4509,6 @@ Map<String, dynamic> _$RegistrationDetailsDtoToJson(
       'botProtection': instance.botProtection,
     };
 
-EventSeoDto _$EventSeoDtoFromJson(Map<String, dynamic> json) => EventSeoDto(
-      description: json['description'] as String,
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              [],
-      alternativeTitle: json['alternativeTitle'] as String,
-    );
-
-Map<String, dynamic> _$EventSeoDtoToJson(EventSeoDto instance) =>
-    <String, dynamic>{
-      'description': instance.description,
-      'tags': instance.tags,
-      'alternativeTitle': instance.alternativeTitle,
-    };
-
 EventProfileCreateDto _$EventProfileCreateDtoFromJson(
         Map<String, dynamic> json) =>
     EventProfileCreateDto(
@@ -4723,7 +4725,9 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
       premium: PremiumType.fromJson(json['premium'] as Map<String, dynamic>),
       contractAddress: json['contractAddress'] as String?,
       collection: json['collection'] as String?,
-      seo: json['seo'],
+      seo: json['seo'] == null
+          ? null
+          : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
       id: json['id'] as String,
       eventPermissions: json['eventPermissions'] == null
           ? null
@@ -4767,7 +4771,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'premium': instance.premium.toJson(),
       'contractAddress': instance.contractAddress,
       'collection': instance.collection,
-      'seo': instance.seo,
+      'seo': instance.seo?.toJson(),
       'id': instance.id,
       'eventPermissions': instance.eventPermissions?.toJson(),
       'creatorProfile': instance.creatorProfile?.toJson(),
