@@ -21254,10 +21254,18 @@ class EventProfileCreateDto {
   final bool isVirtualEvent;
   @JsonKey(name: 'seo')
   final EventSeoDto? seo;
-  @JsonKey(name: 'category')
-  final String category;
-  @JsonKey(name: 'subCategory')
-  final String? subCategory;
+  @JsonKey(
+    name: 'category',
+    toJson: eventCategoryToJson,
+    fromJson: eventCategoryFromJson,
+  )
+  final enums.EventCategory category;
+  @JsonKey(
+    name: 'subCategory',
+    toJson: eventSubCategoryNullableToJson,
+    fromJson: eventSubCategoryNullableFromJson,
+  )
+  final enums.EventSubCategory? subCategory;
   static const fromJsonFactory = _$EventProfileCreateDtoFromJson;
 
   @override
@@ -21317,8 +21325,8 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       RegistrationDetailsDto? registration,
       bool? isVirtualEvent,
       EventSeoDto? seo,
-      String? category,
-      String? subCategory}) {
+      enums.EventCategory? category,
+      enums.EventSubCategory? subCategory}) {
     return EventProfileCreateDto(
         title: title ?? this.title,
         startTime: startTime ?? this.startTime,
@@ -21339,8 +21347,8 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       Wrapped<RegistrationDetailsDto>? registration,
       Wrapped<bool>? isVirtualEvent,
       Wrapped<EventSeoDto?>? seo,
-      Wrapped<String>? category,
-      Wrapped<String?>? subCategory}) {
+      Wrapped<enums.EventCategory>? category,
+      Wrapped<enums.EventSubCategory?>? subCategory}) {
     return EventProfileCreateDto(
         title: (title != null ? title.value : this.title),
         startTime: (startTime != null ? startTime.value : this.startTime),
@@ -22536,16 +22544,16 @@ extension $EventProfileQueryExtension on EventProfileQuery {
 @JsonSerializable(explicitToJson: true)
 class EventProfileEditDto {
   const EventProfileEditDto({
-    required this.title,
-    required this.startTime,
-    required this.endTime,
-    required this.location,
+    this.title,
+    this.startTime,
+    this.endTime,
+    this.location,
     this.isVirtualEvent,
     this.registration,
-    required this.slug,
-    required this.seo,
-    required this.category,
-    required this.subCategory,
+    this.slug,
+    this.seo,
+    this.category,
+    this.subCategory,
   });
 
   factory EventProfileEditDto.fromJson(Map<String, dynamic> json) =>
@@ -22555,25 +22563,33 @@ class EventProfileEditDto {
   Map<String, dynamic> toJson() => _$EventProfileEditDtoToJson(this);
 
   @JsonKey(name: 'title')
-  final String title;
+  final String? title;
   @JsonKey(name: 'startTime')
-  final int startTime;
+  final int? startTime;
   @JsonKey(name: 'endTime')
-  final int endTime;
+  final int? endTime;
   @JsonKey(name: 'location')
-  final EventLocationDto location;
+  final EventLocationDto? location;
   @JsonKey(name: 'isVirtualEvent')
   final bool? isVirtualEvent;
   @JsonKey(name: 'registration')
   final RegistrationDetailsDto? registration;
   @JsonKey(name: 'slug')
-  final String slug;
+  final String? slug;
   @JsonKey(name: 'seo')
-  final EventSeoDto seo;
-  @JsonKey(name: 'category')
-  final String category;
-  @JsonKey(name: 'subCategory')
-  final String subCategory;
+  final EventSeoDto? seo;
+  @JsonKey(
+    name: 'category',
+    toJson: eventCategoryNullableToJson,
+    fromJson: eventCategoryNullableFromJson,
+  )
+  final enums.EventCategory? category;
+  @JsonKey(
+    name: 'subCategory',
+    toJson: eventSubCategoryNullableToJson,
+    fromJson: eventSubCategoryNullableFromJson,
+  )
+  final enums.EventSubCategory? subCategory;
   static const fromJsonFactory = _$EventProfileEditDtoFromJson;
 
   @override
@@ -22637,8 +22653,8 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
       RegistrationDetailsDto? registration,
       String? slug,
       EventSeoDto? seo,
-      String? category,
-      String? subCategory}) {
+      enums.EventCategory? category,
+      enums.EventSubCategory? subCategory}) {
     return EventProfileEditDto(
         title: title ?? this.title,
         startTime: startTime ?? this.startTime,
@@ -22653,16 +22669,16 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
   }
 
   EventProfileEditDto copyWithWrapped(
-      {Wrapped<String>? title,
-      Wrapped<int>? startTime,
-      Wrapped<int>? endTime,
-      Wrapped<EventLocationDto>? location,
+      {Wrapped<String?>? title,
+      Wrapped<int?>? startTime,
+      Wrapped<int?>? endTime,
+      Wrapped<EventLocationDto?>? location,
       Wrapped<bool?>? isVirtualEvent,
       Wrapped<RegistrationDetailsDto?>? registration,
-      Wrapped<String>? slug,
-      Wrapped<EventSeoDto>? seo,
-      Wrapped<String>? category,
-      Wrapped<String>? subCategory}) {
+      Wrapped<String?>? slug,
+      Wrapped<EventSeoDto?>? seo,
+      Wrapped<enums.EventCategory?>? category,
+      Wrapped<enums.EventSubCategory?>? subCategory}) {
     return EventProfileEditDto(
         title: (title != null ? title.value : this.title),
         startTime: (startTime != null ? startTime.value : this.startTime),

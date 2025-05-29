@@ -4521,8 +4521,8 @@ EventProfileCreateDto _$EventProfileCreateDtoFromJson(
       seo: json['seo'] == null
           ? null
           : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
-      category: json['category'] as String,
-      subCategory: json['subCategory'] as String?,
+      category: eventCategoryFromJson(json['category']),
+      subCategory: eventSubCategoryNullableFromJson(json['subCategory']),
     );
 
 Map<String, dynamic> _$EventProfileCreateDtoToJson(
@@ -4535,8 +4535,8 @@ Map<String, dynamic> _$EventProfileCreateDtoToJson(
       'registration': instance.registration.toJson(),
       'isVirtualEvent': instance.isVirtualEvent,
       'seo': instance.seo?.toJson(),
-      'category': instance.category,
-      'subCategory': instance.subCategory,
+      'category': eventCategoryToJson(instance.category),
+      'subCategory': eventSubCategoryNullableToJson(instance.subCategory),
     };
 
 CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
@@ -4795,20 +4795,23 @@ Map<String, dynamic> _$EventProfileQueryToJson(EventProfileQuery instance) =>
 
 EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
     EventProfileEditDto(
-      title: json['title'] as String,
-      startTime: (json['startTime'] as num).toInt(),
-      endTime: (json['endTime'] as num).toInt(),
-      location:
-          EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      title: json['title'] as String?,
+      startTime: (json['startTime'] as num?)?.toInt(),
+      endTime: (json['endTime'] as num?)?.toInt(),
+      location: json['location'] == null
+          ? null
+          : EventLocationDto.fromJson(json['location'] as Map<String, dynamic>),
       isVirtualEvent: json['isVirtualEvent'] as bool?,
       registration: json['registration'] == null
           ? null
           : RegistrationDetailsDto.fromJson(
               json['registration'] as Map<String, dynamic>),
-      slug: json['slug'] as String,
-      seo: EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
-      category: json['category'] as String,
-      subCategory: json['subCategory'] as String,
+      slug: json['slug'] as String?,
+      seo: json['seo'] == null
+          ? null
+          : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+      category: eventCategoryNullableFromJson(json['category']),
+      subCategory: eventSubCategoryNullableFromJson(json['subCategory']),
     );
 
 Map<String, dynamic> _$EventProfileEditDtoToJson(
@@ -4817,13 +4820,13 @@ Map<String, dynamic> _$EventProfileEditDtoToJson(
       'title': instance.title,
       'startTime': instance.startTime,
       'endTime': instance.endTime,
-      'location': instance.location.toJson(),
+      'location': instance.location?.toJson(),
       'isVirtualEvent': instance.isVirtualEvent,
       'registration': instance.registration?.toJson(),
       'slug': instance.slug,
-      'seo': instance.seo.toJson(),
-      'category': instance.category,
-      'subCategory': instance.subCategory,
+      'seo': instance.seo?.toJson(),
+      'category': eventCategoryNullableToJson(instance.category),
+      'subCategory': eventSubCategoryNullableToJson(instance.subCategory),
     };
 
 TicketSelectionDto _$TicketSelectionDtoFromJson(Map<String, dynamic> json) =>
