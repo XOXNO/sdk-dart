@@ -26663,6 +26663,196 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class EventUserRole {
+  const EventUserRole({
+    required this.dataType,
+    this.eventId,
+    this.wallet,
+    this.name,
+    this.email,
+    required this.role,
+    required this.permissions,
+    this.createdAt,
+    this.endTime,
+    this.id,
+    required this.status,
+    required this.profile,
+    required this.herotag,
+  });
+
+  factory EventUserRole.fromJson(Map<String, dynamic> json) =>
+      _$EventUserRoleFromJson(json);
+
+  static const toJsonFactory = _$EventUserRoleToJson;
+  Map<String, dynamic> toJson() => _$EventUserRoleToJson(this);
+
+  @JsonKey(
+    name: 'dataType',
+    toJson: ticketingDataTypeToJson,
+    fromJson: ticketingDataTypeFromJson,
+  )
+  final enums.TicketingDataType dataType;
+  @JsonKey(name: 'eventId')
+  final String? eventId;
+  @JsonKey(name: 'wallet')
+  final String? wallet;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(
+    name: 'role',
+    toJson: eventUserRolesListToJson,
+    fromJson: eventUserRolesListFromJson,
+  )
+  final List<enums.EventUserRoles> role;
+  @JsonKey(
+    name: 'permissions',
+    toJson: eventUserRolePermissionListToJson,
+    fromJson: eventUserRolePermissionListFromJson,
+  )
+  final List<enums.EventUserRolePermission> permissions;
+  @JsonKey(name: 'createdAt')
+  final int? createdAt;
+  @JsonKey(name: 'endTime')
+  final int? endTime;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(
+    name: 'status',
+    toJson: roleStatusToJson,
+    fromJson: roleStatusFromJson,
+  )
+  final enums.RoleStatus status;
+  @JsonKey(name: 'profile')
+  final String profile;
+  @JsonKey(name: 'herotag')
+  final String herotag;
+  static const fromJsonFactory = _$EventUserRoleFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventUserRole &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality()
+                    .equals(other.dataType, dataType)) &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality()
+                    .equals(other.eventId, eventId)) &&
+            (identical(other.wallet, wallet) ||
+                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.role, role) ||
+                const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.permissions, permissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.permissions, permissions)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.endTime, endTime)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality()
+                    .equals(other.profile, profile)) &&
+            (identical(other.herotag, herotag) ||
+                const DeepCollectionEquality().equals(other.herotag, herotag)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(wallet) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(permissions) ^
+      const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(herotag) ^
+      runtimeType.hashCode;
+}
+
+extension $EventUserRoleExtension on EventUserRole {
+  EventUserRole copyWith(
+      {enums.TicketingDataType? dataType,
+      String? eventId,
+      String? wallet,
+      String? name,
+      String? email,
+      List<enums.EventUserRoles>? role,
+      List<enums.EventUserRolePermission>? permissions,
+      int? createdAt,
+      int? endTime,
+      String? id,
+      enums.RoleStatus? status,
+      String? profile,
+      String? herotag}) {
+    return EventUserRole(
+        dataType: dataType ?? this.dataType,
+        eventId: eventId ?? this.eventId,
+        wallet: wallet ?? this.wallet,
+        name: name ?? this.name,
+        email: email ?? this.email,
+        role: role ?? this.role,
+        permissions: permissions ?? this.permissions,
+        createdAt: createdAt ?? this.createdAt,
+        endTime: endTime ?? this.endTime,
+        id: id ?? this.id,
+        status: status ?? this.status,
+        profile: profile ?? this.profile,
+        herotag: herotag ?? this.herotag);
+  }
+
+  EventUserRole copyWithWrapped(
+      {Wrapped<enums.TicketingDataType>? dataType,
+      Wrapped<String?>? eventId,
+      Wrapped<String?>? wallet,
+      Wrapped<String?>? name,
+      Wrapped<String?>? email,
+      Wrapped<List<enums.EventUserRoles>>? role,
+      Wrapped<List<enums.EventUserRolePermission>>? permissions,
+      Wrapped<int?>? createdAt,
+      Wrapped<int?>? endTime,
+      Wrapped<String?>? id,
+      Wrapped<enums.RoleStatus>? status,
+      Wrapped<String>? profile,
+      Wrapped<String>? herotag}) {
+    return EventUserRole(
+        dataType: (dataType != null ? dataType.value : this.dataType),
+        eventId: (eventId != null ? eventId.value : this.eventId),
+        wallet: (wallet != null ? wallet.value : this.wallet),
+        name: (name != null ? name.value : this.name),
+        email: (email != null ? email.value : this.email),
+        role: (role != null ? role.value : this.role),
+        permissions:
+            (permissions != null ? permissions.value : this.permissions),
+        createdAt: (createdAt != null ? createdAt.value : this.createdAt),
+        endTime: (endTime != null ? endTime.value : this.endTime),
+        id: (id != null ? id.value : this.id),
+        status: (status != null ? status.value : this.status),
+        profile: (profile != null ? profile.value : this.profile),
+        herotag: (herotag != null ? herotag.value : this.herotag));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class MyEvents {
   const MyEvents({
     required this.ticketCount,

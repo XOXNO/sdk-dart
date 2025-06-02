@@ -7245,7 +7245,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/EventUserRoleDoc'
+                  $ref: '#/components/schemas/EventUserRole'
       security:
         - bearer: []
       summary: Get event roles
@@ -12320,7 +12320,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -12337,7 +12337,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -14369,7 +14369,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1748520445
+          minimum: 1748866210
         endTime:
           type: integer
         location:
@@ -14607,11 +14607,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1748520445
+          example: 1748866210
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 99547a3e-e9e9-4398-aff8-193ed71aa231
+          example: b73ee8ee-2dd4-4ab1-aa87-c3e93eb1c076
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14660,7 +14660,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -14677,7 +14677,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -14777,10 +14777,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1748520446
+          example: 1748866212
         endTime:
           type: integer
-          example: 1748520446
+          example: 1748866212
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -15037,11 +15037,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1748520445
+          example: 1748866210
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: f04ae0b5-a179-43e6-8c46-f03586911cf2
+          example: 81ab4395-c39d-4be8-a6b3-c0040ea7e754
       required:
         - dataType
         - eventId
@@ -15099,11 +15099,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1748520446
+          minimum: 1748866212
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1748606846
+          minimum: 1748952612
           description: End time timestamp
         maxLimit:
           type: integer
@@ -15152,11 +15152,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1748520445
+          example: 1748866210
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1748520445
+          example: 1748866210
         maxLimit:
           type: integer
           description: >-
@@ -15187,7 +15187,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 6e658f5c-7454-4ece-ae5c-4bee73a5e1c0
+          example: e0ab57de-de2a-48f6-995c-8d0b6e91ac78
       required:
         - dataType
         - eventId
@@ -15229,10 +15229,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1748520446
+          minimum: 1748866212
         endTime:
           type: integer
-          minimum: 1748606846
+          minimum: 1748952612
       required:
         - prices
         - name
@@ -15371,7 +15371,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: bda918ba-38a6-465c-9658-7e15d711251c
+          example: 5fb388c6-80c7-45be-8b2c-c2df255b6c5a
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -15423,7 +15423,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1748520445
+          example: 1748866210
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15452,7 +15452,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 9ecce27d-f47d-4a0d-84ee-e4298f82b560
+          example: b3130689-35ab-4c21-8b57-4d907ca38663
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15508,7 +15508,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1748520445
+          example: 1748866210
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15537,7 +15537,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 9ecce27d-f47d-4a0d-84ee-e4298f82b560
+          example: b3130689-35ab-4c21-8b57-4d907ca38663
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15646,11 +15646,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1748520446
+          example: 1748866212
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1748520446
+          example: 1748866212
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -15661,7 +15661,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1748520446
+          example: 1748866212
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15752,7 +15752,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1748520445
+          example: 1748866210
       required:
         - dataType
         - id
@@ -15867,11 +15867,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1748520445
+          example: 1748866210
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 99547a3e-e9e9-4398-aff8-193ed71aa231
+          example: b73ee8ee-2dd4-4ab1-aa87-c3e93eb1c076
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15975,6 +15975,61 @@ components:
         - role
         - permissions
         - endTime
+    EventUserRole:
+      type: object
+      properties:
+        dataType:
+          description: Type of the document.
+          allOf:
+            - $ref: '#/components/schemas/TicketingDataType'
+        eventId:
+          type: string
+          description: Unique identifier for the event.
+        wallet:
+          type: string
+          description: User wallet address
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email address
+        role:
+          type: array
+          description: Role of the user.
+          items:
+            $ref: '#/components/schemas/EventUserRoles'
+        permissions:
+          type: array
+          description: Permissions of the user.
+          items:
+            $ref: '#/components/schemas/EventUserRolePermission'
+        createdAt:
+          type: integer
+          description: Timestamp for when the user role was created.
+        endTime:
+          type: integer
+          description: Timestamp for when the user role will expire.
+        id:
+          type: string
+          description: Unique identifier for the document.
+        status:
+          description: Status of the user role.
+          allOf:
+            - $ref: '#/components/schemas/RoleStatus'
+        profile:
+          type: string
+          description: User profile picture.
+        herotag:
+          type: string
+          description: User wallet herotag.
+      required:
+        - dataType
+        - role
+        - permissions
+        - status
+        - profile
+        - herotag
     MyEvents:
       type: object
       properties:
@@ -16209,11 +16264,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1748520446
+          example: 1748866212
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1748520446
+          example: 1748866212
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16263,11 +16318,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1748520446
+          example: 1748866212
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1748520446
+          example: 1748866212
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16299,7 +16354,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: b20c47b8-6ef0-419f-b827-6013d85a2ea0
+          example: 147a49f3-502c-4a1b-a6c4-39ef086cca65
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16315,7 +16370,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1748520446
+          example: 1748866212
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -16449,7 +16504,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: df1e7945-18d0-498b-bdee-b00f12bb0ad0
+          example: a7b1edaf-a72e-4533-86a4-48e9bac4dc55
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16476,7 +16531,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1748520446
+          example: 1748866212
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16550,7 +16605,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 1295f690-5ae1-4655-a88c-3e602ea288e5
+          example: 924afb29-0e85-41a7-b9c2-f1ecaa677b13
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16569,7 +16624,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1748520446
+          example: 1748866212
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -17373,7 +17428,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 593dd26a-863a-4c43-8665-8eb7b1b81c26
+          example: 3eafdc2b-5bc5-4b20-a99d-ffb8187f52d5
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17390,15 +17445,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1748520445
+          example: 1748866210
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 6aa25f1a-deeb-4d25-b197-e3b1e2cc4c3f
+          example: 8fdaf5b3-c4b3-47f7-871f-336e922e6463
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1748520445
+          example: 1748866210
         quantity:
           type: integer
           description: Quantity of tickets.

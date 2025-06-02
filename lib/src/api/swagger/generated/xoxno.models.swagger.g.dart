@@ -5713,6 +5713,41 @@ Map<String, dynamic> _$EventUserRoleCreateDtoToJson(
       'endTime': instance.endTime,
     };
 
+EventUserRole _$EventUserRoleFromJson(Map<String, dynamic> json) =>
+    EventUserRole(
+      dataType: ticketingDataTypeFromJson(json['dataType']),
+      eventId: json['eventId'] as String?,
+      wallet: json['wallet'] as String?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      role: eventUserRolesListFromJson(json['role'] as List?),
+      permissions:
+          eventUserRolePermissionListFromJson(json['permissions'] as List?),
+      createdAt: (json['createdAt'] as num?)?.toInt(),
+      endTime: (json['endTime'] as num?)?.toInt(),
+      id: json['id'] as String?,
+      status: roleStatusFromJson(json['status']),
+      profile: json['profile'] as String,
+      herotag: json['herotag'] as String,
+    );
+
+Map<String, dynamic> _$EventUserRoleToJson(EventUserRole instance) =>
+    <String, dynamic>{
+      'dataType': ticketingDataTypeToJson(instance.dataType),
+      'eventId': instance.eventId,
+      'wallet': instance.wallet,
+      'name': instance.name,
+      'email': instance.email,
+      'role': eventUserRolesListToJson(instance.role),
+      'permissions': eventUserRolePermissionListToJson(instance.permissions),
+      'createdAt': instance.createdAt,
+      'endTime': instance.endTime,
+      'id': instance.id,
+      'status': roleStatusToJson(instance.status),
+      'profile': instance.profile,
+      'herotag': instance.herotag,
+    };
+
 MyEvents _$MyEventsFromJson(Map<String, dynamic> json) => MyEvents(
       ticketCount: (json['ticketCount'] as num).toInt(),
       status: eventGuestStatusFromJson(json['status']),
