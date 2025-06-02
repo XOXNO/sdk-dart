@@ -273,11 +273,11 @@ class EventTypeSafeApi {
     return EventUserRoleDoc.fromJson(data);
   }
 
-  Future<List<EventUserRoleDoc>> getEventUserRoles({
+  Future<List<EventUserRole>> getEventUserRoles({
     required String eventId,
   }) async {
     final data = await _api.getEventUserRoles(eventId: eventId);
-    return data.map((item) => EventUserRoleDoc.fromJson(item)).toList();
+    return data.map((item) => EventUserRole.fromJson(item)).toList();
   }
 
   Future<EventUserRoleDoc> getEventUserRolesById({
