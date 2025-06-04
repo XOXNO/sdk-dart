@@ -262,7 +262,7 @@ class EventTypeSafeApi {
     return EventVoucherQuery.fromJson(data);
   }
 
-  Future<EventUserRoleDoc> createEventUserRole({
+  Future<EventUserRole> createEventUserRole({
     required String eventId,
     required EventUserRoleCreateDto body,
   }) async {
@@ -270,7 +270,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       body: body.toJson(),
     );
-    return EventUserRoleDoc.fromJson(data);
+    return EventUserRole.fromJson(data);
   }
 
   Future<List<EventUserRole>> getEventUserRoles({
