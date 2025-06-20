@@ -365,6 +365,13 @@ class EventTypeSafeApi {
     return data.map((item) => EventGuestProfile.fromJson(item)).toList();
   }
 
+  Future<List<EventCountGroupedByCountry>> getEventProfileLocation() async {
+    final data = await _api.getEventProfileLocation();
+    return data
+        .map((item) => EventCountGroupedByCountry.fromJson(item))
+        .toList();
+  }
+
   Future<SuccessDto> deleteEventStage({
     required String eventId,
     required String stageId,

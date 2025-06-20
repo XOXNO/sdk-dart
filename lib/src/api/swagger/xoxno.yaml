@@ -5062,6 +5062,46 @@ paths:
       summary: Create Web2 user native wallet
       tags:
         - Web2User
+  /user/web2/wallet-switch:
+    post:
+      operationId: Web2UserDataController_switchWeb2UserWallet
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchWalletDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Web2UserDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Switch to another wallet
+      tags:
+        - Web2User
   /user/web2/wallet-link:
     post:
       operationId: Web2UserDataController_linkExternalWallet
@@ -10720,6 +10760,8 @@ components:
           type: string
         followCount:
           type: number
+        chain:
+          type: string
         holdersCount:
           type: number
         customConfig:
@@ -10729,6 +10771,7 @@ components:
       required:
         - name
         - profile
+        - chain
     ExtraProperties:
       type: object
       properties:
@@ -10840,6 +10883,15 @@ components:
           type: array
           items:
             type: string
+        kiosk:
+          type: string
+          description: 'SUI specific: The Kiosk ID if the NFT is listed on a kiosk.'
+        version:
+          type: string
+          description: 'SUI specific: The version of the SUI object.'
+        digest:
+          type: string
+          description: 'SUI specific: The digest of the SUI object.'
         id:
           type: string
           description: The unique long ID of an asset in our database
@@ -12320,7 +12372,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -12337,7 +12389,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -12756,6 +12808,15 @@ components:
           type: array
           items:
             type: string
+        kiosk:
+          type: string
+          description: 'SUI specific: The Kiosk ID if the NFT is listed on a kiosk.'
+        version:
+          type: string
+          description: 'SUI specific: The version of the SUI object.'
+        digest:
+          type: string
+          description: 'SUI specific: The digest of the SUI object.'
         id:
           type: string
           description: The unique long ID of an asset in our database
@@ -13234,9 +13295,11 @@ components:
         - xPortal
         - webwallet
         - maiar_v2
+        - sui
         - ledger
         - extension
         - native
+        - zkLogin
       description: Type of wallet client
     Web2UserWallet:
       type: object
@@ -13328,6 +13391,9 @@ components:
           description: User's wallet information
           allOf:
             - $ref: '#/components/schemas/Web2UserWallet'
+        salt:
+          type: string
+          description: Salt for the user, used for SUI ZK Login
         google:
           description: User's Google account information
           allOf:
@@ -13348,6 +13414,7 @@ components:
         - linkedAccounts
         - shards
         - hasNativeWallet
+        - salt
         - pk
     Web2WalletDto:
       type: object
@@ -13402,9 +13469,21 @@ components:
           description: Web2 wallet information
           allOf:
             - $ref: '#/components/schemas/Web2WalletDto'
+        isActive:
+          type: boolean
+          description: Wether the backed up wallet shall become active
       required:
         - shards
         - wallet
+        - isActive
+    SwitchWalletDto:
+      type: object
+      properties:
+        address:
+          type: string
+          description: New active address
+      required:
+        - address
     Web2UserShardsDto:
       type: object
       properties:
@@ -14369,7 +14448,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1749052587
+          minimum: 1750429841
         endTime:
           type: integer
         location:
@@ -14607,11 +14686,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1749052587
+          example: 1750429841
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 276a7525-4945-4137-a669-becfeb231886
+          example: 35cd0a57-c17d-41f3-b60f-daca9b3f34f9
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14660,7 +14739,7 @@ components:
             URL to the markdown file in Azure storage containing the event
             description.
           default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultEventDescription.md
+            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -14677,7 +14756,7 @@ components:
           type: string
           description: URL to the profile image in Azure storage.
           default: >-
-            https://trustmarketdevnet.blob.core.windows.net/utils/defaultProfilePic.webp
+            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -14777,10 +14856,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1749052588
+          example: 1750429842
         endTime:
           type: integer
-          example: 1749052588
+          example: 1750429842
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -15037,11 +15116,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1749052587
+          example: 1750429841
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: eecc49b9-8243-4203-be0b-16dddaf0c3ca
+          example: 0a1eda8a-655f-4e70-95c5-a015b74eb179
       required:
         - dataType
         - eventId
@@ -15099,11 +15178,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1749052588
+          minimum: 1750429842
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1749138988
+          minimum: 1750516242
           description: End time timestamp
         maxLimit:
           type: integer
@@ -15152,11 +15231,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1749052587
+          example: 1750429841
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1749052587
+          example: 1750429841
         maxLimit:
           type: integer
           description: >-
@@ -15187,7 +15266,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 36128e23-600e-4363-9105-addc6676f99f
+          example: 85cb15cb-db0c-42a4-90e5-80bcaa628ccd
       required:
         - dataType
         - eventId
@@ -15229,10 +15308,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1749052588
+          minimum: 1750429842
         endTime:
           type: integer
-          minimum: 1749138988
+          minimum: 1750516242
       required:
         - prices
         - name
@@ -15371,7 +15450,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 2d296256-49ad-4e31-a744-d8fa2bc02f88
+          example: f32851f0-57ad-4719-a668-d1a88e1d5fdb
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -15423,7 +15502,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1749052587
+          example: 1750429841
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15452,7 +15531,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 5cec5f34-d703-423d-b4cd-090c04893f64
+          example: d9a9db1f-31c6-44bc-a5f3-d094fe65b60d
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15508,7 +15587,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1749052587
+          example: 1750429841
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15537,7 +15616,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 5cec5f34-d703-423d-b4cd-090c04893f64
+          example: d9a9db1f-31c6-44bc-a5f3-d094fe65b60d
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15646,11 +15725,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1749052588
+          example: 1750429842
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1749052588
+          example: 1750429842
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -15661,7 +15740,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1749052588
+          example: 1750429842
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15752,7 +15831,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1749052587
+          example: 1750429841
       required:
         - dataType
         - id
@@ -15867,11 +15946,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1749052587
+          example: 1750429841
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 276a7525-4945-4137-a669-becfeb231886
+          example: 35cd0a57-c17d-41f3-b60f-daca9b3f34f9
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16264,11 +16343,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1749052588
+          example: 1750429842
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1749052588
+          example: 1750429842
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16318,11 +16397,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1749052588
+          example: 1750429842
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1749052588
+          example: 1750429842
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16354,7 +16433,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: ae080a57-2b0d-4a0d-bb71-f62b822292b7
+          example: 6593ee2d-3815-41d9-b419-2d2934e92dcc
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16370,7 +16449,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1749052588
+          example: 1750429842
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -16406,6 +16485,20 @@ components:
       required:
         - address
         - isApproved
+    EventLocationCities:
+      type: object
+      properties:
+        city:
+          type: string
+          description: City
+          example: New York
+        eventCount:
+          type: number
+          description: Event count
+          example: 100
+      required:
+        - city
+        - eventCount
     EventCountGroupedByCountry:
       type: object
       properties:
@@ -16424,7 +16517,7 @@ components:
               eventCount: 50
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/EventLocationCities'
       required:
         - country
         - eventCount
@@ -16504,7 +16597,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: b89474d2-f83b-438f-874d-0af8ea5faf6d
+          example: bc5364bc-29e7-4fb0-8927-74af9623316c
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16531,7 +16624,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1749052588
+          example: 1750429842
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16605,7 +16698,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 5314198d-4bbb-412e-ad86-15288d7b3773
+          example: 1bf31628-37f3-44f4-b8d0-b7647504bdd9
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16624,7 +16717,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1749052588
+          example: 1750429842
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -16687,6 +16780,10 @@ components:
         - globalOfferTrade
         - stake
         - unStake
+        - createGame
+        - joinGame
+        - cancelGame
+        - endGame
     NftActivityEventSource:
       type: string
       enum:
@@ -16862,6 +16959,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RangeFilter'
+    TransferPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Transfer policy id
+        type:
+          type: string
+          description: Transfer policy type
+        rules:
+          description: Transfer policy rules
+          type: array
+          items:
+            type: string
+        is_origin_byte:
+          type: boolean
+          description: Transfer policy is origin byte
+      required:
+        - id
+        - type
+        - rules
+        - is_origin_byte
     CollectionProfileDoc:
       type: object
       properties:
@@ -16871,6 +16990,9 @@ components:
         collection:
           type: object
           description: Unique on chain identifier for the collection
+        originalCollection:
+          type: string
+          description: The original, full SUI type of the collection
         name:
           type: object
           description: Collection name
@@ -16910,18 +17032,30 @@ components:
         roles:
           type: object
           description: Collection roles
+        transferPolicies:
+          description: Transfer policies of the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferPolicy'
         isEvent:
           type: object
           description: Indicates if this collection is an event
         eventId:
           type: string
           description: Event Id associate with this collection
+        royalty:
+          type: number
+          description: Royalty of the collection
+        minSalePrice:
+          type: string
+          description: Minimum sale price of the collection
         customConfig:
           $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
         id:
           type: object
         _ts:
-          type: object
+          type: number
+          description: Timestamp of the collection
       required:
         - dataType
         - collection
@@ -16942,7 +17076,6 @@ components:
         - roles
         - isEvent
         - id
-        - _ts
     CollectionStatsFilter:
       type: object
       properties:
@@ -17428,7 +17561,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: dcf761d3-16e5-4ce9-b472-0a135db60da5
+          example: c6de6e85-9122-4169-9b8c-5b090605d2e1
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17445,15 +17578,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1749052587
+          example: 1750429841
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 34318660-2767-40e7-8085-90304d477d24
+          example: 75f18a2f-0689-47f9-8d1c-7e6611fce406
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1749052587
+          example: 1750429841
         quantity:
           type: integer
           description: Quantity of tickets.

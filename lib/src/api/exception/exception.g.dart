@@ -7,11 +7,11 @@ part of 'exception.dart';
 // **************************************************************************
 
 ApiException _$ApiExceptionFromJson(Map<String, dynamic> json) => ApiException(
-      (json['statusCode'] as num).toInt(),
-      DateTime.parse(json['timestamp'] as String),
-      json['message'] as String,
-      json['path'] as String,
-    );
+  (json['statusCode'] as num).toInt(),
+  DateTime.parse(json['timestamp'] as String),
+  json['message'] as String,
+  json['path'] as String,
+);
 
 Map<String, dynamic> _$ApiExceptionToJson(ApiException instance) =>
     <String, dynamic>{

@@ -633,6 +633,15 @@ class EventRawApi {
     );
   }
 
+  Future<List<dynamic>> getEventProfileLocation() {
+    final logger = Logger('Xoxno.EventRawApi.getEventProfileLocation');
+    logger.finest('get event profile location');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/event/profile/location'),
+    );
+  }
+
   Future<Map<String, dynamic>> eventScanTickets({
     required String eventId,
     required Map<String, dynamic> body,

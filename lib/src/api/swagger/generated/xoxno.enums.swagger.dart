@@ -431,12 +431,16 @@ enum WalletClientType {
   webwallet('webwallet'),
   @JsonValue('maiar_v2')
   maiarV2('maiar_v2'),
+  @JsonValue('sui')
+  sui('sui'),
   @JsonValue('ledger')
   ledger('ledger'),
   @JsonValue('extension')
   extension('extension'),
   @JsonValue('native')
-  native('native');
+  native('native'),
+  @JsonValue('zkLogin')
+  zklogin('zkLogin');
 
   final String? value;
 
@@ -790,7 +794,15 @@ enum NftActivityType {
   @JsonValue('stake')
   stake('stake'),
   @JsonValue('unStake')
-  unstake('unStake');
+  unstake('unStake'),
+  @JsonValue('createGame')
+  creategame('createGame'),
+  @JsonValue('joinGame')
+  joingame('joinGame'),
+  @JsonValue('cancelGame')
+  cancelgame('cancelGame'),
+  @JsonValue('endGame')
+  endgame('endGame');
 
   final String? value;
 

@@ -60,17 +60,19 @@ Future<void> main() async {
     //         extraProperties: EventExtraProperties(
     //             creatorProfile: true, guestSummary: true)));
     // var tokenss = await sdk.api.event.getMyEvents(true);//.getEventStages(eventId: "bd2eb3a8-65cb-48b9-932a-c7af7d5bed2e", isEnabled: true);
-    var user = await sdk.api.event.getEventInvitations(
-        eventId: "aab11bc4-69b0-42b2-915c-14ae82dd9227",
-        filter: EventInvitationFilter(
-          top: 1,
-          skip: 0,
-          filters: EventInvitationFilterCriteriaDto(
-            eventId: ["aab11bc4-69b0-42b2-915c-14ae82dd9227"],
-          ),
-        ));
-    // logger.info(tokens);
-    logger.info(user);
+    // var user = await sdk.api.event.getEventInvitations(
+    //     eventId: "aab11bc4-69b0-42b2-915c-14ae82dd9227",
+    //     filter: EventInvitationFilter(
+    //       top: 1,
+    //       skip: 0,
+    //       filters: EventInvitationFilterCriteriaDto(
+    //         eventId: ["aab11bc4-69b0-42b2-915c-14ae82dd9227"],
+    //       ),
+    //     ));
+    // // logger.info(tokens);
+
+    var location = await sdk.api.event.getEventProfileLocation();
+    logger.info(location);
 
     // logger.info(data);
   } on xoxno.ApiException catch (e, stackTrace) {
