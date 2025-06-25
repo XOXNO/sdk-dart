@@ -6195,15 +6195,23 @@ Map<String, dynamic> _$EventGuestAnswerDocToJson(
 AnsweredQuestionWithDetails _$AnsweredQuestionWithDetailsFromJson(
   Map<String, dynamic> json,
 ) => AnsweredQuestionWithDetails(
-  answer: EventGuestAnswerDoc.fromJson(json['answer'] as Map<String, dynamic>),
-  question: EventQuestionDoc.fromJson(json['question'] as Map<String, dynamic>),
+  answer:
+      json['answer'] == null
+          ? null
+          : EventGuestAnswerDoc.fromJson(
+            json['answer'] as Map<String, dynamic>,
+          ),
+  question:
+      json['question'] == null
+          ? null
+          : EventQuestionDoc.fromJson(json['question'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AnsweredQuestionWithDetailsToJson(
   AnsweredQuestionWithDetails instance,
 ) => <String, dynamic>{
-  'answer': instance.answer.toJson(),
-  'question': instance.question.toJson(),
+  'answer': instance.answer?.toJson(),
+  'question': instance.question?.toJson(),
 };
 
 EventGuestApproveDto _$EventGuestApproveDtoFromJson(
@@ -6729,6 +6737,8 @@ CollectionProfileDoc _$CollectionProfileDocFromJson(
           ),
   id: json['id'] as Object,
   ts: (json['_ts'] as num?)?.toDouble(),
+  pinnedAt: (json['pinnedAt'] as num?)?.toDouble(),
+  pinnedAtDrops: (json['pinnedAtDrops'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$CollectionProfileDocToJson(
@@ -6761,6 +6771,8 @@ Map<String, dynamic> _$CollectionProfileDocToJson(
   'customConfig': instance.customConfig?.toJson(),
   'id': instance.id,
   '_ts': instance.ts,
+  'pinnedAt': instance.pinnedAt,
+  'pinnedAtDrops': instance.pinnedAtDrops,
 };
 
 CollectionStatsFilter _$CollectionStatsFilterFromJson(

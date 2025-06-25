@@ -31686,10 +31686,7 @@ extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
 
 @JsonSerializable(explicitToJson: true)
 class AnsweredQuestionWithDetails {
-  const AnsweredQuestionWithDetails({
-    required this.answer,
-    required this.question,
-  });
+  const AnsweredQuestionWithDetails({this.answer, this.question});
 
   factory AnsweredQuestionWithDetails.fromJson(Map<String, dynamic> json) =>
       _$AnsweredQuestionWithDetailsFromJson(json);
@@ -31698,9 +31695,9 @@ class AnsweredQuestionWithDetails {
   Map<String, dynamic> toJson() => _$AnsweredQuestionWithDetailsToJson(this);
 
   @JsonKey(name: 'answer')
-  final EventGuestAnswerDoc answer;
+  final EventGuestAnswerDoc? answer;
   @JsonKey(name: 'question')
-  final EventQuestionDoc question;
+  final EventQuestionDoc? question;
   static const fromJsonFactory = _$AnsweredQuestionWithDetailsFromJson;
 
   @override
@@ -31738,8 +31735,8 @@ extension $AnsweredQuestionWithDetailsExtension on AnsweredQuestionWithDetails {
   }
 
   AnsweredQuestionWithDetails copyWithWrapped({
-    Wrapped<EventGuestAnswerDoc>? answer,
-    Wrapped<EventQuestionDoc>? question,
+    Wrapped<EventGuestAnswerDoc?>? answer,
+    Wrapped<EventQuestionDoc?>? question,
   }) {
     return AnsweredQuestionWithDetails(
       answer: (answer != null ? answer.value : this.answer),
@@ -33766,6 +33763,8 @@ class CollectionProfileDoc {
     this.customConfig,
     required this.id,
     this.ts,
+    this.pinnedAt,
+    this.pinnedAtDrops,
   });
 
   factory CollectionProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -33838,6 +33837,10 @@ class CollectionProfileDoc {
   final Object id;
   @JsonKey(name: '_ts')
   final double? ts;
+  @JsonKey(name: 'pinnedAt')
+  final double? pinnedAt;
+  @JsonKey(name: 'pinnedAtDrops')
+  final double? pinnedAtDrops;
   static const fromJsonFactory = _$CollectionProfileDocFromJson;
 
   @override
@@ -33952,7 +33955,17 @@ class CollectionProfileDoc {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.pinnedAt, pinnedAt) ||
+                const DeepCollectionEquality().equals(
+                  other.pinnedAt,
+                  pinnedAt,
+                )) &&
+            (identical(other.pinnedAtDrops, pinnedAtDrops) ||
+                const DeepCollectionEquality().equals(
+                  other.pinnedAtDrops,
+                  pinnedAtDrops,
+                )));
   }
 
   @override
@@ -33986,6 +33999,8 @@ class CollectionProfileDoc {
       const DeepCollectionEquality().hash(customConfig) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(pinnedAt) ^
+      const DeepCollectionEquality().hash(pinnedAtDrops) ^
       runtimeType.hashCode;
 }
 
@@ -34017,6 +34032,8 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
     XoxnoMarketplaceScCollectionConfig? customConfig,
     Object? id,
     double? ts,
+    double? pinnedAt,
+    double? pinnedAtDrops,
   }) {
     return CollectionProfileDoc(
       dataType: dataType ?? this.dataType,
@@ -34045,6 +34062,8 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
       customConfig: customConfig ?? this.customConfig,
       id: id ?? this.id,
       ts: ts ?? this.ts,
+      pinnedAt: pinnedAt ?? this.pinnedAt,
+      pinnedAtDrops: pinnedAtDrops ?? this.pinnedAtDrops,
     );
   }
 
@@ -34075,6 +34094,8 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
     Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
     Wrapped<Object>? id,
     Wrapped<double?>? ts,
+    Wrapped<double?>? pinnedAt,
+    Wrapped<double?>? pinnedAtDrops,
   }) {
     return CollectionProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -34111,6 +34132,10 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
           : this.customConfig),
       id: (id != null ? id.value : this.id),
       ts: (ts != null ? ts.value : this.ts),
+      pinnedAt: (pinnedAt != null ? pinnedAt.value : this.pinnedAt),
+      pinnedAtDrops: (pinnedAtDrops != null
+          ? pinnedAtDrops.value
+          : this.pinnedAtDrops),
     );
   }
 }
