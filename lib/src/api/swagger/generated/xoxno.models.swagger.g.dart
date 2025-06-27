@@ -252,7 +252,7 @@ EmailNotificationsDto _$EmailNotificationsDtoFromJson(
   isEmailVerificationPending: json['isEmailVerificationPending'] as bool,
   isEmailVerified: json['isEmailVerified'] as bool,
   isWeb2User: json['isWeb2User'] as bool,
-  timestamp: (json['timestamp'] as num).toDouble(),
+  timestamp: (json['timestamp'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$EmailNotificationsDtoToJson(

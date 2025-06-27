@@ -1364,7 +1364,7 @@ class EmailNotificationsDto {
     required this.isEmailVerificationPending,
     required this.isEmailVerified,
     required this.isWeb2User,
-    required this.timestamp,
+    this.timestamp,
   });
 
   factory EmailNotificationsDto.fromJson(Map<String, dynamic> json) =>
@@ -1384,7 +1384,7 @@ class EmailNotificationsDto {
   @JsonKey(name: 'isWeb2User')
   final bool isWeb2User;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final double? timestamp;
   static const fromJsonFactory = _$EmailNotificationsDtoFromJson;
 
   @override
@@ -1466,7 +1466,7 @@ extension $EmailNotificationsDtoExtension on EmailNotificationsDto {
     Wrapped<bool>? isEmailVerificationPending,
     Wrapped<bool>? isEmailVerified,
     Wrapped<bool>? isWeb2User,
-    Wrapped<double>? timestamp,
+    Wrapped<double?>? timestamp,
   }) {
     return EmailNotificationsDto(
       enabled: (enabled != null ? enabled.value : this.enabled),
