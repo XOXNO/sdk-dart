@@ -74,39 +74,48 @@ class UserTypeSafeApi {
     return UserProfileDto.fromJson(data);
   }
 
-  Future<UserSettingsDto> meSettings() async {
+  Future<UserSettingsDoc> meSettings() async {
     final data = await _api.meSettings();
-    return UserSettingsDto.fromJson(data);
+    return UserSettingsDoc.fromJson(data);
   }
 
-  Future<UserSettingsDto> notificationPreferences({
+  Future<UserSettingsDoc> notificationPreferences({
     required final NotificationPreferencesDto notificationPreferences,
   }) async {
     final data = await _api.notificationPreferences(
       body: notificationPreferences.toJson(),
     );
-    return UserSettingsDto.fromJson(data);
+    return UserSettingsDoc.fromJson(data);
   }
 
-  Future<UserSettingsDto> updateSettingsEmail({
+  Future<UserSettingsDoc> updateSettingsEmail({
     required final SetEmailDto emailSettings,
   }) async {
     final data = await _api.updateSettingsEmail(body: emailSettings.toJson());
-    return UserSettingsDto.fromJson(data);
+    return UserSettingsDoc.fromJson(data);
   }
 
-  Future<UserSettingsDto> deleteSettingsEmail({
+  Future<UserSettingsDoc> updateSettingsBilling({
+    required final UserBillingDetails billingSettings,
+  }) async {
+    final data = await _api.updateSettingsBilling(
+      body: billingSettings.toJson(),
+    );
+    return UserSettingsDoc.fromJson(data);
+  }
+
+  Future<UserSettingsDoc> deleteSettingsEmail({
     required final SetEmailDto emailSettings,
   }) async {
     final data = await _api.deleteSettingsEmail(body: emailSettings.toJson());
-    return UserSettingsDto.fromJson(data);
+    return UserSettingsDoc.fromJson(data);
   }
 
-  Future<UserSettingsDto> verifyEmail({
+  Future<UserSettingsDoc> verifyEmail({
     required final VerifyEmailDto verifyEmail,
   }) async {
     final data = await _api.verifyEmail(body: verifyEmail.toJson());
-    return UserSettingsDto.fromJson(data);
+    return UserSettingsDoc.fromJson(data);
   }
 
   Future<UserProfileDto> uploadPicture({

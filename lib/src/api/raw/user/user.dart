@@ -145,6 +145,20 @@ class UserRawApi {
     );
   }
 
+  Future<Map<String, dynamic>> updateSettingsBilling({
+    required final Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.UserRawApi.updateSettingsBilling');
+    logger.finest('update settings billing');
+    return genericPatch(
+      client,
+      generateUri(path: '${client.baseUrl}/user/me/settings/billing'),
+      body: body,
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+
   Future<Map<String, dynamic>> updateSettingsEmail({
     required final Map<String, dynamic> body,
   }) {
