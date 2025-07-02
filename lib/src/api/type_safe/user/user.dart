@@ -59,8 +59,11 @@ class UserTypeSafeApi {
     return UserProfileDto.fromJson(data);
   }
 
-  Future<UserProfileDto> updateProfile({required final String address}) async {
-    final data = await _api.updateProfile(address: address, body: {});
+  Future<UserProfileDto> updateProfile({
+    required final String address,
+    required final EditUserProfileDto body,
+  }) async {
+    final data = await _api.updateProfile(address: address, body: body.toJson());
     return UserProfileDto.fromJson(data);
   }
 
