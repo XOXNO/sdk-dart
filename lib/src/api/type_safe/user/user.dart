@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:xoxno_sdk/src/api/raw/user/user.dart';
 import 'package:xoxno_sdk/src/api/swagger/generated/xoxno.models.swagger.dart';
 import 'package:xoxno_sdk/src/api/type_safe/common/order_direction.dart';
@@ -109,9 +111,9 @@ class UserTypeSafeApi {
 
   Future<UserProfileDto> uploadPicture({
     required final String address,
-    required final List<int> bytes,
+    required final File file,
   }) async {
-    final data = await _api.uploadPicture(address: address, bytes: bytes);
+    final data = await _api.uploadPicture(address: address, file: file);
     return UserProfileDto.fromJson(data);
   }
 

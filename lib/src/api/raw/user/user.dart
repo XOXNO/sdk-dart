@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:http_parser/http_parser.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
+import 'package:mime/mime.dart';
 import 'package:xoxno_sdk/src/api/raw/utils/http.dart';
 import 'package:xoxno_sdk/src/api/client.dart';
 
@@ -182,15 +185,26 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> uploadPicture({
     required final String address,
-    required final List<int> bytes,
-  }) {
+    required final File file,
+  }) async {
     final logger = Logger('Xoxno.UserRawApi.uploadPicture');
     logger.finest('upload picture');
     final request = http.MultipartRequest(
       'PUT',
       generateUri(path: '${client.baseUrl}/user/$address/upload-picture'),
     );
-    request.files.add(http.MultipartFile.fromBytes('file', bytes));
+    final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
+    final mimeTypeParts = mimeTypeStr.split('/');
+    final bytes = await file.readAsBytes();
+
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+        filename: file.path.split('/').last,
+        contentType: MediaType(mimeTypeParts[0], mimeTypeParts[1]),
+      ),
+    );
     return genericSendRequest(client, request);
   }
 
