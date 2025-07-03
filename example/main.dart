@@ -71,6 +71,8 @@ Future<void> main() async {
     //     ));
     // // logger.info(tokens);
 
+    var countries = await sdk.api.event.getCountries();
+    logger.info(countries);
     var location = await sdk.api.event.getEventProfileLocation();
     logger.info(location);
 

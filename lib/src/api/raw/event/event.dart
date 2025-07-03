@@ -12,6 +12,12 @@ class EventRawApi {
 
   const EventRawApi(this.client);
 
+  Future<List<dynamic>> getCountries() {
+    final logger = Logger('Xoxno.EventRawApi.getCountries');
+    logger.finest('get countries');
+    return genericGet(client, generateUri(path: '${client.baseUrl}/countries'));
+  }
+
   Future<Map<String, dynamic>> createEvent({
     required Map<String, dynamic> body,
   }) {

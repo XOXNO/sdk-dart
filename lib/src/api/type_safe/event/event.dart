@@ -9,6 +9,11 @@ class EventTypeSafeApi {
 
   const EventTypeSafeApi(this._api);
 
+  Future<List<String>> getCountries() async {
+    final data = await _api.getCountries();
+    return data.map((item) => item as String).toList();
+  }
+
   Future<EventProfile> createEvent({
     required EventProfileCreateDto body,
   }) async {
