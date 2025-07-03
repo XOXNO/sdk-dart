@@ -110,7 +110,7 @@ class UserRawApi {
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/user/$address/profile'),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
@@ -158,7 +158,7 @@ class UserRawApi {
     );
   }
 
-
+  
   Future<Map<String, dynamic>> updateSettingsEmail({
     required final Map<String, dynamic> body,
   }) {
