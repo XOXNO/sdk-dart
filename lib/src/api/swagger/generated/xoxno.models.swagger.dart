@@ -2395,16 +2395,16 @@ extension $UserPhoneNotificationSettingsExtension
 @JsonSerializable(explicitToJson: true)
 class UserNotificationPreferences {
   const UserNotificationPreferences({
-    required this.sales,
-    required this.bids,
-    required this.offersReceived,
-    required this.offersAccepted,
-    required this.offersRejected,
-    required this.deposits,
-    required this.eventUpdates,
-    required this.eventReminders,
-    required this.eventCheckIn,
-    required this.eventMarketing,
+    this.sales,
+    this.bids,
+    this.offersReceived,
+    this.offersAccepted,
+    this.offersRejected,
+    this.deposits,
+    this.eventUpdates,
+    this.eventReminders,
+    this.eventCheckIn,
+    this.eventMarketing,
   });
 
   factory UserNotificationPreferences.fromJson(Map<String, dynamic> json) =>
@@ -2414,25 +2414,25 @@ class UserNotificationPreferences {
   Map<String, dynamic> toJson() => _$UserNotificationPreferencesToJson(this);
 
   @JsonKey(name: 'sales')
-  final Object sales;
+  final Object? sales;
   @JsonKey(name: 'bids')
-  final Object bids;
+  final Object? bids;
   @JsonKey(name: 'offersReceived')
-  final Object offersReceived;
+  final Object? offersReceived;
   @JsonKey(name: 'offersAccepted')
-  final Object offersAccepted;
+  final Object? offersAccepted;
   @JsonKey(name: 'offersRejected')
-  final Object offersRejected;
+  final Object? offersRejected;
   @JsonKey(name: 'deposits')
-  final Object deposits;
+  final Object? deposits;
   @JsonKey(name: 'eventUpdates')
-  final Object eventUpdates;
+  final Object? eventUpdates;
   @JsonKey(name: 'eventReminders')
-  final Object eventReminders;
+  final Object? eventReminders;
   @JsonKey(name: 'eventCheckIn')
-  final Object eventCheckIn;
+  final Object? eventCheckIn;
   @JsonKey(name: 'eventMarketing')
-  final Object eventMarketing;
+  final Object? eventMarketing;
   static const fromJsonFactory = _$UserNotificationPreferencesFromJson;
 
   @override
@@ -2531,16 +2531,16 @@ extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
   }
 
   UserNotificationPreferences copyWithWrapped({
-    Wrapped<Object>? sales,
-    Wrapped<Object>? bids,
-    Wrapped<Object>? offersReceived,
-    Wrapped<Object>? offersAccepted,
-    Wrapped<Object>? offersRejected,
-    Wrapped<Object>? deposits,
-    Wrapped<Object>? eventUpdates,
-    Wrapped<Object>? eventReminders,
-    Wrapped<Object>? eventCheckIn,
-    Wrapped<Object>? eventMarketing,
+    Wrapped<Object?>? sales,
+    Wrapped<Object?>? bids,
+    Wrapped<Object?>? offersReceived,
+    Wrapped<Object?>? offersAccepted,
+    Wrapped<Object?>? offersRejected,
+    Wrapped<Object?>? deposits,
+    Wrapped<Object?>? eventUpdates,
+    Wrapped<Object?>? eventReminders,
+    Wrapped<Object?>? eventCheckIn,
+    Wrapped<Object?>? eventMarketing,
   }) {
     return UserNotificationPreferences(
       sales: (sales != null ? sales.value : this.sales),
@@ -2578,10 +2578,10 @@ class UserSettingsDoc {
     required this.address,
     this.name,
     this.billingDetails,
-    required this.emailNotifications,
+    this.emailNotifications,
     this.phoneNotifications,
-    required this.notificationPreferences,
-    required this.id,
+    this.notificationPreferences,
+    this.id,
     this.ts,
   });
 
@@ -2600,13 +2600,13 @@ class UserSettingsDoc {
   @JsonKey(name: 'billingDetails')
   final UserBillingDetails? billingDetails;
   @JsonKey(name: 'emailNotifications')
-  final UserEmailNotificationSettings emailNotifications;
+  final UserEmailNotificationSettings? emailNotifications;
   @JsonKey(name: 'phoneNotifications')
   final UserPhoneNotificationSettings? phoneNotifications;
   @JsonKey(name: 'notificationPreferences')
-  final UserNotificationPreferences notificationPreferences;
+  final UserNotificationPreferences? notificationPreferences;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$UserSettingsDocFromJson;
@@ -2704,10 +2704,10 @@ extension $UserSettingsDocExtension on UserSettingsDoc {
     Wrapped<String>? address,
     Wrapped<String?>? name,
     Wrapped<UserBillingDetails?>? billingDetails,
-    Wrapped<UserEmailNotificationSettings>? emailNotifications,
+    Wrapped<UserEmailNotificationSettings?>? emailNotifications,
     Wrapped<UserPhoneNotificationSettings?>? phoneNotifications,
-    Wrapped<UserNotificationPreferences>? notificationPreferences,
-    Wrapped<String>? id,
+    Wrapped<UserNotificationPreferences?>? notificationPreferences,
+    Wrapped<String?>? id,
     Wrapped<double?>? ts,
   }) {
     return UserSettingsDoc(

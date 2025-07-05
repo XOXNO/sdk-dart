@@ -436,16 +436,16 @@ Map<String, dynamic> _$UserPhoneNotificationSettingsToJson(
 UserNotificationPreferences _$UserNotificationPreferencesFromJson(
   Map<String, dynamic> json,
 ) => UserNotificationPreferences(
-  sales: json['sales'] as Object,
-  bids: json['bids'] as Object,
-  offersReceived: json['offersReceived'] as Object,
-  offersAccepted: json['offersAccepted'] as Object,
-  offersRejected: json['offersRejected'] as Object,
-  deposits: json['deposits'] as Object,
-  eventUpdates: json['eventUpdates'] as Object,
-  eventReminders: json['eventReminders'] as Object,
-  eventCheckIn: json['eventCheckIn'] as Object,
-  eventMarketing: json['eventMarketing'] as Object,
+  sales: json['sales'],
+  bids: json['bids'],
+  offersReceived: json['offersReceived'],
+  offersAccepted: json['offersAccepted'],
+  offersRejected: json['offersRejected'],
+  deposits: json['deposits'],
+  eventUpdates: json['eventUpdates'],
+  eventReminders: json['eventReminders'],
+  eventCheckIn: json['eventCheckIn'],
+  eventMarketing: json['eventMarketing'],
 );
 
 Map<String, dynamic> _$UserNotificationPreferencesToJson(
@@ -474,19 +474,25 @@ UserSettingsDoc _$UserSettingsDocFromJson(Map<String, dynamic> json) =>
               : UserBillingDetails.fromJson(
                 json['billingDetails'] as Map<String, dynamic>,
               ),
-      emailNotifications: UserEmailNotificationSettings.fromJson(
-        json['emailNotifications'] as Map<String, dynamic>,
-      ),
+      emailNotifications:
+          json['emailNotifications'] == null
+              ? null
+              : UserEmailNotificationSettings.fromJson(
+                json['emailNotifications'] as Map<String, dynamic>,
+              ),
       phoneNotifications:
           json['phoneNotifications'] == null
               ? null
               : UserPhoneNotificationSettings.fromJson(
                 json['phoneNotifications'] as Map<String, dynamic>,
               ),
-      notificationPreferences: UserNotificationPreferences.fromJson(
-        json['notificationPreferences'] as Map<String, dynamic>,
-      ),
-      id: json['id'] as String,
+      notificationPreferences:
+          json['notificationPreferences'] == null
+              ? null
+              : UserNotificationPreferences.fromJson(
+                json['notificationPreferences'] as Map<String, dynamic>,
+              ),
+      id: json['id'] as String?,
       ts: (json['_ts'] as num?)?.toDouble(),
     );
 
@@ -496,9 +502,9 @@ Map<String, dynamic> _$UserSettingsDocToJson(UserSettingsDoc instance) =>
       'address': instance.address,
       'name': instance.name,
       'billingDetails': instance.billingDetails?.toJson(),
-      'emailNotifications': instance.emailNotifications.toJson(),
+      'emailNotifications': instance.emailNotifications?.toJson(),
       'phoneNotifications': instance.phoneNotifications?.toJson(),
-      'notificationPreferences': instance.notificationPreferences.toJson(),
+      'notificationPreferences': instance.notificationPreferences?.toJson(),
       'id': instance.id,
       '_ts': instance.ts,
     };
