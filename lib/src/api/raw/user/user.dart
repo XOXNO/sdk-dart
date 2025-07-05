@@ -140,7 +140,7 @@ class UserRawApi {
       generateUri(
         path: '${client.baseUrl}/user/me/settings/notification-preferences',
       ),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
@@ -153,12 +153,11 @@ class UserRawApi {
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/user/me/settings/billing'),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
 
-  
   Future<Map<String, dynamic>> updateSettingsEmail({
     required final Map<String, dynamic> body,
   }) {
@@ -167,7 +166,7 @@ class UserRawApi {
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/user/me/settings/email'),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
@@ -180,7 +179,7 @@ class UserRawApi {
     return genericDelete(
       client,
       generateUri(path: '${client.baseUrl}/user/me/settings/email'),
-      body: body,
+      body: json.encode(body),
     );
   }
 
@@ -192,7 +191,7 @@ class UserRawApi {
     return genericPost(
       client,
       generateUri(path: '${client.baseUrl}/user/me/settings/verify-email'),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
@@ -224,7 +223,7 @@ class UserRawApi {
 
   Future<Map<String, dynamic>> uploadBanner({
     required final String address,
-    required final List<int> bytes,
+    required final File file,
   }) async {
     final logger = Logger('Xoxno.UserRawApi.uploadBanner');
     logger.finest('upload banner');
@@ -232,7 +231,17 @@ class UserRawApi {
       'PUT',
       generateUri(path: '${client.baseUrl}/user/$address/upload-banner'),
     );
-    request.files.add(http.MultipartFile.fromBytes('file', bytes));
+    final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
+    final mimeTypeParts = mimeTypeStr.split('/');
+    final bytes = await file.readAsBytes();
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+        filename: file.path.split('/').last,
+        contentType: MediaType(mimeTypeParts[0], mimeTypeParts[1]),
+      ),
+    );
     return genericSendRequest(client, request);
   }
 
@@ -283,15 +292,15 @@ class UserRawApi {
     return genericPatch(
       client,
       generateUri(path: '${client.baseUrl}/user/$address/creator/profile'),
-      body: body,
+      body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
   }
 
   Future<Map<String, dynamic>> creatorUploadPicture({
     required final String address,
-    required final List<int> bytes,
-  }) {
+    required final File file,
+  }) async {
     final logger = Logger('Xoxno.UserRawApi.creatorUploadPicture');
     logger.finest('creator upload picture');
     final request = http.MultipartRequest(
@@ -300,8 +309,17 @@ class UserRawApi {
         path: '${client.baseUrl}/user/$address/creator/upload-picture',
       ),
     );
-
-    request.files.add(http.MultipartFile.fromBytes('file', bytes));
+    final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
+    final mimeTypeParts = mimeTypeStr.split('/');
+    final bytes = await file.readAsBytes();
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'file',
+        bytes,
+        filename: file.path.split('/').last,
+        contentType: MediaType(mimeTypeParts[0], mimeTypeParts[1]),
+      ),
+    );
     return genericSendRequest(client, request);
   }
 

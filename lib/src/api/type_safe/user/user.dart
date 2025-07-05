@@ -65,7 +65,10 @@ class UserTypeSafeApi {
     required final String address,
     required final EditUserProfileDto body,
   }) async {
-    final data = await _api.updateProfile(address: address, body: body.toJson());
+    final data = await _api.updateProfile(
+      address: address,
+      body: body.toJson(),
+    );
     return UserProfileDto.fromJson(data);
   }
 
@@ -128,9 +131,9 @@ class UserTypeSafeApi {
 
   Future<UserProfileDto> uploadBanner({
     required final String address,
-    required final List<int> bytes,
+    required final File file,
   }) async {
-    final data = await _api.uploadBanner(address: address, bytes: bytes);
+    final data = await _api.uploadBanner(address: address, file: file);
     return UserProfileDto.fromJson(data);
   }
 
@@ -149,8 +152,9 @@ class UserTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<CreatorProfileDto> creatorProfile(
-      {required final String address}) async {
+  Future<CreatorProfileDto> creatorProfile({
+    required final String address,
+  }) async {
     final data = await _api.creatorProfile(address: address);
     return CreatorProfileDto.fromJson(data);
   }
@@ -159,17 +163,18 @@ class UserTypeSafeApi {
     required final String address,
     required final CreatorProfileDto body,
   }) async {
-    final data =
-        await _api.updateCreatorProfile(address: address, body: body.toJson());
+    final data = await _api.updateCreatorProfile(
+      address: address,
+      body: body.toJson(),
+    );
     return CreatorProfileDto.fromJson(data);
   }
 
   Future<CreatorProfileDto> creatorUploadPicture({
     required final String address,
-    required final List<int> bytes,
+    required final File file,
   }) async {
-    final data =
-        await _api.creatorUploadPicture(address: address, bytes: bytes);
+    final data = await _api.creatorUploadPicture(address: address, file: file);
     return CreatorProfileDto.fromJson(data);
   }
 
@@ -195,14 +200,16 @@ class UserTypeSafeApi {
     return CreatorProfileDto.fromJson(data);
   }
 
-  Future<List<String>> favoriteCollections(
-      {required final String address}) async {
+  Future<List<String>> favoriteCollections({
+    required final String address,
+  }) async {
     final data = await _api.favoriteCollections(address: address);
     return data;
   }
 
-  Future<CheckLikeStatusResponseDto> favorite(
-      {required final String id}) async {
+  Future<CheckLikeStatusResponseDto> favorite({
+    required final String id,
+  }) async {
     final data = await _api.favorite(id: id);
     return CheckLikeStatusResponseDto.fromJson(data);
   }
@@ -216,10 +223,14 @@ class UserTypeSafeApi {
     return data;
   }
 
-  Future<List<InventorySummaryDto>> inventorySummary(
-      {required final String address, final bool? activeAuctions}) async {
+  Future<List<InventorySummaryDto>> inventorySummary({
+    required final String address,
+    final bool? activeAuctions,
+  }) async {
     final data = await _api.inventorySummary(
-        address: address, activeAuctions: activeAuctions);
+      address: address,
+      activeAuctions: activeAuctions,
+    );
     return data
         .map((element) => InventorySummaryDto.fromJson(element))
         .toList();
@@ -245,8 +256,9 @@ class UserTypeSafeApi {
     return LikeNftDto.fromJson(data);
   }
 
-  Future<List<CollectionMintProfileDoc>> creatorListing(
-      {required final String scAddress}) async {
+  Future<List<CollectionMintProfileDoc>> creatorListing({
+    required final String scAddress,
+  }) async {
     final data = await _api.creatorListing(scAddress: scAddress);
     return data
         .map((element) => CollectionMintProfileDoc.fromJson(element))
@@ -290,8 +302,9 @@ class UserTypeSafeApi {
         .toList();
   }
 
-  Future<StakingCreatorDoc> stakingCreator(
-      {required final String address}) async {
+  Future<StakingCreatorDoc> stakingCreator({
+    required final String address,
+  }) async {
     final data = await _api.stakingCreator(address: address);
     return StakingCreatorDoc.fromJson(data);
   }
@@ -320,8 +333,9 @@ class UserTypeSafeApi {
     return StakingUserPoolNfts.fromJson(data);
   }
 
-  Future<OwnedServicesDto> ownedServices(
-      {required final String creatorTag}) async {
+  Future<OwnedServicesDto> ownedServices({
+    required final String creatorTag,
+  }) async {
     final data = await _api.ownedServices(creatorTag: creatorTag);
     return OwnedServicesDto.fromJson(data);
   }
