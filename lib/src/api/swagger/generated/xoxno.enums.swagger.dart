@@ -401,6 +401,126 @@ enum StakingDataType {
   const StakingDataType(this.value);
 }
 
+enum MarketplaceActivity {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('listingCreate')
+  listingcreate('listingCreate'),
+  @JsonValue('listingWithdraw')
+  listingwithdraw('listingWithdraw'),
+  @JsonValue('listingUpdate')
+  listingupdate('listingUpdate'),
+  @JsonValue('auctionBid')
+  auctionbid('auctionBid'),
+  @JsonValue('auctionOutBid')
+  auctionoutbid('auctionOutBid'),
+  @JsonValue('offerCreate')
+  offercreate('offerCreate'),
+  @JsonValue('offerWithdraw')
+  offerwithdraw('offerWithdraw'),
+  @JsonValue('offerReject')
+  offerreject('offerReject'),
+  @JsonValue('globalOfferCreate')
+  globaloffercreate('globalOfferCreate'),
+  @JsonValue('globalOfferWithdraw')
+  globalofferwithdraw('globalOfferWithdraw'),
+  @JsonValue('trade')
+  trade('trade'),
+  @JsonValue('bulkTrade')
+  bulktrade('bulkTrade'),
+  @JsonValue('auctionTrade')
+  auctiontrade('auctionTrade'),
+  @JsonValue('otherTrade')
+  othertrade('otherTrade'),
+  @JsonValue('offerTrade')
+  offertrade('offerTrade'),
+  @JsonValue('globalOfferTrade')
+  globaloffertrade('globalOfferTrade'),
+  @JsonValue('deposit')
+  deposit('deposit'),
+  @JsonValue('withdrawDeposit')
+  withdrawdeposit('withdrawDeposit');
+
+  final String? value;
+
+  const MarketplaceActivity(this.value);
+}
+
+enum NotificationAssetType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('nft')
+  nft('nft'),
+  @JsonValue('user')
+  user('user');
+
+  final String? value;
+
+  const NotificationAssetType(this.value);
+}
+
+enum DevicePlatform {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('ios')
+  ios('ios'),
+  @JsonValue('android')
+  android('android');
+
+  final String? value;
+
+  const DevicePlatform(this.value);
+}
+
+enum PushNotificationType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('eventApproved')
+  eventapproved('eventApproved'),
+  @JsonValue('eventUpdate')
+  eventupdate('eventUpdate'),
+  @JsonValue('eventReminder')
+  eventreminder('eventReminder'),
+  @JsonValue('eventCheckIn')
+  eventcheckin('eventCheckIn'),
+  @JsonValue('eventMarketing')
+  eventmarketing('eventMarketing'),
+  @JsonValue('nftSold')
+  nftsold('nftSold'),
+  @JsonValue('offerReceived')
+  offerreceived('offerReceived'),
+  @JsonValue('userSpecific')
+  userspecific('userSpecific'),
+  @JsonValue('broadcast')
+  broadcast('broadcast');
+
+  final String? value;
+
+  const PushNotificationType(this.value);
+}
+
+enum PushNotificationStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('sent')
+  sent('sent'),
+  @JsonValue('delivered')
+  delivered('delivered'),
+  @JsonValue('failed')
+  failed('failed'),
+  @JsonValue('pending')
+  pending('pending');
+
+  final String? value;
+
+  const PushNotificationStatus(this.value);
+}
+
 enum LinkedAccountType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -477,66 +597,6 @@ enum TransactionStatus {
   final String? value;
 
   const TransactionStatus(this.value);
-}
-
-enum MarketplaceActivity {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('listingCreate')
-  listingcreate('listingCreate'),
-  @JsonValue('listingWithdraw')
-  listingwithdraw('listingWithdraw'),
-  @JsonValue('listingUpdate')
-  listingupdate('listingUpdate'),
-  @JsonValue('auctionBid')
-  auctionbid('auctionBid'),
-  @JsonValue('auctionOutBid')
-  auctionoutbid('auctionOutBid'),
-  @JsonValue('offerCreate')
-  offercreate('offerCreate'),
-  @JsonValue('offerWithdraw')
-  offerwithdraw('offerWithdraw'),
-  @JsonValue('offerReject')
-  offerreject('offerReject'),
-  @JsonValue('globalOfferCreate')
-  globaloffercreate('globalOfferCreate'),
-  @JsonValue('globalOfferWithdraw')
-  globalofferwithdraw('globalOfferWithdraw'),
-  @JsonValue('trade')
-  trade('trade'),
-  @JsonValue('bulkTrade')
-  bulktrade('bulkTrade'),
-  @JsonValue('auctionTrade')
-  auctiontrade('auctionTrade'),
-  @JsonValue('otherTrade')
-  othertrade('otherTrade'),
-  @JsonValue('offerTrade')
-  offertrade('offerTrade'),
-  @JsonValue('globalOfferTrade')
-  globaloffertrade('globalOfferTrade'),
-  @JsonValue('deposit')
-  deposit('deposit'),
-  @JsonValue('withdrawDeposit')
-  withdrawdeposit('withdrawDeposit');
-
-  final String? value;
-
-  const MarketplaceActivity(this.value);
-}
-
-enum NotificationAssetType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('nft')
-  nft('nft'),
-  @JsonValue('user')
-  user('user');
-
-  final String? value;
-
-  const NotificationAssetType(this.value);
 }
 
 enum EventGuestStatus {

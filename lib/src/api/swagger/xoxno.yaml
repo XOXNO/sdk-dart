@@ -493,6 +493,46 @@ paths:
       summary: Patch user phone settings
       tags:
         - User
+  /user/me/settings/billing:
+    patch:
+      operationId: UserDataController_updateBillingSettings
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserBillingDetails'
+      responses:
+        '200':
+          description: User billing settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingsDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Patch user billing settings
+      tags:
+        - User
   /user/me/settings/verify-email:
     post:
       operationId: UserDataController_verifyEmailAddress
@@ -1191,6 +1231,13 @@ paths:
           description: Comma separated token identifiers
           schema:
             $ref: '#/components/schemas/TokenCategory'
+        - name: chain
+          required: true
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         '200':
           description: List of tokens
@@ -1395,6 +1442,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       summary: Fetch EGLD metrics
+      tags:
+        - Token
+  /tokens/sui:
+    get:
+      operationId: TokenDataController_retrieveLiquidSuiTokenInfo
+      parameters: []
+      responses:
+        '200':
+          description: xSUI metrics info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IMetrics'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch xSUI metrics
       tags:
         - Token
   /tokens/xoxno/info:
@@ -4889,43 +4968,602 @@ paths:
       summary: Global nft search
       tags:
         - Search
-  /lending/market-sc:
+  /user/notifications:
     get:
-      operationId: XoxnoLendingScController_getMarketSCs
-      parameters: []
+      operationId: NotificationDataController_getNotifications
+      parameters:
+        - name: top
+          required: false
+          in: query
+          description: Number of items to retrieve
+          schema:
+            type: number
+        - name: skip
+          required: false
+          in: query
+          description: Number of items to skip
+          schema:
+            type: number
       responses:
         '200':
-          description: Get all market SCs
+          description: Get user notifications
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/NotificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get notifications of an user
       tags:
-        - Lending SC
-  /lending/market/{token}/price/egld:
+        - User
+  /user/notifications/unread-count:
     get:
-      operationId: XoxnoLendingScController_getTokenPrice
+      operationId: NotificationDataController_getNotificationCount
+      parameters: []
+      responses:
+        '200':
+          description: User notifications count
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationCountResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get the un read notification count
+      tags:
+        - User
+  /user/notifications/clear:
+    delete:
+      operationId: NotificationDataController_clearAllNotifications
+      parameters: []
+      responses:
+        '200':
+          description: User conversation deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Delete a user conversation
+      tags:
+        - User
+  /user/notifications/read:
+    patch:
+      operationId: NotificationDataController_setNotificationAsRead
       parameters:
-        - name: token
-          required: true
-          in: path
+        - name: id
+          required: false
+          in: query
+          description: Notification id
           schema:
             type: string
       responses:
         '200':
-          description: Get lending token price
+          description: Updated notification is returned
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  price:
-                    type: string
-                    example: '1234546542142543'
+                $ref: '#/components/schemas/NotificationDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Set as read notifications, leave empty ID to read all
       tags:
-        - Lending SC
+        - User
+  /mobileNotifications/device/register:
+    post:
+      operationId: MobileNotificationsController_registerDevice
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobileDeviceRegistrationDto'
+      responses:
+        '200':
+          description: Device registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileDeviceDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Register mobile device for push notifications
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/device/{deviceId}:
+    delete:
+      operationId: MobileNotificationsController_deactivateDevice
+      parameters:
+        - name: deviceId
+          required: true
+          in: path
+          description: Device ID to deactivate
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device deactivated successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Deactivate mobile device
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/history:
+    get:
+      operationId: MobileNotificationsController_getNotificationHistory
+      parameters:
+        - name: top
+          required: false
+          in: query
+          description: Number of notifications to return
+          schema:
+            type: integer
+        - name: skip
+          required: false
+          in: query
+          description: Number of notifications to skip
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Push notification history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushNotificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get push notification history for user
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/history/unread-count:
+    get:
+      operationId: MobileNotificationsController_getUnreadNotificationCount
+      parameters: []
+      responses:
+        '200':
+          description: Unread notification count retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushNotificationCountResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get unread push notification count for user
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/history/{notificationId}/read:
+    put:
+      operationId: MobileNotificationsController_markNotificationAsRead
+      parameters:
+        - name: notificationId
+          required: true
+          in: path
+          description: ID of the notification to mark as read
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Notification marked as read successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PushNotificationDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Mark push notification as read
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/history/read-all:
+    put:
+      operationId: MobileNotificationsController_markAllNotificationsAsRead
+      parameters: []
+      responses:
+        '200':
+          description: All notifications marked as read successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Mark all push notifications as read
+      tags:
+        - Mobile Notifications
+  /mobileNotifications/history/clear-all:
+    delete:
+      operationId: MobileNotificationsController_clearNotificationHistory
+      parameters: []
+      responses:
+        '200':
+          description: Notification history cleared successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Clear all push notification history
+      tags:
+        - Mobile Notifications
+  /eventNotifications/event/{eventId}/update:
+    post:
+      operationId: EventNotificationsController_sendEventUpdate
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: Event ID to send update for
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventNotificationDto'
+      responses:
+        '200':
+          description: Event update notification sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Send update notification to event attendees
+      tags:
+        - Event Notifications
+  /eventNotifications/event/{eventId}/reminder:
+    post:
+      operationId: EventNotificationsController_sendEventReminder
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: Event ID to send reminder for
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventNotificationDto'
+      responses:
+        '200':
+          description: Event reminder notification sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Send reminder notification to event attendees
+      tags:
+        - Event Notifications
+  /eventNotifications/creator/marketing:
+    post:
+      operationId: EventNotificationsController_sendCreatorMarketing
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatorMarketingNotificationDto'
+      responses:
+        '200':
+          description: Creator marketing notification sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Send marketing notification to all past attendees of creator events
+      tags:
+        - Event Notifications
+  /eventNotifications/user/{userId}/direct:
+    post:
+      operationId: EventNotificationsController_sendUserSpecificNotification
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: User ID to send notification to
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventNotificationDto'
+      responses:
+        '200':
+          description: User-specific notification sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSuccessResponseDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Send direct notification to specific user
+      tags:
+        - Event Notifications
   /user/native-token:
     get:
       operationId: Web2UserDataController_getNativeToken
@@ -5229,6 +5867,43 @@ paths:
       summary: Get Web2 user shards
       tags:
         - Web2User
+  /lending/market-sc:
+    get:
+      operationId: XoxnoLendingScController_getMarketSCs
+      parameters: []
+      responses:
+        '200':
+          description: Get all market SCs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+        - Lending SC
+  /lending/market/{token}/price/egld:
+    get:
+      operationId: XoxnoLendingScController_getTokenPrice
+      parameters:
+        - name: token
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get lending token price
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  price:
+                    type: string
+                    example: '1234546542142543'
+      tags:
+        - Lending SC
   /activity/query:
     get:
       operationId: NftActivityDataController_retrieveNftActivity
@@ -5322,6 +5997,13 @@ paths:
           description: Bin size in days, as a number followed by a letter (e.g. 1d)
           schema:
             type: string
+        - name: chain
+          required: true
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         '200':
           description: Analytics volume response
@@ -5450,7 +6132,14 @@ paths:
   /analytics/overview:
     get:
       operationId: NftActivityDataController_retrieveOverallStatistics
-      parameters: []
+      parameters:
+        - name: chain
+          required: true
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         '200':
           description: Global analytics overview response
@@ -6096,160 +6785,23 @@ paths:
       tags:
         - AzureWs
         - Chat
-  /user/notifications:
+  /countries:
     get:
-      operationId: NotificationDataController_getNotifications
-      parameters:
-        - name: top
-          required: false
-          in: query
-          description: Number of items to retrieve
-          schema:
-            type: number
-        - name: skip
-          required: false
-          in: query
-          description: Number of items to skip
-          schema:
-            type: number
-      responses:
-        '200':
-          description: Get user notifications
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Get notifications of an user
-      tags:
-        - User
-  /user/notifications/unread-count:
-    get:
-      operationId: NotificationDataController_getNotificationCount
+      operationId: TicketingDataController_getCountries
       parameters: []
       responses:
         '200':
-          description: User notifications count
+          description: Countries
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationCountResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
+                type: array
+                items:
+                  type: string
       security:
         - bearer: []
-      summary: Get the un read notification count
       tags:
-        - User
-  /user/notifications/clear:
-    delete:
-      operationId: NotificationDataController_clearAllNotifications
-      parameters: []
-      responses:
-        '200':
-          description: User conversation deleted successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SuccessDto'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Delete a user conversation
-      tags:
-        - User
-  /user/notifications/read:
-    patch:
-      operationId: NotificationDataController_setNotificationAsRead
-      parameters:
-        - name: id
-          required: false
-          in: query
-          description: Notification id
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Updated notification is returned
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationDoc'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-      security:
-        - bearer: []
-      summary: Set as read notifications, leave empty ID to read all
-      tags:
-        - User
+        - Ticketing
   /event:
     post:
       operationId: TicketingDataController_createEvent
@@ -8512,7 +9064,7 @@ components:
           description: Indicates whether the guest is a company.
         name:
           type: string
-          description: Name of the company.
+          description: Name of the company or user.
         companyRegistrationNumber:
           type: string
           description: Company registration number.
@@ -8540,7 +9092,6 @@ components:
       required:
         - isCompany
         - name
-        - companyRegistrationNumber
         - email
         - country
         - city
@@ -8616,6 +9167,18 @@ components:
         deposits:
           type: object
           description: Deposits notifications
+        eventUpdates:
+          type: object
+          description: Event updates from organizers
+        eventReminders:
+          type: object
+          description: Event reminders before start time
+        eventCheckIn:
+          type: object
+          description: Event check-in notifications
+        eventMarketing:
+          type: object
+          description: Marketing notifications from past event creators
       required:
         - sales
         - bids
@@ -8623,6 +9186,10 @@ components:
         - offersAccepted
         - offersRejected
         - deposits
+        - eventUpdates
+        - eventReminders
+        - eventCheckIn
+        - eventMarketing
     UserSettingsDoc:
       type: object
       properties:
@@ -9669,14 +10236,6 @@ components:
           type: object
           description: Borrow amount scaled
           example: '1500000'
-        vaultAmount:
-          type: object
-          description: Vault amount
-          example: '500000'
-        vaultAmountShort:
-          type: object
-          description: Short vault amount
-          example: 250000
         supplyCap:
           type: string
           description: Supply cap
@@ -9819,8 +10378,6 @@ components:
         - supplyAmountShort
         - borrowAmountShort
         - borrowAmountScaled
-        - vaultAmount
-        - vaultAmountShort
         - supplyCap
         - borrowCap
         - supplyCapShort
@@ -9966,14 +10523,18 @@ components:
           type: object
           description: Supply amount
           example: '2000000'
+        supplyAmountScaled:
+          type: object
+          description: Supply amount scaled
+          example: '2000000'
         borrowAmount:
           type: object
           description: Borrow amount
           example: '1500000'
-        vaultAmount:
+        borrowAmountScaled:
           type: object
-          description: Vault amount
-          example: '500000'
+          description: Borrow amount scaled
+          example: '1500000'
         supplyCap:
           type: string
           description: Supply cap
@@ -9982,6 +10543,18 @@ components:
           type: string
           description: Borrow cap
           example: '2500000'
+        supplyIndex:
+          type: object
+          description: Supply index
+          example: '1.02'
+        borrowIndex:
+          type: object
+          description: Borrow index
+          example: '1.05'
+        timestamp:
+          type: object
+          description: Timestamp of last market activity
+          example: 1732650682
         borrowApy:
           type: object
           description: Borrow annual percentage yield
@@ -10045,10 +10618,14 @@ components:
         - rewardsReserve
         - reserves
         - supplyAmount
+        - supplyAmountScaled
         - borrowAmount
-        - vaultAmount
+        - borrowAmountScaled
         - supplyCap
         - borrowCap
+        - supplyIndex
+        - borrowIndex
+        - timestamp
         - borrowApy
         - supplyApy
         - utilizationRate
@@ -13294,6 +13871,439 @@ components:
         - count
         - hasMoreResults
         - resources
+    MarketplaceActivity:
+      type: string
+      enum:
+        - listingCreate
+        - listingWithdraw
+        - listingUpdate
+        - auctionBid
+        - auctionOutBid
+        - offerCreate
+        - offerWithdraw
+        - offerReject
+        - globalOfferCreate
+        - globalOfferWithdraw
+        - trade
+        - bulkTrade
+        - auctionTrade
+        - otherTrade
+        - offerTrade
+        - globalOfferTrade
+        - deposit
+        - withdrawDeposit
+    NotificationAssetType:
+      type: string
+      enum:
+        - nft
+        - user
+    NotificationAssetDto:
+      type: object
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/NotificationAssetType'
+        collection:
+          type: string
+        identifier:
+          type: string
+        address:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+      required:
+        - type
+    NotificationActivityDto:
+      type: object
+      properties:
+        price:
+          type: number
+        paymentToken:
+          type: string
+        quantity:
+          type: number
+        buyer:
+          type: string
+        seller:
+          type: string
+        previousBidder:
+          type: string
+        deadline:
+          type: number
+    NotificationDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+        txHash:
+          type: string
+        source:
+          type: string
+        activityType:
+          allOf:
+            - $ref: '#/components/schemas/MarketplaceActivity'
+        owner:
+          type: string
+        message:
+          type: string
+        asset:
+          $ref: '#/components/schemas/NotificationAssetDto'
+        activity:
+          $ref: '#/components/schemas/NotificationActivityDto'
+        isRead:
+          type: object
+        timestamp:
+          type: number
+        id:
+          type: string
+        pk:
+          type: string
+        _ts:
+          type: number
+      required:
+        - dataType
+        - txHash
+        - source
+        - activityType
+        - owner
+        - asset
+        - activity
+        - isRead
+        - timestamp
+    NotificationResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationDoc'
+        hasMoreResults:
+          type: boolean
+      required:
+        - resources
+        - hasMoreResults
+    NotificationCountResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Total count of notifications
+      required:
+        - count
+    DevicePlatform:
+      type: string
+      enum:
+        - ios
+        - android
+      description: Device platform
+    MobileDeviceRegistrationDto:
+      type: object
+      properties:
+        deviceUUID:
+          type: string
+          description: Unique device identifier
+          example: abc123-def456-ghi789
+        platform:
+          description: Device platform
+          example: ios
+          allOf:
+            - $ref: '#/components/schemas/DevicePlatform'
+        pushChannel:
+          type: string
+          description: FCM token for Android or APNs token for iOS
+          example: fcm-token-or-apns-token-here
+        appVersion:
+          type: string
+          description: App version
+          example: 1.0.0
+        deviceModel:
+          type: string
+          description: Device model
+          example: iPhone 14 Pro
+        osVersion:
+          type: string
+          description: Operating system version
+          example: iOS 17.0
+      required:
+        - deviceUUID
+        - platform
+        - pushChannel
+        - appVersion
+    MobileDeviceDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Document type identifier
+        deviceUUID:
+          type: string
+          description: Unique device identifier
+        installationId:
+          type: string
+          description: Azure Notification Hubs installation ID
+        platform:
+          description: Mobile platform (iOS or Android)
+          allOf:
+            - $ref: '#/components/schemas/DevicePlatform'
+        pushChannel:
+          type: string
+          description: Platform-specific push token (FCM for Android, APNS for iOS)
+        web2UserId:
+          type: string
+          description: Firebase user ID
+        linkedAddresses:
+          description: Blockchain addresses linked to this device
+          type: array
+          items:
+            type: string
+        appVersion:
+          type: string
+          description: Mobile app version
+        deviceModel:
+          type: string
+          description: Device model (e.g., iPhone 14, Pixel 7)
+        osVersion:
+          type: string
+          description: Operating system version
+        registeredAt:
+          type: number
+          description: Unix timestamp when device was registered
+        lastActiveAt:
+          type: number
+          description: Unix timestamp of last device activity
+        isActive:
+          type: object
+          description: Whether the device is active for notifications
+        id:
+          type: string
+        pk:
+          type: string
+        _ts:
+          type: number
+      required:
+        - dataType
+        - deviceUUID
+        - installationId
+        - platform
+        - pushChannel
+        - web2UserId
+        - linkedAddresses
+        - appVersion
+        - registeredAt
+        - lastActiveAt
+        - isActive
+    PushNotificationType:
+      type: string
+      enum:
+        - eventApproved
+        - eventUpdate
+        - eventReminder
+        - eventCheckIn
+        - eventMarketing
+        - nftSold
+        - offerReceived
+        - userSpecific
+        - broadcast
+    PushNotificationStatus:
+      type: string
+      enum:
+        - sent
+        - delivered
+        - failed
+        - pending
+    PushNotificationEventDto:
+      type: object
+      properties:
+        eventId:
+          type: string
+        eventTitle:
+          type: string
+        eventProfile:
+          type: string
+        creatorAddress:
+          type: string
+        creatorName:
+          type: string
+    PushNotificationTargetingDto:
+      type: object
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/PushNotificationType'
+        tagExpression:
+          type: string
+        targetUsers:
+          type: array
+          items:
+            type: string
+        targetAddresses:
+          type: array
+          items:
+            type: string
+        recipientCount:
+          type: number
+      required:
+        - type
+    PushNotificationDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+        imageUrl:
+          type: string
+        notificationType:
+          allOf:
+            - $ref: '#/components/schemas/PushNotificationType'
+        status:
+          allOf:
+            - $ref: '#/components/schemas/PushNotificationStatus'
+        owner:
+          type: string
+        senderAddress:
+          type: string
+        senderName:
+          type: string
+        event:
+          $ref: '#/components/schemas/PushNotificationEventDto'
+        targeting:
+          $ref: '#/components/schemas/PushNotificationTargetingDto'
+        isRead:
+          type: object
+        timestamp:
+          type: number
+        deliveredAt:
+          type: number
+        clickedAt:
+          type: number
+        sound:
+          type: string
+        badge:
+          type: number
+        appMetadata:
+          type: object
+        id:
+          type: string
+        pk:
+          type: string
+        _ts:
+          type: number
+      required:
+        - dataType
+        - title
+        - message
+        - notificationType
+        - status
+        - owner
+        - senderAddress
+        - targeting
+        - isRead
+        - timestamp
+    PushNotificationResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/PushNotificationDoc'
+        hasMoreResults:
+          type: boolean
+      required:
+        - resources
+        - hasMoreResults
+    PushNotificationCountResponse:
+      type: object
+      properties:
+        count:
+          type: number
+      required:
+        - count
+    NotificationSuccessResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Operation success status
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: Operation completed successfully
+      required:
+        - success
+        - message
+    EventNotificationDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Notification title
+          example: Event Update
+        message:
+          type: string
+          description: Notification message
+          example: The event location has been updated!
+        imageUrl:
+          type: string
+          description: Optional image URL for the notification
+          example: https://example.com/image.jpg
+        eventId:
+          type: string
+          description: Event ID for event-specific notifications
+          example: event-123-456
+        targetUsers:
+          description: Target specific user IDs (Web2 Firebase UIDs)
+          example:
+            - user123
+            - user456
+          type: array
+          items:
+            type: string
+        targetAddresses:
+          description: Target specific wallet addresses
+          example:
+            - erd1abc...
+            - erd1def...
+          type: array
+          items:
+            type: string
+        metadata:
+          type: object
+          description: Additional metadata for the notification
+      required:
+        - title
+        - message
+    CreatorMarketingNotificationDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Notification title
+          example: New Event from Your Favorite Creator!
+        message:
+          type: string
+          description: Notification message
+          example: Join us for an exciting new event next month!
+        imageUrl:
+          type: string
+          description: Optional image URL for the notification
+          example: https://example.com/event-image.jpg
+        creatorAddress:
+          type: string
+          description: Creator wallet address to target past attendees
+          example: erd1creator123...
+        metadata:
+          type: object
+          description: Additional metadata for the notification
+      required:
+        - title
+        - message
+        - creatorAddress
     LinkedAccountType:
       type: string
       enum:
@@ -14285,126 +15295,6 @@ components:
           description: WebSocket connection token
       required:
         - token
-    MarketplaceActivity:
-      type: string
-      enum:
-        - listingCreate
-        - listingWithdraw
-        - listingUpdate
-        - auctionBid
-        - auctionOutBid
-        - offerCreate
-        - offerWithdraw
-        - offerReject
-        - globalOfferCreate
-        - globalOfferWithdraw
-        - trade
-        - bulkTrade
-        - auctionTrade
-        - otherTrade
-        - offerTrade
-        - globalOfferTrade
-        - deposit
-        - withdrawDeposit
-    NotificationAssetType:
-      type: string
-      enum:
-        - nft
-        - user
-    NotificationAssetDto:
-      type: object
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/NotificationAssetType'
-        collection:
-          type: string
-        identifier:
-          type: string
-        address:
-          type: string
-        name:
-          type: string
-        url:
-          type: string
-      required:
-        - type
-    NotificationActivityDto:
-      type: object
-      properties:
-        price:
-          type: number
-        paymentToken:
-          type: string
-        quantity:
-          type: number
-        buyer:
-          type: string
-        seller:
-          type: string
-        previousBidder:
-          type: string
-        deadline:
-          type: number
-    NotificationDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-        txHash:
-          type: string
-        source:
-          type: string
-        activityType:
-          allOf:
-            - $ref: '#/components/schemas/MarketplaceActivity'
-        owner:
-          type: string
-        message:
-          type: string
-        asset:
-          $ref: '#/components/schemas/NotificationAssetDto'
-        activity:
-          $ref: '#/components/schemas/NotificationActivityDto'
-        isRead:
-          type: object
-        timestamp:
-          type: number
-        id:
-          type: string
-        pk:
-          type: string
-        _ts:
-          type: number
-      required:
-        - dataType
-        - txHash
-        - source
-        - activityType
-        - owner
-        - asset
-        - activity
-        - isRead
-        - timestamp
-    NotificationResponse:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationDoc'
-        hasMoreResults:
-          type: boolean
-      required:
-        - resources
-        - hasMoreResults
-    NotificationCountResponse:
-      type: object
-      properties:
-        count:
-          type: number
-      required:
-        - count
     RegistrationDetailsDto:
       type: object
       properties:
@@ -14461,7 +15351,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1751043234
+          minimum: 1751740466
         endTime:
           type: integer
         location:
@@ -14699,11 +15589,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1751043234
+          example: 1751740466
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 5d33ca8e-1c4a-43bb-9268-15272ee8700b
+          example: a277ecaf-968c-468d-b633-10b355242d0f
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -14869,10 +15759,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1751043234
+          example: 1751740467
         endTime:
           type: integer
-          example: 1751043234
+          example: 1751740467
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -15129,11 +16019,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1751043234
+          example: 1751740466
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 365f53c8-8f99-404e-b953-059919ce7012
+          example: 0d72d606-131f-4506-afc1-3585a0e7883d
       required:
         - dataType
         - eventId
@@ -15191,11 +16081,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1751043234
+          minimum: 1751740467
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1751129634
+          minimum: 1751826867
           description: End time timestamp
         maxLimit:
           type: integer
@@ -15244,11 +16134,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1751043234
+          example: 1751740466
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1751043234
+          example: 1751740466
         maxLimit:
           type: integer
           description: >-
@@ -15279,7 +16169,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 3801d2f5-df10-45de-8bda-6c0117e61c6a
+          example: 230919a3-c8a0-439b-9d6d-54d3fe722594
       required:
         - dataType
         - eventId
@@ -15321,10 +16211,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1751043234
+          minimum: 1751740467
         endTime:
           type: integer
-          minimum: 1751129634
+          minimum: 1751826867
       required:
         - prices
         - name
@@ -15463,7 +16353,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: e7403d73-1216-48b4-b99d-6a697eacdf17
+          example: a795c848-34e3-42f6-9a4c-6be32ebdc76e
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -15515,7 +16405,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1751043234
+          example: 1751740466
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15544,7 +16434,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 58bdf6fa-1b76-4eb2-9e43-68fef9670ef0
+          example: 28216ecf-ca0b-4ced-a3e5-04ae39cb077d
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15600,7 +16490,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1751043234
+          example: 1751740466
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -15629,7 +16519,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 58bdf6fa-1b76-4eb2-9e43-68fef9670ef0
+          example: 28216ecf-ca0b-4ced-a3e5-04ae39cb077d
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -15738,11 +16628,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751043234
+          example: 1751740467
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751043234
+          example: 1751740467
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -15753,7 +16643,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1751043234
+          example: 1751740467
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -15844,7 +16734,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1751043234
+          example: 1751740466
       required:
         - dataType
         - id
@@ -15959,11 +16849,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1751043234
+          example: 1751740466
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 5d33ca8e-1c4a-43bb-9268-15272ee8700b
+          example: a277ecaf-968c-468d-b633-10b355242d0f
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16356,11 +17246,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751043234
+          example: 1751740467
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751043234
+          example: 1751740467
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16410,11 +17300,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751043234
+          example: 1751740467
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751043234
+          example: 1751740467
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16446,7 +17336,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 8288ff7c-2a07-4833-bf68-340b43bb2e70
+          example: 15033e83-adfc-4fde-8e31-43e98c868587
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -16462,7 +17352,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1751043234
+          example: 1751740467
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -16607,7 +17497,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 566534c8-9c64-4c13-b645-4219eef6f0b1
+          example: 3465c75e-55ba-47d1-b4c5-8d014de0f1df
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -16634,7 +17524,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1751043234
+          example: 1751740467
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -16708,7 +17598,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 862dad43-b903-4101-af15-4442f043ee0c
+          example: b65f9211-ad06-4a3f-b184-da238a96a5ad
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -16727,7 +17617,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1751043234
+          example: 1751740467
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -17577,7 +18467,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 98469a42-0ee3-4e3b-a533-705eb233084f
+          example: 670460c0-1d29-4a7e-b52d-1d6664065434
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -17594,15 +18484,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1751043234
+          example: 1751740466
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: a8bf59f9-ee0a-4e7b-84b7-46c2dd951d75
+          example: 043ba964-ec6e-4fd2-a224-ffa641fe376d
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1751043234
+          example: 1751740466
         quantity:
           type: integer
           description: Quantity of tickets.

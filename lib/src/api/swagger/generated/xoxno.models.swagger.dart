@@ -1982,7 +1982,7 @@ class UserBillingDetails {
   const UserBillingDetails({
     required this.isCompany,
     required this.name,
-    required this.companyRegistrationNumber,
+    this.companyRegistrationNumber,
     this.companyVatNumber,
     required this.email,
     required this.country,
@@ -2003,7 +2003,7 @@ class UserBillingDetails {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'companyRegistrationNumber')
-  final String companyRegistrationNumber;
+  final String? companyRegistrationNumber;
   @JsonKey(name: 'companyVatNumber')
   final String? companyVatNumber;
   @JsonKey(name: 'email')
@@ -2119,7 +2119,7 @@ extension $UserBillingDetailsExtension on UserBillingDetails {
   UserBillingDetails copyWithWrapped({
     Wrapped<bool>? isCompany,
     Wrapped<String>? name,
-    Wrapped<String>? companyRegistrationNumber,
+    Wrapped<String?>? companyRegistrationNumber,
     Wrapped<String?>? companyVatNumber,
     Wrapped<String>? email,
     Wrapped<String>? country,
@@ -2401,6 +2401,10 @@ class UserNotificationPreferences {
     required this.offersAccepted,
     required this.offersRejected,
     required this.deposits,
+    required this.eventUpdates,
+    required this.eventReminders,
+    required this.eventCheckIn,
+    required this.eventMarketing,
   });
 
   factory UserNotificationPreferences.fromJson(Map<String, dynamic> json) =>
@@ -2421,6 +2425,14 @@ class UserNotificationPreferences {
   final Object offersRejected;
   @JsonKey(name: 'deposits')
   final Object deposits;
+  @JsonKey(name: 'eventUpdates')
+  final Object eventUpdates;
+  @JsonKey(name: 'eventReminders')
+  final Object eventReminders;
+  @JsonKey(name: 'eventCheckIn')
+  final Object eventCheckIn;
+  @JsonKey(name: 'eventMarketing')
+  final Object eventMarketing;
   static const fromJsonFactory = _$UserNotificationPreferencesFromJson;
 
   @override
@@ -2450,6 +2462,26 @@ class UserNotificationPreferences {
                 const DeepCollectionEquality().equals(
                   other.deposits,
                   deposits,
+                )) &&
+            (identical(other.eventUpdates, eventUpdates) ||
+                const DeepCollectionEquality().equals(
+                  other.eventUpdates,
+                  eventUpdates,
+                )) &&
+            (identical(other.eventReminders, eventReminders) ||
+                const DeepCollectionEquality().equals(
+                  other.eventReminders,
+                  eventReminders,
+                )) &&
+            (identical(other.eventCheckIn, eventCheckIn) ||
+                const DeepCollectionEquality().equals(
+                  other.eventCheckIn,
+                  eventCheckIn,
+                )) &&
+            (identical(other.eventMarketing, eventMarketing) ||
+                const DeepCollectionEquality().equals(
+                  other.eventMarketing,
+                  eventMarketing,
                 )));
   }
 
@@ -2464,6 +2496,10 @@ class UserNotificationPreferences {
       const DeepCollectionEquality().hash(offersAccepted) ^
       const DeepCollectionEquality().hash(offersRejected) ^
       const DeepCollectionEquality().hash(deposits) ^
+      const DeepCollectionEquality().hash(eventUpdates) ^
+      const DeepCollectionEquality().hash(eventReminders) ^
+      const DeepCollectionEquality().hash(eventCheckIn) ^
+      const DeepCollectionEquality().hash(eventMarketing) ^
       runtimeType.hashCode;
 }
 
@@ -2475,6 +2511,10 @@ extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
     Object? offersAccepted,
     Object? offersRejected,
     Object? deposits,
+    Object? eventUpdates,
+    Object? eventReminders,
+    Object? eventCheckIn,
+    Object? eventMarketing,
   }) {
     return UserNotificationPreferences(
       sales: sales ?? this.sales,
@@ -2483,6 +2523,10 @@ extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
       offersAccepted: offersAccepted ?? this.offersAccepted,
       offersRejected: offersRejected ?? this.offersRejected,
       deposits: deposits ?? this.deposits,
+      eventUpdates: eventUpdates ?? this.eventUpdates,
+      eventReminders: eventReminders ?? this.eventReminders,
+      eventCheckIn: eventCheckIn ?? this.eventCheckIn,
+      eventMarketing: eventMarketing ?? this.eventMarketing,
     );
   }
 
@@ -2493,6 +2537,10 @@ extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
     Wrapped<Object>? offersAccepted,
     Wrapped<Object>? offersRejected,
     Wrapped<Object>? deposits,
+    Wrapped<Object>? eventUpdates,
+    Wrapped<Object>? eventReminders,
+    Wrapped<Object>? eventCheckIn,
+    Wrapped<Object>? eventMarketing,
   }) {
     return UserNotificationPreferences(
       sales: (sales != null ? sales.value : this.sales),
@@ -2507,6 +2555,18 @@ extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
           ? offersRejected.value
           : this.offersRejected),
       deposits: (deposits != null ? deposits.value : this.deposits),
+      eventUpdates: (eventUpdates != null
+          ? eventUpdates.value
+          : this.eventUpdates),
+      eventReminders: (eventReminders != null
+          ? eventReminders.value
+          : this.eventReminders),
+      eventCheckIn: (eventCheckIn != null
+          ? eventCheckIn.value
+          : this.eventCheckIn),
+      eventMarketing: (eventMarketing != null
+          ? eventMarketing.value
+          : this.eventMarketing),
     );
   }
 }
@@ -6240,8 +6300,6 @@ class LendingMarketProfile {
     required this.supplyAmountShort,
     required this.borrowAmountShort,
     required this.borrowAmountScaled,
-    required this.vaultAmount,
-    required this.vaultAmountShort,
     required this.supplyCap,
     required this.borrowCap,
     required this.supplyCapShort,
@@ -6335,10 +6393,6 @@ class LendingMarketProfile {
   final Object borrowAmountShort;
   @JsonKey(name: 'borrowAmountScaled')
   final Object borrowAmountScaled;
-  @JsonKey(name: 'vaultAmount')
-  final Object vaultAmount;
-  @JsonKey(name: 'vaultAmountShort')
-  final Object vaultAmountShort;
   @JsonKey(name: 'supplyCap')
   final String supplyCap;
   @JsonKey(name: 'borrowCap')
@@ -6525,16 +6579,6 @@ class LendingMarketProfile {
                   other.borrowAmountScaled,
                   borrowAmountScaled,
                 )) &&
-            (identical(other.vaultAmount, vaultAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.vaultAmount,
-                  vaultAmount,
-                )) &&
-            (identical(other.vaultAmountShort, vaultAmountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.vaultAmountShort,
-                  vaultAmountShort,
-                )) &&
             (identical(other.supplyCap, supplyCap) ||
                 const DeepCollectionEquality().equals(
                   other.supplyCap,
@@ -6698,8 +6742,6 @@ class LendingMarketProfile {
       const DeepCollectionEquality().hash(supplyAmountShort) ^
       const DeepCollectionEquality().hash(borrowAmountShort) ^
       const DeepCollectionEquality().hash(borrowAmountScaled) ^
-      const DeepCollectionEquality().hash(vaultAmount) ^
-      const DeepCollectionEquality().hash(vaultAmountShort) ^
       const DeepCollectionEquality().hash(supplyCap) ^
       const DeepCollectionEquality().hash(borrowCap) ^
       const DeepCollectionEquality().hash(supplyCapShort) ^
@@ -6759,8 +6801,6 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
     Object? supplyAmountShort,
     Object? borrowAmountShort,
     Object? borrowAmountScaled,
-    Object? vaultAmount,
-    Object? vaultAmountShort,
     String? supplyCap,
     String? borrowCap,
     Object? supplyCapShort,
@@ -6817,8 +6857,6 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       supplyAmountShort: supplyAmountShort ?? this.supplyAmountShort,
       borrowAmountShort: borrowAmountShort ?? this.borrowAmountShort,
       borrowAmountScaled: borrowAmountScaled ?? this.borrowAmountScaled,
-      vaultAmount: vaultAmount ?? this.vaultAmount,
-      vaultAmountShort: vaultAmountShort ?? this.vaultAmountShort,
       supplyCap: supplyCap ?? this.supplyCap,
       borrowCap: borrowCap ?? this.borrowCap,
       supplyCapShort: supplyCapShort ?? this.supplyCapShort,
@@ -6878,8 +6916,6 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
     Wrapped<Object>? supplyAmountShort,
     Wrapped<Object>? borrowAmountShort,
     Wrapped<Object>? borrowAmountScaled,
-    Wrapped<Object>? vaultAmount,
-    Wrapped<Object>? vaultAmountShort,
     Wrapped<String>? supplyCap,
     Wrapped<String>? borrowCap,
     Wrapped<Object>? supplyCapShort,
@@ -6968,10 +7004,6 @@ extension $LendingMarketProfileExtension on LendingMarketProfile {
       borrowAmountScaled: (borrowAmountScaled != null
           ? borrowAmountScaled.value
           : this.borrowAmountScaled),
-      vaultAmount: (vaultAmount != null ? vaultAmount.value : this.vaultAmount),
-      vaultAmountShort: (vaultAmountShort != null
-          ? vaultAmountShort.value
-          : this.vaultAmountShort),
       supplyCap: (supplyCap != null ? supplyCap.value : this.supplyCap),
       borrowCap: (borrowCap != null ? borrowCap.value : this.borrowCap),
       supplyCapShort: (supplyCapShort != null
@@ -7247,10 +7279,14 @@ class PickTypeClass {
     required this.rewardsReserve,
     required this.reserves,
     required this.supplyAmount,
+    required this.supplyAmountScaled,
     required this.borrowAmount,
-    required this.vaultAmount,
+    required this.borrowAmountScaled,
     required this.supplyCap,
     required this.borrowCap,
+    required this.supplyIndex,
+    required this.borrowIndex,
+    required this.timestamp,
     required this.borrowApy,
     required this.supplyApy,
     required this.utilizationRate,
@@ -7299,14 +7335,22 @@ class PickTypeClass {
   final Object reserves;
   @JsonKey(name: 'supplyAmount')
   final Object supplyAmount;
+  @JsonKey(name: 'supplyAmountScaled')
+  final Object supplyAmountScaled;
   @JsonKey(name: 'borrowAmount')
   final Object borrowAmount;
-  @JsonKey(name: 'vaultAmount')
-  final Object vaultAmount;
+  @JsonKey(name: 'borrowAmountScaled')
+  final Object borrowAmountScaled;
   @JsonKey(name: 'supplyCap')
   final String supplyCap;
   @JsonKey(name: 'borrowCap')
   final String borrowCap;
+  @JsonKey(name: 'supplyIndex')
+  final Object supplyIndex;
+  @JsonKey(name: 'borrowIndex')
+  final Object borrowIndex;
+  @JsonKey(name: 'timestamp')
+  final Object timestamp;
   @JsonKey(name: 'borrowApy')
   final Object borrowApy;
   @JsonKey(name: 'supplyApy')
@@ -7401,15 +7445,20 @@ class PickTypeClass {
                   other.supplyAmount,
                   supplyAmount,
                 )) &&
+            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
+                const DeepCollectionEquality().equals(
+                  other.supplyAmountScaled,
+                  supplyAmountScaled,
+                )) &&
             (identical(other.borrowAmount, borrowAmount) ||
                 const DeepCollectionEquality().equals(
                   other.borrowAmount,
                   borrowAmount,
                 )) &&
-            (identical(other.vaultAmount, vaultAmount) ||
+            (identical(other.borrowAmountScaled, borrowAmountScaled) ||
                 const DeepCollectionEquality().equals(
-                  other.vaultAmount,
-                  vaultAmount,
+                  other.borrowAmountScaled,
+                  borrowAmountScaled,
                 )) &&
             (identical(other.supplyCap, supplyCap) ||
                 const DeepCollectionEquality().equals(
@@ -7420,6 +7469,21 @@ class PickTypeClass {
                 const DeepCollectionEquality().equals(
                   other.borrowCap,
                   borrowCap,
+                )) &&
+            (identical(other.supplyIndex, supplyIndex) ||
+                const DeepCollectionEquality().equals(
+                  other.supplyIndex,
+                  supplyIndex,
+                )) &&
+            (identical(other.borrowIndex, borrowIndex) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowIndex,
+                  borrowIndex,
+                )) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
                 )) &&
             (identical(other.borrowApy, borrowApy) ||
                 const DeepCollectionEquality().equals(
@@ -7499,10 +7563,14 @@ class PickTypeClass {
       const DeepCollectionEquality().hash(rewardsReserve) ^
       const DeepCollectionEquality().hash(reserves) ^
       const DeepCollectionEquality().hash(supplyAmount) ^
+      const DeepCollectionEquality().hash(supplyAmountScaled) ^
       const DeepCollectionEquality().hash(borrowAmount) ^
-      const DeepCollectionEquality().hash(vaultAmount) ^
+      const DeepCollectionEquality().hash(borrowAmountScaled) ^
       const DeepCollectionEquality().hash(supplyCap) ^
       const DeepCollectionEquality().hash(borrowCap) ^
+      const DeepCollectionEquality().hash(supplyIndex) ^
+      const DeepCollectionEquality().hash(borrowIndex) ^
+      const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(borrowApy) ^
       const DeepCollectionEquality().hash(supplyApy) ^
       const DeepCollectionEquality().hash(utilizationRate) ^
@@ -7534,10 +7602,14 @@ extension $PickTypeClassExtension on PickTypeClass {
     Object? rewardsReserve,
     Object? reserves,
     Object? supplyAmount,
+    Object? supplyAmountScaled,
     Object? borrowAmount,
-    Object? vaultAmount,
+    Object? borrowAmountScaled,
     String? supplyCap,
     String? borrowCap,
+    Object? supplyIndex,
+    Object? borrowIndex,
+    Object? timestamp,
     Object? borrowApy,
     Object? supplyApy,
     Object? utilizationRate,
@@ -7566,10 +7638,14 @@ extension $PickTypeClassExtension on PickTypeClass {
       rewardsReserve: rewardsReserve ?? this.rewardsReserve,
       reserves: reserves ?? this.reserves,
       supplyAmount: supplyAmount ?? this.supplyAmount,
+      supplyAmountScaled: supplyAmountScaled ?? this.supplyAmountScaled,
       borrowAmount: borrowAmount ?? this.borrowAmount,
-      vaultAmount: vaultAmount ?? this.vaultAmount,
+      borrowAmountScaled: borrowAmountScaled ?? this.borrowAmountScaled,
       supplyCap: supplyCap ?? this.supplyCap,
       borrowCap: borrowCap ?? this.borrowCap,
+      supplyIndex: supplyIndex ?? this.supplyIndex,
+      borrowIndex: borrowIndex ?? this.borrowIndex,
+      timestamp: timestamp ?? this.timestamp,
       borrowApy: borrowApy ?? this.borrowApy,
       supplyApy: supplyApy ?? this.supplyApy,
       utilizationRate: utilizationRate ?? this.utilizationRate,
@@ -7600,10 +7676,14 @@ extension $PickTypeClassExtension on PickTypeClass {
     Wrapped<Object>? rewardsReserve,
     Wrapped<Object>? reserves,
     Wrapped<Object>? supplyAmount,
+    Wrapped<Object>? supplyAmountScaled,
     Wrapped<Object>? borrowAmount,
-    Wrapped<Object>? vaultAmount,
+    Wrapped<Object>? borrowAmountScaled,
     Wrapped<String>? supplyCap,
     Wrapped<String>? borrowCap,
+    Wrapped<Object>? supplyIndex,
+    Wrapped<Object>? borrowIndex,
+    Wrapped<Object>? timestamp,
     Wrapped<Object>? borrowApy,
     Wrapped<Object>? supplyApy,
     Wrapped<Object>? utilizationRate,
@@ -7644,12 +7724,20 @@ extension $PickTypeClassExtension on PickTypeClass {
       supplyAmount: (supplyAmount != null
           ? supplyAmount.value
           : this.supplyAmount),
+      supplyAmountScaled: (supplyAmountScaled != null
+          ? supplyAmountScaled.value
+          : this.supplyAmountScaled),
       borrowAmount: (borrowAmount != null
           ? borrowAmount.value
           : this.borrowAmount),
-      vaultAmount: (vaultAmount != null ? vaultAmount.value : this.vaultAmount),
+      borrowAmountScaled: (borrowAmountScaled != null
+          ? borrowAmountScaled.value
+          : this.borrowAmountScaled),
       supplyCap: (supplyCap != null ? supplyCap.value : this.supplyCap),
       borrowCap: (borrowCap != null ? borrowCap.value : this.borrowCap),
+      supplyIndex: (supplyIndex != null ? supplyIndex.value : this.supplyIndex),
+      borrowIndex: (borrowIndex != null ? borrowIndex.value : this.borrowIndex),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
       borrowApy: (borrowApy != null ? borrowApy.value : this.borrowApy),
       supplyApy: (supplyApy != null ? supplyApy.value : this.supplyApy),
       utilizationRate: (utilizationRate != null
@@ -19327,6 +19415,1857 @@ extension $GlobalSearchResponseDtoExtension on GlobalSearchResponseDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NotificationAssetDto {
+  const NotificationAssetDto({
+    required this.type,
+    this.collection,
+    this.identifier,
+    this.address,
+    this.name,
+    this.url,
+  });
+
+  factory NotificationAssetDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationAssetDtoFromJson(json);
+
+  static const toJsonFactory = _$NotificationAssetDtoToJson;
+  Map<String, dynamic> toJson() => _$NotificationAssetDtoToJson(this);
+
+  @JsonKey(
+    name: 'type',
+    toJson: notificationAssetTypeToJson,
+    fromJson: notificationAssetTypeFromJson,
+  )
+  final enums.NotificationAssetType type;
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'identifier')
+  final String? identifier;
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'url')
+  final String? url;
+  static const fromJsonFactory = _$NotificationAssetDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationAssetDto &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(
+                  other.address,
+                  address,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(url) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationAssetDtoExtension on NotificationAssetDto {
+  NotificationAssetDto copyWith({
+    enums.NotificationAssetType? type,
+    String? collection,
+    String? identifier,
+    String? address,
+    String? name,
+    String? url,
+  }) {
+    return NotificationAssetDto(
+      type: type ?? this.type,
+      collection: collection ?? this.collection,
+      identifier: identifier ?? this.identifier,
+      address: address ?? this.address,
+      name: name ?? this.name,
+      url: url ?? this.url,
+    );
+  }
+
+  NotificationAssetDto copyWithWrapped({
+    Wrapped<enums.NotificationAssetType>? type,
+    Wrapped<String?>? collection,
+    Wrapped<String?>? identifier,
+    Wrapped<String?>? address,
+    Wrapped<String?>? name,
+    Wrapped<String?>? url,
+  }) {
+    return NotificationAssetDto(
+      type: (type != null ? type.value : this.type),
+      collection: (collection != null ? collection.value : this.collection),
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      address: (address != null ? address.value : this.address),
+      name: (name != null ? name.value : this.name),
+      url: (url != null ? url.value : this.url),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationActivityDto {
+  const NotificationActivityDto({
+    this.price,
+    this.paymentToken,
+    this.quantity,
+    this.buyer,
+    this.seller,
+    this.previousBidder,
+    this.deadline,
+  });
+
+  factory NotificationActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationActivityDtoFromJson(json);
+
+  static const toJsonFactory = _$NotificationActivityDtoToJson;
+  Map<String, dynamic> toJson() => _$NotificationActivityDtoToJson(this);
+
+  @JsonKey(name: 'price')
+  final double? price;
+  @JsonKey(name: 'paymentToken')
+  final String? paymentToken;
+  @JsonKey(name: 'quantity')
+  final double? quantity;
+  @JsonKey(name: 'buyer')
+  final String? buyer;
+  @JsonKey(name: 'seller')
+  final String? seller;
+  @JsonKey(name: 'previousBidder')
+  final String? previousBidder;
+  @JsonKey(name: 'deadline')
+  final double? deadline;
+  static const fromJsonFactory = _$NotificationActivityDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationActivityDto &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.paymentToken, paymentToken) ||
+                const DeepCollectionEquality().equals(
+                  other.paymentToken,
+                  paymentToken,
+                )) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality().equals(
+                  other.quantity,
+                  quantity,
+                )) &&
+            (identical(other.buyer, buyer) ||
+                const DeepCollectionEquality().equals(other.buyer, buyer)) &&
+            (identical(other.seller, seller) ||
+                const DeepCollectionEquality().equals(other.seller, seller)) &&
+            (identical(other.previousBidder, previousBidder) ||
+                const DeepCollectionEquality().equals(
+                  other.previousBidder,
+                  previousBidder,
+                )) &&
+            (identical(other.deadline, deadline) ||
+                const DeepCollectionEquality().equals(
+                  other.deadline,
+                  deadline,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(paymentToken) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(buyer) ^
+      const DeepCollectionEquality().hash(seller) ^
+      const DeepCollectionEquality().hash(previousBidder) ^
+      const DeepCollectionEquality().hash(deadline) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationActivityDtoExtension on NotificationActivityDto {
+  NotificationActivityDto copyWith({
+    double? price,
+    String? paymentToken,
+    double? quantity,
+    String? buyer,
+    String? seller,
+    String? previousBidder,
+    double? deadline,
+  }) {
+    return NotificationActivityDto(
+      price: price ?? this.price,
+      paymentToken: paymentToken ?? this.paymentToken,
+      quantity: quantity ?? this.quantity,
+      buyer: buyer ?? this.buyer,
+      seller: seller ?? this.seller,
+      previousBidder: previousBidder ?? this.previousBidder,
+      deadline: deadline ?? this.deadline,
+    );
+  }
+
+  NotificationActivityDto copyWithWrapped({
+    Wrapped<double?>? price,
+    Wrapped<String?>? paymentToken,
+    Wrapped<double?>? quantity,
+    Wrapped<String?>? buyer,
+    Wrapped<String?>? seller,
+    Wrapped<String?>? previousBidder,
+    Wrapped<double?>? deadline,
+  }) {
+    return NotificationActivityDto(
+      price: (price != null ? price.value : this.price),
+      paymentToken: (paymentToken != null
+          ? paymentToken.value
+          : this.paymentToken),
+      quantity: (quantity != null ? quantity.value : this.quantity),
+      buyer: (buyer != null ? buyer.value : this.buyer),
+      seller: (seller != null ? seller.value : this.seller),
+      previousBidder: (previousBidder != null
+          ? previousBidder.value
+          : this.previousBidder),
+      deadline: (deadline != null ? deadline.value : this.deadline),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationDoc {
+  const NotificationDoc({
+    required this.dataType,
+    required this.txHash,
+    required this.source,
+    required this.activityType,
+    required this.owner,
+    this.message,
+    required this.asset,
+    required this.activity,
+    required this.isRead,
+    required this.timestamp,
+    this.id,
+    this.pk,
+    this.ts,
+  });
+
+  factory NotificationDoc.fromJson(Map<String, dynamic> json) =>
+      _$NotificationDocFromJson(json);
+
+  static const toJsonFactory = _$NotificationDocToJson;
+  Map<String, dynamic> toJson() => _$NotificationDocToJson(this);
+
+  @JsonKey(name: 'dataType')
+  final String dataType;
+  @JsonKey(name: 'txHash')
+  final String txHash;
+  @JsonKey(name: 'source')
+  final String source;
+  @JsonKey(
+    name: 'activityType',
+    toJson: marketplaceActivityToJson,
+    fromJson: marketplaceActivityFromJson,
+  )
+  final enums.MarketplaceActivity activityType;
+  @JsonKey(name: 'owner')
+  final String owner;
+  @JsonKey(name: 'message')
+  final String? message;
+  @JsonKey(name: 'asset')
+  final NotificationAssetDto asset;
+  @JsonKey(name: 'activity')
+  final NotificationActivityDto activity;
+  @JsonKey(name: 'isRead')
+  final Object isRead;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'pk')
+  final String? pk;
+  @JsonKey(name: '_ts')
+  final double? ts;
+  static const fromJsonFactory = _$NotificationDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
+                )) &&
+            (identical(other.txHash, txHash) ||
+                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
+            (identical(other.source, source) ||
+                const DeepCollectionEquality().equals(other.source, source)) &&
+            (identical(other.activityType, activityType) ||
+                const DeepCollectionEquality().equals(
+                  other.activityType,
+                  activityType,
+                )) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(
+                  other.message,
+                  message,
+                )) &&
+            (identical(other.asset, asset) ||
+                const DeepCollectionEquality().equals(other.asset, asset)) &&
+            (identical(other.activity, activity) ||
+                const DeepCollectionEquality().equals(
+                  other.activity,
+                  activity,
+                )) &&
+            (identical(other.isRead, isRead) ||
+                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.pk, pk) ||
+                const DeepCollectionEquality().equals(other.pk, pk)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(txHash) ^
+      const DeepCollectionEquality().hash(source) ^
+      const DeepCollectionEquality().hash(activityType) ^
+      const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(asset) ^
+      const DeepCollectionEquality().hash(activity) ^
+      const DeepCollectionEquality().hash(isRead) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(pk) ^
+      const DeepCollectionEquality().hash(ts) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationDocExtension on NotificationDoc {
+  NotificationDoc copyWith({
+    String? dataType,
+    String? txHash,
+    String? source,
+    enums.MarketplaceActivity? activityType,
+    String? owner,
+    String? message,
+    NotificationAssetDto? asset,
+    NotificationActivityDto? activity,
+    Object? isRead,
+    double? timestamp,
+    String? id,
+    String? pk,
+    double? ts,
+  }) {
+    return NotificationDoc(
+      dataType: dataType ?? this.dataType,
+      txHash: txHash ?? this.txHash,
+      source: source ?? this.source,
+      activityType: activityType ?? this.activityType,
+      owner: owner ?? this.owner,
+      message: message ?? this.message,
+      asset: asset ?? this.asset,
+      activity: activity ?? this.activity,
+      isRead: isRead ?? this.isRead,
+      timestamp: timestamp ?? this.timestamp,
+      id: id ?? this.id,
+      pk: pk ?? this.pk,
+      ts: ts ?? this.ts,
+    );
+  }
+
+  NotificationDoc copyWithWrapped({
+    Wrapped<String>? dataType,
+    Wrapped<String>? txHash,
+    Wrapped<String>? source,
+    Wrapped<enums.MarketplaceActivity>? activityType,
+    Wrapped<String>? owner,
+    Wrapped<String?>? message,
+    Wrapped<NotificationAssetDto>? asset,
+    Wrapped<NotificationActivityDto>? activity,
+    Wrapped<Object>? isRead,
+    Wrapped<double>? timestamp,
+    Wrapped<String?>? id,
+    Wrapped<String?>? pk,
+    Wrapped<double?>? ts,
+  }) {
+    return NotificationDoc(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      txHash: (txHash != null ? txHash.value : this.txHash),
+      source: (source != null ? source.value : this.source),
+      activityType: (activityType != null
+          ? activityType.value
+          : this.activityType),
+      owner: (owner != null ? owner.value : this.owner),
+      message: (message != null ? message.value : this.message),
+      asset: (asset != null ? asset.value : this.asset),
+      activity: (activity != null ? activity.value : this.activity),
+      isRead: (isRead != null ? isRead.value : this.isRead),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      id: (id != null ? id.value : this.id),
+      pk: (pk != null ? pk.value : this.pk),
+      ts: (ts != null ? ts.value : this.ts),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationResponse {
+  const NotificationResponse({
+    required this.resources,
+    required this.hasMoreResults,
+  });
+
+  factory NotificationResponse.fromJson(Map<String, dynamic> json) =>
+      _$NotificationResponseFromJson(json);
+
+  static const toJsonFactory = _$NotificationResponseToJson;
+  Map<String, dynamic> toJson() => _$NotificationResponseToJson(this);
+
+  @JsonKey(name: 'resources', defaultValue: <NotificationDoc>[])
+  final List<NotificationDoc> resources;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  static const fromJsonFactory = _$NotificationResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationResponse &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
+                )) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
+                const DeepCollectionEquality().equals(
+                  other.hasMoreResults,
+                  hasMoreResults,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(resources) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationResponseExtension on NotificationResponse {
+  NotificationResponse copyWith({
+    List<NotificationDoc>? resources,
+    bool? hasMoreResults,
+  }) {
+    return NotificationResponse(
+      resources: resources ?? this.resources,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+    );
+  }
+
+  NotificationResponse copyWithWrapped({
+    Wrapped<List<NotificationDoc>>? resources,
+    Wrapped<bool>? hasMoreResults,
+  }) {
+    return NotificationResponse(
+      resources: (resources != null ? resources.value : this.resources),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationCountResponse {
+  const NotificationCountResponse({required this.count});
+
+  factory NotificationCountResponse.fromJson(Map<String, dynamic> json) =>
+      _$NotificationCountResponseFromJson(json);
+
+  static const toJsonFactory = _$NotificationCountResponseToJson;
+  Map<String, dynamic> toJson() => _$NotificationCountResponseToJson(this);
+
+  @JsonKey(name: 'count')
+  final double count;
+  static const fromJsonFactory = _$NotificationCountResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationCountResponse &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^ runtimeType.hashCode;
+}
+
+extension $NotificationCountResponseExtension on NotificationCountResponse {
+  NotificationCountResponse copyWith({double? count}) {
+    return NotificationCountResponse(count: count ?? this.count);
+  }
+
+  NotificationCountResponse copyWithWrapped({Wrapped<double>? count}) {
+    return NotificationCountResponse(
+      count: (count != null ? count.value : this.count),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MobileDeviceRegistrationDto {
+  const MobileDeviceRegistrationDto({
+    required this.deviceUUID,
+    required this.platform,
+    required this.pushChannel,
+    required this.appVersion,
+    this.deviceModel,
+    this.osVersion,
+  });
+
+  factory MobileDeviceRegistrationDto.fromJson(Map<String, dynamic> json) =>
+      _$MobileDeviceRegistrationDtoFromJson(json);
+
+  static const toJsonFactory = _$MobileDeviceRegistrationDtoToJson;
+  Map<String, dynamic> toJson() => _$MobileDeviceRegistrationDtoToJson(this);
+
+  @JsonKey(name: 'deviceUUID')
+  final String deviceUUID;
+  @JsonKey(
+    name: 'platform',
+    toJson: devicePlatformToJson,
+    fromJson: devicePlatformFromJson,
+  )
+  final enums.DevicePlatform platform;
+  @JsonKey(name: 'pushChannel')
+  final String pushChannel;
+  @JsonKey(name: 'appVersion')
+  final String appVersion;
+  @JsonKey(name: 'deviceModel')
+  final String? deviceModel;
+  @JsonKey(name: 'osVersion')
+  final String? osVersion;
+  static const fromJsonFactory = _$MobileDeviceRegistrationDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MobileDeviceRegistrationDto &&
+            (identical(other.deviceUUID, deviceUUID) ||
+                const DeepCollectionEquality().equals(
+                  other.deviceUUID,
+                  deviceUUID,
+                )) &&
+            (identical(other.platform, platform) ||
+                const DeepCollectionEquality().equals(
+                  other.platform,
+                  platform,
+                )) &&
+            (identical(other.pushChannel, pushChannel) ||
+                const DeepCollectionEquality().equals(
+                  other.pushChannel,
+                  pushChannel,
+                )) &&
+            (identical(other.appVersion, appVersion) ||
+                const DeepCollectionEquality().equals(
+                  other.appVersion,
+                  appVersion,
+                )) &&
+            (identical(other.deviceModel, deviceModel) ||
+                const DeepCollectionEquality().equals(
+                  other.deviceModel,
+                  deviceModel,
+                )) &&
+            (identical(other.osVersion, osVersion) ||
+                const DeepCollectionEquality().equals(
+                  other.osVersion,
+                  osVersion,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(deviceUUID) ^
+      const DeepCollectionEquality().hash(platform) ^
+      const DeepCollectionEquality().hash(pushChannel) ^
+      const DeepCollectionEquality().hash(appVersion) ^
+      const DeepCollectionEquality().hash(deviceModel) ^
+      const DeepCollectionEquality().hash(osVersion) ^
+      runtimeType.hashCode;
+}
+
+extension $MobileDeviceRegistrationDtoExtension on MobileDeviceRegistrationDto {
+  MobileDeviceRegistrationDto copyWith({
+    String? deviceUUID,
+    enums.DevicePlatform? platform,
+    String? pushChannel,
+    String? appVersion,
+    String? deviceModel,
+    String? osVersion,
+  }) {
+    return MobileDeviceRegistrationDto(
+      deviceUUID: deviceUUID ?? this.deviceUUID,
+      platform: platform ?? this.platform,
+      pushChannel: pushChannel ?? this.pushChannel,
+      appVersion: appVersion ?? this.appVersion,
+      deviceModel: deviceModel ?? this.deviceModel,
+      osVersion: osVersion ?? this.osVersion,
+    );
+  }
+
+  MobileDeviceRegistrationDto copyWithWrapped({
+    Wrapped<String>? deviceUUID,
+    Wrapped<enums.DevicePlatform>? platform,
+    Wrapped<String>? pushChannel,
+    Wrapped<String>? appVersion,
+    Wrapped<String?>? deviceModel,
+    Wrapped<String?>? osVersion,
+  }) {
+    return MobileDeviceRegistrationDto(
+      deviceUUID: (deviceUUID != null ? deviceUUID.value : this.deviceUUID),
+      platform: (platform != null ? platform.value : this.platform),
+      pushChannel: (pushChannel != null ? pushChannel.value : this.pushChannel),
+      appVersion: (appVersion != null ? appVersion.value : this.appVersion),
+      deviceModel: (deviceModel != null ? deviceModel.value : this.deviceModel),
+      osVersion: (osVersion != null ? osVersion.value : this.osVersion),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MobileDeviceDoc {
+  const MobileDeviceDoc({
+    required this.dataType,
+    required this.deviceUUID,
+    required this.installationId,
+    required this.platform,
+    required this.pushChannel,
+    required this.web2UserId,
+    required this.linkedAddresses,
+    required this.appVersion,
+    this.deviceModel,
+    this.osVersion,
+    required this.registeredAt,
+    required this.lastActiveAt,
+    required this.isActive,
+    this.id,
+    this.pk,
+    this.ts,
+  });
+
+  factory MobileDeviceDoc.fromJson(Map<String, dynamic> json) =>
+      _$MobileDeviceDocFromJson(json);
+
+  static const toJsonFactory = _$MobileDeviceDocToJson;
+  Map<String, dynamic> toJson() => _$MobileDeviceDocToJson(this);
+
+  @JsonKey(name: 'dataType')
+  final String dataType;
+  @JsonKey(name: 'deviceUUID')
+  final String deviceUUID;
+  @JsonKey(name: 'installationId')
+  final String installationId;
+  @JsonKey(
+    name: 'platform',
+    toJson: devicePlatformToJson,
+    fromJson: devicePlatformFromJson,
+  )
+  final enums.DevicePlatform platform;
+  @JsonKey(name: 'pushChannel')
+  final String pushChannel;
+  @JsonKey(name: 'web2UserId')
+  final String web2UserId;
+  @JsonKey(name: 'linkedAddresses', defaultValue: <String>[])
+  final List<String> linkedAddresses;
+  @JsonKey(name: 'appVersion')
+  final String appVersion;
+  @JsonKey(name: 'deviceModel')
+  final String? deviceModel;
+  @JsonKey(name: 'osVersion')
+  final String? osVersion;
+  @JsonKey(name: 'registeredAt')
+  final double registeredAt;
+  @JsonKey(name: 'lastActiveAt')
+  final double lastActiveAt;
+  @JsonKey(name: 'isActive')
+  final Object isActive;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'pk')
+  final String? pk;
+  @JsonKey(name: '_ts')
+  final double? ts;
+  static const fromJsonFactory = _$MobileDeviceDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MobileDeviceDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
+                )) &&
+            (identical(other.deviceUUID, deviceUUID) ||
+                const DeepCollectionEquality().equals(
+                  other.deviceUUID,
+                  deviceUUID,
+                )) &&
+            (identical(other.installationId, installationId) ||
+                const DeepCollectionEquality().equals(
+                  other.installationId,
+                  installationId,
+                )) &&
+            (identical(other.platform, platform) ||
+                const DeepCollectionEquality().equals(
+                  other.platform,
+                  platform,
+                )) &&
+            (identical(other.pushChannel, pushChannel) ||
+                const DeepCollectionEquality().equals(
+                  other.pushChannel,
+                  pushChannel,
+                )) &&
+            (identical(other.web2UserId, web2UserId) ||
+                const DeepCollectionEquality().equals(
+                  other.web2UserId,
+                  web2UserId,
+                )) &&
+            (identical(other.linkedAddresses, linkedAddresses) ||
+                const DeepCollectionEquality().equals(
+                  other.linkedAddresses,
+                  linkedAddresses,
+                )) &&
+            (identical(other.appVersion, appVersion) ||
+                const DeepCollectionEquality().equals(
+                  other.appVersion,
+                  appVersion,
+                )) &&
+            (identical(other.deviceModel, deviceModel) ||
+                const DeepCollectionEquality().equals(
+                  other.deviceModel,
+                  deviceModel,
+                )) &&
+            (identical(other.osVersion, osVersion) ||
+                const DeepCollectionEquality().equals(
+                  other.osVersion,
+                  osVersion,
+                )) &&
+            (identical(other.registeredAt, registeredAt) ||
+                const DeepCollectionEquality().equals(
+                  other.registeredAt,
+                  registeredAt,
+                )) &&
+            (identical(other.lastActiveAt, lastActiveAt) ||
+                const DeepCollectionEquality().equals(
+                  other.lastActiveAt,
+                  lastActiveAt,
+                )) &&
+            (identical(other.isActive, isActive) ||
+                const DeepCollectionEquality().equals(
+                  other.isActive,
+                  isActive,
+                )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.pk, pk) ||
+                const DeepCollectionEquality().equals(other.pk, pk)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(deviceUUID) ^
+      const DeepCollectionEquality().hash(installationId) ^
+      const DeepCollectionEquality().hash(platform) ^
+      const DeepCollectionEquality().hash(pushChannel) ^
+      const DeepCollectionEquality().hash(web2UserId) ^
+      const DeepCollectionEquality().hash(linkedAddresses) ^
+      const DeepCollectionEquality().hash(appVersion) ^
+      const DeepCollectionEquality().hash(deviceModel) ^
+      const DeepCollectionEquality().hash(osVersion) ^
+      const DeepCollectionEquality().hash(registeredAt) ^
+      const DeepCollectionEquality().hash(lastActiveAt) ^
+      const DeepCollectionEquality().hash(isActive) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(pk) ^
+      const DeepCollectionEquality().hash(ts) ^
+      runtimeType.hashCode;
+}
+
+extension $MobileDeviceDocExtension on MobileDeviceDoc {
+  MobileDeviceDoc copyWith({
+    String? dataType,
+    String? deviceUUID,
+    String? installationId,
+    enums.DevicePlatform? platform,
+    String? pushChannel,
+    String? web2UserId,
+    List<String>? linkedAddresses,
+    String? appVersion,
+    String? deviceModel,
+    String? osVersion,
+    double? registeredAt,
+    double? lastActiveAt,
+    Object? isActive,
+    String? id,
+    String? pk,
+    double? ts,
+  }) {
+    return MobileDeviceDoc(
+      dataType: dataType ?? this.dataType,
+      deviceUUID: deviceUUID ?? this.deviceUUID,
+      installationId: installationId ?? this.installationId,
+      platform: platform ?? this.platform,
+      pushChannel: pushChannel ?? this.pushChannel,
+      web2UserId: web2UserId ?? this.web2UserId,
+      linkedAddresses: linkedAddresses ?? this.linkedAddresses,
+      appVersion: appVersion ?? this.appVersion,
+      deviceModel: deviceModel ?? this.deviceModel,
+      osVersion: osVersion ?? this.osVersion,
+      registeredAt: registeredAt ?? this.registeredAt,
+      lastActiveAt: lastActiveAt ?? this.lastActiveAt,
+      isActive: isActive ?? this.isActive,
+      id: id ?? this.id,
+      pk: pk ?? this.pk,
+      ts: ts ?? this.ts,
+    );
+  }
+
+  MobileDeviceDoc copyWithWrapped({
+    Wrapped<String>? dataType,
+    Wrapped<String>? deviceUUID,
+    Wrapped<String>? installationId,
+    Wrapped<enums.DevicePlatform>? platform,
+    Wrapped<String>? pushChannel,
+    Wrapped<String>? web2UserId,
+    Wrapped<List<String>>? linkedAddresses,
+    Wrapped<String>? appVersion,
+    Wrapped<String?>? deviceModel,
+    Wrapped<String?>? osVersion,
+    Wrapped<double>? registeredAt,
+    Wrapped<double>? lastActiveAt,
+    Wrapped<Object>? isActive,
+    Wrapped<String?>? id,
+    Wrapped<String?>? pk,
+    Wrapped<double?>? ts,
+  }) {
+    return MobileDeviceDoc(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      deviceUUID: (deviceUUID != null ? deviceUUID.value : this.deviceUUID),
+      installationId: (installationId != null
+          ? installationId.value
+          : this.installationId),
+      platform: (platform != null ? platform.value : this.platform),
+      pushChannel: (pushChannel != null ? pushChannel.value : this.pushChannel),
+      web2UserId: (web2UserId != null ? web2UserId.value : this.web2UserId),
+      linkedAddresses: (linkedAddresses != null
+          ? linkedAddresses.value
+          : this.linkedAddresses),
+      appVersion: (appVersion != null ? appVersion.value : this.appVersion),
+      deviceModel: (deviceModel != null ? deviceModel.value : this.deviceModel),
+      osVersion: (osVersion != null ? osVersion.value : this.osVersion),
+      registeredAt: (registeredAt != null
+          ? registeredAt.value
+          : this.registeredAt),
+      lastActiveAt: (lastActiveAt != null
+          ? lastActiveAt.value
+          : this.lastActiveAt),
+      isActive: (isActive != null ? isActive.value : this.isActive),
+      id: (id != null ? id.value : this.id),
+      pk: (pk != null ? pk.value : this.pk),
+      ts: (ts != null ? ts.value : this.ts),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationEventDto {
+  const PushNotificationEventDto({
+    this.eventId,
+    this.eventTitle,
+    this.eventProfile,
+    this.creatorAddress,
+    this.creatorName,
+  });
+
+  factory PushNotificationEventDto.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationEventDtoFromJson(json);
+
+  static const toJsonFactory = _$PushNotificationEventDtoToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationEventDtoToJson(this);
+
+  @JsonKey(name: 'eventId')
+  final String? eventId;
+  @JsonKey(name: 'eventTitle')
+  final String? eventTitle;
+  @JsonKey(name: 'eventProfile')
+  final String? eventProfile;
+  @JsonKey(name: 'creatorAddress')
+  final String? creatorAddress;
+  @JsonKey(name: 'creatorName')
+  final String? creatorName;
+  static const fromJsonFactory = _$PushNotificationEventDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PushNotificationEventDto &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality().equals(
+                  other.eventId,
+                  eventId,
+                )) &&
+            (identical(other.eventTitle, eventTitle) ||
+                const DeepCollectionEquality().equals(
+                  other.eventTitle,
+                  eventTitle,
+                )) &&
+            (identical(other.eventProfile, eventProfile) ||
+                const DeepCollectionEquality().equals(
+                  other.eventProfile,
+                  eventProfile,
+                )) &&
+            (identical(other.creatorAddress, creatorAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorAddress,
+                  creatorAddress,
+                )) &&
+            (identical(other.creatorName, creatorName) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorName,
+                  creatorName,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(eventTitle) ^
+      const DeepCollectionEquality().hash(eventProfile) ^
+      const DeepCollectionEquality().hash(creatorAddress) ^
+      const DeepCollectionEquality().hash(creatorName) ^
+      runtimeType.hashCode;
+}
+
+extension $PushNotificationEventDtoExtension on PushNotificationEventDto {
+  PushNotificationEventDto copyWith({
+    String? eventId,
+    String? eventTitle,
+    String? eventProfile,
+    String? creatorAddress,
+    String? creatorName,
+  }) {
+    return PushNotificationEventDto(
+      eventId: eventId ?? this.eventId,
+      eventTitle: eventTitle ?? this.eventTitle,
+      eventProfile: eventProfile ?? this.eventProfile,
+      creatorAddress: creatorAddress ?? this.creatorAddress,
+      creatorName: creatorName ?? this.creatorName,
+    );
+  }
+
+  PushNotificationEventDto copyWithWrapped({
+    Wrapped<String?>? eventId,
+    Wrapped<String?>? eventTitle,
+    Wrapped<String?>? eventProfile,
+    Wrapped<String?>? creatorAddress,
+    Wrapped<String?>? creatorName,
+  }) {
+    return PushNotificationEventDto(
+      eventId: (eventId != null ? eventId.value : this.eventId),
+      eventTitle: (eventTitle != null ? eventTitle.value : this.eventTitle),
+      eventProfile: (eventProfile != null
+          ? eventProfile.value
+          : this.eventProfile),
+      creatorAddress: (creatorAddress != null
+          ? creatorAddress.value
+          : this.creatorAddress),
+      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationTargetingDto {
+  const PushNotificationTargetingDto({
+    required this.type,
+    this.tagExpression,
+    this.targetUsers,
+    this.targetAddresses,
+    this.recipientCount,
+  });
+
+  factory PushNotificationTargetingDto.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationTargetingDtoFromJson(json);
+
+  static const toJsonFactory = _$PushNotificationTargetingDtoToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationTargetingDtoToJson(this);
+
+  @JsonKey(
+    name: 'type',
+    toJson: pushNotificationTypeToJson,
+    fromJson: pushNotificationTypeFromJson,
+  )
+  final enums.PushNotificationType type;
+  @JsonKey(name: 'tagExpression')
+  final String? tagExpression;
+  @JsonKey(name: 'targetUsers', defaultValue: <String>[])
+  final List<String>? targetUsers;
+  @JsonKey(name: 'targetAddresses', defaultValue: <String>[])
+  final List<String>? targetAddresses;
+  @JsonKey(name: 'recipientCount')
+  final double? recipientCount;
+  static const fromJsonFactory = _$PushNotificationTargetingDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PushNotificationTargetingDto &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.tagExpression, tagExpression) ||
+                const DeepCollectionEquality().equals(
+                  other.tagExpression,
+                  tagExpression,
+                )) &&
+            (identical(other.targetUsers, targetUsers) ||
+                const DeepCollectionEquality().equals(
+                  other.targetUsers,
+                  targetUsers,
+                )) &&
+            (identical(other.targetAddresses, targetAddresses) ||
+                const DeepCollectionEquality().equals(
+                  other.targetAddresses,
+                  targetAddresses,
+                )) &&
+            (identical(other.recipientCount, recipientCount) ||
+                const DeepCollectionEquality().equals(
+                  other.recipientCount,
+                  recipientCount,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(tagExpression) ^
+      const DeepCollectionEquality().hash(targetUsers) ^
+      const DeepCollectionEquality().hash(targetAddresses) ^
+      const DeepCollectionEquality().hash(recipientCount) ^
+      runtimeType.hashCode;
+}
+
+extension $PushNotificationTargetingDtoExtension
+    on PushNotificationTargetingDto {
+  PushNotificationTargetingDto copyWith({
+    enums.PushNotificationType? type,
+    String? tagExpression,
+    List<String>? targetUsers,
+    List<String>? targetAddresses,
+    double? recipientCount,
+  }) {
+    return PushNotificationTargetingDto(
+      type: type ?? this.type,
+      tagExpression: tagExpression ?? this.tagExpression,
+      targetUsers: targetUsers ?? this.targetUsers,
+      targetAddresses: targetAddresses ?? this.targetAddresses,
+      recipientCount: recipientCount ?? this.recipientCount,
+    );
+  }
+
+  PushNotificationTargetingDto copyWithWrapped({
+    Wrapped<enums.PushNotificationType>? type,
+    Wrapped<String?>? tagExpression,
+    Wrapped<List<String>?>? targetUsers,
+    Wrapped<List<String>?>? targetAddresses,
+    Wrapped<double?>? recipientCount,
+  }) {
+    return PushNotificationTargetingDto(
+      type: (type != null ? type.value : this.type),
+      tagExpression: (tagExpression != null
+          ? tagExpression.value
+          : this.tagExpression),
+      targetUsers: (targetUsers != null ? targetUsers.value : this.targetUsers),
+      targetAddresses: (targetAddresses != null
+          ? targetAddresses.value
+          : this.targetAddresses),
+      recipientCount: (recipientCount != null
+          ? recipientCount.value
+          : this.recipientCount),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationDoc {
+  const PushNotificationDoc({
+    required this.dataType,
+    required this.title,
+    required this.message,
+    this.imageUrl,
+    required this.notificationType,
+    required this.status,
+    required this.owner,
+    required this.senderAddress,
+    this.senderName,
+    this.event,
+    required this.targeting,
+    required this.isRead,
+    required this.timestamp,
+    this.deliveredAt,
+    this.clickedAt,
+    this.sound,
+    this.badge,
+    this.appMetadata,
+    this.id,
+    this.pk,
+    this.ts,
+  });
+
+  factory PushNotificationDoc.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationDocFromJson(json);
+
+  static const toJsonFactory = _$PushNotificationDocToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationDocToJson(this);
+
+  @JsonKey(name: 'dataType')
+  final String dataType;
+  @JsonKey(name: 'title')
+  final String title;
+  @JsonKey(name: 'message')
+  final String message;
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @JsonKey(
+    name: 'notificationType',
+    toJson: pushNotificationTypeToJson,
+    fromJson: pushNotificationTypeFromJson,
+  )
+  final enums.PushNotificationType notificationType;
+  @JsonKey(
+    name: 'status',
+    toJson: pushNotificationStatusToJson,
+    fromJson: pushNotificationStatusFromJson,
+  )
+  final enums.PushNotificationStatus status;
+  @JsonKey(name: 'owner')
+  final String owner;
+  @JsonKey(name: 'senderAddress')
+  final String senderAddress;
+  @JsonKey(name: 'senderName')
+  final String? senderName;
+  @JsonKey(name: 'event')
+  final PushNotificationEventDto? event;
+  @JsonKey(name: 'targeting')
+  final PushNotificationTargetingDto targeting;
+  @JsonKey(name: 'isRead')
+  final Object isRead;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'deliveredAt')
+  final double? deliveredAt;
+  @JsonKey(name: 'clickedAt')
+  final double? clickedAt;
+  @JsonKey(name: 'sound')
+  final String? sound;
+  @JsonKey(name: 'badge')
+  final double? badge;
+  @JsonKey(name: 'appMetadata')
+  final Object? appMetadata;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'pk')
+  final String? pk;
+  @JsonKey(name: '_ts')
+  final double? ts;
+  static const fromJsonFactory = _$PushNotificationDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PushNotificationDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
+                )) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(
+                  other.message,
+                  message,
+                )) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.imageUrl,
+                  imageUrl,
+                )) &&
+            (identical(other.notificationType, notificationType) ||
+                const DeepCollectionEquality().equals(
+                  other.notificationType,
+                  notificationType,
+                )) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.senderAddress, senderAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.senderAddress,
+                  senderAddress,
+                )) &&
+            (identical(other.senderName, senderName) ||
+                const DeepCollectionEquality().equals(
+                  other.senderName,
+                  senderName,
+                )) &&
+            (identical(other.event, event) ||
+                const DeepCollectionEquality().equals(other.event, event)) &&
+            (identical(other.targeting, targeting) ||
+                const DeepCollectionEquality().equals(
+                  other.targeting,
+                  targeting,
+                )) &&
+            (identical(other.isRead, isRead) ||
+                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.deliveredAt, deliveredAt) ||
+                const DeepCollectionEquality().equals(
+                  other.deliveredAt,
+                  deliveredAt,
+                )) &&
+            (identical(other.clickedAt, clickedAt) ||
+                const DeepCollectionEquality().equals(
+                  other.clickedAt,
+                  clickedAt,
+                )) &&
+            (identical(other.sound, sound) ||
+                const DeepCollectionEquality().equals(other.sound, sound)) &&
+            (identical(other.badge, badge) ||
+                const DeepCollectionEquality().equals(other.badge, badge)) &&
+            (identical(other.appMetadata, appMetadata) ||
+                const DeepCollectionEquality().equals(
+                  other.appMetadata,
+                  appMetadata,
+                )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.pk, pk) ||
+                const DeepCollectionEquality().equals(other.pk, pk)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(notificationType) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(senderAddress) ^
+      const DeepCollectionEquality().hash(senderName) ^
+      const DeepCollectionEquality().hash(event) ^
+      const DeepCollectionEquality().hash(targeting) ^
+      const DeepCollectionEquality().hash(isRead) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(deliveredAt) ^
+      const DeepCollectionEquality().hash(clickedAt) ^
+      const DeepCollectionEquality().hash(sound) ^
+      const DeepCollectionEquality().hash(badge) ^
+      const DeepCollectionEquality().hash(appMetadata) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(pk) ^
+      const DeepCollectionEquality().hash(ts) ^
+      runtimeType.hashCode;
+}
+
+extension $PushNotificationDocExtension on PushNotificationDoc {
+  PushNotificationDoc copyWith({
+    String? dataType,
+    String? title,
+    String? message,
+    String? imageUrl,
+    enums.PushNotificationType? notificationType,
+    enums.PushNotificationStatus? status,
+    String? owner,
+    String? senderAddress,
+    String? senderName,
+    PushNotificationEventDto? event,
+    PushNotificationTargetingDto? targeting,
+    Object? isRead,
+    double? timestamp,
+    double? deliveredAt,
+    double? clickedAt,
+    String? sound,
+    double? badge,
+    Object? appMetadata,
+    String? id,
+    String? pk,
+    double? ts,
+  }) {
+    return PushNotificationDoc(
+      dataType: dataType ?? this.dataType,
+      title: title ?? this.title,
+      message: message ?? this.message,
+      imageUrl: imageUrl ?? this.imageUrl,
+      notificationType: notificationType ?? this.notificationType,
+      status: status ?? this.status,
+      owner: owner ?? this.owner,
+      senderAddress: senderAddress ?? this.senderAddress,
+      senderName: senderName ?? this.senderName,
+      event: event ?? this.event,
+      targeting: targeting ?? this.targeting,
+      isRead: isRead ?? this.isRead,
+      timestamp: timestamp ?? this.timestamp,
+      deliveredAt: deliveredAt ?? this.deliveredAt,
+      clickedAt: clickedAt ?? this.clickedAt,
+      sound: sound ?? this.sound,
+      badge: badge ?? this.badge,
+      appMetadata: appMetadata ?? this.appMetadata,
+      id: id ?? this.id,
+      pk: pk ?? this.pk,
+      ts: ts ?? this.ts,
+    );
+  }
+
+  PushNotificationDoc copyWithWrapped({
+    Wrapped<String>? dataType,
+    Wrapped<String>? title,
+    Wrapped<String>? message,
+    Wrapped<String?>? imageUrl,
+    Wrapped<enums.PushNotificationType>? notificationType,
+    Wrapped<enums.PushNotificationStatus>? status,
+    Wrapped<String>? owner,
+    Wrapped<String>? senderAddress,
+    Wrapped<String?>? senderName,
+    Wrapped<PushNotificationEventDto?>? event,
+    Wrapped<PushNotificationTargetingDto>? targeting,
+    Wrapped<Object>? isRead,
+    Wrapped<double>? timestamp,
+    Wrapped<double?>? deliveredAt,
+    Wrapped<double?>? clickedAt,
+    Wrapped<String?>? sound,
+    Wrapped<double?>? badge,
+    Wrapped<Object?>? appMetadata,
+    Wrapped<String?>? id,
+    Wrapped<String?>? pk,
+    Wrapped<double?>? ts,
+  }) {
+    return PushNotificationDoc(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      title: (title != null ? title.value : this.title),
+      message: (message != null ? message.value : this.message),
+      imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl),
+      notificationType: (notificationType != null
+          ? notificationType.value
+          : this.notificationType),
+      status: (status != null ? status.value : this.status),
+      owner: (owner != null ? owner.value : this.owner),
+      senderAddress: (senderAddress != null
+          ? senderAddress.value
+          : this.senderAddress),
+      senderName: (senderName != null ? senderName.value : this.senderName),
+      event: (event != null ? event.value : this.event),
+      targeting: (targeting != null ? targeting.value : this.targeting),
+      isRead: (isRead != null ? isRead.value : this.isRead),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      deliveredAt: (deliveredAt != null ? deliveredAt.value : this.deliveredAt),
+      clickedAt: (clickedAt != null ? clickedAt.value : this.clickedAt),
+      sound: (sound != null ? sound.value : this.sound),
+      badge: (badge != null ? badge.value : this.badge),
+      appMetadata: (appMetadata != null ? appMetadata.value : this.appMetadata),
+      id: (id != null ? id.value : this.id),
+      pk: (pk != null ? pk.value : this.pk),
+      ts: (ts != null ? ts.value : this.ts),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationResponse {
+  const PushNotificationResponse({
+    required this.resources,
+    required this.hasMoreResults,
+  });
+
+  factory PushNotificationResponse.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationResponseFromJson(json);
+
+  static const toJsonFactory = _$PushNotificationResponseToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationResponseToJson(this);
+
+  @JsonKey(name: 'resources', defaultValue: <PushNotificationDoc>[])
+  final List<PushNotificationDoc> resources;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  static const fromJsonFactory = _$PushNotificationResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PushNotificationResponse &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
+                )) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
+                const DeepCollectionEquality().equals(
+                  other.hasMoreResults,
+                  hasMoreResults,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(resources) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      runtimeType.hashCode;
+}
+
+extension $PushNotificationResponseExtension on PushNotificationResponse {
+  PushNotificationResponse copyWith({
+    List<PushNotificationDoc>? resources,
+    bool? hasMoreResults,
+  }) {
+    return PushNotificationResponse(
+      resources: resources ?? this.resources,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+    );
+  }
+
+  PushNotificationResponse copyWithWrapped({
+    Wrapped<List<PushNotificationDoc>>? resources,
+    Wrapped<bool>? hasMoreResults,
+  }) {
+    return PushNotificationResponse(
+      resources: (resources != null ? resources.value : this.resources),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PushNotificationCountResponse {
+  const PushNotificationCountResponse({required this.count});
+
+  factory PushNotificationCountResponse.fromJson(Map<String, dynamic> json) =>
+      _$PushNotificationCountResponseFromJson(json);
+
+  static const toJsonFactory = _$PushNotificationCountResponseToJson;
+  Map<String, dynamic> toJson() => _$PushNotificationCountResponseToJson(this);
+
+  @JsonKey(name: 'count')
+  final double count;
+  static const fromJsonFactory = _$PushNotificationCountResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is PushNotificationCountResponse &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^ runtimeType.hashCode;
+}
+
+extension $PushNotificationCountResponseExtension
+    on PushNotificationCountResponse {
+  PushNotificationCountResponse copyWith({double? count}) {
+    return PushNotificationCountResponse(count: count ?? this.count);
+  }
+
+  PushNotificationCountResponse copyWithWrapped({Wrapped<double>? count}) {
+    return PushNotificationCountResponse(
+      count: (count != null ? count.value : this.count),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NotificationSuccessResponseDto {
+  const NotificationSuccessResponseDto({
+    required this.success,
+    required this.message,
+  });
+
+  factory NotificationSuccessResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationSuccessResponseDtoFromJson(json);
+
+  static const toJsonFactory = _$NotificationSuccessResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$NotificationSuccessResponseDtoToJson(this);
+
+  @JsonKey(name: 'success')
+  final bool success;
+  @JsonKey(name: 'message')
+  final String message;
+  static const fromJsonFactory = _$NotificationSuccessResponseDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NotificationSuccessResponseDto &&
+            (identical(other.success, success) ||
+                const DeepCollectionEquality().equals(
+                  other.success,
+                  success,
+                )) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(success) ^
+      const DeepCollectionEquality().hash(message) ^
+      runtimeType.hashCode;
+}
+
+extension $NotificationSuccessResponseDtoExtension
+    on NotificationSuccessResponseDto {
+  NotificationSuccessResponseDto copyWith({bool? success, String? message}) {
+    return NotificationSuccessResponseDto(
+      success: success ?? this.success,
+      message: message ?? this.message,
+    );
+  }
+
+  NotificationSuccessResponseDto copyWithWrapped({
+    Wrapped<bool>? success,
+    Wrapped<String>? message,
+  }) {
+    return NotificationSuccessResponseDto(
+      success: (success != null ? success.value : this.success),
+      message: (message != null ? message.value : this.message),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventNotificationDto {
+  const EventNotificationDto({
+    required this.title,
+    required this.message,
+    this.imageUrl,
+    this.eventId,
+    this.targetUsers,
+    this.targetAddresses,
+    this.metadata,
+  });
+
+  factory EventNotificationDto.fromJson(Map<String, dynamic> json) =>
+      _$EventNotificationDtoFromJson(json);
+
+  static const toJsonFactory = _$EventNotificationDtoToJson;
+  Map<String, dynamic> toJson() => _$EventNotificationDtoToJson(this);
+
+  @JsonKey(name: 'title')
+  final String title;
+  @JsonKey(name: 'message')
+  final String message;
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @JsonKey(name: 'eventId')
+  final String? eventId;
+  @JsonKey(name: 'targetUsers', defaultValue: <String>[])
+  final List<String>? targetUsers;
+  @JsonKey(name: 'targetAddresses', defaultValue: <String>[])
+  final List<String>? targetAddresses;
+  @JsonKey(name: 'metadata')
+  final Object? metadata;
+  static const fromJsonFactory = _$EventNotificationDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventNotificationDto &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(
+                  other.message,
+                  message,
+                )) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.imageUrl,
+                  imageUrl,
+                )) &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality().equals(
+                  other.eventId,
+                  eventId,
+                )) &&
+            (identical(other.targetUsers, targetUsers) ||
+                const DeepCollectionEquality().equals(
+                  other.targetUsers,
+                  targetUsers,
+                )) &&
+            (identical(other.targetAddresses, targetAddresses) ||
+                const DeepCollectionEquality().equals(
+                  other.targetAddresses,
+                  targetAddresses,
+                )) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality().equals(
+                  other.metadata,
+                  metadata,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(targetUsers) ^
+      const DeepCollectionEquality().hash(targetAddresses) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      runtimeType.hashCode;
+}
+
+extension $EventNotificationDtoExtension on EventNotificationDto {
+  EventNotificationDto copyWith({
+    String? title,
+    String? message,
+    String? imageUrl,
+    String? eventId,
+    List<String>? targetUsers,
+    List<String>? targetAddresses,
+    Object? metadata,
+  }) {
+    return EventNotificationDto(
+      title: title ?? this.title,
+      message: message ?? this.message,
+      imageUrl: imageUrl ?? this.imageUrl,
+      eventId: eventId ?? this.eventId,
+      targetUsers: targetUsers ?? this.targetUsers,
+      targetAddresses: targetAddresses ?? this.targetAddresses,
+      metadata: metadata ?? this.metadata,
+    );
+  }
+
+  EventNotificationDto copyWithWrapped({
+    Wrapped<String>? title,
+    Wrapped<String>? message,
+    Wrapped<String?>? imageUrl,
+    Wrapped<String?>? eventId,
+    Wrapped<List<String>?>? targetUsers,
+    Wrapped<List<String>?>? targetAddresses,
+    Wrapped<Object?>? metadata,
+  }) {
+    return EventNotificationDto(
+      title: (title != null ? title.value : this.title),
+      message: (message != null ? message.value : this.message),
+      imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl),
+      eventId: (eventId != null ? eventId.value : this.eventId),
+      targetUsers: (targetUsers != null ? targetUsers.value : this.targetUsers),
+      targetAddresses: (targetAddresses != null
+          ? targetAddresses.value
+          : this.targetAddresses),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreatorMarketingNotificationDto {
+  const CreatorMarketingNotificationDto({
+    required this.title,
+    required this.message,
+    this.imageUrl,
+    required this.creatorAddress,
+    this.metadata,
+  });
+
+  factory CreatorMarketingNotificationDto.fromJson(Map<String, dynamic> json) =>
+      _$CreatorMarketingNotificationDtoFromJson(json);
+
+  static const toJsonFactory = _$CreatorMarketingNotificationDtoToJson;
+  Map<String, dynamic> toJson() =>
+      _$CreatorMarketingNotificationDtoToJson(this);
+
+  @JsonKey(name: 'title')
+  final String title;
+  @JsonKey(name: 'message')
+  final String message;
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @JsonKey(name: 'creatorAddress')
+  final String creatorAddress;
+  @JsonKey(name: 'metadata')
+  final Object? metadata;
+  static const fromJsonFactory = _$CreatorMarketingNotificationDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CreatorMarketingNotificationDto &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(
+                  other.message,
+                  message,
+                )) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.imageUrl,
+                  imageUrl,
+                )) &&
+            (identical(other.creatorAddress, creatorAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorAddress,
+                  creatorAddress,
+                )) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality().equals(
+                  other.metadata,
+                  metadata,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(creatorAddress) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      runtimeType.hashCode;
+}
+
+extension $CreatorMarketingNotificationDtoExtension
+    on CreatorMarketingNotificationDto {
+  CreatorMarketingNotificationDto copyWith({
+    String? title,
+    String? message,
+    String? imageUrl,
+    String? creatorAddress,
+    Object? metadata,
+  }) {
+    return CreatorMarketingNotificationDto(
+      title: title ?? this.title,
+      message: message ?? this.message,
+      imageUrl: imageUrl ?? this.imageUrl,
+      creatorAddress: creatorAddress ?? this.creatorAddress,
+      metadata: metadata ?? this.metadata,
+    );
+  }
+
+  CreatorMarketingNotificationDto copyWithWrapped({
+    Wrapped<String>? title,
+    Wrapped<String>? message,
+    Wrapped<String?>? imageUrl,
+    Wrapped<String>? creatorAddress,
+    Wrapped<Object?>? metadata,
+  }) {
+    return CreatorMarketingNotificationDto(
+      title: (title != null ? title.value : this.title),
+      message: (message != null ? message.value : this.message),
+      imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl),
+      creatorAddress: (creatorAddress != null
+          ? creatorAddress.value
+          : this.creatorAddress),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class Web2UserWallet {
   const Web2UserWallet({
     required this.type,
@@ -23319,550 +25258,6 @@ extension $WebSocketTokenDtoExtension on WebSocketTokenDto {
 
   WebSocketTokenDto copyWithWrapped({Wrapped<String>? token}) {
     return WebSocketTokenDto(token: (token != null ? token.value : this.token));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NotificationAssetDto {
-  const NotificationAssetDto({
-    required this.type,
-    this.collection,
-    this.identifier,
-    this.address,
-    this.name,
-    this.url,
-  });
-
-  factory NotificationAssetDto.fromJson(Map<String, dynamic> json) =>
-      _$NotificationAssetDtoFromJson(json);
-
-  static const toJsonFactory = _$NotificationAssetDtoToJson;
-  Map<String, dynamic> toJson() => _$NotificationAssetDtoToJson(this);
-
-  @JsonKey(
-    name: 'type',
-    toJson: notificationAssetTypeToJson,
-    fromJson: notificationAssetTypeFromJson,
-  )
-  final enums.NotificationAssetType type;
-  @JsonKey(name: 'collection')
-  final String? collection;
-  @JsonKey(name: 'identifier')
-  final String? identifier;
-  @JsonKey(name: 'address')
-  final String? address;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'url')
-  final String? url;
-  static const fromJsonFactory = _$NotificationAssetDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationAssetDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      runtimeType.hashCode;
-}
-
-extension $NotificationAssetDtoExtension on NotificationAssetDto {
-  NotificationAssetDto copyWith({
-    enums.NotificationAssetType? type,
-    String? collection,
-    String? identifier,
-    String? address,
-    String? name,
-    String? url,
-  }) {
-    return NotificationAssetDto(
-      type: type ?? this.type,
-      collection: collection ?? this.collection,
-      identifier: identifier ?? this.identifier,
-      address: address ?? this.address,
-      name: name ?? this.name,
-      url: url ?? this.url,
-    );
-  }
-
-  NotificationAssetDto copyWithWrapped({
-    Wrapped<enums.NotificationAssetType>? type,
-    Wrapped<String?>? collection,
-    Wrapped<String?>? identifier,
-    Wrapped<String?>? address,
-    Wrapped<String?>? name,
-    Wrapped<String?>? url,
-  }) {
-    return NotificationAssetDto(
-      type: (type != null ? type.value : this.type),
-      collection: (collection != null ? collection.value : this.collection),
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      address: (address != null ? address.value : this.address),
-      name: (name != null ? name.value : this.name),
-      url: (url != null ? url.value : this.url),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NotificationActivityDto {
-  const NotificationActivityDto({
-    this.price,
-    this.paymentToken,
-    this.quantity,
-    this.buyer,
-    this.seller,
-    this.previousBidder,
-    this.deadline,
-  });
-
-  factory NotificationActivityDto.fromJson(Map<String, dynamic> json) =>
-      _$NotificationActivityDtoFromJson(json);
-
-  static const toJsonFactory = _$NotificationActivityDtoToJson;
-  Map<String, dynamic> toJson() => _$NotificationActivityDtoToJson(this);
-
-  @JsonKey(name: 'price')
-  final double? price;
-  @JsonKey(name: 'paymentToken')
-  final String? paymentToken;
-  @JsonKey(name: 'quantity')
-  final double? quantity;
-  @JsonKey(name: 'buyer')
-  final String? buyer;
-  @JsonKey(name: 'seller')
-  final String? seller;
-  @JsonKey(name: 'previousBidder')
-  final String? previousBidder;
-  @JsonKey(name: 'deadline')
-  final double? deadline;
-  static const fromJsonFactory = _$NotificationActivityDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationActivityDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.buyer, buyer) ||
-                const DeepCollectionEquality().equals(other.buyer, buyer)) &&
-            (identical(other.seller, seller) ||
-                const DeepCollectionEquality().equals(other.seller, seller)) &&
-            (identical(other.previousBidder, previousBidder) ||
-                const DeepCollectionEquality().equals(
-                  other.previousBidder,
-                  previousBidder,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(buyer) ^
-      const DeepCollectionEquality().hash(seller) ^
-      const DeepCollectionEquality().hash(previousBidder) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      runtimeType.hashCode;
-}
-
-extension $NotificationActivityDtoExtension on NotificationActivityDto {
-  NotificationActivityDto copyWith({
-    double? price,
-    String? paymentToken,
-    double? quantity,
-    String? buyer,
-    String? seller,
-    String? previousBidder,
-    double? deadline,
-  }) {
-    return NotificationActivityDto(
-      price: price ?? this.price,
-      paymentToken: paymentToken ?? this.paymentToken,
-      quantity: quantity ?? this.quantity,
-      buyer: buyer ?? this.buyer,
-      seller: seller ?? this.seller,
-      previousBidder: previousBidder ?? this.previousBidder,
-      deadline: deadline ?? this.deadline,
-    );
-  }
-
-  NotificationActivityDto copyWithWrapped({
-    Wrapped<double?>? price,
-    Wrapped<String?>? paymentToken,
-    Wrapped<double?>? quantity,
-    Wrapped<String?>? buyer,
-    Wrapped<String?>? seller,
-    Wrapped<String?>? previousBidder,
-    Wrapped<double?>? deadline,
-  }) {
-    return NotificationActivityDto(
-      price: (price != null ? price.value : this.price),
-      paymentToken: (paymentToken != null
-          ? paymentToken.value
-          : this.paymentToken),
-      quantity: (quantity != null ? quantity.value : this.quantity),
-      buyer: (buyer != null ? buyer.value : this.buyer),
-      seller: (seller != null ? seller.value : this.seller),
-      previousBidder: (previousBidder != null
-          ? previousBidder.value
-          : this.previousBidder),
-      deadline: (deadline != null ? deadline.value : this.deadline),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NotificationDoc {
-  const NotificationDoc({
-    required this.dataType,
-    required this.txHash,
-    required this.source,
-    required this.activityType,
-    required this.owner,
-    this.message,
-    required this.asset,
-    required this.activity,
-    required this.isRead,
-    required this.timestamp,
-    this.id,
-    this.pk,
-    this.ts,
-  });
-
-  factory NotificationDoc.fromJson(Map<String, dynamic> json) =>
-      _$NotificationDocFromJson(json);
-
-  static const toJsonFactory = _$NotificationDocToJson;
-  Map<String, dynamic> toJson() => _$NotificationDocToJson(this);
-
-  @JsonKey(name: 'dataType')
-  final String dataType;
-  @JsonKey(name: 'txHash')
-  final String txHash;
-  @JsonKey(name: 'source')
-  final String source;
-  @JsonKey(
-    name: 'activityType',
-    toJson: marketplaceActivityToJson,
-    fromJson: marketplaceActivityFromJson,
-  )
-  final enums.MarketplaceActivity activityType;
-  @JsonKey(name: 'owner')
-  final String owner;
-  @JsonKey(name: 'message')
-  final String? message;
-  @JsonKey(name: 'asset')
-  final NotificationAssetDto asset;
-  @JsonKey(name: 'activity')
-  final NotificationActivityDto activity;
-  @JsonKey(name: 'isRead')
-  final Object isRead;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'pk')
-  final String? pk;
-  @JsonKey(name: '_ts')
-  final double? ts;
-  static const fromJsonFactory = _$NotificationDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.source, source) ||
-                const DeepCollectionEquality().equals(other.source, source)) &&
-            (identical(other.activityType, activityType) ||
-                const DeepCollectionEquality().equals(
-                  other.activityType,
-                  activityType,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.asset, asset) ||
-                const DeepCollectionEquality().equals(other.asset, asset)) &&
-            (identical(other.activity, activity) ||
-                const DeepCollectionEquality().equals(
-                  other.activity,
-                  activity,
-                )) &&
-            (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(source) ^
-      const DeepCollectionEquality().hash(activityType) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(asset) ^
-      const DeepCollectionEquality().hash(activity) ^
-      const DeepCollectionEquality().hash(isRead) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
-}
-
-extension $NotificationDocExtension on NotificationDoc {
-  NotificationDoc copyWith({
-    String? dataType,
-    String? txHash,
-    String? source,
-    enums.MarketplaceActivity? activityType,
-    String? owner,
-    String? message,
-    NotificationAssetDto? asset,
-    NotificationActivityDto? activity,
-    Object? isRead,
-    double? timestamp,
-    String? id,
-    String? pk,
-    double? ts,
-  }) {
-    return NotificationDoc(
-      dataType: dataType ?? this.dataType,
-      txHash: txHash ?? this.txHash,
-      source: source ?? this.source,
-      activityType: activityType ?? this.activityType,
-      owner: owner ?? this.owner,
-      message: message ?? this.message,
-      asset: asset ?? this.asset,
-      activity: activity ?? this.activity,
-      isRead: isRead ?? this.isRead,
-      timestamp: timestamp ?? this.timestamp,
-      id: id ?? this.id,
-      pk: pk ?? this.pk,
-      ts: ts ?? this.ts,
-    );
-  }
-
-  NotificationDoc copyWithWrapped({
-    Wrapped<String>? dataType,
-    Wrapped<String>? txHash,
-    Wrapped<String>? source,
-    Wrapped<enums.MarketplaceActivity>? activityType,
-    Wrapped<String>? owner,
-    Wrapped<String?>? message,
-    Wrapped<NotificationAssetDto>? asset,
-    Wrapped<NotificationActivityDto>? activity,
-    Wrapped<Object>? isRead,
-    Wrapped<double>? timestamp,
-    Wrapped<String?>? id,
-    Wrapped<String?>? pk,
-    Wrapped<double?>? ts,
-  }) {
-    return NotificationDoc(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      txHash: (txHash != null ? txHash.value : this.txHash),
-      source: (source != null ? source.value : this.source),
-      activityType: (activityType != null
-          ? activityType.value
-          : this.activityType),
-      owner: (owner != null ? owner.value : this.owner),
-      message: (message != null ? message.value : this.message),
-      asset: (asset != null ? asset.value : this.asset),
-      activity: (activity != null ? activity.value : this.activity),
-      isRead: (isRead != null ? isRead.value : this.isRead),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-      id: (id != null ? id.value : this.id),
-      pk: (pk != null ? pk.value : this.pk),
-      ts: (ts != null ? ts.value : this.ts),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NotificationResponse {
-  const NotificationResponse({
-    required this.resources,
-    required this.hasMoreResults,
-  });
-
-  factory NotificationResponse.fromJson(Map<String, dynamic> json) =>
-      _$NotificationResponseFromJson(json);
-
-  static const toJsonFactory = _$NotificationResponseToJson;
-  Map<String, dynamic> toJson() => _$NotificationResponseToJson(this);
-
-  @JsonKey(name: 'resources', defaultValue: <NotificationDoc>[])
-  final List<NotificationDoc> resources;
-  @JsonKey(name: 'hasMoreResults')
-  final bool hasMoreResults;
-  static const fromJsonFactory = _$NotificationResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationResponse &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      runtimeType.hashCode;
-}
-
-extension $NotificationResponseExtension on NotificationResponse {
-  NotificationResponse copyWith({
-    List<NotificationDoc>? resources,
-    bool? hasMoreResults,
-  }) {
-    return NotificationResponse(
-      resources: resources ?? this.resources,
-      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-    );
-  }
-
-  NotificationResponse copyWithWrapped({
-    Wrapped<List<NotificationDoc>>? resources,
-    Wrapped<bool>? hasMoreResults,
-  }) {
-    return NotificationResponse(
-      resources: (resources != null ? resources.value : this.resources),
-      hasMoreResults: (hasMoreResults != null
-          ? hasMoreResults.value
-          : this.hasMoreResults),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NotificationCountResponse {
-  const NotificationCountResponse({required this.count});
-
-  factory NotificationCountResponse.fromJson(Map<String, dynamic> json) =>
-      _$NotificationCountResponseFromJson(json);
-
-  static const toJsonFactory = _$NotificationCountResponseToJson;
-  Map<String, dynamic> toJson() => _$NotificationCountResponseToJson(this);
-
-  @JsonKey(name: 'count')
-  final double count;
-  static const fromJsonFactory = _$NotificationCountResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationCountResponse &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^ runtimeType.hashCode;
-}
-
-extension $NotificationCountResponseExtension on NotificationCountResponse {
-  NotificationCountResponse copyWith({double? count}) {
-    return NotificationCountResponse(count: count ?? this.count);
-  }
-
-  NotificationCountResponse copyWithWrapped({Wrapped<double>? count}) {
-    return NotificationCountResponse(
-      count: (count != null ? count.value : this.count),
-    );
   }
 }
 
@@ -38721,6 +40116,392 @@ List<enums.StakingDataType>? stakingDataTypeNullableListFromJson(
       .toList();
 }
 
+String? marketplaceActivityNullableToJson(
+  enums.MarketplaceActivity? marketplaceActivity,
+) {
+  return marketplaceActivity?.value;
+}
+
+String? marketplaceActivityToJson(
+  enums.MarketplaceActivity marketplaceActivity,
+) {
+  return marketplaceActivity.value;
+}
+
+enums.MarketplaceActivity marketplaceActivityFromJson(
+  Object? marketplaceActivity, [
+  enums.MarketplaceActivity? defaultValue,
+]) {
+  return enums.MarketplaceActivity.values.firstWhereOrNull(
+        (e) => e.value == marketplaceActivity,
+      ) ??
+      defaultValue ??
+      enums.MarketplaceActivity.swaggerGeneratedUnknown;
+}
+
+enums.MarketplaceActivity? marketplaceActivityNullableFromJson(
+  Object? marketplaceActivity, [
+  enums.MarketplaceActivity? defaultValue,
+]) {
+  if (marketplaceActivity == null) {
+    return null;
+  }
+  return enums.MarketplaceActivity.values.firstWhereOrNull(
+        (e) => e.value == marketplaceActivity,
+      ) ??
+      defaultValue;
+}
+
+String marketplaceActivityExplodedListToJson(
+  List<enums.MarketplaceActivity>? marketplaceActivity,
+) {
+  return marketplaceActivity?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> marketplaceActivityListToJson(
+  List<enums.MarketplaceActivity>? marketplaceActivity,
+) {
+  if (marketplaceActivity == null) {
+    return [];
+  }
+
+  return marketplaceActivity.map((e) => e.value!).toList();
+}
+
+List<enums.MarketplaceActivity> marketplaceActivityListFromJson(
+  List? marketplaceActivity, [
+  List<enums.MarketplaceActivity>? defaultValue,
+]) {
+  if (marketplaceActivity == null) {
+    return defaultValue ?? [];
+  }
+
+  return marketplaceActivity
+      .map((e) => marketplaceActivityFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.MarketplaceActivity>? marketplaceActivityNullableListFromJson(
+  List? marketplaceActivity, [
+  List<enums.MarketplaceActivity>? defaultValue,
+]) {
+  if (marketplaceActivity == null) {
+    return defaultValue;
+  }
+
+  return marketplaceActivity
+      .map((e) => marketplaceActivityFromJson(e.toString()))
+      .toList();
+}
+
+String? notificationAssetTypeNullableToJson(
+  enums.NotificationAssetType? notificationAssetType,
+) {
+  return notificationAssetType?.value;
+}
+
+String? notificationAssetTypeToJson(
+  enums.NotificationAssetType notificationAssetType,
+) {
+  return notificationAssetType.value;
+}
+
+enums.NotificationAssetType notificationAssetTypeFromJson(
+  Object? notificationAssetType, [
+  enums.NotificationAssetType? defaultValue,
+]) {
+  return enums.NotificationAssetType.values.firstWhereOrNull(
+        (e) => e.value == notificationAssetType,
+      ) ??
+      defaultValue ??
+      enums.NotificationAssetType.swaggerGeneratedUnknown;
+}
+
+enums.NotificationAssetType? notificationAssetTypeNullableFromJson(
+  Object? notificationAssetType, [
+  enums.NotificationAssetType? defaultValue,
+]) {
+  if (notificationAssetType == null) {
+    return null;
+  }
+  return enums.NotificationAssetType.values.firstWhereOrNull(
+        (e) => e.value == notificationAssetType,
+      ) ??
+      defaultValue;
+}
+
+String notificationAssetTypeExplodedListToJson(
+  List<enums.NotificationAssetType>? notificationAssetType,
+) {
+  return notificationAssetType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> notificationAssetTypeListToJson(
+  List<enums.NotificationAssetType>? notificationAssetType,
+) {
+  if (notificationAssetType == null) {
+    return [];
+  }
+
+  return notificationAssetType.map((e) => e.value!).toList();
+}
+
+List<enums.NotificationAssetType> notificationAssetTypeListFromJson(
+  List? notificationAssetType, [
+  List<enums.NotificationAssetType>? defaultValue,
+]) {
+  if (notificationAssetType == null) {
+    return defaultValue ?? [];
+  }
+
+  return notificationAssetType
+      .map((e) => notificationAssetTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NotificationAssetType>? notificationAssetTypeNullableListFromJson(
+  List? notificationAssetType, [
+  List<enums.NotificationAssetType>? defaultValue,
+]) {
+  if (notificationAssetType == null) {
+    return defaultValue;
+  }
+
+  return notificationAssetType
+      .map((e) => notificationAssetTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? devicePlatformNullableToJson(enums.DevicePlatform? devicePlatform) {
+  return devicePlatform?.value;
+}
+
+String? devicePlatformToJson(enums.DevicePlatform devicePlatform) {
+  return devicePlatform.value;
+}
+
+enums.DevicePlatform devicePlatformFromJson(
+  Object? devicePlatform, [
+  enums.DevicePlatform? defaultValue,
+]) {
+  return enums.DevicePlatform.values.firstWhereOrNull(
+        (e) => e.value == devicePlatform,
+      ) ??
+      defaultValue ??
+      enums.DevicePlatform.swaggerGeneratedUnknown;
+}
+
+enums.DevicePlatform? devicePlatformNullableFromJson(
+  Object? devicePlatform, [
+  enums.DevicePlatform? defaultValue,
+]) {
+  if (devicePlatform == null) {
+    return null;
+  }
+  return enums.DevicePlatform.values.firstWhereOrNull(
+        (e) => e.value == devicePlatform,
+      ) ??
+      defaultValue;
+}
+
+String devicePlatformExplodedListToJson(
+  List<enums.DevicePlatform>? devicePlatform,
+) {
+  return devicePlatform?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> devicePlatformListToJson(
+  List<enums.DevicePlatform>? devicePlatform,
+) {
+  if (devicePlatform == null) {
+    return [];
+  }
+
+  return devicePlatform.map((e) => e.value!).toList();
+}
+
+List<enums.DevicePlatform> devicePlatformListFromJson(
+  List? devicePlatform, [
+  List<enums.DevicePlatform>? defaultValue,
+]) {
+  if (devicePlatform == null) {
+    return defaultValue ?? [];
+  }
+
+  return devicePlatform
+      .map((e) => devicePlatformFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.DevicePlatform>? devicePlatformNullableListFromJson(
+  List? devicePlatform, [
+  List<enums.DevicePlatform>? defaultValue,
+]) {
+  if (devicePlatform == null) {
+    return defaultValue;
+  }
+
+  return devicePlatform
+      .map((e) => devicePlatformFromJson(e.toString()))
+      .toList();
+}
+
+String? pushNotificationTypeNullableToJson(
+  enums.PushNotificationType? pushNotificationType,
+) {
+  return pushNotificationType?.value;
+}
+
+String? pushNotificationTypeToJson(
+  enums.PushNotificationType pushNotificationType,
+) {
+  return pushNotificationType.value;
+}
+
+enums.PushNotificationType pushNotificationTypeFromJson(
+  Object? pushNotificationType, [
+  enums.PushNotificationType? defaultValue,
+]) {
+  return enums.PushNotificationType.values.firstWhereOrNull(
+        (e) => e.value == pushNotificationType,
+      ) ??
+      defaultValue ??
+      enums.PushNotificationType.swaggerGeneratedUnknown;
+}
+
+enums.PushNotificationType? pushNotificationTypeNullableFromJson(
+  Object? pushNotificationType, [
+  enums.PushNotificationType? defaultValue,
+]) {
+  if (pushNotificationType == null) {
+    return null;
+  }
+  return enums.PushNotificationType.values.firstWhereOrNull(
+        (e) => e.value == pushNotificationType,
+      ) ??
+      defaultValue;
+}
+
+String pushNotificationTypeExplodedListToJson(
+  List<enums.PushNotificationType>? pushNotificationType,
+) {
+  return pushNotificationType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> pushNotificationTypeListToJson(
+  List<enums.PushNotificationType>? pushNotificationType,
+) {
+  if (pushNotificationType == null) {
+    return [];
+  }
+
+  return pushNotificationType.map((e) => e.value!).toList();
+}
+
+List<enums.PushNotificationType> pushNotificationTypeListFromJson(
+  List? pushNotificationType, [
+  List<enums.PushNotificationType>? defaultValue,
+]) {
+  if (pushNotificationType == null) {
+    return defaultValue ?? [];
+  }
+
+  return pushNotificationType
+      .map((e) => pushNotificationTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.PushNotificationType>? pushNotificationTypeNullableListFromJson(
+  List? pushNotificationType, [
+  List<enums.PushNotificationType>? defaultValue,
+]) {
+  if (pushNotificationType == null) {
+    return defaultValue;
+  }
+
+  return pushNotificationType
+      .map((e) => pushNotificationTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? pushNotificationStatusNullableToJson(
+  enums.PushNotificationStatus? pushNotificationStatus,
+) {
+  return pushNotificationStatus?.value;
+}
+
+String? pushNotificationStatusToJson(
+  enums.PushNotificationStatus pushNotificationStatus,
+) {
+  return pushNotificationStatus.value;
+}
+
+enums.PushNotificationStatus pushNotificationStatusFromJson(
+  Object? pushNotificationStatus, [
+  enums.PushNotificationStatus? defaultValue,
+]) {
+  return enums.PushNotificationStatus.values.firstWhereOrNull(
+        (e) => e.value == pushNotificationStatus,
+      ) ??
+      defaultValue ??
+      enums.PushNotificationStatus.swaggerGeneratedUnknown;
+}
+
+enums.PushNotificationStatus? pushNotificationStatusNullableFromJson(
+  Object? pushNotificationStatus, [
+  enums.PushNotificationStatus? defaultValue,
+]) {
+  if (pushNotificationStatus == null) {
+    return null;
+  }
+  return enums.PushNotificationStatus.values.firstWhereOrNull(
+        (e) => e.value == pushNotificationStatus,
+      ) ??
+      defaultValue;
+}
+
+String pushNotificationStatusExplodedListToJson(
+  List<enums.PushNotificationStatus>? pushNotificationStatus,
+) {
+  return pushNotificationStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> pushNotificationStatusListToJson(
+  List<enums.PushNotificationStatus>? pushNotificationStatus,
+) {
+  if (pushNotificationStatus == null) {
+    return [];
+  }
+
+  return pushNotificationStatus.map((e) => e.value!).toList();
+}
+
+List<enums.PushNotificationStatus> pushNotificationStatusListFromJson(
+  List? pushNotificationStatus, [
+  List<enums.PushNotificationStatus>? defaultValue,
+]) {
+  if (pushNotificationStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return pushNotificationStatus
+      .map((e) => pushNotificationStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.PushNotificationStatus>? pushNotificationStatusNullableListFromJson(
+  List? pushNotificationStatus, [
+  List<enums.PushNotificationStatus>? defaultValue,
+]) {
+  if (pushNotificationStatus == null) {
+    return defaultValue;
+  }
+
+  return pushNotificationStatus
+      .map((e) => pushNotificationStatusFromJson(e.toString()))
+      .toList();
+}
+
 String? linkedAccountTypeNullableToJson(
   enums.LinkedAccountType? linkedAccountType,
 ) {
@@ -39024,162 +40805,6 @@ List<enums.TransactionStatus>? transactionStatusNullableListFromJson(
 
   return transactionStatus
       .map((e) => transactionStatusFromJson(e.toString()))
-      .toList();
-}
-
-String? marketplaceActivityNullableToJson(
-  enums.MarketplaceActivity? marketplaceActivity,
-) {
-  return marketplaceActivity?.value;
-}
-
-String? marketplaceActivityToJson(
-  enums.MarketplaceActivity marketplaceActivity,
-) {
-  return marketplaceActivity.value;
-}
-
-enums.MarketplaceActivity marketplaceActivityFromJson(
-  Object? marketplaceActivity, [
-  enums.MarketplaceActivity? defaultValue,
-]) {
-  return enums.MarketplaceActivity.values.firstWhereOrNull(
-        (e) => e.value == marketplaceActivity,
-      ) ??
-      defaultValue ??
-      enums.MarketplaceActivity.swaggerGeneratedUnknown;
-}
-
-enums.MarketplaceActivity? marketplaceActivityNullableFromJson(
-  Object? marketplaceActivity, [
-  enums.MarketplaceActivity? defaultValue,
-]) {
-  if (marketplaceActivity == null) {
-    return null;
-  }
-  return enums.MarketplaceActivity.values.firstWhereOrNull(
-        (e) => e.value == marketplaceActivity,
-      ) ??
-      defaultValue;
-}
-
-String marketplaceActivityExplodedListToJson(
-  List<enums.MarketplaceActivity>? marketplaceActivity,
-) {
-  return marketplaceActivity?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> marketplaceActivityListToJson(
-  List<enums.MarketplaceActivity>? marketplaceActivity,
-) {
-  if (marketplaceActivity == null) {
-    return [];
-  }
-
-  return marketplaceActivity.map((e) => e.value!).toList();
-}
-
-List<enums.MarketplaceActivity> marketplaceActivityListFromJson(
-  List? marketplaceActivity, [
-  List<enums.MarketplaceActivity>? defaultValue,
-]) {
-  if (marketplaceActivity == null) {
-    return defaultValue ?? [];
-  }
-
-  return marketplaceActivity
-      .map((e) => marketplaceActivityFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.MarketplaceActivity>? marketplaceActivityNullableListFromJson(
-  List? marketplaceActivity, [
-  List<enums.MarketplaceActivity>? defaultValue,
-]) {
-  if (marketplaceActivity == null) {
-    return defaultValue;
-  }
-
-  return marketplaceActivity
-      .map((e) => marketplaceActivityFromJson(e.toString()))
-      .toList();
-}
-
-String? notificationAssetTypeNullableToJson(
-  enums.NotificationAssetType? notificationAssetType,
-) {
-  return notificationAssetType?.value;
-}
-
-String? notificationAssetTypeToJson(
-  enums.NotificationAssetType notificationAssetType,
-) {
-  return notificationAssetType.value;
-}
-
-enums.NotificationAssetType notificationAssetTypeFromJson(
-  Object? notificationAssetType, [
-  enums.NotificationAssetType? defaultValue,
-]) {
-  return enums.NotificationAssetType.values.firstWhereOrNull(
-        (e) => e.value == notificationAssetType,
-      ) ??
-      defaultValue ??
-      enums.NotificationAssetType.swaggerGeneratedUnknown;
-}
-
-enums.NotificationAssetType? notificationAssetTypeNullableFromJson(
-  Object? notificationAssetType, [
-  enums.NotificationAssetType? defaultValue,
-]) {
-  if (notificationAssetType == null) {
-    return null;
-  }
-  return enums.NotificationAssetType.values.firstWhereOrNull(
-        (e) => e.value == notificationAssetType,
-      ) ??
-      defaultValue;
-}
-
-String notificationAssetTypeExplodedListToJson(
-  List<enums.NotificationAssetType>? notificationAssetType,
-) {
-  return notificationAssetType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> notificationAssetTypeListToJson(
-  List<enums.NotificationAssetType>? notificationAssetType,
-) {
-  if (notificationAssetType == null) {
-    return [];
-  }
-
-  return notificationAssetType.map((e) => e.value!).toList();
-}
-
-List<enums.NotificationAssetType> notificationAssetTypeListFromJson(
-  List? notificationAssetType, [
-  List<enums.NotificationAssetType>? defaultValue,
-]) {
-  if (notificationAssetType == null) {
-    return defaultValue ?? [];
-  }
-
-  return notificationAssetType
-      .map((e) => notificationAssetTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.NotificationAssetType>? notificationAssetTypeNullableListFromJson(
-  List? notificationAssetType, [
-  List<enums.NotificationAssetType>? defaultValue,
-]) {
-  if (notificationAssetType == null) {
-    return defaultValue;
-  }
-
-  return notificationAssetType
-      .map((e) => notificationAssetTypeFromJson(e.toString()))
       .toList();
 }
 

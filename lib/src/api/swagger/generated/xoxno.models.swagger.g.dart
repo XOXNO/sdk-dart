@@ -367,7 +367,7 @@ UserBillingDetails _$UserBillingDetailsFromJson(Map<String, dynamic> json) =>
     UserBillingDetails(
       isCompany: json['isCompany'] as bool,
       name: json['name'] as String,
-      companyRegistrationNumber: json['companyRegistrationNumber'] as String,
+      companyRegistrationNumber: json['companyRegistrationNumber'] as String?,
       companyVatNumber: json['companyVatNumber'] as String?,
       email: json['email'] as String,
       country: json['country'] as String,
@@ -442,6 +442,10 @@ UserNotificationPreferences _$UserNotificationPreferencesFromJson(
   offersAccepted: json['offersAccepted'] as Object,
   offersRejected: json['offersRejected'] as Object,
   deposits: json['deposits'] as Object,
+  eventUpdates: json['eventUpdates'] as Object,
+  eventReminders: json['eventReminders'] as Object,
+  eventCheckIn: json['eventCheckIn'] as Object,
+  eventMarketing: json['eventMarketing'] as Object,
 );
 
 Map<String, dynamic> _$UserNotificationPreferencesToJson(
@@ -453,6 +457,10 @@ Map<String, dynamic> _$UserNotificationPreferencesToJson(
   'offersAccepted': instance.offersAccepted,
   'offersRejected': instance.offersRejected,
   'deposits': instance.deposits,
+  'eventUpdates': instance.eventUpdates,
+  'eventReminders': instance.eventReminders,
+  'eventCheckIn': instance.eventCheckIn,
+  'eventMarketing': instance.eventMarketing,
 };
 
 UserSettingsDoc _$UserSettingsDocFromJson(Map<String, dynamic> json) =>
@@ -1149,8 +1157,6 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
   supplyAmountShort: json['supplyAmountShort'] as Object,
   borrowAmountShort: json['borrowAmountShort'] as Object,
   borrowAmountScaled: json['borrowAmountScaled'] as Object,
-  vaultAmount: json['vaultAmount'] as Object,
-  vaultAmountShort: json['vaultAmountShort'] as Object,
   supplyCap: json['supplyCap'] as String,
   borrowCap: json['borrowCap'] as String,
   supplyCapShort: json['supplyCapShort'] as Object,
@@ -1223,8 +1229,6 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
   'supplyAmountShort': instance.supplyAmountShort,
   'borrowAmountShort': instance.borrowAmountShort,
   'borrowAmountScaled': instance.borrowAmountScaled,
-  'vaultAmount': instance.vaultAmount,
-  'vaultAmountShort': instance.vaultAmountShort,
   'supplyCap': instance.supplyCap,
   'borrowCap': instance.borrowCap,
   'supplyCapShort': instance.supplyCapShort,
@@ -1312,10 +1316,14 @@ PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
       rewardsReserve: json['rewardsReserve'] as Object,
       reserves: json['reserves'] as Object,
       supplyAmount: json['supplyAmount'] as Object,
+      supplyAmountScaled: json['supplyAmountScaled'] as Object,
       borrowAmount: json['borrowAmount'] as Object,
-      vaultAmount: json['vaultAmount'] as Object,
+      borrowAmountScaled: json['borrowAmountScaled'] as Object,
       supplyCap: json['supplyCap'] as String,
       borrowCap: json['borrowCap'] as String,
+      supplyIndex: json['supplyIndex'] as Object,
+      borrowIndex: json['borrowIndex'] as Object,
+      timestamp: json['timestamp'] as Object,
       borrowApy: json['borrowApy'] as Object,
       supplyApy: json['supplyApy'] as Object,
       utilizationRate: json['utilizationRate'] as Object,
@@ -1351,10 +1359,14 @@ Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
       'rewardsReserve': instance.rewardsReserve,
       'reserves': instance.reserves,
       'supplyAmount': instance.supplyAmount,
+      'supplyAmountScaled': instance.supplyAmountScaled,
       'borrowAmount': instance.borrowAmount,
-      'vaultAmount': instance.vaultAmount,
+      'borrowAmountScaled': instance.borrowAmountScaled,
       'supplyCap': instance.supplyCap,
       'borrowCap': instance.borrowCap,
+      'supplyIndex': instance.supplyIndex,
+      'borrowIndex': instance.borrowIndex,
+      'timestamp': instance.timestamp,
       'borrowApy': instance.borrowApy,
       'supplyApy': instance.supplyApy,
       'utilizationRate': instance.utilizationRate,
@@ -3663,6 +3675,380 @@ Map<String, dynamic> _$GlobalSearchResponseDtoToJson(
   'resources': instance.resources.toJson(),
 };
 
+NotificationAssetDto _$NotificationAssetDtoFromJson(
+  Map<String, dynamic> json,
+) => NotificationAssetDto(
+  type: notificationAssetTypeFromJson(json['type']),
+  collection: json['collection'] as String?,
+  identifier: json['identifier'] as String?,
+  address: json['address'] as String?,
+  name: json['name'] as String?,
+  url: json['url'] as String?,
+);
+
+Map<String, dynamic> _$NotificationAssetDtoToJson(
+  NotificationAssetDto instance,
+) => <String, dynamic>{
+  'type': notificationAssetTypeToJson(instance.type),
+  'collection': instance.collection,
+  'identifier': instance.identifier,
+  'address': instance.address,
+  'name': instance.name,
+  'url': instance.url,
+};
+
+NotificationActivityDto _$NotificationActivityDtoFromJson(
+  Map<String, dynamic> json,
+) => NotificationActivityDto(
+  price: (json['price'] as num?)?.toDouble(),
+  paymentToken: json['paymentToken'] as String?,
+  quantity: (json['quantity'] as num?)?.toDouble(),
+  buyer: json['buyer'] as String?,
+  seller: json['seller'] as String?,
+  previousBidder: json['previousBidder'] as String?,
+  deadline: (json['deadline'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$NotificationActivityDtoToJson(
+  NotificationActivityDto instance,
+) => <String, dynamic>{
+  'price': instance.price,
+  'paymentToken': instance.paymentToken,
+  'quantity': instance.quantity,
+  'buyer': instance.buyer,
+  'seller': instance.seller,
+  'previousBidder': instance.previousBidder,
+  'deadline': instance.deadline,
+};
+
+NotificationDoc _$NotificationDocFromJson(Map<String, dynamic> json) =>
+    NotificationDoc(
+      dataType: json['dataType'] as String,
+      txHash: json['txHash'] as String,
+      source: json['source'] as String,
+      activityType: marketplaceActivityFromJson(json['activityType']),
+      owner: json['owner'] as String,
+      message: json['message'] as String?,
+      asset: NotificationAssetDto.fromJson(
+        json['asset'] as Map<String, dynamic>,
+      ),
+      activity: NotificationActivityDto.fromJson(
+        json['activity'] as Map<String, dynamic>,
+      ),
+      isRead: json['isRead'] as Object,
+      timestamp: (json['timestamp'] as num).toDouble(),
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$NotificationDocToJson(NotificationDoc instance) =>
+    <String, dynamic>{
+      'dataType': instance.dataType,
+      'txHash': instance.txHash,
+      'source': instance.source,
+      'activityType': marketplaceActivityToJson(instance.activityType),
+      'owner': instance.owner,
+      'message': instance.message,
+      'asset': instance.asset.toJson(),
+      'activity': instance.activity.toJson(),
+      'isRead': instance.isRead,
+      'timestamp': instance.timestamp,
+      'id': instance.id,
+      'pk': instance.pk,
+      '_ts': instance.ts,
+    };
+
+NotificationResponse _$NotificationResponseFromJson(
+  Map<String, dynamic> json,
+) => NotificationResponse(
+  resources:
+      (json['resources'] as List<dynamic>?)
+          ?.map((e) => NotificationDoc.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  hasMoreResults: json['hasMoreResults'] as bool,
+);
+
+Map<String, dynamic> _$NotificationResponseToJson(
+  NotificationResponse instance,
+) => <String, dynamic>{
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
+  'hasMoreResults': instance.hasMoreResults,
+};
+
+NotificationCountResponse _$NotificationCountResponseFromJson(
+  Map<String, dynamic> json,
+) => NotificationCountResponse(count: (json['count'] as num).toDouble());
+
+Map<String, dynamic> _$NotificationCountResponseToJson(
+  NotificationCountResponse instance,
+) => <String, dynamic>{'count': instance.count};
+
+MobileDeviceRegistrationDto _$MobileDeviceRegistrationDtoFromJson(
+  Map<String, dynamic> json,
+) => MobileDeviceRegistrationDto(
+  deviceUUID: json['deviceUUID'] as String,
+  platform: devicePlatformFromJson(json['platform']),
+  pushChannel: json['pushChannel'] as String,
+  appVersion: json['appVersion'] as String,
+  deviceModel: json['deviceModel'] as String?,
+  osVersion: json['osVersion'] as String?,
+);
+
+Map<String, dynamic> _$MobileDeviceRegistrationDtoToJson(
+  MobileDeviceRegistrationDto instance,
+) => <String, dynamic>{
+  'deviceUUID': instance.deviceUUID,
+  'platform': devicePlatformToJson(instance.platform),
+  'pushChannel': instance.pushChannel,
+  'appVersion': instance.appVersion,
+  'deviceModel': instance.deviceModel,
+  'osVersion': instance.osVersion,
+};
+
+MobileDeviceDoc _$MobileDeviceDocFromJson(Map<String, dynamic> json) =>
+    MobileDeviceDoc(
+      dataType: json['dataType'] as String,
+      deviceUUID: json['deviceUUID'] as String,
+      installationId: json['installationId'] as String,
+      platform: devicePlatformFromJson(json['platform']),
+      pushChannel: json['pushChannel'] as String,
+      web2UserId: json['web2UserId'] as String,
+      linkedAddresses:
+          (json['linkedAddresses'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      appVersion: json['appVersion'] as String,
+      deviceModel: json['deviceModel'] as String?,
+      osVersion: json['osVersion'] as String?,
+      registeredAt: (json['registeredAt'] as num).toDouble(),
+      lastActiveAt: (json['lastActiveAt'] as num).toDouble(),
+      isActive: json['isActive'] as Object,
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$MobileDeviceDocToJson(MobileDeviceDoc instance) =>
+    <String, dynamic>{
+      'dataType': instance.dataType,
+      'deviceUUID': instance.deviceUUID,
+      'installationId': instance.installationId,
+      'platform': devicePlatformToJson(instance.platform),
+      'pushChannel': instance.pushChannel,
+      'web2UserId': instance.web2UserId,
+      'linkedAddresses': instance.linkedAddresses,
+      'appVersion': instance.appVersion,
+      'deviceModel': instance.deviceModel,
+      'osVersion': instance.osVersion,
+      'registeredAt': instance.registeredAt,
+      'lastActiveAt': instance.lastActiveAt,
+      'isActive': instance.isActive,
+      'id': instance.id,
+      'pk': instance.pk,
+      '_ts': instance.ts,
+    };
+
+PushNotificationEventDto _$PushNotificationEventDtoFromJson(
+  Map<String, dynamic> json,
+) => PushNotificationEventDto(
+  eventId: json['eventId'] as String?,
+  eventTitle: json['eventTitle'] as String?,
+  eventProfile: json['eventProfile'] as String?,
+  creatorAddress: json['creatorAddress'] as String?,
+  creatorName: json['creatorName'] as String?,
+);
+
+Map<String, dynamic> _$PushNotificationEventDtoToJson(
+  PushNotificationEventDto instance,
+) => <String, dynamic>{
+  'eventId': instance.eventId,
+  'eventTitle': instance.eventTitle,
+  'eventProfile': instance.eventProfile,
+  'creatorAddress': instance.creatorAddress,
+  'creatorName': instance.creatorName,
+};
+
+PushNotificationTargetingDto _$PushNotificationTargetingDtoFromJson(
+  Map<String, dynamic> json,
+) => PushNotificationTargetingDto(
+  type: pushNotificationTypeFromJson(json['type']),
+  tagExpression: json['tagExpression'] as String?,
+  targetUsers:
+      (json['targetUsers'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  targetAddresses:
+      (json['targetAddresses'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  recipientCount: (json['recipientCount'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$PushNotificationTargetingDtoToJson(
+  PushNotificationTargetingDto instance,
+) => <String, dynamic>{
+  'type': pushNotificationTypeToJson(instance.type),
+  'tagExpression': instance.tagExpression,
+  'targetUsers': instance.targetUsers,
+  'targetAddresses': instance.targetAddresses,
+  'recipientCount': instance.recipientCount,
+};
+
+PushNotificationDoc _$PushNotificationDocFromJson(Map<String, dynamic> json) =>
+    PushNotificationDoc(
+      dataType: json['dataType'] as String,
+      title: json['title'] as String,
+      message: json['message'] as String,
+      imageUrl: json['imageUrl'] as String?,
+      notificationType: pushNotificationTypeFromJson(json['notificationType']),
+      status: pushNotificationStatusFromJson(json['status']),
+      owner: json['owner'] as String,
+      senderAddress: json['senderAddress'] as String,
+      senderName: json['senderName'] as String?,
+      event:
+          json['event'] == null
+              ? null
+              : PushNotificationEventDto.fromJson(
+                json['event'] as Map<String, dynamic>,
+              ),
+      targeting: PushNotificationTargetingDto.fromJson(
+        json['targeting'] as Map<String, dynamic>,
+      ),
+      isRead: json['isRead'] as Object,
+      timestamp: (json['timestamp'] as num).toDouble(),
+      deliveredAt: (json['deliveredAt'] as num?)?.toDouble(),
+      clickedAt: (json['clickedAt'] as num?)?.toDouble(),
+      sound: json['sound'] as String?,
+      badge: (json['badge'] as num?)?.toDouble(),
+      appMetadata: json['appMetadata'],
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$PushNotificationDocToJson(
+  PushNotificationDoc instance,
+) => <String, dynamic>{
+  'dataType': instance.dataType,
+  'title': instance.title,
+  'message': instance.message,
+  'imageUrl': instance.imageUrl,
+  'notificationType': pushNotificationTypeToJson(instance.notificationType),
+  'status': pushNotificationStatusToJson(instance.status),
+  'owner': instance.owner,
+  'senderAddress': instance.senderAddress,
+  'senderName': instance.senderName,
+  'event': instance.event?.toJson(),
+  'targeting': instance.targeting.toJson(),
+  'isRead': instance.isRead,
+  'timestamp': instance.timestamp,
+  'deliveredAt': instance.deliveredAt,
+  'clickedAt': instance.clickedAt,
+  'sound': instance.sound,
+  'badge': instance.badge,
+  'appMetadata': instance.appMetadata,
+  'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
+};
+
+PushNotificationResponse _$PushNotificationResponseFromJson(
+  Map<String, dynamic> json,
+) => PushNotificationResponse(
+  resources:
+      (json['resources'] as List<dynamic>?)
+          ?.map((e) => PushNotificationDoc.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  hasMoreResults: json['hasMoreResults'] as bool,
+);
+
+Map<String, dynamic> _$PushNotificationResponseToJson(
+  PushNotificationResponse instance,
+) => <String, dynamic>{
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
+  'hasMoreResults': instance.hasMoreResults,
+};
+
+PushNotificationCountResponse _$PushNotificationCountResponseFromJson(
+  Map<String, dynamic> json,
+) => PushNotificationCountResponse(count: (json['count'] as num).toDouble());
+
+Map<String, dynamic> _$PushNotificationCountResponseToJson(
+  PushNotificationCountResponse instance,
+) => <String, dynamic>{'count': instance.count};
+
+NotificationSuccessResponseDto _$NotificationSuccessResponseDtoFromJson(
+  Map<String, dynamic> json,
+) => NotificationSuccessResponseDto(
+  success: json['success'] as bool,
+  message: json['message'] as String,
+);
+
+Map<String, dynamic> _$NotificationSuccessResponseDtoToJson(
+  NotificationSuccessResponseDto instance,
+) => <String, dynamic>{
+  'success': instance.success,
+  'message': instance.message,
+};
+
+EventNotificationDto _$EventNotificationDtoFromJson(
+  Map<String, dynamic> json,
+) => EventNotificationDto(
+  title: json['title'] as String,
+  message: json['message'] as String,
+  imageUrl: json['imageUrl'] as String?,
+  eventId: json['eventId'] as String?,
+  targetUsers:
+      (json['targetUsers'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  targetAddresses:
+      (json['targetAddresses'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  metadata: json['metadata'],
+);
+
+Map<String, dynamic> _$EventNotificationDtoToJson(
+  EventNotificationDto instance,
+) => <String, dynamic>{
+  'title': instance.title,
+  'message': instance.message,
+  'imageUrl': instance.imageUrl,
+  'eventId': instance.eventId,
+  'targetUsers': instance.targetUsers,
+  'targetAddresses': instance.targetAddresses,
+  'metadata': instance.metadata,
+};
+
+CreatorMarketingNotificationDto _$CreatorMarketingNotificationDtoFromJson(
+  Map<String, dynamic> json,
+) => CreatorMarketingNotificationDto(
+  title: json['title'] as String,
+  message: json['message'] as String,
+  imageUrl: json['imageUrl'] as String?,
+  creatorAddress: json['creatorAddress'] as String,
+  metadata: json['metadata'],
+);
+
+Map<String, dynamic> _$CreatorMarketingNotificationDtoToJson(
+  CreatorMarketingNotificationDto instance,
+) => <String, dynamic>{
+  'title': instance.title,
+  'message': instance.message,
+  'imageUrl': instance.imageUrl,
+  'creatorAddress': instance.creatorAddress,
+  'metadata': instance.metadata,
+};
+
 Web2UserWallet _$Web2UserWalletFromJson(Map<String, dynamic> json) =>
     Web2UserWallet(
       type: linkedAccountTypeFromJson(json['type']),
@@ -4483,116 +4869,6 @@ WebSocketTokenDto _$WebSocketTokenDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$WebSocketTokenDtoToJson(WebSocketTokenDto instance) =>
     <String, dynamic>{'token': instance.token};
-
-NotificationAssetDto _$NotificationAssetDtoFromJson(
-  Map<String, dynamic> json,
-) => NotificationAssetDto(
-  type: notificationAssetTypeFromJson(json['type']),
-  collection: json['collection'] as String?,
-  identifier: json['identifier'] as String?,
-  address: json['address'] as String?,
-  name: json['name'] as String?,
-  url: json['url'] as String?,
-);
-
-Map<String, dynamic> _$NotificationAssetDtoToJson(
-  NotificationAssetDto instance,
-) => <String, dynamic>{
-  'type': notificationAssetTypeToJson(instance.type),
-  'collection': instance.collection,
-  'identifier': instance.identifier,
-  'address': instance.address,
-  'name': instance.name,
-  'url': instance.url,
-};
-
-NotificationActivityDto _$NotificationActivityDtoFromJson(
-  Map<String, dynamic> json,
-) => NotificationActivityDto(
-  price: (json['price'] as num?)?.toDouble(),
-  paymentToken: json['paymentToken'] as String?,
-  quantity: (json['quantity'] as num?)?.toDouble(),
-  buyer: json['buyer'] as String?,
-  seller: json['seller'] as String?,
-  previousBidder: json['previousBidder'] as String?,
-  deadline: (json['deadline'] as num?)?.toDouble(),
-);
-
-Map<String, dynamic> _$NotificationActivityDtoToJson(
-  NotificationActivityDto instance,
-) => <String, dynamic>{
-  'price': instance.price,
-  'paymentToken': instance.paymentToken,
-  'quantity': instance.quantity,
-  'buyer': instance.buyer,
-  'seller': instance.seller,
-  'previousBidder': instance.previousBidder,
-  'deadline': instance.deadline,
-};
-
-NotificationDoc _$NotificationDocFromJson(Map<String, dynamic> json) =>
-    NotificationDoc(
-      dataType: json['dataType'] as String,
-      txHash: json['txHash'] as String,
-      source: json['source'] as String,
-      activityType: marketplaceActivityFromJson(json['activityType']),
-      owner: json['owner'] as String,
-      message: json['message'] as String?,
-      asset: NotificationAssetDto.fromJson(
-        json['asset'] as Map<String, dynamic>,
-      ),
-      activity: NotificationActivityDto.fromJson(
-        json['activity'] as Map<String, dynamic>,
-      ),
-      isRead: json['isRead'] as Object,
-      timestamp: (json['timestamp'] as num).toDouble(),
-      id: json['id'] as String?,
-      pk: json['pk'] as String?,
-      ts: (json['_ts'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$NotificationDocToJson(NotificationDoc instance) =>
-    <String, dynamic>{
-      'dataType': instance.dataType,
-      'txHash': instance.txHash,
-      'source': instance.source,
-      'activityType': marketplaceActivityToJson(instance.activityType),
-      'owner': instance.owner,
-      'message': instance.message,
-      'asset': instance.asset.toJson(),
-      'activity': instance.activity.toJson(),
-      'isRead': instance.isRead,
-      'timestamp': instance.timestamp,
-      'id': instance.id,
-      'pk': instance.pk,
-      '_ts': instance.ts,
-    };
-
-NotificationResponse _$NotificationResponseFromJson(
-  Map<String, dynamic> json,
-) => NotificationResponse(
-  resources:
-      (json['resources'] as List<dynamic>?)
-          ?.map((e) => NotificationDoc.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  hasMoreResults: json['hasMoreResults'] as bool,
-);
-
-Map<String, dynamic> _$NotificationResponseToJson(
-  NotificationResponse instance,
-) => <String, dynamic>{
-  'resources': instance.resources.map((e) => e.toJson()).toList(),
-  'hasMoreResults': instance.hasMoreResults,
-};
-
-NotificationCountResponse _$NotificationCountResponseFromJson(
-  Map<String, dynamic> json,
-) => NotificationCountResponse(count: (json['count'] as num).toDouble());
-
-Map<String, dynamic> _$NotificationCountResponseToJson(
-  NotificationCountResponse instance,
-) => <String, dynamic>{'count': instance.count};
 
 RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
   Map<String, dynamic> json,
