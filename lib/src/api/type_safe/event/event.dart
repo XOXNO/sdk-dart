@@ -14,11 +14,19 @@ class EventTypeSafeApi {
     return data.map((item) => item as String).toList();
   }
 
+
   Future<EventProfile> createEvent({
     required EventProfileCreateDto body,
   }) async {
     final data = await _api.createEvent(body: body.toJson());
     return EventProfile.fromJson(data);
+  }
+
+  Future<MobileDeviceDoc> registerDevice({
+    required MobileDeviceRegistrationDto body,
+  }) async {
+    final data = await _api.registerDevice(body: body.toJson());
+    return MobileDeviceDoc.fromJson(data);
   }
 
   Future<EventProfile> getEventById({required String eventId}) async {

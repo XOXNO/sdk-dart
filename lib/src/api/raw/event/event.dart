@@ -31,6 +31,20 @@ class EventRawApi {
     );
   }
 
+  Future<Map<String, dynamic>> registerDevice({
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.registerDevice');
+    logger.finest('create event');
+    return genericPost(
+      client,
+      generateUri(path: '${client.baseUrl}/mobileNotifications/device/register'),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+
   Future<Map<String, dynamic>> getEventById({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventById');
     logger.finest('get event by id');
