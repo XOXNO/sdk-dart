@@ -35,12 +35,76 @@ class EventRawApi {
     required Map<String, dynamic> body,
   }) {
     final logger = Logger('Xoxno.EventRawApi.registerDevice');
-    logger.finest('create event');
+    logger.finest('register device');
     return genericPost(
       client,
-      generateUri(path: '${client.baseUrl}/mobileNotifications/device/register'),
+      generateUri(path: '${client.baseUrl}/mobile/device/register'),
       body: json.encode(body),
       headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> deactivateDevice({
+    required String deviceId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.deactivateDevice');
+    logger.finest('deactivate device');
+    return genericDelete(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/device/$deviceId'),
+    );
+  }
+
+  Future<Map<String, dynamic>> getNotificationHistory({
+    int skip = 0,
+    int top = 20,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.getNotificationHistory');
+    logger.finest('get notification history');
+    return genericGet(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/mobile/history',
+        queryParameters: ['skip=$skip', 'top=$top'],
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> getUnreadNotificationCount() {
+    final logger = Logger('Xoxno.EventRawApi.getUnreadNotificationCount');
+    logger.finest('get unread notification count');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/history/unread-count'),
+    );
+  }
+
+  Future<Map<String, dynamic>> markNotificationAsRead({
+    required String notificationId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.markNotificationAsRead');
+    logger.finest('mark notification as read');
+    return genericPut(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/history/$notificationId/read'),
+    );
+  }
+
+  Future<Map<String, dynamic>> markAllNotificationsAsRead() {
+    final logger = Logger('Xoxno.EventRawApi.markAllNotificationsAsRead');
+    logger.finest('mark all notifications as read');
+    return genericPut(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/history/read-all'),
+    );
+  }
+
+  Future<Map<String, dynamic>> clearNotificationHistory() {
+    final logger = Logger('Xoxno.EventRawApi.clearNotificationHistory');
+    logger.finest('clear notification history');
+    return genericDelete(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/history/clear-all'),
     );
   }
 

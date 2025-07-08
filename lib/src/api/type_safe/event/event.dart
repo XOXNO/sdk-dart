@@ -29,6 +29,42 @@ class EventTypeSafeApi {
     return MobileDeviceDoc.fromJson(data);
   }
 
+  Future<void> deactivateDevice({
+    required String deviceId,
+  }) async {
+    await _api.deactivateDevice(deviceId: deviceId);
+  }
+
+  Future<PushNotificationResponse> getNotificationHistory({
+    int skip = 0,
+    int top = 20,
+  }) async {
+    final data = await _api.getNotificationHistory(skip: skip, top: top);
+    return PushNotificationResponse.fromJson(data);
+  }
+
+  Future<PushNotificationCountResponse> getUnreadNotificationCount() async {
+    final data = await _api.getUnreadNotificationCount();
+    return PushNotificationCountResponse.fromJson(data);
+  }
+
+  Future<PushNotificationDoc> markNotificationAsRead({
+    required String notificationId,
+  }) async {
+    final data = await _api.markNotificationAsRead(notificationId: notificationId);
+    return PushNotificationDoc.fromJson(data);
+  }
+
+  Future<NotificationSuccessResponseDto> markAllNotificationsAsRead() async {
+    final data = await _api.markAllNotificationsAsRead();
+    return NotificationSuccessResponseDto.fromJson(data);
+  }
+
+  Future<NotificationSuccessResponseDto> clearNotificationHistory() async {
+    final data = await _api.clearNotificationHistory();
+    return NotificationSuccessResponseDto.fromJson(data);
+  }
+
   Future<EventProfile> getEventById({required String eventId}) async {
     final data = await _api.getEventById(eventId: eventId);
     return EventProfile.fromJson(data);
