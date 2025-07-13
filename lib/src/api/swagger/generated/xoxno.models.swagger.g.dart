@@ -268,16 +268,16 @@ Map<String, dynamic> _$UserEmailNotificationSettingsToJson(
 UserNotificationPreferences _$UserNotificationPreferencesFromJson(
   Map<String, dynamic> json,
 ) => UserNotificationPreferences(
-  sales: json['sales'] as Object,
-  bids: json['bids'] as Object,
-  offersReceived: json['offersReceived'] as Object,
-  offersAccepted: json['offersAccepted'] as Object,
-  offersRejected: json['offersRejected'] as Object,
-  deposits: json['deposits'] as Object,
-  eventUpdates: json['eventUpdates'] as Object,
-  eventReminders: json['eventReminders'] as Object,
-  eventCheckIn: json['eventCheckIn'] as Object,
-  eventMarketing: json['eventMarketing'] as Object,
+  sales: json['sales'],
+  bids: json['bids'],
+  offersReceived: json['offersReceived'],
+  offersAccepted: json['offersAccepted'],
+  offersRejected: json['offersRejected'],
+  deposits: json['deposits'],
+  eventUpdates: json['eventUpdates'],
+  eventReminders: json['eventReminders'],
+  eventCheckIn: json['eventCheckIn'],
+  eventMarketing: json['eventMarketing'],
 );
 
 Map<String, dynamic> _$UserNotificationPreferencesToJson(
@@ -2225,8 +2225,8 @@ CollectionProfileDoc _$CollectionProfileDocFromJson(
   holdersCount: (json['holdersCount'] as num?)?.toDouble(),
   followCount: (json['followCount'] as num?)?.toDouble(),
   minSalePrice: json['minSalePrice'] as String?,
-  id: json['id'] as String,
-  ts: (json['_ts'] as num).toDouble(),
+  id: json['id'] as String?,
+  ts: (json['_ts'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$CollectionProfileDocToJson(
