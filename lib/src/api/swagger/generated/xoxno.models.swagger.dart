@@ -2918,8 +2918,8 @@ class CreatorProfileDto {
     required this.address,
     required this.name,
     required this.creatorTag,
-    required this.contractAddress,
-    required this.ticketingContractAddress,
+    this.contractAddress,
+    this.ticketingContractAddress,
     required this.profile,
     required this.banner,
     required this.joinedDate,
@@ -2949,9 +2949,9 @@ class CreatorProfileDto {
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'contractAddress')
-  final String contractAddress;
+  final String? contractAddress;
   @JsonKey(name: 'ticketingContractAddress')
-  final String ticketingContractAddress;
+  final String? ticketingContractAddress;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -3100,8 +3100,8 @@ extension $CreatorProfileDtoExtension on CreatorProfileDto {
     Wrapped<String>? address,
     Wrapped<String>? name,
     Wrapped<String>? creatorTag,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? ticketingContractAddress,
+    Wrapped<String?>? contractAddress,
+    Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
@@ -15977,8 +15977,8 @@ class CreatorDetailsDto {
     required this.address,
     required this.name,
     required this.creatorTag,
-    required this.contractAddress,
-    required this.ticketingContractAddress,
+    this.contractAddress,
+    this.ticketingContractAddress,
     required this.profile,
     required this.banner,
     required this.joinedDate,
@@ -16009,9 +16009,9 @@ class CreatorDetailsDto {
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'contractAddress')
-  final String contractAddress;
+  final String? contractAddress;
   @JsonKey(name: 'ticketingContractAddress')
-  final String ticketingContractAddress;
+  final String? ticketingContractAddress;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -16167,8 +16167,8 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
     Wrapped<String>? address,
     Wrapped<String>? name,
     Wrapped<String>? creatorTag,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? ticketingContractAddress,
+    Wrapped<String?>? contractAddress,
+    Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
@@ -18575,8 +18575,8 @@ class CreatorProfileDoc {
     required this.address,
     required this.name,
     required this.creatorTag,
-    required this.contractAddress,
-    required this.ticketingContractAddress,
+    this.contractAddress,
+    this.ticketingContractAddress,
     required this.profile,
     required this.banner,
     required this.joinedDate,
@@ -18605,9 +18605,9 @@ class CreatorProfileDoc {
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'contractAddress')
-  final String contractAddress;
+  final String? contractAddress;
   @JsonKey(name: 'ticketingContractAddress')
-  final String ticketingContractAddress;
+  final String? ticketingContractAddress;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -18746,8 +18746,8 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
     Wrapped<String>? address,
     Wrapped<String>? name,
     Wrapped<String>? creatorTag,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? ticketingContractAddress,
+    Wrapped<String?>? contractAddress,
+    Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,

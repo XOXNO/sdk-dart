@@ -664,7 +664,9 @@ enum MarketplaceActivity {
   @JsonValue('deposit')
   deposit('deposit'),
   @JsonValue('withdrawDeposit')
-  withdrawdeposit('withdrawDeposit');
+  withdrawdeposit('withdrawDeposit'),
+  @JsonValue('setCollectionConfig')
+  setcollectionconfig('setCollectionConfig');
 
   final String? value;
 

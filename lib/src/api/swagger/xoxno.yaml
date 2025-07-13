@@ -9467,8 +9467,6 @@ components:
         - address
         - name
         - creatorTag
-        - contractAddress
-        - ticketingContractAddress
         - profile
         - banner
         - joinedDate
@@ -13319,8 +13317,6 @@ components:
         - address
         - name
         - creatorTag
-        - contractAddress
-        - ticketingContractAddress
         - profile
         - banner
         - joinedDate
@@ -14085,8 +14081,6 @@ components:
         - address
         - name
         - creatorTag
-        - contractAddress
-        - ticketingContractAddress
         - profile
         - banner
         - joinedDate
@@ -14156,6 +14150,7 @@ components:
         - globalOfferTrade
         - deposit
         - withdrawDeposit
+        - setCollectionConfig
     NotificationAssetType:
       type: string
       enum:
@@ -15599,7 +15594,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752428373
+          minimum: 1752431570
         endTime:
           type: integer
         location:
@@ -15789,11 +15784,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1752428373
+          example: 1752431570
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 7ececa6b-ed35-497b-92e5-105db346dc0a
+          example: 01ad6f17-8787-4705-8bae-7f2130393e24
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15955,10 +15950,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1752428373
+          example: 1752431570
         endTime:
           type: integer
-          example: 1752428373
+          example: 1752431570
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -16215,11 +16210,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1752428373
+          example: 1752431570
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 17cef91d-8a0a-4efd-a7d1-9f8e56d3378d
+          example: aa1b910e-cff5-4cba-b3e8-3b394117272a
       required:
         - dataType
         - eventId
@@ -16261,11 +16256,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752428374
+          minimum: 1752431570
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1752514774
+          minimum: 1752517970
           description: End time timestamp
         maxLimit:
           type: integer
@@ -16314,11 +16309,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1752428374
+          example: 1752431570
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1752428374
+          example: 1752431570
         maxLimit:
           type: integer
           description: >-
@@ -16349,7 +16344,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: b726240b-7c4e-4af3-bfff-b7411fb7ea8a
+          example: 54cae9c0-da0e-444b-9611-9380556663e1
       required:
         - dataType
         - eventId
@@ -16391,10 +16386,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752428374
+          minimum: 1752431570
         endTime:
           type: integer
-          minimum: 1752514774
+          minimum: 1752517970
       required:
         - prices
         - name
@@ -16529,7 +16524,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 0d9829a8-58aa-4c88-b8d5-8051c2b5e2ef
+          example: 4982a38f-1601-42f4-983b-75bcad4c12d2
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -16581,7 +16576,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1752428373
+          example: 1752431570
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16610,7 +16605,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: a1f54c71-e0cb-404b-895a-5c6affc96d5c
+          example: 2026680c-9bc4-4426-b2ca-e6f5500b20e5
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16666,7 +16661,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1752428373
+          example: 1752431570
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16695,7 +16690,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: a1f54c71-e0cb-404b-895a-5c6affc96d5c
+          example: 2026680c-9bc4-4426-b2ca-e6f5500b20e5
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16804,11 +16799,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752428374
+          example: 1752431570
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752428374
+          example: 1752431570
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16819,7 +16814,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1752428374
+          example: 1752431570
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -16908,7 +16903,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1752428373
+          example: 1752431570
       required:
         - dataType
         - id
@@ -17020,11 +17015,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1752428373
+          example: 1752431570
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 7ececa6b-ed35-497b-92e5-105db346dc0a
+          example: 01ad6f17-8787-4705-8bae-7f2130393e24
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -17411,11 +17406,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752428374
+          example: 1752431570
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752428374
+          example: 1752431570
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17465,11 +17460,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752428374
+          example: 1752431570
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752428374
+          example: 1752431570
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17501,7 +17496,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 84f8a53d-89ac-4121-acce-94c77264a5e7
+          example: 09239579-2657-4540-90f6-65d88ad86522
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -17517,7 +17512,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1752428373
+          example: 1752431570
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -17660,7 +17655,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: b9733d10-91d7-4dbd-925f-8ee200990e1a
+          example: e1aa0673-c992-46a6-be3e-d95dd6b6ee4d
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -17687,7 +17682,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1752428374
+          example: 1752431570
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -17764,7 +17759,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 9d52613b-be11-4d19-b1aa-d6b963cb91bf
+          example: 5fac78c4-a350-4148-b91c-0cb0a3f9a54f
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -17783,7 +17778,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1752428374
+          example: 1752431570
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -18541,7 +18536,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: a8ad5531-6244-4a00-b13a-fa11d18b0d42
+          example: 2a40d805-1cb3-4815-be2a-826320ca3b93
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -18558,15 +18553,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1752428373
+          example: 1752431570
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 177ae7f4-7080-4849-a718-793f3e3522a0
+          example: 8fbadb61-b71c-4f18-ae41-68e3ab978ab1
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1752428373
+          example: 1752431570
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -18574,7 +18569,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: f82da495-b050-449f-a5b5-f6dfe4bed797
+          example: bd8d1fb7-07fa-4497-80df-c9866b86b1ea
       required:
         - ticketId
         - isCheckIn
