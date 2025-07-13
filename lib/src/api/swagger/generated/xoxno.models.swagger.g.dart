@@ -549,8 +549,8 @@ CreatorProfileDto _$CreatorProfileDtoFromJson(Map<String, dynamic> json) =>
           json['socials'] == null
               ? null
               : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-      id: json['id'] as String,
-      ts: (json['_ts'] as num).toDouble(),
+      id: json['id'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
       followCount: (json['followCount'] as num).toDouble(),
     );
 
@@ -3017,8 +3017,8 @@ CreatorDetailsDto _$CreatorDetailsDtoFromJson(Map<String, dynamic> json) =>
           json['socials'] == null
               ? null
               : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-      id: json['id'] as String,
-      ts: (json['_ts'] as num).toDouble(),
+      id: json['id'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
       listing:
           (json['listing'] as List<dynamic>?)
               ?.map(
@@ -3520,8 +3520,8 @@ CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
           json['socials'] == null
               ? null
               : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-      id: json['id'] as String,
-      ts: (json['_ts'] as num).toDouble(),
+      id: json['id'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CreatorProfileDocToJson(CreatorProfileDoc instance) =>

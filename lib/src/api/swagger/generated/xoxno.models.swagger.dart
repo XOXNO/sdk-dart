@@ -2925,8 +2925,8 @@ class CreatorProfileDto {
     required this.joinedDate,
     this.description,
     this.socials,
-    required this.id,
-    required this.ts,
+    this.id,
+    this.ts,
     required this.followCount,
   });
 
@@ -2963,9 +2963,9 @@ class CreatorProfileDto {
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   @JsonKey(name: 'followCount')
   final double followCount;
   static const fromJsonFactory = _$CreatorProfileDtoFromJson;
@@ -3107,8 +3107,8 @@ extension $CreatorProfileDtoExtension on CreatorProfileDto {
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto?>? socials,
-    Wrapped<String>? id,
-    Wrapped<double>? ts,
+    Wrapped<String?>? id,
+    Wrapped<double?>? ts,
     Wrapped<double>? followCount,
   }) {
     return CreatorProfileDto(
@@ -15984,8 +15984,8 @@ class CreatorDetailsDto {
     required this.joinedDate,
     this.description,
     this.socials,
-    required this.id,
-    required this.ts,
+    this.id,
+    this.ts,
     this.listing,
     this.events,
   });
@@ -16023,9 +16023,9 @@ class CreatorDetailsDto {
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   @JsonKey(name: 'listing', defaultValue: <MintingListingDto>[])
   final List<MintingListingDto>? listing;
   @JsonKey(name: 'events', defaultValue: <EventProfileDoc>[])
@@ -16174,8 +16174,8 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto?>? socials,
-    Wrapped<String>? id,
-    Wrapped<double>? ts,
+    Wrapped<String?>? id,
+    Wrapped<double?>? ts,
     Wrapped<List<MintingListingDto>?>? listing,
     Wrapped<List<EventProfileDoc>?>? events,
   }) {
@@ -18582,8 +18582,8 @@ class CreatorProfileDoc {
     required this.joinedDate,
     this.description,
     this.socials,
-    required this.id,
-    required this.ts,
+    this.id,
+    this.ts,
   });
 
   factory CreatorProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -18619,9 +18619,9 @@ class CreatorProfileDoc {
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
   @JsonKey(name: 'id')
-  final String id;
+  final String? id;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   static const fromJsonFactory = _$CreatorProfileDocFromJson;
 
   @override
@@ -18753,8 +18753,8 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto?>? socials,
-    Wrapped<String>? id,
-    Wrapped<double>? ts,
+    Wrapped<String?>? id,
+    Wrapped<double?>? ts,
   }) {
     return CreatorProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
