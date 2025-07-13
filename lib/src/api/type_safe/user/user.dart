@@ -83,7 +83,7 @@ class UserTypeSafeApi {
   }
 
   Future<UserSettingsDoc> notificationPreferences({
-    required final NotificationPreferencesDto notificationPreferences,
+    required final NotificationPreferencesPostDto notificationPreferences,
   }) async {
     final data = await _api.notificationPreferences(
       body: notificationPreferences.toJson(),
@@ -236,11 +236,11 @@ class UserTypeSafeApi {
         .toList();
   }
 
-  Future<GetUserOffersResponseDto> offers({
+  Future<NftOfferPaginated> offers({
     required final String address,
   }) async {
     final data = await _api.offers(address: address);
-    return GetUserOffersResponseDto.fromJson(data);
+    return NftOfferPaginated.fromJson(data);
   }
 
   Future<LikeNftDto> favoriteNfts({
@@ -347,7 +347,7 @@ class UserTypeSafeApi {
     return UserAnalyticsDto.fromJson(data);
   }
 
-  Future<GetUsersStatsResponseDto> stats({
+  Future<UserStatsDto> stats({
     final OrderBy orderBy = OrderBy.totalVolume,
     final OrderDirection orderDirection = OrderDirection.ascendent,
     final int skip = -1,
@@ -359,7 +359,7 @@ class UserTypeSafeApi {
       skip: skip,
       top: top,
     );
-    return GetUsersStatsResponseDto.fromJson(data);
+    return UserStatsDto.fromJson(data);
   }
 
   Future<NotificationResponse> notifications({

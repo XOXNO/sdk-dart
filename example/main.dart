@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 import 'package:xoxno_sdk/xoxno_sdk.dart' as xoxno;
-import 'package:xoxno_sdk/xoxno_sdk.dart';
 
 const myAddress =
     'erd13mfer3plwznqfxlyll766uvlwq8nk5vgtn8n6u97hjezuumhklyq23rhsm';

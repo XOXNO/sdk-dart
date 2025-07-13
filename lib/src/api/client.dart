@@ -22,9 +22,9 @@ class Client extends http.BaseClient {
   final String baseUrl;
   final IRenewableTokens _renewableTokens;
   final http.Client _client;
-  String _refreshToken = '';
-  String _jwt = '';
-  String _nativeToken = '';
+  String jwt = '';
+  String refreshToken = '';
+  String nativeToken = '';
 
   Client({
     http.Client? client,
@@ -37,37 +37,21 @@ class Client extends http.BaseClient {
         ),
         _renewableTokens = renewableTokens;
 
-  String get jwt => _jwt;
-
-  set jwt(final String value) {
-    _jwt = value;
-  }
-
-  String get nativeToken => _nativeToken;
-
-  set nativeToken(final String value) {
-    _nativeToken = value;
-  }
-
-  set refreshToken(final String value) {
-    _refreshToken = value;
-  }
-
   @override
   Future<http.StreamedResponse> send(final http.BaseRequest request) async {
     _logger.finest('${request.method} ${request.url}');
     request.headers['user-agent'] = _userAgent;
     final authorizationHeaderSB = StringBuffer('Bearer ');
-    if (_jwt.isNotEmpty) {
-      final jwt = JWT.decode(_jwt);
+    if (jwt.isNotEmpty) {
+      final decodedJwt = JWT.decode(jwt);
       final expiration =
-          DateTime.fromMillisecondsSinceEpoch(jwt.payload['exp'] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(decodedJwt.payload['exp'] * 1000);
       if (clock.now().isAfter(expiration)) {
         await renewTokens();
       }
-      authorizationHeaderSB.write(_jwt);
-    } else if (_nativeToken.isNotEmpty) {
-      authorizationHeaderSB.write(_nativeToken);
+      authorizationHeaderSB.write(jwt);
+    } else if (nativeToken.isNotEmpty) {
+      authorizationHeaderSB.write(nativeToken);
     }
     request.headers['authorization'] = authorizationHeaderSB.toString();
     return _client.send(request);
@@ -75,9 +59,9 @@ class Client extends http.BaseClient {
 
   Future<void> renewTokens() async {
     _logger.finest('renew tokens');
-    final renewedToken = await _renewableTokens.renewTokens(_refreshToken);
-    _refreshToken = renewedToken.refreshToken;
-    _jwt = renewedToken.accessToken;
+    final renewedToken = await _renewableTokens.renewTokens(refreshToken);
+    refreshToken = renewedToken.refreshToken;
+    jwt = renewedToken.accessToken;
   }
 
   void dispose() {

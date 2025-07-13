@@ -6,20 +6,20 @@ class ChatTypeSafeApi {
 
   const ChatTypeSafeApi(this._api);
 
-  Future<ChatMessageDto> send(
+  Future<ChatMessageDocHydrated> send(
       {required final SendChatMessageDto message}) async {
     final data = await _api.send(body: message.toJson());
-    return ChatMessageDto.fromJson(data);
+    return ChatMessageDocHydrated.fromJson(data);
   }
 
-  Future<FetchChatConversationsSummaryDto> conversations() async {
+  Future<UserConversationPaginated> conversations() async {
     final data = await _api.conversations();
-    return FetchChatConversationsSummaryDto.fromJson(data);
+    return UserConversationPaginated.fromJson(data);
   }
 
-  Future<FetchChatMessagesDto> conversation({required final String id}) async {
+  Future<ChatMessagePaginated> conversation({required final String id}) async {
     final data = await _api.conversation(id: id);
-    return FetchChatMessagesDto.fromJson(data);
+    return ChatMessagePaginated.fromJson(data);
   }
 
   Future<SuccessDto> deleteConversation({
@@ -47,9 +47,9 @@ class ChatTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<FetchBlockedChatsDto> blockedChats() async {
+  Future<UserBlockPaginated> blockedChats() async {
     final data = await _api.blockedChats();
-    return FetchBlockedChatsDto.fromJson(data);
+    return UserBlockPaginated.fromJson(data);
   }
 
   Future<SuccessDto> blockUser({required final String address}) async {

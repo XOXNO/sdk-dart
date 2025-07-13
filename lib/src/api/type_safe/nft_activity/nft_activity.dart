@@ -8,13 +8,13 @@ class NftActivityTypeSafeApi {
 
   const NftActivityTypeSafeApi(this._api);
 
-  Future<ActivityHistoryDto> query({final NftActivityFilter? filter}) async {
+  Future<NftActivityPaginated> query({final NftActivityFilter? filter}) async {
     final f = switch (filter?.toJson()) {
       null => '',
       (Map<String, dynamic> value) => json.encode(value),
     };
     final data = await _api.query(filter: f);
-    return ActivityHistoryDto.fromJson(data);
+    return NftActivityPaginated.fromJson(data);
   }
 
   Future<AnalyticsVolumeResponseDto> volume({

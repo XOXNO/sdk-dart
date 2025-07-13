@@ -1072,7 +1072,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExploreCollectionsStatisticsDto'
+                $ref: '#/components/schemas/CollectionStatsPaginated'
         '400':
           description: Bad Request
           content:
@@ -2580,7 +2580,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NftCosmosResponse'
+                $ref: '#/components/schemas/NftPaginated'
         '400':
           description: Bad Request
           content:
@@ -2722,7 +2722,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetUserOffersResponseDto'
+                $ref: '#/components/schemas/NftOfferPaginated'
         '400':
           description: Bad Request
           content:
@@ -2755,7 +2755,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetUserOffersResponseDto'
+                $ref: '#/components/schemas/NftOfferPaginated'
         '400':
           description: Bad Request
           content:
@@ -2794,7 +2794,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OfferDto'
+                $ref: '#/components/schemas/NftOfferDoc'
         '400':
           description: Bad Request
           content:
@@ -2843,7 +2843,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NftCosmosResponse'
+                $ref: '#/components/schemas/NftPaginated'
         '400':
           description: Bad Request
           content:
@@ -2943,7 +2943,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetSingleNftOfferResponseDto'
+                $ref: '#/components/schemas/NftOfferPaginated'
         '400':
           description: Bad Request
           content:
@@ -3063,7 +3063,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/NftProps'
+                  $ref: '#/components/schemas/NftHydrated'
         '400':
           description: Bad Request
           content:
@@ -3234,7 +3234,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NftProps'
+                $ref: '#/components/schemas/NftHydrated'
         '400':
           description: Bad Request
           content:
@@ -3272,7 +3272,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -3308,14 +3308,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CollectionProfileDto'
+              $ref: '#/components/schemas/CollectionProfileDoc'
       responses:
         '200':
           description: Updated collection profile
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -3605,9 +3605,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfilePaginated'
         '400':
           description: Bad Request
           content:
@@ -3648,7 +3646,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DropsQueryDto'
+                $ref: '#/components/schemas/CollectionMintProfilePaginated'
         '400':
           description: Bad Request
           content:
@@ -3686,7 +3684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DropInfoDto'
+                $ref: '#/components/schemas/CollectionMintProfileDocWithStages'
         '400':
           description: Bad Request
           content:
@@ -3779,7 +3777,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -3831,7 +3829,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -3871,7 +3869,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -3911,7 +3909,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionProfileDto'
+                $ref: '#/components/schemas/CollectionProfileDoc'
         '400':
           description: Bad Request
           content:
@@ -4060,7 +4058,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExploreCollectionsStatisticsDto'
+                $ref: '#/components/schemas/CollectionStatsPaginated'
         '400':
           description: Bad Request
           content:
@@ -4093,7 +4091,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GlobalOffersDto'
+                $ref: '#/components/schemas/GlobalOfferPaginated'
         '400':
           description: Bad Request
           content:
@@ -4822,7 +4820,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GlobalSearchResponseDto'
+                $ref: '#/components/schemas/GlobalSearchResourcesPaginated'
         '400':
           description: Bad Request
           content:
@@ -4854,7 +4852,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GlobalSearchResponseDto'
+                $ref: '#/components/schemas/GlobalSearchResourcesPaginated'
         '400':
           description: Bad Request
           content:
@@ -4886,7 +4884,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GlobalSearchResponseDto'
+                $ref: '#/components/schemas/GlobalSearchResourcesPaginated'
         '400':
           description: Bad Request
           content:
@@ -4918,7 +4916,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GlobalSearchResponseDto'
+                $ref: '#/components/schemas/CollectionMintProfilePaginated'
         '400':
           description: Bad Request
           content:
@@ -5122,7 +5120,7 @@ paths:
       summary: Set as read notifications, leave empty ID to read all
       tags:
         - User
-  /mobileNotifications/device/register:
+  /mobile/device/register:
     post:
       operationId: MobileNotificationsController_registerDevice
       parameters: []
@@ -5162,7 +5160,48 @@ paths:
       summary: Register mobile device for push notifications
       tags:
         - Mobile Notifications
-  /mobileNotifications/device/{deviceId}:
+  /mobile/device/{deviceId}:
+    get:
+      operationId: MobileNotificationsController_getMobileDevice
+      parameters:
+        - name: deviceId
+          required: true
+          in: path
+          description: Device ID to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileDeviceDoc'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '404':
+          description: Device not found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - bearer: []
+      summary: Get mobile device by device ID
+      tags:
+        - Mobile Notifications
     delete:
       operationId: MobileNotificationsController_deactivateDevice
       parameters:
@@ -5198,7 +5237,7 @@ paths:
       summary: Deactivate mobile device
       tags:
         - Mobile Notifications
-  /mobileNotifications/history:
+  /mobile/history:
     get:
       operationId: MobileNotificationsController_getNotificationHistory
       parameters:
@@ -5244,7 +5283,7 @@ paths:
       summary: Get push notification history for user
       tags:
         - Mobile Notifications
-  /mobileNotifications/history/unread-count:
+  /mobile/history/unread-count:
     get:
       operationId: MobileNotificationsController_getUnreadNotificationCount
       parameters: []
@@ -5278,7 +5317,7 @@ paths:
       summary: Get unread push notification count for user
       tags:
         - Mobile Notifications
-  /mobileNotifications/history/{notificationId}/read:
+  /mobile/history/{notificationId}/read:
     put:
       operationId: MobileNotificationsController_markNotificationAsRead
       parameters:
@@ -5318,7 +5357,7 @@ paths:
       summary: Mark push notification as read
       tags:
         - Mobile Notifications
-  /mobileNotifications/history/read-all:
+  /mobile/history/read-all:
     put:
       operationId: MobileNotificationsController_markAllNotificationsAsRead
       parameters: []
@@ -5352,7 +5391,7 @@ paths:
       summary: Mark all push notifications as read
       tags:
         - Mobile Notifications
-  /mobileNotifications/history/clear-all:
+  /mobile/history/clear-all:
     delete:
       operationId: MobileNotificationsController_clearNotificationHistory
       parameters: []
@@ -5914,7 +5953,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivityHistoryDto'
+                $ref: '#/components/schemas/NftActivityPaginated'
         '400':
           description: Bad Request
           content:
@@ -5953,7 +5992,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NftActivityDoc'
+                $ref: '#/components/schemas/NftActivityDocHydrated'
         '400':
           description: Bad Request
           content:
@@ -6203,7 +6242,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetUsersStatsResponseDto'
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserStatsDto'
         '400':
           description: Bad Request
           content:
@@ -6421,7 +6462,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ChatMessageDto'
+                $ref: '#/components/schemas/ChatMessageDocHydrated'
         '400':
           description: Bad Request
           content:
@@ -6475,7 +6516,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchChatConversationsSummaryDto'
+                $ref: '#/components/schemas/UserConversationPaginated'
         '400':
           description: Bad Request
           content:
@@ -6531,7 +6572,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchChatMessagesDto'
+                $ref: '#/components/schemas/ChatMessagePaginated'
         '400':
           description: Bad Request
           content:
@@ -6687,7 +6728,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchBlockedChatsDto'
+                $ref: '#/components/schemas/UserBlockPaginated'
         '400':
           description: Bad Request
           content:
@@ -6785,6 +6826,17 @@ paths:
       tags:
         - AzureWs
         - Chat
+  /notify:
+    get:
+      operationId: TicketingDataController_sendPostEventEmail
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearer: []
+      tags:
+        - Ticketing
   /countries:
     get:
       operationId: TicketingDataController_getCountries
@@ -8430,7 +8482,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventReferralConfigQuery'
+                $ref: '#/components/schemas/EventReferralConfigPaginated'
       security:
         - bearer: []
         - bearer: []
@@ -8551,7 +8603,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventReferralQuery'
+                $ref: '#/components/schemas/EventReferralPaginated'
       security:
         - bearer: []
         - bearer: []
@@ -8581,6 +8633,54 @@ paths:
         - bearer: []
         - bearer: []
       summary: Get self-serviced referrals for a specific event or all events
+      tags:
+        - Ticketing
+  /event/{eventId}/notify-attendees:
+    post:
+      description: >-
+        Event owners and team members can send notifications to all registered
+        attendees
+      operationId: TicketingDataController_sendEventNotificationToAttendees
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventNotificationDto'
+      responses:
+        '200':
+          description: Notification sent successfully
+      security:
+        - bearer: []
+        - bearer: []
+      summary: Send notification to all attendees of an event
+      tags:
+        - Ticketing
+  /notify/global-broadcast:
+    post:
+      description: Admin-only endpoint to send marketing notifications to all users
+      operationId: TicketingDataController_sendGlobalBroadcastNotification
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventNotificationDto'
+      responses:
+        '200':
+          description: Global broadcast sent successfully
+      security:
+        - bearer: []
+        - bearer: []
+      summary: Send global broadcast notification to all users
       tags:
         - Ticketing
 info:
@@ -8633,10 +8733,7 @@ components:
           type: object
           description: Additional data as key-value pairs
       required:
-        - address
         - loginToken
-        - signature
-        - data
     LoginAccessDto:
       type: object
       properties:
@@ -8877,78 +8974,95 @@ components:
         youtube:
           type: string
           example: ''
-    UserDepositDto:
+    UserDeposit:
       type: object
       properties:
         balance:
           type: string
+          description: The balance amount as a string
           example: '1000000000000000000'
         balanceShort:
           type: number
-          example: 1
-        usdPrice:
-          type: number
-          example: 1
+          description: The balance amount as a number for display purposes
+          example: 1.5
         paymentToken:
           type: string
-          example: EGLD
+          description: The payment token identifier
+          example: EGLD-123456
         paymentTokenNonce:
           type: number
+          description: The payment token nonce
           example: 0
+        usdPrice:
+          type: number
+          description: The USD price of the token
+          example: 25.5
       required:
         - balance
         - balanceShort
-        - usdPrice
         - paymentToken
         - paymentTokenNonce
-    EmailNotificationsDto:
+        - usdPrice
+    UserEmailNotificationSettings:
       type: object
       properties:
         enabled:
-          type: boolean
-          example: true
+          type: object
+          description: Email notifications enabled
         emailAddress:
-          type: string
-          example: me@dani.ro
+          type: object
+          description: Email address
         isEmailVerificationPending:
-          type: boolean
-          example: false
+          type: object
+          description: Email verification pending
         isEmailVerified:
-          type: boolean
-          example: true
+          type: object
+          description: Email verified
         isWeb2User:
-          type: boolean
-          example: false
+          type: object
+          description: Web2 user
         timestamp:
           type: number
-          example: 1720462258
+          description: Timestamp
       required:
         - enabled
         - emailAddress
         - isEmailVerificationPending
         - isEmailVerified
         - isWeb2User
-    NotificationPreferencesDto:
+    UserNotificationPreferences:
       type: object
       properties:
         sales:
-          type: boolean
-          example: false
+          type: object
+          description: Sales notifications
         bids:
-          type: boolean
-          example: false
+          type: object
+          description: Bids notifications
         offersReceived:
-          type: boolean
-          example: false
+          type: object
+          description: Offers received notifications
         offersAccepted:
-          type: boolean
-          example: false
+          type: object
+          description: Offers accepted notifications
         offersRejected:
-          type: boolean
-          example: false
+          type: object
+          description: Offers rejected notifications
         deposits:
-          type: boolean
-          example: false
+          type: object
+          description: Deposits notifications
+        eventUpdates:
+          type: object
+          description: Event updates from organizers
+        eventReminders:
+          type: object
+          description: Event reminders before start time
+        eventCheckIn:
+          type: object
+          description: Event check-in notifications
+        eventMarketing:
+          type: object
+          description: Marketing notifications from past event creators
       required:
         - sales
         - bids
@@ -8956,13 +9070,17 @@ components:
         - offersAccepted
         - offersRejected
         - deposits
+        - eventUpdates
+        - eventReminders
+        - eventCheckIn
+        - eventMarketing
     UserSettingsDto:
       type: object
       properties:
         emailNotifications:
-          $ref: '#/components/schemas/EmailNotificationsDto'
+          $ref: '#/components/schemas/UserEmailNotificationSettings'
         notificationPreferences:
-          $ref: '#/components/schemas/NotificationPreferencesDto'
+          $ref: '#/components/schemas/UserNotificationPreferences'
         address:
           type: string
           example: erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57
@@ -8985,57 +9103,83 @@ components:
         dataType:
           type: string
           example: userProfile
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
         address:
           type: string
-          example: erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: User wallet address
         isBanned:
           type: boolean
           example: false
+          description: Whether the user is banned
         isVerified:
           type: boolean
           example: false
+          description: Whether the user is verified
         socials:
-          $ref: '#/components/schemas/SocialsDto'
-        joinedDate:
-          type: number
-          example: 1643381871
-        id:
-          type: string
-          example: >-
-            erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57-userProfile
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57/profilePicture.webp?ts=1718876966
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/userprofile/erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57/profileBanner.webp?ts=1718876966
-        description:
-          type: string
-          example: Testing XOXNO V3.2
-        herotag:
-          type: string
-          example: '@mihaieremia'
-        isCreator:
-          type: boolean
-          example: false
-        isPoolOwner:
-          type: boolean
-          example: true
-        userDeposit:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDepositDto'
+          description: User social media links
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
         followCount:
           type: number
           example: 0
+          description: Number of followers
+        joinedDate:
+          type: number
+          example: 1640995200
+          description: Unix timestamp when user joined
+        profile:
+          type: string
+          example: https://media.xoxno.com/userprofile/erd1.../profilePicture.webp
+          description: Profile picture URL
+        banner:
+          type: string
+          example: https://media.xoxno.com/userprofile/erd1.../profileBanner.webp
+          description: Profile banner URL
+        description:
+          type: string
+          example: NFT collector and trader
+          description: User description
+        herotag:
+          type: string
+          example: '@username'
+          description: User herotag/username
+        isCreator:
+          type: boolean
+          example: false
+          description: Whether the user is a creator
+        isPoolOwner:
+          type: boolean
+          example: false
+          description: Whether the user owns a staking pool
         shard:
           type: number
           example: 0
+          description: Network shard number
+        userDeposit:
+          description: User deposit information
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDeposit'
+        chain:
+          type: string
+          example: MVX
+          enum:
+            - MVX
+            - SUI
         _ts:
           type: number
-          example: 1720724856
+          example: 1640995200
+          description: Cosmos DB timestamp
+        id:
+          type: string
+          example: >-
+            erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq-userProfile
+          description: Document ID
         userSettings:
           $ref: '#/components/schemas/UserSettingsDto'
       required:
@@ -9044,18 +9188,19 @@ components:
         - isBanned
         - isVerified
         - socials
+        - followCount
         - joinedDate
-        - id
         - profile
         - banner
         - description
         - herotag
         - isCreator
         - isPoolOwner
-        - userDeposit
-        - followCount
         - shard
+        - userDeposit
+        - chain
         - _ts
+        - id
     UserBillingDetails:
       type: object
       properties:
@@ -9096,33 +9241,6 @@ components:
         - country
         - city
         - address1
-    UserEmailNotificationSettings:
-      type: object
-      properties:
-        enabled:
-          type: object
-          description: Email notifications enabled
-        emailAddress:
-          type: object
-          description: Email address
-        isEmailVerificationPending:
-          type: object
-          description: Email verification pending
-        isEmailVerified:
-          type: object
-          description: Email verified
-        isWeb2User:
-          type: object
-          description: Web2 user
-        timestamp:
-          type: number
-          description: Timestamp
-      required:
-        - enabled
-        - emailAddress
-        - isEmailVerificationPending
-        - isEmailVerified
-        - isWeb2User
     UserPhoneNotificationSettings:
       type: object
       properties:
@@ -9146,39 +9264,6 @@ components:
         - phoneNumber
         - isPhoneVerificationPending
         - isPhoneVerified
-    UserNotificationPreferences:
-      type: object
-      properties:
-        sales:
-          type: object
-          description: Sales notifications
-        bids:
-          type: object
-          description: Bids notifications
-        offersReceived:
-          type: object
-          description: Offers received notifications
-        offersAccepted:
-          type: object
-          description: Offers accepted notifications
-        offersRejected:
-          type: object
-          description: Offers rejected notifications
-        deposits:
-          type: object
-          description: Deposits notifications
-        eventUpdates:
-          type: object
-          description: Event updates from organizers
-        eventReminders:
-          type: object
-          description: Event reminders before start time
-        eventCheckIn:
-          type: object
-          description: Event check-in notifications
-        eventMarketing:
-          type: object
-          description: Marketing notifications from past event creators
     UserSettingsDoc:
       type: object
       properties:
@@ -9216,6 +9301,9 @@ components:
       required:
         - dataType
         - address
+        - emailNotifications
+        - notificationPreferences
+        - id
     NotificationPreferencesPostDto:
       type: object
       properties:
@@ -9314,181 +9402,98 @@ components:
     CreatorProfileDto:
       type: object
       properties:
-        name:
+        dataType:
           type: string
-          example: Bananas
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgqutf9carlkckyn36t5uvp23m9fs877kfsys5s8axpe8
+          example: creatorProfile
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
         address:
           type: string
-          example: erd1vn9s8uj4e7r6skmqfw5py3hxnluw3ftv6dh47yt449vtvdnn9w2stmwm7l
-        profile:
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: Creator wallet address
+        name:
           type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/erd1vn9s8uj4e7r6skmqfw5py3hxnluw3ftv6dh47yt449vtvdnn9w2stmwm7l/creatorProfilePicture.webp?ts=1717019144
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/userprofile/erd1vn9s8uj4e7r6skmqfw5py3hxnluw3ftv6dh47yt449vtvdnn9w2stmwm7l/profileBanner.webp?ts=1717019141
-        joinedDate:
-          type: number
-          example: 1641773364
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        description:
-          type: string
-          example: Best creator
+          example: Awesome Creator
+          description: Creator name (editable by creator)
         creatorTag:
           type: string
-          example: Bananas
+          example: awesome-creator
+          description: Unique creator tag (not editable)
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqcollection123456789abcdef
+          description: Contract address for regular NFT creators
+        ticketingContractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqticket123456789abcdef
+          description: Contract address for ticketing creators
+        profile:
+          type: string
+          example: https://media.xoxno.com/creatorprofile/erd1.../profilePicture.webp
+          description: Creator profile picture URL
+        banner:
+          type: string
+          example: https://media.xoxno.com/creatorprofile/erd1.../profileBanner.webp
+          description: Creator profile banner URL
+        joinedDate:
+          type: number
+          example: 1640995200
+          description: Unix timestamp when creator joined
+        description:
+          type: string
+          example: Leading NFT creator and artist
+          description: Creator description
+        socials:
+          description: Creator social media links
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
+        id:
+          type: string
+          example: >-
+            erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq-creatorProfile
+          description: Document ID
+        _ts:
+          type: number
+          example: 1640995200
+          description: Cosmos DB timestamp
         followCount:
           type: number
           example: 0
       required:
-        - name
-        - contractAddress
+        - dataType
         - address
+        - name
+        - creatorTag
+        - contractAddress
+        - ticketingContractAddress
         - profile
         - banner
         - joinedDate
-        - socials
-        - description
-        - creatorTag
+        - id
+        - _ts
         - followCount
-    DayTradingStatsDto:
+    CollectionStatsPaginated:
       type: object
       properties:
-        volume:
-          type: number
-          description: Trading volume for the day
-        volumeMargin:
-          type: number
-          description: Margin of volume change for the day
-        trades:
-          type: number
-          description: Number of trades for the day
-        tradesMargin:
-          type: number
-          description: Margin of trades change for the day
-        minPrice:
-          type: number
-          description: Minimum price for the day
-        maxPrice:
-          type: number
-          description: Maximum price for the day
-        averagePrice:
-          type: number
-          description: Average price for the day
-      required:
-        - volume
-        - volumeMargin
-        - trades
-        - tradesMargin
-        - minPrice
-        - maxPrice
-        - averagePrice
-    TradingStatsDto:
-      type: object
-      properties:
-        day:
-          description: Daily trading statistics
-          allOf:
-            - $ref: '#/components/schemas/DayTradingStatsDto'
-      required:
-        - day
-    CollectionInfoDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: EBMC
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        isVerified:
-          type: boolean
-          example: false
-        isVisible:
-          type: boolean
-          example: true
-        description:
-          type: string
-          example: Test collection
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EBMC-8a2d40/profilePicture.webp
-        collectionSize:
-          type: number
-          example: 2955
-        followCount:
-          type: number
-          example: 16
-        holdersCount:
-          type: number
-          example: 0
-        owner:
-          type: string
-          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
-        volume:
-          type: number
-          example: 1230.34
-      required:
-        - name
-        - socials
-        - isVerified
-        - isVisible
-        - description
-        - profile
-        - banner
-        - collectionSize
-        - followCount
-        - holdersCount
-        - owner
-        - volume
-    CollectionStatsDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          description: Identifier of the collection
-        tradingStats:
-          description: Trading statistics of the collection
-          allOf:
-            - $ref: '#/components/schemas/TradingStatsDto'
-        floorPrice:
-          type: number
-          description: Current floor price
-        listedCount:
-          type: number
-          description: Number of listed items
-        collectionInfo:
-          description: Information about the collection
-          allOf:
-            - $ref: '#/components/schemas/CollectionInfoDto'
-      required:
-        - collection
-        - tradingStats
-        - floorPrice
-        - listedCount
-        - collectionInfo
-    ExploreCollectionsStatisticsDto:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionStatsDto'
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
+          description: Indicates if there are more documents available
           example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
       required:
-        - resources
         - hasMoreResults
+        - resources
     CheckLikeStatusResponseDto:
       type: object
       properties:
@@ -9773,7 +9778,6 @@ components:
         - totalRewards
         - totalStaked
         - yearlyAPR
-        - apy
         - totalRewardsUsdValue
         - totalStakedUsdValue
         - rateInfo
@@ -10392,7 +10396,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -10641,41 +10645,17 @@ components:
           type: string
           description: The token associated with the lending account
           example: EGLD
-        supplyAmount:
-          type: object
-          description: The amount supplied in the lending account
-          example: '1000'
         supplyAmountScaled:
           type: object
           description: The amount supplied in the lending account
           example: '1000'
-        borrowAmount:
-          type: object
-          description: The amount borrowed from the lending account
-          example: '500'
         borrowAmountScaled:
           type: object
           description: The amount borrowed from the lending account
           example: '500'
-        supplyAmountShort:
-          type: object
-          description: The short supply amount
-          example: 1000
-        borrowAmountShort:
-          type: object
-          description: The short borrow amount
-          example: 500
-        supplyTimestamp:
-          type: object
-          description: Timestamp of the supply activity
-          example: 0
         supplyIndex:
           type: object
           description: Supply index
-          example: 0
-        borrowTimestamp:
-          type: object
-          description: Timestamp of the borrow activity
           example: 0
         borrowIndex:
           type: object
@@ -10738,6 +10718,14 @@ components:
           example:
             leverageInitialBorrow: '1000'
             leverageInitialBorrowPrice: '1000'
+        supplyAmount:
+          type: string
+          description: The amount supplied in the lending account
+          example: '1000'
+        borrowAmount:
+          type: string
+          description: The amount borrowed from the lending account
+          example: '500'
         eModeCategoryProfile:
           description: EMode profile
           allOf:
@@ -10751,28 +10739,18 @@ components:
         - identifier
         - nonce
         - token
-        - supplyAmount
         - supplyAmountScaled
-        - borrowAmount
         - borrowAmountScaled
-        - supplyAmountShort
-        - borrowAmountShort
-        - supplyTimestamp
         - supplyIndex
-        - borrowTimestamp
         - borrowIndex
         - entryLiquidationThreshold
         - entryLiquidationBonus
         - entryLiquidationFee
         - entryLtv
-        - isolated
         - positionMode
-        - eModeCategory
         - address
-        - leverageInitialSupply
-        - leverageInitialSupplyPrice
-        - leverageInitialBorrow
-        - leverageInitialBorrowPrice
+        - supplyAmount
+        - borrowAmount
     ShortLendingTokenEModeProfileDoc:
       type: object
       properties:
@@ -11020,20 +10998,19 @@ components:
     OwnerDto:
       type: object
       properties:
-        address:
-          type: string
-          example: erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/userprofile/erd1xkhvemdwfnn43rhx6vz7yy3pk6hg305qpgaefh9rtdk343dplsvqn7zsam/profilePicture.webp
         username:
           type: string
-          example: '@sospvp'
+          description: Username of the owner
+        address:
+          type: string
+          description: Blockchain address of the owner
+        profile:
+          type: string
+          description: URL to the owner's profile picture
       required:
+        - username
         - address
         - profile
-        - username
     LendingPositionStatus:
       type: object
       properties:
@@ -11067,7 +11044,6 @@ components:
         - supplied
         - borrowed
         - healthFactor
-        - wallet
     LendingOverallStats:
       type: object
       properties:
@@ -11112,6 +11088,342 @@ components:
         - borrowed
         - suppliedMargin
         - borrowedMargin
+    NftPaginated:
+      type: object
+      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
+      required:
+        - hasMoreResults
+        - resources
+    LikeNftDto:
+      type: object
+      properties:
+        isFavorite:
+          type: boolean
+          description: Is favorite flag
+          example: true
+        collection:
+          type: string
+          description: Collection identifier
+          example: EAPES-8f3c1f
+        identifier:
+          type: string
+          description: NFT identifier
+          example: EAPES-8f3c1f-1047
+      required:
+        - isFavorite
+        - collection
+        - identifier
+    InventorySummaryDto:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection identifier
+        inventoryCount:
+          type: number
+          description: Number of NFTs in inventory
+        listedCount:
+          type: number
+          description: Number of listed NFTs
+        stakedCount:
+          type: number
+          description: Number of staked NFTs
+      required:
+        - collection
+        - inventoryCount
+        - listedCount
+        - stakedCount
+    NftOfferPaginated:
+      type: object
+      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
+      required:
+        - hasMoreResults
+        - resources
+    NftOfferDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          example: offer
+          enum:
+            - nft
+            - sftOwner
+            - offer
+            - syntheticNft
+            - fungibleTokenProfile
+            - nftExtraMetadata
+          description: Type of token data document
+        identifier:
+          type: string
+          example: COLLECTION-1234-5678
+          description: Unique identifier of the NFT
+        collection:
+          type: string
+          example: COLLECTION-1234
+          description: Collection identifier
+        offerId:
+          type: number
+          example: 1
+          description: Unique offer identifier
+        paymentToken:
+          type: string
+          example: EGLD
+          description: Token identifier used for payment
+        paymentTokenNonce:
+          type: number
+          example: 0
+          description: Nonce of the payment token (0 for EGLD)
+        price:
+          type: string
+          example: '1000000000000000000'
+          description: Offer price in smallest token units as string
+        priceShort:
+          type: number
+          example: 1.5
+          description: Offer price as a decimal number
+        priceUsd:
+          type: number
+          example: 150.75
+          description: Offer price in USD
+        floorPriceMargin:
+          type: number
+          example: 0.15
+          description: Margin compared to floor price as percentage
+        deadline:
+          type: number
+          example: 1640995200
+          description: Unix timestamp when the offer expires
+        timestamp:
+          type: number
+          example: 1640995200
+          description: Unix timestamp when the offer was created
+        nftOwner:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: Address of the NFT owner
+        quantity:
+          type: number
+          example: 1
+          description: Quantity of NFTs being offered for
+        marketplace:
+          type: string
+          example: xoxno
+          description: Marketplace where the offer was created
+        auctionId:
+          type: number
+          example: 123
+          description: Auction identifier if related to an auction
+        isActive:
+          type: boolean
+          example: true
+          description: Whether the offer is currently active
+        chain:
+          type: string
+          example: MVX
+          enum:
+            - MVX
+            - SUI
+          description: Blockchain network of the offer
+        id:
+          type: string
+          example: COLLECTION-1234-5678-1-xoxno-offer
+          description: Unique document identifier
+        _ts:
+          type: number
+          example: 1640995200
+          description: Cosmos DB timestamp for document versioning
+        owner:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: Address of the offer creator
+      required:
+        - dataType
+        - identifier
+        - collection
+        - offerId
+        - paymentToken
+        - paymentTokenNonce
+        - price
+        - priceShort
+        - deadline
+        - timestamp
+        - quantity
+        - marketplace
+        - isActive
+        - chain
+        - id
+        - _ts
+        - owner
+    CollectionRanksDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: MICE-a0c447-0b99
+        name:
+          type: string
+          example: 'MiceCity #2969'
+        rank:
+          type: number
+          example: 1
+      required:
+        - identifier
+        - name
+        - rank
+    DensityDto:
+      type: object
+      properties:
+        key:
+          type: string
+          example: '0.180'
+        intervalName:
+          type: string
+          example: 0.180 - 0.180
+        intervalCount:
+          type: number
+          example: 0
+        totalCount:
+          type: number
+          example: 0
+      required:
+        - key
+        - intervalName
+        - intervalCount
+        - totalCount
+    RarityDto:
+      type: object
+      properties:
+        rank:
+          type: number
+          example: 3769
+      required:
+        - rank
+    MetadataDto:
+      type: object
+      properties:
+        rarity:
+          $ref: '#/components/schemas/RarityDto'
+      required:
+        - rarity
+    OriginalMedia:
+      type: object
+      properties:
+        contentType:
+          type: string
+          description: The content type of the original media
+        contentLength:
+          type: number
+          description: The content length of the original media
+      required:
+        - contentType
+        - contentLength
+    NftMedia:
+      type: object
+      properties:
+        avifUrl:
+          type: string
+          description: The AVIF URL of the media
+        webpUrl:
+          type: string
+          description: The WebP URL of the media
+        retries:
+          type: number
+          description: The number of retries
+        originalMedia:
+          description: The original media
+          allOf:
+            - $ref: '#/components/schemas/OriginalMedia'
+      required:
+        - avifUrl
+        - webpUrl
+        - retries
+        - originalMedia
+    SaleInfoDto:
+      type: object
+      properties:
+        minBidShort:
+          type: number
+          example: 0.18
+        marketplace:
+          type: string
+          example: xoxno
+      required:
+        - minBidShort
+        - marketplace
+    ListingDto:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: MICE-a0c447-10fd
+        name:
+          type: string
+          example: 'MiceCity #4349'
+        collection:
+          type: string
+          example: MICE-a0c447
+        metadata:
+          $ref: '#/components/schemas/MetadataDto'
+        url:
+          type: string
+          example: >-
+            https://media.elrond.com/nfts/asset/QmWEwSi9AhgMPeu4CJfLpWq1yKSfmERZXt76b429pVSU9R/2287.png
+        media:
+          $ref: '#/components/schemas/NftMedia'
+        wasProcessed:
+          type: boolean
+          example: true
+        saleInfo:
+          $ref: '#/components/schemas/SaleInfoDto'
+      required:
+        - identifier
+        - name
+        - collection
+        - metadata
+        - url
+        - media
+        - wasProcessed
+        - saleInfo
+    ListingsResponseDto:
+      type: object
+      properties:
+        density:
+          type: array
+          items:
+            $ref: '#/components/schemas/DensityDto'
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListingDto'
+      required:
+        - density
+        - listings
     EsdtTokenType:
       type: string
       enum:
@@ -11119,7 +11431,7 @@ components:
         - NonFungibleESDT
         - SemiFungibleESDT
         - MetaESDT
-      description: The type of the asset
+      description: The type of the NFT
     EsdtTokenSubType:
       type: string
       enum:
@@ -11127,97 +11439,7 @@ components:
         - DynamicNonFungibleESDT
         - DynamicSemiFungibleESDT
         - DynamicMetaESDT
-      description: The sub-type of the asset
-    OriginalMedia:
-      type: object
-      properties:
-        contentType:
-          type: string
-        contentLength:
-          type: number
-      required:
-        - contentType
-        - contentLength
-    NftMedia:
-      type: object
-      properties:
-        webpUrl:
-          type: string
-        originalMedia:
-          $ref: '#/components/schemas/OriginalMedia'
-      required:
-        - webpUrl
-        - originalMedia
-    MarketplacesOnSaleNames:
-      type: string
-      enum:
-        - xoxno
-        - frameit
-        - deadrare
-        - krogan
-    NftSaleInfo:
-      type: object
-      properties:
-        auctionId:
-          type: number
-        seller:
-          type: string
-        currentWinner:
-          $ref: '#/components/schemas/OwnerDto'
-        minBid:
-          type: string
-        maxBid:
-          type: string
-        currentBid:
-          type: string
-        startTime:
-          type: number
-        deadline:
-          type: number
-        paymentToken:
-          type: string
-        paymentTokenNonce:
-          type: number
-        auctionType:
-          type: string
-        timestamp:
-          type: number
-        minBidShort:
-          type: number
-        minBidUsdValue:
-          type: number
-        maxBidShort:
-          type: number
-        maxBidUsdValue:
-          type: number
-        currentBidShort:
-          type: number
-        quantity:
-          type: number
-        marketplace:
-          example: xoxno
-          allOf:
-            - $ref: '#/components/schemas/MarketplacesOnSaleNames'
-        royalties:
-          type: number
-          example: 10
-          description: This value is the one set by the owner at listing time
-      required:
-        - auctionId
-        - seller
-        - minBid
-        - maxBid
-        - startTime
-        - deadline
-        - paymentToken
-        - paymentTokenNonce
-        - auctionType
-        - timestamp
-        - minBidShort
-        - maxBidShort
-        - quantity
-        - marketplace
-        - royalties
+      description: The sub-type of the NFT
     NftStats:
       type: object
       properties:
@@ -11278,76 +11500,84 @@ components:
         - eventId
         - ticketId
         - checkInStatus
-    CollectionExtraFeesConfig:
+    ActivityChain:
+      type: string
+      enum:
+        - MVX
+        - SUI
+      description: The chain of the NFT
+    MarketplacesOnSaleNames:
+      type: string
+      enum:
+        - xoxno
+        - frameit
+        - deadrare
+        - krogan
+    NftSaleInfoHydrated:
       type: object
       properties:
-        amount:
+        auctionId:
           type: number
-        address:
+        seller:
           type: string
+        minBid:
+          type: string
+        maxBid:
+          type: string
+        currentBid:
+          type: string
+        startTime:
+          type: number
+        deadline:
+          type: number
+        paymentToken:
+          type: string
+        paymentTokenNonce:
+          type: number
+        auctionType:
+          type: string
+        timestamp:
+          type: number
+        minBidShort:
+          type: number
+        minBidUsdValue:
+          type: number
+        maxBidShort:
+          type: number
+        maxBidUsdValue:
+          type: number
+        currentBidShort:
+          type: number
+        quantity:
+          type: number
+        marketplace:
+          example: xoxno
+          allOf:
+            - $ref: '#/components/schemas/MarketplacesOnSaleNames'
+        royalties:
+          type: number
+          example: 10
+          description: This value is the one set by the owner at listing time
+        currentWinner:
+          $ref: '#/components/schemas/OwnerDto'
       required:
-        - amount
-        - address
-    XoxnoMarketplaceScCollectionConfig:
+        - auctionId
+        - seller
+        - minBid
+        - maxBid
+        - startTime
+        - deadline
+        - paymentToken
+        - paymentTokenNonce
+        - auctionType
+        - timestamp
+        - minBidShort
+        - maxBidShort
+        - quantity
+        - marketplace
+    PartialType:
       type: object
-      properties:
-        reversedCutFees:
-          type: object
-        reversedRoyalties:
-          type: object
-        customRoyalties:
-          type: object
-        minRoyalties:
-          type: object
-        maxRoyalties:
-          type: object
-        extraFees:
-          $ref: '#/components/schemas/CollectionExtraFeesConfig'
-        adminAddress:
-          type: string
-      required:
-        - reversedCutFees
-        - reversedRoyalties
-        - customRoyalties
-        - minRoyalties
-        - maxRoyalties
-    CollectionProfileSummary:
-      type: object
-      properties:
-        name:
-          type: string
-          example: MiceCity
-        profile:
-          type: string
-          example: MiceCity
-        owner:
-          type: string
-        banner:
-          type: string
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        isVerified:
-          type: boolean
-        isVisible:
-          type: boolean
-        collectionSize:
-          type: number
-        description:
-          type: string
-        followCount:
-          type: number
-        chain:
-          type: string
-        holdersCount:
-          type: number
-        customConfig:
-          $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
-        roles:
-          type: object
-      required:
-        - name
-        - profile
-        - chain
+      properties: {}
     ExtraProperties:
       type: object
       properties:
@@ -11357,7 +11587,7 @@ components:
         level:
           type: number
           description: Custom level of the NFT
-    NftProps:
+    NftHydrated:
       type: object
       properties:
         identifier:
@@ -11373,23 +11603,21 @@ components:
             collection
         attributes:
           type: string
-          description: Base64 attributes
+          description: The attributes of the NFT as base64 encoded string
         nonce:
           type: number
-          description: The unique number of an asset
+          description: The nonce of the NFT
         type:
-          description: The type of the asset
+          description: The type of the NFT
           allOf:
             - $ref: '#/components/schemas/EsdtTokenType'
         subType:
-          description: The sub-type of the asset
+          description: The sub-type of the NFT
           allOf:
             - $ref: '#/components/schemas/EsdtTokenSubType'
         supply:
           type: number
-          description: >-
-            In case of an SFT/MetaESDT we show the total supply minted for this
-            unique asset
+          description: The supply of the NFT
         supplyLong:
           type: string
           description: >-
@@ -11397,82 +11625,73 @@ components:
             unique asset as string
         name:
           type: string
-          description: The name of the asset
+          description: The name of the NFT
         royalties:
           type: number
-          description: >-
-            The original royalties set by the creator at mint time, to be
-            compared with custom settings
+          description: The royalties of the NFT
         url:
           type: string
-          description: The original asset media URL
+          description: The URL of the NFT
         uris:
-          description: All media URLs of an asset
-          type: array
-          items:
-            type: string
-        creator:
-          description: The creator profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
+          type: string
+          description: The URIs of the NFT
         wasProcessed:
           type: boolean
-          description: >-
-            Indicates if the specific asset has the media processed and
-            optimized WEBP/AVIF
+          description: Whether the NFT was processed
         media:
-          description: Processed URLs and types of the specific asset
+          description: The media of the NFT
           allOf:
             - $ref: '#/components/schemas/NftMedia'
-        currentOwner:
-          description: The current owner profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        owner:
-          description: The owner profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        onSale:
-          type: boolean
-          description: Indicates if the specific asset is on sale or not
-        isTicket:
-          type: boolean
-          description: Indicates if the specific asset is a ticket
-        saleInfo:
-          description: When onSale = true, saleInfo keeps the info about the listing
-          allOf:
-            - $ref: '#/components/schemas/NftSaleInfo'
         statistics:
-          description: Statistics about the asset
+          description: The statistics of the NFT
           allOf:
             - $ref: '#/components/schemas/NftStats'
         metadata:
-          description: When onSale = true, saleInfo keeps the info about the listing
+          description: The metadata of the NFT
           allOf:
             - $ref: '#/components/schemas/NftMetadata'
+        isTicket:
+          type: boolean
+          description: Whether the NFT is a ticket
         eventData:
-          description: Event-specific data associated with this NFT.
+          description: The event data of the NFT
           allOf:
             - $ref: '#/components/schemas/NFTEventData'
+        chain:
+          description: The chain of the NFT
+          allOf:
+            - $ref: '#/components/schemas/ActivityChain'
         tags:
-          description: A list of hashtags parts of the asset
-          type: array
-          items:
-            type: string
+          type: string
+          description: The tags of the NFT
         kiosk:
           type: string
           description: 'SUI specific: The Kiosk ID if the NFT is listed on a kiosk.'
-        version:
-          type: string
-          description: 'SUI specific: The version of the SUI object.'
-        digest:
-          type: string
-          description: 'SUI specific: The digest of the SUI object.'
+        onSale:
+          type: boolean
+          description: Whether the NFT is on sale
         id:
           type: string
-          description: The unique long ID of an asset in our database
-        receiverIsNotOwner:
-          type: boolean
+          description: The ID of the NFT
+        _ts:
+          type: number
+          description: The timestamp of the NFT last DB change
+        creator:
+          description: The creator of the NFT
+          allOf:
+            - $ref: '#/components/schemas/OwnerDto'
+        currentOwner:
+          description: The current owner of the NFT
+          allOf:
+            - $ref: '#/components/schemas/OwnerDto'
+        owner:
+          description: The owner of the NFT
+          allOf:
+            - $ref: '#/components/schemas/OwnerDto'
+        saleInfo:
+          description: The sale info of the NFT
+          allOf:
+            - $ref: '#/components/schemas/NftSaleInfoHydrated'
         balance:
           type: number
           description: Balance owned by the user
@@ -11488,7 +11707,7 @@ components:
         collectionInfo:
           description: The extra information about the collection of this specific NFT
           allOf:
-            - $ref: '#/components/schemas/CollectionProfileSummary'
+            - $ref: '#/components/schemas/PartialType'
         extraProperties:
           description: Extra props for the specific NFT
           allOf:
@@ -11498,390 +11717,13 @@ components:
         - collection
         - nonce
         - type
+        - supply
         - name
+        - royalties
         - url
         - wasProcessed
-        - owner
+        - chain
         - onSale
-        - statistics
-    NftCosmosResponse:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/NftProps'
-        hasMoreResults:
-          type: boolean
-          example: true
-        count:
-          type: number
-          example: 12
-      required:
-        - resources
-        - hasMoreResults
-    LikeNftDto:
-      type: object
-      properties:
-        isFavorite:
-          type: boolean
-          description: Is favorite flag
-          example: true
-        collection:
-          type: string
-          description: Collection identifier
-          example: EAPES-8f3c1f
-        identifier:
-          type: string
-          description: NFT identifier
-          example: EAPES-8f3c1f-1047
-      required:
-        - isFavorite
-        - collection
-        - identifier
-    InventorySummaryDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          description: Collection identifier
-        inventoryCount:
-          type: number
-          description: Number of NFTs in inventory
-        listedCount:
-          type: number
-          description: Number of listed NFTs
-        stakedCount:
-          type: number
-          description: Number of staked NFTs
-        floorPrice:
-          type: number
-          description: Floor price of the collection
-        name:
-          type: string
-          description: Name of the collection
-        isVerified:
-          type: boolean
-          description: Verification status of the collection
-        isVisible:
-          type: boolean
-          description: Visibility status of the collection
-        profile:
-          type: string
-          description: Profile picture URL of the collection
-        value:
-          type: number
-          description: Value of the collection
-      required:
-        - collection
-        - inventoryCount
-        - listedCount
-        - stakedCount
-        - floorPrice
-        - name
-        - isVerified
-        - isVisible
-        - profile
-        - value
-    NftInfoDto:
-      type: object
-      properties:
-        identifier:
-          type: string
-          example: HLSR-374950-1934
-        nonce:
-          type: number
-          example: 6452
-        name:
-          type: string
-          example: 37.43 EGLD
-        url:
-          type: string
-          example: >-
-            https://arweave.net/mfjIHO6ckE8m1ck_b46BdV4ZFVGEEHJSno2MnFKuzgk/undelegate-nft.png
-        wasProcessed:
-          type: boolean
-          example: true
-        media:
-          type: object
-          example:
-            avifUrl: https://media.xoxno.com/nftmedia/HLSR-374950/receipt.avif
-            webpUrl: https://media.xoxno.com/nftmedia/HLSR-374950/receipt.webp
-            originalMedia:
-              contentLength: 2639394
-              contentType: image/png
-        onSale:
-          type: boolean
-          example: false
-        saleInfo:
-          type: object
-          example: {}
-        metadata:
-          type: object
-          example:
-            rarity:
-              rank: 202
-        owner:
-          example:
-            address: erd1vdr8jnyhp0wlk3cwe2j5ejwkzwepexqgtnqxanravgv0d6vg59dqnfkjmm
-            profile: >-
-              https://media.xoxno.com/userprofile/erd1vdr8jnyhp0wlk3cwe2j5ejwkzwepexqgtnqxanravgv0d6vg59dqnfkjmm/profilePicture.webp
-            username: '@xtrading'
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        currentOwner:
-          example:
-            address: erd1vdr8jnyhp0wlk3cwe2j5ejwkzwepexqgtnqxanravgv0d6vg59dqnfkjmm
-            profile: >-
-              https://media.xoxno.com/userprofile/erd1vdr8jnyhp0wlk3cwe2j5ejwkzwepexqgtnqxanravgv0d6vg59dqnfkjmm/profilePicture.webp
-            username: '@xtrading'
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        receiverIsNotOwner:
-          type: boolean
-          example: true
-      required:
-        - identifier
-        - nonce
-        - name
-        - url
-        - wasProcessed
-        - media
-        - onSale
-        - saleInfo
-        - metadata
-        - owner
-        - currentOwner
-        - receiverIsNotOwner
-    OfferDto:
-      type: object
-      properties:
-        isActive:
-          type: boolean
-          example: true
-        identifier:
-          type: string
-          example: HLSR-374950-1934
-        collection:
-          type: string
-          example: HLSR-374950
-        offerId:
-          type: number
-          example: 336875
-        paymentToken:
-          type: string
-          example: EGLD
-        paymentTokenNonce:
-          type: number
-          example: 0
-        price:
-          type: string
-          example: '36700000000000000000'
-        priceShort:
-          type: number
-          example: 36.7
-        deadline:
-          type: number
-          example: 1721220240
-        timestamp:
-          type: number
-          example: 1720615494
-        owner:
-          $ref: '#/components/schemas/OwnerDto'
-        quantity:
-          type: number
-          example: 1
-        marketplace:
-          type: string
-          example: xoxno
-        usdValue:
-          type: number
-          example: 1323.373
-        floorPriceMargin:
-          type: number
-          example: -1.95
-        floorPrice:
-          type: number
-          example: 1
-        nftInfo:
-          $ref: '#/components/schemas/NftInfoDto'
-      required:
-        - isActive
-        - identifier
-        - collection
-        - offerId
-        - paymentToken
-        - paymentTokenNonce
-        - price
-        - priceShort
-        - deadline
-        - timestamp
-        - owner
-        - quantity
-        - marketplace
-        - usdValue
-        - floorPriceMargin
-        - floorPrice
-        - nftInfo
-    GetUserOffersResponseDto:
-      type: object
-      properties:
-        count:
-          type: number
-          example: 11
-        hasMoreResults:
-          type: boolean
-          example: false
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferDto'
-      required:
-        - count
-        - hasMoreResults
-        - resources
-    GetSingleNftOfferResponseDto:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/OfferDto'
-        hasMoreResults:
-          type: boolean
-          example: false
-      required:
-        - resources
-        - hasMoreResults
-    CollectionRanksDTO:
-      type: object
-      properties:
-        identifier:
-          type: string
-          example: MICE-a0c447-0b99
-        name:
-          type: string
-          example: 'MiceCity #2969'
-        rank:
-          type: number
-          example: 1
-      required:
-        - identifier
-        - name
-        - rank
-    DensityDto:
-      type: object
-      properties:
-        key:
-          type: string
-          example: '0.180'
-        intervalName:
-          type: string
-          example: 0.180 - 0.180
-        intervalCount:
-          type: number
-          example: 0
-        totalCount:
-          type: number
-          example: 0
-      required:
-        - key
-        - intervalName
-        - intervalCount
-        - totalCount
-    RarityDto:
-      type: object
-      properties:
-        rank:
-          type: number
-          example: 3769
-      required:
-        - rank
-    MetadataDto:
-      type: object
-      properties:
-        rarity:
-          $ref: '#/components/schemas/RarityDto'
-      required:
-        - rarity
-    MediaDto:
-      type: object
-      properties:
-        avifUrl:
-          type: string
-          example: https://media.xoxno.com/nftmedia/HLSR-374950/receipt.avif
-        webpUrl:
-          type: string
-          example: https://media.xoxno.com/nftmedia/HLSR-374950/receipt.webp
-        originalMedia:
-          type: object
-          example:
-            contentLength: 2639394
-            contentType: image/png
-      required:
-        - avifUrl
-        - webpUrl
-        - originalMedia
-    SaleInfoDto:
-      type: object
-      properties:
-        minBidShort:
-          type: number
-          example: 0.18
-        marketplace:
-          type: string
-          example: xoxno
-      required:
-        - minBidShort
-        - marketplace
-    ListingDto:
-      type: object
-      properties:
-        identifier:
-          type: string
-          example: MICE-a0c447-10fd
-        name:
-          type: string
-          example: 'MiceCity #4349'
-        collection:
-          type: string
-          example: MICE-a0c447
-        metadata:
-          $ref: '#/components/schemas/MetadataDto'
-        url:
-          type: string
-          example: >-
-            https://media.elrond.com/nfts/asset/QmWEwSi9AhgMPeu4CJfLpWq1yKSfmERZXt76b429pVSU9R/2287.png
-        media:
-          $ref: '#/components/schemas/MediaDto'
-        wasProcessed:
-          type: boolean
-          example: true
-        saleInfo:
-          $ref: '#/components/schemas/SaleInfoDto'
-      required:
-        - identifier
-        - name
-        - collection
-        - metadata
-        - url
-        - media
-        - wasProcessed
-        - saleInfo
-    ListingsResponseDto:
-      type: object
-      properties:
-        density:
-          type: array
-          items:
-            $ref: '#/components/schemas/DensityDto'
-        listings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListingDto'
-      required:
-        - density
-        - listings
     SignWithdrawDto:
       type: object
       properties:
@@ -11936,104 +11778,250 @@ components:
       required:
         - quantity
         - stage
-    OtherDataDto:
+    StatisticsOtherDto:
       type: object
       properties:
-        nftCount:
-          type: number
-          example: 5579
         followCount:
           type: number
-          example: 200
+          description: How many unique users are following this collection
+        nftCount:
+          type: number
+          description: How many NFTs are part of this collection
         holdersCount:
           type: number
-          example: 764
+          description: How many holders does this collection has
       required:
-        - nftCount
         - followCount
-        - holdersCount
+        - nftCount
+    StatisticsTradeDataDto:
+      type: object
+      properties:
+        dayEgldVolume:
+          type: number
+          example: 0
+        weekEgldVolume:
+          type: number
+          example: 116.67
+        totalEgldVolume:
+          type: number
+          example: 128123.25
+      required:
+        - dayEgldVolume
+        - weekEgldVolume
+        - totalEgldVolume
+    StatisticsMintDataDto:
+      type: object
+      properties: {}
     StatisticsDto:
       type: object
       properties:
         other:
-          $ref: '#/components/schemas/OtherDataDto'
+          description: More statistics about the collection
+          allOf:
+            - $ref: '#/components/schemas/StatisticsOtherDto'
+        tradeData:
+          $ref: '#/components/schemas/StatisticsTradeDataDto'
+        mintData:
+          $ref: '#/components/schemas/StatisticsMintDataDto'
       required:
         - other
-    CollectionProfileDto:
+        - tradeData
+    TransferPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Transfer policy id
+        type:
+          type: string
+          description: Transfer policy type
+        rules:
+          description: Transfer policy rules
+          type: array
+          items:
+            type: string
+        is_origin_byte:
+          type: boolean
+          description: Transfer policy is origin byte
+      required:
+        - id
+        - type
+        - rules
+        - is_origin_byte
+    XoxnoMarketplaceScCollectionConfig:
+      type: object
+      properties: {}
+    CollectionProfileDoc:
       type: object
       properties:
         dataType:
           type: string
+          description: Data type identifier for the collection profile
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
           example: collectionProfile
         collection:
           type: string
-          example: MICE-a0c447
+          description: Collection identifier
+          example: COLLECTION-123456
+        originalCollection:
+          type: string
+          description: Original collection identifier
+          example: ORIGINAL-123456
         name:
           type: string
-          example: MiceCity
+          description: Name of the collection
+          example: My NFT Collection
         description:
           type: string
-          example: >-
-            Welcome to the 1980s, set in an alternative Miami populated by mice!
-            Our collection of 8000 uniquely generated retro mice is the ultimate
-            blast from the past, bringing the decade of big hair, excess, pastel
-            suits & neon lights to the MultiversX Blockchain!
+          description: Description of the collection
+          example: A unique collection of digital artwork
         isVisible:
           type: boolean
+          description: Whether the collection is visible to the public
           example: true
         isVerified:
           type: boolean
-          example: true
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilePicture.webp?ts=1679309756
-        banner:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/MICE-a0c447/profilebanner.webp
-        statistics:
-          $ref: '#/components/schemas/StatisticsDto'
-        owner:
-          type: string
-          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
-        creator:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
-        isMintable:
-          type: boolean
-          example: true
-        hasStaking:
-          type: boolean
-          example: true
-        id:
-          type: string
-          example: MICE-a0c447-collectionProfile
+          description: Whether the collection is verified
+          example: false
         socials:
-          $ref: '#/components/schemas/SocialsDto'
+          description: Social media links for the collection
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
         type:
           type: string
+          description: Token type
+          enum:
+            - FungibleESDT
+            - NonFungibleESDT
+            - SemiFungibleESDT
+            - MetaESDT
           example: NonFungibleESDT
+        subType:
+          type: string
+          description: Token subtype
+          enum:
+            - NonFungibleESDTv2
+            - DynamicNonFungibleESDT
+            - DynamicSemiFungibleESDT
+            - DynamicMetaESDT
+          example: NonFungibleESDTv2
+        profile:
+          type: string
+          description: Profile image URL
+          example: https://example.com/profile.jpg
+        banner:
+          type: string
+          description: Banner image URL
+          example: https://example.com/banner.jpg
+        statistics:
+          description: Collection statistics
+          allOf:
+            - $ref: '#/components/schemas/StatisticsDto'
+        chain:
+          type: string
+          description: Blockchain chain
+          enum:
+            - MVX
+            - SUI
+          example: MVX
+        transferPolicies:
+          description: Transfer policies for the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferPolicy'
+        owner:
+          type: string
+          description: Owner address of the collection
+          example: erd1...
+        creator:
+          type: string
+          description: Creator address of the collection
+          example: erd1...
+        isMintable:
+          type: boolean
+          description: Whether the collection is mintable
+          example: false
+        hasStaking:
+          type: boolean
+          description: Whether the collection has staking
+          example: false
+        isEvent:
+          type: boolean
+          description: Whether the collection is an event
+          example: false
+        roles:
+          type: object
+          description: Roles associated with the collection
+          example:
+            ESDTRoleNFTCreate:
+              - erd1...
+        eventId:
+          type: string
+          description: Event ID if this is an event collection
+          example: event-123
+        pinnedAtDrops:
+          type: number
+          description: Timestamp when pinned at drops
+          example: 1640995200
+        pinnedAt:
+          type: number
+          description: Timestamp when pinned
+          example: 1640995200
+        customConfig:
+          description: Custom configuration for the collection
+          allOf:
+            - $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
+        royalty:
+          type: number
+          description: Royalty of the collection
+        collectionSize:
+          type: number
+          description: Size of the collection, applied post processing
+        holdersCount:
+          type: number
+          description: Holders count of the collection, applied post processing
+        followCount:
+          type: number
+          description: Follow count of the collection, applied post processing
+        minSalePrice:
+          type: string
+          description: Minimum sale price of the collection
+        id:
+          type: string
+          description: Unique identifier for the document
+          example: COLLECTION-123456-CollectionProfile
         _ts:
           type: number
-          example: 1720568178
+          description: Timestamp of the document
+          example: 1640995200
       required:
         - dataType
         - collection
+        - originalCollection
         - name
         - description
         - isVisible
         - isVerified
+        - socials
+        - type
         - profile
         - banner
         - statistics
+        - chain
+        - transferPolicies
         - owner
         - creator
         - isMintable
         - hasStaking
+        - isEvent
+        - roles
         - id
-        - socials
-        - type
         - _ts
     FloorPriceDto:
       type: object
@@ -12115,6 +12103,103 @@ components:
           example: Mice-213123
       required:
         - isFavorite
+    CollectionProfilePaginated:
+      type: object
+      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
+      required:
+        - hasMoreResults
+        - resources
+    CollectionMintProfilePaginated:
+      type: object
+      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
+      required:
+        - hasMoreResults
+        - resources
+    CollectionMintProfileDocWithStages:
+      type: object
+      properties:
+        contractAddress:
+          type: string
+          description: Smart contract address for minting
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+        collectionTag:
+          type: string
+          description: Collection tag for identification
+          example: MYNFT
+        cid:
+          type: string
+          description: IPFS CID for metadata
+          example: QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco
+        mediaType:
+          type: string
+          description: Media type of the NFT collection
+          example: image/png
+        hasAttributes:
+          type: boolean
+          description: Whether the collection has attributes/traits
+          example: true
+        collectionSize:
+          type: number
+          description: Total size of the collection
+          example: 10000
+        totalNftMinted:
+          type: number
+          description: Total number of NFTs minted
+          example: 5000
+        globalWalletLimit:
+          type: number
+          description: Global wallet limit for minting
+          example: 10
+        nftTransferLimited:
+          type: boolean
+          description: Whether NFT transfers are limited
+          example: false
+        kycRequired:
+          type: boolean
+          description: Whether KYC is required for minting
+          example: false
+        hasBotProtection:
+          type: boolean
+          description: Whether bot protection is enabled
+          example: true
+      required:
+        - contractAddress
+        - collectionTag
+        - cid
+        - mediaType
+        - hasAttributes
+        - collectionSize
+        - totalNftMinted
+        - globalWalletLimit
+        - nftTransferLimited
+        - kycRequired
+        - hasBotProtection
     EgldOrEsdtTokenPayment:
       type: object
       properties:
@@ -12129,103 +12214,20 @@ components:
           example: '500000000000000000'
         amountShort:
           type: number
-          example: 0.5
-        decimals:
-          type: number
-          example: 18
+          example: 0
+          description: Short amount
         usdValue:
           type: number
-          example: 18.34
+          example: 0
+          description: USD value
+        decimals:
+          type: number
+          example: 0
+          description: Decimals
       required:
         - tokenIdentifier
         - tokenNonce
         - amount
-        - amountShort
-        - decimals
-        - usdValue
-    CreatorInfoDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Marcel81
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgqzty6ekd0dwte8r3d45kt78el9yle5vmkys5sr86uws
-        profile:
-          type: string
-          example: https://media.xoxno.com/utils/defaultProfilePic.webp
-      required:
-        - name
-        - contractAddress
-        - profile
-    DropResourceDto:
-      type: object
-      properties:
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
-        startTime:
-          type: number
-          example: 1720587300
-        isSoldOut:
-          type: boolean
-          example: false
-        collectionTag:
-          type: string
-          example: Nfthero
-        collectionSize:
-          type: number
-          example: 4
-        totalNftMinted:
-          type: number
-          example: 0
-        collection:
-          type: string
-          example: 1000-76443d
-        creatorTag:
-          type: string
-          example: Marcel81
-        creatorName:
-          type: string
-          example: Marcel81
-        endTime:
-          type: number
-          example: 1722401700
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
-        creatorInfo:
-          $ref: '#/components/schemas/CreatorInfoDto'
-      required:
-        - prices
-        - startTime
-        - isSoldOut
-        - collectionTag
-        - collectionSize
-        - totalNftMinted
-        - collection
-        - creatorTag
-        - creatorName
-        - endTime
-        - collectionInfo
-        - creatorInfo
-    DropsQueryDto:
-      type: object
-      properties:
-        count:
-          type: number
-          example: null
-        hasMoreResults:
-          type: boolean
-          example: true
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/DropResourceDto'
-      required:
-        - hasMoreResults
-        - resources
     MintStageDto:
       type: object
       properties:
@@ -12279,7 +12281,7 @@ components:
           type: boolean
           example: false
         maxBuyable:
-          type: number
+          type: object
           example: null
           nullable: true
       required:
@@ -12300,6 +12302,95 @@ components:
         - _ts
         - walletLimitReached
         - maxBuyable
+    CollectionInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the collection
+          example: My NFT Collection
+        description:
+          type: string
+          description: Description of the collection
+          example: A unique collection of digital artwork
+        isVisible:
+          type: boolean
+          description: Whether the collection is visible to the public
+          example: true
+        isVerified:
+          type: boolean
+          description: Whether the collection is verified
+          example: false
+        socials:
+          description: Social media links for the collection
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
+        profile:
+          type: string
+          description: Profile image URL
+          example: https://example.com/profile.jpg
+        banner:
+          type: string
+          description: Banner image URL
+          example: https://example.com/banner.jpg
+        owner:
+          type: string
+          description: Owner address of the collection
+          example: erd1...
+        collectionSize:
+          type: number
+          description: Size of the collection, applied post processing
+        holdersCount:
+          type: number
+          description: Holders count of the collection, applied post processing
+        followCount:
+          type: number
+          description: Follow count of the collection, applied post processing
+        volume:
+          type: number
+          example: 1230.34
+      required:
+        - name
+        - description
+        - isVisible
+        - isVerified
+        - socials
+        - profile
+        - banner
+        - owner
+        - volume
+    CreatorInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MiceCityClub
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgq2t6ef4u9ts3j86504sx0zlvw0vujfq6yys5sqfg40f
+        address:
+          type: string
+          example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
+        profile:
+          type: string
+          example: https://media.xoxno.com/utils/defaultProfilePic.webp
+        banner:
+          type: string
+          example: https://media.xoxno.com/utils/defaultBanner.webp
+        joinedDate:
+          type: number
+          example: 1645192020
+        creatorTag:
+          type: string
+          example: MiceCityClub
+      required:
+        - name
+        - contractAddress
+        - address
+        - profile
+        - banner
+        - joinedDate
+        - creatorTag
     DropInfoDto:
       type: object
       properties:
@@ -12458,188 +12549,327 @@ components:
           example: erd10ugfytgdndw5qmnykemjfpd7xrjs63f0r2qjhug0ek9gnfdjxq4s8qjvcx
       required:
         - owner
-    AttributeDto:
+    AllTimeHigh:
       type: object
       properties:
-        trait_type:
-          type: string
-          example: Divinity
-        value:
-          type: string
-          example: '95'
-      required:
-        - trait_type
-        - value
-    ResourceDto:
-      type: object
-      properties:
-        offerId:
-          type: number
-          example: 156453
-        collection:
-          type: string
-          example: VPRNFT-0a0ee5
-        quantity:
-          type: number
-          example: 1
-        paymentToken:
-          type: string
-          example: EGLD
-        paymentTokenNonce:
-          type: number
-          example: 0
         price:
-          type: string
-          example: '800000000000000000'
-        priceShort:
           type: number
-          example: 0.8
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeDto'
-        owner:
-          $ref: '#/components/schemas/OwnerDto'
+          description: All-time high price
+          example: 150
         timestamp:
           type: number
-          example: 1688827110
-        marketplace:
+          description: Timestamp of all-time high
+          example: 1640995200
+        txHash:
           type: string
-          example: xoxno
-        uniqueKey:
+          description: Transaction hash of all-time high
+          example: 0x123abc...
+        identifier:
           type: string
-          example: VPRNFT-0a0ee5-156453-xoxno-globalOffer
-        isActive:
-          type: boolean
-          example: true
-        usdValue:
-          type: number
-          example: 29.143
+          description: NFT identifier of all-time high
+          example: COLLECTION-123456-01
       required:
-        - offerId
-        - collection
-        - quantity
-        - paymentToken
-        - paymentTokenNonce
         - price
-        - priceShort
-        - attributes
-        - owner
         - timestamp
-        - marketplace
-        - uniqueKey
-        - isActive
-        - usdValue
-    GlobalOffersDto:
+        - txHash
+        - identifier
+    TradingDataSummary:
       type: object
       properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceDto'
+        volume:
+          type: number
+          description: Trading volume
+          example: 100.5
+        volumeMargin:
+          type: number
+          description: Volume margin percentage
+          example: 5.2
+        trades:
+          type: number
+          description: Number of trades
+          example: 10
+        tradesMargin:
+          type: number
+          description: Trades margin percentage
+          example: 3.1
+        minPrice:
+          type: number
+          description: Minimum price
+          example: 0.1
+        maxPrice:
+          type: number
+          description: Maximum price
+          example: 100
+        averagePrice:
+          type: number
+          description: Average price
+          example: 20.5
+      required:
+        - volume
+        - volumeMargin
+        - trades
+        - tradesMargin
+    TradingStatistics:
+      type: object
+      properties:
+        totalVolume:
+          type: number
+          description: Total volume traded
+          example: 1000.5
+        totalTrades:
+          type: number
+          description: Total number of trades
+          example: 50
+        averagePrice:
+          type: number
+          description: Average price of trades
+          example: 20.1
+        allTimeHigh:
+          description: All-time high statistics
+          allOf:
+            - $ref: '#/components/schemas/AllTimeHigh'
+        day:
+          description: Daily trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+        week:
+          description: Weekly trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+        month:
+          description: Monthly trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+        quarter:
+          description: Quarterly trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+        halfYear:
+          description: Half-year trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+        year:
+          description: Yearly trading statistics
+          allOf:
+            - $ref: '#/components/schemas/TradingDataSummary'
+      required:
+        - totalVolume
+        - totalTrades
+        - allTimeHigh
+        - day
+        - week
+        - month
+        - quarter
+        - halfYear
+        - year
+    CollectionStatsDto:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Data type identifier for collection stats
+          example: collectionStats
+        collection:
+          type: string
+          description: Collection identifier
+          example: COLLECTION-123456
+        floorPrice:
+          type: number
+          description: Floor price of the collection
+          example: 0.5
+        listedCount:
+          type: number
+          description: Number of listed items
+          example: 100
+        tradingStats:
+          description: Trading statistics for the collection
+          allOf:
+            - $ref: '#/components/schemas/TradingStatistics'
+        chain:
+          type: string
+          description: Blockchain chain
+          enum:
+            - MVX
+            - SUI
+          example: MVX
+        _ts:
+          type: number
+          description: Document timestamp
+          example: 1640995200
+        id:
+          type: string
+          description: Unique document identifier
+          example: COLLECTION-123456-CollectionStats
+      required:
+        - dataType
+        - collection
+        - listedCount
+        - tradingStats
+        - chain
+        - _ts
+        - id
+    GlobalOfferPaginated:
+      type: object
+      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
+          description: Indicates if there are more documents available
           example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
       required:
-        - resources
         - hasMoreResults
-    UserDataType:
-      type: string
-      enum:
-        - userProfile
-        - creatorProfile
-        - userFavorite
-        - userSettings
-        - delegationContractProfile
-      description: The type of user data.
-    CollectionDataType:
-      type: string
-      enum:
-        - collectionProfile
-        - globalOffer
-        - mintProfile
-        - mintStage
-        - collectionStats
-        - collectionVerification
+        - resources
     MintingListingDto:
       type: object
       properties:
         dataType:
-          allOf:
-            - $ref: '#/components/schemas/CollectionDataType'
+          type: string
+          description: Data type identifier for the mint profile
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
+          example: mintProfile
         collection:
           type: string
-        contractAddress:
-          type: string
-        collectionTag:
-          type: string
+          description: Collection identifier
+          example: COLLECTION-123456
         creatorTag:
           type: string
+          description: Creator tag/identifier
+          example: creator123
         creatorName:
           type: string
+          description: Name of the collection creator
+          example: John Doe
+        contractAddress:
+          type: string
+          description: Smart contract address for minting
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+        collectionTag:
+          type: string
+          description: Collection tag for identification
+          example: MYNFT
         cid:
           type: string
+          description: IPFS CID for metadata
+          example: QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco
         mediaType:
           type: string
+          description: Media type of the NFT collection
+          example: image/png
         baseNftName:
           type: string
+          description: Base name for NFTs in the collection
+          example: My NFT Collection
         hasAttributes:
           type: boolean
+          description: Whether the collection has attributes/traits
+          example: true
         ownerTransferred:
           type: boolean
+          description: Whether the collection owner has been transferred
+          example: false
         collectionSize:
           type: number
+          description: Total size of the collection
+          example: 10000
         totalNftMinted:
           type: number
+          description: Total number of NFTs minted
+          example: 5000
         globalWalletLimit:
           type: number
+          description: Global wallet limit for minting
+          example: 10
         royalties:
           type: number
+          description: Royalties percentage (basis points)
+          example: 500
         oldVersion:
           type: boolean
+          description: Whether this is an old version of the contract
+          example: false
         nameShuffle:
           type: boolean
+          description: Whether names are shuffled during minting
+          example: true
         nftTransferLimited:
           type: boolean
+          description: Whether NFT transfers are limited
+          example: false
         allowsPublicBurn:
           type: boolean
+          description: Whether public burning is allowed
+          example: false
         kycRequired:
           type: boolean
+          description: Whether KYC is required for minting
+          example: false
         allowsRefund:
           type: boolean
+          description: Whether refunds are allowed
+          example: false
         hasBotProtection:
           type: boolean
+          description: Whether bot protection is enabled
+          example: true
         hasReveal:
           type: boolean
+          description: Whether the collection has reveal mechanics
+          example: false
+        tags:
+          type: object
+          description: Tags associated with the collection
+          example:
+            - gaming
+            - art
+            - utility
         prices:
+          description: Minimum starting prices for each public stage
           type: array
           items:
             $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
         startTime:
-          type: object
+          type: number
+          description: Earliest start time of all public stages (Unix timestamp)
+          example: 1640995200
         endTime:
           type: number
+          description: Latest end time of all public stages (Unix timestamp)
+          example: 1641081600
         isSoldOut:
-          type: object
-        tags:
-          oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
+          type: boolean
+          description: Whether the collection is sold out
+          example: false
         id:
           type: string
+          description: Unique identifier for the document
+          example: COLLECTION-123456-mintProfile
         _ts:
           type: number
+          description: Cosmos DB timestamp
+          example: 1640995200
         collectionInfo:
           $ref: '#/components/schemas/CollectionInfoDto'
       required:
         - dataType
         - collection
-        - contractAddress
-        - collectionTag
         - creatorTag
         - creatorName
+        - contractAddress
+        - collectionTag
         - cid
         - mediaType
         - baseNftName
@@ -12656,13 +12886,12 @@ components:
         - allowsRefund
         - hasBotProtection
         - hasReveal
+        - tags
         - prices
         - startTime
         - endTime
         - isSoldOut
-        - tags
         - id
-        - _ts
         - collectionInfo
     TicketingDataType:
       type: string
@@ -12918,7 +13147,6 @@ components:
         - dataType
         - role
         - permissions
-        - status
     EventProfileDoc:
       type: object
       properties:
@@ -12947,8 +13175,6 @@ components:
           description: >-
             URL to the markdown file in Azure storage containing the event
             description.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -12964,8 +13190,6 @@ components:
         profile:
           type: string
           description: URL to the profile image in Azure storage.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -13026,42 +13250,62 @@ components:
       type: object
       properties:
         dataType:
-          description: The type of user data.
-          allOf:
-            - $ref: '#/components/schemas/UserDataType'
+          type: string
+          example: creatorProfile
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
         address:
           type: string
-          description: Wallet address of the creator.
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: Creator wallet address
         name:
           type: string
-          description: Name of the creator.
+          example: Awesome Creator
+          description: Creator name (editable by creator)
         creatorTag:
           type: string
-          description: Tag of the creator.
+          example: awesome-creator
+          description: Unique creator tag (not editable)
         contractAddress:
           type: string
-          description: Contract address of the creator.
+          example: erd1qqqqqqqqqqqqqpgqcollection123456789abcdef
+          description: Contract address for regular NFT creators
         ticketingContractAddress:
           type: string
-          description: Ticketing Contract address of the creator.
+          example: erd1qqqqqqqqqqqqqpgqticket123456789abcdef
+          description: Contract address for ticketing creators
         profile:
           type: string
-          description: Profile picture of the creator.
+          example: https://media.xoxno.com/creatorprofile/erd1.../profilePicture.webp
+          description: Creator profile picture URL
         banner:
           type: string
-          description: Banner picture of the creator.
+          example: https://media.xoxno.com/creatorprofile/erd1.../profileBanner.webp
+          description: Creator profile banner URL
         joinedDate:
           type: number
-          description: Join date of the creator as a Unix timestamp in seconds.
+          example: 1640995200
+          description: Unix timestamp when creator joined
         description:
           type: string
-          description: Description of the creator.
+          example: Leading NFT creator and artist
+          description: Creator description
         socials:
-          type: object
-          description: Social media links of the creator.
+          description: Creator social media links
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
         id:
           type: string
-          description: ID of the creator.
+          example: >-
+            erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq-creatorProfile
+          description: Document ID
+        _ts:
+          type: number
+          example: 1640995200
+          description: Cosmos DB timestamp
         listing:
           type: array
           items:
@@ -13075,11 +13319,13 @@ components:
         - address
         - name
         - creatorTag
+        - contractAddress
+        - ticketingContractAddress
         - profile
         - banner
         - joinedDate
-        - listing
-        - events
+        - id
+        - _ts
     EditUserCreatorProfileDto:
       type: object
       properties:
@@ -13097,7 +13343,7 @@ components:
           description: Creator name
           maxLength: 30
           example: Creator Name
-    Reward:
+    XoxnoStakingReward:
       type: object
       properties:
         tokenIdentifier:
@@ -13112,18 +13358,26 @@ components:
           type: string
           description: Reward balance
           example: '322605500000000000000000'
-        rewardBalanceShort:
-          type: number
-          description: Short reward balance
-          example: 322605.5
+        shareRewardBalance:
+          type: string
+          description: Share reward balance
+          example: '322605500000000000000000'
+        rewardPerEpoch:
+          type: string
+          description: Reward per epoch
+          example: '322605500000000000000000'
         rewardPerEpochShort:
           type: number
           description: Reward per epoch short
-          example: 8000
+          example: 322605.5
         rewardPerDayPerNft:
           type: number
           description: Reward per day per NFT
           example: 1
+        rewardBalanceShort:
+          type: number
+          description: Reward balance short
+          example: 322605.5
         usdValue:
           type: number
           description: USD value
@@ -13132,10 +13386,8 @@ components:
         - tokenIdentifier
         - tokenNonce
         - rewardBalance
-        - rewardBalanceShort
-        - rewardPerEpochShort
-        - rewardPerDayPerNft
-        - usdValue
+        - shareRewardBalance
+        - rewardPerEpoch
     StakingSummary:
       type: object
       properties:
@@ -13188,12 +13440,12 @@ components:
           description: Pool reward details
           type: array
           items:
-            $ref: '#/components/schemas/Reward'
+            $ref: '#/components/schemas/XoxnoStakingReward'
         userReward:
           description: User reward details
           type: array
           items:
-            $ref: '#/components/schemas/Reward'
+            $ref: '#/components/schemas/XoxnoStakingReward'
         poolType:
           type: string
           description: Pool type
@@ -13210,6 +13462,10 @@ components:
           type: boolean
           description: Has unbound period
           example: false
+        userUnboundCount:
+          type: number
+          description: Unbound count
+          example: 4
         maxPoolLimit:
           type: number
           description: Max pool limit
@@ -13257,7 +13513,6 @@ components:
       required:
         - poolId
         - name
-        - description
         - stakingEnabled
         - profile
         - collection
@@ -13271,6 +13526,7 @@ components:
         - issuingType
         - unBoundPeriod
         - hasUnboundPeriod
+        - userUnboundCount
         - maxPoolLimit
         - hasMaxWalletLimit
         - maxWalletLimit
@@ -13282,6 +13538,68 @@ components:
         - daysLeft
         - cutFee
         - percentageFilled
+    NftSaleInfo:
+      type: object
+      properties:
+        auctionId:
+          type: number
+        seller:
+          type: string
+        minBid:
+          type: string
+        maxBid:
+          type: string
+        currentBid:
+          type: string
+        startTime:
+          type: number
+        deadline:
+          type: number
+        paymentToken:
+          type: string
+        paymentTokenNonce:
+          type: number
+        auctionType:
+          type: string
+        timestamp:
+          type: number
+        minBidShort:
+          type: number
+        minBidUsdValue:
+          type: number
+        maxBidShort:
+          type: number
+        maxBidUsdValue:
+          type: number
+        currentBidShort:
+          type: number
+        quantity:
+          type: number
+        marketplace:
+          example: xoxno
+          allOf:
+            - $ref: '#/components/schemas/MarketplacesOnSaleNames'
+        royalties:
+          type: number
+          example: 10
+          description: This value is the one set by the owner at listing time
+        currentWinner:
+          type: string
+      required:
+        - auctionId
+        - seller
+        - minBid
+        - maxBid
+        - startTime
+        - deadline
+        - paymentToken
+        - paymentTokenNonce
+        - auctionType
+        - timestamp
+        - minBidShort
+        - maxBidShort
+        - quantity
+        - marketplace
     NftDoc:
       type: object
       properties:
@@ -13298,23 +13616,21 @@ components:
             collection
         attributes:
           type: string
-          description: Base64 attributes
+          description: The attributes of the NFT as base64 encoded string
         nonce:
           type: number
-          description: The unique number of an asset
+          description: The nonce of the NFT
         type:
-          description: The type of the asset
+          description: The type of the NFT
           allOf:
             - $ref: '#/components/schemas/EsdtTokenType'
         subType:
-          description: The sub-type of the asset
+          description: The sub-type of the NFT
           allOf:
             - $ref: '#/components/schemas/EsdtTokenSubType'
         supply:
           type: number
-          description: >-
-            In case of an SFT/MetaESDT we show the total supply minted for this
-            unique asset
+          description: The supply of the NFT
         supplyLong:
           type: string
           description: >-
@@ -13322,91 +13638,82 @@ components:
             unique asset as string
         name:
           type: string
-          description: The name of the asset
+          description: The name of the NFT
         royalties:
           type: number
-          description: >-
-            The original royalties set by the creator at mint time, to be
-            compared with custom settings
+          description: The royalties of the NFT
         url:
           type: string
-          description: The original asset media URL
+          description: The URL of the NFT
         uris:
-          description: All media URLs of an asset
-          type: array
-          items:
-            type: string
-        creator:
-          description: The creator profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
+          type: string
+          description: The URIs of the NFT
         wasProcessed:
           type: boolean
-          description: >-
-            Indicates if the specific asset has the media processed and
-            optimized WEBP/AVIF
+          description: Whether the NFT was processed
         media:
-          description: Processed URLs and types of the specific asset
+          description: The media of the NFT
           allOf:
             - $ref: '#/components/schemas/NftMedia'
-        currentOwner:
-          description: The current owner profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        owner:
-          description: The owner profile information
-          allOf:
-            - $ref: '#/components/schemas/OwnerDto'
-        onSale:
-          type: boolean
-          description: Indicates if the specific asset is on sale or not
-        isTicket:
-          type: boolean
-          description: Indicates if the specific asset is a ticket
-        saleInfo:
-          description: When onSale = true, saleInfo keeps the info about the listing
-          allOf:
-            - $ref: '#/components/schemas/NftSaleInfo'
         statistics:
-          description: Statistics about the asset
+          description: The statistics of the NFT
           allOf:
             - $ref: '#/components/schemas/NftStats'
         metadata:
-          description: When onSale = true, saleInfo keeps the info about the listing
+          description: The metadata of the NFT
           allOf:
             - $ref: '#/components/schemas/NftMetadata'
+        isTicket:
+          type: boolean
+          description: Whether the NFT is a ticket
         eventData:
-          description: Event-specific data associated with this NFT.
+          description: The event data of the NFT
           allOf:
             - $ref: '#/components/schemas/NFTEventData'
+        chain:
+          description: The chain of the NFT
+          allOf:
+            - $ref: '#/components/schemas/ActivityChain'
         tags:
-          description: A list of hashtags parts of the asset
-          type: array
-          items:
-            type: string
+          type: string
+          description: The tags of the NFT
         kiosk:
           type: string
           description: 'SUI specific: The Kiosk ID if the NFT is listed on a kiosk.'
-        version:
-          type: string
-          description: 'SUI specific: The version of the SUI object.'
-        digest:
-          type: string
-          description: 'SUI specific: The digest of the SUI object.'
+        onSale:
+          type: boolean
+          description: Whether the NFT is on sale
         id:
           type: string
-          description: The unique long ID of an asset in our database
+          description: The ID of the NFT
+        _ts:
+          type: number
+          description: The timestamp of the NFT last DB change
+        creator:
+          type: string
+          description: The creator of the NFT
+        currentOwner:
+          type: string
+          description: The current owner of the NFT
+        owner:
+          type: string
+          description: The owner of the NFT
+        saleInfo:
+          description: The sale info of the NFT
+          allOf:
+            - $ref: '#/components/schemas/NftSaleInfo'
       required:
         - identifier
         - collection
         - nonce
         - type
+        - supply
         - name
+        - royalties
         - url
         - wasProcessed
-        - owner
+        - chain
         - onSale
-        - statistics
     StakingPostDTO:
       type: object
       properties:
@@ -13420,7 +13727,6 @@ components:
           example: The largest staking pool
       required:
         - name
-        - description
     OwnedCollectionsDto:
       type: object
       properties:
@@ -13444,35 +13750,6 @@ components:
       required:
         - registered
         - availableForRegister
-    RewardDto:
-      type: object
-      properties:
-        tokenIdentifier:
-          type: string
-          description: Token identifier
-          example: WXMEX-794dbd
-        tokenNonce:
-          type: number
-          description: Token nonce
-          example: 0
-        amount:
-          type: string
-          description: Amount of reward
-          example: '140649439520333680917622'
-        amountShort:
-          type: number
-          description: Short amount of reward
-          example: 140649.4395
-        usdValue:
-          type: number
-          description: USD value of reward
-          example: 0.6295776701542604
-      required:
-        - tokenIdentifier
-        - tokenNonce
-        - amount
-        - amountShort
-        - usdValue
     UserStakingSummaryDto:
       type: object
       properties:
@@ -13502,11 +13779,6 @@ components:
           description: Banner image URL
           example: >-
             https://media.xoxno.com/collectionprofile/MICE-a0c447/profilebanner.webp
-        reward:
-          description: Rewards information
-          type: array
-          items:
-            $ref: '#/components/schemas/RewardDto'
       required:
         - collection
         - stakedCount
@@ -13514,7 +13786,6 @@ components:
         - isVerified
         - profile
         - banner
-        - reward
     StakingDataType:
       type: string
       enum:
@@ -13557,7 +13828,7 @@ components:
         nftDocs:
           type: array
           items:
-            $ref: '#/components/schemas/NftProps'
+            $ref: '#/components/schemas/NftHydrated'
         count:
           type: number
           example: 12
@@ -13580,92 +13851,153 @@ components:
           type: array
           items:
             type: string
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
       required:
         - collection
         - activePools
         - totalPoolStakedCount
         - totalDelegatorCount
         - rewardTickers
-        - collectionInfo
     CollectionMintProfileDoc:
       type: object
       properties:
         dataType:
-          allOf:
-            - $ref: '#/components/schemas/CollectionDataType'
+          type: string
+          description: Data type identifier for the mint profile
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
+          example: mintProfile
         collection:
           type: string
-        contractAddress:
-          type: string
-        collectionTag:
-          type: string
+          description: Collection identifier
+          example: COLLECTION-123456
         creatorTag:
           type: string
+          description: Creator tag/identifier
+          example: creator123
         creatorName:
           type: string
+          description: Name of the collection creator
+          example: John Doe
+        contractAddress:
+          type: string
+          description: Smart contract address for minting
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+        collectionTag:
+          type: string
+          description: Collection tag for identification
+          example: MYNFT
         cid:
           type: string
+          description: IPFS CID for metadata
+          example: QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco
         mediaType:
           type: string
+          description: Media type of the NFT collection
+          example: image/png
         baseNftName:
           type: string
+          description: Base name for NFTs in the collection
+          example: My NFT Collection
         hasAttributes:
           type: boolean
+          description: Whether the collection has attributes/traits
+          example: true
         ownerTransferred:
           type: boolean
+          description: Whether the collection owner has been transferred
+          example: false
         collectionSize:
           type: number
+          description: Total size of the collection
+          example: 10000
         totalNftMinted:
           type: number
+          description: Total number of NFTs minted
+          example: 5000
         globalWalletLimit:
           type: number
+          description: Global wallet limit for minting
+          example: 10
         royalties:
           type: number
+          description: Royalties percentage (basis points)
+          example: 500
         oldVersion:
           type: boolean
+          description: Whether this is an old version of the contract
+          example: false
         nameShuffle:
           type: boolean
+          description: Whether names are shuffled during minting
+          example: true
         nftTransferLimited:
           type: boolean
+          description: Whether NFT transfers are limited
+          example: false
         allowsPublicBurn:
           type: boolean
+          description: Whether public burning is allowed
+          example: false
         kycRequired:
           type: boolean
+          description: Whether KYC is required for minting
+          example: false
         allowsRefund:
           type: boolean
+          description: Whether refunds are allowed
+          example: false
         hasBotProtection:
           type: boolean
+          description: Whether bot protection is enabled
+          example: true
         hasReveal:
           type: boolean
+          description: Whether the collection has reveal mechanics
+          example: false
+        tags:
+          type: object
+          description: Tags associated with the collection
+          example:
+            - gaming
+            - art
+            - utility
         prices:
+          description: Minimum starting prices for each public stage
           type: array
           items:
             $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
         startTime:
-          type: object
+          type: number
+          description: Earliest start time of all public stages (Unix timestamp)
+          example: 1640995200
         endTime:
           type: number
+          description: Latest end time of all public stages (Unix timestamp)
+          example: 1641081600
         isSoldOut:
-          type: object
-        tags:
-          oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
+          type: boolean
+          description: Whether the collection is sold out
+          example: false
         id:
           type: string
+          description: Unique identifier for the document
+          example: COLLECTION-123456-mintProfile
         _ts:
           type: number
+          description: Cosmos DB timestamp
+          example: 1640995200
       required:
         - dataType
         - collection
-        - contractAddress
-        - collectionTag
         - creatorTag
         - creatorName
+        - contractAddress
+        - collectionTag
         - cid
         - mediaType
         - baseNftName
@@ -13682,11 +14014,82 @@ components:
         - allowsRefund
         - hasBotProtection
         - hasReveal
+        - tags
         - prices
         - startTime
         - endTime
         - isSoldOut
-        - tags
+        - id
+    CreatorProfileDoc:
+      type: object
+      properties:
+        dataType:
+          type: string
+          example: creatorProfile
+          enum:
+            - userProfile
+            - creatorProfile
+            - userFavorite
+            - userSettings
+        address:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+          description: Creator wallet address
+        name:
+          type: string
+          example: Awesome Creator
+          description: Creator name (editable by creator)
+        creatorTag:
+          type: string
+          example: awesome-creator
+          description: Unique creator tag (not editable)
+        contractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqcollection123456789abcdef
+          description: Contract address for regular NFT creators
+        ticketingContractAddress:
+          type: string
+          example: erd1qqqqqqqqqqqqqpgqticket123456789abcdef
+          description: Contract address for ticketing creators
+        profile:
+          type: string
+          example: https://media.xoxno.com/creatorprofile/erd1.../profilePicture.webp
+          description: Creator profile picture URL
+        banner:
+          type: string
+          example: https://media.xoxno.com/creatorprofile/erd1.../profileBanner.webp
+          description: Creator profile banner URL
+        joinedDate:
+          type: number
+          example: 1640995200
+          description: Unix timestamp when creator joined
+        description:
+          type: string
+          example: Leading NFT creator and artist
+          description: Creator description
+        socials:
+          description: Creator social media links
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
+        id:
+          type: string
+          example: >-
+            erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq-creatorProfile
+          description: Document ID
+        _ts:
+          type: number
+          example: 1640995200
+          description: Cosmos DB timestamp
+      required:
+        - dataType
+        - address
+        - name
+        - creatorTag
+        - contractAddress
+        - ticketingContractAddress
+        - profile
+        - banner
+        - joinedDate
         - id
         - _ts
     OwnedServicesDto:
@@ -13705,7 +14108,7 @@ components:
           items:
             $ref: '#/components/schemas/EventProfileDoc'
         creatorProfile:
-          $ref: '#/components/schemas/CreatorProfileDto'
+          $ref: '#/components/schemas/CreatorProfileDoc'
         address:
           type: string
           example: erd1312
@@ -13715,146 +14118,21 @@ components:
         - events
         - creatorProfile
         - address
-    CollectionDto:
-      type: object
-      properties:
-        collection:
-          type: string
-          example: EAPES-8f3c1f
-        name:
-          type: string
-          example: EAPES
-        isVisible:
-          type: boolean
-          example: true
-        isVerified:
-          type: boolean
-          example: true
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/EAPES-8f3c1f/profilePicture.webp?ts=1691359925
-        type:
-          type: string
-          example: NonFungibleESDT
-        statistics:
-          $ref: '#/components/schemas/StatisticsDto'
-        floorPrice:
-          type: number
-          example: 3.1
-      required:
-        - collection
-        - name
-        - isVisible
-        - isVerified
-        - profile
-        - type
-        - statistics
-        - floorPrice
-    UserDto:
-      type: object
-      properties:
-        address:
-          type: string
-          example: erd10hsfh2xhn4qzatc0vguxgfdu8aegurnep7zzyg0ht9ddw50g5xfq8ccu4q
-        herotag:
-          type: string
-          example: erd1...cu4q
-        isVerified:
-          type: boolean
-          example: false
-        profile:
-          type: string
-          example: https://media.xoxno.com/utils/defaultProfilePic.webp
-        isCreator:
-          type: boolean
-          example: true
-        addressTrimmed:
-          type: string
-          example: erd1...cu4q
-      required:
-        - address
-        - herotag
-        - isVerified
-        - profile
-        - addressTrimmed
-    CreatorDto:
-      type: object
-      properties:
-        address:
-          type: string
-          example: erd10hsfh2xhn4qzatc0vguxgfdu8aegurnep7zzyg0ht9ddw50g5xfq8ccu4q
-        herotag:
-          type: string
-          example: erd1...cu4q
-        addressTrimmed:
-          type: string
-          example: erd1...cu4q
-        isCreator:
-          type: boolean
-          example: true
-        contractAddress:
-          type: string
-          example: erd1qqqqqqqqqqqqqpgqfnmr778ef8z9mk79rcwzwdhywraahs7hys5sute79u
-        name:
-          type: string
-          example: Ep1xStudio
-        creatorTag:
-          type: string
-          example: Ep1xStudio
-        joinedDate:
-          type: number
-          example: 1643145426
-        profile:
-          type: string
-          example: https://media.xoxno.com/utils/defaultProfilePic.webp
-      required:
-        - address
-        - herotag
-        - addressTrimmed
-        - isCreator
-        - contractAddress
-        - name
-        - creatorTag
-        - joinedDate
-        - profile
-    GlobalSearchResourcesDto:
-      type: object
-      properties:
-        collections:
-          type: array
-          items:
-            $ref: '#/components/schemas/CollectionDto'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-        creators:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatorDto'
-        nft:
-          type: array
-          items:
-            type: object
-      required:
-        - collections
-        - users
-        - creators
-        - nft
-    GlobalSearchResponseDto:
+    GlobalSearchResourcesPaginated:
       type: object
       properties:
         count:
-          type: number
-          example: 30
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
+          description: Indicates if there are more documents available
           example: true
         resources:
-          $ref: '#/components/schemas/GlobalSearchResourcesDto'
+          type: object
+          description: List of documents
       required:
-        - count
         - hasMoreResults
         - resources
     MarketplaceActivity:
@@ -14503,117 +14781,132 @@ components:
             type: string
       required:
         - shards
-    FromToDto:
+    NftActivityPaginated:
       type: object
       properties:
-        address:
-          type: string
-          example: erd1p98x64g8642n6sykjcs64fm69ll92tj7a204tadcn3d92a8gqx7sgn6hks
-        profile:
-          type: string
-          example: https://media.xoxno.com/utils/defaultProfilePic.webp
-        username:
-          type: string
-          example: erd1...6hks
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
       required:
-        - address
-        - profile
-        - username
-    ActivityDataDto:
+        - hasMoreResults
+        - resources
+    NftActivityData:
+      type: object
+      properties: {}
+    NftActivityDocHydrated:
       type: object
       properties:
-        collection:
-          type: string
-          example: EBMC-8a2d40
-        identifier:
-          type: string
-          example: EBMC-8a2d40-0ad0
-        price:
-          type: number
-          example: 0.05
-        paymentToken:
-          type: string
-          example: EGLD
-        quantity:
-          type: number
-          example: 1
-        scId:
-          type: number
-          example: 489392
-        usdValue:
-          type: number
-          example: 1.6446
-        egldValue:
-          type: number
-          example: 0.05
-        auctionType:
-          type: string
-          example: Nft
-        nftInfo:
-          $ref: '#/components/schemas/NftInfoDto'
-        collectionInfo:
-          $ref: '#/components/schemas/CollectionInfoDto'
-      required:
-        - collection
-        - identifier
-        - price
-        - paymentToken
-        - quantity
-        - scId
-        - usdValue
-        - egldValue
-        - auctionType
-        - nftInfo
-        - collectionInfo
-    ActivityBodyDto:
-      type: object
-      properties:
-        txHash:
-          type: string
-          example: 0ee3f1f8effcfa49e0b397cae16e24382087581da5c9f47a64a071e7e5dd2cb4
-        eventIdentifier:
-          type: string
-          example: listing
         timestamp:
           type: number
-          example: 1672531200
-        activityType:
+          example: 1640995200
+          description: Unix timestamp when the activity occurred
+        txHash:
           type: string
-          example: listingCreate
+          example: '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'
+          description: Transaction hash on the blockchain
+        eventIdentifier:
+          type: string
+          example: trade
+          description: Event identifier from the blockchain
+        eventOrder:
+          type: number
+          example: 1
+          description: Order of the event within the transaction
+        chain:
+          type: string
+          example: MVX
+          enum:
+            - MVX
+            - SUI
+          description: Blockchain network where the activity occurred
         source:
           type: string
           example: xoxno
-        from:
-          $ref: '#/components/schemas/FromToDto'
-        to:
-          $ref: '#/components/schemas/FromToDto'
+          enum:
+            - mvxBuiltIn
+            - xoxno
+            - frameit
+            - deadrare
+            - krogan
+            - xoxnoLaunchpad
+            - xoxnoStaking
+            - xoxnoP2P
+            - xoxnoLs
+            - xoxnoEgldLs
+            - xoxnoLending
+            - boberBattle
+            - boberWheel
+          description: Source platform or marketplace of the activity
+        activityType:
+          type: string
+          example: trade
+          enum:
+            - nftCreate
+            - nftBurn
+            - nftUpdate
+            - nftTransfer
+            - listingCreate
+            - listingWithdraw
+            - listingUpdate
+            - auctionBid
+            - auctionOutBid
+            - offerCreate
+            - offerWithdraw
+            - offerReject
+            - globalOfferCreate
+            - globalOfferWithdraw
+            - trade
+            - bulkTrade
+            - auctionTrade
+            - otherTrade
+            - offerTrade
+            - globalOfferTrade
+            - stake
+            - unStake
+            - createGame
+            - joinGame
+            - cancelGame
+            - endGame
+          description: Type of NFT activity performed
         activityData:
-          $ref: '#/components/schemas/ActivityDataDto'
+          description: >-
+            Activity data containing details about the NFT transaction or
+            built-in operation
+          allOf:
+            - $ref: '#/components/schemas/NftActivityData'
+        id:
+          type: string
+          example: abc123-def456-ghi789
+          description: Unique identifier for the activity document
+        pk:
+          type: string
+          example: COLLECTION-1234
+          description: Partition key for the document (collection identifier)
+        _ts:
+          type: number
+          example: 1640995200
+          description: Cosmos DB timestamp for document versioning
       required:
+        - timestamp
         - txHash
         - eventIdentifier
-        - timestamp
-        - activityType
+        - chain
         - source
-        - from
-        - to
+        - activityType
         - activityData
-    ActivityHistoryDto:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActivityBodyDto'
-        hasMoreResults:
-          type: boolean
-          example: true
-      required:
-        - resources
-        - hasMoreResults
-    NftActivityDoc:
-      type: object
-      properties: {}
+        - id
+        - pk
+        - _ts
     AnalyticsVolumeDto:
       type: object
       properties:
@@ -14740,6 +15033,111 @@ components:
       required:
         - Purchase
         - Sale
+    AllTimeHighDto:
+      type: object
+      properties:
+        price:
+          type: number
+          example: 351
+        timestamp:
+          type: number
+          example: 1709218759
+        txHash:
+          type: string
+          example: 55300c108960258387a09831c5786d6a26b9bda7d19c0f685d5672a33bd30e11
+        identifier:
+          type: string
+          example: GOOSEV-edcceb-0e08
+      required:
+        - price
+        - timestamp
+        - txHash
+        - identifier
+    TradingStatsDto:
+      type: object
+      properties:
+        totalVolume:
+          type: number
+          example: 816457.97
+        totalTrades:
+          type: number
+          example: 776804
+        averagePrice:
+          type: number
+          example: 1.05
+        allTimeHigh:
+          $ref: '#/components/schemas/AllTimeHighDto'
+        day:
+          type: object
+          example:
+            volume: 1.66
+            volumeMargin: -42
+            trades: 5
+            tradesMargin: -50
+            minPrice: 0.06
+            maxPrice: 1.21
+            averagePrice: 0.33
+        week:
+          type: object
+          example:
+            volume: 1237.69
+            volumeMargin: -79
+            trades: 2055
+            tradesMargin: -87
+            minPrice: 0
+            maxPrice: 36.87
+            averagePrice: 0.6
+        month:
+          type: object
+          example:
+            volume: 13669.09
+            volumeMargin: 105
+            trades: 38233
+            tradesMargin: 247
+            minPrice: 0
+            maxPrice: 157.3
+            averagePrice: 0.36
+        quarter:
+          type: object
+          example:
+            volume: 28336.25
+            volumeMargin: -8
+            trades: 63924
+            tradesMargin: 47
+            minPrice: 0
+            maxPrice: 210
+            averagePrice: 0.44
+        halfYear:
+          type: object
+          example:
+            volume: 59151.49
+            volumeMargin: -45
+            trades: 107545
+            tradesMargin: -26
+            minPrice: 0
+            maxPrice: 210
+            averagePrice: 0.55
+        year:
+          type: object
+          example:
+            volume: 170661.95
+            volumeMargin: -56
+            trades: 259397
+            tradesMargin: -27
+            minPrice: 0
+            maxPrice: 351
+            averagePrice: 0.66
+      required:
+        - totalVolume
+        - totalTrades
+        - averagePrice
+        - allTimeHigh
+        - day
+        - week
+        - month
+        - quarter
+        - halfYear
+        - year
     GlobalAnalyticsOverviewResponseDto:
       type: object
       properties:
@@ -14780,14 +15178,13 @@ components:
         nftInfo:
           description: NFT information
           allOf:
-            - $ref: '#/components/schemas/NftInfoDto'
+            - $ref: '#/components/schemas/PartialType'
       required:
         - price
         - timestamp
         - identifier
         - txHash
         - usdValue
-        - nftInfo
     UserStatsDto:
       type: object
       properties:
@@ -14877,16 +15274,6 @@ components:
         - sellerPartners
         - sellerMaxPriceData
         - sellerMinPriceData
-    GetUsersStatsResponseDto:
-      type: object
-      properties:
-        usersStats:
-          description: List of user stats
-          type: array
-          items:
-            $ref: '#/components/schemas/UserStatsDto'
-      required:
-        - usersStats
     TransactionStatus:
       type: string
       enum:
@@ -15046,7 +15433,6 @@ components:
       required:
         - type
         - value
-        - replyTo
     SendChatMessageDto:
       type: object
       properties:
@@ -15060,150 +15446,46 @@ components:
         - sender
         - content
         - receiver
-    ProfileDto:
+    ChatMessageDocHydrated:
+      type: object
+      properties: {}
+    UserConversationPaginated:
       type: object
       properties:
-        address:
-          type: string
-          example: erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57
-        username:
-          type: string
-          example: '@mihaieremia'
-        profile:
-          type: string
-          example: >-
-            https://media.xoxno.com/collectionprofile/erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57/profilePicture.webp?ts=1718876966
-      required:
-        - address
-        - username
-        - profile
-    MessageContentDto:
-      type: object
-      properties:
-        type:
-          type: string
-          example: message
-        value:
-          type: string
-          example: Vv
-        replyTo:
+        count:
           type: object
-      required:
-        - type
-        - value
-    MessageDto:
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/MessageContentDto'
-        isRead:
-          type: boolean
-          example: true
-        timestamp:
-          type: number
-          example: 1720468991
-      required:
-        - content
-        - isRead
-        - timestamp
-    ChatMessageDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          example: message
-        chatId:
-          type: string
-          example: a0vzrplk37ls7swz5ypz78f83grt9qm6pn57
-        receiver:
-          $ref: '#/components/schemas/ProfileDto'
-        sender:
-          $ref: '#/components/schemas/ProfileDto'
-        isGroupChat:
-          type: boolean
-          example: false
-        message:
-          $ref: '#/components/schemas/MessageDto'
-        id:
-          type: string
-          example: b02f639a-abcf-4db8-9397-bdb3b60cef6a
-        chatName:
-          type: string
-          example: '@mihaieremia'
-      required:
-        - dataType
-        - chatId
-        - receiver
-        - sender
-        - isGroupChat
-        - message
-        - id
-        - chatName
-    ChatConversationDto:
-      type: object
-      properties:
-        dataType:
-          type: string
-          example: conversation
-        chatId:
-          type: string
-          example: a0vzrplk37ls7swz5y1z78283grt4qm6pn57
-        sender:
-          $ref: '#/components/schemas/ProfileDto'
-        receiver:
-          $ref: '#/components/schemas/ProfileDto'
-        isGroupChat:
-          type: boolean
-          example: false
-        message:
-          $ref: '#/components/schemas/MessageDto'
-        id:
-          type: string
-          example: a0vzrplk37ls7swz5ypz78f83grt9qm6pn57
-        chatName:
-          type: string
-          example: erd1...wz5y
-        unreadCount:
-          type: number
-          example: 0
-      required:
-        - dataType
-        - chatId
-        - sender
-        - receiver
-        - isGroupChat
-        - message
-        - id
-        - chatName
-        - unreadCount
-    FetchChatConversationsSummaryDto:
-      type: object
-      properties:
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
-          example: false
+          description: Indicates if there are more documents available
+          example: true
         resources:
+          description: List of documents
           type: array
           items:
-            $ref: '#/components/schemas/ChatConversationDto'
+            type: array
       required:
         - hasMoreResults
         - resources
-    FetchChatMessagesDto:
+    ChatMessagePaginated:
       type: object
       properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
-          example: false
-        receiver:
-          $ref: '#/components/schemas/ProfileDto'
+          description: Indicates if there are more documents available
+          example: true
         resources:
+          description: List of documents
           type: array
           items:
-            $ref: '#/components/schemas/ChatMessageDto'
+            type: array
       required:
         - hasMoreResults
-        - receiver
         - resources
     UnreadMessageCountByChatIdDto:
       type: object
@@ -15234,42 +15516,22 @@ components:
         - totalUnreadChats
         - totalUnreadMessages
         - unreadMessageCountByChatId
-    BlockedChatResourceDto:
+    UserBlockPaginated:
       type: object
       properties:
-        dataType:
-          type: string
-          example: blockedUser
-        timestamp:
-          type: number
-          example: 1720734463
-        sender:
-          $ref: '#/components/schemas/OwnerDto'
-        receiver:
-          $ref: '#/components/schemas/OwnerDto'
-        id:
-          type: string
-          example: erd1fmd662htrgt07xxd8me09newa9s0euzvpz3wp0c4pz78f83grt9qm6pn57
-        chatName:
-          type: string
-          example: erd1...wm7l
-      required:
-        - dataType
-        - timestamp
-        - sender
-        - receiver
-        - id
-        - chatName
-    FetchBlockedChatsDto:
-      type: object
-      properties:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
-          example: false
+          description: Indicates if there are more documents available
+          example: true
         resources:
+          description: List of documents
           type: array
           items:
-            $ref: '#/components/schemas/BlockedChatResourceDto'
+            type: array
       required:
         - hasMoreResults
         - resources
@@ -15337,7 +15599,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1751741512
+          minimum: 1752428373
         endTime:
           type: integer
         location:
@@ -15362,54 +15624,6 @@ components:
         - registration
         - isVirtualEvent
         - category
-    CreatorProfileDoc:
-      type: object
-      properties:
-        dataType:
-          description: The type of user data.
-          allOf:
-            - $ref: '#/components/schemas/UserDataType'
-        address:
-          type: string
-          description: Wallet address of the creator.
-        name:
-          type: string
-          description: Name of the creator.
-        creatorTag:
-          type: string
-          description: Tag of the creator.
-        contractAddress:
-          type: string
-          description: Contract address of the creator.
-        ticketingContractAddress:
-          type: string
-          description: Ticketing Contract address of the creator.
-        profile:
-          type: string
-          description: Profile picture of the creator.
-        banner:
-          type: string
-          description: Banner picture of the creator.
-        joinedDate:
-          type: number
-          description: Join date of the creator as a Unix timestamp in seconds.
-        description:
-          type: string
-          description: Description of the creator.
-        socials:
-          type: object
-          description: Social media links of the creator.
-        id:
-          type: string
-          description: ID of the creator.
-      required:
-        - dataType
-        - address
-        - name
-        - creatorTag
-        - profile
-        - banner
-        - joinedDate
     EventGuestProfileSummary:
       type: object
       properties:
@@ -15575,11 +15789,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1751741512
+          example: 1752428373
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 8c405f3c-e93b-4ef2-baa3-f94d21a64fe3
+          example: 7ececa6b-ed35-497b-92e5-105db346dc0a
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15627,8 +15841,6 @@ components:
           description: >-
             URL to the markdown file in Azure storage containing the event
             description.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultEventDescription.md
         location:
           description: >-
             Location details including geo points, address, and optional
@@ -15644,8 +15856,6 @@ components:
         profile:
           type: string
           description: URL to the profile image in Azure storage.
-          default: >-
-            https://trustmarket.blob.core.windows.net/utils/defaultProfilePic.webp
         category:
           description: Category of the event.
           allOf:
@@ -15722,7 +15932,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -15745,10 +15955,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1751741512
+          example: 1752428373
         endTime:
           type: integer
-          example: 1751741512
+          example: 1752428373
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -16005,11 +16215,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1751741512
+          example: 1752428373
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 9ba382c9-46e7-4833-9afa-65bb98c4d0c6
+          example: 17cef91d-8a0a-4efd-a7d1-9f8e56d3378d
       required:
         - dataType
         - eventId
@@ -16042,22 +16252,6 @@ components:
         - badgeColor
         - name
         - characteristics
-    EgldOrEsdtTokenPaymentDto:
-      type: object
-      properties:
-        tokenIdentifier:
-          type: string
-          example: EGLD
-        tokenNonce:
-          type: number
-          example: 0
-        amount:
-          type: string
-          example: '500000000000000000'
-      required:
-        - tokenIdentifier
-        - tokenNonce
-        - amount
     EventStageProfileCreateDto:
       type: object
       properties:
@@ -16067,11 +16261,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1751741512
+          minimum: 1752428374
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1751827912
+          minimum: 1752514774
           description: End time timestamp
         maxLimit:
           type: integer
@@ -16091,7 +16285,7 @@ components:
         prices:
           type: array
           items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPaymentDto'
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
       required:
         - ticketId
         - name
@@ -16120,11 +16314,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1751741512
+          example: 1752428374
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1751741512
+          example: 1752428374
         maxLimit:
           type: integer
           description: >-
@@ -16155,7 +16349,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 23f066e4-3216-48b5-b1e6-d8b389e28001
+          example: b726240b-7c4e-4af3-bfff-b7411fb7ea8a
       required:
         - dataType
         - eventId
@@ -16192,15 +16386,15 @@ components:
         prices:
           type: array
           items:
-            $ref: '#/components/schemas/EgldOrEsdtTokenPaymentDto'
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
         name:
           type: string
         startTime:
           type: integer
-          minimum: 1751741512
+          minimum: 1752428374
         endTime:
           type: integer
-          minimum: 1751827912
+          minimum: 1752514774
       required:
         - prices
         - name
@@ -16220,8 +16414,6 @@ components:
           items:
             $ref: '#/components/schemas/TicketSelectionDto'
       required:
-        - referralCode
-        - discountCode
         - ticketSelections
     StagePrice:
       type: object
@@ -16262,7 +16454,6 @@ components:
       required:
         - currency
         - stagePrices
-        - vat
     DiscountCodeValidationResponse:
       type: object
       properties:
@@ -16278,7 +16469,6 @@ components:
         - isValid
         - discountType
         - discountAmount
-        - discountMaxAmount
     Ticket:
       type: object
       properties:
@@ -16339,7 +16529,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 12ca96d3-0c63-492c-b6a8-a1a3ee667af5
+          example: 0d9829a8-58aa-4c88-b8d5-8051c2b5e2ef
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -16391,7 +16581,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1751741512
+          example: 1752428373
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16420,7 +16610,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 62543a06-26dd-4aff-8e7e-57a30a700b62
+          example: a1f54c71-e0cb-404b-895a-5c6affc96d5c
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16476,7 +16666,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1751741512
+          example: 1752428373
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16505,7 +16695,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 62543a06-26dd-4aff-8e7e-57a30a700b62
+          example: a1f54c71-e0cb-404b-895a-5c6affc96d5c
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16534,7 +16724,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -16614,11 +16804,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751741512
+          example: 1752428374
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751741512
+          example: 1752428374
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16629,7 +16819,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1751741512
+          example: 1752428374
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -16644,18 +16834,16 @@ components:
         - usedCount
         - eventId
         - ticketTypeIds
-        - stageIds
         - startDate
         - endDate
         - isActive
-        - ownerId
         - createdAt
         - createdBy
     EventVoucherQuery:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -16720,7 +16908,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1751741512
+          example: 1752428373
       required:
         - dataType
         - id
@@ -16729,7 +16917,6 @@ components:
         - required
         - answerType
         - requireTime
-        - answers
         - createdAt
     EventQuestionCreateDto:
       type: object
@@ -16782,8 +16969,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - requireTime
     EventGuestProfile:
       type: object
       properties:
@@ -16835,11 +17020,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1751741512
+          example: 1752428373
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 8c405f3c-e93b-4ef2-baa3-f94d21a64fe3
+          example: 7ececa6b-ed35-497b-92e5-105db346dc0a
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16871,7 +17056,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -16907,8 +17092,6 @@ components:
             - $ref: '#/components/schemas/EventGuestStatus'
       required:
         - wallet
-        - name
-        - phone
         - status
     EventUserRoleCreateDto:
       type: object
@@ -16937,9 +17120,7 @@ components:
           description: The expiry timestamp of the role.
           example: 1627852800
       required:
-        - wallet
         - name
-        - email
         - role
         - permissions
         - endTime
@@ -16995,7 +17176,6 @@ components:
         - dataType
         - role
         - permissions
-        - status
         - profile
         - herotag
     MyEvents:
@@ -17021,7 +17201,7 @@ components:
       type: object
       properties:
         count:
-          type: number
+          type: object
           description: Total number of documents
           example: 100
         hasMoreResults:
@@ -17098,7 +17278,6 @@ components:
             $ref: '#/components/schemas/TicketsType'
       required:
         - qr
-        - tickets
     EventScanStatus:
       type: string
       enum:
@@ -17174,7 +17353,7 @@ components:
           description: NFTs used for check in, if any
           type: array
           items:
-            $ref: '#/components/schemas/NftDoc'
+            $ref: '#/components/schemas/NftHydrated'
         availableTickets:
           description: Tickets to select from when required for bulk scan
           type: array
@@ -17232,11 +17411,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751741512
+          example: 1752428374
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751741512
+          example: 1752428374
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17286,11 +17465,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1751741512
+          example: 1752428374
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1751741512
+          example: 1752428374
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17322,7 +17501,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 25be0a3b-74b4-4e87-9671-3a8e17cd1cde
+          example: 84f8a53d-89ac-4121-acce-94c77264a5e7
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -17338,7 +17517,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1751741512
+          example: 1752428373
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -17369,7 +17548,6 @@ components:
         isApproved:
           type: boolean
       required:
-        - address
         - isApproved
     EventLocationCities:
       type: object
@@ -17445,7 +17623,6 @@ components:
         - rewardType
         - conditionType
         - condition
-        - currency
     EventReferralConfigCreateDto:
       type: object
       properties:
@@ -17483,7 +17660,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 8e0c1335-d0b3-4b1e-9b0c-44b49847fb36
+          example: b9733d10-91d7-4dbd-925f-8ee200990e1a
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -17510,7 +17687,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1751741512
+          example: 1752428374
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -17545,21 +17722,24 @@ components:
         isActive:
           type: boolean
           description: Indicates whether the referral program is currently active.
-    EventReferralConfigQuery:
+    EventReferralConfigPaginated:
       type: object
       properties:
         count:
-          type: number
-          description: Total number of items matching the filter.
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
-          description: Indicates if there are more results.
+          description: Indicates if there are more documents available
+          example: true
         resources:
-          description: List of referral configurations matching the filter.
+          description: List of documents
           type: array
           items:
-            $ref: '#/components/schemas/EventReferralConfigDoc'
+            type: array
       required:
+        - hasMoreResults
         - resources
     EventReferralCreateDto:
       type: object
@@ -17584,7 +17764,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 5267c395-59fb-4b68-978b-a29e23dacea6
+          example: 9d52613b-be11-4d19-b1aa-d6b963cb91bf
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -17603,7 +17783,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1751741512
+          example: 1752428374
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -17625,21 +17805,24 @@ components:
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
-    EventReferralQuery:
+    EventReferralPaginated:
       type: object
       properties:
         count:
-          type: number
-          description: Total number of items matching the filter.
+          type: object
+          description: Total number of documents
+          example: 100
         hasMoreResults:
           type: boolean
-          description: Indicates if there are more results.
+          description: Indicates if there are more documents available
+          example: true
         resources:
-          description: List of referrals matching the filter.
+          description: List of documents
           type: array
           items:
-            $ref: '#/components/schemas/EventReferralDoc'
+            type: array
       required:
+        - hasMoreResults
         - resources
     NftActivityType:
       type: string
@@ -17695,6 +17878,21 @@ components:
           type: number
         field:
           type: string
+    ActivityDataDto:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            type: string
+          example:
+            - collection1
+        identifier:
+          type: array
+          items:
+            type: string
+          example:
+            - identifier1
     NftActivityFilterCriteriaDto:
       type: object
       properties:
@@ -17752,6 +17950,15 @@ components:
           type: integer
         filters:
           $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
+    CollectionDataType:
+      type: string
+      enum:
+        - collectionProfile
+        - globalOffer
+        - mintProfile
+        - mintStage
+        - collectionStats
+        - collectionVerification
     CollectionOffersFilterCriteriaDto:
       type: object
       properties:
@@ -17825,6 +18032,10 @@ components:
           type: string
           description: The search query
           example: '@mihai'
+        top:
+          type: integer
+        skip:
+          type: integer
       required:
         - name
     CollectionStatsFilterCriteriaDto:
@@ -17845,129 +18056,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RangeFilter'
-    TransferPolicy:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Transfer policy id
-        type:
-          type: string
-          description: Transfer policy type
-        rules:
-          description: Transfer policy rules
-          type: array
-          items:
-            type: string
-        is_origin_byte:
-          type: boolean
-          description: Transfer policy is origin byte
-      required:
-        - id
-        - type
-        - rules
-        - is_origin_byte
-    CollectionProfileDoc:
-      type: object
-      properties:
-        dataType:
-          allOf:
-            - $ref: '#/components/schemas/CollectionDataType'
-        collection:
-          type: object
-          description: Unique on chain identifier for the collection
-        originalCollection:
-          type: string
-          description: The original, full SUI type of the collection
-        name:
-          type: object
-          description: Collection name
-        description:
-          type: object
-          description: Description about the collection
-        isVisible:
-          type: object
-          description: Collection visibility
-        isVerified:
-          type: object
-          description: Collection verification
-        socials:
-          $ref: '#/components/schemas/SocialsDto'
-        type:
-          allOf:
-            - $ref: '#/components/schemas/EsdtTokenType'
-        subType:
-          allOf:
-            - $ref: '#/components/schemas/EsdtTokenSubType'
-        profile:
-          type: string
-        banner:
-          type: string
-        statistics:
-          $ref: '#/components/schemas/StatisticsDto'
-        owner:
-          type: object
-          description: Owner wallet address
-        creator:
-          type: object
-          description: Creator wallet address
-        isMintable:
-          type: object
-        hasStaking:
-          type: object
-        roles:
-          type: object
-          description: Collection roles
-        transferPolicies:
-          description: Transfer policies of the collection
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferPolicy'
-        isEvent:
-          type: object
-          description: Indicates if this collection is an event
-        eventId:
-          type: string
-          description: Event Id associate with this collection
-        royalty:
-          type: number
-          description: Royalty of the collection
-        minSalePrice:
-          type: string
-          description: Minimum sale price of the collection
-        customConfig:
-          $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
-        id:
-          type: object
-        _ts:
-          type: number
-          description: Timestamp of the collection
-        pinnedAt:
-          type: number
-          description: Pinned at
-        pinnedAtDrops:
-          type: number
-          description: Pinned at drops
-      required:
-        - dataType
-        - collection
-        - name
-        - description
-        - isVisible
-        - isVerified
-        - socials
-        - type
-        - subType
-        - profile
-        - banner
-        - statistics
-        - owner
-        - creator
-        - isMintable
-        - hasStaking
-        - roles
-        - isEvent
-        - id
     CollectionStatsFilter:
       type: object
       properties:
@@ -18453,7 +18541,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 8eeb0a62-f355-451e-b0f6-feb41e75ed49
+          example: a8ad5531-6244-4a00-b13a-fa11d18b0d42
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -18470,19 +18558,23 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1751741512
+          example: 1752428373
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 478af5c8-2c35-43d0-8d97-f8e3741a4cd0
+          example: 177ae7f4-7080-4849-a718-793f3e3522a0
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1751741512
+          example: 1752428373
         quantity:
           type: integer
           description: Quantity of tickets.
           example: 1
+        transactionId:
+          type: string
+          description: Transaction ID for the ticket.
+          example: f82da495-b050-449f-a5b5-f6dfe4bed797
       required:
         - ticketId
         - isCheckIn

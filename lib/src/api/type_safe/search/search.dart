@@ -8,35 +8,35 @@ class SearchTypeSafeApi {
 
   const SearchTypeSafeApi(this._api);
 
-  Future<GlobalSearchResponseDto> search({
+  Future<GlobalSearchResourcesPaginated> search({
     final FilterQueryDto? filterQuery,
   }) async {
     final filter = json.encode(filterQuery?.toJson() ?? '');
     final data = await _api.search(filter: filter);
-    return GlobalSearchResponseDto.fromJson(data);
+    return GlobalSearchResourcesPaginated.fromJson(data);
   }
 
-  Future<GlobalSearchResponseDto> userSearch({
+  Future<GlobalSearchResourcesPaginated> userSearch({
     final FilterQueryDto? filterQuery,
   }) async {
     final filter = json.encode(filterQuery?.toJson() ?? '');
     final data = await _api.userSearch(filter: filter);
-    return GlobalSearchResponseDto.fromJson(data);
+    return GlobalSearchResourcesPaginated.fromJson(data);
   }
 
-  Future<GlobalSearchResponseDto> collectionSearch({
+  Future<GlobalSearchResourcesPaginated> collectionSearch({
     final FilterQueryDto? filterQuery,
   }) async {
     final filter = json.encode(filterQuery?.toJson() ?? '');
     final data = await _api.collectionSearch(filter: filter);
-    return GlobalSearchResponseDto.fromJson(data);
+    return GlobalSearchResourcesPaginated.fromJson(data);
   }
 
-  Future<GlobalSearchResponseDto> collectionDropsSearchuserSearch({
+  Future<CollectionMintProfilePaginated> collectionDropsSearchuserSearch({
     final FilterQueryDto? filterQuery,
   }) async {
     final filter = json.encode(filterQuery?.toJson() ?? '');
     final data = await _api.collectionDropsSearch(filter: filter);
-    return GlobalSearchResponseDto.fromJson(data);
+    return CollectionMintProfilePaginated.fromJson(data);
   }
 }

@@ -8,13 +8,13 @@ class NftTypeSafeApi {
 
   const NftTypeSafeApi(this._api);
 
-  Future<NftCosmosResponse> query({final NftDocFilter? filter}) async {
+  Future<NftPaginated> query({final NftDocFilter? filter}) async {
     final f = switch (filter?.toJson()) {
       null => '',
       Map<String, dynamic> value => json.encode(value),
     };
     final data = await _api.query(filter: f);
-    return NftCosmosResponse.fromJson(data);
+    return NftPaginated.fromJson(data);
   }
 
   Future<LikeNftDto> like({required final String identifier}) async {
@@ -22,7 +22,7 @@ class NftTypeSafeApi {
     return LikeNftDto.fromJson(data);
   }
 
-  Future<GetSingleNftOfferResponseDto> offers({
+  Future<NftOfferPaginated> offers({
     required final String identifier,
     required final int skip,
     required final int top,
@@ -32,7 +32,7 @@ class NftTypeSafeApi {
       skip: skip,
       top: top,
     );
-    return GetSingleNftOfferResponseDto.fromJson(data);
+    return NftOfferPaginated.fromJson(data);
   }
 
   Future<List<NftDoc>> pinned() async {
@@ -47,8 +47,8 @@ class NftTypeSafeApi {
     return SignDataDto.fromJson(data);
   }
 
-  Future<NftProps> nft({required final String identifier}) async {
+  Future<NftHydrated> nft({required final String identifier}) async {
     final data = await _api.nft(identifier: identifier);
-    return NftProps.fromJson(data);
+    return NftHydrated.fromJson(data);
   }
 }

@@ -15,8 +15,9 @@ class CollectionTypeSafeApi {
     return data.map((element) => CollectionRanksDTO.fromJson(element)).toList();
   }
 
-  Future<ListingsResponseDto> listings(
-      {required final String collection}) async {
+  Future<ListingsResponseDto> listings({
+    required final String collection,
+  }) async {
     final data = await _api.listings(collection: collection);
     return ListingsResponseDto.fromJson(data);
   }
@@ -43,20 +44,22 @@ class CollectionTypeSafeApi {
     return ListingsResponseDto.fromJson(data);
   }
 
-  Future<CollectionProfileDto> profile({
+  Future<CollectionProfileDoc> profile({
     required final String collection,
   }) async {
     final data = await _api.profile(collection: collection);
-    return CollectionProfileDto.fromJson(data);
+    return CollectionProfileDoc.fromJson(data);
   }
 
-  Future<CollectionProfileDto> updateProfile({
+  Future<CollectionProfileDoc> updateProfile({
     required final String collection,
     required final EditUserProfileDto body,
   }) async {
-    final data =
-        await _api.updateProfile(collection: collection, body: body.toJson());
-    return CollectionProfileDto.fromJson(data);
+    final data = await _api.updateProfile(
+      collection: collection,
+      body: body.toJson(),
+    );
+    return CollectionProfileDoc.fromJson(data);
   }
 
   Future<FloorPriceDto> collectionFloorPrice({
@@ -71,8 +74,9 @@ class CollectionTypeSafeApi {
   }
 
   // TODO(kevin): missing return type
-  Future<Map<String, num>> floorPrice(
-      {required final List<String> collections}) async {
+  Future<Map<String, num>> floorPrice({
+    required final List<String> collections,
+  }) async {
     final data = await _api.floorPrice(collections: collections);
     return data;
   }
@@ -87,17 +91,19 @@ class CollectionTypeSafeApi {
     return FollowCollectionDto.fromJson(data);
   }
 
-  Future<List<CollectionProfileDto>> query({final String filter = '{}'}) async {
+  Future<List<CollectionProfileDoc>> query({final String filter = '{}'}) async {
     final data = await _api.query(filter: filter);
 
     return data
-        .map((element) => CollectionProfileDto.fromJson(element))
+        .map((element) => CollectionProfileDoc.fromJson(element))
         .toList();
   }
 
-  Future<DropsQueryDto> dropsQuery({final String filter = ''}) async {
+  Future<CollectionMintProfilePaginated> dropsQuery({
+    final String filter = '',
+  }) async {
     final data = await _api.dropsQuery(filter: filter);
-    return DropsQueryDto.fromJson(data);
+    return CollectionMintProfilePaginated.fromJson(data);
   }
 
   Future<DropInfoDto> dropInfo({required final String collection}) async {
@@ -109,39 +115,41 @@ class CollectionTypeSafeApi {
     required final String creator,
     required final String collection,
   }) async {
-    final data =
-        await _api.creatorDropInfo(creator: creator, collection: collection);
+    final data = await _api.creatorDropInfo(
+      creator: creator,
+      collection: collection,
+    );
     return DropInfoDto.fromJson(data);
   }
 
-  Future<CollectionProfileDto> uploadPicture({
+  Future<CollectionProfileDoc> uploadPicture({
     required final String collection,
     required final List<int> bytes,
   }) async {
     final data = await _api.uploadPicture(collection: collection, bytes: bytes);
-    return CollectionProfileDto.fromJson(data);
+    return CollectionProfileDoc.fromJson(data);
   }
 
-  Future<CollectionProfileDto> uploadBanner({
+  Future<CollectionProfileDoc> uploadBanner({
     required final String collection,
     required final List<int> bytes,
   }) async {
     final data = await _api.uploadBanner(collection: collection, bytes: bytes);
-    return CollectionProfileDto.fromJson(data);
+    return CollectionProfileDoc.fromJson(data);
   }
 
-  Future<CollectionProfileDto> resetPicture({
+  Future<CollectionProfileDoc> resetPicture({
     required final String collection,
   }) async {
     final data = await _api.resetPicture(collection: collection);
-    return CollectionProfileDto.fromJson(data);
+    return CollectionProfileDoc.fromJson(data);
   }
 
-  Future<CollectionProfileDto> resetBanner({
+  Future<CollectionProfileDoc> resetBanner({
     required final String collection,
   }) async {
     final data = await _api.resetBanner(collection: collection);
-    return CollectionProfileDto.fromJson(data);
+    return CollectionProfileDoc.fromJson(data);
   }
 
   Future<CollectionHoldersDto> holders({
@@ -165,18 +173,18 @@ class CollectionTypeSafeApi {
     return CollectionStatsDto.fromJson(data);
   }
 
-  Future<ExploreCollectionsStatisticsDto> statsQuery({
+  Future<CollectionStatsDto> statsQuery({
     final CollectionStatsFilter? filter,
   }) async {
     final f = switch (filter?.toJson()) {
       null => '',
-      (Map<String, dynamic> value) => json.encode(value)
+      (Map<String, dynamic> value) => json.encode(value),
     };
     final data = await _api.statsQuery(filter: f);
-    return ExploreCollectionsStatisticsDto.fromJson(data);
+    return CollectionStatsDto.fromJson(data);
   }
 
-  Future<GlobalOffersDto> globalOfferQuery({
+  Future<GlobalOfferPaginated> globalOfferQuery({
     final CollectionOffersFilter? filter,
   }) async {
     final f = switch (filter?.toJson()) {
@@ -184,7 +192,7 @@ class CollectionTypeSafeApi {
       (Map<String, dynamic> value) => json.encode(value),
     };
     final data = await _api.globalOfferQuery(filter: f);
-    return GlobalOffersDto.fromJson(data);
+    return GlobalOfferPaginated.fromJson(data);
   }
 
   Future<StakingSummary> stakingSummary({

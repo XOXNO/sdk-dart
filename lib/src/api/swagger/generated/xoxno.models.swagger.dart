@@ -101,10 +101,10 @@ extension $ErrorResponseDtoExtension on ErrorResponseDto {
 @JsonSerializable(explicitToJson: true)
 class LoginRequestDto {
   const LoginRequestDto({
-    required this.address,
+    this.address,
     required this.loginToken,
-    required this.signature,
-    required this.data,
+    this.signature,
+    this.data,
   });
 
   factory LoginRequestDto.fromJson(Map<String, dynamic> json) =>
@@ -114,13 +114,13 @@ class LoginRequestDto {
   Map<String, dynamic> toJson() => _$LoginRequestDtoToJson(this);
 
   @JsonKey(name: 'address')
-  final String address;
+  final String? address;
   @JsonKey(name: 'loginToken')
   final String loginToken;
   @JsonKey(name: 'signature')
-  final String signature;
+  final String? signature;
   @JsonKey(name: 'data')
-  final Object data;
+  final Object? data;
   static const fromJsonFactory = _$LoginRequestDtoFromJson;
 
   @override
@@ -174,10 +174,10 @@ extension $LoginRequestDtoExtension on LoginRequestDto {
   }
 
   LoginRequestDto copyWithWrapped({
-    Wrapped<String>? address,
+    Wrapped<String?>? address,
     Wrapped<String>? loginToken,
-    Wrapped<String>? signature,
-    Wrapped<Object>? data,
+    Wrapped<String?>? signature,
+    Wrapped<Object?>? data,
   }) {
     return LoginRequestDto(
       address: (address != null ? address.value : this.address),
@@ -1245,37 +1245,37 @@ extension $SocialsDtoExtension on SocialsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserDepositDto {
-  const UserDepositDto({
+class UserDeposit {
+  const UserDeposit({
     required this.balance,
     required this.balanceShort,
-    required this.usdPrice,
     required this.paymentToken,
     required this.paymentTokenNonce,
+    required this.usdPrice,
   });
 
-  factory UserDepositDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDepositDtoFromJson(json);
+  factory UserDeposit.fromJson(Map<String, dynamic> json) =>
+      _$UserDepositFromJson(json);
 
-  static const toJsonFactory = _$UserDepositDtoToJson;
-  Map<String, dynamic> toJson() => _$UserDepositDtoToJson(this);
+  static const toJsonFactory = _$UserDepositToJson;
+  Map<String, dynamic> toJson() => _$UserDepositToJson(this);
 
   @JsonKey(name: 'balance')
   final String balance;
   @JsonKey(name: 'balanceShort')
   final double balanceShort;
-  @JsonKey(name: 'usdPrice')
-  final double usdPrice;
   @JsonKey(name: 'paymentToken')
   final String paymentToken;
   @JsonKey(name: 'paymentTokenNonce')
   final double paymentTokenNonce;
-  static const fromJsonFactory = _$UserDepositDtoFromJson;
+  @JsonKey(name: 'usdPrice')
+  final double usdPrice;
+  static const fromJsonFactory = _$UserDepositFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is UserDepositDto &&
+        (other is UserDeposit &&
             (identical(other.balance, balance) ||
                 const DeepCollectionEquality().equals(
                   other.balance,
@@ -1286,11 +1286,6 @@ class UserDepositDto {
                   other.balanceShort,
                   balanceShort,
                 )) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )) &&
             (identical(other.paymentToken, paymentToken) ||
                 const DeepCollectionEquality().equals(
                   other.paymentToken,
@@ -1300,6 +1295,11 @@ class UserDepositDto {
                 const DeepCollectionEquality().equals(
                   other.paymentTokenNonce,
                   paymentTokenNonce,
+                )) &&
+            (identical(other.usdPrice, usdPrice) ||
+                const DeepCollectionEquality().equals(
+                  other.usdPrice,
+                  usdPrice,
                 )));
   }
 
@@ -1310,55 +1310,55 @@ class UserDepositDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(balance) ^
       const DeepCollectionEquality().hash(balanceShort) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
       const DeepCollectionEquality().hash(paymentToken) ^
       const DeepCollectionEquality().hash(paymentTokenNonce) ^
+      const DeepCollectionEquality().hash(usdPrice) ^
       runtimeType.hashCode;
 }
 
-extension $UserDepositDtoExtension on UserDepositDto {
-  UserDepositDto copyWith({
+extension $UserDepositExtension on UserDeposit {
+  UserDeposit copyWith({
     String? balance,
     double? balanceShort,
-    double? usdPrice,
     String? paymentToken,
     double? paymentTokenNonce,
+    double? usdPrice,
   }) {
-    return UserDepositDto(
+    return UserDeposit(
       balance: balance ?? this.balance,
       balanceShort: balanceShort ?? this.balanceShort,
-      usdPrice: usdPrice ?? this.usdPrice,
       paymentToken: paymentToken ?? this.paymentToken,
       paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
+      usdPrice: usdPrice ?? this.usdPrice,
     );
   }
 
-  UserDepositDto copyWithWrapped({
+  UserDeposit copyWithWrapped({
     Wrapped<String>? balance,
     Wrapped<double>? balanceShort,
-    Wrapped<double>? usdPrice,
     Wrapped<String>? paymentToken,
     Wrapped<double>? paymentTokenNonce,
+    Wrapped<double>? usdPrice,
   }) {
-    return UserDepositDto(
+    return UserDeposit(
       balance: (balance != null ? balance.value : this.balance),
       balanceShort: (balanceShort != null
           ? balanceShort.value
           : this.balanceShort),
-      usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice),
       paymentToken: (paymentToken != null
           ? paymentToken.value
           : this.paymentToken),
       paymentTokenNonce: (paymentTokenNonce != null
           ? paymentTokenNonce.value
           : this.paymentTokenNonce),
+      usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class EmailNotificationsDto {
-  const EmailNotificationsDto({
+class UserEmailNotificationSettings {
+  const UserEmailNotificationSettings({
     required this.enabled,
     required this.emailAddress,
     required this.isEmailVerificationPending,
@@ -1367,30 +1367,30 @@ class EmailNotificationsDto {
     this.timestamp,
   });
 
-  factory EmailNotificationsDto.fromJson(Map<String, dynamic> json) =>
-      _$EmailNotificationsDtoFromJson(json);
+  factory UserEmailNotificationSettings.fromJson(Map<String, dynamic> json) =>
+      _$UserEmailNotificationSettingsFromJson(json);
 
-  static const toJsonFactory = _$EmailNotificationsDtoToJson;
-  Map<String, dynamic> toJson() => _$EmailNotificationsDtoToJson(this);
+  static const toJsonFactory = _$UserEmailNotificationSettingsToJson;
+  Map<String, dynamic> toJson() => _$UserEmailNotificationSettingsToJson(this);
 
   @JsonKey(name: 'enabled')
-  final bool enabled;
+  final Object enabled;
   @JsonKey(name: 'emailAddress')
-  final String emailAddress;
+  final Object emailAddress;
   @JsonKey(name: 'isEmailVerificationPending')
-  final bool isEmailVerificationPending;
+  final Object isEmailVerificationPending;
   @JsonKey(name: 'isEmailVerified')
-  final bool isEmailVerified;
+  final Object isEmailVerified;
   @JsonKey(name: 'isWeb2User')
-  final bool isWeb2User;
+  final Object isWeb2User;
   @JsonKey(name: 'timestamp')
   final double? timestamp;
-  static const fromJsonFactory = _$EmailNotificationsDtoFromJson;
+  static const fromJsonFactory = _$UserEmailNotificationSettingsFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EmailNotificationsDto &&
+        (other is UserEmailNotificationSettings &&
             (identical(other.enabled, enabled) ||
                 const DeepCollectionEquality().equals(
                   other.enabled,
@@ -1440,16 +1440,17 @@ class EmailNotificationsDto {
       runtimeType.hashCode;
 }
 
-extension $EmailNotificationsDtoExtension on EmailNotificationsDto {
-  EmailNotificationsDto copyWith({
-    bool? enabled,
-    String? emailAddress,
-    bool? isEmailVerificationPending,
-    bool? isEmailVerified,
-    bool? isWeb2User,
+extension $UserEmailNotificationSettingsExtension
+    on UserEmailNotificationSettings {
+  UserEmailNotificationSettings copyWith({
+    Object? enabled,
+    Object? emailAddress,
+    Object? isEmailVerificationPending,
+    Object? isEmailVerified,
+    Object? isWeb2User,
     double? timestamp,
   }) {
-    return EmailNotificationsDto(
+    return UserEmailNotificationSettings(
       enabled: enabled ?? this.enabled,
       emailAddress: emailAddress ?? this.emailAddress,
       isEmailVerificationPending:
@@ -1460,15 +1461,15 @@ extension $EmailNotificationsDtoExtension on EmailNotificationsDto {
     );
   }
 
-  EmailNotificationsDto copyWithWrapped({
-    Wrapped<bool>? enabled,
-    Wrapped<String>? emailAddress,
-    Wrapped<bool>? isEmailVerificationPending,
-    Wrapped<bool>? isEmailVerified,
-    Wrapped<bool>? isWeb2User,
+  UserEmailNotificationSettings copyWithWrapped({
+    Wrapped<Object>? enabled,
+    Wrapped<Object>? emailAddress,
+    Wrapped<Object>? isEmailVerificationPending,
+    Wrapped<Object>? isEmailVerified,
+    Wrapped<Object>? isWeb2User,
     Wrapped<double?>? timestamp,
   }) {
-    return EmailNotificationsDto(
+    return UserEmailNotificationSettings(
       enabled: (enabled != null ? enabled.value : this.enabled),
       emailAddress: (emailAddress != null
           ? emailAddress.value
@@ -1486,40 +1487,52 @@ extension $EmailNotificationsDtoExtension on EmailNotificationsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NotificationPreferencesDto {
-  const NotificationPreferencesDto({
+class UserNotificationPreferences {
+  const UserNotificationPreferences({
     required this.sales,
     required this.bids,
     required this.offersReceived,
     required this.offersAccepted,
     required this.offersRejected,
     required this.deposits,
+    required this.eventUpdates,
+    required this.eventReminders,
+    required this.eventCheckIn,
+    required this.eventMarketing,
   });
 
-  factory NotificationPreferencesDto.fromJson(Map<String, dynamic> json) =>
-      _$NotificationPreferencesDtoFromJson(json);
+  factory UserNotificationPreferences.fromJson(Map<String, dynamic> json) =>
+      _$UserNotificationPreferencesFromJson(json);
 
-  static const toJsonFactory = _$NotificationPreferencesDtoToJson;
-  Map<String, dynamic> toJson() => _$NotificationPreferencesDtoToJson(this);
+  static const toJsonFactory = _$UserNotificationPreferencesToJson;
+  Map<String, dynamic> toJson() => _$UserNotificationPreferencesToJson(this);
 
   @JsonKey(name: 'sales')
-  final bool sales;
+  final Object sales;
   @JsonKey(name: 'bids')
-  final bool bids;
+  final Object bids;
   @JsonKey(name: 'offersReceived')
-  final bool offersReceived;
+  final Object offersReceived;
   @JsonKey(name: 'offersAccepted')
-  final bool offersAccepted;
+  final Object offersAccepted;
   @JsonKey(name: 'offersRejected')
-  final bool offersRejected;
+  final Object offersRejected;
   @JsonKey(name: 'deposits')
-  final bool deposits;
-  static const fromJsonFactory = _$NotificationPreferencesDtoFromJson;
+  final Object deposits;
+  @JsonKey(name: 'eventUpdates')
+  final Object eventUpdates;
+  @JsonKey(name: 'eventReminders')
+  final Object eventReminders;
+  @JsonKey(name: 'eventCheckIn')
+  final Object eventCheckIn;
+  @JsonKey(name: 'eventMarketing')
+  final Object eventMarketing;
+  static const fromJsonFactory = _$UserNotificationPreferencesFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is NotificationPreferencesDto &&
+        (other is UserNotificationPreferences &&
             (identical(other.sales, sales) ||
                 const DeepCollectionEquality().equals(other.sales, sales)) &&
             (identical(other.bids, bids) ||
@@ -1543,6 +1556,26 @@ class NotificationPreferencesDto {
                 const DeepCollectionEquality().equals(
                   other.deposits,
                   deposits,
+                )) &&
+            (identical(other.eventUpdates, eventUpdates) ||
+                const DeepCollectionEquality().equals(
+                  other.eventUpdates,
+                  eventUpdates,
+                )) &&
+            (identical(other.eventReminders, eventReminders) ||
+                const DeepCollectionEquality().equals(
+                  other.eventReminders,
+                  eventReminders,
+                )) &&
+            (identical(other.eventCheckIn, eventCheckIn) ||
+                const DeepCollectionEquality().equals(
+                  other.eventCheckIn,
+                  eventCheckIn,
+                )) &&
+            (identical(other.eventMarketing, eventMarketing) ||
+                const DeepCollectionEquality().equals(
+                  other.eventMarketing,
+                  eventMarketing,
                 )));
   }
 
@@ -1557,37 +1590,53 @@ class NotificationPreferencesDto {
       const DeepCollectionEquality().hash(offersAccepted) ^
       const DeepCollectionEquality().hash(offersRejected) ^
       const DeepCollectionEquality().hash(deposits) ^
+      const DeepCollectionEquality().hash(eventUpdates) ^
+      const DeepCollectionEquality().hash(eventReminders) ^
+      const DeepCollectionEquality().hash(eventCheckIn) ^
+      const DeepCollectionEquality().hash(eventMarketing) ^
       runtimeType.hashCode;
 }
 
-extension $NotificationPreferencesDtoExtension on NotificationPreferencesDto {
-  NotificationPreferencesDto copyWith({
-    bool? sales,
-    bool? bids,
-    bool? offersReceived,
-    bool? offersAccepted,
-    bool? offersRejected,
-    bool? deposits,
+extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
+  UserNotificationPreferences copyWith({
+    Object? sales,
+    Object? bids,
+    Object? offersReceived,
+    Object? offersAccepted,
+    Object? offersRejected,
+    Object? deposits,
+    Object? eventUpdates,
+    Object? eventReminders,
+    Object? eventCheckIn,
+    Object? eventMarketing,
   }) {
-    return NotificationPreferencesDto(
+    return UserNotificationPreferences(
       sales: sales ?? this.sales,
       bids: bids ?? this.bids,
       offersReceived: offersReceived ?? this.offersReceived,
       offersAccepted: offersAccepted ?? this.offersAccepted,
       offersRejected: offersRejected ?? this.offersRejected,
       deposits: deposits ?? this.deposits,
+      eventUpdates: eventUpdates ?? this.eventUpdates,
+      eventReminders: eventReminders ?? this.eventReminders,
+      eventCheckIn: eventCheckIn ?? this.eventCheckIn,
+      eventMarketing: eventMarketing ?? this.eventMarketing,
     );
   }
 
-  NotificationPreferencesDto copyWithWrapped({
-    Wrapped<bool>? sales,
-    Wrapped<bool>? bids,
-    Wrapped<bool>? offersReceived,
-    Wrapped<bool>? offersAccepted,
-    Wrapped<bool>? offersRejected,
-    Wrapped<bool>? deposits,
+  UserNotificationPreferences copyWithWrapped({
+    Wrapped<Object>? sales,
+    Wrapped<Object>? bids,
+    Wrapped<Object>? offersReceived,
+    Wrapped<Object>? offersAccepted,
+    Wrapped<Object>? offersRejected,
+    Wrapped<Object>? deposits,
+    Wrapped<Object>? eventUpdates,
+    Wrapped<Object>? eventReminders,
+    Wrapped<Object>? eventCheckIn,
+    Wrapped<Object>? eventMarketing,
   }) {
-    return NotificationPreferencesDto(
+    return UserNotificationPreferences(
       sales: (sales != null ? sales.value : this.sales),
       bids: (bids != null ? bids.value : this.bids),
       offersReceived: (offersReceived != null
@@ -1600,6 +1649,18 @@ extension $NotificationPreferencesDtoExtension on NotificationPreferencesDto {
           ? offersRejected.value
           : this.offersRejected),
       deposits: (deposits != null ? deposits.value : this.deposits),
+      eventUpdates: (eventUpdates != null
+          ? eventUpdates.value
+          : this.eventUpdates),
+      eventReminders: (eventReminders != null
+          ? eventReminders.value
+          : this.eventReminders),
+      eventCheckIn: (eventCheckIn != null
+          ? eventCheckIn.value
+          : this.eventCheckIn),
+      eventMarketing: (eventMarketing != null
+          ? eventMarketing.value
+          : this.eventMarketing),
     );
   }
 }
@@ -1621,9 +1682,9 @@ class UserSettingsDto {
   Map<String, dynamic> toJson() => _$UserSettingsDtoToJson(this);
 
   @JsonKey(name: 'emailNotifications')
-  final EmailNotificationsDto emailNotifications;
+  final UserEmailNotificationSettings emailNotifications;
   @JsonKey(name: 'notificationPreferences')
-  final NotificationPreferencesDto notificationPreferences;
+  final UserNotificationPreferences notificationPreferences;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'id')
@@ -1675,8 +1736,8 @@ class UserSettingsDto {
 
 extension $UserSettingsDtoExtension on UserSettingsDto {
   UserSettingsDto copyWith({
-    EmailNotificationsDto? emailNotifications,
-    NotificationPreferencesDto? notificationPreferences,
+    UserEmailNotificationSettings? emailNotifications,
+    UserNotificationPreferences? notificationPreferences,
     String? address,
     String? id,
     double? ts,
@@ -1692,8 +1753,8 @@ extension $UserSettingsDtoExtension on UserSettingsDto {
   }
 
   UserSettingsDto copyWithWrapped({
-    Wrapped<EmailNotificationsDto>? emailNotifications,
-    Wrapped<NotificationPreferencesDto>? notificationPreferences,
+    Wrapped<UserEmailNotificationSettings>? emailNotifications,
+    Wrapped<UserNotificationPreferences>? notificationPreferences,
     Wrapped<String>? address,
     Wrapped<String>? id,
     Wrapped<double>? ts,
@@ -1720,18 +1781,19 @@ class UserProfileDto {
     required this.isBanned,
     required this.isVerified,
     required this.socials,
+    required this.followCount,
     required this.joinedDate,
-    required this.id,
     required this.profile,
     required this.banner,
     required this.description,
     required this.herotag,
     required this.isCreator,
     required this.isPoolOwner,
-    required this.userDeposit,
-    required this.followCount,
     required this.shard,
+    required this.userDeposit,
+    required this.chain,
     required this.ts,
+    required this.id,
     this.userSettings,
   });
 
@@ -1741,8 +1803,12 @@ class UserProfileDto {
   static const toJsonFactory = _$UserProfileDtoToJson;
   Map<String, dynamic> toJson() => _$UserProfileDtoToJson(this);
 
-  @JsonKey(name: 'dataType')
-  final String dataType;
+  @JsonKey(
+    name: 'dataType',
+    toJson: userProfileDtoDataTypeToJson,
+    fromJson: userProfileDtoDataTypeFromJson,
+  )
+  final enums.UserProfileDtoDataType dataType;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'isBanned')
@@ -1751,10 +1817,10 @@ class UserProfileDto {
   final bool isVerified;
   @JsonKey(name: 'socials')
   final SocialsDto socials;
+  @JsonKey(name: 'followCount')
+  final double followCount;
   @JsonKey(name: 'joinedDate')
   final double joinedDate;
-  @JsonKey(name: 'id')
-  final String id;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -1767,14 +1833,20 @@ class UserProfileDto {
   final bool isCreator;
   @JsonKey(name: 'isPoolOwner')
   final bool isPoolOwner;
-  @JsonKey(name: 'userDeposit', defaultValue: <UserDepositDto>[])
-  final List<UserDepositDto> userDeposit;
-  @JsonKey(name: 'followCount')
-  final double followCount;
   @JsonKey(name: 'shard')
   final double shard;
+  @JsonKey(name: 'userDeposit', defaultValue: <UserDeposit>[])
+  final List<UserDeposit> userDeposit;
+  @JsonKey(
+    name: 'chain',
+    toJson: userProfileDtoChainToJson,
+    fromJson: userProfileDtoChainFromJson,
+  )
+  final enums.UserProfileDtoChain chain;
   @JsonKey(name: '_ts')
   final double ts;
+  @JsonKey(name: 'id')
+  final String id;
   @JsonKey(name: 'userSettings')
   final UserSettingsDto? userSettings;
   static const fromJsonFactory = _$UserProfileDtoFromJson;
@@ -1808,13 +1880,16 @@ class UserProfileDto {
                   other.socials,
                   socials,
                 )) &&
+            (identical(other.followCount, followCount) ||
+                const DeepCollectionEquality().equals(
+                  other.followCount,
+                  followCount,
+                )) &&
             (identical(other.joinedDate, joinedDate) ||
                 const DeepCollectionEquality().equals(
                   other.joinedDate,
                   joinedDate,
                 )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.profile, profile) ||
                 const DeepCollectionEquality().equals(
                   other.profile,
@@ -1842,20 +1917,19 @@ class UserProfileDto {
                   other.isPoolOwner,
                   isPoolOwner,
                 )) &&
+            (identical(other.shard, shard) ||
+                const DeepCollectionEquality().equals(other.shard, shard)) &&
             (identical(other.userDeposit, userDeposit) ||
                 const DeepCollectionEquality().equals(
                   other.userDeposit,
                   userDeposit,
                 )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.shard, shard) ||
-                const DeepCollectionEquality().equals(other.shard, shard)) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
             (identical(other.ts, ts) ||
                 const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.userSettings, userSettings) ||
                 const DeepCollectionEquality().equals(
                   other.userSettings,
@@ -1873,41 +1947,43 @@ class UserProfileDto {
       const DeepCollectionEquality().hash(isBanned) ^
       const DeepCollectionEquality().hash(isVerified) ^
       const DeepCollectionEquality().hash(socials) ^
+      const DeepCollectionEquality().hash(followCount) ^
       const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(banner) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(herotag) ^
       const DeepCollectionEquality().hash(isCreator) ^
       const DeepCollectionEquality().hash(isPoolOwner) ^
-      const DeepCollectionEquality().hash(userDeposit) ^
-      const DeepCollectionEquality().hash(followCount) ^
       const DeepCollectionEquality().hash(shard) ^
+      const DeepCollectionEquality().hash(userDeposit) ^
+      const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(userSettings) ^
       runtimeType.hashCode;
 }
 
 extension $UserProfileDtoExtension on UserProfileDto {
   UserProfileDto copyWith({
-    String? dataType,
+    enums.UserProfileDtoDataType? dataType,
     String? address,
     bool? isBanned,
     bool? isVerified,
     SocialsDto? socials,
+    double? followCount,
     double? joinedDate,
-    String? id,
     String? profile,
     String? banner,
     String? description,
     String? herotag,
     bool? isCreator,
     bool? isPoolOwner,
-    List<UserDepositDto>? userDeposit,
-    double? followCount,
     double? shard,
+    List<UserDeposit>? userDeposit,
+    enums.UserProfileDtoChain? chain,
     double? ts,
+    String? id,
     UserSettingsDto? userSettings,
   }) {
     return UserProfileDto(
@@ -1916,40 +1992,42 @@ extension $UserProfileDtoExtension on UserProfileDto {
       isBanned: isBanned ?? this.isBanned,
       isVerified: isVerified ?? this.isVerified,
       socials: socials ?? this.socials,
+      followCount: followCount ?? this.followCount,
       joinedDate: joinedDate ?? this.joinedDate,
-      id: id ?? this.id,
       profile: profile ?? this.profile,
       banner: banner ?? this.banner,
       description: description ?? this.description,
       herotag: herotag ?? this.herotag,
       isCreator: isCreator ?? this.isCreator,
       isPoolOwner: isPoolOwner ?? this.isPoolOwner,
-      userDeposit: userDeposit ?? this.userDeposit,
-      followCount: followCount ?? this.followCount,
       shard: shard ?? this.shard,
+      userDeposit: userDeposit ?? this.userDeposit,
+      chain: chain ?? this.chain,
       ts: ts ?? this.ts,
+      id: id ?? this.id,
       userSettings: userSettings ?? this.userSettings,
     );
   }
 
   UserProfileDto copyWithWrapped({
-    Wrapped<String>? dataType,
+    Wrapped<enums.UserProfileDtoDataType>? dataType,
     Wrapped<String>? address,
     Wrapped<bool>? isBanned,
     Wrapped<bool>? isVerified,
     Wrapped<SocialsDto>? socials,
+    Wrapped<double>? followCount,
     Wrapped<double>? joinedDate,
-    Wrapped<String>? id,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<String>? description,
     Wrapped<String>? herotag,
     Wrapped<bool>? isCreator,
     Wrapped<bool>? isPoolOwner,
-    Wrapped<List<UserDepositDto>>? userDeposit,
-    Wrapped<double>? followCount,
     Wrapped<double>? shard,
+    Wrapped<List<UserDeposit>>? userDeposit,
+    Wrapped<enums.UserProfileDtoChain>? chain,
     Wrapped<double>? ts,
+    Wrapped<String>? id,
     Wrapped<UserSettingsDto?>? userSettings,
   }) {
     return UserProfileDto(
@@ -1958,18 +2036,19 @@ extension $UserProfileDtoExtension on UserProfileDto {
       isBanned: (isBanned != null ? isBanned.value : this.isBanned),
       isVerified: (isVerified != null ? isVerified.value : this.isVerified),
       socials: (socials != null ? socials.value : this.socials),
+      followCount: (followCount != null ? followCount.value : this.followCount),
       joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
-      id: (id != null ? id.value : this.id),
       profile: (profile != null ? profile.value : this.profile),
       banner: (banner != null ? banner.value : this.banner),
       description: (description != null ? description.value : this.description),
       herotag: (herotag != null ? herotag.value : this.herotag),
       isCreator: (isCreator != null ? isCreator.value : this.isCreator),
       isPoolOwner: (isPoolOwner != null ? isPoolOwner.value : this.isPoolOwner),
-      userDeposit: (userDeposit != null ? userDeposit.value : this.userDeposit),
-      followCount: (followCount != null ? followCount.value : this.followCount),
       shard: (shard != null ? shard.value : this.shard),
+      userDeposit: (userDeposit != null ? userDeposit.value : this.userDeposit),
+      chain: (chain != null ? chain.value : this.chain),
       ts: (ts != null ? ts.value : this.ts),
+      id: (id != null ? id.value : this.id),
       userSettings: (userSettings != null
           ? userSettings.value
           : this.userSettings),
@@ -2148,136 +2227,6 @@ extension $UserBillingDetailsExtension on UserBillingDetails {
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserEmailNotificationSettings {
-  const UserEmailNotificationSettings({
-    required this.enabled,
-    required this.emailAddress,
-    required this.isEmailVerificationPending,
-    required this.isEmailVerified,
-    required this.isWeb2User,
-    this.timestamp,
-  });
-
-  factory UserEmailNotificationSettings.fromJson(Map<String, dynamic> json) =>
-      _$UserEmailNotificationSettingsFromJson(json);
-
-  static const toJsonFactory = _$UserEmailNotificationSettingsToJson;
-  Map<String, dynamic> toJson() => _$UserEmailNotificationSettingsToJson(this);
-
-  @JsonKey(name: 'enabled')
-  final Object enabled;
-  @JsonKey(name: 'emailAddress')
-  final Object emailAddress;
-  @JsonKey(name: 'isEmailVerificationPending')
-  final Object isEmailVerificationPending;
-  @JsonKey(name: 'isEmailVerified')
-  final Object isEmailVerified;
-  @JsonKey(name: 'isWeb2User')
-  final Object isWeb2User;
-  @JsonKey(name: 'timestamp')
-  final double? timestamp;
-  static const fromJsonFactory = _$UserEmailNotificationSettingsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserEmailNotificationSettings &&
-            (identical(other.enabled, enabled) ||
-                const DeepCollectionEquality().equals(
-                  other.enabled,
-                  enabled,
-                )) &&
-            (identical(other.emailAddress, emailAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.emailAddress,
-                  emailAddress,
-                )) &&
-            (identical(
-                  other.isEmailVerificationPending,
-                  isEmailVerificationPending,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.isEmailVerificationPending,
-                  isEmailVerificationPending,
-                )) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isEmailVerified,
-                  isEmailVerified,
-                )) &&
-            (identical(other.isWeb2User, isWeb2User) ||
-                const DeepCollectionEquality().equals(
-                  other.isWeb2User,
-                  isWeb2User,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(enabled) ^
-      const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(isEmailVerificationPending) ^
-      const DeepCollectionEquality().hash(isEmailVerified) ^
-      const DeepCollectionEquality().hash(isWeb2User) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      runtimeType.hashCode;
-}
-
-extension $UserEmailNotificationSettingsExtension
-    on UserEmailNotificationSettings {
-  UserEmailNotificationSettings copyWith({
-    Object? enabled,
-    Object? emailAddress,
-    Object? isEmailVerificationPending,
-    Object? isEmailVerified,
-    Object? isWeb2User,
-    double? timestamp,
-  }) {
-    return UserEmailNotificationSettings(
-      enabled: enabled ?? this.enabled,
-      emailAddress: emailAddress ?? this.emailAddress,
-      isEmailVerificationPending:
-          isEmailVerificationPending ?? this.isEmailVerificationPending,
-      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
-      isWeb2User: isWeb2User ?? this.isWeb2User,
-      timestamp: timestamp ?? this.timestamp,
-    );
-  }
-
-  UserEmailNotificationSettings copyWithWrapped({
-    Wrapped<Object>? enabled,
-    Wrapped<Object>? emailAddress,
-    Wrapped<Object>? isEmailVerificationPending,
-    Wrapped<Object>? isEmailVerified,
-    Wrapped<Object>? isWeb2User,
-    Wrapped<double?>? timestamp,
-  }) {
-    return UserEmailNotificationSettings(
-      enabled: (enabled != null ? enabled.value : this.enabled),
-      emailAddress: (emailAddress != null
-          ? emailAddress.value
-          : this.emailAddress),
-      isEmailVerificationPending: (isEmailVerificationPending != null
-          ? isEmailVerificationPending.value
-          : this.isEmailVerificationPending),
-      isEmailVerified: (isEmailVerified != null
-          ? isEmailVerified.value
-          : this.isEmailVerified),
-      isWeb2User: (isWeb2User != null ? isWeb2User.value : this.isWeb2User),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserPhoneNotificationSettings {
   const UserPhoneNotificationSettings({
     required this.enabled,
@@ -2393,195 +2342,16 @@ extension $UserPhoneNotificationSettingsExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserNotificationPreferences {
-  const UserNotificationPreferences({
-    this.sales,
-    this.bids,
-    this.offersReceived,
-    this.offersAccepted,
-    this.offersRejected,
-    this.deposits,
-    this.eventUpdates,
-    this.eventReminders,
-    this.eventCheckIn,
-    this.eventMarketing,
-  });
-
-  factory UserNotificationPreferences.fromJson(Map<String, dynamic> json) =>
-      _$UserNotificationPreferencesFromJson(json);
-
-  static const toJsonFactory = _$UserNotificationPreferencesToJson;
-  Map<String, dynamic> toJson() => _$UserNotificationPreferencesToJson(this);
-
-  @JsonKey(name: 'sales')
-  final Object? sales;
-  @JsonKey(name: 'bids')
-  final Object? bids;
-  @JsonKey(name: 'offersReceived')
-  final Object? offersReceived;
-  @JsonKey(name: 'offersAccepted')
-  final Object? offersAccepted;
-  @JsonKey(name: 'offersRejected')
-  final Object? offersRejected;
-  @JsonKey(name: 'deposits')
-  final Object? deposits;
-  @JsonKey(name: 'eventUpdates')
-  final Object? eventUpdates;
-  @JsonKey(name: 'eventReminders')
-  final Object? eventReminders;
-  @JsonKey(name: 'eventCheckIn')
-  final Object? eventCheckIn;
-  @JsonKey(name: 'eventMarketing')
-  final Object? eventMarketing;
-  static const fromJsonFactory = _$UserNotificationPreferencesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserNotificationPreferences &&
-            (identical(other.sales, sales) ||
-                const DeepCollectionEquality().equals(other.sales, sales)) &&
-            (identical(other.bids, bids) ||
-                const DeepCollectionEquality().equals(other.bids, bids)) &&
-            (identical(other.offersReceived, offersReceived) ||
-                const DeepCollectionEquality().equals(
-                  other.offersReceived,
-                  offersReceived,
-                )) &&
-            (identical(other.offersAccepted, offersAccepted) ||
-                const DeepCollectionEquality().equals(
-                  other.offersAccepted,
-                  offersAccepted,
-                )) &&
-            (identical(other.offersRejected, offersRejected) ||
-                const DeepCollectionEquality().equals(
-                  other.offersRejected,
-                  offersRejected,
-                )) &&
-            (identical(other.deposits, deposits) ||
-                const DeepCollectionEquality().equals(
-                  other.deposits,
-                  deposits,
-                )) &&
-            (identical(other.eventUpdates, eventUpdates) ||
-                const DeepCollectionEquality().equals(
-                  other.eventUpdates,
-                  eventUpdates,
-                )) &&
-            (identical(other.eventReminders, eventReminders) ||
-                const DeepCollectionEquality().equals(
-                  other.eventReminders,
-                  eventReminders,
-                )) &&
-            (identical(other.eventCheckIn, eventCheckIn) ||
-                const DeepCollectionEquality().equals(
-                  other.eventCheckIn,
-                  eventCheckIn,
-                )) &&
-            (identical(other.eventMarketing, eventMarketing) ||
-                const DeepCollectionEquality().equals(
-                  other.eventMarketing,
-                  eventMarketing,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sales) ^
-      const DeepCollectionEquality().hash(bids) ^
-      const DeepCollectionEquality().hash(offersReceived) ^
-      const DeepCollectionEquality().hash(offersAccepted) ^
-      const DeepCollectionEquality().hash(offersRejected) ^
-      const DeepCollectionEquality().hash(deposits) ^
-      const DeepCollectionEquality().hash(eventUpdates) ^
-      const DeepCollectionEquality().hash(eventReminders) ^
-      const DeepCollectionEquality().hash(eventCheckIn) ^
-      const DeepCollectionEquality().hash(eventMarketing) ^
-      runtimeType.hashCode;
-}
-
-extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
-  UserNotificationPreferences copyWith({
-    Object? sales,
-    Object? bids,
-    Object? offersReceived,
-    Object? offersAccepted,
-    Object? offersRejected,
-    Object? deposits,
-    Object? eventUpdates,
-    Object? eventReminders,
-    Object? eventCheckIn,
-    Object? eventMarketing,
-  }) {
-    return UserNotificationPreferences(
-      sales: sales ?? this.sales,
-      bids: bids ?? this.bids,
-      offersReceived: offersReceived ?? this.offersReceived,
-      offersAccepted: offersAccepted ?? this.offersAccepted,
-      offersRejected: offersRejected ?? this.offersRejected,
-      deposits: deposits ?? this.deposits,
-      eventUpdates: eventUpdates ?? this.eventUpdates,
-      eventReminders: eventReminders ?? this.eventReminders,
-      eventCheckIn: eventCheckIn ?? this.eventCheckIn,
-      eventMarketing: eventMarketing ?? this.eventMarketing,
-    );
-  }
-
-  UserNotificationPreferences copyWithWrapped({
-    Wrapped<Object?>? sales,
-    Wrapped<Object?>? bids,
-    Wrapped<Object?>? offersReceived,
-    Wrapped<Object?>? offersAccepted,
-    Wrapped<Object?>? offersRejected,
-    Wrapped<Object?>? deposits,
-    Wrapped<Object?>? eventUpdates,
-    Wrapped<Object?>? eventReminders,
-    Wrapped<Object?>? eventCheckIn,
-    Wrapped<Object?>? eventMarketing,
-  }) {
-    return UserNotificationPreferences(
-      sales: (sales != null ? sales.value : this.sales),
-      bids: (bids != null ? bids.value : this.bids),
-      offersReceived: (offersReceived != null
-          ? offersReceived.value
-          : this.offersReceived),
-      offersAccepted: (offersAccepted != null
-          ? offersAccepted.value
-          : this.offersAccepted),
-      offersRejected: (offersRejected != null
-          ? offersRejected.value
-          : this.offersRejected),
-      deposits: (deposits != null ? deposits.value : this.deposits),
-      eventUpdates: (eventUpdates != null
-          ? eventUpdates.value
-          : this.eventUpdates),
-      eventReminders: (eventReminders != null
-          ? eventReminders.value
-          : this.eventReminders),
-      eventCheckIn: (eventCheckIn != null
-          ? eventCheckIn.value
-          : this.eventCheckIn),
-      eventMarketing: (eventMarketing != null
-          ? eventMarketing.value
-          : this.eventMarketing),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserSettingsDoc {
   const UserSettingsDoc({
     required this.dataType,
     required this.address,
     this.name,
     this.billingDetails,
-    this.emailNotifications,
+    required this.emailNotifications,
     this.phoneNotifications,
-    this.notificationPreferences,
-    this.id,
+    required this.notificationPreferences,
+    required this.id,
     this.ts,
   });
 
@@ -2600,13 +2370,13 @@ class UserSettingsDoc {
   @JsonKey(name: 'billingDetails')
   final UserBillingDetails? billingDetails;
   @JsonKey(name: 'emailNotifications')
-  final UserEmailNotificationSettings? emailNotifications;
+  final UserEmailNotificationSettings emailNotifications;
   @JsonKey(name: 'phoneNotifications')
   final UserPhoneNotificationSettings? phoneNotifications;
   @JsonKey(name: 'notificationPreferences')
-  final UserNotificationPreferences? notificationPreferences;
+  final UserNotificationPreferences notificationPreferences;
   @JsonKey(name: 'id')
-  final String? id;
+  final String id;
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$UserSettingsDocFromJson;
@@ -2704,10 +2474,10 @@ extension $UserSettingsDocExtension on UserSettingsDoc {
     Wrapped<String>? address,
     Wrapped<String?>? name,
     Wrapped<UserBillingDetails?>? billingDetails,
-    Wrapped<UserEmailNotificationSettings?>? emailNotifications,
+    Wrapped<UserEmailNotificationSettings>? emailNotifications,
     Wrapped<UserPhoneNotificationSettings?>? phoneNotifications,
-    Wrapped<UserNotificationPreferences?>? notificationPreferences,
-    Wrapped<String?>? id,
+    Wrapped<UserNotificationPreferences>? notificationPreferences,
+    Wrapped<String>? id,
     Wrapped<double?>? ts,
   }) {
     return UserSettingsDoc(
@@ -3144,15 +2914,19 @@ extension $SuccessDtoExtension on SuccessDto {
 @JsonSerializable(explicitToJson: true)
 class CreatorProfileDto {
   const CreatorProfileDto({
-    required this.name,
-    required this.contractAddress,
+    required this.dataType,
     required this.address,
+    required this.name,
+    required this.creatorTag,
+    required this.contractAddress,
+    required this.ticketingContractAddress,
     required this.profile,
     required this.banner,
     required this.joinedDate,
-    required this.socials,
-    required this.description,
-    required this.creatorTag,
+    this.description,
+    this.socials,
+    required this.id,
+    required this.ts,
     required this.followCount,
   });
 
@@ -3162,24 +2936,36 @@ class CreatorProfileDto {
   static const toJsonFactory = _$CreatorProfileDtoToJson;
   Map<String, dynamic> toJson() => _$CreatorProfileDtoToJson(this);
 
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'contractAddress')
-  final String contractAddress;
+  @JsonKey(
+    name: 'dataType',
+    toJson: creatorProfileDtoDataTypeToJson,
+    fromJson: creatorProfileDtoDataTypeFromJson,
+  )
+  final enums.CreatorProfileDtoDataType dataType;
   @JsonKey(name: 'address')
   final String address;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'creatorTag')
+  final String creatorTag;
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'ticketingContractAddress')
+  final String ticketingContractAddress;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'joinedDate')
   final double joinedDate;
-  @JsonKey(name: 'socials')
-  final SocialsDto socials;
   @JsonKey(name: 'description')
-  final String description;
-  @JsonKey(name: 'creatorTag')
-  final String creatorTag;
+  final String? description;
+  @JsonKey(name: 'socials')
+  final SocialsDto? socials;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: '_ts')
+  final double ts;
   @JsonKey(name: 'followCount')
   final double followCount;
   static const fromJsonFactory = _$CreatorProfileDtoFromJson;
@@ -3188,17 +2974,35 @@ class CreatorProfileDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is CreatorProfileDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.contractAddress, contractAddress) ||
+            (identical(other.dataType, dataType) ||
                 const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
+                  other.dataType,
+                  dataType,
                 )) &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality().equals(
                   other.address,
                   address,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.creatorTag, creatorTag) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorTag,
+                  creatorTag,
+                )) &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(
+                  other.ticketingContractAddress,
+                  ticketingContractAddress,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.ticketingContractAddress,
+                  ticketingContractAddress,
                 )) &&
             (identical(other.profile, profile) ||
                 const DeepCollectionEquality().equals(
@@ -3212,21 +3016,20 @@ class CreatorProfileDto {
                   other.joinedDate,
                   joinedDate,
                 )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality().equals(
                   other.description,
                   description,
                 )) &&
-            (identical(other.creatorTag, creatorTag) ||
+            (identical(other.socials, socials) ||
                 const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
+                  other.socials,
+                  socials,
                 )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
             (identical(other.followCount, followCount) ||
                 const DeepCollectionEquality().equals(
                   other.followCount,
@@ -3239,579 +3042,135 @@ class CreatorProfileDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(dataType) ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(creatorTag) ^
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(ticketingContractAddress) ^
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(banner) ^
       const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(socials) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
+      const DeepCollectionEquality().hash(socials) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ts) ^
       const DeepCollectionEquality().hash(followCount) ^
       runtimeType.hashCode;
 }
 
 extension $CreatorProfileDtoExtension on CreatorProfileDto {
   CreatorProfileDto copyWith({
-    String? name,
-    String? contractAddress,
+    enums.CreatorProfileDtoDataType? dataType,
     String? address,
+    String? name,
+    String? creatorTag,
+    String? contractAddress,
+    String? ticketingContractAddress,
     String? profile,
     String? banner,
     double? joinedDate,
-    SocialsDto? socials,
     String? description,
-    String? creatorTag,
+    SocialsDto? socials,
+    String? id,
+    double? ts,
     double? followCount,
   }) {
     return CreatorProfileDto(
-      name: name ?? this.name,
-      contractAddress: contractAddress ?? this.contractAddress,
+      dataType: dataType ?? this.dataType,
       address: address ?? this.address,
+      name: name ?? this.name,
+      creatorTag: creatorTag ?? this.creatorTag,
+      contractAddress: contractAddress ?? this.contractAddress,
+      ticketingContractAddress:
+          ticketingContractAddress ?? this.ticketingContractAddress,
       profile: profile ?? this.profile,
       banner: banner ?? this.banner,
       joinedDate: joinedDate ?? this.joinedDate,
-      socials: socials ?? this.socials,
       description: description ?? this.description,
-      creatorTag: creatorTag ?? this.creatorTag,
+      socials: socials ?? this.socials,
+      id: id ?? this.id,
+      ts: ts ?? this.ts,
       followCount: followCount ?? this.followCount,
     );
   }
 
   CreatorProfileDto copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<String>? contractAddress,
+    Wrapped<enums.CreatorProfileDtoDataType>? dataType,
     Wrapped<String>? address,
+    Wrapped<String>? name,
+    Wrapped<String>? creatorTag,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
-    Wrapped<SocialsDto>? socials,
-    Wrapped<String>? description,
-    Wrapped<String>? creatorTag,
+    Wrapped<String?>? description,
+    Wrapped<SocialsDto?>? socials,
+    Wrapped<String>? id,
+    Wrapped<double>? ts,
     Wrapped<double>? followCount,
   }) {
     return CreatorProfileDto(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      address: (address != null ? address.value : this.address),
       name: (name != null ? name.value : this.name),
+      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
       contractAddress: (contractAddress != null
           ? contractAddress.value
           : this.contractAddress),
-      address: (address != null ? address.value : this.address),
+      ticketingContractAddress: (ticketingContractAddress != null
+          ? ticketingContractAddress.value
+          : this.ticketingContractAddress),
       profile: (profile != null ? profile.value : this.profile),
       banner: (banner != null ? banner.value : this.banner),
       joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
-      socials: (socials != null ? socials.value : this.socials),
       description: (description != null ? description.value : this.description),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
+      socials: (socials != null ? socials.value : this.socials),
+      id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
       followCount: (followCount != null ? followCount.value : this.followCount),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class DayTradingStatsDto {
-  const DayTradingStatsDto({
-    required this.volume,
-    required this.volumeMargin,
-    required this.trades,
-    required this.tradesMargin,
-    required this.minPrice,
-    required this.maxPrice,
-    required this.averagePrice,
-  });
-
-  factory DayTradingStatsDto.fromJson(Map<String, dynamic> json) =>
-      _$DayTradingStatsDtoFromJson(json);
-
-  static const toJsonFactory = _$DayTradingStatsDtoToJson;
-  Map<String, dynamic> toJson() => _$DayTradingStatsDtoToJson(this);
-
-  @JsonKey(name: 'volume')
-  final double volume;
-  @JsonKey(name: 'volumeMargin')
-  final double volumeMargin;
-  @JsonKey(name: 'trades')
-  final double trades;
-  @JsonKey(name: 'tradesMargin')
-  final double tradesMargin;
-  @JsonKey(name: 'minPrice')
-  final double minPrice;
-  @JsonKey(name: 'maxPrice')
-  final double maxPrice;
-  @JsonKey(name: 'averagePrice')
-  final double averagePrice;
-  static const fromJsonFactory = _$DayTradingStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DayTradingStatsDto &&
-            (identical(other.volume, volume) ||
-                const DeepCollectionEquality().equals(other.volume, volume)) &&
-            (identical(other.volumeMargin, volumeMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.volumeMargin,
-                  volumeMargin,
-                )) &&
-            (identical(other.trades, trades) ||
-                const DeepCollectionEquality().equals(other.trades, trades)) &&
-            (identical(other.tradesMargin, tradesMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.tradesMargin,
-                  tradesMargin,
-                )) &&
-            (identical(other.minPrice, minPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.minPrice,
-                  minPrice,
-                )) &&
-            (identical(other.maxPrice, maxPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.maxPrice,
-                  maxPrice,
-                )) &&
-            (identical(other.averagePrice, averagePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.averagePrice,
-                  averagePrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(volume) ^
-      const DeepCollectionEquality().hash(volumeMargin) ^
-      const DeepCollectionEquality().hash(trades) ^
-      const DeepCollectionEquality().hash(tradesMargin) ^
-      const DeepCollectionEquality().hash(minPrice) ^
-      const DeepCollectionEquality().hash(maxPrice) ^
-      const DeepCollectionEquality().hash(averagePrice) ^
-      runtimeType.hashCode;
-}
-
-extension $DayTradingStatsDtoExtension on DayTradingStatsDto {
-  DayTradingStatsDto copyWith({
-    double? volume,
-    double? volumeMargin,
-    double? trades,
-    double? tradesMargin,
-    double? minPrice,
-    double? maxPrice,
-    double? averagePrice,
-  }) {
-    return DayTradingStatsDto(
-      volume: volume ?? this.volume,
-      volumeMargin: volumeMargin ?? this.volumeMargin,
-      trades: trades ?? this.trades,
-      tradesMargin: tradesMargin ?? this.tradesMargin,
-      minPrice: minPrice ?? this.minPrice,
-      maxPrice: maxPrice ?? this.maxPrice,
-      averagePrice: averagePrice ?? this.averagePrice,
-    );
-  }
-
-  DayTradingStatsDto copyWithWrapped({
-    Wrapped<double>? volume,
-    Wrapped<double>? volumeMargin,
-    Wrapped<double>? trades,
-    Wrapped<double>? tradesMargin,
-    Wrapped<double>? minPrice,
-    Wrapped<double>? maxPrice,
-    Wrapped<double>? averagePrice,
-  }) {
-    return DayTradingStatsDto(
-      volume: (volume != null ? volume.value : this.volume),
-      volumeMargin: (volumeMargin != null
-          ? volumeMargin.value
-          : this.volumeMargin),
-      trades: (trades != null ? trades.value : this.trades),
-      tradesMargin: (tradesMargin != null
-          ? tradesMargin.value
-          : this.tradesMargin),
-      minPrice: (minPrice != null ? minPrice.value : this.minPrice),
-      maxPrice: (maxPrice != null ? maxPrice.value : this.maxPrice),
-      averagePrice: (averagePrice != null
-          ? averagePrice.value
-          : this.averagePrice),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class TradingStatsDto {
-  const TradingStatsDto({required this.day});
-
-  factory TradingStatsDto.fromJson(Map<String, dynamic> json) =>
-      _$TradingStatsDtoFromJson(json);
-
-  static const toJsonFactory = _$TradingStatsDtoToJson;
-  Map<String, dynamic> toJson() => _$TradingStatsDtoToJson(this);
-
-  @JsonKey(name: 'day')
-  final DayTradingStatsDto day;
-  static const fromJsonFactory = _$TradingStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TradingStatsDto &&
-            (identical(other.day, day) ||
-                const DeepCollectionEquality().equals(other.day, day)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(day) ^ runtimeType.hashCode;
-}
-
-extension $TradingStatsDtoExtension on TradingStatsDto {
-  TradingStatsDto copyWith({DayTradingStatsDto? day}) {
-    return TradingStatsDto(day: day ?? this.day);
-  }
-
-  TradingStatsDto copyWithWrapped({Wrapped<DayTradingStatsDto>? day}) {
-    return TradingStatsDto(day: (day != null ? day.value : this.day));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CollectionInfoDto {
-  const CollectionInfoDto({
-    required this.name,
-    required this.socials,
-    required this.isVerified,
-    required this.isVisible,
-    required this.description,
-    required this.profile,
-    required this.banner,
-    required this.collectionSize,
-    required this.followCount,
-    required this.holdersCount,
-    required this.owner,
-    required this.volume,
-  });
-
-  factory CollectionInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$CollectionInfoDtoFromJson(json);
-
-  static const toJsonFactory = _$CollectionInfoDtoToJson;
-  Map<String, dynamic> toJson() => _$CollectionInfoDtoToJson(this);
-
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'socials')
-  final SocialsDto socials;
-  @JsonKey(name: 'isVerified')
-  final bool isVerified;
-  @JsonKey(name: 'isVisible')
-  final bool isVisible;
-  @JsonKey(name: 'description')
-  final String description;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'banner')
-  final String banner;
-  @JsonKey(name: 'collectionSize')
-  final double collectionSize;
-  @JsonKey(name: 'followCount')
-  final double followCount;
-  @JsonKey(name: 'holdersCount')
-  final double holdersCount;
-  @JsonKey(name: 'owner')
-  final String owner;
-  @JsonKey(name: 'volume')
-  final double volume;
-  static const fromJsonFactory = _$CollectionInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionInfoDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.volume, volume) ||
-                const DeepCollectionEquality().equals(other.volume, volume)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(volume) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionInfoDtoExtension on CollectionInfoDto {
-  CollectionInfoDto copyWith({
-    String? name,
-    SocialsDto? socials,
-    bool? isVerified,
-    bool? isVisible,
-    String? description,
-    String? profile,
-    String? banner,
-    double? collectionSize,
-    double? followCount,
-    double? holdersCount,
-    String? owner,
-    double? volume,
-  }) {
-    return CollectionInfoDto(
-      name: name ?? this.name,
-      socials: socials ?? this.socials,
-      isVerified: isVerified ?? this.isVerified,
-      isVisible: isVisible ?? this.isVisible,
-      description: description ?? this.description,
-      profile: profile ?? this.profile,
-      banner: banner ?? this.banner,
-      collectionSize: collectionSize ?? this.collectionSize,
-      followCount: followCount ?? this.followCount,
-      holdersCount: holdersCount ?? this.holdersCount,
-      owner: owner ?? this.owner,
-      volume: volume ?? this.volume,
-    );
-  }
-
-  CollectionInfoDto copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<SocialsDto>? socials,
-    Wrapped<bool>? isVerified,
-    Wrapped<bool>? isVisible,
-    Wrapped<String>? description,
-    Wrapped<String>? profile,
-    Wrapped<String>? banner,
-    Wrapped<double>? collectionSize,
-    Wrapped<double>? followCount,
-    Wrapped<double>? holdersCount,
-    Wrapped<String>? owner,
-    Wrapped<double>? volume,
-  }) {
-    return CollectionInfoDto(
-      name: (name != null ? name.value : this.name),
-      socials: (socials != null ? socials.value : this.socials),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
-      description: (description != null ? description.value : this.description),
-      profile: (profile != null ? profile.value : this.profile),
-      banner: (banner != null ? banner.value : this.banner),
-      collectionSize: (collectionSize != null
-          ? collectionSize.value
-          : this.collectionSize),
-      followCount: (followCount != null ? followCount.value : this.followCount),
-      holdersCount: (holdersCount != null
-          ? holdersCount.value
-          : this.holdersCount),
-      owner: (owner != null ? owner.value : this.owner),
-      volume: (volume != null ? volume.value : this.volume),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CollectionStatsDto {
-  const CollectionStatsDto({
-    required this.collection,
-    required this.tradingStats,
-    required this.floorPrice,
-    required this.listedCount,
-    required this.collectionInfo,
-  });
-
-  factory CollectionStatsDto.fromJson(Map<String, dynamic> json) =>
-      _$CollectionStatsDtoFromJson(json);
-
-  static const toJsonFactory = _$CollectionStatsDtoToJson;
-  Map<String, dynamic> toJson() => _$CollectionStatsDtoToJson(this);
-
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'tradingStats')
-  final TradingStatsDto tradingStats;
-  @JsonKey(name: 'floorPrice')
-  final double floorPrice;
-  @JsonKey(name: 'listedCount')
-  final double listedCount;
-  @JsonKey(name: 'collectionInfo')
-  final CollectionInfoDto collectionInfo;
-  static const fromJsonFactory = _$CollectionStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionStatsDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.tradingStats, tradingStats) ||
-                const DeepCollectionEquality().equals(
-                  other.tradingStats,
-                  tradingStats,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.listedCount, listedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.listedCount,
-                  listedCount,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(tradingStats) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(listedCount) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionStatsDtoExtension on CollectionStatsDto {
-  CollectionStatsDto copyWith({
-    String? collection,
-    TradingStatsDto? tradingStats,
-    double? floorPrice,
-    double? listedCount,
-    CollectionInfoDto? collectionInfo,
-  }) {
-    return CollectionStatsDto(
-      collection: collection ?? this.collection,
-      tradingStats: tradingStats ?? this.tradingStats,
-      floorPrice: floorPrice ?? this.floorPrice,
-      listedCount: listedCount ?? this.listedCount,
-      collectionInfo: collectionInfo ?? this.collectionInfo,
-    );
-  }
-
-  CollectionStatsDto copyWithWrapped({
-    Wrapped<String>? collection,
-    Wrapped<TradingStatsDto>? tradingStats,
-    Wrapped<double>? floorPrice,
-    Wrapped<double>? listedCount,
-    Wrapped<CollectionInfoDto>? collectionInfo,
-  }) {
-    return CollectionStatsDto(
-      collection: (collection != null ? collection.value : this.collection),
-      tradingStats: (tradingStats != null
-          ? tradingStats.value
-          : this.tradingStats),
-      floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
-      listedCount: (listedCount != null ? listedCount.value : this.listedCount),
-      collectionInfo: (collectionInfo != null
-          ? collectionInfo.value
-          : this.collectionInfo),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ExploreCollectionsStatisticsDto {
-  const ExploreCollectionsStatisticsDto({
-    required this.resources,
+class CollectionStatsPaginated {
+  const CollectionStatsPaginated({
+    this.count,
     required this.hasMoreResults,
+    required this.resources,
   });
 
-  factory ExploreCollectionsStatisticsDto.fromJson(Map<String, dynamic> json) =>
-      _$ExploreCollectionsStatisticsDtoFromJson(json);
+  factory CollectionStatsPaginated.fromJson(Map<String, dynamic> json) =>
+      _$CollectionStatsPaginatedFromJson(json);
 
-  static const toJsonFactory = _$ExploreCollectionsStatisticsDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ExploreCollectionsStatisticsDtoToJson(this);
+  static const toJsonFactory = _$CollectionStatsPaginatedToJson;
+  Map<String, dynamic> toJson() => _$CollectionStatsPaginatedToJson(this);
 
-  @JsonKey(name: 'resources', defaultValue: <CollectionStatsDto>[])
-  final List<CollectionStatsDto> resources;
+  @JsonKey(name: 'count')
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  static const fromJsonFactory = _$ExploreCollectionsStatisticsDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$CollectionStatsPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is ExploreCollectionsStatisticsDto &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
+        (other is CollectionStatsPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
                   other.hasMoreResults,
                   hasMoreResults,
+                )) &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
                 )));
   }
 
@@ -3820,32 +3179,36 @@ class ExploreCollectionsStatisticsDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $ExploreCollectionsStatisticsDtoExtension
-    on ExploreCollectionsStatisticsDto {
-  ExploreCollectionsStatisticsDto copyWith({
-    List<CollectionStatsDto>? resources,
+extension $CollectionStatsPaginatedExtension on CollectionStatsPaginated {
+  CollectionStatsPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
+    List<List<Object?>>? resources,
   }) {
-    return ExploreCollectionsStatisticsDto(
-      resources: resources ?? this.resources,
+    return CollectionStatsPaginated(
+      count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
     );
   }
 
-  ExploreCollectionsStatisticsDto copyWithWrapped({
-    Wrapped<List<CollectionStatsDto>>? resources,
+  CollectionStatsPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return ExploreCollectionsStatisticsDto(
-      resources: (resources != null ? resources.value : this.resources),
+    return CollectionStatsPaginated(
+      count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
     );
   }
 }
@@ -4785,7 +4148,7 @@ class XoxnoLiquidStatsDto {
     required this.totalRewards,
     required this.totalStaked,
     required this.yearlyAPR,
-    required this.apy,
+    this.apy,
     required this.totalRewardsUsdValue,
     required this.totalStakedUsdValue,
     required this.rateInfo,
@@ -4809,7 +4172,7 @@ class XoxnoLiquidStatsDto {
   @JsonKey(name: 'yearlyAPR')
   final double yearlyAPR;
   @JsonKey(name: 'apy')
-  final double apy;
+  final double? apy;
   @JsonKey(name: 'totalRewardsUsdValue')
   final double totalRewardsUsdValue;
   @JsonKey(name: 'totalStakedUsdValue')
@@ -4936,7 +4299,7 @@ extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
     Wrapped<double>? totalRewards,
     Wrapped<double>? totalStaked,
     Wrapped<double>? yearlyAPR,
-    Wrapped<double>? apy,
+    Wrapped<double?>? apy,
     Wrapped<double>? totalRewardsUsdValue,
     Wrapped<double>? totalStakedUsdValue,
     Wrapped<RateType>? rateInfo,
@@ -7074,7 +6437,7 @@ class LendingMarketProfileQuery {
   Map<String, dynamic> toJson() => _$LendingMarketProfileQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <LendingMarketProfile>[])
@@ -7112,7 +6475,7 @@ class LendingMarketProfileQuery {
 
 extension $LendingMarketProfileQueryExtension on LendingMarketProfileQuery {
   LendingMarketProfileQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<LendingMarketProfile>? resources,
   }) {
@@ -7124,7 +6487,7 @@ extension $LendingMarketProfileQueryExtension on LendingMarketProfileQuery {
   }
 
   LendingMarketProfileQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<LendingMarketProfile>>? resources,
   }) {
@@ -7771,28 +7134,24 @@ class LendingAccountProfile {
     required this.identifier,
     required this.nonce,
     required this.token,
-    required this.supplyAmount,
     required this.supplyAmountScaled,
-    required this.borrowAmount,
     required this.borrowAmountScaled,
-    required this.supplyAmountShort,
-    required this.borrowAmountShort,
-    required this.supplyTimestamp,
     required this.supplyIndex,
-    required this.borrowTimestamp,
     required this.borrowIndex,
     required this.entryLiquidationThreshold,
     required this.entryLiquidationBonus,
     required this.entryLiquidationFee,
     required this.entryLtv,
-    required this.isolated,
+    this.isolated,
     required this.positionMode,
-    required this.eModeCategory,
+    this.eModeCategory,
     required this.address,
-    required this.leverageInitialSupply,
-    required this.leverageInitialSupplyPrice,
-    required this.leverageInitialBorrow,
-    required this.leverageInitialBorrowPrice,
+    this.leverageInitialSupply,
+    this.leverageInitialSupplyPrice,
+    this.leverageInitialBorrow,
+    this.leverageInitialBorrowPrice,
+    required this.supplyAmount,
+    required this.borrowAmount,
     this.eModeCategoryProfile,
     this.marketProfile,
   });
@@ -7815,24 +7174,12 @@ class LendingAccountProfile {
   final double nonce;
   @JsonKey(name: 'token')
   final String token;
-  @JsonKey(name: 'supplyAmount')
-  final Object supplyAmount;
   @JsonKey(name: 'supplyAmountScaled')
   final Object supplyAmountScaled;
-  @JsonKey(name: 'borrowAmount')
-  final Object borrowAmount;
   @JsonKey(name: 'borrowAmountScaled')
   final Object borrowAmountScaled;
-  @JsonKey(name: 'supplyAmountShort')
-  final Object supplyAmountShort;
-  @JsonKey(name: 'borrowAmountShort')
-  final Object borrowAmountShort;
-  @JsonKey(name: 'supplyTimestamp')
-  final Object supplyTimestamp;
   @JsonKey(name: 'supplyIndex')
   final Object supplyIndex;
-  @JsonKey(name: 'borrowTimestamp')
-  final Object borrowTimestamp;
   @JsonKey(name: 'borrowIndex')
   final Object borrowIndex;
   @JsonKey(name: 'entryLiquidationThreshold')
@@ -7844,7 +7191,7 @@ class LendingAccountProfile {
   @JsonKey(name: 'entryLtv')
   final String entryLtv;
   @JsonKey(name: 'isolated')
-  final bool isolated;
+  final bool? isolated;
   @JsonKey(
     name: 'positionMode',
     toJson: positionModeToJson,
@@ -7852,17 +7199,21 @@ class LendingAccountProfile {
   )
   final enums.PositionMode positionMode;
   @JsonKey(name: 'eModeCategory')
-  final String eModeCategory;
+  final String? eModeCategory;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'leverageInitialSupply')
-  final double leverageInitialSupply;
+  final double? leverageInitialSupply;
   @JsonKey(name: 'leverageInitialSupplyPrice')
-  final double leverageInitialSupplyPrice;
+  final double? leverageInitialSupplyPrice;
   @JsonKey(name: 'leverageInitialBorrow')
-  final double leverageInitialBorrow;
+  final double? leverageInitialBorrow;
   @JsonKey(name: 'leverageInitialBorrowPrice')
-  final double leverageInitialBorrowPrice;
+  final double? leverageInitialBorrowPrice;
+  @JsonKey(name: 'supplyAmount')
+  final String supplyAmount;
+  @JsonKey(name: 'borrowAmount')
+  final String borrowAmount;
   @JsonKey(name: 'eModeCategoryProfile')
   final LendingEModeCategoryProfileDoc? eModeCategoryProfile;
   @JsonKey(name: 'marketProfile')
@@ -7887,50 +7238,20 @@ class LendingAccountProfile {
                 const DeepCollectionEquality().equals(other.nonce, nonce)) &&
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.supplyAmount, supplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmount,
-                  supplyAmount,
-                )) &&
             (identical(other.supplyAmountScaled, supplyAmountScaled) ||
                 const DeepCollectionEquality().equals(
                   other.supplyAmountScaled,
                   supplyAmountScaled,
-                )) &&
-            (identical(other.borrowAmount, borrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmount,
-                  borrowAmount,
                 )) &&
             (identical(other.borrowAmountScaled, borrowAmountScaled) ||
                 const DeepCollectionEquality().equals(
                   other.borrowAmountScaled,
                   borrowAmountScaled,
                 )) &&
-            (identical(other.supplyAmountShort, supplyAmountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmountShort,
-                  supplyAmountShort,
-                )) &&
-            (identical(other.borrowAmountShort, borrowAmountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmountShort,
-                  borrowAmountShort,
-                )) &&
-            (identical(other.supplyTimestamp, supplyTimestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyTimestamp,
-                  supplyTimestamp,
-                )) &&
             (identical(other.supplyIndex, supplyIndex) ||
                 const DeepCollectionEquality().equals(
                   other.supplyIndex,
                   supplyIndex,
-                )) &&
-            (identical(other.borrowTimestamp, borrowTimestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowTimestamp,
-                  borrowTimestamp,
                 )) &&
             (identical(other.borrowIndex, borrowIndex) ||
                 const DeepCollectionEquality().equals(
@@ -8006,6 +7327,16 @@ class LendingAccountProfile {
                   other.leverageInitialBorrowPrice,
                   leverageInitialBorrowPrice,
                 )) &&
+            (identical(other.supplyAmount, supplyAmount) ||
+                const DeepCollectionEquality().equals(
+                  other.supplyAmount,
+                  supplyAmount,
+                )) &&
+            (identical(other.borrowAmount, borrowAmount) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowAmount,
+                  borrowAmount,
+                )) &&
             (identical(other.eModeCategoryProfile, eModeCategoryProfile) ||
                 const DeepCollectionEquality().equals(
                   other.eModeCategoryProfile,
@@ -8027,15 +7358,9 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(identifier) ^
       const DeepCollectionEquality().hash(nonce) ^
       const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(supplyAmount) ^
       const DeepCollectionEquality().hash(supplyAmountScaled) ^
-      const DeepCollectionEquality().hash(borrowAmount) ^
       const DeepCollectionEquality().hash(borrowAmountScaled) ^
-      const DeepCollectionEquality().hash(supplyAmountShort) ^
-      const DeepCollectionEquality().hash(borrowAmountShort) ^
-      const DeepCollectionEquality().hash(supplyTimestamp) ^
       const DeepCollectionEquality().hash(supplyIndex) ^
-      const DeepCollectionEquality().hash(borrowTimestamp) ^
       const DeepCollectionEquality().hash(borrowIndex) ^
       const DeepCollectionEquality().hash(entryLiquidationThreshold) ^
       const DeepCollectionEquality().hash(entryLiquidationBonus) ^
@@ -8049,6 +7374,8 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(leverageInitialSupplyPrice) ^
       const DeepCollectionEquality().hash(leverageInitialBorrow) ^
       const DeepCollectionEquality().hash(leverageInitialBorrowPrice) ^
+      const DeepCollectionEquality().hash(supplyAmount) ^
+      const DeepCollectionEquality().hash(borrowAmount) ^
       const DeepCollectionEquality().hash(eModeCategoryProfile) ^
       const DeepCollectionEquality().hash(marketProfile) ^
       runtimeType.hashCode;
@@ -8060,15 +7387,9 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
     String? identifier,
     double? nonce,
     String? token,
-    Object? supplyAmount,
     Object? supplyAmountScaled,
-    Object? borrowAmount,
     Object? borrowAmountScaled,
-    Object? supplyAmountShort,
-    Object? borrowAmountShort,
-    Object? supplyTimestamp,
     Object? supplyIndex,
-    Object? borrowTimestamp,
     Object? borrowIndex,
     String? entryLiquidationThreshold,
     String? entryLiquidationBonus,
@@ -8082,6 +7403,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
     double? leverageInitialSupplyPrice,
     double? leverageInitialBorrow,
     double? leverageInitialBorrowPrice,
+    String? supplyAmount,
+    String? borrowAmount,
     LendingEModeCategoryProfileDoc? eModeCategoryProfile,
     PickTypeClass? marketProfile,
   }) {
@@ -8090,15 +7413,9 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       identifier: identifier ?? this.identifier,
       nonce: nonce ?? this.nonce,
       token: token ?? this.token,
-      supplyAmount: supplyAmount ?? this.supplyAmount,
       supplyAmountScaled: supplyAmountScaled ?? this.supplyAmountScaled,
-      borrowAmount: borrowAmount ?? this.borrowAmount,
       borrowAmountScaled: borrowAmountScaled ?? this.borrowAmountScaled,
-      supplyAmountShort: supplyAmountShort ?? this.supplyAmountShort,
-      borrowAmountShort: borrowAmountShort ?? this.borrowAmountShort,
-      supplyTimestamp: supplyTimestamp ?? this.supplyTimestamp,
       supplyIndex: supplyIndex ?? this.supplyIndex,
-      borrowTimestamp: borrowTimestamp ?? this.borrowTimestamp,
       borrowIndex: borrowIndex ?? this.borrowIndex,
       entryLiquidationThreshold:
           entryLiquidationThreshold ?? this.entryLiquidationThreshold,
@@ -8118,6 +7435,8 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
           leverageInitialBorrow ?? this.leverageInitialBorrow,
       leverageInitialBorrowPrice:
           leverageInitialBorrowPrice ?? this.leverageInitialBorrowPrice,
+      supplyAmount: supplyAmount ?? this.supplyAmount,
+      borrowAmount: borrowAmount ?? this.borrowAmount,
       eModeCategoryProfile: eModeCategoryProfile ?? this.eModeCategoryProfile,
       marketProfile: marketProfile ?? this.marketProfile,
     );
@@ -8128,28 +7447,24 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
     Wrapped<String>? identifier,
     Wrapped<double>? nonce,
     Wrapped<String>? token,
-    Wrapped<Object>? supplyAmount,
     Wrapped<Object>? supplyAmountScaled,
-    Wrapped<Object>? borrowAmount,
     Wrapped<Object>? borrowAmountScaled,
-    Wrapped<Object>? supplyAmountShort,
-    Wrapped<Object>? borrowAmountShort,
-    Wrapped<Object>? supplyTimestamp,
     Wrapped<Object>? supplyIndex,
-    Wrapped<Object>? borrowTimestamp,
     Wrapped<Object>? borrowIndex,
     Wrapped<String>? entryLiquidationThreshold,
     Wrapped<String>? entryLiquidationBonus,
     Wrapped<String>? entryLiquidationFee,
     Wrapped<String>? entryLtv,
-    Wrapped<bool>? isolated,
+    Wrapped<bool?>? isolated,
     Wrapped<enums.PositionMode>? positionMode,
-    Wrapped<String>? eModeCategory,
+    Wrapped<String?>? eModeCategory,
     Wrapped<String>? address,
-    Wrapped<double>? leverageInitialSupply,
-    Wrapped<double>? leverageInitialSupplyPrice,
-    Wrapped<double>? leverageInitialBorrow,
-    Wrapped<double>? leverageInitialBorrowPrice,
+    Wrapped<double?>? leverageInitialSupply,
+    Wrapped<double?>? leverageInitialSupplyPrice,
+    Wrapped<double?>? leverageInitialBorrow,
+    Wrapped<double?>? leverageInitialBorrowPrice,
+    Wrapped<String>? supplyAmount,
+    Wrapped<String>? borrowAmount,
     Wrapped<LendingEModeCategoryProfileDoc?>? eModeCategoryProfile,
     Wrapped<PickTypeClass?>? marketProfile,
   }) {
@@ -8158,31 +7473,13 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       identifier: (identifier != null ? identifier.value : this.identifier),
       nonce: (nonce != null ? nonce.value : this.nonce),
       token: (token != null ? token.value : this.token),
-      supplyAmount: (supplyAmount != null
-          ? supplyAmount.value
-          : this.supplyAmount),
       supplyAmountScaled: (supplyAmountScaled != null
           ? supplyAmountScaled.value
           : this.supplyAmountScaled),
-      borrowAmount: (borrowAmount != null
-          ? borrowAmount.value
-          : this.borrowAmount),
       borrowAmountScaled: (borrowAmountScaled != null
           ? borrowAmountScaled.value
           : this.borrowAmountScaled),
-      supplyAmountShort: (supplyAmountShort != null
-          ? supplyAmountShort.value
-          : this.supplyAmountShort),
-      borrowAmountShort: (borrowAmountShort != null
-          ? borrowAmountShort.value
-          : this.borrowAmountShort),
-      supplyTimestamp: (supplyTimestamp != null
-          ? supplyTimestamp.value
-          : this.supplyTimestamp),
       supplyIndex: (supplyIndex != null ? supplyIndex.value : this.supplyIndex),
-      borrowTimestamp: (borrowTimestamp != null
-          ? borrowTimestamp.value
-          : this.borrowTimestamp),
       borrowIndex: (borrowIndex != null ? borrowIndex.value : this.borrowIndex),
       entryLiquidationThreshold: (entryLiquidationThreshold != null
           ? entryLiquidationThreshold.value
@@ -8214,6 +7511,12 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       leverageInitialBorrowPrice: (leverageInitialBorrowPrice != null
           ? leverageInitialBorrowPrice.value
           : this.leverageInitialBorrowPrice),
+      supplyAmount: (supplyAmount != null
+          ? supplyAmount.value
+          : this.supplyAmount),
+      borrowAmount: (borrowAmount != null
+          ? borrowAmount.value
+          : this.borrowAmount),
       eModeCategoryProfile: (eModeCategoryProfile != null
           ? eModeCategoryProfile.value
           : this.eModeCategoryProfile),
@@ -8756,9 +8059,9 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
 @JsonSerializable(explicitToJson: true)
 class OwnerDto {
   const OwnerDto({
+    required this.username,
     required this.address,
     required this.profile,
-    required this.username,
   });
 
   factory OwnerDto.fromJson(Map<String, dynamic> json) =>
@@ -8767,33 +8070,30 @@ class OwnerDto {
   static const toJsonFactory = _$OwnerDtoToJson;
   Map<String, dynamic> toJson() => _$OwnerDtoToJson(this);
 
+  @JsonKey(name: 'username')
+  final String username;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'profile')
   final String profile;
-  @JsonKey(name: 'username')
-  final String username;
   static const fromJsonFactory = _$OwnerDtoFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is OwnerDto &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality().equals(
+                  other.username,
+                  username,
+                )) &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality().equals(
                   other.address,
                   address,
                 )) &&
             (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )));
+                const DeepCollectionEquality().equals(other.profile, profile)));
   }
 
   @override
@@ -8801,30 +8101,30 @@ class OwnerDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(username) ^
       runtimeType.hashCode;
 }
 
 extension $OwnerDtoExtension on OwnerDto {
-  OwnerDto copyWith({String? address, String? profile, String? username}) {
+  OwnerDto copyWith({String? username, String? address, String? profile}) {
     return OwnerDto(
+      username: username ?? this.username,
       address: address ?? this.address,
       profile: profile ?? this.profile,
-      username: username ?? this.username,
     );
   }
 
   OwnerDto copyWithWrapped({
+    Wrapped<String>? username,
     Wrapped<String>? address,
     Wrapped<String>? profile,
-    Wrapped<String>? username,
   }) {
     return OwnerDto(
+      username: (username != null ? username.value : this.username),
       address: (address != null ? address.value : this.address),
       profile: (profile != null ? profile.value : this.profile),
-      username: (username != null ? username.value : this.username),
     );
   }
 }
@@ -8837,7 +8137,7 @@ class LendingPositionStatus {
     required this.supplied,
     required this.borrowed,
     required this.healthFactor,
-    required this.wallet,
+    this.wallet,
   });
 
   factory LendingPositionStatus.fromJson(Map<String, dynamic> json) =>
@@ -8857,7 +8157,7 @@ class LendingPositionStatus {
   @JsonKey(name: 'healthFactor')
   final double healthFactor;
   @JsonKey(name: 'wallet')
-  final OwnerDto wallet;
+  final OwnerDto? wallet;
   static const fromJsonFactory = _$LendingPositionStatusFromJson;
 
   @override
@@ -8932,7 +8232,7 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
     Wrapped<double>? supplied,
     Wrapped<double>? borrowed,
     Wrapped<double>? healthFactor,
-    Wrapped<OwnerDto>? wallet,
+    Wrapped<OwnerDto?>? wallet,
   }) {
     return LendingPositionStatus(
       position: (position != null ? position.value : this.position),
@@ -9086,6 +8386,900 @@ extension $LendingOverallStatsExtension on LendingOverallStats {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NftPaginated {
+  const NftPaginated({
+    this.count,
+    required this.hasMoreResults,
+    required this.resources,
+  });
+
+  factory NftPaginated.fromJson(Map<String, dynamic> json) =>
+      _$NftPaginatedFromJson(json);
+
+  static const toJsonFactory = _$NftPaginatedToJson;
+  Map<String, dynamic> toJson() => _$NftPaginatedToJson(this);
+
+  @JsonKey(name: 'count')
+  final Object? count;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$NftPaginatedFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NftPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
+                const DeepCollectionEquality().equals(
+                  other.hasMoreResults,
+                  hasMoreResults,
+                )) &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
+      runtimeType.hashCode;
+}
+
+extension $NftPaginatedExtension on NftPaginated {
+  NftPaginated copyWith({
+    Object? count,
+    bool? hasMoreResults,
+    List<List<Object?>>? resources,
+  }) {
+    return NftPaginated(
+      count: count ?? this.count,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
+    );
+  }
+
+  NftPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
+  }) {
+    return NftPaginated(
+      count: (count != null ? count.value : this.count),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LikeNftDto {
+  const LikeNftDto({
+    required this.isFavorite,
+    required this.collection,
+    required this.identifier,
+  });
+
+  factory LikeNftDto.fromJson(Map<String, dynamic> json) =>
+      _$LikeNftDtoFromJson(json);
+
+  static const toJsonFactory = _$LikeNftDtoToJson;
+  Map<String, dynamic> toJson() => _$LikeNftDtoToJson(this);
+
+  @JsonKey(name: 'isFavorite')
+  final bool isFavorite;
+  @JsonKey(name: 'collection')
+  final String collection;
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  static const fromJsonFactory = _$LikeNftDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LikeNftDto &&
+            (identical(other.isFavorite, isFavorite) ||
+                const DeepCollectionEquality().equals(
+                  other.isFavorite,
+                  isFavorite,
+                )) &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isFavorite) ^
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      runtimeType.hashCode;
+}
+
+extension $LikeNftDtoExtension on LikeNftDto {
+  LikeNftDto copyWith({
+    bool? isFavorite,
+    String? collection,
+    String? identifier,
+  }) {
+    return LikeNftDto(
+      isFavorite: isFavorite ?? this.isFavorite,
+      collection: collection ?? this.collection,
+      identifier: identifier ?? this.identifier,
+    );
+  }
+
+  LikeNftDto copyWithWrapped({
+    Wrapped<bool>? isFavorite,
+    Wrapped<String>? collection,
+    Wrapped<String>? identifier,
+  }) {
+    return LikeNftDto(
+      isFavorite: (isFavorite != null ? isFavorite.value : this.isFavorite),
+      collection: (collection != null ? collection.value : this.collection),
+      identifier: (identifier != null ? identifier.value : this.identifier),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class InventorySummaryDto {
+  const InventorySummaryDto({
+    required this.collection,
+    required this.inventoryCount,
+    required this.listedCount,
+    required this.stakedCount,
+  });
+
+  factory InventorySummaryDto.fromJson(Map<String, dynamic> json) =>
+      _$InventorySummaryDtoFromJson(json);
+
+  static const toJsonFactory = _$InventorySummaryDtoToJson;
+  Map<String, dynamic> toJson() => _$InventorySummaryDtoToJson(this);
+
+  @JsonKey(name: 'collection')
+  final String collection;
+  @JsonKey(name: 'inventoryCount')
+  final double inventoryCount;
+  @JsonKey(name: 'listedCount')
+  final double listedCount;
+  @JsonKey(name: 'stakedCount')
+  final double stakedCount;
+  static const fromJsonFactory = _$InventorySummaryDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is InventorySummaryDto &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.inventoryCount, inventoryCount) ||
+                const DeepCollectionEquality().equals(
+                  other.inventoryCount,
+                  inventoryCount,
+                )) &&
+            (identical(other.listedCount, listedCount) ||
+                const DeepCollectionEquality().equals(
+                  other.listedCount,
+                  listedCount,
+                )) &&
+            (identical(other.stakedCount, stakedCount) ||
+                const DeepCollectionEquality().equals(
+                  other.stakedCount,
+                  stakedCount,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(inventoryCount) ^
+      const DeepCollectionEquality().hash(listedCount) ^
+      const DeepCollectionEquality().hash(stakedCount) ^
+      runtimeType.hashCode;
+}
+
+extension $InventorySummaryDtoExtension on InventorySummaryDto {
+  InventorySummaryDto copyWith({
+    String? collection,
+    double? inventoryCount,
+    double? listedCount,
+    double? stakedCount,
+  }) {
+    return InventorySummaryDto(
+      collection: collection ?? this.collection,
+      inventoryCount: inventoryCount ?? this.inventoryCount,
+      listedCount: listedCount ?? this.listedCount,
+      stakedCount: stakedCount ?? this.stakedCount,
+    );
+  }
+
+  InventorySummaryDto copyWithWrapped({
+    Wrapped<String>? collection,
+    Wrapped<double>? inventoryCount,
+    Wrapped<double>? listedCount,
+    Wrapped<double>? stakedCount,
+  }) {
+    return InventorySummaryDto(
+      collection: (collection != null ? collection.value : this.collection),
+      inventoryCount: (inventoryCount != null
+          ? inventoryCount.value
+          : this.inventoryCount),
+      listedCount: (listedCount != null ? listedCount.value : this.listedCount),
+      stakedCount: (stakedCount != null ? stakedCount.value : this.stakedCount),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NftOfferPaginated {
+  const NftOfferPaginated({
+    this.count,
+    required this.hasMoreResults,
+    required this.resources,
+  });
+
+  factory NftOfferPaginated.fromJson(Map<String, dynamic> json) =>
+      _$NftOfferPaginatedFromJson(json);
+
+  static const toJsonFactory = _$NftOfferPaginatedToJson;
+  Map<String, dynamic> toJson() => _$NftOfferPaginatedToJson(this);
+
+  @JsonKey(name: 'count')
+  final Object? count;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$NftOfferPaginatedFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NftOfferPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
+                const DeepCollectionEquality().equals(
+                  other.hasMoreResults,
+                  hasMoreResults,
+                )) &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
+      runtimeType.hashCode;
+}
+
+extension $NftOfferPaginatedExtension on NftOfferPaginated {
+  NftOfferPaginated copyWith({
+    Object? count,
+    bool? hasMoreResults,
+    List<List<Object?>>? resources,
+  }) {
+    return NftOfferPaginated(
+      count: count ?? this.count,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
+    );
+  }
+
+  NftOfferPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
+  }) {
+    return NftOfferPaginated(
+      count: (count != null ? count.value : this.count),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class NftOfferDoc {
+  const NftOfferDoc({
+    required this.dataType,
+    required this.identifier,
+    required this.collection,
+    required this.offerId,
+    required this.paymentToken,
+    required this.paymentTokenNonce,
+    required this.price,
+    required this.priceShort,
+    this.priceUsd,
+    this.floorPriceMargin,
+    required this.deadline,
+    required this.timestamp,
+    this.nftOwner,
+    required this.quantity,
+    required this.marketplace,
+    this.auctionId,
+    required this.isActive,
+    required this.chain,
+    required this.id,
+    required this.ts,
+    required this.owner,
+  });
+
+  factory NftOfferDoc.fromJson(Map<String, dynamic> json) =>
+      _$NftOfferDocFromJson(json);
+
+  static const toJsonFactory = _$NftOfferDocToJson;
+  Map<String, dynamic> toJson() => _$NftOfferDocToJson(this);
+
+  @JsonKey(
+    name: 'dataType',
+    toJson: nftOfferDocDataTypeToJson,
+    fromJson: nftOfferDocDataTypeFromJson,
+  )
+  final enums.NftOfferDocDataType dataType;
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'collection')
+  final String collection;
+  @JsonKey(name: 'offerId')
+  final double offerId;
+  @JsonKey(name: 'paymentToken')
+  final String paymentToken;
+  @JsonKey(name: 'paymentTokenNonce')
+  final double paymentTokenNonce;
+  @JsonKey(name: 'price')
+  final String price;
+  @JsonKey(name: 'priceShort')
+  final double priceShort;
+  @JsonKey(name: 'priceUsd')
+  final double? priceUsd;
+  @JsonKey(name: 'floorPriceMargin')
+  final double? floorPriceMargin;
+  @JsonKey(name: 'deadline')
+  final double deadline;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'nftOwner')
+  final String? nftOwner;
+  @JsonKey(name: 'quantity')
+  final double quantity;
+  @JsonKey(name: 'marketplace')
+  final String marketplace;
+  @JsonKey(name: 'auctionId')
+  final double? auctionId;
+  @JsonKey(name: 'isActive')
+  final bool isActive;
+  @JsonKey(
+    name: 'chain',
+    toJson: nftOfferDocChainToJson,
+    fromJson: nftOfferDocChainFromJson,
+  )
+  final enums.NftOfferDocChain chain;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: '_ts')
+  final double ts;
+  @JsonKey(name: 'owner')
+  final String owner;
+  static const fromJsonFactory = _$NftOfferDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NftOfferDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
+                )) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )) &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.offerId, offerId) ||
+                const DeepCollectionEquality().equals(
+                  other.offerId,
+                  offerId,
+                )) &&
+            (identical(other.paymentToken, paymentToken) ||
+                const DeepCollectionEquality().equals(
+                  other.paymentToken,
+                  paymentToken,
+                )) &&
+            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
+                const DeepCollectionEquality().equals(
+                  other.paymentTokenNonce,
+                  paymentTokenNonce,
+                )) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.priceShort, priceShort) ||
+                const DeepCollectionEquality().equals(
+                  other.priceShort,
+                  priceShort,
+                )) &&
+            (identical(other.priceUsd, priceUsd) ||
+                const DeepCollectionEquality().equals(
+                  other.priceUsd,
+                  priceUsd,
+                )) &&
+            (identical(other.floorPriceMargin, floorPriceMargin) ||
+                const DeepCollectionEquality().equals(
+                  other.floorPriceMargin,
+                  floorPriceMargin,
+                )) &&
+            (identical(other.deadline, deadline) ||
+                const DeepCollectionEquality().equals(
+                  other.deadline,
+                  deadline,
+                )) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.nftOwner, nftOwner) ||
+                const DeepCollectionEquality().equals(
+                  other.nftOwner,
+                  nftOwner,
+                )) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality().equals(
+                  other.quantity,
+                  quantity,
+                )) &&
+            (identical(other.marketplace, marketplace) ||
+                const DeepCollectionEquality().equals(
+                  other.marketplace,
+                  marketplace,
+                )) &&
+            (identical(other.auctionId, auctionId) ||
+                const DeepCollectionEquality().equals(
+                  other.auctionId,
+                  auctionId,
+                )) &&
+            (identical(other.isActive, isActive) ||
+                const DeepCollectionEquality().equals(
+                  other.isActive,
+                  isActive,
+                )) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(offerId) ^
+      const DeepCollectionEquality().hash(paymentToken) ^
+      const DeepCollectionEquality().hash(paymentTokenNonce) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(priceShort) ^
+      const DeepCollectionEquality().hash(priceUsd) ^
+      const DeepCollectionEquality().hash(floorPriceMargin) ^
+      const DeepCollectionEquality().hash(deadline) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(nftOwner) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(marketplace) ^
+      const DeepCollectionEquality().hash(auctionId) ^
+      const DeepCollectionEquality().hash(isActive) ^
+      const DeepCollectionEquality().hash(chain) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(owner) ^
+      runtimeType.hashCode;
+}
+
+extension $NftOfferDocExtension on NftOfferDoc {
+  NftOfferDoc copyWith({
+    enums.NftOfferDocDataType? dataType,
+    String? identifier,
+    String? collection,
+    double? offerId,
+    String? paymentToken,
+    double? paymentTokenNonce,
+    String? price,
+    double? priceShort,
+    double? priceUsd,
+    double? floorPriceMargin,
+    double? deadline,
+    double? timestamp,
+    String? nftOwner,
+    double? quantity,
+    String? marketplace,
+    double? auctionId,
+    bool? isActive,
+    enums.NftOfferDocChain? chain,
+    String? id,
+    double? ts,
+    String? owner,
+  }) {
+    return NftOfferDoc(
+      dataType: dataType ?? this.dataType,
+      identifier: identifier ?? this.identifier,
+      collection: collection ?? this.collection,
+      offerId: offerId ?? this.offerId,
+      paymentToken: paymentToken ?? this.paymentToken,
+      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
+      price: price ?? this.price,
+      priceShort: priceShort ?? this.priceShort,
+      priceUsd: priceUsd ?? this.priceUsd,
+      floorPriceMargin: floorPriceMargin ?? this.floorPriceMargin,
+      deadline: deadline ?? this.deadline,
+      timestamp: timestamp ?? this.timestamp,
+      nftOwner: nftOwner ?? this.nftOwner,
+      quantity: quantity ?? this.quantity,
+      marketplace: marketplace ?? this.marketplace,
+      auctionId: auctionId ?? this.auctionId,
+      isActive: isActive ?? this.isActive,
+      chain: chain ?? this.chain,
+      id: id ?? this.id,
+      ts: ts ?? this.ts,
+      owner: owner ?? this.owner,
+    );
+  }
+
+  NftOfferDoc copyWithWrapped({
+    Wrapped<enums.NftOfferDocDataType>? dataType,
+    Wrapped<String>? identifier,
+    Wrapped<String>? collection,
+    Wrapped<double>? offerId,
+    Wrapped<String>? paymentToken,
+    Wrapped<double>? paymentTokenNonce,
+    Wrapped<String>? price,
+    Wrapped<double>? priceShort,
+    Wrapped<double?>? priceUsd,
+    Wrapped<double?>? floorPriceMargin,
+    Wrapped<double>? deadline,
+    Wrapped<double>? timestamp,
+    Wrapped<String?>? nftOwner,
+    Wrapped<double>? quantity,
+    Wrapped<String>? marketplace,
+    Wrapped<double?>? auctionId,
+    Wrapped<bool>? isActive,
+    Wrapped<enums.NftOfferDocChain>? chain,
+    Wrapped<String>? id,
+    Wrapped<double>? ts,
+    Wrapped<String>? owner,
+  }) {
+    return NftOfferDoc(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      collection: (collection != null ? collection.value : this.collection),
+      offerId: (offerId != null ? offerId.value : this.offerId),
+      paymentToken: (paymentToken != null
+          ? paymentToken.value
+          : this.paymentToken),
+      paymentTokenNonce: (paymentTokenNonce != null
+          ? paymentTokenNonce.value
+          : this.paymentTokenNonce),
+      price: (price != null ? price.value : this.price),
+      priceShort: (priceShort != null ? priceShort.value : this.priceShort),
+      priceUsd: (priceUsd != null ? priceUsd.value : this.priceUsd),
+      floorPriceMargin: (floorPriceMargin != null
+          ? floorPriceMargin.value
+          : this.floorPriceMargin),
+      deadline: (deadline != null ? deadline.value : this.deadline),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      nftOwner: (nftOwner != null ? nftOwner.value : this.nftOwner),
+      quantity: (quantity != null ? quantity.value : this.quantity),
+      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
+      auctionId: (auctionId != null ? auctionId.value : this.auctionId),
+      isActive: (isActive != null ? isActive.value : this.isActive),
+      chain: (chain != null ? chain.value : this.chain),
+      id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
+      owner: (owner != null ? owner.value : this.owner),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionRanksDTO {
+  const CollectionRanksDTO({
+    required this.identifier,
+    required this.name,
+    required this.rank,
+  });
+
+  factory CollectionRanksDTO.fromJson(Map<String, dynamic> json) =>
+      _$CollectionRanksDTOFromJson(json);
+
+  static const toJsonFactory = _$CollectionRanksDTOToJson;
+  Map<String, dynamic> toJson() => _$CollectionRanksDTOToJson(this);
+
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'rank')
+  final double rank;
+  static const fromJsonFactory = _$CollectionRanksDTOFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionRanksDTO &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.rank, rank) ||
+                const DeepCollectionEquality().equals(other.rank, rank)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(identifier) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(rank) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionRanksDTOExtension on CollectionRanksDTO {
+  CollectionRanksDTO copyWith({
+    String? identifier,
+    String? name,
+    double? rank,
+  }) {
+    return CollectionRanksDTO(
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      rank: rank ?? this.rank,
+    );
+  }
+
+  CollectionRanksDTO copyWithWrapped({
+    Wrapped<String>? identifier,
+    Wrapped<String>? name,
+    Wrapped<double>? rank,
+  }) {
+    return CollectionRanksDTO(
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      name: (name != null ? name.value : this.name),
+      rank: (rank != null ? rank.value : this.rank),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class DensityDto {
+  const DensityDto({
+    required this.key,
+    required this.intervalName,
+    required this.intervalCount,
+    required this.totalCount,
+  });
+
+  factory DensityDto.fromJson(Map<String, dynamic> json) =>
+      _$DensityDtoFromJson(json);
+
+  static const toJsonFactory = _$DensityDtoToJson;
+  Map<String, dynamic> toJson() => _$DensityDtoToJson(this);
+
+  @JsonKey(name: 'key')
+  final String key;
+  @JsonKey(name: 'intervalName')
+  final String intervalName;
+  @JsonKey(name: 'intervalCount')
+  final double intervalCount;
+  @JsonKey(name: 'totalCount')
+  final double totalCount;
+  static const fromJsonFactory = _$DensityDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is DensityDto &&
+            (identical(other.key, key) ||
+                const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.intervalName, intervalName) ||
+                const DeepCollectionEquality().equals(
+                  other.intervalName,
+                  intervalName,
+                )) &&
+            (identical(other.intervalCount, intervalCount) ||
+                const DeepCollectionEquality().equals(
+                  other.intervalCount,
+                  intervalCount,
+                )) &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality().equals(
+                  other.totalCount,
+                  totalCount,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(key) ^
+      const DeepCollectionEquality().hash(intervalName) ^
+      const DeepCollectionEquality().hash(intervalCount) ^
+      const DeepCollectionEquality().hash(totalCount) ^
+      runtimeType.hashCode;
+}
+
+extension $DensityDtoExtension on DensityDto {
+  DensityDto copyWith({
+    String? key,
+    String? intervalName,
+    double? intervalCount,
+    double? totalCount,
+  }) {
+    return DensityDto(
+      key: key ?? this.key,
+      intervalName: intervalName ?? this.intervalName,
+      intervalCount: intervalCount ?? this.intervalCount,
+      totalCount: totalCount ?? this.totalCount,
+    );
+  }
+
+  DensityDto copyWithWrapped({
+    Wrapped<String>? key,
+    Wrapped<String>? intervalName,
+    Wrapped<double>? intervalCount,
+    Wrapped<double>? totalCount,
+  }) {
+    return DensityDto(
+      key: (key != null ? key.value : this.key),
+      intervalName: (intervalName != null
+          ? intervalName.value
+          : this.intervalName),
+      intervalCount: (intervalCount != null
+          ? intervalCount.value
+          : this.intervalCount),
+      totalCount: (totalCount != null ? totalCount.value : this.totalCount),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RarityDto {
+  const RarityDto({required this.rank});
+
+  factory RarityDto.fromJson(Map<String, dynamic> json) =>
+      _$RarityDtoFromJson(json);
+
+  static const toJsonFactory = _$RarityDtoToJson;
+  Map<String, dynamic> toJson() => _$RarityDtoToJson(this);
+
+  @JsonKey(name: 'rank')
+  final double rank;
+  static const fromJsonFactory = _$RarityDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is RarityDto &&
+            (identical(other.rank, rank) ||
+                const DeepCollectionEquality().equals(other.rank, rank)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(rank) ^ runtimeType.hashCode;
+}
+
+extension $RarityDtoExtension on RarityDto {
+  RarityDto copyWith({double? rank}) {
+    return RarityDto(rank: rank ?? this.rank);
+  }
+
+  RarityDto copyWithWrapped({Wrapped<double>? rank}) {
+    return RarityDto(rank: (rank != null ? rank.value : this.rank));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class MetadataDto {
+  const MetadataDto({required this.rarity});
+
+  factory MetadataDto.fromJson(Map<String, dynamic> json) =>
+      _$MetadataDtoFromJson(json);
+
+  static const toJsonFactory = _$MetadataDtoToJson;
+  Map<String, dynamic> toJson() => _$MetadataDtoToJson(this);
+
+  @JsonKey(name: 'rarity')
+  final RarityDto rarity;
+  static const fromJsonFactory = _$MetadataDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is MetadataDto &&
+            (identical(other.rarity, rarity) ||
+                const DeepCollectionEquality().equals(other.rarity, rarity)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(rarity) ^ runtimeType.hashCode;
+}
+
+extension $MetadataDtoExtension on MetadataDto {
+  MetadataDto copyWith({RarityDto? rarity}) {
+    return MetadataDto(rarity: rarity ?? this.rarity);
+  }
+
+  MetadataDto copyWithWrapped({Wrapped<RarityDto>? rarity}) {
+    return MetadataDto(rarity: (rarity != null ? rarity.value : this.rarity));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class OriginalMedia {
   const OriginalMedia({required this.contentType, required this.contentLength});
 
@@ -9150,7 +9344,12 @@ extension $OriginalMediaExtension on OriginalMedia {
 
 @JsonSerializable(explicitToJson: true)
 class NftMedia {
-  const NftMedia({required this.webpUrl, required this.originalMedia});
+  const NftMedia({
+    required this.avifUrl,
+    required this.webpUrl,
+    required this.retries,
+    required this.originalMedia,
+  });
 
   factory NftMedia.fromJson(Map<String, dynamic> json) =>
       _$NftMediaFromJson(json);
@@ -9158,8 +9357,12 @@ class NftMedia {
   static const toJsonFactory = _$NftMediaToJson;
   Map<String, dynamic> toJson() => _$NftMediaToJson(this);
 
+  @JsonKey(name: 'avifUrl')
+  final String avifUrl;
   @JsonKey(name: 'webpUrl')
   final String webpUrl;
+  @JsonKey(name: 'retries')
+  final double retries;
   @JsonKey(name: 'originalMedia')
   final OriginalMedia originalMedia;
   static const fromJsonFactory = _$NftMediaFromJson;
@@ -9168,10 +9371,20 @@ class NftMedia {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is NftMedia &&
+            (identical(other.avifUrl, avifUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.avifUrl,
+                  avifUrl,
+                )) &&
             (identical(other.webpUrl, webpUrl) ||
                 const DeepCollectionEquality().equals(
                   other.webpUrl,
                   webpUrl,
+                )) &&
+            (identical(other.retries, retries) ||
+                const DeepCollectionEquality().equals(
+                  other.retries,
+                  retries,
                 )) &&
             (identical(other.originalMedia, originalMedia) ||
                 const DeepCollectionEquality().equals(
@@ -9185,25 +9398,38 @@ class NftMedia {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(avifUrl) ^
       const DeepCollectionEquality().hash(webpUrl) ^
+      const DeepCollectionEquality().hash(retries) ^
       const DeepCollectionEquality().hash(originalMedia) ^
       runtimeType.hashCode;
 }
 
 extension $NftMediaExtension on NftMedia {
-  NftMedia copyWith({String? webpUrl, OriginalMedia? originalMedia}) {
+  NftMedia copyWith({
+    String? avifUrl,
+    String? webpUrl,
+    double? retries,
+    OriginalMedia? originalMedia,
+  }) {
     return NftMedia(
+      avifUrl: avifUrl ?? this.avifUrl,
       webpUrl: webpUrl ?? this.webpUrl,
+      retries: retries ?? this.retries,
       originalMedia: originalMedia ?? this.originalMedia,
     );
   }
 
   NftMedia copyWithWrapped({
+    Wrapped<String>? avifUrl,
     Wrapped<String>? webpUrl,
+    Wrapped<double>? retries,
     Wrapped<OriginalMedia>? originalMedia,
   }) {
     return NftMedia(
+      avifUrl: (avifUrl != null ? avifUrl.value : this.avifUrl),
       webpUrl: (webpUrl != null ? webpUrl.value : this.webpUrl),
+      retries: (retries != null ? retries.value : this.retries),
       originalMedia: (originalMedia != null
           ? originalMedia.value
           : this.originalMedia),
@@ -9212,176 +9438,34 @@ extension $NftMediaExtension on NftMedia {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NftSaleInfo {
-  const NftSaleInfo({
-    required this.auctionId,
-    required this.seller,
-    this.currentWinner,
-    required this.minBid,
-    required this.maxBid,
-    this.currentBid,
-    required this.startTime,
-    required this.deadline,
-    required this.paymentToken,
-    required this.paymentTokenNonce,
-    required this.auctionType,
-    required this.timestamp,
-    required this.minBidShort,
-    this.minBidUsdValue,
-    required this.maxBidShort,
-    this.maxBidUsdValue,
-    this.currentBidShort,
-    required this.quantity,
-    required this.marketplace,
-    required this.royalties,
-  });
+class SaleInfoDto {
+  const SaleInfoDto({required this.minBidShort, required this.marketplace});
 
-  factory NftSaleInfo.fromJson(Map<String, dynamic> json) =>
-      _$NftSaleInfoFromJson(json);
+  factory SaleInfoDto.fromJson(Map<String, dynamic> json) =>
+      _$SaleInfoDtoFromJson(json);
 
-  static const toJsonFactory = _$NftSaleInfoToJson;
-  Map<String, dynamic> toJson() => _$NftSaleInfoToJson(this);
+  static const toJsonFactory = _$SaleInfoDtoToJson;
+  Map<String, dynamic> toJson() => _$SaleInfoDtoToJson(this);
 
-  @JsonKey(name: 'auctionId')
-  final double auctionId;
-  @JsonKey(name: 'seller')
-  final String seller;
-  @JsonKey(name: 'currentWinner')
-  final OwnerDto? currentWinner;
-  @JsonKey(name: 'minBid')
-  final String minBid;
-  @JsonKey(name: 'maxBid')
-  final String maxBid;
-  @JsonKey(name: 'currentBid')
-  final String? currentBid;
-  @JsonKey(name: 'startTime')
-  final double startTime;
-  @JsonKey(name: 'deadline')
-  final double deadline;
-  @JsonKey(name: 'paymentToken')
-  final String paymentToken;
-  @JsonKey(name: 'paymentTokenNonce')
-  final double paymentTokenNonce;
-  @JsonKey(name: 'auctionType')
-  final String auctionType;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
   @JsonKey(name: 'minBidShort')
   final double minBidShort;
-  @JsonKey(name: 'minBidUsdValue')
-  final double? minBidUsdValue;
-  @JsonKey(name: 'maxBidShort')
-  final double maxBidShort;
-  @JsonKey(name: 'maxBidUsdValue')
-  final double? maxBidUsdValue;
-  @JsonKey(name: 'currentBidShort')
-  final double? currentBidShort;
-  @JsonKey(name: 'quantity')
-  final double quantity;
-  @JsonKey(
-    name: 'marketplace',
-    toJson: marketplacesOnSaleNamesToJson,
-    fromJson: marketplacesOnSaleNamesFromJson,
-  )
-  final enums.MarketplacesOnSaleNames marketplace;
-  @JsonKey(name: 'royalties')
-  final double royalties;
-  static const fromJsonFactory = _$NftSaleInfoFromJson;
+  @JsonKey(name: 'marketplace')
+  final String marketplace;
+  static const fromJsonFactory = _$SaleInfoDtoFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is NftSaleInfo &&
-            (identical(other.auctionId, auctionId) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionId,
-                  auctionId,
-                )) &&
-            (identical(other.seller, seller) ||
-                const DeepCollectionEquality().equals(other.seller, seller)) &&
-            (identical(other.currentWinner, currentWinner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentWinner,
-                  currentWinner,
-                )) &&
-            (identical(other.minBid, minBid) ||
-                const DeepCollectionEquality().equals(other.minBid, minBid)) &&
-            (identical(other.maxBid, maxBid) ||
-                const DeepCollectionEquality().equals(other.maxBid, maxBid)) &&
-            (identical(other.currentBid, currentBid) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBid,
-                  currentBid,
-                )) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
+        (other is SaleInfoDto &&
             (identical(other.minBidShort, minBidShort) ||
                 const DeepCollectionEquality().equals(
                   other.minBidShort,
                   minBidShort,
                 )) &&
-            (identical(other.minBidUsdValue, minBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidUsdValue,
-                  minBidUsdValue,
-                )) &&
-            (identical(other.maxBidShort, maxBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidShort,
-                  maxBidShort,
-                )) &&
-            (identical(other.maxBidUsdValue, maxBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidUsdValue,
-                  maxBidUsdValue,
-                )) &&
-            (identical(other.currentBidShort, currentBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBidShort,
-                  currentBidShort,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
             (identical(other.marketplace, marketplace) ||
                 const DeepCollectionEquality().equals(
                   other.marketplace,
                   marketplace,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
                 )));
   }
 
@@ -9390,131 +9474,228 @@ class NftSaleInfo {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(auctionId) ^
-      const DeepCollectionEquality().hash(seller) ^
-      const DeepCollectionEquality().hash(currentWinner) ^
-      const DeepCollectionEquality().hash(minBid) ^
-      const DeepCollectionEquality().hash(maxBid) ^
-      const DeepCollectionEquality().hash(currentBid) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(minBidShort) ^
-      const DeepCollectionEquality().hash(minBidUsdValue) ^
-      const DeepCollectionEquality().hash(maxBidShort) ^
-      const DeepCollectionEquality().hash(maxBidUsdValue) ^
-      const DeepCollectionEquality().hash(currentBidShort) ^
-      const DeepCollectionEquality().hash(quantity) ^
       const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(royalties) ^
       runtimeType.hashCode;
 }
 
-extension $NftSaleInfoExtension on NftSaleInfo {
-  NftSaleInfo copyWith({
-    double? auctionId,
-    String? seller,
-    OwnerDto? currentWinner,
-    String? minBid,
-    String? maxBid,
-    String? currentBid,
-    double? startTime,
-    double? deadline,
-    String? paymentToken,
-    double? paymentTokenNonce,
-    String? auctionType,
-    double? timestamp,
-    double? minBidShort,
-    double? minBidUsdValue,
-    double? maxBidShort,
-    double? maxBidUsdValue,
-    double? currentBidShort,
-    double? quantity,
-    enums.MarketplacesOnSaleNames? marketplace,
-    double? royalties,
-  }) {
-    return NftSaleInfo(
-      auctionId: auctionId ?? this.auctionId,
-      seller: seller ?? this.seller,
-      currentWinner: currentWinner ?? this.currentWinner,
-      minBid: minBid ?? this.minBid,
-      maxBid: maxBid ?? this.maxBid,
-      currentBid: currentBid ?? this.currentBid,
-      startTime: startTime ?? this.startTime,
-      deadline: deadline ?? this.deadline,
-      paymentToken: paymentToken ?? this.paymentToken,
-      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
-      auctionType: auctionType ?? this.auctionType,
-      timestamp: timestamp ?? this.timestamp,
+extension $SaleInfoDtoExtension on SaleInfoDto {
+  SaleInfoDto copyWith({double? minBidShort, String? marketplace}) {
+    return SaleInfoDto(
       minBidShort: minBidShort ?? this.minBidShort,
-      minBidUsdValue: minBidUsdValue ?? this.minBidUsdValue,
-      maxBidShort: maxBidShort ?? this.maxBidShort,
-      maxBidUsdValue: maxBidUsdValue ?? this.maxBidUsdValue,
-      currentBidShort: currentBidShort ?? this.currentBidShort,
-      quantity: quantity ?? this.quantity,
       marketplace: marketplace ?? this.marketplace,
-      royalties: royalties ?? this.royalties,
     );
   }
 
-  NftSaleInfo copyWithWrapped({
-    Wrapped<double>? auctionId,
-    Wrapped<String>? seller,
-    Wrapped<OwnerDto?>? currentWinner,
-    Wrapped<String>? minBid,
-    Wrapped<String>? maxBid,
-    Wrapped<String?>? currentBid,
-    Wrapped<double>? startTime,
-    Wrapped<double>? deadline,
-    Wrapped<String>? paymentToken,
-    Wrapped<double>? paymentTokenNonce,
-    Wrapped<String>? auctionType,
-    Wrapped<double>? timestamp,
+  SaleInfoDto copyWithWrapped({
     Wrapped<double>? minBidShort,
-    Wrapped<double?>? minBidUsdValue,
-    Wrapped<double>? maxBidShort,
-    Wrapped<double?>? maxBidUsdValue,
-    Wrapped<double?>? currentBidShort,
-    Wrapped<double>? quantity,
-    Wrapped<enums.MarketplacesOnSaleNames>? marketplace,
-    Wrapped<double>? royalties,
+    Wrapped<String>? marketplace,
   }) {
-    return NftSaleInfo(
-      auctionId: (auctionId != null ? auctionId.value : this.auctionId),
-      seller: (seller != null ? seller.value : this.seller),
-      currentWinner: (currentWinner != null
-          ? currentWinner.value
-          : this.currentWinner),
-      minBid: (minBid != null ? minBid.value : this.minBid),
-      maxBid: (maxBid != null ? maxBid.value : this.maxBid),
-      currentBid: (currentBid != null ? currentBid.value : this.currentBid),
-      startTime: (startTime != null ? startTime.value : this.startTime),
-      deadline: (deadline != null ? deadline.value : this.deadline),
-      paymentToken: (paymentToken != null
-          ? paymentToken.value
-          : this.paymentToken),
-      paymentTokenNonce: (paymentTokenNonce != null
-          ? paymentTokenNonce.value
-          : this.paymentTokenNonce),
-      auctionType: (auctionType != null ? auctionType.value : this.auctionType),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+    return SaleInfoDto(
       minBidShort: (minBidShort != null ? minBidShort.value : this.minBidShort),
-      minBidUsdValue: (minBidUsdValue != null
-          ? minBidUsdValue.value
-          : this.minBidUsdValue),
-      maxBidShort: (maxBidShort != null ? maxBidShort.value : this.maxBidShort),
-      maxBidUsdValue: (maxBidUsdValue != null
-          ? maxBidUsdValue.value
-          : this.maxBidUsdValue),
-      currentBidShort: (currentBidShort != null
-          ? currentBidShort.value
-          : this.currentBidShort),
-      quantity: (quantity != null ? quantity.value : this.quantity),
       marketplace: (marketplace != null ? marketplace.value : this.marketplace),
-      royalties: (royalties != null ? royalties.value : this.royalties),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ListingDto {
+  const ListingDto({
+    required this.identifier,
+    required this.name,
+    required this.collection,
+    required this.metadata,
+    required this.url,
+    required this.media,
+    required this.wasProcessed,
+    required this.saleInfo,
+  });
+
+  factory ListingDto.fromJson(Map<String, dynamic> json) =>
+      _$ListingDtoFromJson(json);
+
+  static const toJsonFactory = _$ListingDtoToJson;
+  Map<String, dynamic> toJson() => _$ListingDtoToJson(this);
+
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'collection')
+  final String collection;
+  @JsonKey(name: 'metadata')
+  final MetadataDto metadata;
+  @JsonKey(name: 'url')
+  final String url;
+  @JsonKey(name: 'media')
+  final NftMedia media;
+  @JsonKey(name: 'wasProcessed')
+  final bool wasProcessed;
+  @JsonKey(name: 'saleInfo')
+  final SaleInfoDto saleInfo;
+  static const fromJsonFactory = _$ListingDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ListingDto &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.metadata, metadata) ||
+                const DeepCollectionEquality().equals(
+                  other.metadata,
+                  metadata,
+                )) &&
+            (identical(other.url, url) ||
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.media, media) ||
+                const DeepCollectionEquality().equals(other.media, media)) &&
+            (identical(other.wasProcessed, wasProcessed) ||
+                const DeepCollectionEquality().equals(
+                  other.wasProcessed,
+                  wasProcessed,
+                )) &&
+            (identical(other.saleInfo, saleInfo) ||
+                const DeepCollectionEquality().equals(
+                  other.saleInfo,
+                  saleInfo,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(identifier) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(media) ^
+      const DeepCollectionEquality().hash(wasProcessed) ^
+      const DeepCollectionEquality().hash(saleInfo) ^
+      runtimeType.hashCode;
+}
+
+extension $ListingDtoExtension on ListingDto {
+  ListingDto copyWith({
+    String? identifier,
+    String? name,
+    String? collection,
+    MetadataDto? metadata,
+    String? url,
+    NftMedia? media,
+    bool? wasProcessed,
+    SaleInfoDto? saleInfo,
+  }) {
+    return ListingDto(
+      identifier: identifier ?? this.identifier,
+      name: name ?? this.name,
+      collection: collection ?? this.collection,
+      metadata: metadata ?? this.metadata,
+      url: url ?? this.url,
+      media: media ?? this.media,
+      wasProcessed: wasProcessed ?? this.wasProcessed,
+      saleInfo: saleInfo ?? this.saleInfo,
+    );
+  }
+
+  ListingDto copyWithWrapped({
+    Wrapped<String>? identifier,
+    Wrapped<String>? name,
+    Wrapped<String>? collection,
+    Wrapped<MetadataDto>? metadata,
+    Wrapped<String>? url,
+    Wrapped<NftMedia>? media,
+    Wrapped<bool>? wasProcessed,
+    Wrapped<SaleInfoDto>? saleInfo,
+  }) {
+    return ListingDto(
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      name: (name != null ? name.value : this.name),
+      collection: (collection != null ? collection.value : this.collection),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+      url: (url != null ? url.value : this.url),
+      media: (media != null ? media.value : this.media),
+      wasProcessed: (wasProcessed != null
+          ? wasProcessed.value
+          : this.wasProcessed),
+      saleInfo: (saleInfo != null ? saleInfo.value : this.saleInfo),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ListingsResponseDto {
+  const ListingsResponseDto({required this.density, required this.listings});
+
+  factory ListingsResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$ListingsResponseDtoFromJson(json);
+
+  static const toJsonFactory = _$ListingsResponseDtoToJson;
+  Map<String, dynamic> toJson() => _$ListingsResponseDtoToJson(this);
+
+  @JsonKey(name: 'density', defaultValue: <DensityDto>[])
+  final List<DensityDto> density;
+  @JsonKey(name: 'listings', defaultValue: <ListingDto>[])
+  final List<ListingDto> listings;
+  static const fromJsonFactory = _$ListingsResponseDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ListingsResponseDto &&
+            (identical(other.density, density) ||
+                const DeepCollectionEquality().equals(
+                  other.density,
+                  density,
+                )) &&
+            (identical(other.listings, listings) ||
+                const DeepCollectionEquality().equals(
+                  other.listings,
+                  listings,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(density) ^
+      const DeepCollectionEquality().hash(listings) ^
+      runtimeType.hashCode;
+}
+
+extension $ListingsResponseDtoExtension on ListingsResponseDto {
+  ListingsResponseDto copyWith({
+    List<DensityDto>? density,
+    List<ListingDto>? listings,
+  }) {
+    return ListingsResponseDto(
+      density: density ?? this.density,
+      listings: listings ?? this.listings,
+    );
+  }
+
+  ListingsResponseDto copyWithWrapped({
+    Wrapped<List<DensityDto>>? density,
+    Wrapped<List<ListingDto>>? listings,
+  }) {
+    return ListingsResponseDto(
+      density: (density != null ? density.value : this.density),
+      listings: (listings != null ? listings.value : this.listings),
     );
   }
 }
@@ -9835,137 +10016,176 @@ extension $NFTEventDataExtension on NFTEventData {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CollectionExtraFeesConfig {
-  const CollectionExtraFeesConfig({
-    required this.amount,
-    required this.address,
+class NftSaleInfoHydrated {
+  const NftSaleInfoHydrated({
+    required this.auctionId,
+    required this.seller,
+    required this.minBid,
+    required this.maxBid,
+    this.currentBid,
+    required this.startTime,
+    required this.deadline,
+    required this.paymentToken,
+    required this.paymentTokenNonce,
+    required this.auctionType,
+    required this.timestamp,
+    required this.minBidShort,
+    this.minBidUsdValue,
+    required this.maxBidShort,
+    this.maxBidUsdValue,
+    this.currentBidShort,
+    required this.quantity,
+    required this.marketplace,
+    this.royalties,
+    this.currentWinner,
   });
 
-  factory CollectionExtraFeesConfig.fromJson(Map<String, dynamic> json) =>
-      _$CollectionExtraFeesConfigFromJson(json);
+  factory NftSaleInfoHydrated.fromJson(Map<String, dynamic> json) =>
+      _$NftSaleInfoHydratedFromJson(json);
 
-  static const toJsonFactory = _$CollectionExtraFeesConfigToJson;
-  Map<String, dynamic> toJson() => _$CollectionExtraFeesConfigToJson(this);
+  static const toJsonFactory = _$NftSaleInfoHydratedToJson;
+  Map<String, dynamic> toJson() => _$NftSaleInfoHydratedToJson(this);
 
-  @JsonKey(name: 'amount')
-  final double amount;
-  @JsonKey(name: 'address')
-  final String address;
-  static const fromJsonFactory = _$CollectionExtraFeesConfigFromJson;
+  @JsonKey(name: 'auctionId')
+  final double auctionId;
+  @JsonKey(name: 'seller')
+  final String seller;
+  @JsonKey(name: 'minBid')
+  final String minBid;
+  @JsonKey(name: 'maxBid')
+  final String maxBid;
+  @JsonKey(name: 'currentBid')
+  final String? currentBid;
+  @JsonKey(name: 'startTime')
+  final double startTime;
+  @JsonKey(name: 'deadline')
+  final double deadline;
+  @JsonKey(name: 'paymentToken')
+  final String paymentToken;
+  @JsonKey(name: 'paymentTokenNonce')
+  final double paymentTokenNonce;
+  @JsonKey(name: 'auctionType')
+  final String auctionType;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'minBidShort')
+  final double minBidShort;
+  @JsonKey(name: 'minBidUsdValue')
+  final double? minBidUsdValue;
+  @JsonKey(name: 'maxBidShort')
+  final double maxBidShort;
+  @JsonKey(name: 'maxBidUsdValue')
+  final double? maxBidUsdValue;
+  @JsonKey(name: 'currentBidShort')
+  final double? currentBidShort;
+  @JsonKey(name: 'quantity')
+  final double quantity;
+  @JsonKey(
+    name: 'marketplace',
+    toJson: marketplacesOnSaleNamesToJson,
+    fromJson: marketplacesOnSaleNamesFromJson,
+  )
+  final enums.MarketplacesOnSaleNames marketplace;
+  @JsonKey(name: 'royalties')
+  final double? royalties;
+  @JsonKey(name: 'currentWinner')
+  final OwnerDto? currentWinner;
+  static const fromJsonFactory = _$NftSaleInfoHydratedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CollectionExtraFeesConfig &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(address) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionExtraFeesConfigExtension on CollectionExtraFeesConfig {
-  CollectionExtraFeesConfig copyWith({double? amount, String? address}) {
-    return CollectionExtraFeesConfig(
-      amount: amount ?? this.amount,
-      address: address ?? this.address,
-    );
-  }
-
-  CollectionExtraFeesConfig copyWithWrapped({
-    Wrapped<double>? amount,
-    Wrapped<String>? address,
-  }) {
-    return CollectionExtraFeesConfig(
-      amount: (amount != null ? amount.value : this.amount),
-      address: (address != null ? address.value : this.address),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class XoxnoMarketplaceScCollectionConfig {
-  const XoxnoMarketplaceScCollectionConfig({
-    required this.reversedCutFees,
-    required this.reversedRoyalties,
-    required this.customRoyalties,
-    required this.minRoyalties,
-    required this.maxRoyalties,
-    this.extraFees,
-    this.adminAddress,
-  });
-
-  factory XoxnoMarketplaceScCollectionConfig.fromJson(
-    Map<String, dynamic> json,
-  ) => _$XoxnoMarketplaceScCollectionConfigFromJson(json);
-
-  static const toJsonFactory = _$XoxnoMarketplaceScCollectionConfigToJson;
-  Map<String, dynamic> toJson() =>
-      _$XoxnoMarketplaceScCollectionConfigToJson(this);
-
-  @JsonKey(name: 'reversedCutFees')
-  final Object reversedCutFees;
-  @JsonKey(name: 'reversedRoyalties')
-  final Object reversedRoyalties;
-  @JsonKey(name: 'customRoyalties')
-  final Object customRoyalties;
-  @JsonKey(name: 'minRoyalties')
-  final Object minRoyalties;
-  @JsonKey(name: 'maxRoyalties')
-  final Object maxRoyalties;
-  @JsonKey(name: 'extraFees')
-  final CollectionExtraFeesConfig? extraFees;
-  @JsonKey(name: 'adminAddress')
-  final String? adminAddress;
-  static const fromJsonFactory = _$XoxnoMarketplaceScCollectionConfigFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is XoxnoMarketplaceScCollectionConfig &&
-            (identical(other.reversedCutFees, reversedCutFees) ||
+        (other is NftSaleInfoHydrated &&
+            (identical(other.auctionId, auctionId) ||
                 const DeepCollectionEquality().equals(
-                  other.reversedCutFees,
-                  reversedCutFees,
+                  other.auctionId,
+                  auctionId,
                 )) &&
-            (identical(other.reversedRoyalties, reversedRoyalties) ||
+            (identical(other.seller, seller) ||
+                const DeepCollectionEquality().equals(other.seller, seller)) &&
+            (identical(other.minBid, minBid) ||
+                const DeepCollectionEquality().equals(other.minBid, minBid)) &&
+            (identical(other.maxBid, maxBid) ||
+                const DeepCollectionEquality().equals(other.maxBid, maxBid)) &&
+            (identical(other.currentBid, currentBid) ||
                 const DeepCollectionEquality().equals(
-                  other.reversedRoyalties,
-                  reversedRoyalties,
+                  other.currentBid,
+                  currentBid,
                 )) &&
-            (identical(other.customRoyalties, customRoyalties) ||
+            (identical(other.startTime, startTime) ||
                 const DeepCollectionEquality().equals(
-                  other.customRoyalties,
-                  customRoyalties,
+                  other.startTime,
+                  startTime,
                 )) &&
-            (identical(other.minRoyalties, minRoyalties) ||
+            (identical(other.deadline, deadline) ||
                 const DeepCollectionEquality().equals(
-                  other.minRoyalties,
-                  minRoyalties,
+                  other.deadline,
+                  deadline,
                 )) &&
-            (identical(other.maxRoyalties, maxRoyalties) ||
+            (identical(other.paymentToken, paymentToken) ||
                 const DeepCollectionEquality().equals(
-                  other.maxRoyalties,
-                  maxRoyalties,
+                  other.paymentToken,
+                  paymentToken,
                 )) &&
-            (identical(other.extraFees, extraFees) ||
+            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
                 const DeepCollectionEquality().equals(
-                  other.extraFees,
-                  extraFees,
+                  other.paymentTokenNonce,
+                  paymentTokenNonce,
                 )) &&
-            (identical(other.adminAddress, adminAddress) ||
+            (identical(other.auctionType, auctionType) ||
                 const DeepCollectionEquality().equals(
-                  other.adminAddress,
-                  adminAddress,
+                  other.auctionType,
+                  auctionType,
+                )) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.minBidShort, minBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.minBidShort,
+                  minBidShort,
+                )) &&
+            (identical(other.minBidUsdValue, minBidUsdValue) ||
+                const DeepCollectionEquality().equals(
+                  other.minBidUsdValue,
+                  minBidUsdValue,
+                )) &&
+            (identical(other.maxBidShort, maxBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.maxBidShort,
+                  maxBidShort,
+                )) &&
+            (identical(other.maxBidUsdValue, maxBidUsdValue) ||
+                const DeepCollectionEquality().equals(
+                  other.maxBidUsdValue,
+                  maxBidUsdValue,
+                )) &&
+            (identical(other.currentBidShort, currentBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.currentBidShort,
+                  currentBidShort,
+                )) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality().equals(
+                  other.quantity,
+                  quantity,
+                )) &&
+            (identical(other.marketplace, marketplace) ||
+                const DeepCollectionEquality().equals(
+                  other.marketplace,
+                  marketplace,
+                )) &&
+            (identical(other.royalties, royalties) ||
+                const DeepCollectionEquality().equals(
+                  other.royalties,
+                  royalties,
+                )) &&
+            (identical(other.currentWinner, currentWinner) ||
+                const DeepCollectionEquality().equals(
+                  other.currentWinner,
+                  currentWinner,
                 )));
   }
 
@@ -9974,283 +10194,152 @@ class XoxnoMarketplaceScCollectionConfig {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(reversedCutFees) ^
-      const DeepCollectionEquality().hash(reversedRoyalties) ^
-      const DeepCollectionEquality().hash(customRoyalties) ^
-      const DeepCollectionEquality().hash(minRoyalties) ^
-      const DeepCollectionEquality().hash(maxRoyalties) ^
-      const DeepCollectionEquality().hash(extraFees) ^
-      const DeepCollectionEquality().hash(adminAddress) ^
+      const DeepCollectionEquality().hash(auctionId) ^
+      const DeepCollectionEquality().hash(seller) ^
+      const DeepCollectionEquality().hash(minBid) ^
+      const DeepCollectionEquality().hash(maxBid) ^
+      const DeepCollectionEquality().hash(currentBid) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(deadline) ^
+      const DeepCollectionEquality().hash(paymentToken) ^
+      const DeepCollectionEquality().hash(paymentTokenNonce) ^
+      const DeepCollectionEquality().hash(auctionType) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(minBidShort) ^
+      const DeepCollectionEquality().hash(minBidUsdValue) ^
+      const DeepCollectionEquality().hash(maxBidShort) ^
+      const DeepCollectionEquality().hash(maxBidUsdValue) ^
+      const DeepCollectionEquality().hash(currentBidShort) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(marketplace) ^
+      const DeepCollectionEquality().hash(royalties) ^
+      const DeepCollectionEquality().hash(currentWinner) ^
       runtimeType.hashCode;
 }
 
-extension $XoxnoMarketplaceScCollectionConfigExtension
-    on XoxnoMarketplaceScCollectionConfig {
-  XoxnoMarketplaceScCollectionConfig copyWith({
-    Object? reversedCutFees,
-    Object? reversedRoyalties,
-    Object? customRoyalties,
-    Object? minRoyalties,
-    Object? maxRoyalties,
-    CollectionExtraFeesConfig? extraFees,
-    String? adminAddress,
+extension $NftSaleInfoHydratedExtension on NftSaleInfoHydrated {
+  NftSaleInfoHydrated copyWith({
+    double? auctionId,
+    String? seller,
+    String? minBid,
+    String? maxBid,
+    String? currentBid,
+    double? startTime,
+    double? deadline,
+    String? paymentToken,
+    double? paymentTokenNonce,
+    String? auctionType,
+    double? timestamp,
+    double? minBidShort,
+    double? minBidUsdValue,
+    double? maxBidShort,
+    double? maxBidUsdValue,
+    double? currentBidShort,
+    double? quantity,
+    enums.MarketplacesOnSaleNames? marketplace,
+    double? royalties,
+    OwnerDto? currentWinner,
   }) {
-    return XoxnoMarketplaceScCollectionConfig(
-      reversedCutFees: reversedCutFees ?? this.reversedCutFees,
-      reversedRoyalties: reversedRoyalties ?? this.reversedRoyalties,
-      customRoyalties: customRoyalties ?? this.customRoyalties,
-      minRoyalties: minRoyalties ?? this.minRoyalties,
-      maxRoyalties: maxRoyalties ?? this.maxRoyalties,
-      extraFees: extraFees ?? this.extraFees,
-      adminAddress: adminAddress ?? this.adminAddress,
+    return NftSaleInfoHydrated(
+      auctionId: auctionId ?? this.auctionId,
+      seller: seller ?? this.seller,
+      minBid: minBid ?? this.minBid,
+      maxBid: maxBid ?? this.maxBid,
+      currentBid: currentBid ?? this.currentBid,
+      startTime: startTime ?? this.startTime,
+      deadline: deadline ?? this.deadline,
+      paymentToken: paymentToken ?? this.paymentToken,
+      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
+      auctionType: auctionType ?? this.auctionType,
+      timestamp: timestamp ?? this.timestamp,
+      minBidShort: minBidShort ?? this.minBidShort,
+      minBidUsdValue: minBidUsdValue ?? this.minBidUsdValue,
+      maxBidShort: maxBidShort ?? this.maxBidShort,
+      maxBidUsdValue: maxBidUsdValue ?? this.maxBidUsdValue,
+      currentBidShort: currentBidShort ?? this.currentBidShort,
+      quantity: quantity ?? this.quantity,
+      marketplace: marketplace ?? this.marketplace,
+      royalties: royalties ?? this.royalties,
+      currentWinner: currentWinner ?? this.currentWinner,
     );
   }
 
-  XoxnoMarketplaceScCollectionConfig copyWithWrapped({
-    Wrapped<Object>? reversedCutFees,
-    Wrapped<Object>? reversedRoyalties,
-    Wrapped<Object>? customRoyalties,
-    Wrapped<Object>? minRoyalties,
-    Wrapped<Object>? maxRoyalties,
-    Wrapped<CollectionExtraFeesConfig?>? extraFees,
-    Wrapped<String?>? adminAddress,
+  NftSaleInfoHydrated copyWithWrapped({
+    Wrapped<double>? auctionId,
+    Wrapped<String>? seller,
+    Wrapped<String>? minBid,
+    Wrapped<String>? maxBid,
+    Wrapped<String?>? currentBid,
+    Wrapped<double>? startTime,
+    Wrapped<double>? deadline,
+    Wrapped<String>? paymentToken,
+    Wrapped<double>? paymentTokenNonce,
+    Wrapped<String>? auctionType,
+    Wrapped<double>? timestamp,
+    Wrapped<double>? minBidShort,
+    Wrapped<double?>? minBidUsdValue,
+    Wrapped<double>? maxBidShort,
+    Wrapped<double?>? maxBidUsdValue,
+    Wrapped<double?>? currentBidShort,
+    Wrapped<double>? quantity,
+    Wrapped<enums.MarketplacesOnSaleNames>? marketplace,
+    Wrapped<double?>? royalties,
+    Wrapped<OwnerDto?>? currentWinner,
   }) {
-    return XoxnoMarketplaceScCollectionConfig(
-      reversedCutFees: (reversedCutFees != null
-          ? reversedCutFees.value
-          : this.reversedCutFees),
-      reversedRoyalties: (reversedRoyalties != null
-          ? reversedRoyalties.value
-          : this.reversedRoyalties),
-      customRoyalties: (customRoyalties != null
-          ? customRoyalties.value
-          : this.customRoyalties),
-      minRoyalties: (minRoyalties != null
-          ? minRoyalties.value
-          : this.minRoyalties),
-      maxRoyalties: (maxRoyalties != null
-          ? maxRoyalties.value
-          : this.maxRoyalties),
-      extraFees: (extraFees != null ? extraFees.value : this.extraFees),
-      adminAddress: (adminAddress != null
-          ? adminAddress.value
-          : this.adminAddress),
+    return NftSaleInfoHydrated(
+      auctionId: (auctionId != null ? auctionId.value : this.auctionId),
+      seller: (seller != null ? seller.value : this.seller),
+      minBid: (minBid != null ? minBid.value : this.minBid),
+      maxBid: (maxBid != null ? maxBid.value : this.maxBid),
+      currentBid: (currentBid != null ? currentBid.value : this.currentBid),
+      startTime: (startTime != null ? startTime.value : this.startTime),
+      deadline: (deadline != null ? deadline.value : this.deadline),
+      paymentToken: (paymentToken != null
+          ? paymentToken.value
+          : this.paymentToken),
+      paymentTokenNonce: (paymentTokenNonce != null
+          ? paymentTokenNonce.value
+          : this.paymentTokenNonce),
+      auctionType: (auctionType != null ? auctionType.value : this.auctionType),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      minBidShort: (minBidShort != null ? minBidShort.value : this.minBidShort),
+      minBidUsdValue: (minBidUsdValue != null
+          ? minBidUsdValue.value
+          : this.minBidUsdValue),
+      maxBidShort: (maxBidShort != null ? maxBidShort.value : this.maxBidShort),
+      maxBidUsdValue: (maxBidUsdValue != null
+          ? maxBidUsdValue.value
+          : this.maxBidUsdValue),
+      currentBidShort: (currentBidShort != null
+          ? currentBidShort.value
+          : this.currentBidShort),
+      quantity: (quantity != null ? quantity.value : this.quantity),
+      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
+      royalties: (royalties != null ? royalties.value : this.royalties),
+      currentWinner: (currentWinner != null
+          ? currentWinner.value
+          : this.currentWinner),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class CollectionProfileSummary {
-  const CollectionProfileSummary({
-    required this.name,
-    required this.profile,
-    this.owner,
-    this.banner,
-    this.socials,
-    this.isVerified,
-    this.isVisible,
-    this.collectionSize,
-    this.description,
-    this.followCount,
-    required this.chain,
-    this.holdersCount,
-    this.customConfig,
-    this.roles,
-  });
+class PartialType {
+  const PartialType();
 
-  factory CollectionProfileSummary.fromJson(Map<String, dynamic> json) =>
-      _$CollectionProfileSummaryFromJson(json);
+  factory PartialType.fromJson(Map<String, dynamic> json) =>
+      _$PartialTypeFromJson(json);
 
-  static const toJsonFactory = _$CollectionProfileSummaryToJson;
-  Map<String, dynamic> toJson() => _$CollectionProfileSummaryToJson(this);
+  static const toJsonFactory = _$PartialTypeToJson;
+  Map<String, dynamic> toJson() => _$PartialTypeToJson(this);
 
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'owner')
-  final String? owner;
-  @JsonKey(name: 'banner')
-  final String? banner;
-  @JsonKey(name: 'socials')
-  final SocialsDto? socials;
-  @JsonKey(name: 'isVerified')
-  final bool? isVerified;
-  @JsonKey(name: 'isVisible')
-  final bool? isVisible;
-  @JsonKey(name: 'collectionSize')
-  final double? collectionSize;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'followCount')
-  final double? followCount;
-  @JsonKey(name: 'chain')
-  final String chain;
-  @JsonKey(name: 'holdersCount')
-  final double? holdersCount;
-  @JsonKey(name: 'customConfig')
-  final XoxnoMarketplaceScCollectionConfig? customConfig;
-  @JsonKey(name: 'roles')
-  final Object? roles;
-  static const fromJsonFactory = _$CollectionProfileSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfileSummary &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.customConfig, customConfig) ||
-                const DeepCollectionEquality().equals(
-                  other.customConfig,
-                  customConfig,
-                )) &&
-            (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)));
-  }
+  static const fromJsonFactory = _$PartialTypeFromJson;
 
   @override
   String toString() => jsonEncode(this);
 
   @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(customConfig) ^
-      const DeepCollectionEquality().hash(roles) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionProfileSummaryExtension on CollectionProfileSummary {
-  CollectionProfileSummary copyWith({
-    String? name,
-    String? profile,
-    String? owner,
-    String? banner,
-    SocialsDto? socials,
-    bool? isVerified,
-    bool? isVisible,
-    double? collectionSize,
-    String? description,
-    double? followCount,
-    String? chain,
-    double? holdersCount,
-    XoxnoMarketplaceScCollectionConfig? customConfig,
-    Object? roles,
-  }) {
-    return CollectionProfileSummary(
-      name: name ?? this.name,
-      profile: profile ?? this.profile,
-      owner: owner ?? this.owner,
-      banner: banner ?? this.banner,
-      socials: socials ?? this.socials,
-      isVerified: isVerified ?? this.isVerified,
-      isVisible: isVisible ?? this.isVisible,
-      collectionSize: collectionSize ?? this.collectionSize,
-      description: description ?? this.description,
-      followCount: followCount ?? this.followCount,
-      chain: chain ?? this.chain,
-      holdersCount: holdersCount ?? this.holdersCount,
-      customConfig: customConfig ?? this.customConfig,
-      roles: roles ?? this.roles,
-    );
-  }
-
-  CollectionProfileSummary copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<String>? profile,
-    Wrapped<String?>? owner,
-    Wrapped<String?>? banner,
-    Wrapped<SocialsDto?>? socials,
-    Wrapped<bool?>? isVerified,
-    Wrapped<bool?>? isVisible,
-    Wrapped<double?>? collectionSize,
-    Wrapped<String?>? description,
-    Wrapped<double?>? followCount,
-    Wrapped<String>? chain,
-    Wrapped<double?>? holdersCount,
-    Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
-    Wrapped<Object?>? roles,
-  }) {
-    return CollectionProfileSummary(
-      name: (name != null ? name.value : this.name),
-      profile: (profile != null ? profile.value : this.profile),
-      owner: (owner != null ? owner.value : this.owner),
-      banner: (banner != null ? banner.value : this.banner),
-      socials: (socials != null ? socials.value : this.socials),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
-      collectionSize: (collectionSize != null
-          ? collectionSize.value
-          : this.collectionSize),
-      description: (description != null ? description.value : this.description),
-      followCount: (followCount != null ? followCount.value : this.followCount),
-      chain: (chain != null ? chain.value : this.chain),
-      holdersCount: (holdersCount != null
-          ? holdersCount.value
-          : this.holdersCount),
-      customConfig: (customConfig != null
-          ? customConfig.value
-          : this.customConfig),
-      roles: (roles != null ? roles.value : this.roles),
-    );
-  }
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -10314,8 +10403,8 @@ extension $ExtraPropertiesExtension on ExtraProperties {
 }
 
 @JsonSerializable(explicitToJson: true)
-class NftProps {
-  const NftProps({
+class NftHydrated {
+  const NftHydrated({
     required this.identifier,
     required this.collection,
     this.originalCollection,
@@ -10323,29 +10412,28 @@ class NftProps {
     required this.nonce,
     required this.type,
     this.subType,
-    this.supply,
+    required this.supply,
     this.supplyLong,
     required this.name,
-    this.royalties,
+    required this.royalties,
     required this.url,
     this.uris,
-    this.creator,
     required this.wasProcessed,
     this.media,
-    this.currentOwner,
-    required this.owner,
-    required this.onSale,
-    this.isTicket,
-    this.saleInfo,
-    required this.statistics,
+    this.statistics,
     this.metadata,
+    this.isTicket,
     this.eventData,
+    required this.chain,
     this.tags,
     this.kiosk,
-    this.version,
-    this.digest,
+    required this.onSale,
     this.id,
-    this.receiverIsNotOwner,
+    this.ts,
+    this.creator,
+    this.currentOwner,
+    this.owner,
+    this.saleInfo,
     this.balance,
     this.balanceLong,
     this.unboundDaysLeft,
@@ -10354,11 +10442,11 @@ class NftProps {
     this.extraProperties,
   });
 
-  factory NftProps.fromJson(Map<String, dynamic> json) =>
-      _$NftPropsFromJson(json);
+  factory NftHydrated.fromJson(Map<String, dynamic> json) =>
+      _$NftHydratedFromJson(json);
 
-  static const toJsonFactory = _$NftPropsToJson;
-  Map<String, dynamic> toJson() => _$NftPropsToJson(this);
+  static const toJsonFactory = _$NftHydratedToJson;
+  Map<String, dynamic> toJson() => _$NftHydratedToJson(this);
 
   @JsonKey(name: 'identifier')
   final String identifier;
@@ -10383,51 +10471,53 @@ class NftProps {
   )
   final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
-  final double? supply;
+  final double supply;
   @JsonKey(name: 'supplyLong')
   final String? supplyLong;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'royalties')
-  final double? royalties;
+  final double royalties;
   @JsonKey(name: 'url')
   final String url;
-  @JsonKey(name: 'uris', defaultValue: <String>[])
-  final List<String>? uris;
-  @JsonKey(name: 'creator')
-  final OwnerDto? creator;
+  @JsonKey(name: 'uris')
+  final String? uris;
   @JsonKey(name: 'wasProcessed')
   final bool wasProcessed;
   @JsonKey(name: 'media')
   final NftMedia? media;
+  @JsonKey(name: 'statistics')
+  final NftStats? statistics;
+  @JsonKey(name: 'metadata')
+  final NftMetadata? metadata;
+  @JsonKey(name: 'isTicket')
+  final bool? isTicket;
+  @JsonKey(name: 'eventData')
+  final NFTEventData? eventData;
+  @JsonKey(
+    name: 'chain',
+    toJson: activityChainToJson,
+    fromJson: activityChainFromJson,
+  )
+  final enums.ActivityChain chain;
+  @JsonKey(name: 'tags')
+  final String? tags;
+  @JsonKey(name: 'kiosk')
+  final String? kiosk;
+  @JsonKey(name: 'onSale')
+  final bool onSale;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: '_ts')
+  final double? ts;
+  @JsonKey(name: 'creator')
+  final OwnerDto? creator;
   @JsonKey(name: 'currentOwner')
   final OwnerDto? currentOwner;
   @JsonKey(name: 'owner')
-  final OwnerDto owner;
-  @JsonKey(name: 'onSale')
-  final bool onSale;
-  @JsonKey(name: 'isTicket')
-  final bool? isTicket;
+  final OwnerDto? owner;
   @JsonKey(name: 'saleInfo')
-  final NftSaleInfo? saleInfo;
-  @JsonKey(name: 'statistics')
-  final NftStats statistics;
-  @JsonKey(name: 'metadata')
-  final NftMetadata? metadata;
-  @JsonKey(name: 'eventData')
-  final NFTEventData? eventData;
-  @JsonKey(name: 'tags', defaultValue: <String>[])
-  final List<String>? tags;
-  @JsonKey(name: 'kiosk')
-  final String? kiosk;
-  @JsonKey(name: 'version')
-  final String? version;
-  @JsonKey(name: 'digest')
-  final String? digest;
-  @JsonKey(name: 'id')
-  final String? id;
-  @JsonKey(name: 'receiverIsNotOwner')
-  final bool? receiverIsNotOwner;
+  final NftSaleInfoHydrated? saleInfo;
   @JsonKey(name: 'balance')
   final double? balance;
   @JsonKey(name: 'balanceLong')
@@ -10437,15 +10527,15 @@ class NftProps {
   @JsonKey(name: 'unboundEpoch')
   final double? unboundEpoch;
   @JsonKey(name: 'collectionInfo')
-  final CollectionProfileSummary? collectionInfo;
+  final PartialType? collectionInfo;
   @JsonKey(name: 'extraProperties')
   final ExtraProperties? extraProperties;
-  static const fromJsonFactory = _$NftPropsFromJson;
+  static const fromJsonFactory = _$NftHydratedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is NftProps &&
+        (other is NftHydrated &&
             (identical(other.identifier, identifier) ||
                 const DeepCollectionEquality().equals(
                   other.identifier,
@@ -10493,11 +10583,6 @@ class NftProps {
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.uris, uris) ||
                 const DeepCollectionEquality().equals(other.uris, uris)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
             (identical(other.wasProcessed, wasProcessed) ||
                 const DeepCollectionEquality().equals(
                   other.wasProcessed,
@@ -10505,25 +10590,6 @@ class NftProps {
                 )) &&
             (identical(other.media, media) ||
                 const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.isTicket, isTicket) ||
-                const DeepCollectionEquality().equals(
-                  other.isTicket,
-                  isTicket,
-                )) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
             (identical(other.statistics, statistics) ||
                 const DeepCollectionEquality().equals(
                   other.statistics,
@@ -10534,28 +10600,44 @@ class NftProps {
                   other.metadata,
                   metadata,
                 )) &&
+            (identical(other.isTicket, isTicket) ||
+                const DeepCollectionEquality().equals(
+                  other.isTicket,
+                  isTicket,
+                )) &&
             (identical(other.eventData, eventData) ||
                 const DeepCollectionEquality().equals(
                   other.eventData,
                   eventData,
                 )) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
             (identical(other.tags, tags) ||
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.kiosk, kiosk) ||
                 const DeepCollectionEquality().equals(other.kiosk, kiosk)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(
-                  other.version,
-                  version,
-                )) &&
-            (identical(other.digest, digest) ||
-                const DeepCollectionEquality().equals(other.digest, digest)) &&
+            (identical(other.onSale, onSale) ||
+                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.receiverIsNotOwner, receiverIsNotOwner) ||
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.creator, creator) ||
                 const DeepCollectionEquality().equals(
-                  other.receiverIsNotOwner,
-                  receiverIsNotOwner,
+                  other.creator,
+                  creator,
+                )) &&
+            (identical(other.currentOwner, currentOwner) ||
+                const DeepCollectionEquality().equals(
+                  other.currentOwner,
+                  currentOwner,
+                )) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.saleInfo, saleInfo) ||
+                const DeepCollectionEquality().equals(
+                  other.saleInfo,
+                  saleInfo,
                 )) &&
             (identical(other.balance, balance) ||
                 const DeepCollectionEquality().equals(
@@ -10607,23 +10689,22 @@ class NftProps {
       const DeepCollectionEquality().hash(royalties) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(uris) ^
-      const DeepCollectionEquality().hash(creator) ^
       const DeepCollectionEquality().hash(wasProcessed) ^
       const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(isTicket) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
       const DeepCollectionEquality().hash(statistics) ^
       const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(isTicket) ^
       const DeepCollectionEquality().hash(eventData) ^
+      const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(kiosk) ^
-      const DeepCollectionEquality().hash(version) ^
-      const DeepCollectionEquality().hash(digest) ^
+      const DeepCollectionEquality().hash(onSale) ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(receiverIsNotOwner) ^
+      const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(creator) ^
+      const DeepCollectionEquality().hash(currentOwner) ^
+      const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(saleInfo) ^
       const DeepCollectionEquality().hash(balance) ^
       const DeepCollectionEquality().hash(balanceLong) ^
       const DeepCollectionEquality().hash(unboundDaysLeft) ^
@@ -10633,8 +10714,8 @@ class NftProps {
       runtimeType.hashCode;
 }
 
-extension $NftPropsExtension on NftProps {
-  NftProps copyWith({
+extension $NftHydratedExtension on NftHydrated {
+  NftHydrated copyWith({
     String? identifier,
     String? collection,
     String? originalCollection,
@@ -10647,32 +10728,31 @@ extension $NftPropsExtension on NftProps {
     String? name,
     double? royalties,
     String? url,
-    List<String>? uris,
-    OwnerDto? creator,
+    String? uris,
     bool? wasProcessed,
     NftMedia? media,
-    OwnerDto? currentOwner,
-    OwnerDto? owner,
-    bool? onSale,
-    bool? isTicket,
-    NftSaleInfo? saleInfo,
     NftStats? statistics,
     NftMetadata? metadata,
+    bool? isTicket,
     NFTEventData? eventData,
-    List<String>? tags,
+    enums.ActivityChain? chain,
+    String? tags,
     String? kiosk,
-    String? version,
-    String? digest,
+    bool? onSale,
     String? id,
-    bool? receiverIsNotOwner,
+    double? ts,
+    OwnerDto? creator,
+    OwnerDto? currentOwner,
+    OwnerDto? owner,
+    NftSaleInfoHydrated? saleInfo,
     double? balance,
     String? balanceLong,
     double? unboundDaysLeft,
     double? unboundEpoch,
-    CollectionProfileSummary? collectionInfo,
+    PartialType? collectionInfo,
     ExtraProperties? extraProperties,
   }) {
-    return NftProps(
+    return NftHydrated(
       identifier: identifier ?? this.identifier,
       collection: collection ?? this.collection,
       originalCollection: originalCollection ?? this.originalCollection,
@@ -10686,23 +10766,22 @@ extension $NftPropsExtension on NftProps {
       royalties: royalties ?? this.royalties,
       url: url ?? this.url,
       uris: uris ?? this.uris,
-      creator: creator ?? this.creator,
       wasProcessed: wasProcessed ?? this.wasProcessed,
       media: media ?? this.media,
-      currentOwner: currentOwner ?? this.currentOwner,
-      owner: owner ?? this.owner,
-      onSale: onSale ?? this.onSale,
-      isTicket: isTicket ?? this.isTicket,
-      saleInfo: saleInfo ?? this.saleInfo,
       statistics: statistics ?? this.statistics,
       metadata: metadata ?? this.metadata,
+      isTicket: isTicket ?? this.isTicket,
       eventData: eventData ?? this.eventData,
+      chain: chain ?? this.chain,
       tags: tags ?? this.tags,
       kiosk: kiosk ?? this.kiosk,
-      version: version ?? this.version,
-      digest: digest ?? this.digest,
+      onSale: onSale ?? this.onSale,
       id: id ?? this.id,
-      receiverIsNotOwner: receiverIsNotOwner ?? this.receiverIsNotOwner,
+      ts: ts ?? this.ts,
+      creator: creator ?? this.creator,
+      currentOwner: currentOwner ?? this.currentOwner,
+      owner: owner ?? this.owner,
+      saleInfo: saleInfo ?? this.saleInfo,
       balance: balance ?? this.balance,
       balanceLong: balanceLong ?? this.balanceLong,
       unboundDaysLeft: unboundDaysLeft ?? this.unboundDaysLeft,
@@ -10712,7 +10791,7 @@ extension $NftPropsExtension on NftProps {
     );
   }
 
-  NftProps copyWithWrapped({
+  NftHydrated copyWithWrapped({
     Wrapped<String>? identifier,
     Wrapped<String>? collection,
     Wrapped<String?>? originalCollection,
@@ -10720,37 +10799,36 @@ extension $NftPropsExtension on NftProps {
     Wrapped<double>? nonce,
     Wrapped<enums.EsdtTokenType>? type,
     Wrapped<enums.EsdtTokenSubType?>? subType,
-    Wrapped<double?>? supply,
+    Wrapped<double>? supply,
     Wrapped<String?>? supplyLong,
     Wrapped<String>? name,
-    Wrapped<double?>? royalties,
+    Wrapped<double>? royalties,
     Wrapped<String>? url,
-    Wrapped<List<String>?>? uris,
-    Wrapped<OwnerDto?>? creator,
+    Wrapped<String?>? uris,
     Wrapped<bool>? wasProcessed,
     Wrapped<NftMedia?>? media,
-    Wrapped<OwnerDto?>? currentOwner,
-    Wrapped<OwnerDto>? owner,
-    Wrapped<bool>? onSale,
-    Wrapped<bool?>? isTicket,
-    Wrapped<NftSaleInfo?>? saleInfo,
-    Wrapped<NftStats>? statistics,
+    Wrapped<NftStats?>? statistics,
     Wrapped<NftMetadata?>? metadata,
+    Wrapped<bool?>? isTicket,
     Wrapped<NFTEventData?>? eventData,
-    Wrapped<List<String>?>? tags,
+    Wrapped<enums.ActivityChain>? chain,
+    Wrapped<String?>? tags,
     Wrapped<String?>? kiosk,
-    Wrapped<String?>? version,
-    Wrapped<String?>? digest,
+    Wrapped<bool>? onSale,
     Wrapped<String?>? id,
-    Wrapped<bool?>? receiverIsNotOwner,
+    Wrapped<double?>? ts,
+    Wrapped<OwnerDto?>? creator,
+    Wrapped<OwnerDto?>? currentOwner,
+    Wrapped<OwnerDto?>? owner,
+    Wrapped<NftSaleInfoHydrated?>? saleInfo,
     Wrapped<double?>? balance,
     Wrapped<String?>? balanceLong,
     Wrapped<double?>? unboundDaysLeft,
     Wrapped<double?>? unboundEpoch,
-    Wrapped<CollectionProfileSummary?>? collectionInfo,
+    Wrapped<PartialType?>? collectionInfo,
     Wrapped<ExtraProperties?>? extraProperties,
   }) {
-    return NftProps(
+    return NftHydrated(
       identifier: (identifier != null ? identifier.value : this.identifier),
       collection: (collection != null ? collection.value : this.collection),
       originalCollection: (originalCollection != null
@@ -10766,29 +10844,26 @@ extension $NftPropsExtension on NftProps {
       royalties: (royalties != null ? royalties.value : this.royalties),
       url: (url != null ? url.value : this.url),
       uris: (uris != null ? uris.value : this.uris),
-      creator: (creator != null ? creator.value : this.creator),
       wasProcessed: (wasProcessed != null
           ? wasProcessed.value
           : this.wasProcessed),
       media: (media != null ? media.value : this.media),
+      statistics: (statistics != null ? statistics.value : this.statistics),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+      isTicket: (isTicket != null ? isTicket.value : this.isTicket),
+      eventData: (eventData != null ? eventData.value : this.eventData),
+      chain: (chain != null ? chain.value : this.chain),
+      tags: (tags != null ? tags.value : this.tags),
+      kiosk: (kiosk != null ? kiosk.value : this.kiosk),
+      onSale: (onSale != null ? onSale.value : this.onSale),
+      id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
+      creator: (creator != null ? creator.value : this.creator),
       currentOwner: (currentOwner != null
           ? currentOwner.value
           : this.currentOwner),
       owner: (owner != null ? owner.value : this.owner),
-      onSale: (onSale != null ? onSale.value : this.onSale),
-      isTicket: (isTicket != null ? isTicket.value : this.isTicket),
       saleInfo: (saleInfo != null ? saleInfo.value : this.saleInfo),
-      statistics: (statistics != null ? statistics.value : this.statistics),
-      metadata: (metadata != null ? metadata.value : this.metadata),
-      eventData: (eventData != null ? eventData.value : this.eventData),
-      tags: (tags != null ? tags.value : this.tags),
-      kiosk: (kiosk != null ? kiosk.value : this.kiosk),
-      version: (version != null ? version.value : this.version),
-      digest: (digest != null ? digest.value : this.digest),
-      id: (id != null ? id.value : this.id),
-      receiverIsNotOwner: (receiverIsNotOwner != null
-          ? receiverIsNotOwner.value
-          : this.receiverIsNotOwner),
       balance: (balance != null ? balance.value : this.balance),
       balanceLong: (balanceLong != null ? balanceLong.value : this.balanceLong),
       unboundDaysLeft: (unboundDaysLeft != null
@@ -10803,1514 +10878,6 @@ extension $NftPropsExtension on NftProps {
       extraProperties: (extraProperties != null
           ? extraProperties.value
           : this.extraProperties),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NftCosmosResponse {
-  const NftCosmosResponse({
-    required this.resources,
-    required this.hasMoreResults,
-    this.count,
-  });
-
-  factory NftCosmosResponse.fromJson(Map<String, dynamic> json) =>
-      _$NftCosmosResponseFromJson(json);
-
-  static const toJsonFactory = _$NftCosmosResponseToJson;
-  Map<String, dynamic> toJson() => _$NftCosmosResponseToJson(this);
-
-  @JsonKey(name: 'resources', defaultValue: <NftProps>[])
-  final List<NftProps> resources;
-  @JsonKey(name: 'hasMoreResults')
-  final bool hasMoreResults;
-  @JsonKey(name: 'count')
-  final double? count;
-  static const fromJsonFactory = _$NftCosmosResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftCosmosResponse &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(count) ^
-      runtimeType.hashCode;
-}
-
-extension $NftCosmosResponseExtension on NftCosmosResponse {
-  NftCosmosResponse copyWith({
-    List<NftProps>? resources,
-    bool? hasMoreResults,
-    double? count,
-  }) {
-    return NftCosmosResponse(
-      resources: resources ?? this.resources,
-      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-      count: count ?? this.count,
-    );
-  }
-
-  NftCosmosResponse copyWithWrapped({
-    Wrapped<List<NftProps>>? resources,
-    Wrapped<bool>? hasMoreResults,
-    Wrapped<double?>? count,
-  }) {
-    return NftCosmosResponse(
-      resources: (resources != null ? resources.value : this.resources),
-      hasMoreResults: (hasMoreResults != null
-          ? hasMoreResults.value
-          : this.hasMoreResults),
-      count: (count != null ? count.value : this.count),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class LikeNftDto {
-  const LikeNftDto({
-    required this.isFavorite,
-    required this.collection,
-    required this.identifier,
-  });
-
-  factory LikeNftDto.fromJson(Map<String, dynamic> json) =>
-      _$LikeNftDtoFromJson(json);
-
-  static const toJsonFactory = _$LikeNftDtoToJson;
-  Map<String, dynamic> toJson() => _$LikeNftDtoToJson(this);
-
-  @JsonKey(name: 'isFavorite')
-  final bool isFavorite;
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  static const fromJsonFactory = _$LikeNftDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LikeNftDto &&
-            (identical(other.isFavorite, isFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.isFavorite,
-                  isFavorite,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isFavorite) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
-}
-
-extension $LikeNftDtoExtension on LikeNftDto {
-  LikeNftDto copyWith({
-    bool? isFavorite,
-    String? collection,
-    String? identifier,
-  }) {
-    return LikeNftDto(
-      isFavorite: isFavorite ?? this.isFavorite,
-      collection: collection ?? this.collection,
-      identifier: identifier ?? this.identifier,
-    );
-  }
-
-  LikeNftDto copyWithWrapped({
-    Wrapped<bool>? isFavorite,
-    Wrapped<String>? collection,
-    Wrapped<String>? identifier,
-  }) {
-    return LikeNftDto(
-      isFavorite: (isFavorite != null ? isFavorite.value : this.isFavorite),
-      collection: (collection != null ? collection.value : this.collection),
-      identifier: (identifier != null ? identifier.value : this.identifier),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class InventorySummaryDto {
-  const InventorySummaryDto({
-    required this.collection,
-    required this.inventoryCount,
-    required this.listedCount,
-    required this.stakedCount,
-    required this.floorPrice,
-    required this.name,
-    required this.isVerified,
-    required this.isVisible,
-    required this.profile,
-    required this.$value,
-  });
-
-  factory InventorySummaryDto.fromJson(Map<String, dynamic> json) =>
-      _$InventorySummaryDtoFromJson(json);
-
-  static const toJsonFactory = _$InventorySummaryDtoToJson;
-  Map<String, dynamic> toJson() => _$InventorySummaryDtoToJson(this);
-
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'inventoryCount')
-  final double inventoryCount;
-  @JsonKey(name: 'listedCount')
-  final double listedCount;
-  @JsonKey(name: 'stakedCount')
-  final double stakedCount;
-  @JsonKey(name: 'floorPrice')
-  final double floorPrice;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'isVerified')
-  final bool isVerified;
-  @JsonKey(name: 'isVisible')
-  final bool isVisible;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'value')
-  final double $value;
-  static const fromJsonFactory = _$InventorySummaryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is InventorySummaryDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.inventoryCount, inventoryCount) ||
-                const DeepCollectionEquality().equals(
-                  other.inventoryCount,
-                  inventoryCount,
-                )) &&
-            (identical(other.listedCount, listedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.listedCount,
-                  listedCount,
-                )) &&
-            (identical(other.stakedCount, stakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.stakedCount,
-                  stakedCount,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(inventoryCount) ^
-      const DeepCollectionEquality().hash(listedCount) ^
-      const DeepCollectionEquality().hash(stakedCount) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash($value) ^
-      runtimeType.hashCode;
-}
-
-extension $InventorySummaryDtoExtension on InventorySummaryDto {
-  InventorySummaryDto copyWith({
-    String? collection,
-    double? inventoryCount,
-    double? listedCount,
-    double? stakedCount,
-    double? floorPrice,
-    String? name,
-    bool? isVerified,
-    bool? isVisible,
-    String? profile,
-    double? $value,
-  }) {
-    return InventorySummaryDto(
-      collection: collection ?? this.collection,
-      inventoryCount: inventoryCount ?? this.inventoryCount,
-      listedCount: listedCount ?? this.listedCount,
-      stakedCount: stakedCount ?? this.stakedCount,
-      floorPrice: floorPrice ?? this.floorPrice,
-      name: name ?? this.name,
-      isVerified: isVerified ?? this.isVerified,
-      isVisible: isVisible ?? this.isVisible,
-      profile: profile ?? this.profile,
-      $value: $value ?? this.$value,
-    );
-  }
-
-  InventorySummaryDto copyWithWrapped({
-    Wrapped<String>? collection,
-    Wrapped<double>? inventoryCount,
-    Wrapped<double>? listedCount,
-    Wrapped<double>? stakedCount,
-    Wrapped<double>? floorPrice,
-    Wrapped<String>? name,
-    Wrapped<bool>? isVerified,
-    Wrapped<bool>? isVisible,
-    Wrapped<String>? profile,
-    Wrapped<double>? $value,
-  }) {
-    return InventorySummaryDto(
-      collection: (collection != null ? collection.value : this.collection),
-      inventoryCount: (inventoryCount != null
-          ? inventoryCount.value
-          : this.inventoryCount),
-      listedCount: (listedCount != null ? listedCount.value : this.listedCount),
-      stakedCount: (stakedCount != null ? stakedCount.value : this.stakedCount),
-      floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
-      name: (name != null ? name.value : this.name),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
-      profile: (profile != null ? profile.value : this.profile),
-      $value: ($value != null ? $value.value : this.$value),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NftInfoDto {
-  const NftInfoDto({
-    required this.identifier,
-    required this.nonce,
-    required this.name,
-    required this.url,
-    required this.wasProcessed,
-    required this.media,
-    required this.onSale,
-    required this.saleInfo,
-    required this.metadata,
-    required this.owner,
-    required this.currentOwner,
-    required this.receiverIsNotOwner,
-  });
-
-  factory NftInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$NftInfoDtoFromJson(json);
-
-  static const toJsonFactory = _$NftInfoDtoToJson;
-  Map<String, dynamic> toJson() => _$NftInfoDtoToJson(this);
-
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  @JsonKey(name: 'nonce')
-  final double nonce;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'url')
-  final String url;
-  @JsonKey(name: 'wasProcessed')
-  final bool wasProcessed;
-  @JsonKey(name: 'media')
-  final Object media;
-  @JsonKey(name: 'onSale')
-  final bool onSale;
-  @JsonKey(name: 'saleInfo')
-  final Object saleInfo;
-  @JsonKey(name: 'metadata')
-  final Object metadata;
-  @JsonKey(name: 'owner')
-  final OwnerDto owner;
-  @JsonKey(name: 'currentOwner')
-  final OwnerDto currentOwner;
-  @JsonKey(name: 'receiverIsNotOwner')
-  final bool receiverIsNotOwner;
-  static const fromJsonFactory = _$NftInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftInfoDto &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.receiverIsNotOwner, receiverIsNotOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.receiverIsNotOwner,
-                  receiverIsNotOwner,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(receiverIsNotOwner) ^
-      runtimeType.hashCode;
-}
-
-extension $NftInfoDtoExtension on NftInfoDto {
-  NftInfoDto copyWith({
-    String? identifier,
-    double? nonce,
-    String? name,
-    String? url,
-    bool? wasProcessed,
-    Object? media,
-    bool? onSale,
-    Object? saleInfo,
-    Object? metadata,
-    OwnerDto? owner,
-    OwnerDto? currentOwner,
-    bool? receiverIsNotOwner,
-  }) {
-    return NftInfoDto(
-      identifier: identifier ?? this.identifier,
-      nonce: nonce ?? this.nonce,
-      name: name ?? this.name,
-      url: url ?? this.url,
-      wasProcessed: wasProcessed ?? this.wasProcessed,
-      media: media ?? this.media,
-      onSale: onSale ?? this.onSale,
-      saleInfo: saleInfo ?? this.saleInfo,
-      metadata: metadata ?? this.metadata,
-      owner: owner ?? this.owner,
-      currentOwner: currentOwner ?? this.currentOwner,
-      receiverIsNotOwner: receiverIsNotOwner ?? this.receiverIsNotOwner,
-    );
-  }
-
-  NftInfoDto copyWithWrapped({
-    Wrapped<String>? identifier,
-    Wrapped<double>? nonce,
-    Wrapped<String>? name,
-    Wrapped<String>? url,
-    Wrapped<bool>? wasProcessed,
-    Wrapped<Object>? media,
-    Wrapped<bool>? onSale,
-    Wrapped<Object>? saleInfo,
-    Wrapped<Object>? metadata,
-    Wrapped<OwnerDto>? owner,
-    Wrapped<OwnerDto>? currentOwner,
-    Wrapped<bool>? receiverIsNotOwner,
-  }) {
-    return NftInfoDto(
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      nonce: (nonce != null ? nonce.value : this.nonce),
-      name: (name != null ? name.value : this.name),
-      url: (url != null ? url.value : this.url),
-      wasProcessed: (wasProcessed != null
-          ? wasProcessed.value
-          : this.wasProcessed),
-      media: (media != null ? media.value : this.media),
-      onSale: (onSale != null ? onSale.value : this.onSale),
-      saleInfo: (saleInfo != null ? saleInfo.value : this.saleInfo),
-      metadata: (metadata != null ? metadata.value : this.metadata),
-      owner: (owner != null ? owner.value : this.owner),
-      currentOwner: (currentOwner != null
-          ? currentOwner.value
-          : this.currentOwner),
-      receiverIsNotOwner: (receiverIsNotOwner != null
-          ? receiverIsNotOwner.value
-          : this.receiverIsNotOwner),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class OfferDto {
-  const OfferDto({
-    required this.isActive,
-    required this.identifier,
-    required this.collection,
-    required this.offerId,
-    required this.paymentToken,
-    required this.paymentTokenNonce,
-    required this.price,
-    required this.priceShort,
-    required this.deadline,
-    required this.timestamp,
-    required this.owner,
-    required this.quantity,
-    required this.marketplace,
-    required this.usdValue,
-    required this.floorPriceMargin,
-    required this.floorPrice,
-    required this.nftInfo,
-  });
-
-  factory OfferDto.fromJson(Map<String, dynamic> json) =>
-      _$OfferDtoFromJson(json);
-
-  static const toJsonFactory = _$OfferDtoToJson;
-  Map<String, dynamic> toJson() => _$OfferDtoToJson(this);
-
-  @JsonKey(name: 'isActive')
-  final bool isActive;
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'offerId')
-  final double offerId;
-  @JsonKey(name: 'paymentToken')
-  final String paymentToken;
-  @JsonKey(name: 'paymentTokenNonce')
-  final double paymentTokenNonce;
-  @JsonKey(name: 'price')
-  final String price;
-  @JsonKey(name: 'priceShort')
-  final double priceShort;
-  @JsonKey(name: 'deadline')
-  final double deadline;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  @JsonKey(name: 'owner')
-  final OwnerDto owner;
-  @JsonKey(name: 'quantity')
-  final double quantity;
-  @JsonKey(name: 'marketplace')
-  final String marketplace;
-  @JsonKey(name: 'usdValue')
-  final double usdValue;
-  @JsonKey(name: 'floorPriceMargin')
-  final double floorPriceMargin;
-  @JsonKey(name: 'floorPrice')
-  final double floorPrice;
-  @JsonKey(name: 'nftInfo')
-  final NftInfoDto nftInfo;
-  static const fromJsonFactory = _$OfferDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OfferDto &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.offerId, offerId) ||
-                const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.priceShort, priceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.priceShort,
-                  priceShort,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.floorPriceMargin, floorPriceMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPriceMargin,
-                  floorPriceMargin,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.nftInfo, nftInfo) ||
-                const DeepCollectionEquality().equals(other.nftInfo, nftInfo)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(offerId) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(priceShort) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(floorPriceMargin) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(nftInfo) ^
-      runtimeType.hashCode;
-}
-
-extension $OfferDtoExtension on OfferDto {
-  OfferDto copyWith({
-    bool? isActive,
-    String? identifier,
-    String? collection,
-    double? offerId,
-    String? paymentToken,
-    double? paymentTokenNonce,
-    String? price,
-    double? priceShort,
-    double? deadline,
-    double? timestamp,
-    OwnerDto? owner,
-    double? quantity,
-    String? marketplace,
-    double? usdValue,
-    double? floorPriceMargin,
-    double? floorPrice,
-    NftInfoDto? nftInfo,
-  }) {
-    return OfferDto(
-      isActive: isActive ?? this.isActive,
-      identifier: identifier ?? this.identifier,
-      collection: collection ?? this.collection,
-      offerId: offerId ?? this.offerId,
-      paymentToken: paymentToken ?? this.paymentToken,
-      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
-      price: price ?? this.price,
-      priceShort: priceShort ?? this.priceShort,
-      deadline: deadline ?? this.deadline,
-      timestamp: timestamp ?? this.timestamp,
-      owner: owner ?? this.owner,
-      quantity: quantity ?? this.quantity,
-      marketplace: marketplace ?? this.marketplace,
-      usdValue: usdValue ?? this.usdValue,
-      floorPriceMargin: floorPriceMargin ?? this.floorPriceMargin,
-      floorPrice: floorPrice ?? this.floorPrice,
-      nftInfo: nftInfo ?? this.nftInfo,
-    );
-  }
-
-  OfferDto copyWithWrapped({
-    Wrapped<bool>? isActive,
-    Wrapped<String>? identifier,
-    Wrapped<String>? collection,
-    Wrapped<double>? offerId,
-    Wrapped<String>? paymentToken,
-    Wrapped<double>? paymentTokenNonce,
-    Wrapped<String>? price,
-    Wrapped<double>? priceShort,
-    Wrapped<double>? deadline,
-    Wrapped<double>? timestamp,
-    Wrapped<OwnerDto>? owner,
-    Wrapped<double>? quantity,
-    Wrapped<String>? marketplace,
-    Wrapped<double>? usdValue,
-    Wrapped<double>? floorPriceMargin,
-    Wrapped<double>? floorPrice,
-    Wrapped<NftInfoDto>? nftInfo,
-  }) {
-    return OfferDto(
-      isActive: (isActive != null ? isActive.value : this.isActive),
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      collection: (collection != null ? collection.value : this.collection),
-      offerId: (offerId != null ? offerId.value : this.offerId),
-      paymentToken: (paymentToken != null
-          ? paymentToken.value
-          : this.paymentToken),
-      paymentTokenNonce: (paymentTokenNonce != null
-          ? paymentTokenNonce.value
-          : this.paymentTokenNonce),
-      price: (price != null ? price.value : this.price),
-      priceShort: (priceShort != null ? priceShort.value : this.priceShort),
-      deadline: (deadline != null ? deadline.value : this.deadline),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-      owner: (owner != null ? owner.value : this.owner),
-      quantity: (quantity != null ? quantity.value : this.quantity),
-      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
-      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
-      floorPriceMargin: (floorPriceMargin != null
-          ? floorPriceMargin.value
-          : this.floorPriceMargin),
-      floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
-      nftInfo: (nftInfo != null ? nftInfo.value : this.nftInfo),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetUserOffersResponseDto {
-  const GetUserOffersResponseDto({
-    required this.count,
-    required this.hasMoreResults,
-    required this.resources,
-  });
-
-  factory GetUserOffersResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$GetUserOffersResponseDtoFromJson(json);
-
-  static const toJsonFactory = _$GetUserOffersResponseDtoToJson;
-  Map<String, dynamic> toJson() => _$GetUserOffersResponseDtoToJson(this);
-
-  @JsonKey(name: 'count')
-  final double count;
-  @JsonKey(name: 'hasMoreResults')
-  final bool hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <OfferDto>[])
-  final List<OfferDto> resources;
-  static const fromJsonFactory = _$GetUserOffersResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GetUserOffersResponseDto &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
-}
-
-extension $GetUserOffersResponseDtoExtension on GetUserOffersResponseDto {
-  GetUserOffersResponseDto copyWith({
-    double? count,
-    bool? hasMoreResults,
-    List<OfferDto>? resources,
-  }) {
-    return GetUserOffersResponseDto(
-      count: count ?? this.count,
-      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-      resources: resources ?? this.resources,
-    );
-  }
-
-  GetUserOffersResponseDto copyWithWrapped({
-    Wrapped<double>? count,
-    Wrapped<bool>? hasMoreResults,
-    Wrapped<List<OfferDto>>? resources,
-  }) {
-    return GetUserOffersResponseDto(
-      count: (count != null ? count.value : this.count),
-      hasMoreResults: (hasMoreResults != null
-          ? hasMoreResults.value
-          : this.hasMoreResults),
-      resources: (resources != null ? resources.value : this.resources),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetSingleNftOfferResponseDto {
-  const GetSingleNftOfferResponseDto({
-    required this.resources,
-    required this.hasMoreResults,
-  });
-
-  factory GetSingleNftOfferResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$GetSingleNftOfferResponseDtoFromJson(json);
-
-  static const toJsonFactory = _$GetSingleNftOfferResponseDtoToJson;
-  Map<String, dynamic> toJson() => _$GetSingleNftOfferResponseDtoToJson(this);
-
-  @JsonKey(name: 'resources', defaultValue: <OfferDto>[])
-  final List<OfferDto> resources;
-  @JsonKey(name: 'hasMoreResults')
-  final bool hasMoreResults;
-  static const fromJsonFactory = _$GetSingleNftOfferResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GetSingleNftOfferResponseDto &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      runtimeType.hashCode;
-}
-
-extension $GetSingleNftOfferResponseDtoExtension
-    on GetSingleNftOfferResponseDto {
-  GetSingleNftOfferResponseDto copyWith({
-    List<OfferDto>? resources,
-    bool? hasMoreResults,
-  }) {
-    return GetSingleNftOfferResponseDto(
-      resources: resources ?? this.resources,
-      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-    );
-  }
-
-  GetSingleNftOfferResponseDto copyWithWrapped({
-    Wrapped<List<OfferDto>>? resources,
-    Wrapped<bool>? hasMoreResults,
-  }) {
-    return GetSingleNftOfferResponseDto(
-      resources: (resources != null ? resources.value : this.resources),
-      hasMoreResults: (hasMoreResults != null
-          ? hasMoreResults.value
-          : this.hasMoreResults),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CollectionRanksDTO {
-  const CollectionRanksDTO({
-    required this.identifier,
-    required this.name,
-    required this.rank,
-  });
-
-  factory CollectionRanksDTO.fromJson(Map<String, dynamic> json) =>
-      _$CollectionRanksDTOFromJson(json);
-
-  static const toJsonFactory = _$CollectionRanksDTOToJson;
-  Map<String, dynamic> toJson() => _$CollectionRanksDTOToJson(this);
-
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'rank')
-  final double rank;
-  static const fromJsonFactory = _$CollectionRanksDTOFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionRanksDTO &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(rank) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionRanksDTOExtension on CollectionRanksDTO {
-  CollectionRanksDTO copyWith({
-    String? identifier,
-    String? name,
-    double? rank,
-  }) {
-    return CollectionRanksDTO(
-      identifier: identifier ?? this.identifier,
-      name: name ?? this.name,
-      rank: rank ?? this.rank,
-    );
-  }
-
-  CollectionRanksDTO copyWithWrapped({
-    Wrapped<String>? identifier,
-    Wrapped<String>? name,
-    Wrapped<double>? rank,
-  }) {
-    return CollectionRanksDTO(
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      name: (name != null ? name.value : this.name),
-      rank: (rank != null ? rank.value : this.rank),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class DensityDto {
-  const DensityDto({
-    required this.key,
-    required this.intervalName,
-    required this.intervalCount,
-    required this.totalCount,
-  });
-
-  factory DensityDto.fromJson(Map<String, dynamic> json) =>
-      _$DensityDtoFromJson(json);
-
-  static const toJsonFactory = _$DensityDtoToJson;
-  Map<String, dynamic> toJson() => _$DensityDtoToJson(this);
-
-  @JsonKey(name: 'key')
-  final String key;
-  @JsonKey(name: 'intervalName')
-  final String intervalName;
-  @JsonKey(name: 'intervalCount')
-  final double intervalCount;
-  @JsonKey(name: 'totalCount')
-  final double totalCount;
-  static const fromJsonFactory = _$DensityDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DensityDto &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.intervalName, intervalName) ||
-                const DeepCollectionEquality().equals(
-                  other.intervalName,
-                  intervalName,
-                )) &&
-            (identical(other.intervalCount, intervalCount) ||
-                const DeepCollectionEquality().equals(
-                  other.intervalCount,
-                  intervalCount,
-                )) &&
-            (identical(other.totalCount, totalCount) ||
-                const DeepCollectionEquality().equals(
-                  other.totalCount,
-                  totalCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(key) ^
-      const DeepCollectionEquality().hash(intervalName) ^
-      const DeepCollectionEquality().hash(intervalCount) ^
-      const DeepCollectionEquality().hash(totalCount) ^
-      runtimeType.hashCode;
-}
-
-extension $DensityDtoExtension on DensityDto {
-  DensityDto copyWith({
-    String? key,
-    String? intervalName,
-    double? intervalCount,
-    double? totalCount,
-  }) {
-    return DensityDto(
-      key: key ?? this.key,
-      intervalName: intervalName ?? this.intervalName,
-      intervalCount: intervalCount ?? this.intervalCount,
-      totalCount: totalCount ?? this.totalCount,
-    );
-  }
-
-  DensityDto copyWithWrapped({
-    Wrapped<String>? key,
-    Wrapped<String>? intervalName,
-    Wrapped<double>? intervalCount,
-    Wrapped<double>? totalCount,
-  }) {
-    return DensityDto(
-      key: (key != null ? key.value : this.key),
-      intervalName: (intervalName != null
-          ? intervalName.value
-          : this.intervalName),
-      intervalCount: (intervalCount != null
-          ? intervalCount.value
-          : this.intervalCount),
-      totalCount: (totalCount != null ? totalCount.value : this.totalCount),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class RarityDto {
-  const RarityDto({required this.rank});
-
-  factory RarityDto.fromJson(Map<String, dynamic> json) =>
-      _$RarityDtoFromJson(json);
-
-  static const toJsonFactory = _$RarityDtoToJson;
-  Map<String, dynamic> toJson() => _$RarityDtoToJson(this);
-
-  @JsonKey(name: 'rank')
-  final double rank;
-  static const fromJsonFactory = _$RarityDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RarityDto &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rank) ^ runtimeType.hashCode;
-}
-
-extension $RarityDtoExtension on RarityDto {
-  RarityDto copyWith({double? rank}) {
-    return RarityDto(rank: rank ?? this.rank);
-  }
-
-  RarityDto copyWithWrapped({Wrapped<double>? rank}) {
-    return RarityDto(rank: (rank != null ? rank.value : this.rank));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class MetadataDto {
-  const MetadataDto({required this.rarity});
-
-  factory MetadataDto.fromJson(Map<String, dynamic> json) =>
-      _$MetadataDtoFromJson(json);
-
-  static const toJsonFactory = _$MetadataDtoToJson;
-  Map<String, dynamic> toJson() => _$MetadataDtoToJson(this);
-
-  @JsonKey(name: 'rarity')
-  final RarityDto rarity;
-  static const fromJsonFactory = _$MetadataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MetadataDto &&
-            (identical(other.rarity, rarity) ||
-                const DeepCollectionEquality().equals(other.rarity, rarity)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rarity) ^ runtimeType.hashCode;
-}
-
-extension $MetadataDtoExtension on MetadataDto {
-  MetadataDto copyWith({RarityDto? rarity}) {
-    return MetadataDto(rarity: rarity ?? this.rarity);
-  }
-
-  MetadataDto copyWithWrapped({Wrapped<RarityDto>? rarity}) {
-    return MetadataDto(rarity: (rarity != null ? rarity.value : this.rarity));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class MediaDto {
-  const MediaDto({
-    required this.avifUrl,
-    required this.webpUrl,
-    required this.originalMedia,
-  });
-
-  factory MediaDto.fromJson(Map<String, dynamic> json) =>
-      _$MediaDtoFromJson(json);
-
-  static const toJsonFactory = _$MediaDtoToJson;
-  Map<String, dynamic> toJson() => _$MediaDtoToJson(this);
-
-  @JsonKey(name: 'avifUrl')
-  final String avifUrl;
-  @JsonKey(name: 'webpUrl')
-  final String webpUrl;
-  @JsonKey(name: 'originalMedia')
-  final Object originalMedia;
-  static const fromJsonFactory = _$MediaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MediaDto &&
-            (identical(other.avifUrl, avifUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.avifUrl,
-                  avifUrl,
-                )) &&
-            (identical(other.webpUrl, webpUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.webpUrl,
-                  webpUrl,
-                )) &&
-            (identical(other.originalMedia, originalMedia) ||
-                const DeepCollectionEquality().equals(
-                  other.originalMedia,
-                  originalMedia,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(avifUrl) ^
-      const DeepCollectionEquality().hash(webpUrl) ^
-      const DeepCollectionEquality().hash(originalMedia) ^
-      runtimeType.hashCode;
-}
-
-extension $MediaDtoExtension on MediaDto {
-  MediaDto copyWith({String? avifUrl, String? webpUrl, Object? originalMedia}) {
-    return MediaDto(
-      avifUrl: avifUrl ?? this.avifUrl,
-      webpUrl: webpUrl ?? this.webpUrl,
-      originalMedia: originalMedia ?? this.originalMedia,
-    );
-  }
-
-  MediaDto copyWithWrapped({
-    Wrapped<String>? avifUrl,
-    Wrapped<String>? webpUrl,
-    Wrapped<Object>? originalMedia,
-  }) {
-    return MediaDto(
-      avifUrl: (avifUrl != null ? avifUrl.value : this.avifUrl),
-      webpUrl: (webpUrl != null ? webpUrl.value : this.webpUrl),
-      originalMedia: (originalMedia != null
-          ? originalMedia.value
-          : this.originalMedia),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class SaleInfoDto {
-  const SaleInfoDto({required this.minBidShort, required this.marketplace});
-
-  factory SaleInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$SaleInfoDtoFromJson(json);
-
-  static const toJsonFactory = _$SaleInfoDtoToJson;
-  Map<String, dynamic> toJson() => _$SaleInfoDtoToJson(this);
-
-  @JsonKey(name: 'minBidShort')
-  final double minBidShort;
-  @JsonKey(name: 'marketplace')
-  final String marketplace;
-  static const fromJsonFactory = _$SaleInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SaleInfoDto &&
-            (identical(other.minBidShort, minBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidShort,
-                  minBidShort,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(minBidShort) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      runtimeType.hashCode;
-}
-
-extension $SaleInfoDtoExtension on SaleInfoDto {
-  SaleInfoDto copyWith({double? minBidShort, String? marketplace}) {
-    return SaleInfoDto(
-      minBidShort: minBidShort ?? this.minBidShort,
-      marketplace: marketplace ?? this.marketplace,
-    );
-  }
-
-  SaleInfoDto copyWithWrapped({
-    Wrapped<double>? minBidShort,
-    Wrapped<String>? marketplace,
-  }) {
-    return SaleInfoDto(
-      minBidShort: (minBidShort != null ? minBidShort.value : this.minBidShort),
-      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ListingDto {
-  const ListingDto({
-    required this.identifier,
-    required this.name,
-    required this.collection,
-    required this.metadata,
-    required this.url,
-    required this.media,
-    required this.wasProcessed,
-    required this.saleInfo,
-  });
-
-  factory ListingDto.fromJson(Map<String, dynamic> json) =>
-      _$ListingDtoFromJson(json);
-
-  static const toJsonFactory = _$ListingDtoToJson;
-  Map<String, dynamic> toJson() => _$ListingDtoToJson(this);
-
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'metadata')
-  final MetadataDto metadata;
-  @JsonKey(name: 'url')
-  final String url;
-  @JsonKey(name: 'media')
-  final MediaDto media;
-  @JsonKey(name: 'wasProcessed')
-  final bool wasProcessed;
-  @JsonKey(name: 'saleInfo')
-  final SaleInfoDto saleInfo;
-  static const fromJsonFactory = _$ListingDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ListingDto &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      runtimeType.hashCode;
-}
-
-extension $ListingDtoExtension on ListingDto {
-  ListingDto copyWith({
-    String? identifier,
-    String? name,
-    String? collection,
-    MetadataDto? metadata,
-    String? url,
-    MediaDto? media,
-    bool? wasProcessed,
-    SaleInfoDto? saleInfo,
-  }) {
-    return ListingDto(
-      identifier: identifier ?? this.identifier,
-      name: name ?? this.name,
-      collection: collection ?? this.collection,
-      metadata: metadata ?? this.metadata,
-      url: url ?? this.url,
-      media: media ?? this.media,
-      wasProcessed: wasProcessed ?? this.wasProcessed,
-      saleInfo: saleInfo ?? this.saleInfo,
-    );
-  }
-
-  ListingDto copyWithWrapped({
-    Wrapped<String>? identifier,
-    Wrapped<String>? name,
-    Wrapped<String>? collection,
-    Wrapped<MetadataDto>? metadata,
-    Wrapped<String>? url,
-    Wrapped<MediaDto>? media,
-    Wrapped<bool>? wasProcessed,
-    Wrapped<SaleInfoDto>? saleInfo,
-  }) {
-    return ListingDto(
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      name: (name != null ? name.value : this.name),
-      collection: (collection != null ? collection.value : this.collection),
-      metadata: (metadata != null ? metadata.value : this.metadata),
-      url: (url != null ? url.value : this.url),
-      media: (media != null ? media.value : this.media),
-      wasProcessed: (wasProcessed != null
-          ? wasProcessed.value
-          : this.wasProcessed),
-      saleInfo: (saleInfo != null ? saleInfo.value : this.saleInfo),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ListingsResponseDto {
-  const ListingsResponseDto({required this.density, required this.listings});
-
-  factory ListingsResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$ListingsResponseDtoFromJson(json);
-
-  static const toJsonFactory = _$ListingsResponseDtoToJson;
-  Map<String, dynamic> toJson() => _$ListingsResponseDtoToJson(this);
-
-  @JsonKey(name: 'density', defaultValue: <DensityDto>[])
-  final List<DensityDto> density;
-  @JsonKey(name: 'listings', defaultValue: <ListingDto>[])
-  final List<ListingDto> listings;
-  static const fromJsonFactory = _$ListingsResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ListingsResponseDto &&
-            (identical(other.density, density) ||
-                const DeepCollectionEquality().equals(
-                  other.density,
-                  density,
-                )) &&
-            (identical(other.listings, listings) ||
-                const DeepCollectionEquality().equals(
-                  other.listings,
-                  listings,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(density) ^
-      const DeepCollectionEquality().hash(listings) ^
-      runtimeType.hashCode;
-}
-
-extension $ListingsResponseDtoExtension on ListingsResponseDto {
-  ListingsResponseDto copyWith({
-    List<DensityDto>? density,
-    List<ListingDto>? listings,
-  }) {
-    return ListingsResponseDto(
-      density: density ?? this.density,
-      listings: listings ?? this.listings,
-    );
-  }
-
-  ListingsResponseDto copyWithWrapped({
-    Wrapped<List<DensityDto>>? density,
-    Wrapped<List<ListingDto>>? listings,
-  }) {
-    return ListingsResponseDto(
-      density: (density != null ? density.value : this.density),
-      listings: (listings != null ? listings.value : this.listings),
     );
   }
 }
@@ -12544,40 +11111,40 @@ extension $SignMintDtoExtension on SignMintDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class OtherDataDto {
-  const OtherDataDto({
-    required this.nftCount,
+class StatisticsOtherDto {
+  const StatisticsOtherDto({
     required this.followCount,
-    required this.holdersCount,
+    required this.nftCount,
+    this.holdersCount,
   });
 
-  factory OtherDataDto.fromJson(Map<String, dynamic> json) =>
-      _$OtherDataDtoFromJson(json);
+  factory StatisticsOtherDto.fromJson(Map<String, dynamic> json) =>
+      _$StatisticsOtherDtoFromJson(json);
 
-  static const toJsonFactory = _$OtherDataDtoToJson;
-  Map<String, dynamic> toJson() => _$OtherDataDtoToJson(this);
+  static const toJsonFactory = _$StatisticsOtherDtoToJson;
+  Map<String, dynamic> toJson() => _$StatisticsOtherDtoToJson(this);
 
-  @JsonKey(name: 'nftCount')
-  final double nftCount;
   @JsonKey(name: 'followCount')
   final double followCount;
+  @JsonKey(name: 'nftCount')
+  final double nftCount;
   @JsonKey(name: 'holdersCount')
-  final double holdersCount;
-  static const fromJsonFactory = _$OtherDataDtoFromJson;
+  final double? holdersCount;
+  static const fromJsonFactory = _$StatisticsOtherDtoFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is OtherDataDto &&
-            (identical(other.nftCount, nftCount) ||
-                const DeepCollectionEquality().equals(
-                  other.nftCount,
-                  nftCount,
-                )) &&
+        (other is StatisticsOtherDto &&
             (identical(other.followCount, followCount) ||
                 const DeepCollectionEquality().equals(
                   other.followCount,
                   followCount,
+                )) &&
+            (identical(other.nftCount, nftCount) ||
+                const DeepCollectionEquality().equals(
+                  other.nftCount,
+                  nftCount,
                 )) &&
             (identical(other.holdersCount, holdersCount) ||
                 const DeepCollectionEquality().equals(
@@ -12591,33 +11158,33 @@ class OtherDataDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(nftCount) ^
       const DeepCollectionEquality().hash(followCount) ^
+      const DeepCollectionEquality().hash(nftCount) ^
       const DeepCollectionEquality().hash(holdersCount) ^
       runtimeType.hashCode;
 }
 
-extension $OtherDataDtoExtension on OtherDataDto {
-  OtherDataDto copyWith({
-    double? nftCount,
+extension $StatisticsOtherDtoExtension on StatisticsOtherDto {
+  StatisticsOtherDto copyWith({
     double? followCount,
+    double? nftCount,
     double? holdersCount,
   }) {
-    return OtherDataDto(
-      nftCount: nftCount ?? this.nftCount,
+    return StatisticsOtherDto(
       followCount: followCount ?? this.followCount,
+      nftCount: nftCount ?? this.nftCount,
       holdersCount: holdersCount ?? this.holdersCount,
     );
   }
 
-  OtherDataDto copyWithWrapped({
-    Wrapped<double>? nftCount,
+  StatisticsOtherDto copyWithWrapped({
     Wrapped<double>? followCount,
-    Wrapped<double>? holdersCount,
+    Wrapped<double>? nftCount,
+    Wrapped<double?>? holdersCount,
   }) {
-    return OtherDataDto(
-      nftCount: (nftCount != null ? nftCount.value : this.nftCount),
+    return StatisticsOtherDto(
       followCount: (followCount != null ? followCount.value : this.followCount),
+      nftCount: (nftCount != null ? nftCount.value : this.nftCount),
       holdersCount: (holdersCount != null
           ? holdersCount.value
           : this.holdersCount),
@@ -12626,8 +11193,117 @@ extension $OtherDataDtoExtension on OtherDataDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class StatisticsTradeDataDto {
+  const StatisticsTradeDataDto({
+    required this.dayEgldVolume,
+    required this.weekEgldVolume,
+    required this.totalEgldVolume,
+  });
+
+  factory StatisticsTradeDataDto.fromJson(Map<String, dynamic> json) =>
+      _$StatisticsTradeDataDtoFromJson(json);
+
+  static const toJsonFactory = _$StatisticsTradeDataDtoToJson;
+  Map<String, dynamic> toJson() => _$StatisticsTradeDataDtoToJson(this);
+
+  @JsonKey(name: 'dayEgldVolume')
+  final double dayEgldVolume;
+  @JsonKey(name: 'weekEgldVolume')
+  final double weekEgldVolume;
+  @JsonKey(name: 'totalEgldVolume')
+  final double totalEgldVolume;
+  static const fromJsonFactory = _$StatisticsTradeDataDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is StatisticsTradeDataDto &&
+            (identical(other.dayEgldVolume, dayEgldVolume) ||
+                const DeepCollectionEquality().equals(
+                  other.dayEgldVolume,
+                  dayEgldVolume,
+                )) &&
+            (identical(other.weekEgldVolume, weekEgldVolume) ||
+                const DeepCollectionEquality().equals(
+                  other.weekEgldVolume,
+                  weekEgldVolume,
+                )) &&
+            (identical(other.totalEgldVolume, totalEgldVolume) ||
+                const DeepCollectionEquality().equals(
+                  other.totalEgldVolume,
+                  totalEgldVolume,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dayEgldVolume) ^
+      const DeepCollectionEquality().hash(weekEgldVolume) ^
+      const DeepCollectionEquality().hash(totalEgldVolume) ^
+      runtimeType.hashCode;
+}
+
+extension $StatisticsTradeDataDtoExtension on StatisticsTradeDataDto {
+  StatisticsTradeDataDto copyWith({
+    double? dayEgldVolume,
+    double? weekEgldVolume,
+    double? totalEgldVolume,
+  }) {
+    return StatisticsTradeDataDto(
+      dayEgldVolume: dayEgldVolume ?? this.dayEgldVolume,
+      weekEgldVolume: weekEgldVolume ?? this.weekEgldVolume,
+      totalEgldVolume: totalEgldVolume ?? this.totalEgldVolume,
+    );
+  }
+
+  StatisticsTradeDataDto copyWithWrapped({
+    Wrapped<double>? dayEgldVolume,
+    Wrapped<double>? weekEgldVolume,
+    Wrapped<double>? totalEgldVolume,
+  }) {
+    return StatisticsTradeDataDto(
+      dayEgldVolume: (dayEgldVolume != null
+          ? dayEgldVolume.value
+          : this.dayEgldVolume),
+      weekEgldVolume: (weekEgldVolume != null
+          ? weekEgldVolume.value
+          : this.weekEgldVolume),
+      totalEgldVolume: (totalEgldVolume != null
+          ? totalEgldVolume.value
+          : this.totalEgldVolume),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class StatisticsMintDataDto {
+  const StatisticsMintDataDto();
+
+  factory StatisticsMintDataDto.fromJson(Map<String, dynamic> json) =>
+      _$StatisticsMintDataDtoFromJson(json);
+
+  static const toJsonFactory = _$StatisticsMintDataDtoToJson;
+  Map<String, dynamic> toJson() => _$StatisticsMintDataDtoToJson(this);
+
+  static const fromJsonFactory = _$StatisticsMintDataDtoFromJson;
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
 class StatisticsDto {
-  const StatisticsDto({required this.other});
+  const StatisticsDto({
+    required this.other,
+    required this.tradeData,
+    this.mintData,
+  });
 
   factory StatisticsDto.fromJson(Map<String, dynamic> json) =>
       _$StatisticsDtoFromJson(json);
@@ -12636,7 +11312,11 @@ class StatisticsDto {
   Map<String, dynamic> toJson() => _$StatisticsDtoToJson(this);
 
   @JsonKey(name: 'other')
-  final OtherDataDto other;
+  final StatisticsOtherDto other;
+  @JsonKey(name: 'tradeData')
+  final StatisticsTradeDataDto tradeData;
+  @JsonKey(name: 'mintData')
+  final StatisticsMintDataDto? mintData;
   static const fromJsonFactory = _$StatisticsDtoFromJson;
 
   @override
@@ -12644,7 +11324,17 @@ class StatisticsDto {
     return identical(this, other) ||
         (other is StatisticsDto &&
             (identical(other.other, other) ||
-                const DeepCollectionEquality().equals(other.other, other)));
+                const DeepCollectionEquality().equals(other.other, other)) &&
+            (identical(other.tradeData, tradeData) ||
+                const DeepCollectionEquality().equals(
+                  other.tradeData,
+                  tradeData,
+                )) &&
+            (identical(other.mintData, mintData) ||
+                const DeepCollectionEquality().equals(
+                  other.mintData,
+                  mintData,
+                )));
   }
 
   @override
@@ -12652,51 +11342,198 @@ class StatisticsDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(other) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(other) ^
+      const DeepCollectionEquality().hash(tradeData) ^
+      const DeepCollectionEquality().hash(mintData) ^
+      runtimeType.hashCode;
 }
 
 extension $StatisticsDtoExtension on StatisticsDto {
-  StatisticsDto copyWith({OtherDataDto? other}) {
-    return StatisticsDto(other: other ?? this.other);
+  StatisticsDto copyWith({
+    StatisticsOtherDto? other,
+    StatisticsTradeDataDto? tradeData,
+    StatisticsMintDataDto? mintData,
+  }) {
+    return StatisticsDto(
+      other: other ?? this.other,
+      tradeData: tradeData ?? this.tradeData,
+      mintData: mintData ?? this.mintData,
+    );
   }
 
-  StatisticsDto copyWithWrapped({Wrapped<OtherDataDto>? other}) {
-    return StatisticsDto(other: (other != null ? other.value : this.other));
+  StatisticsDto copyWithWrapped({
+    Wrapped<StatisticsOtherDto>? other,
+    Wrapped<StatisticsTradeDataDto>? tradeData,
+    Wrapped<StatisticsMintDataDto?>? mintData,
+  }) {
+    return StatisticsDto(
+      other: (other != null ? other.value : this.other),
+      tradeData: (tradeData != null ? tradeData.value : this.tradeData),
+      mintData: (mintData != null ? mintData.value : this.mintData),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class CollectionProfileDto {
-  const CollectionProfileDto({
+class TransferPolicy {
+  const TransferPolicy({
+    required this.id,
+    required this.type,
+    required this.rules,
+    required this.isOriginByte,
+  });
+
+  factory TransferPolicy.fromJson(Map<String, dynamic> json) =>
+      _$TransferPolicyFromJson(json);
+
+  static const toJsonFactory = _$TransferPolicyToJson;
+  Map<String, dynamic> toJson() => _$TransferPolicyToJson(this);
+
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'rules', defaultValue: <String>[])
+  final List<String> rules;
+  @JsonKey(name: 'is_origin_byte')
+  final bool isOriginByte;
+  static const fromJsonFactory = _$TransferPolicyFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TransferPolicy &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.rules, rules) ||
+                const DeepCollectionEquality().equals(other.rules, rules)) &&
+            (identical(other.isOriginByte, isOriginByte) ||
+                const DeepCollectionEquality().equals(
+                  other.isOriginByte,
+                  isOriginByte,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(rules) ^
+      const DeepCollectionEquality().hash(isOriginByte) ^
+      runtimeType.hashCode;
+}
+
+extension $TransferPolicyExtension on TransferPolicy {
+  TransferPolicy copyWith({
+    String? id,
+    String? type,
+    List<String>? rules,
+    bool? isOriginByte,
+  }) {
+    return TransferPolicy(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      rules: rules ?? this.rules,
+      isOriginByte: isOriginByte ?? this.isOriginByte,
+    );
+  }
+
+  TransferPolicy copyWithWrapped({
+    Wrapped<String>? id,
+    Wrapped<String>? type,
+    Wrapped<List<String>>? rules,
+    Wrapped<bool>? isOriginByte,
+  }) {
+    return TransferPolicy(
+      id: (id != null ? id.value : this.id),
+      type: (type != null ? type.value : this.type),
+      rules: (rules != null ? rules.value : this.rules),
+      isOriginByte: (isOriginByte != null
+          ? isOriginByte.value
+          : this.isOriginByte),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class XoxnoMarketplaceScCollectionConfig {
+  const XoxnoMarketplaceScCollectionConfig();
+
+  factory XoxnoMarketplaceScCollectionConfig.fromJson(
+    Map<String, dynamic> json,
+  ) => _$XoxnoMarketplaceScCollectionConfigFromJson(json);
+
+  static const toJsonFactory = _$XoxnoMarketplaceScCollectionConfigToJson;
+  Map<String, dynamic> toJson() =>
+      _$XoxnoMarketplaceScCollectionConfigToJson(this);
+
+  static const fromJsonFactory = _$XoxnoMarketplaceScCollectionConfigFromJson;
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionProfileDoc {
+  const CollectionProfileDoc({
     required this.dataType,
     required this.collection,
+    required this.originalCollection,
     required this.name,
     required this.description,
     required this.isVisible,
     required this.isVerified,
+    required this.socials,
+    required this.type,
+    this.subType,
     required this.profile,
     required this.banner,
     required this.statistics,
+    required this.chain,
+    required this.transferPolicies,
     required this.owner,
     required this.creator,
     required this.isMintable,
     required this.hasStaking,
+    required this.isEvent,
+    required this.roles,
+    this.eventId,
+    this.pinnedAtDrops,
+    this.pinnedAt,
+    this.customConfig,
+    this.royalty,
+    this.collectionSize,
+    this.holdersCount,
+    this.followCount,
+    this.minSalePrice,
     required this.id,
-    required this.socials,
-    required this.type,
     required this.ts,
   });
 
-  factory CollectionProfileDto.fromJson(Map<String, dynamic> json) =>
-      _$CollectionProfileDtoFromJson(json);
+  factory CollectionProfileDoc.fromJson(Map<String, dynamic> json) =>
+      _$CollectionProfileDocFromJson(json);
 
-  static const toJsonFactory = _$CollectionProfileDtoToJson;
-  Map<String, dynamic> toJson() => _$CollectionProfileDtoToJson(this);
+  static const toJsonFactory = _$CollectionProfileDocToJson;
+  Map<String, dynamic> toJson() => _$CollectionProfileDocToJson(this);
 
-  @JsonKey(name: 'dataType')
-  final String dataType;
+  @JsonKey(
+    name: 'dataType',
+    toJson: collectionProfileDocDataTypeToJson,
+    fromJson: collectionProfileDocDataTypeFromJson,
+  )
+  final enums.CollectionProfileDocDataType dataType;
   @JsonKey(name: 'collection')
   final String collection;
+  @JsonKey(name: 'originalCollection')
+  final String originalCollection;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'description')
@@ -12705,12 +11542,34 @@ class CollectionProfileDto {
   final bool isVisible;
   @JsonKey(name: 'isVerified')
   final bool isVerified;
+  @JsonKey(name: 'socials')
+  final SocialsDto socials;
+  @JsonKey(
+    name: 'type',
+    toJson: collectionProfileDocTypeToJson,
+    fromJson: collectionProfileDocTypeFromJson,
+  )
+  final enums.CollectionProfileDocType type;
+  @JsonKey(
+    name: 'subType',
+    toJson: collectionProfileDocSubTypeNullableToJson,
+    fromJson: collectionProfileDocSubTypeNullableFromJson,
+  )
+  final enums.CollectionProfileDocSubType? subType;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'statistics')
   final StatisticsDto statistics;
+  @JsonKey(
+    name: 'chain',
+    toJson: collectionProfileDocChainToJson,
+    fromJson: collectionProfileDocChainFromJson,
+  )
+  final enums.CollectionProfileDocChain chain;
+  @JsonKey(name: 'transferPolicies', defaultValue: <TransferPolicy>[])
+  final List<TransferPolicy> transferPolicies;
   @JsonKey(name: 'owner')
   final String owner;
   @JsonKey(name: 'creator')
@@ -12719,20 +11578,38 @@ class CollectionProfileDto {
   final bool isMintable;
   @JsonKey(name: 'hasStaking')
   final bool hasStaking;
+  @JsonKey(name: 'isEvent')
+  final bool isEvent;
+  @JsonKey(name: 'roles')
+  final Object roles;
+  @JsonKey(name: 'eventId')
+  final String? eventId;
+  @JsonKey(name: 'pinnedAtDrops')
+  final double? pinnedAtDrops;
+  @JsonKey(name: 'pinnedAt')
+  final double? pinnedAt;
+  @JsonKey(name: 'customConfig')
+  final XoxnoMarketplaceScCollectionConfig? customConfig;
+  @JsonKey(name: 'royalty')
+  final double? royalty;
+  @JsonKey(name: 'collectionSize')
+  final double? collectionSize;
+  @JsonKey(name: 'holdersCount')
+  final double? holdersCount;
+  @JsonKey(name: 'followCount')
+  final double? followCount;
+  @JsonKey(name: 'minSalePrice')
+  final String? minSalePrice;
   @JsonKey(name: 'id')
   final String id;
-  @JsonKey(name: 'socials')
-  final SocialsDto socials;
-  @JsonKey(name: 'type')
-  final String type;
   @JsonKey(name: '_ts')
   final double ts;
-  static const fromJsonFactory = _$CollectionProfileDtoFromJson;
+  static const fromJsonFactory = _$CollectionProfileDocFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is CollectionProfileDto &&
+        (other is CollectionProfileDoc &&
             (identical(other.dataType, dataType) ||
                 const DeepCollectionEquality().equals(
                   other.dataType,
@@ -12742,6 +11619,11 @@ class CollectionProfileDto {
                 const DeepCollectionEquality().equals(
                   other.collection,
                   collection,
+                )) &&
+            (identical(other.originalCollection, originalCollection) ||
+                const DeepCollectionEquality().equals(
+                  other.originalCollection,
+                  originalCollection,
                 )) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
@@ -12760,6 +11642,18 @@ class CollectionProfileDto {
                   other.isVerified,
                   isVerified,
                 )) &&
+            (identical(other.socials, socials) ||
+                const DeepCollectionEquality().equals(
+                  other.socials,
+                  socials,
+                )) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.subType, subType) ||
+                const DeepCollectionEquality().equals(
+                  other.subType,
+                  subType,
+                )) &&
             (identical(other.profile, profile) ||
                 const DeepCollectionEquality().equals(
                   other.profile,
@@ -12771,6 +11665,13 @@ class CollectionProfileDto {
                 const DeepCollectionEquality().equals(
                   other.statistics,
                   statistics,
+                )) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
+            (identical(other.transferPolicies, transferPolicies) ||
+                const DeepCollectionEquality().equals(
+                  other.transferPolicies,
+                  transferPolicies,
                 )) &&
             (identical(other.owner, owner) ||
                 const DeepCollectionEquality().equals(other.owner, owner)) &&
@@ -12789,15 +11690,60 @@ class CollectionProfileDto {
                   other.hasStaking,
                   hasStaking,
                 )) &&
+            (identical(other.isEvent, isEvent) ||
+                const DeepCollectionEquality().equals(
+                  other.isEvent,
+                  isEvent,
+                )) &&
+            (identical(other.roles, roles) ||
+                const DeepCollectionEquality().equals(other.roles, roles)) &&
+            (identical(other.eventId, eventId) ||
+                const DeepCollectionEquality().equals(
+                  other.eventId,
+                  eventId,
+                )) &&
+            (identical(other.pinnedAtDrops, pinnedAtDrops) ||
+                const DeepCollectionEquality().equals(
+                  other.pinnedAtDrops,
+                  pinnedAtDrops,
+                )) &&
+            (identical(other.pinnedAt, pinnedAt) ||
+                const DeepCollectionEquality().equals(
+                  other.pinnedAt,
+                  pinnedAt,
+                )) &&
+            (identical(other.customConfig, customConfig) ||
+                const DeepCollectionEquality().equals(
+                  other.customConfig,
+                  customConfig,
+                )) &&
+            (identical(other.royalty, royalty) ||
+                const DeepCollectionEquality().equals(
+                  other.royalty,
+                  royalty,
+                )) &&
+            (identical(other.collectionSize, collectionSize) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionSize,
+                  collectionSize,
+                )) &&
+            (identical(other.holdersCount, holdersCount) ||
+                const DeepCollectionEquality().equals(
+                  other.holdersCount,
+                  holdersCount,
+                )) &&
+            (identical(other.followCount, followCount) ||
+                const DeepCollectionEquality().equals(
+                  other.followCount,
+                  followCount,
+                )) &&
+            (identical(other.minSalePrice, minSalePrice) ||
+                const DeepCollectionEquality().equals(
+                  other.minSalePrice,
+                  minSalePrice,
+                )) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.ts, ts) ||
                 const DeepCollectionEquality().equals(other.ts, ts)));
   }
@@ -12809,101 +11755,190 @@ class CollectionProfileDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(dataType) ^
       const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(originalCollection) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(isVisible) ^
       const DeepCollectionEquality().hash(isVerified) ^
+      const DeepCollectionEquality().hash(socials) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(subType) ^
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(banner) ^
       const DeepCollectionEquality().hash(statistics) ^
+      const DeepCollectionEquality().hash(chain) ^
+      const DeepCollectionEquality().hash(transferPolicies) ^
       const DeepCollectionEquality().hash(owner) ^
       const DeepCollectionEquality().hash(creator) ^
       const DeepCollectionEquality().hash(isMintable) ^
       const DeepCollectionEquality().hash(hasStaking) ^
+      const DeepCollectionEquality().hash(isEvent) ^
+      const DeepCollectionEquality().hash(roles) ^
+      const DeepCollectionEquality().hash(eventId) ^
+      const DeepCollectionEquality().hash(pinnedAtDrops) ^
+      const DeepCollectionEquality().hash(pinnedAt) ^
+      const DeepCollectionEquality().hash(customConfig) ^
+      const DeepCollectionEquality().hash(royalty) ^
+      const DeepCollectionEquality().hash(collectionSize) ^
+      const DeepCollectionEquality().hash(holdersCount) ^
+      const DeepCollectionEquality().hash(followCount) ^
+      const DeepCollectionEquality().hash(minSalePrice) ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(ts) ^
       runtimeType.hashCode;
 }
 
-extension $CollectionProfileDtoExtension on CollectionProfileDto {
-  CollectionProfileDto copyWith({
-    String? dataType,
+extension $CollectionProfileDocExtension on CollectionProfileDoc {
+  CollectionProfileDoc copyWith({
+    enums.CollectionProfileDocDataType? dataType,
     String? collection,
+    String? originalCollection,
     String? name,
     String? description,
     bool? isVisible,
     bool? isVerified,
+    SocialsDto? socials,
+    enums.CollectionProfileDocType? type,
+    enums.CollectionProfileDocSubType? subType,
     String? profile,
     String? banner,
     StatisticsDto? statistics,
+    enums.CollectionProfileDocChain? chain,
+    List<TransferPolicy>? transferPolicies,
     String? owner,
     String? creator,
     bool? isMintable,
     bool? hasStaking,
+    bool? isEvent,
+    Object? roles,
+    String? eventId,
+    double? pinnedAtDrops,
+    double? pinnedAt,
+    XoxnoMarketplaceScCollectionConfig? customConfig,
+    double? royalty,
+    double? collectionSize,
+    double? holdersCount,
+    double? followCount,
+    String? minSalePrice,
     String? id,
-    SocialsDto? socials,
-    String? type,
     double? ts,
   }) {
-    return CollectionProfileDto(
+    return CollectionProfileDoc(
       dataType: dataType ?? this.dataType,
       collection: collection ?? this.collection,
+      originalCollection: originalCollection ?? this.originalCollection,
       name: name ?? this.name,
       description: description ?? this.description,
       isVisible: isVisible ?? this.isVisible,
       isVerified: isVerified ?? this.isVerified,
+      socials: socials ?? this.socials,
+      type: type ?? this.type,
+      subType: subType ?? this.subType,
       profile: profile ?? this.profile,
       banner: banner ?? this.banner,
       statistics: statistics ?? this.statistics,
+      chain: chain ?? this.chain,
+      transferPolicies: transferPolicies ?? this.transferPolicies,
       owner: owner ?? this.owner,
       creator: creator ?? this.creator,
       isMintable: isMintable ?? this.isMintable,
       hasStaking: hasStaking ?? this.hasStaking,
+      isEvent: isEvent ?? this.isEvent,
+      roles: roles ?? this.roles,
+      eventId: eventId ?? this.eventId,
+      pinnedAtDrops: pinnedAtDrops ?? this.pinnedAtDrops,
+      pinnedAt: pinnedAt ?? this.pinnedAt,
+      customConfig: customConfig ?? this.customConfig,
+      royalty: royalty ?? this.royalty,
+      collectionSize: collectionSize ?? this.collectionSize,
+      holdersCount: holdersCount ?? this.holdersCount,
+      followCount: followCount ?? this.followCount,
+      minSalePrice: minSalePrice ?? this.minSalePrice,
       id: id ?? this.id,
-      socials: socials ?? this.socials,
-      type: type ?? this.type,
       ts: ts ?? this.ts,
     );
   }
 
-  CollectionProfileDto copyWithWrapped({
-    Wrapped<String>? dataType,
+  CollectionProfileDoc copyWithWrapped({
+    Wrapped<enums.CollectionProfileDocDataType>? dataType,
     Wrapped<String>? collection,
+    Wrapped<String>? originalCollection,
     Wrapped<String>? name,
     Wrapped<String>? description,
     Wrapped<bool>? isVisible,
     Wrapped<bool>? isVerified,
+    Wrapped<SocialsDto>? socials,
+    Wrapped<enums.CollectionProfileDocType>? type,
+    Wrapped<enums.CollectionProfileDocSubType?>? subType,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<StatisticsDto>? statistics,
+    Wrapped<enums.CollectionProfileDocChain>? chain,
+    Wrapped<List<TransferPolicy>>? transferPolicies,
     Wrapped<String>? owner,
     Wrapped<String>? creator,
     Wrapped<bool>? isMintable,
     Wrapped<bool>? hasStaking,
+    Wrapped<bool>? isEvent,
+    Wrapped<Object>? roles,
+    Wrapped<String?>? eventId,
+    Wrapped<double?>? pinnedAtDrops,
+    Wrapped<double?>? pinnedAt,
+    Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
+    Wrapped<double?>? royalty,
+    Wrapped<double?>? collectionSize,
+    Wrapped<double?>? holdersCount,
+    Wrapped<double?>? followCount,
+    Wrapped<String?>? minSalePrice,
     Wrapped<String>? id,
-    Wrapped<SocialsDto>? socials,
-    Wrapped<String>? type,
     Wrapped<double>? ts,
   }) {
-    return CollectionProfileDto(
+    return CollectionProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
       collection: (collection != null ? collection.value : this.collection),
+      originalCollection: (originalCollection != null
+          ? originalCollection.value
+          : this.originalCollection),
       name: (name != null ? name.value : this.name),
       description: (description != null ? description.value : this.description),
       isVisible: (isVisible != null ? isVisible.value : this.isVisible),
       isVerified: (isVerified != null ? isVerified.value : this.isVerified),
+      socials: (socials != null ? socials.value : this.socials),
+      type: (type != null ? type.value : this.type),
+      subType: (subType != null ? subType.value : this.subType),
       profile: (profile != null ? profile.value : this.profile),
       banner: (banner != null ? banner.value : this.banner),
       statistics: (statistics != null ? statistics.value : this.statistics),
+      chain: (chain != null ? chain.value : this.chain),
+      transferPolicies: (transferPolicies != null
+          ? transferPolicies.value
+          : this.transferPolicies),
       owner: (owner != null ? owner.value : this.owner),
       creator: (creator != null ? creator.value : this.creator),
       isMintable: (isMintable != null ? isMintable.value : this.isMintable),
       hasStaking: (hasStaking != null ? hasStaking.value : this.hasStaking),
+      isEvent: (isEvent != null ? isEvent.value : this.isEvent),
+      roles: (roles != null ? roles.value : this.roles),
+      eventId: (eventId != null ? eventId.value : this.eventId),
+      pinnedAtDrops: (pinnedAtDrops != null
+          ? pinnedAtDrops.value
+          : this.pinnedAtDrops),
+      pinnedAt: (pinnedAt != null ? pinnedAt.value : this.pinnedAt),
+      customConfig: (customConfig != null
+          ? customConfig.value
+          : this.customConfig),
+      royalty: (royalty != null ? royalty.value : this.royalty),
+      collectionSize: (collectionSize != null
+          ? collectionSize.value
+          : this.collectionSize),
+      holdersCount: (holdersCount != null
+          ? holdersCount.value
+          : this.holdersCount),
+      followCount: (followCount != null ? followCount.value : this.followCount),
+      minSalePrice: (minSalePrice != null
+          ? minSalePrice.value
+          : this.minSalePrice),
       id: (id != null ? id.value : this.id),
-      socials: (socials != null ? socials.value : this.socials),
-      type: (type != null ? type.value : this.type),
       ts: (ts != null ? ts.value : this.ts),
     );
   }
@@ -13248,427 +12283,31 @@ extension $FollowCollectionDtoExtension on FollowCollectionDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EgldOrEsdtTokenPayment {
-  const EgldOrEsdtTokenPayment({
-    required this.tokenIdentifier,
-    required this.tokenNonce,
-    required this.amount,
-    required this.amountShort,
-    required this.decimals,
-    required this.usdValue,
-  });
-
-  factory EgldOrEsdtTokenPayment.fromJson(Map<String, dynamic> json) =>
-      _$EgldOrEsdtTokenPaymentFromJson(json);
-
-  static const toJsonFactory = _$EgldOrEsdtTokenPaymentToJson;
-  Map<String, dynamic> toJson() => _$EgldOrEsdtTokenPaymentToJson(this);
-
-  @JsonKey(name: 'tokenIdentifier')
-  final String tokenIdentifier;
-  @JsonKey(name: 'tokenNonce')
-  final double tokenNonce;
-  @JsonKey(name: 'amount')
-  final String amount;
-  @JsonKey(name: 'amountShort')
-  final double amountShort;
-  @JsonKey(name: 'decimals')
-  final double decimals;
-  @JsonKey(name: 'usdValue')
-  final double usdValue;
-  static const fromJsonFactory = _$EgldOrEsdtTokenPaymentFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EgldOrEsdtTokenPayment &&
-            (identical(other.tokenIdentifier, tokenIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIdentifier,
-                  tokenIdentifier,
-                )) &&
-            (identical(other.tokenNonce, tokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenNonce,
-                  tokenNonce,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.amountShort, amountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.amountShort,
-                  amountShort,
-                )) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIdentifier) ^
-      const DeepCollectionEquality().hash(tokenNonce) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(amountShort) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
-}
-
-extension $EgldOrEsdtTokenPaymentExtension on EgldOrEsdtTokenPayment {
-  EgldOrEsdtTokenPayment copyWith({
-    String? tokenIdentifier,
-    double? tokenNonce,
-    String? amount,
-    double? amountShort,
-    double? decimals,
-    double? usdValue,
-  }) {
-    return EgldOrEsdtTokenPayment(
-      tokenIdentifier: tokenIdentifier ?? this.tokenIdentifier,
-      tokenNonce: tokenNonce ?? this.tokenNonce,
-      amount: amount ?? this.amount,
-      amountShort: amountShort ?? this.amountShort,
-      decimals: decimals ?? this.decimals,
-      usdValue: usdValue ?? this.usdValue,
-    );
-  }
-
-  EgldOrEsdtTokenPayment copyWithWrapped({
-    Wrapped<String>? tokenIdentifier,
-    Wrapped<double>? tokenNonce,
-    Wrapped<String>? amount,
-    Wrapped<double>? amountShort,
-    Wrapped<double>? decimals,
-    Wrapped<double>? usdValue,
-  }) {
-    return EgldOrEsdtTokenPayment(
-      tokenIdentifier: (tokenIdentifier != null
-          ? tokenIdentifier.value
-          : this.tokenIdentifier),
-      tokenNonce: (tokenNonce != null ? tokenNonce.value : this.tokenNonce),
-      amount: (amount != null ? amount.value : this.amount),
-      amountShort: (amountShort != null ? amountShort.value : this.amountShort),
-      decimals: (decimals != null ? decimals.value : this.decimals),
-      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CreatorInfoDto {
-  const CreatorInfoDto({
-    required this.name,
-    required this.contractAddress,
-    required this.profile,
-  });
-
-  factory CreatorInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$CreatorInfoDtoFromJson(json);
-
-  static const toJsonFactory = _$CreatorInfoDtoToJson;
-  Map<String, dynamic> toJson() => _$CreatorInfoDtoToJson(this);
-
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'contractAddress')
-  final String contractAddress;
-  @JsonKey(name: 'profile')
-  final String profile;
-  static const fromJsonFactory = _$CreatorInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorInfoDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      runtimeType.hashCode;
-}
-
-extension $CreatorInfoDtoExtension on CreatorInfoDto {
-  CreatorInfoDto copyWith({
-    String? name,
-    String? contractAddress,
-    String? profile,
-  }) {
-    return CreatorInfoDto(
-      name: name ?? this.name,
-      contractAddress: contractAddress ?? this.contractAddress,
-      profile: profile ?? this.profile,
-    );
-  }
-
-  CreatorInfoDto copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? profile,
-  }) {
-    return CreatorInfoDto(
-      name: (name != null ? name.value : this.name),
-      contractAddress: (contractAddress != null
-          ? contractAddress.value
-          : this.contractAddress),
-      profile: (profile != null ? profile.value : this.profile),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class DropResourceDto {
-  const DropResourceDto({
-    required this.prices,
-    required this.startTime,
-    required this.isSoldOut,
-    required this.collectionTag,
-    required this.collectionSize,
-    required this.totalNftMinted,
-    required this.collection,
-    required this.creatorTag,
-    required this.creatorName,
-    required this.endTime,
-    required this.collectionInfo,
-    required this.creatorInfo,
-  });
-
-  factory DropResourceDto.fromJson(Map<String, dynamic> json) =>
-      _$DropResourceDtoFromJson(json);
-
-  static const toJsonFactory = _$DropResourceDtoToJson;
-  Map<String, dynamic> toJson() => _$DropResourceDtoToJson(this);
-
-  @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
-  final List<EgldOrEsdtTokenPayment> prices;
-  @JsonKey(name: 'startTime')
-  final double startTime;
-  @JsonKey(name: 'isSoldOut')
-  final bool isSoldOut;
-  @JsonKey(name: 'collectionTag')
-  final String collectionTag;
-  @JsonKey(name: 'collectionSize')
-  final double collectionSize;
-  @JsonKey(name: 'totalNftMinted')
-  final double totalNftMinted;
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'creatorTag')
-  final String creatorTag;
-  @JsonKey(name: 'creatorName')
-  final String creatorName;
-  @JsonKey(name: 'endTime')
-  final double endTime;
-  @JsonKey(name: 'collectionInfo')
-  final CollectionInfoDto collectionInfo;
-  @JsonKey(name: 'creatorInfo')
-  final CreatorInfoDto creatorInfo;
-  static const fromJsonFactory = _$DropResourceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DropResourceDto &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.isSoldOut, isSoldOut) ||
-                const DeepCollectionEquality().equals(
-                  other.isSoldOut,
-                  isSoldOut,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.totalNftMinted, totalNftMinted) ||
-                const DeepCollectionEquality().equals(
-                  other.totalNftMinted,
-                  totalNftMinted,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.creatorName, creatorName) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorName,
-                  creatorName,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )) &&
-            (identical(other.creatorInfo, creatorInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorInfo,
-                  creatorInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(prices) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(isSoldOut) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(totalNftMinted) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(creatorName) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      const DeepCollectionEquality().hash(creatorInfo) ^
-      runtimeType.hashCode;
-}
-
-extension $DropResourceDtoExtension on DropResourceDto {
-  DropResourceDto copyWith({
-    List<EgldOrEsdtTokenPayment>? prices,
-    double? startTime,
-    bool? isSoldOut,
-    String? collectionTag,
-    double? collectionSize,
-    double? totalNftMinted,
-    String? collection,
-    String? creatorTag,
-    String? creatorName,
-    double? endTime,
-    CollectionInfoDto? collectionInfo,
-    CreatorInfoDto? creatorInfo,
-  }) {
-    return DropResourceDto(
-      prices: prices ?? this.prices,
-      startTime: startTime ?? this.startTime,
-      isSoldOut: isSoldOut ?? this.isSoldOut,
-      collectionTag: collectionTag ?? this.collectionTag,
-      collectionSize: collectionSize ?? this.collectionSize,
-      totalNftMinted: totalNftMinted ?? this.totalNftMinted,
-      collection: collection ?? this.collection,
-      creatorTag: creatorTag ?? this.creatorTag,
-      creatorName: creatorName ?? this.creatorName,
-      endTime: endTime ?? this.endTime,
-      collectionInfo: collectionInfo ?? this.collectionInfo,
-      creatorInfo: creatorInfo ?? this.creatorInfo,
-    );
-  }
-
-  DropResourceDto copyWithWrapped({
-    Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
-    Wrapped<double>? startTime,
-    Wrapped<bool>? isSoldOut,
-    Wrapped<String>? collectionTag,
-    Wrapped<double>? collectionSize,
-    Wrapped<double>? totalNftMinted,
-    Wrapped<String>? collection,
-    Wrapped<String>? creatorTag,
-    Wrapped<String>? creatorName,
-    Wrapped<double>? endTime,
-    Wrapped<CollectionInfoDto>? collectionInfo,
-    Wrapped<CreatorInfoDto>? creatorInfo,
-  }) {
-    return DropResourceDto(
-      prices: (prices != null ? prices.value : this.prices),
-      startTime: (startTime != null ? startTime.value : this.startTime),
-      isSoldOut: (isSoldOut != null ? isSoldOut.value : this.isSoldOut),
-      collectionTag: (collectionTag != null
-          ? collectionTag.value
-          : this.collectionTag),
-      collectionSize: (collectionSize != null
-          ? collectionSize.value
-          : this.collectionSize),
-      totalNftMinted: (totalNftMinted != null
-          ? totalNftMinted.value
-          : this.totalNftMinted),
-      collection: (collection != null ? collection.value : this.collection),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
-      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
-      endTime: (endTime != null ? endTime.value : this.endTime),
-      collectionInfo: (collectionInfo != null
-          ? collectionInfo.value
-          : this.collectionInfo),
-      creatorInfo: (creatorInfo != null ? creatorInfo.value : this.creatorInfo),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class DropsQueryDto {
-  const DropsQueryDto({
+class CollectionProfilePaginated {
+  const CollectionProfilePaginated({
     this.count,
     required this.hasMoreResults,
     required this.resources,
   });
 
-  factory DropsQueryDto.fromJson(Map<String, dynamic> json) =>
-      _$DropsQueryDtoFromJson(json);
+  factory CollectionProfilePaginated.fromJson(Map<String, dynamic> json) =>
+      _$CollectionProfilePaginatedFromJson(json);
 
-  static const toJsonFactory = _$DropsQueryDtoToJson;
-  Map<String, dynamic> toJson() => _$DropsQueryDtoToJson(this);
+  static const toJsonFactory = _$CollectionProfilePaginatedToJson;
+  Map<String, dynamic> toJson() => _$CollectionProfilePaginatedToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <DropResourceDto>[])
-  final List<DropResourceDto> resources;
-  static const fromJsonFactory = _$DropsQueryDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$CollectionProfilePaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is DropsQueryDto &&
+        (other is CollectionProfilePaginated &&
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
@@ -13694,30 +12333,428 @@ class DropsQueryDto {
       runtimeType.hashCode;
 }
 
-extension $DropsQueryDtoExtension on DropsQueryDto {
-  DropsQueryDto copyWith({
-    double? count,
+extension $CollectionProfilePaginatedExtension on CollectionProfilePaginated {
+  CollectionProfilePaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    List<DropResourceDto>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return DropsQueryDto(
+    return CollectionProfilePaginated(
       count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  DropsQueryDto copyWithWrapped({
-    Wrapped<double?>? count,
+  CollectionProfilePaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
-    Wrapped<List<DropResourceDto>>? resources,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return DropsQueryDto(
+    return CollectionProfilePaginated(
       count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
       resources: (resources != null ? resources.value : this.resources),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionMintProfilePaginated {
+  const CollectionMintProfilePaginated({
+    this.count,
+    required this.hasMoreResults,
+    required this.resources,
+  });
+
+  factory CollectionMintProfilePaginated.fromJson(Map<String, dynamic> json) =>
+      _$CollectionMintProfilePaginatedFromJson(json);
+
+  static const toJsonFactory = _$CollectionMintProfilePaginatedToJson;
+  Map<String, dynamic> toJson() => _$CollectionMintProfilePaginatedToJson(this);
+
+  @JsonKey(name: 'count')
+  final Object? count;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$CollectionMintProfilePaginatedFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionMintProfilePaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
+                const DeepCollectionEquality().equals(
+                  other.hasMoreResults,
+                  hasMoreResults,
+                )) &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionMintProfilePaginatedExtension
+    on CollectionMintProfilePaginated {
+  CollectionMintProfilePaginated copyWith({
+    Object? count,
+    bool? hasMoreResults,
+    List<List<Object?>>? resources,
+  }) {
+    return CollectionMintProfilePaginated(
+      count: count ?? this.count,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
+    );
+  }
+
+  CollectionMintProfilePaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
+  }) {
+    return CollectionMintProfilePaginated(
+      count: (count != null ? count.value : this.count),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionMintProfileDocWithStages {
+  const CollectionMintProfileDocWithStages({
+    required this.contractAddress,
+    required this.collectionTag,
+    required this.cid,
+    required this.mediaType,
+    required this.hasAttributes,
+    required this.collectionSize,
+    required this.totalNftMinted,
+    required this.globalWalletLimit,
+    required this.nftTransferLimited,
+    required this.kycRequired,
+    required this.hasBotProtection,
+  });
+
+  factory CollectionMintProfileDocWithStages.fromJson(
+    Map<String, dynamic> json,
+  ) => _$CollectionMintProfileDocWithStagesFromJson(json);
+
+  static const toJsonFactory = _$CollectionMintProfileDocWithStagesToJson;
+  Map<String, dynamic> toJson() =>
+      _$CollectionMintProfileDocWithStagesToJson(this);
+
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'collectionTag')
+  final String collectionTag;
+  @JsonKey(name: 'cid')
+  final String cid;
+  @JsonKey(name: 'mediaType')
+  final String mediaType;
+  @JsonKey(name: 'hasAttributes')
+  final bool hasAttributes;
+  @JsonKey(name: 'collectionSize')
+  final double collectionSize;
+  @JsonKey(name: 'totalNftMinted')
+  final double totalNftMinted;
+  @JsonKey(name: 'globalWalletLimit')
+  final double globalWalletLimit;
+  @JsonKey(name: 'nftTransferLimited')
+  final bool nftTransferLimited;
+  @JsonKey(name: 'kycRequired')
+  final bool kycRequired;
+  @JsonKey(name: 'hasBotProtection')
+  final bool hasBotProtection;
+  static const fromJsonFactory = _$CollectionMintProfileDocWithStagesFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionMintProfileDocWithStages &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(other.collectionTag, collectionTag) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionTag,
+                  collectionTag,
+                )) &&
+            (identical(other.cid, cid) ||
+                const DeepCollectionEquality().equals(other.cid, cid)) &&
+            (identical(other.mediaType, mediaType) ||
+                const DeepCollectionEquality().equals(
+                  other.mediaType,
+                  mediaType,
+                )) &&
+            (identical(other.hasAttributes, hasAttributes) ||
+                const DeepCollectionEquality().equals(
+                  other.hasAttributes,
+                  hasAttributes,
+                )) &&
+            (identical(other.collectionSize, collectionSize) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionSize,
+                  collectionSize,
+                )) &&
+            (identical(other.totalNftMinted, totalNftMinted) ||
+                const DeepCollectionEquality().equals(
+                  other.totalNftMinted,
+                  totalNftMinted,
+                )) &&
+            (identical(other.globalWalletLimit, globalWalletLimit) ||
+                const DeepCollectionEquality().equals(
+                  other.globalWalletLimit,
+                  globalWalletLimit,
+                )) &&
+            (identical(other.nftTransferLimited, nftTransferLimited) ||
+                const DeepCollectionEquality().equals(
+                  other.nftTransferLimited,
+                  nftTransferLimited,
+                )) &&
+            (identical(other.kycRequired, kycRequired) ||
+                const DeepCollectionEquality().equals(
+                  other.kycRequired,
+                  kycRequired,
+                )) &&
+            (identical(other.hasBotProtection, hasBotProtection) ||
+                const DeepCollectionEquality().equals(
+                  other.hasBotProtection,
+                  hasBotProtection,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(collectionTag) ^
+      const DeepCollectionEquality().hash(cid) ^
+      const DeepCollectionEquality().hash(mediaType) ^
+      const DeepCollectionEquality().hash(hasAttributes) ^
+      const DeepCollectionEquality().hash(collectionSize) ^
+      const DeepCollectionEquality().hash(totalNftMinted) ^
+      const DeepCollectionEquality().hash(globalWalletLimit) ^
+      const DeepCollectionEquality().hash(nftTransferLimited) ^
+      const DeepCollectionEquality().hash(kycRequired) ^
+      const DeepCollectionEquality().hash(hasBotProtection) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionMintProfileDocWithStagesExtension
+    on CollectionMintProfileDocWithStages {
+  CollectionMintProfileDocWithStages copyWith({
+    String? contractAddress,
+    String? collectionTag,
+    String? cid,
+    String? mediaType,
+    bool? hasAttributes,
+    double? collectionSize,
+    double? totalNftMinted,
+    double? globalWalletLimit,
+    bool? nftTransferLimited,
+    bool? kycRequired,
+    bool? hasBotProtection,
+  }) {
+    return CollectionMintProfileDocWithStages(
+      contractAddress: contractAddress ?? this.contractAddress,
+      collectionTag: collectionTag ?? this.collectionTag,
+      cid: cid ?? this.cid,
+      mediaType: mediaType ?? this.mediaType,
+      hasAttributes: hasAttributes ?? this.hasAttributes,
+      collectionSize: collectionSize ?? this.collectionSize,
+      totalNftMinted: totalNftMinted ?? this.totalNftMinted,
+      globalWalletLimit: globalWalletLimit ?? this.globalWalletLimit,
+      nftTransferLimited: nftTransferLimited ?? this.nftTransferLimited,
+      kycRequired: kycRequired ?? this.kycRequired,
+      hasBotProtection: hasBotProtection ?? this.hasBotProtection,
+    );
+  }
+
+  CollectionMintProfileDocWithStages copyWithWrapped({
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? collectionTag,
+    Wrapped<String>? cid,
+    Wrapped<String>? mediaType,
+    Wrapped<bool>? hasAttributes,
+    Wrapped<double>? collectionSize,
+    Wrapped<double>? totalNftMinted,
+    Wrapped<double>? globalWalletLimit,
+    Wrapped<bool>? nftTransferLimited,
+    Wrapped<bool>? kycRequired,
+    Wrapped<bool>? hasBotProtection,
+  }) {
+    return CollectionMintProfileDocWithStages(
+      contractAddress: (contractAddress != null
+          ? contractAddress.value
+          : this.contractAddress),
+      collectionTag: (collectionTag != null
+          ? collectionTag.value
+          : this.collectionTag),
+      cid: (cid != null ? cid.value : this.cid),
+      mediaType: (mediaType != null ? mediaType.value : this.mediaType),
+      hasAttributes: (hasAttributes != null
+          ? hasAttributes.value
+          : this.hasAttributes),
+      collectionSize: (collectionSize != null
+          ? collectionSize.value
+          : this.collectionSize),
+      totalNftMinted: (totalNftMinted != null
+          ? totalNftMinted.value
+          : this.totalNftMinted),
+      globalWalletLimit: (globalWalletLimit != null
+          ? globalWalletLimit.value
+          : this.globalWalletLimit),
+      nftTransferLimited: (nftTransferLimited != null
+          ? nftTransferLimited.value
+          : this.nftTransferLimited),
+      kycRequired: (kycRequired != null ? kycRequired.value : this.kycRequired),
+      hasBotProtection: (hasBotProtection != null
+          ? hasBotProtection.value
+          : this.hasBotProtection),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EgldOrEsdtTokenPayment {
+  const EgldOrEsdtTokenPayment({
+    required this.tokenIdentifier,
+    required this.tokenNonce,
+    required this.amount,
+    this.amountShort,
+    this.usdValue,
+    this.decimals,
+  });
+
+  factory EgldOrEsdtTokenPayment.fromJson(Map<String, dynamic> json) =>
+      _$EgldOrEsdtTokenPaymentFromJson(json);
+
+  static const toJsonFactory = _$EgldOrEsdtTokenPaymentToJson;
+  Map<String, dynamic> toJson() => _$EgldOrEsdtTokenPaymentToJson(this);
+
+  @JsonKey(name: 'tokenIdentifier')
+  final String tokenIdentifier;
+  @JsonKey(name: 'tokenNonce')
+  final double tokenNonce;
+  @JsonKey(name: 'amount')
+  final String amount;
+  @JsonKey(name: 'amountShort')
+  final double? amountShort;
+  @JsonKey(name: 'usdValue')
+  final double? usdValue;
+  @JsonKey(name: 'decimals')
+  final double? decimals;
+  static const fromJsonFactory = _$EgldOrEsdtTokenPaymentFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EgldOrEsdtTokenPayment &&
+            (identical(other.tokenIdentifier, tokenIdentifier) ||
+                const DeepCollectionEquality().equals(
+                  other.tokenIdentifier,
+                  tokenIdentifier,
+                )) &&
+            (identical(other.tokenNonce, tokenNonce) ||
+                const DeepCollectionEquality().equals(
+                  other.tokenNonce,
+                  tokenNonce,
+                )) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.amountShort, amountShort) ||
+                const DeepCollectionEquality().equals(
+                  other.amountShort,
+                  amountShort,
+                )) &&
+            (identical(other.usdValue, usdValue) ||
+                const DeepCollectionEquality().equals(
+                  other.usdValue,
+                  usdValue,
+                )) &&
+            (identical(other.decimals, decimals) ||
+                const DeepCollectionEquality().equals(
+                  other.decimals,
+                  decimals,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(tokenIdentifier) ^
+      const DeepCollectionEquality().hash(tokenNonce) ^
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(amountShort) ^
+      const DeepCollectionEquality().hash(usdValue) ^
+      const DeepCollectionEquality().hash(decimals) ^
+      runtimeType.hashCode;
+}
+
+extension $EgldOrEsdtTokenPaymentExtension on EgldOrEsdtTokenPayment {
+  EgldOrEsdtTokenPayment copyWith({
+    String? tokenIdentifier,
+    double? tokenNonce,
+    String? amount,
+    double? amountShort,
+    double? usdValue,
+    double? decimals,
+  }) {
+    return EgldOrEsdtTokenPayment(
+      tokenIdentifier: tokenIdentifier ?? this.tokenIdentifier,
+      tokenNonce: tokenNonce ?? this.tokenNonce,
+      amount: amount ?? this.amount,
+      amountShort: amountShort ?? this.amountShort,
+      usdValue: usdValue ?? this.usdValue,
+      decimals: decimals ?? this.decimals,
+    );
+  }
+
+  EgldOrEsdtTokenPayment copyWithWrapped({
+    Wrapped<String>? tokenIdentifier,
+    Wrapped<double>? tokenNonce,
+    Wrapped<String>? amount,
+    Wrapped<double?>? amountShort,
+    Wrapped<double?>? usdValue,
+    Wrapped<double?>? decimals,
+  }) {
+    return EgldOrEsdtTokenPayment(
+      tokenIdentifier: (tokenIdentifier != null
+          ? tokenIdentifier.value
+          : this.tokenIdentifier),
+      tokenNonce: (tokenNonce != null ? tokenNonce.value : this.tokenNonce),
+      amount: (amount != null ? amount.value : this.amount),
+      amountShort: (amountShort != null ? amountShort.value : this.amountShort),
+      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
+      decimals: (decimals != null ? decimals.value : this.decimals),
     );
   }
 }
@@ -13783,7 +12820,7 @@ class MintStageDto {
   @JsonKey(name: 'walletLimitReached')
   final bool walletLimitReached;
   @JsonKey(name: 'maxBuyable')
-  final double? maxBuyable;
+  final Object? maxBuyable;
   static const fromJsonFactory = _$MintStageDtoFromJson;
 
   @override
@@ -13908,7 +12945,7 @@ extension $MintStageDtoExtension on MintStageDto {
     String? id,
     double? ts,
     bool? walletLimitReached,
-    double? maxBuyable,
+    Object? maxBuyable,
   }) {
     return MintStageDto(
       dataType: dataType ?? this.dataType,
@@ -13948,7 +12985,7 @@ extension $MintStageDtoExtension on MintStageDto {
     Wrapped<String>? id,
     Wrapped<double>? ts,
     Wrapped<bool>? walletLimitReached,
-    Wrapped<double?>? maxBuyable,
+    Wrapped<Object?>? maxBuyable,
   }) {
     return MintStageDto(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -13974,6 +13011,323 @@ extension $MintStageDtoExtension on MintStageDto {
           ? walletLimitReached.value
           : this.walletLimitReached),
       maxBuyable: (maxBuyable != null ? maxBuyable.value : this.maxBuyable),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionInfoDto {
+  const CollectionInfoDto({
+    required this.name,
+    required this.description,
+    required this.isVisible,
+    required this.isVerified,
+    required this.socials,
+    required this.profile,
+    required this.banner,
+    required this.owner,
+    this.collectionSize,
+    this.holdersCount,
+    this.followCount,
+    required this.volume,
+  });
+
+  factory CollectionInfoDto.fromJson(Map<String, dynamic> json) =>
+      _$CollectionInfoDtoFromJson(json);
+
+  static const toJsonFactory = _$CollectionInfoDtoToJson;
+  Map<String, dynamic> toJson() => _$CollectionInfoDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'description')
+  final String description;
+  @JsonKey(name: 'isVisible')
+  final bool isVisible;
+  @JsonKey(name: 'isVerified')
+  final bool isVerified;
+  @JsonKey(name: 'socials')
+  final SocialsDto socials;
+  @JsonKey(name: 'profile')
+  final String profile;
+  @JsonKey(name: 'banner')
+  final String banner;
+  @JsonKey(name: 'owner')
+  final String owner;
+  @JsonKey(name: 'collectionSize')
+  final double? collectionSize;
+  @JsonKey(name: 'holdersCount')
+  final double? holdersCount;
+  @JsonKey(name: 'followCount')
+  final double? followCount;
+  @JsonKey(name: 'volume')
+  final double volume;
+  static const fromJsonFactory = _$CollectionInfoDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionInfoDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality().equals(
+                  other.description,
+                  description,
+                )) &&
+            (identical(other.isVisible, isVisible) ||
+                const DeepCollectionEquality().equals(
+                  other.isVisible,
+                  isVisible,
+                )) &&
+            (identical(other.isVerified, isVerified) ||
+                const DeepCollectionEquality().equals(
+                  other.isVerified,
+                  isVerified,
+                )) &&
+            (identical(other.socials, socials) ||
+                const DeepCollectionEquality().equals(
+                  other.socials,
+                  socials,
+                )) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(
+                  other.profile,
+                  profile,
+                )) &&
+            (identical(other.banner, banner) ||
+                const DeepCollectionEquality().equals(other.banner, banner)) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.collectionSize, collectionSize) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionSize,
+                  collectionSize,
+                )) &&
+            (identical(other.holdersCount, holdersCount) ||
+                const DeepCollectionEquality().equals(
+                  other.holdersCount,
+                  holdersCount,
+                )) &&
+            (identical(other.followCount, followCount) ||
+                const DeepCollectionEquality().equals(
+                  other.followCount,
+                  followCount,
+                )) &&
+            (identical(other.volume, volume) ||
+                const DeepCollectionEquality().equals(other.volume, volume)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(isVisible) ^
+      const DeepCollectionEquality().hash(isVerified) ^
+      const DeepCollectionEquality().hash(socials) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(banner) ^
+      const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(collectionSize) ^
+      const DeepCollectionEquality().hash(holdersCount) ^
+      const DeepCollectionEquality().hash(followCount) ^
+      const DeepCollectionEquality().hash(volume) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionInfoDtoExtension on CollectionInfoDto {
+  CollectionInfoDto copyWith({
+    String? name,
+    String? description,
+    bool? isVisible,
+    bool? isVerified,
+    SocialsDto? socials,
+    String? profile,
+    String? banner,
+    String? owner,
+    double? collectionSize,
+    double? holdersCount,
+    double? followCount,
+    double? volume,
+  }) {
+    return CollectionInfoDto(
+      name: name ?? this.name,
+      description: description ?? this.description,
+      isVisible: isVisible ?? this.isVisible,
+      isVerified: isVerified ?? this.isVerified,
+      socials: socials ?? this.socials,
+      profile: profile ?? this.profile,
+      banner: banner ?? this.banner,
+      owner: owner ?? this.owner,
+      collectionSize: collectionSize ?? this.collectionSize,
+      holdersCount: holdersCount ?? this.holdersCount,
+      followCount: followCount ?? this.followCount,
+      volume: volume ?? this.volume,
+    );
+  }
+
+  CollectionInfoDto copyWithWrapped({
+    Wrapped<String>? name,
+    Wrapped<String>? description,
+    Wrapped<bool>? isVisible,
+    Wrapped<bool>? isVerified,
+    Wrapped<SocialsDto>? socials,
+    Wrapped<String>? profile,
+    Wrapped<String>? banner,
+    Wrapped<String>? owner,
+    Wrapped<double?>? collectionSize,
+    Wrapped<double?>? holdersCount,
+    Wrapped<double?>? followCount,
+    Wrapped<double>? volume,
+  }) {
+    return CollectionInfoDto(
+      name: (name != null ? name.value : this.name),
+      description: (description != null ? description.value : this.description),
+      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
+      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
+      socials: (socials != null ? socials.value : this.socials),
+      profile: (profile != null ? profile.value : this.profile),
+      banner: (banner != null ? banner.value : this.banner),
+      owner: (owner != null ? owner.value : this.owner),
+      collectionSize: (collectionSize != null
+          ? collectionSize.value
+          : this.collectionSize),
+      holdersCount: (holdersCount != null
+          ? holdersCount.value
+          : this.holdersCount),
+      followCount: (followCount != null ? followCount.value : this.followCount),
+      volume: (volume != null ? volume.value : this.volume),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreatorInfoDto {
+  const CreatorInfoDto({
+    required this.name,
+    required this.contractAddress,
+    required this.address,
+    required this.profile,
+    required this.banner,
+    required this.joinedDate,
+    required this.creatorTag,
+  });
+
+  factory CreatorInfoDto.fromJson(Map<String, dynamic> json) =>
+      _$CreatorInfoDtoFromJson(json);
+
+  static const toJsonFactory = _$CreatorInfoDtoToJson;
+  Map<String, dynamic> toJson() => _$CreatorInfoDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'address')
+  final String address;
+  @JsonKey(name: 'profile')
+  final String profile;
+  @JsonKey(name: 'banner')
+  final String banner;
+  @JsonKey(name: 'joinedDate')
+  final double joinedDate;
+  @JsonKey(name: 'creatorTag')
+  final String creatorTag;
+  static const fromJsonFactory = _$CreatorInfoDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CreatorInfoDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(
+                  other.address,
+                  address,
+                )) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(
+                  other.profile,
+                  profile,
+                )) &&
+            (identical(other.banner, banner) ||
+                const DeepCollectionEquality().equals(other.banner, banner)) &&
+            (identical(other.joinedDate, joinedDate) ||
+                const DeepCollectionEquality().equals(
+                  other.joinedDate,
+                  joinedDate,
+                )) &&
+            (identical(other.creatorTag, creatorTag) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorTag,
+                  creatorTag,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(banner) ^
+      const DeepCollectionEquality().hash(joinedDate) ^
+      const DeepCollectionEquality().hash(creatorTag) ^
+      runtimeType.hashCode;
+}
+
+extension $CreatorInfoDtoExtension on CreatorInfoDto {
+  CreatorInfoDto copyWith({
+    String? name,
+    String? contractAddress,
+    String? address,
+    String? profile,
+    String? banner,
+    double? joinedDate,
+    String? creatorTag,
+  }) {
+    return CreatorInfoDto(
+      name: name ?? this.name,
+      contractAddress: contractAddress ?? this.contractAddress,
+      address: address ?? this.address,
+      profile: profile ?? this.profile,
+      banner: banner ?? this.banner,
+      joinedDate: joinedDate ?? this.joinedDate,
+      creatorTag: creatorTag ?? this.creatorTag,
+    );
+  }
+
+  CreatorInfoDto copyWithWrapped({
+    Wrapped<String>? name,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? address,
+    Wrapped<String>? profile,
+    Wrapped<String>? banner,
+    Wrapped<double>? joinedDate,
+    Wrapped<String>? creatorTag,
+  }) {
+    return CreatorInfoDto(
+      name: (name != null ? name.value : this.name),
+      contractAddress: (contractAddress != null
+          ? contractAddress.value
+          : this.contractAddress),
+      address: (address != null ? address.value : this.address),
+      profile: (profile != null ? profile.value : this.profile),
+      banner: (banner != null ? banner.value : this.banner),
+      joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
+      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
     );
   }
 }
@@ -14512,32 +13866,48 @@ extension $CollectionOwnerDtoExtension on CollectionOwnerDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class AttributeDto {
-  const AttributeDto({required this.traitType, required this.$value});
+class AllTimeHigh {
+  const AllTimeHigh({
+    required this.price,
+    required this.timestamp,
+    required this.txHash,
+    required this.identifier,
+  });
 
-  factory AttributeDto.fromJson(Map<String, dynamic> json) =>
-      _$AttributeDtoFromJson(json);
+  factory AllTimeHigh.fromJson(Map<String, dynamic> json) =>
+      _$AllTimeHighFromJson(json);
 
-  static const toJsonFactory = _$AttributeDtoToJson;
-  Map<String, dynamic> toJson() => _$AttributeDtoToJson(this);
+  static const toJsonFactory = _$AllTimeHighToJson;
+  Map<String, dynamic> toJson() => _$AllTimeHighToJson(this);
 
-  @JsonKey(name: 'trait_type')
-  final String traitType;
-  @JsonKey(name: 'value')
-  final String $value;
-  static const fromJsonFactory = _$AttributeDtoFromJson;
+  @JsonKey(name: 'price')
+  final double price;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'txHash')
+  final String txHash;
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  static const fromJsonFactory = _$AllTimeHighFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is AttributeDto &&
-            (identical(other.traitType, traitType) ||
+        (other is AllTimeHigh &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality().equals(
-                  other.traitType,
-                  traitType,
+                  other.timestamp,
+                  timestamp,
                 )) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)));
+            (identical(other.txHash, txHash) ||
+                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )));
   }
 
   @override
@@ -14545,153 +13915,412 @@ class AttributeDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(traitType) ^
-      const DeepCollectionEquality().hash($value) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(txHash) ^
+      const DeepCollectionEquality().hash(identifier) ^
       runtimeType.hashCode;
 }
 
-extension $AttributeDtoExtension on AttributeDto {
-  AttributeDto copyWith({String? traitType, String? $value}) {
-    return AttributeDto(
-      traitType: traitType ?? this.traitType,
-      $value: $value ?? this.$value,
+extension $AllTimeHighExtension on AllTimeHigh {
+  AllTimeHigh copyWith({
+    double? price,
+    double? timestamp,
+    String? txHash,
+    String? identifier,
+  }) {
+    return AllTimeHigh(
+      price: price ?? this.price,
+      timestamp: timestamp ?? this.timestamp,
+      txHash: txHash ?? this.txHash,
+      identifier: identifier ?? this.identifier,
     );
   }
 
-  AttributeDto copyWithWrapped({
-    Wrapped<String>? traitType,
-    Wrapped<String>? $value,
+  AllTimeHigh copyWithWrapped({
+    Wrapped<double>? price,
+    Wrapped<double>? timestamp,
+    Wrapped<String>? txHash,
+    Wrapped<String>? identifier,
   }) {
-    return AttributeDto(
-      traitType: (traitType != null ? traitType.value : this.traitType),
-      $value: ($value != null ? $value.value : this.$value),
+    return AllTimeHigh(
+      price: (price != null ? price.value : this.price),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      txHash: (txHash != null ? txHash.value : this.txHash),
+      identifier: (identifier != null ? identifier.value : this.identifier),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ResourceDto {
-  const ResourceDto({
-    required this.offerId,
-    required this.collection,
-    required this.quantity,
-    required this.paymentToken,
-    required this.paymentTokenNonce,
-    required this.price,
-    required this.priceShort,
-    required this.attributes,
-    required this.owner,
-    required this.timestamp,
-    required this.marketplace,
-    required this.uniqueKey,
-    required this.isActive,
-    required this.usdValue,
+class TradingDataSummary {
+  const TradingDataSummary({
+    required this.volume,
+    required this.volumeMargin,
+    required this.trades,
+    required this.tradesMargin,
+    this.minPrice,
+    this.maxPrice,
+    this.averagePrice,
   });
 
-  factory ResourceDto.fromJson(Map<String, dynamic> json) =>
-      _$ResourceDtoFromJson(json);
+  factory TradingDataSummary.fromJson(Map<String, dynamic> json) =>
+      _$TradingDataSummaryFromJson(json);
 
-  static const toJsonFactory = _$ResourceDtoToJson;
-  Map<String, dynamic> toJson() => _$ResourceDtoToJson(this);
+  static const toJsonFactory = _$TradingDataSummaryToJson;
+  Map<String, dynamic> toJson() => _$TradingDataSummaryToJson(this);
 
-  @JsonKey(name: 'offerId')
-  final double offerId;
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'quantity')
-  final double quantity;
-  @JsonKey(name: 'paymentToken')
-  final String paymentToken;
-  @JsonKey(name: 'paymentTokenNonce')
-  final double paymentTokenNonce;
-  @JsonKey(name: 'price')
-  final String price;
-  @JsonKey(name: 'priceShort')
-  final double priceShort;
-  @JsonKey(name: 'attributes', defaultValue: <AttributeDto>[])
-  final List<AttributeDto> attributes;
-  @JsonKey(name: 'owner')
-  final OwnerDto owner;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  @JsonKey(name: 'marketplace')
-  final String marketplace;
-  @JsonKey(name: 'uniqueKey')
-  final String uniqueKey;
-  @JsonKey(name: 'isActive')
-  final bool isActive;
-  @JsonKey(name: 'usdValue')
-  final double usdValue;
-  static const fromJsonFactory = _$ResourceDtoFromJson;
+  @JsonKey(name: 'volume')
+  final double volume;
+  @JsonKey(name: 'volumeMargin')
+  final double volumeMargin;
+  @JsonKey(name: 'trades')
+  final double trades;
+  @JsonKey(name: 'tradesMargin')
+  final double tradesMargin;
+  @JsonKey(name: 'minPrice')
+  final double? minPrice;
+  @JsonKey(name: 'maxPrice')
+  final double? maxPrice;
+  @JsonKey(name: 'averagePrice')
+  final double? averagePrice;
+  static const fromJsonFactory = _$TradingDataSummaryFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is ResourceDto &&
-            (identical(other.offerId, offerId) ||
+        (other is TradingDataSummary &&
+            (identical(other.volume, volume) ||
+                const DeepCollectionEquality().equals(other.volume, volume)) &&
+            (identical(other.volumeMargin, volumeMargin) ||
                 const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
+                  other.volumeMargin,
+                  volumeMargin,
+                )) &&
+            (identical(other.trades, trades) ||
+                const DeepCollectionEquality().equals(other.trades, trades)) &&
+            (identical(other.tradesMargin, tradesMargin) ||
+                const DeepCollectionEquality().equals(
+                  other.tradesMargin,
+                  tradesMargin,
+                )) &&
+            (identical(other.minPrice, minPrice) ||
+                const DeepCollectionEquality().equals(
+                  other.minPrice,
+                  minPrice,
+                )) &&
+            (identical(other.maxPrice, maxPrice) ||
+                const DeepCollectionEquality().equals(
+                  other.maxPrice,
+                  maxPrice,
+                )) &&
+            (identical(other.averagePrice, averagePrice) ||
+                const DeepCollectionEquality().equals(
+                  other.averagePrice,
+                  averagePrice,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(volume) ^
+      const DeepCollectionEquality().hash(volumeMargin) ^
+      const DeepCollectionEquality().hash(trades) ^
+      const DeepCollectionEquality().hash(tradesMargin) ^
+      const DeepCollectionEquality().hash(minPrice) ^
+      const DeepCollectionEquality().hash(maxPrice) ^
+      const DeepCollectionEquality().hash(averagePrice) ^
+      runtimeType.hashCode;
+}
+
+extension $TradingDataSummaryExtension on TradingDataSummary {
+  TradingDataSummary copyWith({
+    double? volume,
+    double? volumeMargin,
+    double? trades,
+    double? tradesMargin,
+    double? minPrice,
+    double? maxPrice,
+    double? averagePrice,
+  }) {
+    return TradingDataSummary(
+      volume: volume ?? this.volume,
+      volumeMargin: volumeMargin ?? this.volumeMargin,
+      trades: trades ?? this.trades,
+      tradesMargin: tradesMargin ?? this.tradesMargin,
+      minPrice: minPrice ?? this.minPrice,
+      maxPrice: maxPrice ?? this.maxPrice,
+      averagePrice: averagePrice ?? this.averagePrice,
+    );
+  }
+
+  TradingDataSummary copyWithWrapped({
+    Wrapped<double>? volume,
+    Wrapped<double>? volumeMargin,
+    Wrapped<double>? trades,
+    Wrapped<double>? tradesMargin,
+    Wrapped<double?>? minPrice,
+    Wrapped<double?>? maxPrice,
+    Wrapped<double?>? averagePrice,
+  }) {
+    return TradingDataSummary(
+      volume: (volume != null ? volume.value : this.volume),
+      volumeMargin: (volumeMargin != null
+          ? volumeMargin.value
+          : this.volumeMargin),
+      trades: (trades != null ? trades.value : this.trades),
+      tradesMargin: (tradesMargin != null
+          ? tradesMargin.value
+          : this.tradesMargin),
+      minPrice: (minPrice != null ? minPrice.value : this.minPrice),
+      maxPrice: (maxPrice != null ? maxPrice.value : this.maxPrice),
+      averagePrice: (averagePrice != null
+          ? averagePrice.value
+          : this.averagePrice),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TradingStatistics {
+  const TradingStatistics({
+    required this.totalVolume,
+    required this.totalTrades,
+    this.averagePrice,
+    required this.allTimeHigh,
+    required this.day,
+    required this.week,
+    required this.month,
+    required this.quarter,
+    required this.halfYear,
+    required this.year,
+  });
+
+  factory TradingStatistics.fromJson(Map<String, dynamic> json) =>
+      _$TradingStatisticsFromJson(json);
+
+  static const toJsonFactory = _$TradingStatisticsToJson;
+  Map<String, dynamic> toJson() => _$TradingStatisticsToJson(this);
+
+  @JsonKey(name: 'totalVolume')
+  final double totalVolume;
+  @JsonKey(name: 'totalTrades')
+  final double totalTrades;
+  @JsonKey(name: 'averagePrice')
+  final double? averagePrice;
+  @JsonKey(name: 'allTimeHigh')
+  final AllTimeHigh allTimeHigh;
+  @JsonKey(name: 'day')
+  final TradingDataSummary day;
+  @JsonKey(name: 'week')
+  final TradingDataSummary week;
+  @JsonKey(name: 'month')
+  final TradingDataSummary month;
+  @JsonKey(name: 'quarter')
+  final TradingDataSummary quarter;
+  @JsonKey(name: 'halfYear')
+  final TradingDataSummary halfYear;
+  @JsonKey(name: 'year')
+  final TradingDataSummary year;
+  static const fromJsonFactory = _$TradingStatisticsFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TradingStatistics &&
+            (identical(other.totalVolume, totalVolume) ||
+                const DeepCollectionEquality().equals(
+                  other.totalVolume,
+                  totalVolume,
+                )) &&
+            (identical(other.totalTrades, totalTrades) ||
+                const DeepCollectionEquality().equals(
+                  other.totalTrades,
+                  totalTrades,
+                )) &&
+            (identical(other.averagePrice, averagePrice) ||
+                const DeepCollectionEquality().equals(
+                  other.averagePrice,
+                  averagePrice,
+                )) &&
+            (identical(other.allTimeHigh, allTimeHigh) ||
+                const DeepCollectionEquality().equals(
+                  other.allTimeHigh,
+                  allTimeHigh,
+                )) &&
+            (identical(other.day, day) ||
+                const DeepCollectionEquality().equals(other.day, day)) &&
+            (identical(other.week, week) ||
+                const DeepCollectionEquality().equals(other.week, week)) &&
+            (identical(other.month, month) ||
+                const DeepCollectionEquality().equals(other.month, month)) &&
+            (identical(other.quarter, quarter) ||
+                const DeepCollectionEquality().equals(
+                  other.quarter,
+                  quarter,
+                )) &&
+            (identical(other.halfYear, halfYear) ||
+                const DeepCollectionEquality().equals(
+                  other.halfYear,
+                  halfYear,
+                )) &&
+            (identical(other.year, year) ||
+                const DeepCollectionEquality().equals(other.year, year)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalVolume) ^
+      const DeepCollectionEquality().hash(totalTrades) ^
+      const DeepCollectionEquality().hash(averagePrice) ^
+      const DeepCollectionEquality().hash(allTimeHigh) ^
+      const DeepCollectionEquality().hash(day) ^
+      const DeepCollectionEquality().hash(week) ^
+      const DeepCollectionEquality().hash(month) ^
+      const DeepCollectionEquality().hash(quarter) ^
+      const DeepCollectionEquality().hash(halfYear) ^
+      const DeepCollectionEquality().hash(year) ^
+      runtimeType.hashCode;
+}
+
+extension $TradingStatisticsExtension on TradingStatistics {
+  TradingStatistics copyWith({
+    double? totalVolume,
+    double? totalTrades,
+    double? averagePrice,
+    AllTimeHigh? allTimeHigh,
+    TradingDataSummary? day,
+    TradingDataSummary? week,
+    TradingDataSummary? month,
+    TradingDataSummary? quarter,
+    TradingDataSummary? halfYear,
+    TradingDataSummary? year,
+  }) {
+    return TradingStatistics(
+      totalVolume: totalVolume ?? this.totalVolume,
+      totalTrades: totalTrades ?? this.totalTrades,
+      averagePrice: averagePrice ?? this.averagePrice,
+      allTimeHigh: allTimeHigh ?? this.allTimeHigh,
+      day: day ?? this.day,
+      week: week ?? this.week,
+      month: month ?? this.month,
+      quarter: quarter ?? this.quarter,
+      halfYear: halfYear ?? this.halfYear,
+      year: year ?? this.year,
+    );
+  }
+
+  TradingStatistics copyWithWrapped({
+    Wrapped<double>? totalVolume,
+    Wrapped<double>? totalTrades,
+    Wrapped<double?>? averagePrice,
+    Wrapped<AllTimeHigh>? allTimeHigh,
+    Wrapped<TradingDataSummary>? day,
+    Wrapped<TradingDataSummary>? week,
+    Wrapped<TradingDataSummary>? month,
+    Wrapped<TradingDataSummary>? quarter,
+    Wrapped<TradingDataSummary>? halfYear,
+    Wrapped<TradingDataSummary>? year,
+  }) {
+    return TradingStatistics(
+      totalVolume: (totalVolume != null ? totalVolume.value : this.totalVolume),
+      totalTrades: (totalTrades != null ? totalTrades.value : this.totalTrades),
+      averagePrice: (averagePrice != null
+          ? averagePrice.value
+          : this.averagePrice),
+      allTimeHigh: (allTimeHigh != null ? allTimeHigh.value : this.allTimeHigh),
+      day: (day != null ? day.value : this.day),
+      week: (week != null ? week.value : this.week),
+      month: (month != null ? month.value : this.month),
+      quarter: (quarter != null ? quarter.value : this.quarter),
+      halfYear: (halfYear != null ? halfYear.value : this.halfYear),
+      year: (year != null ? year.value : this.year),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CollectionStatsDto {
+  const CollectionStatsDto({
+    required this.dataType,
+    required this.collection,
+    this.floorPrice,
+    required this.listedCount,
+    required this.tradingStats,
+    required this.chain,
+    required this.ts,
+    required this.id,
+  });
+
+  factory CollectionStatsDto.fromJson(Map<String, dynamic> json) =>
+      _$CollectionStatsDtoFromJson(json);
+
+  static const toJsonFactory = _$CollectionStatsDtoToJson;
+  Map<String, dynamic> toJson() => _$CollectionStatsDtoToJson(this);
+
+  @JsonKey(name: 'dataType')
+  final String dataType;
+  @JsonKey(name: 'collection')
+  final String collection;
+  @JsonKey(name: 'floorPrice')
+  final double? floorPrice;
+  @JsonKey(name: 'listedCount')
+  final double listedCount;
+  @JsonKey(name: 'tradingStats')
+  final TradingStatistics tradingStats;
+  @JsonKey(
+    name: 'chain',
+    toJson: collectionStatsDtoChainToJson,
+    fromJson: collectionStatsDtoChainFromJson,
+  )
+  final enums.CollectionStatsDtoChain chain;
+  @JsonKey(name: '_ts')
+  final double ts;
+  @JsonKey(name: 'id')
+  final String id;
+  static const fromJsonFactory = _$CollectionStatsDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionStatsDto &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
                 )) &&
             (identical(other.collection, collection) ||
                 const DeepCollectionEquality().equals(
                   other.collection,
                   collection,
                 )) &&
-            (identical(other.quantity, quantity) ||
+            (identical(other.floorPrice, floorPrice) ||
                 const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
+                  other.floorPrice,
+                  floorPrice,
                 )) &&
-            (identical(other.paymentToken, paymentToken) ||
+            (identical(other.listedCount, listedCount) ||
                 const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
+                  other.listedCount,
+                  listedCount,
                 )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
+            (identical(other.tradingStats, tradingStats) ||
                 const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
+                  other.tradingStats,
+                  tradingStats,
                 )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.priceShort, priceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.priceShort,
-                  priceShort,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.uniqueKey, uniqueKey) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueKey,
-                  uniqueKey,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
@@ -14699,129 +14328,102 @@ class ResourceDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(offerId) ^
+      const DeepCollectionEquality().hash(dataType) ^
       const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(priceShort) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(uniqueKey) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(usdValue) ^
+      const DeepCollectionEquality().hash(floorPrice) ^
+      const DeepCollectionEquality().hash(listedCount) ^
+      const DeepCollectionEquality().hash(tradingStats) ^
+      const DeepCollectionEquality().hash(chain) ^
+      const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(id) ^
       runtimeType.hashCode;
 }
 
-extension $ResourceDtoExtension on ResourceDto {
-  ResourceDto copyWith({
-    double? offerId,
+extension $CollectionStatsDtoExtension on CollectionStatsDto {
+  CollectionStatsDto copyWith({
+    String? dataType,
     String? collection,
-    double? quantity,
-    String? paymentToken,
-    double? paymentTokenNonce,
-    String? price,
-    double? priceShort,
-    List<AttributeDto>? attributes,
-    OwnerDto? owner,
-    double? timestamp,
-    String? marketplace,
-    String? uniqueKey,
-    bool? isActive,
-    double? usdValue,
+    double? floorPrice,
+    double? listedCount,
+    TradingStatistics? tradingStats,
+    enums.CollectionStatsDtoChain? chain,
+    double? ts,
+    String? id,
   }) {
-    return ResourceDto(
-      offerId: offerId ?? this.offerId,
+    return CollectionStatsDto(
+      dataType: dataType ?? this.dataType,
       collection: collection ?? this.collection,
-      quantity: quantity ?? this.quantity,
-      paymentToken: paymentToken ?? this.paymentToken,
-      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
-      price: price ?? this.price,
-      priceShort: priceShort ?? this.priceShort,
-      attributes: attributes ?? this.attributes,
-      owner: owner ?? this.owner,
-      timestamp: timestamp ?? this.timestamp,
-      marketplace: marketplace ?? this.marketplace,
-      uniqueKey: uniqueKey ?? this.uniqueKey,
-      isActive: isActive ?? this.isActive,
-      usdValue: usdValue ?? this.usdValue,
+      floorPrice: floorPrice ?? this.floorPrice,
+      listedCount: listedCount ?? this.listedCount,
+      tradingStats: tradingStats ?? this.tradingStats,
+      chain: chain ?? this.chain,
+      ts: ts ?? this.ts,
+      id: id ?? this.id,
     );
   }
 
-  ResourceDto copyWithWrapped({
-    Wrapped<double>? offerId,
+  CollectionStatsDto copyWithWrapped({
+    Wrapped<String>? dataType,
     Wrapped<String>? collection,
-    Wrapped<double>? quantity,
-    Wrapped<String>? paymentToken,
-    Wrapped<double>? paymentTokenNonce,
-    Wrapped<String>? price,
-    Wrapped<double>? priceShort,
-    Wrapped<List<AttributeDto>>? attributes,
-    Wrapped<OwnerDto>? owner,
-    Wrapped<double>? timestamp,
-    Wrapped<String>? marketplace,
-    Wrapped<String>? uniqueKey,
-    Wrapped<bool>? isActive,
-    Wrapped<double>? usdValue,
+    Wrapped<double?>? floorPrice,
+    Wrapped<double>? listedCount,
+    Wrapped<TradingStatistics>? tradingStats,
+    Wrapped<enums.CollectionStatsDtoChain>? chain,
+    Wrapped<double>? ts,
+    Wrapped<String>? id,
   }) {
-    return ResourceDto(
-      offerId: (offerId != null ? offerId.value : this.offerId),
+    return CollectionStatsDto(
+      dataType: (dataType != null ? dataType.value : this.dataType),
       collection: (collection != null ? collection.value : this.collection),
-      quantity: (quantity != null ? quantity.value : this.quantity),
-      paymentToken: (paymentToken != null
-          ? paymentToken.value
-          : this.paymentToken),
-      paymentTokenNonce: (paymentTokenNonce != null
-          ? paymentTokenNonce.value
-          : this.paymentTokenNonce),
-      price: (price != null ? price.value : this.price),
-      priceShort: (priceShort != null ? priceShort.value : this.priceShort),
-      attributes: (attributes != null ? attributes.value : this.attributes),
-      owner: (owner != null ? owner.value : this.owner),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
-      uniqueKey: (uniqueKey != null ? uniqueKey.value : this.uniqueKey),
-      isActive: (isActive != null ? isActive.value : this.isActive),
-      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
+      floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
+      listedCount: (listedCount != null ? listedCount.value : this.listedCount),
+      tradingStats: (tradingStats != null
+          ? tradingStats.value
+          : this.tradingStats),
+      chain: (chain != null ? chain.value : this.chain),
+      ts: (ts != null ? ts.value : this.ts),
+      id: (id != null ? id.value : this.id),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class GlobalOffersDto {
-  const GlobalOffersDto({
-    required this.resources,
+class GlobalOfferPaginated {
+  const GlobalOfferPaginated({
+    this.count,
     required this.hasMoreResults,
+    required this.resources,
   });
 
-  factory GlobalOffersDto.fromJson(Map<String, dynamic> json) =>
-      _$GlobalOffersDtoFromJson(json);
+  factory GlobalOfferPaginated.fromJson(Map<String, dynamic> json) =>
+      _$GlobalOfferPaginatedFromJson(json);
 
-  static const toJsonFactory = _$GlobalOffersDtoToJson;
-  Map<String, dynamic> toJson() => _$GlobalOffersDtoToJson(this);
+  static const toJsonFactory = _$GlobalOfferPaginatedToJson;
+  Map<String, dynamic> toJson() => _$GlobalOfferPaginatedToJson(this);
 
-  @JsonKey(name: 'resources', defaultValue: <ResourceDto>[])
-  final List<ResourceDto> resources;
+  @JsonKey(name: 'count')
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  static const fromJsonFactory = _$GlobalOffersDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$GlobalOfferPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is GlobalOffersDto &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
+        (other is GlobalOfferPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
                   other.hasMoreResults,
                   hasMoreResults,
+                )) &&
+            (identical(other.resources, resources) ||
+                const DeepCollectionEquality().equals(
+                  other.resources,
+                  resources,
                 )));
   }
 
@@ -14830,31 +14432,36 @@ class GlobalOffersDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $GlobalOffersDtoExtension on GlobalOffersDto {
-  GlobalOffersDto copyWith({
-    List<ResourceDto>? resources,
+extension $GlobalOfferPaginatedExtension on GlobalOfferPaginated {
+  GlobalOfferPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
+    List<List<Object?>>? resources,
   }) {
-    return GlobalOffersDto(
-      resources: resources ?? this.resources,
+    return GlobalOfferPaginated(
+      count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
     );
   }
 
-  GlobalOffersDto copyWithWrapped({
-    Wrapped<List<ResourceDto>>? resources,
+  GlobalOfferPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return GlobalOffersDto(
-      resources: (resources != null ? resources.value : this.resources),
+    return GlobalOfferPaginated(
+      count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
     );
   }
 }
@@ -14864,10 +14471,10 @@ class MintingListingDto {
   const MintingListingDto({
     required this.dataType,
     required this.collection,
-    required this.contractAddress,
-    required this.collectionTag,
     required this.creatorTag,
     required this.creatorName,
+    required this.contractAddress,
+    required this.collectionTag,
     required this.cid,
     required this.mediaType,
     required this.baseNftName,
@@ -14885,13 +14492,13 @@ class MintingListingDto {
     required this.allowsRefund,
     required this.hasBotProtection,
     required this.hasReveal,
+    required this.tags,
     required this.prices,
     required this.startTime,
     required this.endTime,
     required this.isSoldOut,
-    required this.tags,
     required this.id,
-    required this.ts,
+    this.ts,
     required this.collectionInfo,
   });
 
@@ -14903,20 +14510,20 @@ class MintingListingDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeFromJson,
+    toJson: mintingListingDtoDataTypeToJson,
+    fromJson: mintingListingDtoDataTypeFromJson,
   )
-  final enums.CollectionDataType dataType;
+  final enums.MintingListingDtoDataType dataType;
   @JsonKey(name: 'collection')
   final String collection;
-  @JsonKey(name: 'contractAddress')
-  final String contractAddress;
-  @JsonKey(name: 'collectionTag')
-  final String collectionTag;
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'creatorName')
   final String creatorName;
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'collectionTag')
+  final String collectionTag;
   @JsonKey(name: 'cid')
   final String cid;
   @JsonKey(name: 'mediaType')
@@ -14951,20 +14558,20 @@ class MintingListingDto {
   final bool hasBotProtection;
   @JsonKey(name: 'hasReveal')
   final bool hasReveal;
+  @JsonKey(name: 'tags')
+  final Object tags;
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment> prices;
   @JsonKey(name: 'startTime')
-  final Object startTime;
+  final double startTime;
   @JsonKey(name: 'endTime')
   final double endTime;
   @JsonKey(name: 'isSoldOut')
-  final Object isSoldOut;
-  @JsonKey(name: 'tags')
-  final dynamic tags;
+  final bool isSoldOut;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   @JsonKey(name: 'collectionInfo')
   final CollectionInfoDto collectionInfo;
   static const fromJsonFactory = _$MintingListingDtoFromJson;
@@ -14983,16 +14590,6 @@ class MintingListingDto {
                   other.collection,
                   collection,
                 )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
             (identical(other.creatorTag, creatorTag) ||
                 const DeepCollectionEquality().equals(
                   other.creatorTag,
@@ -15002,6 +14599,16 @@ class MintingListingDto {
                 const DeepCollectionEquality().equals(
                   other.creatorName,
                   creatorName,
+                )) &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(other.collectionTag, collectionTag) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionTag,
+                  collectionTag,
                 )) &&
             (identical(other.cid, cid) ||
                 const DeepCollectionEquality().equals(other.cid, cid)) &&
@@ -15085,6 +14692,8 @@ class MintingListingDto {
                   other.hasReveal,
                   hasReveal,
                 )) &&
+            (identical(other.tags, tags) ||
+                const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.prices, prices) ||
                 const DeepCollectionEquality().equals(other.prices, prices)) &&
             (identical(other.startTime, startTime) ||
@@ -15102,8 +14711,6 @@ class MintingListingDto {
                   other.isSoldOut,
                   isSoldOut,
                 )) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.ts, ts) ||
@@ -15122,10 +14729,10 @@ class MintingListingDto {
   int get hashCode =>
       const DeepCollectionEquality().hash(dataType) ^
       const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
       const DeepCollectionEquality().hash(creatorTag) ^
       const DeepCollectionEquality().hash(creatorName) ^
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(collectionTag) ^
       const DeepCollectionEquality().hash(cid) ^
       const DeepCollectionEquality().hash(mediaType) ^
       const DeepCollectionEquality().hash(baseNftName) ^
@@ -15143,11 +14750,11 @@ class MintingListingDto {
       const DeepCollectionEquality().hash(allowsRefund) ^
       const DeepCollectionEquality().hash(hasBotProtection) ^
       const DeepCollectionEquality().hash(hasReveal) ^
+      const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(prices) ^
       const DeepCollectionEquality().hash(startTime) ^
       const DeepCollectionEquality().hash(endTime) ^
       const DeepCollectionEquality().hash(isSoldOut) ^
-      const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(ts) ^
       const DeepCollectionEquality().hash(collectionInfo) ^
@@ -15156,12 +14763,12 @@ class MintingListingDto {
 
 extension $MintingListingDtoExtension on MintingListingDto {
   MintingListingDto copyWith({
-    enums.CollectionDataType? dataType,
+    enums.MintingListingDtoDataType? dataType,
     String? collection,
-    String? contractAddress,
-    String? collectionTag,
     String? creatorTag,
     String? creatorName,
+    String? contractAddress,
+    String? collectionTag,
     String? cid,
     String? mediaType,
     String? baseNftName,
@@ -15179,11 +14786,11 @@ extension $MintingListingDtoExtension on MintingListingDto {
     bool? allowsRefund,
     bool? hasBotProtection,
     bool? hasReveal,
+    Object? tags,
     List<EgldOrEsdtTokenPayment>? prices,
-    Object? startTime,
+    double? startTime,
     double? endTime,
-    Object? isSoldOut,
-    dynamic tags,
+    bool? isSoldOut,
     String? id,
     double? ts,
     CollectionInfoDto? collectionInfo,
@@ -15191,10 +14798,10 @@ extension $MintingListingDtoExtension on MintingListingDto {
     return MintingListingDto(
       dataType: dataType ?? this.dataType,
       collection: collection ?? this.collection,
-      contractAddress: contractAddress ?? this.contractAddress,
-      collectionTag: collectionTag ?? this.collectionTag,
       creatorTag: creatorTag ?? this.creatorTag,
       creatorName: creatorName ?? this.creatorName,
+      contractAddress: contractAddress ?? this.contractAddress,
+      collectionTag: collectionTag ?? this.collectionTag,
       cid: cid ?? this.cid,
       mediaType: mediaType ?? this.mediaType,
       baseNftName: baseNftName ?? this.baseNftName,
@@ -15212,11 +14819,11 @@ extension $MintingListingDtoExtension on MintingListingDto {
       allowsRefund: allowsRefund ?? this.allowsRefund,
       hasBotProtection: hasBotProtection ?? this.hasBotProtection,
       hasReveal: hasReveal ?? this.hasReveal,
+      tags: tags ?? this.tags,
       prices: prices ?? this.prices,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       isSoldOut: isSoldOut ?? this.isSoldOut,
-      tags: tags ?? this.tags,
       id: id ?? this.id,
       ts: ts ?? this.ts,
       collectionInfo: collectionInfo ?? this.collectionInfo,
@@ -15224,12 +14831,12 @@ extension $MintingListingDtoExtension on MintingListingDto {
   }
 
   MintingListingDto copyWithWrapped({
-    Wrapped<enums.CollectionDataType>? dataType,
+    Wrapped<enums.MintingListingDtoDataType>? dataType,
     Wrapped<String>? collection,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? collectionTag,
     Wrapped<String>? creatorTag,
     Wrapped<String>? creatorName,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? collectionTag,
     Wrapped<String>? cid,
     Wrapped<String>? mediaType,
     Wrapped<String>? baseNftName,
@@ -15247,26 +14854,26 @@ extension $MintingListingDtoExtension on MintingListingDto {
     Wrapped<bool>? allowsRefund,
     Wrapped<bool>? hasBotProtection,
     Wrapped<bool>? hasReveal,
+    Wrapped<Object>? tags,
     Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
-    Wrapped<Object>? startTime,
+    Wrapped<double>? startTime,
     Wrapped<double>? endTime,
-    Wrapped<Object>? isSoldOut,
-    Wrapped<dynamic>? tags,
+    Wrapped<bool>? isSoldOut,
     Wrapped<String>? id,
-    Wrapped<double>? ts,
+    Wrapped<double?>? ts,
     Wrapped<CollectionInfoDto>? collectionInfo,
   }) {
     return MintingListingDto(
       dataType: (dataType != null ? dataType.value : this.dataType),
       collection: (collection != null ? collection.value : this.collection),
+      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
+      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
       contractAddress: (contractAddress != null
           ? contractAddress.value
           : this.contractAddress),
       collectionTag: (collectionTag != null
           ? collectionTag.value
           : this.collectionTag),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
-      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
       cid: (cid != null ? cid.value : this.cid),
       mediaType: (mediaType != null ? mediaType.value : this.mediaType),
       baseNftName: (baseNftName != null ? baseNftName.value : this.baseNftName),
@@ -15302,11 +14909,11 @@ extension $MintingListingDtoExtension on MintingListingDto {
           ? hasBotProtection.value
           : this.hasBotProtection),
       hasReveal: (hasReveal != null ? hasReveal.value : this.hasReveal),
+      tags: (tags != null ? tags.value : this.tags),
       prices: (prices != null ? prices.value : this.prices),
       startTime: (startTime != null ? startTime.value : this.startTime),
       endTime: (endTime != null ? endTime.value : this.endTime),
       isSoldOut: (isSoldOut != null ? isSoldOut.value : this.isSoldOut),
-      tags: (tags != null ? tags.value : this.tags),
       id: (id != null ? id.value : this.id),
       ts: (ts != null ? ts.value : this.ts),
       collectionInfo: (collectionInfo != null
@@ -15864,7 +15471,7 @@ class EventUserRoleDoc {
     this.createdAt,
     this.endTime,
     this.id,
-    required this.status,
+    this.status,
   });
 
   factory EventUserRoleDoc.fromJson(Map<String, dynamic> json) =>
@@ -15907,10 +15514,10 @@ class EventUserRoleDoc {
   final String? id;
   @JsonKey(
     name: 'status',
-    toJson: roleStatusToJson,
-    fromJson: roleStatusFromJson,
+    toJson: roleStatusNullableToJson,
+    fromJson: roleStatusNullableFromJson,
   )
-  final enums.RoleStatus status;
+  final enums.RoleStatus? status;
   static const fromJsonFactory = _$EventUserRoleDocFromJson;
 
   @override
@@ -16015,7 +15622,7 @@ extension $EventUserRoleDocExtension on EventUserRoleDoc {
     Wrapped<int?>? createdAt,
     Wrapped<int?>? endTime,
     Wrapped<String?>? id,
-    Wrapped<enums.RoleStatus>? status,
+    Wrapped<enums.RoleStatus?>? status,
   }) {
     return EventUserRoleDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -16370,16 +15977,17 @@ class CreatorDetailsDto {
     required this.address,
     required this.name,
     required this.creatorTag,
-    this.contractAddress,
-    this.ticketingContractAddress,
+    required this.contractAddress,
+    required this.ticketingContractAddress,
     required this.profile,
     required this.banner,
     required this.joinedDate,
     this.description,
     this.socials,
-    this.id,
-    required this.listing,
-    required this.events,
+    required this.id,
+    required this.ts,
+    this.listing,
+    this.events,
   });
 
   factory CreatorDetailsDto.fromJson(Map<String, dynamic> json) =>
@@ -16390,10 +15998,10 @@ class CreatorDetailsDto {
 
   @JsonKey(
     name: 'dataType',
-    toJson: userDataTypeToJson,
-    fromJson: userDataTypeFromJson,
+    toJson: creatorDetailsDtoDataTypeToJson,
+    fromJson: creatorDetailsDtoDataTypeFromJson,
   )
-  final enums.UserDataType dataType;
+  final enums.CreatorDetailsDtoDataType dataType;
   @JsonKey(name: 'address')
   final String address;
   @JsonKey(name: 'name')
@@ -16401,9 +16009,9 @@ class CreatorDetailsDto {
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'contractAddress')
-  final String? contractAddress;
+  final String contractAddress;
   @JsonKey(name: 'ticketingContractAddress')
-  final String? ticketingContractAddress;
+  final String ticketingContractAddress;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'banner')
@@ -16413,13 +16021,15 @@ class CreatorDetailsDto {
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
-  final Object? socials;
+  final SocialsDto? socials;
   @JsonKey(name: 'id')
-  final String? id;
+  final String id;
+  @JsonKey(name: '_ts')
+  final double ts;
   @JsonKey(name: 'listing', defaultValue: <MintingListingDto>[])
-  final List<MintingListingDto> listing;
+  final List<MintingListingDto>? listing;
   @JsonKey(name: 'events', defaultValue: <EventProfileDoc>[])
-  final List<EventProfileDoc> events;
+  final List<EventProfileDoc>? events;
   static const fromJsonFactory = _$CreatorDetailsDtoFromJson;
 
   @override
@@ -16480,6 +16090,8 @@ class CreatorDetailsDto {
                 )) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
             (identical(other.listing, listing) ||
                 const DeepCollectionEquality().equals(
                   other.listing,
@@ -16506,6 +16118,7 @@ class CreatorDetailsDto {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(socials) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ts) ^
       const DeepCollectionEquality().hash(listing) ^
       const DeepCollectionEquality().hash(events) ^
       runtimeType.hashCode;
@@ -16513,7 +16126,7 @@ class CreatorDetailsDto {
 
 extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
   CreatorDetailsDto copyWith({
-    enums.UserDataType? dataType,
+    enums.CreatorDetailsDtoDataType? dataType,
     String? address,
     String? name,
     String? creatorTag,
@@ -16523,8 +16136,9 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
     String? banner,
     double? joinedDate,
     String? description,
-    Object? socials,
+    SocialsDto? socials,
     String? id,
+    double? ts,
     List<MintingListingDto>? listing,
     List<EventProfileDoc>? events,
   }) {
@@ -16542,26 +16156,28 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
       description: description ?? this.description,
       socials: socials ?? this.socials,
       id: id ?? this.id,
+      ts: ts ?? this.ts,
       listing: listing ?? this.listing,
       events: events ?? this.events,
     );
   }
 
   CreatorDetailsDto copyWithWrapped({
-    Wrapped<enums.UserDataType>? dataType,
+    Wrapped<enums.CreatorDetailsDtoDataType>? dataType,
     Wrapped<String>? address,
     Wrapped<String>? name,
     Wrapped<String>? creatorTag,
-    Wrapped<String?>? contractAddress,
-    Wrapped<String?>? ticketingContractAddress,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
-    Wrapped<Object?>? socials,
-    Wrapped<String?>? id,
-    Wrapped<List<MintingListingDto>>? listing,
-    Wrapped<List<EventProfileDoc>>? events,
+    Wrapped<SocialsDto?>? socials,
+    Wrapped<String>? id,
+    Wrapped<double>? ts,
+    Wrapped<List<MintingListingDto>?>? listing,
+    Wrapped<List<EventProfileDoc>?>? events,
   }) {
     return CreatorDetailsDto(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -16580,6 +16196,7 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
       description: (description != null ? description.value : this.description),
       socials: (socials != null ? socials.value : this.socials),
       id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
       listing: (listing != null ? listing.value : this.listing),
       events: (events != null ? events.value : this.events),
     );
@@ -16660,21 +16277,24 @@ extension $EditUserCreatorProfileDtoExtension on EditUserCreatorProfileDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Reward {
-  const Reward({
+class XoxnoStakingReward {
+  const XoxnoStakingReward({
     required this.tokenIdentifier,
     required this.tokenNonce,
     required this.rewardBalance,
-    required this.rewardBalanceShort,
-    required this.rewardPerEpochShort,
-    required this.rewardPerDayPerNft,
-    required this.usdValue,
+    required this.shareRewardBalance,
+    required this.rewardPerEpoch,
+    this.rewardPerEpochShort,
+    this.rewardPerDayPerNft,
+    this.rewardBalanceShort,
+    this.usdValue,
   });
 
-  factory Reward.fromJson(Map<String, dynamic> json) => _$RewardFromJson(json);
+  factory XoxnoStakingReward.fromJson(Map<String, dynamic> json) =>
+      _$XoxnoStakingRewardFromJson(json);
 
-  static const toJsonFactory = _$RewardToJson;
-  Map<String, dynamic> toJson() => _$RewardToJson(this);
+  static const toJsonFactory = _$XoxnoStakingRewardToJson;
+  Map<String, dynamic> toJson() => _$XoxnoStakingRewardToJson(this);
 
   @JsonKey(name: 'tokenIdentifier')
   final String tokenIdentifier;
@@ -16682,20 +16302,24 @@ class Reward {
   final double tokenNonce;
   @JsonKey(name: 'rewardBalance')
   final String rewardBalance;
-  @JsonKey(name: 'rewardBalanceShort')
-  final double rewardBalanceShort;
+  @JsonKey(name: 'shareRewardBalance')
+  final String shareRewardBalance;
+  @JsonKey(name: 'rewardPerEpoch')
+  final String rewardPerEpoch;
   @JsonKey(name: 'rewardPerEpochShort')
-  final double rewardPerEpochShort;
+  final double? rewardPerEpochShort;
   @JsonKey(name: 'rewardPerDayPerNft')
-  final double rewardPerDayPerNft;
+  final double? rewardPerDayPerNft;
+  @JsonKey(name: 'rewardBalanceShort')
+  final double? rewardBalanceShort;
   @JsonKey(name: 'usdValue')
-  final double usdValue;
-  static const fromJsonFactory = _$RewardFromJson;
+  final double? usdValue;
+  static const fromJsonFactory = _$XoxnoStakingRewardFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is Reward &&
+        (other is XoxnoStakingReward &&
             (identical(other.tokenIdentifier, tokenIdentifier) ||
                 const DeepCollectionEquality().equals(
                   other.tokenIdentifier,
@@ -16711,10 +16335,15 @@ class Reward {
                   other.rewardBalance,
                   rewardBalance,
                 )) &&
-            (identical(other.rewardBalanceShort, rewardBalanceShort) ||
+            (identical(other.shareRewardBalance, shareRewardBalance) ||
                 const DeepCollectionEquality().equals(
-                  other.rewardBalanceShort,
-                  rewardBalanceShort,
+                  other.shareRewardBalance,
+                  shareRewardBalance,
+                )) &&
+            (identical(other.rewardPerEpoch, rewardPerEpoch) ||
+                const DeepCollectionEquality().equals(
+                  other.rewardPerEpoch,
+                  rewardPerEpoch,
                 )) &&
             (identical(other.rewardPerEpochShort, rewardPerEpochShort) ||
                 const DeepCollectionEquality().equals(
@@ -16725,6 +16354,11 @@ class Reward {
                 const DeepCollectionEquality().equals(
                   other.rewardPerDayPerNft,
                   rewardPerDayPerNft,
+                )) &&
+            (identical(other.rewardBalanceShort, rewardBalanceShort) ||
+                const DeepCollectionEquality().equals(
+                  other.rewardBalanceShort,
+                  rewardBalanceShort,
                 )) &&
             (identical(other.usdValue, usdValue) ||
                 const DeepCollectionEquality().equals(
@@ -16741,44 +16375,52 @@ class Reward {
       const DeepCollectionEquality().hash(tokenIdentifier) ^
       const DeepCollectionEquality().hash(tokenNonce) ^
       const DeepCollectionEquality().hash(rewardBalance) ^
-      const DeepCollectionEquality().hash(rewardBalanceShort) ^
+      const DeepCollectionEquality().hash(shareRewardBalance) ^
+      const DeepCollectionEquality().hash(rewardPerEpoch) ^
       const DeepCollectionEquality().hash(rewardPerEpochShort) ^
       const DeepCollectionEquality().hash(rewardPerDayPerNft) ^
+      const DeepCollectionEquality().hash(rewardBalanceShort) ^
       const DeepCollectionEquality().hash(usdValue) ^
       runtimeType.hashCode;
 }
 
-extension $RewardExtension on Reward {
-  Reward copyWith({
+extension $XoxnoStakingRewardExtension on XoxnoStakingReward {
+  XoxnoStakingReward copyWith({
     String? tokenIdentifier,
     double? tokenNonce,
     String? rewardBalance,
-    double? rewardBalanceShort,
+    String? shareRewardBalance,
+    String? rewardPerEpoch,
     double? rewardPerEpochShort,
     double? rewardPerDayPerNft,
+    double? rewardBalanceShort,
     double? usdValue,
   }) {
-    return Reward(
+    return XoxnoStakingReward(
       tokenIdentifier: tokenIdentifier ?? this.tokenIdentifier,
       tokenNonce: tokenNonce ?? this.tokenNonce,
       rewardBalance: rewardBalance ?? this.rewardBalance,
-      rewardBalanceShort: rewardBalanceShort ?? this.rewardBalanceShort,
+      shareRewardBalance: shareRewardBalance ?? this.shareRewardBalance,
+      rewardPerEpoch: rewardPerEpoch ?? this.rewardPerEpoch,
       rewardPerEpochShort: rewardPerEpochShort ?? this.rewardPerEpochShort,
       rewardPerDayPerNft: rewardPerDayPerNft ?? this.rewardPerDayPerNft,
+      rewardBalanceShort: rewardBalanceShort ?? this.rewardBalanceShort,
       usdValue: usdValue ?? this.usdValue,
     );
   }
 
-  Reward copyWithWrapped({
+  XoxnoStakingReward copyWithWrapped({
     Wrapped<String>? tokenIdentifier,
     Wrapped<double>? tokenNonce,
     Wrapped<String>? rewardBalance,
-    Wrapped<double>? rewardBalanceShort,
-    Wrapped<double>? rewardPerEpochShort,
-    Wrapped<double>? rewardPerDayPerNft,
-    Wrapped<double>? usdValue,
+    Wrapped<String>? shareRewardBalance,
+    Wrapped<String>? rewardPerEpoch,
+    Wrapped<double?>? rewardPerEpochShort,
+    Wrapped<double?>? rewardPerDayPerNft,
+    Wrapped<double?>? rewardBalanceShort,
+    Wrapped<double?>? usdValue,
   }) {
-    return Reward(
+    return XoxnoStakingReward(
       tokenIdentifier: (tokenIdentifier != null
           ? tokenIdentifier.value
           : this.tokenIdentifier),
@@ -16786,15 +16428,21 @@ extension $RewardExtension on Reward {
       rewardBalance: (rewardBalance != null
           ? rewardBalance.value
           : this.rewardBalance),
-      rewardBalanceShort: (rewardBalanceShort != null
-          ? rewardBalanceShort.value
-          : this.rewardBalanceShort),
+      shareRewardBalance: (shareRewardBalance != null
+          ? shareRewardBalance.value
+          : this.shareRewardBalance),
+      rewardPerEpoch: (rewardPerEpoch != null
+          ? rewardPerEpoch.value
+          : this.rewardPerEpoch),
       rewardPerEpochShort: (rewardPerEpochShort != null
           ? rewardPerEpochShort.value
           : this.rewardPerEpochShort),
       rewardPerDayPerNft: (rewardPerDayPerNft != null
           ? rewardPerDayPerNft.value
           : this.rewardPerDayPerNft),
+      rewardBalanceShort: (rewardBalanceShort != null
+          ? rewardBalanceShort.value
+          : this.rewardBalanceShort),
       usdValue: (usdValue != null ? usdValue.value : this.usdValue),
     );
   }
@@ -16805,7 +16453,7 @@ class StakingSummary {
   const StakingSummary({
     required this.poolId,
     required this.name,
-    required this.description,
+    this.description,
     required this.stakingEnabled,
     required this.profile,
     required this.collection,
@@ -16819,6 +16467,7 @@ class StakingSummary {
     required this.issuingType,
     required this.unBoundPeriod,
     required this.hasUnboundPeriod,
+    required this.userUnboundCount,
     required this.maxPoolLimit,
     required this.hasMaxWalletLimit,
     required this.maxWalletLimit,
@@ -16843,7 +16492,7 @@ class StakingSummary {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'stakingEnabled')
   final bool stakingEnabled;
   @JsonKey(name: 'profile')
@@ -16858,10 +16507,10 @@ class StakingSummary {
   final double delegatorCount;
   @JsonKey(name: 'rewardDuration')
   final double rewardDuration;
-  @JsonKey(name: 'poolReward', defaultValue: <Reward>[])
-  final List<Reward> poolReward;
-  @JsonKey(name: 'userReward', defaultValue: <Reward>[])
-  final List<Reward> userReward;
+  @JsonKey(name: 'poolReward', defaultValue: <XoxnoStakingReward>[])
+  final List<XoxnoStakingReward> poolReward;
+  @JsonKey(name: 'userReward', defaultValue: <XoxnoStakingReward>[])
+  final List<XoxnoStakingReward> userReward;
   @JsonKey(name: 'poolType')
   final String poolType;
   @JsonKey(name: 'issuingType')
@@ -16870,6 +16519,8 @@ class StakingSummary {
   final double unBoundPeriod;
   @JsonKey(name: 'hasUnboundPeriod')
   final bool hasUnboundPeriod;
+  @JsonKey(name: 'userUnboundCount')
+  final double userUnboundCount;
   @JsonKey(name: 'maxPoolLimit')
   final double maxPoolLimit;
   @JsonKey(name: 'hasMaxWalletLimit')
@@ -16972,6 +16623,11 @@ class StakingSummary {
                   other.hasUnboundPeriod,
                   hasUnboundPeriod,
                 )) &&
+            (identical(other.userUnboundCount, userUnboundCount) ||
+                const DeepCollectionEquality().equals(
+                  other.userUnboundCount,
+                  userUnboundCount,
+                )) &&
             (identical(other.maxPoolLimit, maxPoolLimit) ||
                 const DeepCollectionEquality().equals(
                   other.maxPoolLimit,
@@ -17044,6 +16700,7 @@ class StakingSummary {
       const DeepCollectionEquality().hash(issuingType) ^
       const DeepCollectionEquality().hash(unBoundPeriod) ^
       const DeepCollectionEquality().hash(hasUnboundPeriod) ^
+      const DeepCollectionEquality().hash(userUnboundCount) ^
       const DeepCollectionEquality().hash(maxPoolLimit) ^
       const DeepCollectionEquality().hash(hasMaxWalletLimit) ^
       const DeepCollectionEquality().hash(maxWalletLimit) ^
@@ -17070,12 +16727,13 @@ extension $StakingSummaryExtension on StakingSummary {
     double? userStakedCount,
     double? delegatorCount,
     double? rewardDuration,
-    List<Reward>? poolReward,
-    List<Reward>? userReward,
+    List<XoxnoStakingReward>? poolReward,
+    List<XoxnoStakingReward>? userReward,
     String? poolType,
     String? issuingType,
     double? unBoundPeriod,
     bool? hasUnboundPeriod,
+    double? userUnboundCount,
     double? maxPoolLimit,
     bool? hasMaxWalletLimit,
     double? maxWalletLimit,
@@ -17105,6 +16763,7 @@ extension $StakingSummaryExtension on StakingSummary {
       issuingType: issuingType ?? this.issuingType,
       unBoundPeriod: unBoundPeriod ?? this.unBoundPeriod,
       hasUnboundPeriod: hasUnboundPeriod ?? this.hasUnboundPeriod,
+      userUnboundCount: userUnboundCount ?? this.userUnboundCount,
       maxPoolLimit: maxPoolLimit ?? this.maxPoolLimit,
       hasMaxWalletLimit: hasMaxWalletLimit ?? this.hasMaxWalletLimit,
       maxWalletLimit: maxWalletLimit ?? this.maxWalletLimit,
@@ -17122,7 +16781,7 @@ extension $StakingSummaryExtension on StakingSummary {
   StakingSummary copyWithWrapped({
     Wrapped<double>? poolId,
     Wrapped<String>? name,
-    Wrapped<String>? description,
+    Wrapped<String?>? description,
     Wrapped<bool>? stakingEnabled,
     Wrapped<String>? profile,
     Wrapped<List<String>>? collection,
@@ -17130,12 +16789,13 @@ extension $StakingSummaryExtension on StakingSummary {
     Wrapped<double>? userStakedCount,
     Wrapped<double>? delegatorCount,
     Wrapped<double>? rewardDuration,
-    Wrapped<List<Reward>>? poolReward,
-    Wrapped<List<Reward>>? userReward,
+    Wrapped<List<XoxnoStakingReward>>? poolReward,
+    Wrapped<List<XoxnoStakingReward>>? userReward,
     Wrapped<String>? poolType,
     Wrapped<String>? issuingType,
     Wrapped<double>? unBoundPeriod,
     Wrapped<bool>? hasUnboundPeriod,
+    Wrapped<double>? userUnboundCount,
     Wrapped<double>? maxPoolLimit,
     Wrapped<bool>? hasMaxWalletLimit,
     Wrapped<double>? maxWalletLimit,
@@ -17179,6 +16839,9 @@ extension $StakingSummaryExtension on StakingSummary {
       hasUnboundPeriod: (hasUnboundPeriod != null
           ? hasUnboundPeriod.value
           : this.hasUnboundPeriod),
+      userUnboundCount: (userUnboundCount != null
+          ? userUnboundCount.value
+          : this.userUnboundCount),
       maxPoolLimit: (maxPoolLimit != null
           ? maxPoolLimit.value
           : this.maxPoolLimit),
@@ -17205,6 +16868,314 @@ extension $StakingSummaryExtension on StakingSummary {
 }
 
 @JsonSerializable(explicitToJson: true)
+class NftSaleInfo {
+  const NftSaleInfo({
+    required this.auctionId,
+    required this.seller,
+    required this.minBid,
+    required this.maxBid,
+    this.currentBid,
+    required this.startTime,
+    required this.deadline,
+    required this.paymentToken,
+    required this.paymentTokenNonce,
+    required this.auctionType,
+    required this.timestamp,
+    required this.minBidShort,
+    this.minBidUsdValue,
+    required this.maxBidShort,
+    this.maxBidUsdValue,
+    this.currentBidShort,
+    required this.quantity,
+    required this.marketplace,
+    this.royalties,
+    this.currentWinner,
+  });
+
+  factory NftSaleInfo.fromJson(Map<String, dynamic> json) =>
+      _$NftSaleInfoFromJson(json);
+
+  static const toJsonFactory = _$NftSaleInfoToJson;
+  Map<String, dynamic> toJson() => _$NftSaleInfoToJson(this);
+
+  @JsonKey(name: 'auctionId')
+  final double auctionId;
+  @JsonKey(name: 'seller')
+  final String seller;
+  @JsonKey(name: 'minBid')
+  final String minBid;
+  @JsonKey(name: 'maxBid')
+  final String maxBid;
+  @JsonKey(name: 'currentBid')
+  final String? currentBid;
+  @JsonKey(name: 'startTime')
+  final double startTime;
+  @JsonKey(name: 'deadline')
+  final double deadline;
+  @JsonKey(name: 'paymentToken')
+  final String paymentToken;
+  @JsonKey(name: 'paymentTokenNonce')
+  final double paymentTokenNonce;
+  @JsonKey(name: 'auctionType')
+  final String auctionType;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'minBidShort')
+  final double minBidShort;
+  @JsonKey(name: 'minBidUsdValue')
+  final double? minBidUsdValue;
+  @JsonKey(name: 'maxBidShort')
+  final double maxBidShort;
+  @JsonKey(name: 'maxBidUsdValue')
+  final double? maxBidUsdValue;
+  @JsonKey(name: 'currentBidShort')
+  final double? currentBidShort;
+  @JsonKey(name: 'quantity')
+  final double quantity;
+  @JsonKey(
+    name: 'marketplace',
+    toJson: marketplacesOnSaleNamesToJson,
+    fromJson: marketplacesOnSaleNamesFromJson,
+  )
+  final enums.MarketplacesOnSaleNames marketplace;
+  @JsonKey(name: 'royalties')
+  final double? royalties;
+  @JsonKey(name: 'currentWinner')
+  final String? currentWinner;
+  static const fromJsonFactory = _$NftSaleInfoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is NftSaleInfo &&
+            (identical(other.auctionId, auctionId) ||
+                const DeepCollectionEquality().equals(
+                  other.auctionId,
+                  auctionId,
+                )) &&
+            (identical(other.seller, seller) ||
+                const DeepCollectionEquality().equals(other.seller, seller)) &&
+            (identical(other.minBid, minBid) ||
+                const DeepCollectionEquality().equals(other.minBid, minBid)) &&
+            (identical(other.maxBid, maxBid) ||
+                const DeepCollectionEquality().equals(other.maxBid, maxBid)) &&
+            (identical(other.currentBid, currentBid) ||
+                const DeepCollectionEquality().equals(
+                  other.currentBid,
+                  currentBid,
+                )) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality().equals(
+                  other.startTime,
+                  startTime,
+                )) &&
+            (identical(other.deadline, deadline) ||
+                const DeepCollectionEquality().equals(
+                  other.deadline,
+                  deadline,
+                )) &&
+            (identical(other.paymentToken, paymentToken) ||
+                const DeepCollectionEquality().equals(
+                  other.paymentToken,
+                  paymentToken,
+                )) &&
+            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
+                const DeepCollectionEquality().equals(
+                  other.paymentTokenNonce,
+                  paymentTokenNonce,
+                )) &&
+            (identical(other.auctionType, auctionType) ||
+                const DeepCollectionEquality().equals(
+                  other.auctionType,
+                  auctionType,
+                )) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.minBidShort, minBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.minBidShort,
+                  minBidShort,
+                )) &&
+            (identical(other.minBidUsdValue, minBidUsdValue) ||
+                const DeepCollectionEquality().equals(
+                  other.minBidUsdValue,
+                  minBidUsdValue,
+                )) &&
+            (identical(other.maxBidShort, maxBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.maxBidShort,
+                  maxBidShort,
+                )) &&
+            (identical(other.maxBidUsdValue, maxBidUsdValue) ||
+                const DeepCollectionEquality().equals(
+                  other.maxBidUsdValue,
+                  maxBidUsdValue,
+                )) &&
+            (identical(other.currentBidShort, currentBidShort) ||
+                const DeepCollectionEquality().equals(
+                  other.currentBidShort,
+                  currentBidShort,
+                )) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality().equals(
+                  other.quantity,
+                  quantity,
+                )) &&
+            (identical(other.marketplace, marketplace) ||
+                const DeepCollectionEquality().equals(
+                  other.marketplace,
+                  marketplace,
+                )) &&
+            (identical(other.royalties, royalties) ||
+                const DeepCollectionEquality().equals(
+                  other.royalties,
+                  royalties,
+                )) &&
+            (identical(other.currentWinner, currentWinner) ||
+                const DeepCollectionEquality().equals(
+                  other.currentWinner,
+                  currentWinner,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(auctionId) ^
+      const DeepCollectionEquality().hash(seller) ^
+      const DeepCollectionEquality().hash(minBid) ^
+      const DeepCollectionEquality().hash(maxBid) ^
+      const DeepCollectionEquality().hash(currentBid) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(deadline) ^
+      const DeepCollectionEquality().hash(paymentToken) ^
+      const DeepCollectionEquality().hash(paymentTokenNonce) ^
+      const DeepCollectionEquality().hash(auctionType) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(minBidShort) ^
+      const DeepCollectionEquality().hash(minBidUsdValue) ^
+      const DeepCollectionEquality().hash(maxBidShort) ^
+      const DeepCollectionEquality().hash(maxBidUsdValue) ^
+      const DeepCollectionEquality().hash(currentBidShort) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(marketplace) ^
+      const DeepCollectionEquality().hash(royalties) ^
+      const DeepCollectionEquality().hash(currentWinner) ^
+      runtimeType.hashCode;
+}
+
+extension $NftSaleInfoExtension on NftSaleInfo {
+  NftSaleInfo copyWith({
+    double? auctionId,
+    String? seller,
+    String? minBid,
+    String? maxBid,
+    String? currentBid,
+    double? startTime,
+    double? deadline,
+    String? paymentToken,
+    double? paymentTokenNonce,
+    String? auctionType,
+    double? timestamp,
+    double? minBidShort,
+    double? minBidUsdValue,
+    double? maxBidShort,
+    double? maxBidUsdValue,
+    double? currentBidShort,
+    double? quantity,
+    enums.MarketplacesOnSaleNames? marketplace,
+    double? royalties,
+    String? currentWinner,
+  }) {
+    return NftSaleInfo(
+      auctionId: auctionId ?? this.auctionId,
+      seller: seller ?? this.seller,
+      minBid: minBid ?? this.minBid,
+      maxBid: maxBid ?? this.maxBid,
+      currentBid: currentBid ?? this.currentBid,
+      startTime: startTime ?? this.startTime,
+      deadline: deadline ?? this.deadline,
+      paymentToken: paymentToken ?? this.paymentToken,
+      paymentTokenNonce: paymentTokenNonce ?? this.paymentTokenNonce,
+      auctionType: auctionType ?? this.auctionType,
+      timestamp: timestamp ?? this.timestamp,
+      minBidShort: minBidShort ?? this.minBidShort,
+      minBidUsdValue: minBidUsdValue ?? this.minBidUsdValue,
+      maxBidShort: maxBidShort ?? this.maxBidShort,
+      maxBidUsdValue: maxBidUsdValue ?? this.maxBidUsdValue,
+      currentBidShort: currentBidShort ?? this.currentBidShort,
+      quantity: quantity ?? this.quantity,
+      marketplace: marketplace ?? this.marketplace,
+      royalties: royalties ?? this.royalties,
+      currentWinner: currentWinner ?? this.currentWinner,
+    );
+  }
+
+  NftSaleInfo copyWithWrapped({
+    Wrapped<double>? auctionId,
+    Wrapped<String>? seller,
+    Wrapped<String>? minBid,
+    Wrapped<String>? maxBid,
+    Wrapped<String?>? currentBid,
+    Wrapped<double>? startTime,
+    Wrapped<double>? deadline,
+    Wrapped<String>? paymentToken,
+    Wrapped<double>? paymentTokenNonce,
+    Wrapped<String>? auctionType,
+    Wrapped<double>? timestamp,
+    Wrapped<double>? minBidShort,
+    Wrapped<double?>? minBidUsdValue,
+    Wrapped<double>? maxBidShort,
+    Wrapped<double?>? maxBidUsdValue,
+    Wrapped<double?>? currentBidShort,
+    Wrapped<double>? quantity,
+    Wrapped<enums.MarketplacesOnSaleNames>? marketplace,
+    Wrapped<double?>? royalties,
+    Wrapped<String?>? currentWinner,
+  }) {
+    return NftSaleInfo(
+      auctionId: (auctionId != null ? auctionId.value : this.auctionId),
+      seller: (seller != null ? seller.value : this.seller),
+      minBid: (minBid != null ? minBid.value : this.minBid),
+      maxBid: (maxBid != null ? maxBid.value : this.maxBid),
+      currentBid: (currentBid != null ? currentBid.value : this.currentBid),
+      startTime: (startTime != null ? startTime.value : this.startTime),
+      deadline: (deadline != null ? deadline.value : this.deadline),
+      paymentToken: (paymentToken != null
+          ? paymentToken.value
+          : this.paymentToken),
+      paymentTokenNonce: (paymentTokenNonce != null
+          ? paymentTokenNonce.value
+          : this.paymentTokenNonce),
+      auctionType: (auctionType != null ? auctionType.value : this.auctionType),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      minBidShort: (minBidShort != null ? minBidShort.value : this.minBidShort),
+      minBidUsdValue: (minBidUsdValue != null
+          ? minBidUsdValue.value
+          : this.minBidUsdValue),
+      maxBidShort: (maxBidShort != null ? maxBidShort.value : this.maxBidShort),
+      maxBidUsdValue: (maxBidUsdValue != null
+          ? maxBidUsdValue.value
+          : this.maxBidUsdValue),
+      currentBidShort: (currentBidShort != null
+          ? currentBidShort.value
+          : this.currentBidShort),
+      quantity: (quantity != null ? quantity.value : this.quantity),
+      marketplace: (marketplace != null ? marketplace.value : this.marketplace),
+      royalties: (royalties != null ? royalties.value : this.royalties),
+      currentWinner: (currentWinner != null
+          ? currentWinner.value
+          : this.currentWinner),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class NftDoc {
   const NftDoc({
     required this.identifier,
@@ -17214,28 +17185,28 @@ class NftDoc {
     required this.nonce,
     required this.type,
     this.subType,
-    this.supply,
+    required this.supply,
     this.supplyLong,
     required this.name,
-    this.royalties,
+    required this.royalties,
     required this.url,
     this.uris,
-    this.creator,
     required this.wasProcessed,
     this.media,
-    this.currentOwner,
-    required this.owner,
-    required this.onSale,
-    this.isTicket,
-    this.saleInfo,
-    required this.statistics,
+    this.statistics,
     this.metadata,
+    this.isTicket,
     this.eventData,
+    required this.chain,
     this.tags,
     this.kiosk,
-    this.version,
-    this.digest,
+    required this.onSale,
     this.id,
+    this.ts,
+    this.creator,
+    this.currentOwner,
+    this.owner,
+    this.saleInfo,
   });
 
   factory NftDoc.fromJson(Map<String, dynamic> json) => _$NftDocFromJson(json);
@@ -17266,49 +17237,53 @@ class NftDoc {
   )
   final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
-  final double? supply;
+  final double supply;
   @JsonKey(name: 'supplyLong')
   final String? supplyLong;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'royalties')
-  final double? royalties;
+  final double royalties;
   @JsonKey(name: 'url')
   final String url;
-  @JsonKey(name: 'uris', defaultValue: <String>[])
-  final List<String>? uris;
-  @JsonKey(name: 'creator')
-  final OwnerDto? creator;
+  @JsonKey(name: 'uris')
+  final String? uris;
   @JsonKey(name: 'wasProcessed')
   final bool wasProcessed;
   @JsonKey(name: 'media')
   final NftMedia? media;
-  @JsonKey(name: 'currentOwner')
-  final OwnerDto? currentOwner;
-  @JsonKey(name: 'owner')
-  final OwnerDto owner;
-  @JsonKey(name: 'onSale')
-  final bool onSale;
-  @JsonKey(name: 'isTicket')
-  final bool? isTicket;
-  @JsonKey(name: 'saleInfo')
-  final NftSaleInfo? saleInfo;
   @JsonKey(name: 'statistics')
-  final NftStats statistics;
+  final NftStats? statistics;
   @JsonKey(name: 'metadata')
   final NftMetadata? metadata;
+  @JsonKey(name: 'isTicket')
+  final bool? isTicket;
   @JsonKey(name: 'eventData')
   final NFTEventData? eventData;
-  @JsonKey(name: 'tags', defaultValue: <String>[])
-  final List<String>? tags;
+  @JsonKey(
+    name: 'chain',
+    toJson: activityChainToJson,
+    fromJson: activityChainFromJson,
+  )
+  final enums.ActivityChain chain;
+  @JsonKey(name: 'tags')
+  final String? tags;
   @JsonKey(name: 'kiosk')
   final String? kiosk;
-  @JsonKey(name: 'version')
-  final String? version;
-  @JsonKey(name: 'digest')
-  final String? digest;
+  @JsonKey(name: 'onSale')
+  final bool onSale;
   @JsonKey(name: 'id')
   final String? id;
+  @JsonKey(name: '_ts')
+  final double? ts;
+  @JsonKey(name: 'creator')
+  final String? creator;
+  @JsonKey(name: 'currentOwner')
+  final String? currentOwner;
+  @JsonKey(name: 'owner')
+  final String? owner;
+  @JsonKey(name: 'saleInfo')
+  final NftSaleInfo? saleInfo;
   static const fromJsonFactory = _$NftDocFromJson;
 
   @override
@@ -17362,11 +17337,6 @@ class NftDoc {
                 const DeepCollectionEquality().equals(other.url, url)) &&
             (identical(other.uris, uris) ||
                 const DeepCollectionEquality().equals(other.uris, uris)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
             (identical(other.wasProcessed, wasProcessed) ||
                 const DeepCollectionEquality().equals(
                   other.wasProcessed,
@@ -17374,25 +17344,6 @@ class NftDoc {
                 )) &&
             (identical(other.media, media) ||
                 const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.isTicket, isTicket) ||
-                const DeepCollectionEquality().equals(
-                  other.isTicket,
-                  isTicket,
-                )) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
             (identical(other.statistics, statistics) ||
                 const DeepCollectionEquality().equals(
                   other.statistics,
@@ -17403,24 +17354,45 @@ class NftDoc {
                   other.metadata,
                   metadata,
                 )) &&
+            (identical(other.isTicket, isTicket) ||
+                const DeepCollectionEquality().equals(
+                  other.isTicket,
+                  isTicket,
+                )) &&
             (identical(other.eventData, eventData) ||
                 const DeepCollectionEquality().equals(
                   other.eventData,
                   eventData,
                 )) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
             (identical(other.tags, tags) ||
                 const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.kiosk, kiosk) ||
                 const DeepCollectionEquality().equals(other.kiosk, kiosk)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(
-                  other.version,
-                  version,
-                )) &&
-            (identical(other.digest, digest) ||
-                const DeepCollectionEquality().equals(other.digest, digest)) &&
+            (identical(other.onSale, onSale) ||
+                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
             (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)) &&
+            (identical(other.creator, creator) ||
+                const DeepCollectionEquality().equals(
+                  other.creator,
+                  creator,
+                )) &&
+            (identical(other.currentOwner, currentOwner) ||
+                const DeepCollectionEquality().equals(
+                  other.currentOwner,
+                  currentOwner,
+                )) &&
+            (identical(other.owner, owner) ||
+                const DeepCollectionEquality().equals(other.owner, owner)) &&
+            (identical(other.saleInfo, saleInfo) ||
+                const DeepCollectionEquality().equals(
+                  other.saleInfo,
+                  saleInfo,
+                )));
   }
 
   @override
@@ -17441,22 +17413,22 @@ class NftDoc {
       const DeepCollectionEquality().hash(royalties) ^
       const DeepCollectionEquality().hash(url) ^
       const DeepCollectionEquality().hash(uris) ^
-      const DeepCollectionEquality().hash(creator) ^
       const DeepCollectionEquality().hash(wasProcessed) ^
       const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(isTicket) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
       const DeepCollectionEquality().hash(statistics) ^
       const DeepCollectionEquality().hash(metadata) ^
+      const DeepCollectionEquality().hash(isTicket) ^
       const DeepCollectionEquality().hash(eventData) ^
+      const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(kiosk) ^
-      const DeepCollectionEquality().hash(version) ^
-      const DeepCollectionEquality().hash(digest) ^
+      const DeepCollectionEquality().hash(onSale) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ts) ^
+      const DeepCollectionEquality().hash(creator) ^
+      const DeepCollectionEquality().hash(currentOwner) ^
+      const DeepCollectionEquality().hash(owner) ^
+      const DeepCollectionEquality().hash(saleInfo) ^
       runtimeType.hashCode;
 }
 
@@ -17474,23 +17446,23 @@ extension $NftDocExtension on NftDoc {
     String? name,
     double? royalties,
     String? url,
-    List<String>? uris,
-    OwnerDto? creator,
+    String? uris,
     bool? wasProcessed,
     NftMedia? media,
-    OwnerDto? currentOwner,
-    OwnerDto? owner,
-    bool? onSale,
-    bool? isTicket,
-    NftSaleInfo? saleInfo,
     NftStats? statistics,
     NftMetadata? metadata,
+    bool? isTicket,
     NFTEventData? eventData,
-    List<String>? tags,
+    enums.ActivityChain? chain,
+    String? tags,
     String? kiosk,
-    String? version,
-    String? digest,
+    bool? onSale,
     String? id,
+    double? ts,
+    String? creator,
+    String? currentOwner,
+    String? owner,
+    NftSaleInfo? saleInfo,
   }) {
     return NftDoc(
       identifier: identifier ?? this.identifier,
@@ -17506,22 +17478,22 @@ extension $NftDocExtension on NftDoc {
       royalties: royalties ?? this.royalties,
       url: url ?? this.url,
       uris: uris ?? this.uris,
-      creator: creator ?? this.creator,
       wasProcessed: wasProcessed ?? this.wasProcessed,
       media: media ?? this.media,
-      currentOwner: currentOwner ?? this.currentOwner,
-      owner: owner ?? this.owner,
-      onSale: onSale ?? this.onSale,
-      isTicket: isTicket ?? this.isTicket,
-      saleInfo: saleInfo ?? this.saleInfo,
       statistics: statistics ?? this.statistics,
       metadata: metadata ?? this.metadata,
+      isTicket: isTicket ?? this.isTicket,
       eventData: eventData ?? this.eventData,
+      chain: chain ?? this.chain,
       tags: tags ?? this.tags,
       kiosk: kiosk ?? this.kiosk,
-      version: version ?? this.version,
-      digest: digest ?? this.digest,
+      onSale: onSale ?? this.onSale,
       id: id ?? this.id,
+      ts: ts ?? this.ts,
+      creator: creator ?? this.creator,
+      currentOwner: currentOwner ?? this.currentOwner,
+      owner: owner ?? this.owner,
+      saleInfo: saleInfo ?? this.saleInfo,
     );
   }
 
@@ -17533,28 +17505,28 @@ extension $NftDocExtension on NftDoc {
     Wrapped<double>? nonce,
     Wrapped<enums.EsdtTokenType>? type,
     Wrapped<enums.EsdtTokenSubType?>? subType,
-    Wrapped<double?>? supply,
+    Wrapped<double>? supply,
     Wrapped<String?>? supplyLong,
     Wrapped<String>? name,
-    Wrapped<double?>? royalties,
+    Wrapped<double>? royalties,
     Wrapped<String>? url,
-    Wrapped<List<String>?>? uris,
-    Wrapped<OwnerDto?>? creator,
+    Wrapped<String?>? uris,
     Wrapped<bool>? wasProcessed,
     Wrapped<NftMedia?>? media,
-    Wrapped<OwnerDto?>? currentOwner,
-    Wrapped<OwnerDto>? owner,
-    Wrapped<bool>? onSale,
-    Wrapped<bool?>? isTicket,
-    Wrapped<NftSaleInfo?>? saleInfo,
-    Wrapped<NftStats>? statistics,
+    Wrapped<NftStats?>? statistics,
     Wrapped<NftMetadata?>? metadata,
+    Wrapped<bool?>? isTicket,
     Wrapped<NFTEventData?>? eventData,
-    Wrapped<List<String>?>? tags,
+    Wrapped<enums.ActivityChain>? chain,
+    Wrapped<String?>? tags,
     Wrapped<String?>? kiosk,
-    Wrapped<String?>? version,
-    Wrapped<String?>? digest,
+    Wrapped<bool>? onSale,
     Wrapped<String?>? id,
+    Wrapped<double?>? ts,
+    Wrapped<String?>? creator,
+    Wrapped<String?>? currentOwner,
+    Wrapped<String?>? owner,
+    Wrapped<NftSaleInfo?>? saleInfo,
   }) {
     return NftDoc(
       identifier: (identifier != null ? identifier.value : this.identifier),
@@ -17572,33 +17544,33 @@ extension $NftDocExtension on NftDoc {
       royalties: (royalties != null ? royalties.value : this.royalties),
       url: (url != null ? url.value : this.url),
       uris: (uris != null ? uris.value : this.uris),
-      creator: (creator != null ? creator.value : this.creator),
       wasProcessed: (wasProcessed != null
           ? wasProcessed.value
           : this.wasProcessed),
       media: (media != null ? media.value : this.media),
+      statistics: (statistics != null ? statistics.value : this.statistics),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+      isTicket: (isTicket != null ? isTicket.value : this.isTicket),
+      eventData: (eventData != null ? eventData.value : this.eventData),
+      chain: (chain != null ? chain.value : this.chain),
+      tags: (tags != null ? tags.value : this.tags),
+      kiosk: (kiosk != null ? kiosk.value : this.kiosk),
+      onSale: (onSale != null ? onSale.value : this.onSale),
+      id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
+      creator: (creator != null ? creator.value : this.creator),
       currentOwner: (currentOwner != null
           ? currentOwner.value
           : this.currentOwner),
       owner: (owner != null ? owner.value : this.owner),
-      onSale: (onSale != null ? onSale.value : this.onSale),
-      isTicket: (isTicket != null ? isTicket.value : this.isTicket),
       saleInfo: (saleInfo != null ? saleInfo.value : this.saleInfo),
-      statistics: (statistics != null ? statistics.value : this.statistics),
-      metadata: (metadata != null ? metadata.value : this.metadata),
-      eventData: (eventData != null ? eventData.value : this.eventData),
-      tags: (tags != null ? tags.value : this.tags),
-      kiosk: (kiosk != null ? kiosk.value : this.kiosk),
-      version: (version != null ? version.value : this.version),
-      digest: (digest != null ? digest.value : this.digest),
-      id: (id != null ? id.value : this.id),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class StakingPostDTO {
-  const StakingPostDTO({required this.name, required this.description});
+  const StakingPostDTO({required this.name, this.description});
 
   factory StakingPostDTO.fromJson(Map<String, dynamic> json) =>
       _$StakingPostDTOFromJson(json);
@@ -17609,7 +17581,7 @@ class StakingPostDTO {
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   static const fromJsonFactory = _$StakingPostDTOFromJson;
 
   @override
@@ -17645,7 +17617,7 @@ extension $StakingPostDTOExtension on StakingPostDTO {
 
   StakingPostDTO copyWithWrapped({
     Wrapped<String>? name,
-    Wrapped<String>? description,
+    Wrapped<String?>? description,
   }) {
     return StakingPostDTO(
       name: (name != null ? name.value : this.name),
@@ -17724,111 +17696,6 @@ extension $OwnedCollectionsDtoExtension on OwnedCollectionsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class RewardDto {
-  const RewardDto({
-    required this.tokenIdentifier,
-    required this.tokenNonce,
-    required this.amount,
-    required this.amountShort,
-    required this.usdValue,
-  });
-
-  factory RewardDto.fromJson(Map<String, dynamic> json) =>
-      _$RewardDtoFromJson(json);
-
-  static const toJsonFactory = _$RewardDtoToJson;
-  Map<String, dynamic> toJson() => _$RewardDtoToJson(this);
-
-  @JsonKey(name: 'tokenIdentifier')
-  final String tokenIdentifier;
-  @JsonKey(name: 'tokenNonce')
-  final double tokenNonce;
-  @JsonKey(name: 'amount')
-  final String amount;
-  @JsonKey(name: 'amountShort')
-  final double amountShort;
-  @JsonKey(name: 'usdValue')
-  final double usdValue;
-  static const fromJsonFactory = _$RewardDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RewardDto &&
-            (identical(other.tokenIdentifier, tokenIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIdentifier,
-                  tokenIdentifier,
-                )) &&
-            (identical(other.tokenNonce, tokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenNonce,
-                  tokenNonce,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.amountShort, amountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.amountShort,
-                  amountShort,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIdentifier) ^
-      const DeepCollectionEquality().hash(tokenNonce) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(amountShort) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
-}
-
-extension $RewardDtoExtension on RewardDto {
-  RewardDto copyWith({
-    String? tokenIdentifier,
-    double? tokenNonce,
-    String? amount,
-    double? amountShort,
-    double? usdValue,
-  }) {
-    return RewardDto(
-      tokenIdentifier: tokenIdentifier ?? this.tokenIdentifier,
-      tokenNonce: tokenNonce ?? this.tokenNonce,
-      amount: amount ?? this.amount,
-      amountShort: amountShort ?? this.amountShort,
-      usdValue: usdValue ?? this.usdValue,
-    );
-  }
-
-  RewardDto copyWithWrapped({
-    Wrapped<String>? tokenIdentifier,
-    Wrapped<double>? tokenNonce,
-    Wrapped<String>? amount,
-    Wrapped<double>? amountShort,
-    Wrapped<double>? usdValue,
-  }) {
-    return RewardDto(
-      tokenIdentifier: (tokenIdentifier != null
-          ? tokenIdentifier.value
-          : this.tokenIdentifier),
-      tokenNonce: (tokenNonce != null ? tokenNonce.value : this.tokenNonce),
-      amount: (amount != null ? amount.value : this.amount),
-      amountShort: (amountShort != null ? amountShort.value : this.amountShort),
-      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class UserStakingSummaryDto {
   const UserStakingSummaryDto({
     required this.collection,
@@ -17837,7 +17704,6 @@ class UserStakingSummaryDto {
     required this.isVerified,
     required this.profile,
     required this.banner,
-    required this.reward,
   });
 
   factory UserStakingSummaryDto.fromJson(Map<String, dynamic> json) =>
@@ -17858,8 +17724,6 @@ class UserStakingSummaryDto {
   final String profile;
   @JsonKey(name: 'banner')
   final String banner;
-  @JsonKey(name: 'reward', defaultValue: <RewardDto>[])
-  final List<RewardDto> reward;
   static const fromJsonFactory = _$UserStakingSummaryDtoFromJson;
 
   @override
@@ -17889,9 +17753,7 @@ class UserStakingSummaryDto {
                   profile,
                 )) &&
             (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.reward, reward) ||
-                const DeepCollectionEquality().equals(other.reward, reward)));
+                const DeepCollectionEquality().equals(other.banner, banner)));
   }
 
   @override
@@ -17905,7 +17767,6 @@ class UserStakingSummaryDto {
       const DeepCollectionEquality().hash(isVerified) ^
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(reward) ^
       runtimeType.hashCode;
 }
 
@@ -17917,7 +17778,6 @@ extension $UserStakingSummaryDtoExtension on UserStakingSummaryDto {
     bool? isVerified,
     String? profile,
     String? banner,
-    List<RewardDto>? reward,
   }) {
     return UserStakingSummaryDto(
       collection: collection ?? this.collection,
@@ -17926,7 +17786,6 @@ extension $UserStakingSummaryDtoExtension on UserStakingSummaryDto {
       isVerified: isVerified ?? this.isVerified,
       profile: profile ?? this.profile,
       banner: banner ?? this.banner,
-      reward: reward ?? this.reward,
     );
   }
 
@@ -17937,7 +17796,6 @@ extension $UserStakingSummaryDtoExtension on UserStakingSummaryDto {
     Wrapped<bool>? isVerified,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<List<RewardDto>>? reward,
   }) {
     return UserStakingSummaryDto(
       collection: (collection != null ? collection.value : this.collection),
@@ -17946,7 +17804,6 @@ extension $UserStakingSummaryDtoExtension on UserStakingSummaryDto {
       isVerified: (isVerified != null ? isVerified.value : this.isVerified),
       profile: (profile != null ? profile.value : this.profile),
       banner: (banner != null ? banner.value : this.banner),
-      reward: (reward != null ? reward.value : this.reward),
     );
   }
 }
@@ -18096,8 +17953,8 @@ class StakingUserPoolNfts {
 
   @JsonKey(name: 'poolInfo')
   final StakingSummary poolInfo;
-  @JsonKey(name: 'nftDocs', defaultValue: <NftProps>[])
-  final List<NftProps> nftDocs;
+  @JsonKey(name: 'nftDocs', defaultValue: <NftHydrated>[])
+  final List<NftHydrated> nftDocs;
   @JsonKey(name: 'count')
   final double count;
   static const fromJsonFactory = _$StakingUserPoolNftsFromJson;
@@ -18134,7 +17991,7 @@ class StakingUserPoolNfts {
 extension $StakingUserPoolNftsExtension on StakingUserPoolNfts {
   StakingUserPoolNfts copyWith({
     StakingSummary? poolInfo,
-    List<NftProps>? nftDocs,
+    List<NftHydrated>? nftDocs,
     double? count,
   }) {
     return StakingUserPoolNfts(
@@ -18146,7 +18003,7 @@ extension $StakingUserPoolNftsExtension on StakingUserPoolNfts {
 
   StakingUserPoolNfts copyWithWrapped({
     Wrapped<StakingSummary>? poolInfo,
-    Wrapped<List<NftProps>>? nftDocs,
+    Wrapped<List<NftHydrated>>? nftDocs,
     Wrapped<double>? count,
   }) {
     return StakingUserPoolNfts(
@@ -18165,7 +18022,6 @@ class StakingExploreDto {
     required this.totalPoolStakedCount,
     required this.totalDelegatorCount,
     required this.rewardTickers,
-    required this.collectionInfo,
   });
 
   factory StakingExploreDto.fromJson(Map<String, dynamic> json) =>
@@ -18184,8 +18040,6 @@ class StakingExploreDto {
   final double totalDelegatorCount;
   @JsonKey(name: 'rewardTickers', defaultValue: <String>[])
   final List<String> rewardTickers;
-  @JsonKey(name: 'collectionInfo')
-  final CollectionInfoDto collectionInfo;
   static const fromJsonFactory = _$StakingExploreDtoFromJson;
 
   @override
@@ -18216,11 +18070,6 @@ class StakingExploreDto {
                 const DeepCollectionEquality().equals(
                   other.rewardTickers,
                   rewardTickers,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
                 )));
   }
 
@@ -18234,7 +18083,6 @@ class StakingExploreDto {
       const DeepCollectionEquality().hash(totalPoolStakedCount) ^
       const DeepCollectionEquality().hash(totalDelegatorCount) ^
       const DeepCollectionEquality().hash(rewardTickers) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
       runtimeType.hashCode;
 }
 
@@ -18245,7 +18093,6 @@ extension $StakingExploreDtoExtension on StakingExploreDto {
     double? totalPoolStakedCount,
     double? totalDelegatorCount,
     List<String>? rewardTickers,
-    CollectionInfoDto? collectionInfo,
   }) {
     return StakingExploreDto(
       collection: collection ?? this.collection,
@@ -18253,7 +18100,6 @@ extension $StakingExploreDtoExtension on StakingExploreDto {
       totalPoolStakedCount: totalPoolStakedCount ?? this.totalPoolStakedCount,
       totalDelegatorCount: totalDelegatorCount ?? this.totalDelegatorCount,
       rewardTickers: rewardTickers ?? this.rewardTickers,
-      collectionInfo: collectionInfo ?? this.collectionInfo,
     );
   }
 
@@ -18263,7 +18109,6 @@ extension $StakingExploreDtoExtension on StakingExploreDto {
     Wrapped<double>? totalPoolStakedCount,
     Wrapped<double>? totalDelegatorCount,
     Wrapped<List<String>>? rewardTickers,
-    Wrapped<CollectionInfoDto>? collectionInfo,
   }) {
     return StakingExploreDto(
       collection: (collection != null ? collection.value : this.collection),
@@ -18277,9 +18122,6 @@ extension $StakingExploreDtoExtension on StakingExploreDto {
       rewardTickers: (rewardTickers != null
           ? rewardTickers.value
           : this.rewardTickers),
-      collectionInfo: (collectionInfo != null
-          ? collectionInfo.value
-          : this.collectionInfo),
     );
   }
 }
@@ -18289,10 +18131,10 @@ class CollectionMintProfileDoc {
   const CollectionMintProfileDoc({
     required this.dataType,
     required this.collection,
-    required this.contractAddress,
-    required this.collectionTag,
     required this.creatorTag,
     required this.creatorName,
+    required this.contractAddress,
+    required this.collectionTag,
     required this.cid,
     required this.mediaType,
     required this.baseNftName,
@@ -18310,13 +18152,13 @@ class CollectionMintProfileDoc {
     required this.allowsRefund,
     required this.hasBotProtection,
     required this.hasReveal,
+    required this.tags,
     required this.prices,
     required this.startTime,
     required this.endTime,
     required this.isSoldOut,
-    required this.tags,
     required this.id,
-    required this.ts,
+    this.ts,
   });
 
   factory CollectionMintProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -18327,20 +18169,20 @@ class CollectionMintProfileDoc {
 
   @JsonKey(
     name: 'dataType',
-    toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeFromJson,
+    toJson: collectionMintProfileDocDataTypeToJson,
+    fromJson: collectionMintProfileDocDataTypeFromJson,
   )
-  final enums.CollectionDataType dataType;
+  final enums.CollectionMintProfileDocDataType dataType;
   @JsonKey(name: 'collection')
   final String collection;
-  @JsonKey(name: 'contractAddress')
-  final String contractAddress;
-  @JsonKey(name: 'collectionTag')
-  final String collectionTag;
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'creatorName')
   final String creatorName;
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'collectionTag')
+  final String collectionTag;
   @JsonKey(name: 'cid')
   final String cid;
   @JsonKey(name: 'mediaType')
@@ -18375,20 +18217,20 @@ class CollectionMintProfileDoc {
   final bool hasBotProtection;
   @JsonKey(name: 'hasReveal')
   final bool hasReveal;
+  @JsonKey(name: 'tags')
+  final Object tags;
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment> prices;
   @JsonKey(name: 'startTime')
-  final Object startTime;
+  final double startTime;
   @JsonKey(name: 'endTime')
   final double endTime;
   @JsonKey(name: 'isSoldOut')
-  final Object isSoldOut;
-  @JsonKey(name: 'tags')
-  final dynamic tags;
+  final bool isSoldOut;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: '_ts')
-  final double ts;
+  final double? ts;
   static const fromJsonFactory = _$CollectionMintProfileDocFromJson;
 
   @override
@@ -18405,16 +18247,6 @@ class CollectionMintProfileDoc {
                   other.collection,
                   collection,
                 )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
             (identical(other.creatorTag, creatorTag) ||
                 const DeepCollectionEquality().equals(
                   other.creatorTag,
@@ -18424,6 +18256,16 @@ class CollectionMintProfileDoc {
                 const DeepCollectionEquality().equals(
                   other.creatorName,
                   creatorName,
+                )) &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(other.collectionTag, collectionTag) ||
+                const DeepCollectionEquality().equals(
+                  other.collectionTag,
+                  collectionTag,
                 )) &&
             (identical(other.cid, cid) ||
                 const DeepCollectionEquality().equals(other.cid, cid)) &&
@@ -18507,6 +18349,8 @@ class CollectionMintProfileDoc {
                   other.hasReveal,
                   hasReveal,
                 )) &&
+            (identical(other.tags, tags) ||
+                const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.prices, prices) ||
                 const DeepCollectionEquality().equals(other.prices, prices)) &&
             (identical(other.startTime, startTime) ||
@@ -18524,8 +18368,6 @@ class CollectionMintProfileDoc {
                   other.isSoldOut,
                   isSoldOut,
                 )) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.ts, ts) ||
@@ -18539,10 +18381,10 @@ class CollectionMintProfileDoc {
   int get hashCode =>
       const DeepCollectionEquality().hash(dataType) ^
       const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
       const DeepCollectionEquality().hash(creatorTag) ^
       const DeepCollectionEquality().hash(creatorName) ^
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(collectionTag) ^
       const DeepCollectionEquality().hash(cid) ^
       const DeepCollectionEquality().hash(mediaType) ^
       const DeepCollectionEquality().hash(baseNftName) ^
@@ -18560,11 +18402,11 @@ class CollectionMintProfileDoc {
       const DeepCollectionEquality().hash(allowsRefund) ^
       const DeepCollectionEquality().hash(hasBotProtection) ^
       const DeepCollectionEquality().hash(hasReveal) ^
+      const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(prices) ^
       const DeepCollectionEquality().hash(startTime) ^
       const DeepCollectionEquality().hash(endTime) ^
       const DeepCollectionEquality().hash(isSoldOut) ^
-      const DeepCollectionEquality().hash(tags) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(ts) ^
       runtimeType.hashCode;
@@ -18572,12 +18414,12 @@ class CollectionMintProfileDoc {
 
 extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
   CollectionMintProfileDoc copyWith({
-    enums.CollectionDataType? dataType,
+    enums.CollectionMintProfileDocDataType? dataType,
     String? collection,
-    String? contractAddress,
-    String? collectionTag,
     String? creatorTag,
     String? creatorName,
+    String? contractAddress,
+    String? collectionTag,
     String? cid,
     String? mediaType,
     String? baseNftName,
@@ -18595,21 +18437,21 @@ extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
     bool? allowsRefund,
     bool? hasBotProtection,
     bool? hasReveal,
+    Object? tags,
     List<EgldOrEsdtTokenPayment>? prices,
-    Object? startTime,
+    double? startTime,
     double? endTime,
-    Object? isSoldOut,
-    dynamic tags,
+    bool? isSoldOut,
     String? id,
     double? ts,
   }) {
     return CollectionMintProfileDoc(
       dataType: dataType ?? this.dataType,
       collection: collection ?? this.collection,
-      contractAddress: contractAddress ?? this.contractAddress,
-      collectionTag: collectionTag ?? this.collectionTag,
       creatorTag: creatorTag ?? this.creatorTag,
       creatorName: creatorName ?? this.creatorName,
+      contractAddress: contractAddress ?? this.contractAddress,
+      collectionTag: collectionTag ?? this.collectionTag,
       cid: cid ?? this.cid,
       mediaType: mediaType ?? this.mediaType,
       baseNftName: baseNftName ?? this.baseNftName,
@@ -18627,23 +18469,23 @@ extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
       allowsRefund: allowsRefund ?? this.allowsRefund,
       hasBotProtection: hasBotProtection ?? this.hasBotProtection,
       hasReveal: hasReveal ?? this.hasReveal,
+      tags: tags ?? this.tags,
       prices: prices ?? this.prices,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       isSoldOut: isSoldOut ?? this.isSoldOut,
-      tags: tags ?? this.tags,
       id: id ?? this.id,
       ts: ts ?? this.ts,
     );
   }
 
   CollectionMintProfileDoc copyWithWrapped({
-    Wrapped<enums.CollectionDataType>? dataType,
+    Wrapped<enums.CollectionMintProfileDocDataType>? dataType,
     Wrapped<String>? collection,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? collectionTag,
     Wrapped<String>? creatorTag,
     Wrapped<String>? creatorName,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? collectionTag,
     Wrapped<String>? cid,
     Wrapped<String>? mediaType,
     Wrapped<String>? baseNftName,
@@ -18661,25 +18503,25 @@ extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
     Wrapped<bool>? allowsRefund,
     Wrapped<bool>? hasBotProtection,
     Wrapped<bool>? hasReveal,
+    Wrapped<Object>? tags,
     Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
-    Wrapped<Object>? startTime,
+    Wrapped<double>? startTime,
     Wrapped<double>? endTime,
-    Wrapped<Object>? isSoldOut,
-    Wrapped<dynamic>? tags,
+    Wrapped<bool>? isSoldOut,
     Wrapped<String>? id,
-    Wrapped<double>? ts,
+    Wrapped<double?>? ts,
   }) {
     return CollectionMintProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
       collection: (collection != null ? collection.value : this.collection),
+      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
+      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
       contractAddress: (contractAddress != null
           ? contractAddress.value
           : this.contractAddress),
       collectionTag: (collectionTag != null
           ? collectionTag.value
           : this.collectionTag),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
-      creatorName: (creatorName != null ? creatorName.value : this.creatorName),
       cid: (cid != null ? cid.value : this.cid),
       mediaType: (mediaType != null ? mediaType.value : this.mediaType),
       baseNftName: (baseNftName != null ? baseNftName.value : this.baseNftName),
@@ -18715,11 +18557,221 @@ extension $CollectionMintProfileDocExtension on CollectionMintProfileDoc {
           ? hasBotProtection.value
           : this.hasBotProtection),
       hasReveal: (hasReveal != null ? hasReveal.value : this.hasReveal),
+      tags: (tags != null ? tags.value : this.tags),
       prices: (prices != null ? prices.value : this.prices),
       startTime: (startTime != null ? startTime.value : this.startTime),
       endTime: (endTime != null ? endTime.value : this.endTime),
       isSoldOut: (isSoldOut != null ? isSoldOut.value : this.isSoldOut),
-      tags: (tags != null ? tags.value : this.tags),
+      id: (id != null ? id.value : this.id),
+      ts: (ts != null ? ts.value : this.ts),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreatorProfileDoc {
+  const CreatorProfileDoc({
+    required this.dataType,
+    required this.address,
+    required this.name,
+    required this.creatorTag,
+    required this.contractAddress,
+    required this.ticketingContractAddress,
+    required this.profile,
+    required this.banner,
+    required this.joinedDate,
+    this.description,
+    this.socials,
+    required this.id,
+    required this.ts,
+  });
+
+  factory CreatorProfileDoc.fromJson(Map<String, dynamic> json) =>
+      _$CreatorProfileDocFromJson(json);
+
+  static const toJsonFactory = _$CreatorProfileDocToJson;
+  Map<String, dynamic> toJson() => _$CreatorProfileDocToJson(this);
+
+  @JsonKey(
+    name: 'dataType',
+    toJson: creatorProfileDocDataTypeToJson,
+    fromJson: creatorProfileDocDataTypeFromJson,
+  )
+  final enums.CreatorProfileDocDataType dataType;
+  @JsonKey(name: 'address')
+  final String address;
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'creatorTag')
+  final String creatorTag;
+  @JsonKey(name: 'contractAddress')
+  final String contractAddress;
+  @JsonKey(name: 'ticketingContractAddress')
+  final String ticketingContractAddress;
+  @JsonKey(name: 'profile')
+  final String profile;
+  @JsonKey(name: 'banner')
+  final String banner;
+  @JsonKey(name: 'joinedDate')
+  final double joinedDate;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'socials')
+  final SocialsDto? socials;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: '_ts')
+  final double ts;
+  static const fromJsonFactory = _$CreatorProfileDocFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CreatorProfileDoc &&
+            (identical(other.dataType, dataType) ||
+                const DeepCollectionEquality().equals(
+                  other.dataType,
+                  dataType,
+                )) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(
+                  other.address,
+                  address,
+                )) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.creatorTag, creatorTag) ||
+                const DeepCollectionEquality().equals(
+                  other.creatorTag,
+                  creatorTag,
+                )) &&
+            (identical(other.contractAddress, contractAddress) ||
+                const DeepCollectionEquality().equals(
+                  other.contractAddress,
+                  contractAddress,
+                )) &&
+            (identical(
+                  other.ticketingContractAddress,
+                  ticketingContractAddress,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.ticketingContractAddress,
+                  ticketingContractAddress,
+                )) &&
+            (identical(other.profile, profile) ||
+                const DeepCollectionEquality().equals(
+                  other.profile,
+                  profile,
+                )) &&
+            (identical(other.banner, banner) ||
+                const DeepCollectionEquality().equals(other.banner, banner)) &&
+            (identical(other.joinedDate, joinedDate) ||
+                const DeepCollectionEquality().equals(
+                  other.joinedDate,
+                  joinedDate,
+                )) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality().equals(
+                  other.description,
+                  description,
+                )) &&
+            (identical(other.socials, socials) ||
+                const DeepCollectionEquality().equals(
+                  other.socials,
+                  socials,
+                )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dataType) ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(creatorTag) ^
+      const DeepCollectionEquality().hash(contractAddress) ^
+      const DeepCollectionEquality().hash(ticketingContractAddress) ^
+      const DeepCollectionEquality().hash(profile) ^
+      const DeepCollectionEquality().hash(banner) ^
+      const DeepCollectionEquality().hash(joinedDate) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(socials) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(ts) ^
+      runtimeType.hashCode;
+}
+
+extension $CreatorProfileDocExtension on CreatorProfileDoc {
+  CreatorProfileDoc copyWith({
+    enums.CreatorProfileDocDataType? dataType,
+    String? address,
+    String? name,
+    String? creatorTag,
+    String? contractAddress,
+    String? ticketingContractAddress,
+    String? profile,
+    String? banner,
+    double? joinedDate,
+    String? description,
+    SocialsDto? socials,
+    String? id,
+    double? ts,
+  }) {
+    return CreatorProfileDoc(
+      dataType: dataType ?? this.dataType,
+      address: address ?? this.address,
+      name: name ?? this.name,
+      creatorTag: creatorTag ?? this.creatorTag,
+      contractAddress: contractAddress ?? this.contractAddress,
+      ticketingContractAddress:
+          ticketingContractAddress ?? this.ticketingContractAddress,
+      profile: profile ?? this.profile,
+      banner: banner ?? this.banner,
+      joinedDate: joinedDate ?? this.joinedDate,
+      description: description ?? this.description,
+      socials: socials ?? this.socials,
+      id: id ?? this.id,
+      ts: ts ?? this.ts,
+    );
+  }
+
+  CreatorProfileDoc copyWithWrapped({
+    Wrapped<enums.CreatorProfileDocDataType>? dataType,
+    Wrapped<String>? address,
+    Wrapped<String>? name,
+    Wrapped<String>? creatorTag,
+    Wrapped<String>? contractAddress,
+    Wrapped<String>? ticketingContractAddress,
+    Wrapped<String>? profile,
+    Wrapped<String>? banner,
+    Wrapped<double>? joinedDate,
+    Wrapped<String?>? description,
+    Wrapped<SocialsDto?>? socials,
+    Wrapped<String>? id,
+    Wrapped<double>? ts,
+  }) {
+    return CreatorProfileDoc(
+      dataType: (dataType != null ? dataType.value : this.dataType),
+      address: (address != null ? address.value : this.address),
+      name: (name != null ? name.value : this.name),
+      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
+      contractAddress: (contractAddress != null
+          ? contractAddress.value
+          : this.contractAddress),
+      ticketingContractAddress: (ticketingContractAddress != null
+          ? ticketingContractAddress.value
+          : this.ticketingContractAddress),
+      profile: (profile != null ? profile.value : this.profile),
+      banner: (banner != null ? banner.value : this.banner),
+      joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
+      description: (description != null ? description.value : this.description),
+      socials: (socials != null ? socials.value : this.socials),
       id: (id != null ? id.value : this.id),
       ts: (ts != null ? ts.value : this.ts),
     );
@@ -18749,7 +18801,7 @@ class OwnedServicesDto {
   @JsonKey(name: 'events', defaultValue: <EventProfileDoc>[])
   final List<EventProfileDoc> events;
   @JsonKey(name: 'creatorProfile')
-  final CreatorProfileDto creatorProfile;
+  final CreatorProfileDoc creatorProfile;
   @JsonKey(name: 'address')
   final String address;
   static const fromJsonFactory = _$OwnedServicesDtoFromJson;
@@ -18797,7 +18849,7 @@ extension $OwnedServicesDtoExtension on OwnedServicesDto {
     List<CollectionMintProfileDoc>? mintProfiles,
     List<StakingSummary>? stakingPools,
     List<EventProfileDoc>? events,
-    CreatorProfileDto? creatorProfile,
+    CreatorProfileDoc? creatorProfile,
     String? address,
   }) {
     return OwnedServicesDto(
@@ -18813,7 +18865,7 @@ extension $OwnedServicesDtoExtension on OwnedServicesDto {
     Wrapped<List<CollectionMintProfileDoc>>? mintProfiles,
     Wrapped<List<StakingSummary>>? stakingPools,
     Wrapped<List<EventProfileDoc>>? events,
-    Wrapped<CreatorProfileDto>? creatorProfile,
+    Wrapped<CreatorProfileDoc>? creatorProfile,
     Wrapped<String>? address,
   }) {
     return OwnedServicesDto(
@@ -18833,534 +18885,31 @@ extension $OwnedServicesDtoExtension on OwnedServicesDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class CollectionDto {
-  const CollectionDto({
-    required this.collection,
-    required this.name,
-    required this.isVisible,
-    required this.isVerified,
-    required this.profile,
-    required this.type,
-    required this.statistics,
-    required this.floorPrice,
-  });
-
-  factory CollectionDto.fromJson(Map<String, dynamic> json) =>
-      _$CollectionDtoFromJson(json);
-
-  static const toJsonFactory = _$CollectionDtoToJson;
-  Map<String, dynamic> toJson() => _$CollectionDtoToJson(this);
-
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'isVisible')
-  final bool isVisible;
-  @JsonKey(name: 'isVerified')
-  final bool isVerified;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'type')
-  final String type;
-  @JsonKey(name: 'statistics')
-  final StatisticsDto statistics;
-  @JsonKey(name: 'floorPrice')
-  final double floorPrice;
-  static const fromJsonFactory = _$CollectionDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionDtoExtension on CollectionDto {
-  CollectionDto copyWith({
-    String? collection,
-    String? name,
-    bool? isVisible,
-    bool? isVerified,
-    String? profile,
-    String? type,
-    StatisticsDto? statistics,
-    double? floorPrice,
-  }) {
-    return CollectionDto(
-      collection: collection ?? this.collection,
-      name: name ?? this.name,
-      isVisible: isVisible ?? this.isVisible,
-      isVerified: isVerified ?? this.isVerified,
-      profile: profile ?? this.profile,
-      type: type ?? this.type,
-      statistics: statistics ?? this.statistics,
-      floorPrice: floorPrice ?? this.floorPrice,
-    );
-  }
-
-  CollectionDto copyWithWrapped({
-    Wrapped<String>? collection,
-    Wrapped<String>? name,
-    Wrapped<bool>? isVisible,
-    Wrapped<bool>? isVerified,
-    Wrapped<String>? profile,
-    Wrapped<String>? type,
-    Wrapped<StatisticsDto>? statistics,
-    Wrapped<double>? floorPrice,
-  }) {
-    return CollectionDto(
-      collection: (collection != null ? collection.value : this.collection),
-      name: (name != null ? name.value : this.name),
-      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      profile: (profile != null ? profile.value : this.profile),
-      type: (type != null ? type.value : this.type),
-      statistics: (statistics != null ? statistics.value : this.statistics),
-      floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class UserDto {
-  const UserDto({
-    required this.address,
-    required this.herotag,
-    required this.isVerified,
-    required this.profile,
-    this.isCreator,
-    required this.addressTrimmed,
-  });
-
-  factory UserDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDtoFromJson(json);
-
-  static const toJsonFactory = _$UserDtoToJson;
-  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
-
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'herotag')
-  final String herotag;
-  @JsonKey(name: 'isVerified')
-  final bool isVerified;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'isCreator')
-  final bool? isCreator;
-  @JsonKey(name: 'addressTrimmed')
-  final String addressTrimmed;
-  static const fromJsonFactory = _$UserDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.addressTrimmed, addressTrimmed) ||
-                const DeepCollectionEquality().equals(
-                  other.addressTrimmed,
-                  addressTrimmed,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(addressTrimmed) ^
-      runtimeType.hashCode;
-}
-
-extension $UserDtoExtension on UserDto {
-  UserDto copyWith({
-    String? address,
-    String? herotag,
-    bool? isVerified,
-    String? profile,
-    bool? isCreator,
-    String? addressTrimmed,
-  }) {
-    return UserDto(
-      address: address ?? this.address,
-      herotag: herotag ?? this.herotag,
-      isVerified: isVerified ?? this.isVerified,
-      profile: profile ?? this.profile,
-      isCreator: isCreator ?? this.isCreator,
-      addressTrimmed: addressTrimmed ?? this.addressTrimmed,
-    );
-  }
-
-  UserDto copyWithWrapped({
-    Wrapped<String>? address,
-    Wrapped<String>? herotag,
-    Wrapped<bool>? isVerified,
-    Wrapped<String>? profile,
-    Wrapped<bool?>? isCreator,
-    Wrapped<String>? addressTrimmed,
-  }) {
-    return UserDto(
-      address: (address != null ? address.value : this.address),
-      herotag: (herotag != null ? herotag.value : this.herotag),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      profile: (profile != null ? profile.value : this.profile),
-      isCreator: (isCreator != null ? isCreator.value : this.isCreator),
-      addressTrimmed: (addressTrimmed != null
-          ? addressTrimmed.value
-          : this.addressTrimmed),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CreatorDto {
-  const CreatorDto({
-    required this.address,
-    required this.herotag,
-    required this.addressTrimmed,
-    required this.isCreator,
-    required this.contractAddress,
-    required this.name,
-    required this.creatorTag,
-    required this.joinedDate,
-    required this.profile,
-  });
-
-  factory CreatorDto.fromJson(Map<String, dynamic> json) =>
-      _$CreatorDtoFromJson(json);
-
-  static const toJsonFactory = _$CreatorDtoToJson;
-  Map<String, dynamic> toJson() => _$CreatorDtoToJson(this);
-
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'herotag')
-  final String herotag;
-  @JsonKey(name: 'addressTrimmed')
-  final String addressTrimmed;
-  @JsonKey(name: 'isCreator')
-  final bool isCreator;
-  @JsonKey(name: 'contractAddress')
-  final String contractAddress;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'creatorTag')
-  final String creatorTag;
-  @JsonKey(name: 'joinedDate')
-  final double joinedDate;
-  @JsonKey(name: 'profile')
-  final String profile;
-  static const fromJsonFactory = _$CreatorDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.addressTrimmed, addressTrimmed) ||
-                const DeepCollectionEquality().equals(
-                  other.addressTrimmed,
-                  addressTrimmed,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(addressTrimmed) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(profile) ^
-      runtimeType.hashCode;
-}
-
-extension $CreatorDtoExtension on CreatorDto {
-  CreatorDto copyWith({
-    String? address,
-    String? herotag,
-    String? addressTrimmed,
-    bool? isCreator,
-    String? contractAddress,
-    String? name,
-    String? creatorTag,
-    double? joinedDate,
-    String? profile,
-  }) {
-    return CreatorDto(
-      address: address ?? this.address,
-      herotag: herotag ?? this.herotag,
-      addressTrimmed: addressTrimmed ?? this.addressTrimmed,
-      isCreator: isCreator ?? this.isCreator,
-      contractAddress: contractAddress ?? this.contractAddress,
-      name: name ?? this.name,
-      creatorTag: creatorTag ?? this.creatorTag,
-      joinedDate: joinedDate ?? this.joinedDate,
-      profile: profile ?? this.profile,
-    );
-  }
-
-  CreatorDto copyWithWrapped({
-    Wrapped<String>? address,
-    Wrapped<String>? herotag,
-    Wrapped<String>? addressTrimmed,
-    Wrapped<bool>? isCreator,
-    Wrapped<String>? contractAddress,
-    Wrapped<String>? name,
-    Wrapped<String>? creatorTag,
-    Wrapped<double>? joinedDate,
-    Wrapped<String>? profile,
-  }) {
-    return CreatorDto(
-      address: (address != null ? address.value : this.address),
-      herotag: (herotag != null ? herotag.value : this.herotag),
-      addressTrimmed: (addressTrimmed != null
-          ? addressTrimmed.value
-          : this.addressTrimmed),
-      isCreator: (isCreator != null ? isCreator.value : this.isCreator),
-      contractAddress: (contractAddress != null
-          ? contractAddress.value
-          : this.contractAddress),
-      name: (name != null ? name.value : this.name),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
-      joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
-      profile: (profile != null ? profile.value : this.profile),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class GlobalSearchResourcesDto {
-  const GlobalSearchResourcesDto({
-    required this.collections,
-    required this.users,
-    required this.creators,
-    required this.nft,
-  });
-
-  factory GlobalSearchResourcesDto.fromJson(Map<String, dynamic> json) =>
-      _$GlobalSearchResourcesDtoFromJson(json);
-
-  static const toJsonFactory = _$GlobalSearchResourcesDtoToJson;
-  Map<String, dynamic> toJson() => _$GlobalSearchResourcesDtoToJson(this);
-
-  @JsonKey(name: 'collections', defaultValue: <CollectionDto>[])
-  final List<CollectionDto> collections;
-  @JsonKey(name: 'users', defaultValue: <UserDto>[])
-  final List<UserDto> users;
-  @JsonKey(name: 'creators', defaultValue: <CreatorDto>[])
-  final List<CreatorDto> creators;
-  @JsonKey(name: 'nft', defaultValue: <Object>[])
-  final List<Object> nft;
-  static const fromJsonFactory = _$GlobalSearchResourcesDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalSearchResourcesDto &&
-            (identical(other.collections, collections) ||
-                const DeepCollectionEquality().equals(
-                  other.collections,
-                  collections,
-                )) &&
-            (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)) &&
-            (identical(other.creators, creators) ||
-                const DeepCollectionEquality().equals(
-                  other.creators,
-                  creators,
-                )) &&
-            (identical(other.nft, nft) ||
-                const DeepCollectionEquality().equals(other.nft, nft)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collections) ^
-      const DeepCollectionEquality().hash(users) ^
-      const DeepCollectionEquality().hash(creators) ^
-      const DeepCollectionEquality().hash(nft) ^
-      runtimeType.hashCode;
-}
-
-extension $GlobalSearchResourcesDtoExtension on GlobalSearchResourcesDto {
-  GlobalSearchResourcesDto copyWith({
-    List<CollectionDto>? collections,
-    List<UserDto>? users,
-    List<CreatorDto>? creators,
-    List<Object>? nft,
-  }) {
-    return GlobalSearchResourcesDto(
-      collections: collections ?? this.collections,
-      users: users ?? this.users,
-      creators: creators ?? this.creators,
-      nft: nft ?? this.nft,
-    );
-  }
-
-  GlobalSearchResourcesDto copyWithWrapped({
-    Wrapped<List<CollectionDto>>? collections,
-    Wrapped<List<UserDto>>? users,
-    Wrapped<List<CreatorDto>>? creators,
-    Wrapped<List<Object>>? nft,
-  }) {
-    return GlobalSearchResourcesDto(
-      collections: (collections != null ? collections.value : this.collections),
-      users: (users != null ? users.value : this.users),
-      creators: (creators != null ? creators.value : this.creators),
-      nft: (nft != null ? nft.value : this.nft),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class GlobalSearchResponseDto {
-  const GlobalSearchResponseDto({
-    required this.count,
+class GlobalSearchResourcesPaginated {
+  const GlobalSearchResourcesPaginated({
+    this.count,
     required this.hasMoreResults,
     required this.resources,
   });
 
-  factory GlobalSearchResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$GlobalSearchResponseDtoFromJson(json);
+  factory GlobalSearchResourcesPaginated.fromJson(Map<String, dynamic> json) =>
+      _$GlobalSearchResourcesPaginatedFromJson(json);
 
-  static const toJsonFactory = _$GlobalSearchResponseDtoToJson;
-  Map<String, dynamic> toJson() => _$GlobalSearchResponseDtoToJson(this);
+  static const toJsonFactory = _$GlobalSearchResourcesPaginatedToJson;
+  Map<String, dynamic> toJson() => _$GlobalSearchResourcesPaginatedToJson(this);
 
   @JsonKey(name: 'count')
-  final double count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources')
-  final GlobalSearchResourcesDto resources;
-  static const fromJsonFactory = _$GlobalSearchResponseDtoFromJson;
+  final Object resources;
+  static const fromJsonFactory = _$GlobalSearchResourcesPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is GlobalSearchResponseDto &&
+        (other is GlobalSearchResourcesPaginated &&
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
@@ -19386,25 +18935,26 @@ class GlobalSearchResponseDto {
       runtimeType.hashCode;
 }
 
-extension $GlobalSearchResponseDtoExtension on GlobalSearchResponseDto {
-  GlobalSearchResponseDto copyWith({
-    double? count,
+extension $GlobalSearchResourcesPaginatedExtension
+    on GlobalSearchResourcesPaginated {
+  GlobalSearchResourcesPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    GlobalSearchResourcesDto? resources,
+    Object? resources,
   }) {
-    return GlobalSearchResponseDto(
+    return GlobalSearchResourcesPaginated(
       count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  GlobalSearchResponseDto copyWithWrapped({
-    Wrapped<double>? count,
+  GlobalSearchResourcesPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
-    Wrapped<GlobalSearchResourcesDto>? resources,
+    Wrapped<Object>? resources,
   }) {
-    return GlobalSearchResponseDto(
+    return GlobalSearchResourcesPaginated(
       count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
@@ -21997,45 +21547,42 @@ extension $Web2UserShardsDtoExtension on Web2UserShardsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class FromToDto {
-  const FromToDto({
-    required this.address,
-    required this.profile,
-    required this.username,
+class NftActivityPaginated {
+  const NftActivityPaginated({
+    this.count,
+    required this.hasMoreResults,
+    required this.resources,
   });
 
-  factory FromToDto.fromJson(Map<String, dynamic> json) =>
-      _$FromToDtoFromJson(json);
+  factory NftActivityPaginated.fromJson(Map<String, dynamic> json) =>
+      _$NftActivityPaginatedFromJson(json);
 
-  static const toJsonFactory = _$FromToDtoToJson;
-  Map<String, dynamic> toJson() => _$FromToDtoToJson(this);
+  static const toJsonFactory = _$NftActivityPaginatedToJson;
+  Map<String, dynamic> toJson() => _$NftActivityPaginatedToJson(this);
 
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'username')
-  final String username;
-  static const fromJsonFactory = _$FromToDtoFromJson;
+  @JsonKey(name: 'count')
+  final Object? count;
+  @JsonKey(name: 'hasMoreResults')
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$NftActivityPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is FromToDto &&
-            (identical(other.address, address) ||
+        (other is NftActivityPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
+                  other.hasMoreResults,
+                  hasMoreResults,
                 )) &&
-            (identical(other.profile, profile) ||
+            (identical(other.resources, resources) ||
                 const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
+                  other.resources,
+                  resources,
                 )));
   }
 
@@ -22044,257 +21591,126 @@ class FromToDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(username) ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(hasMoreResults) ^
+      const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $FromToDtoExtension on FromToDto {
-  FromToDto copyWith({String? address, String? profile, String? username}) {
-    return FromToDto(
-      address: address ?? this.address,
-      profile: profile ?? this.profile,
-      username: username ?? this.username,
+extension $NftActivityPaginatedExtension on NftActivityPaginated {
+  NftActivityPaginated copyWith({
+    Object? count,
+    bool? hasMoreResults,
+    List<List<Object?>>? resources,
+  }) {
+    return NftActivityPaginated(
+      count: count ?? this.count,
+      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
+      resources: resources ?? this.resources,
     );
   }
 
-  FromToDto copyWithWrapped({
-    Wrapped<String>? address,
-    Wrapped<String>? profile,
-    Wrapped<String>? username,
+  NftActivityPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return FromToDto(
-      address: (address != null ? address.value : this.address),
-      profile: (profile != null ? profile.value : this.profile),
-      username: (username != null ? username.value : this.username),
+    return NftActivityPaginated(
+      count: (count != null ? count.value : this.count),
+      hasMoreResults: (hasMoreResults != null
+          ? hasMoreResults.value
+          : this.hasMoreResults),
+      resources: (resources != null ? resources.value : this.resources),
     );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ActivityDataDto {
-  const ActivityDataDto({
-    required this.collection,
-    required this.identifier,
-    required this.price,
-    required this.paymentToken,
-    required this.quantity,
-    required this.scId,
-    required this.usdValue,
-    required this.egldValue,
-    required this.auctionType,
-    required this.nftInfo,
-    required this.collectionInfo,
-  });
+class NftActivityData {
+  const NftActivityData();
 
-  factory ActivityDataDto.fromJson(Map<String, dynamic> json) =>
-      _$ActivityDataDtoFromJson(json);
+  factory NftActivityData.fromJson(Map<String, dynamic> json) =>
+      _$NftActivityDataFromJson(json);
 
-  static const toJsonFactory = _$ActivityDataDtoToJson;
-  Map<String, dynamic> toJson() => _$ActivityDataDtoToJson(this);
+  static const toJsonFactory = _$NftActivityDataToJson;
+  Map<String, dynamic> toJson() => _$NftActivityDataToJson(this);
 
-  @JsonKey(name: 'collection')
-  final String collection;
-  @JsonKey(name: 'identifier')
-  final String identifier;
-  @JsonKey(name: 'price')
-  final double price;
-  @JsonKey(name: 'paymentToken')
-  final String paymentToken;
-  @JsonKey(name: 'quantity')
-  final double quantity;
-  @JsonKey(name: 'scId')
-  final double scId;
-  @JsonKey(name: 'usdValue')
-  final double usdValue;
-  @JsonKey(name: 'egldValue')
-  final double egldValue;
-  @JsonKey(name: 'auctionType')
-  final String auctionType;
-  @JsonKey(name: 'nftInfo')
-  final NftInfoDto nftInfo;
-  @JsonKey(name: 'collectionInfo')
-  final CollectionInfoDto collectionInfo;
-  static const fromJsonFactory = _$ActivityDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ActivityDataDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.scId, scId) ||
-                const DeepCollectionEquality().equals(other.scId, scId)) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )) &&
-            (identical(other.nftInfo, nftInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.nftInfo,
-                  nftInfo,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
+  static const fromJsonFactory = _$NftActivityDataFromJson;
 
   @override
   String toString() => jsonEncode(this);
 
   @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(scId) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      const DeepCollectionEquality().hash(nftInfo) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
-}
-
-extension $ActivityDataDtoExtension on ActivityDataDto {
-  ActivityDataDto copyWith({
-    String? collection,
-    String? identifier,
-    double? price,
-    String? paymentToken,
-    double? quantity,
-    double? scId,
-    double? usdValue,
-    double? egldValue,
-    String? auctionType,
-    NftInfoDto? nftInfo,
-    CollectionInfoDto? collectionInfo,
-  }) {
-    return ActivityDataDto(
-      collection: collection ?? this.collection,
-      identifier: identifier ?? this.identifier,
-      price: price ?? this.price,
-      paymentToken: paymentToken ?? this.paymentToken,
-      quantity: quantity ?? this.quantity,
-      scId: scId ?? this.scId,
-      usdValue: usdValue ?? this.usdValue,
-      egldValue: egldValue ?? this.egldValue,
-      auctionType: auctionType ?? this.auctionType,
-      nftInfo: nftInfo ?? this.nftInfo,
-      collectionInfo: collectionInfo ?? this.collectionInfo,
-    );
-  }
-
-  ActivityDataDto copyWithWrapped({
-    Wrapped<String>? collection,
-    Wrapped<String>? identifier,
-    Wrapped<double>? price,
-    Wrapped<String>? paymentToken,
-    Wrapped<double>? quantity,
-    Wrapped<double>? scId,
-    Wrapped<double>? usdValue,
-    Wrapped<double>? egldValue,
-    Wrapped<String>? auctionType,
-    Wrapped<NftInfoDto>? nftInfo,
-    Wrapped<CollectionInfoDto>? collectionInfo,
-  }) {
-    return ActivityDataDto(
-      collection: (collection != null ? collection.value : this.collection),
-      identifier: (identifier != null ? identifier.value : this.identifier),
-      price: (price != null ? price.value : this.price),
-      paymentToken: (paymentToken != null
-          ? paymentToken.value
-          : this.paymentToken),
-      quantity: (quantity != null ? quantity.value : this.quantity),
-      scId: (scId != null ? scId.value : this.scId),
-      usdValue: (usdValue != null ? usdValue.value : this.usdValue),
-      egldValue: (egldValue != null ? egldValue.value : this.egldValue),
-      auctionType: (auctionType != null ? auctionType.value : this.auctionType),
-      nftInfo: (nftInfo != null ? nftInfo.value : this.nftInfo),
-      collectionInfo: (collectionInfo != null
-          ? collectionInfo.value
-          : this.collectionInfo),
-    );
-  }
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
-class ActivityBodyDto {
-  const ActivityBodyDto({
+class NftActivityDocHydrated {
+  const NftActivityDocHydrated({
+    required this.timestamp,
     required this.txHash,
     required this.eventIdentifier,
-    required this.timestamp,
-    required this.activityType,
+    this.eventOrder,
+    required this.chain,
     required this.source,
-    required this.from,
-    required this.to,
+    required this.activityType,
     required this.activityData,
+    required this.id,
+    required this.pk,
+    required this.ts,
   });
 
-  factory ActivityBodyDto.fromJson(Map<String, dynamic> json) =>
-      _$ActivityBodyDtoFromJson(json);
+  factory NftActivityDocHydrated.fromJson(Map<String, dynamic> json) =>
+      _$NftActivityDocHydratedFromJson(json);
 
-  static const toJsonFactory = _$ActivityBodyDtoToJson;
-  Map<String, dynamic> toJson() => _$ActivityBodyDtoToJson(this);
+  static const toJsonFactory = _$NftActivityDocHydratedToJson;
+  Map<String, dynamic> toJson() => _$NftActivityDocHydratedToJson(this);
 
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
   @JsonKey(name: 'txHash')
   final String txHash;
   @JsonKey(name: 'eventIdentifier')
   final String eventIdentifier;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  @JsonKey(name: 'activityType')
-  final String activityType;
-  @JsonKey(name: 'source')
-  final String source;
-  @JsonKey(name: 'from')
-  final FromToDto from;
-  @JsonKey(name: 'to')
-  final FromToDto to;
+  @JsonKey(name: 'eventOrder')
+  final double? eventOrder;
+  @JsonKey(
+    name: 'chain',
+    toJson: nftActivityDocHydratedChainToJson,
+    fromJson: nftActivityDocHydratedChainFromJson,
+  )
+  final enums.NftActivityDocHydratedChain chain;
+  @JsonKey(
+    name: 'source',
+    toJson: nftActivityDocHydratedSourceToJson,
+    fromJson: nftActivityDocHydratedSourceFromJson,
+  )
+  final enums.NftActivityDocHydratedSource source;
+  @JsonKey(
+    name: 'activityType',
+    toJson: nftActivityDocHydratedActivityTypeToJson,
+    fromJson: nftActivityDocHydratedActivityTypeFromJson,
+  )
+  final enums.NftActivityDocHydratedActivityType activityType;
   @JsonKey(name: 'activityData')
-  final ActivityDataDto activityData;
-  static const fromJsonFactory = _$ActivityBodyDtoFromJson;
+  final NftActivityData activityData;
+  @JsonKey(name: 'id')
+  final String id;
+  @JsonKey(name: 'pk')
+  final String pk;
+  @JsonKey(name: '_ts')
+  final double ts;
+  static const fromJsonFactory = _$NftActivityDocHydratedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is ActivityBodyDto &&
+        (other is NftActivityDocHydrated &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
             (identical(other.txHash, txHash) ||
                 const DeepCollectionEquality().equals(other.txHash, txHash)) &&
             (identical(other.eventIdentifier, eventIdentifier) ||
@@ -22302,27 +21718,31 @@ class ActivityBodyDto {
                   other.eventIdentifier,
                   eventIdentifier,
                 )) &&
-            (identical(other.timestamp, timestamp) ||
+            (identical(other.eventOrder, eventOrder) ||
                 const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
+                  other.eventOrder,
+                  eventOrder,
                 )) &&
+            (identical(other.chain, chain) ||
+                const DeepCollectionEquality().equals(other.chain, chain)) &&
+            (identical(other.source, source) ||
+                const DeepCollectionEquality().equals(other.source, source)) &&
             (identical(other.activityType, activityType) ||
                 const DeepCollectionEquality().equals(
                   other.activityType,
                   activityType,
                 )) &&
-            (identical(other.source, source) ||
-                const DeepCollectionEquality().equals(other.source, source)) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.to, to) ||
-                const DeepCollectionEquality().equals(other.to, to)) &&
             (identical(other.activityData, activityData) ||
                 const DeepCollectionEquality().equals(
                   other.activityData,
                   activityData,
-                )));
+                )) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.pk, pk) ||
+                const DeepCollectionEquality().equals(other.pk, pk)) &&
+            (identical(other.ts, ts) ||
+                const DeepCollectionEquality().equals(other.ts, ts)));
   }
 
   @override
@@ -22330,155 +21750,82 @@ class ActivityBodyDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(txHash) ^
       const DeepCollectionEquality().hash(eventIdentifier) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(activityType) ^
+      const DeepCollectionEquality().hash(eventOrder) ^
+      const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(source) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(to) ^
+      const DeepCollectionEquality().hash(activityType) ^
       const DeepCollectionEquality().hash(activityData) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(pk) ^
+      const DeepCollectionEquality().hash(ts) ^
       runtimeType.hashCode;
 }
 
-extension $ActivityBodyDtoExtension on ActivityBodyDto {
-  ActivityBodyDto copyWith({
+extension $NftActivityDocHydratedExtension on NftActivityDocHydrated {
+  NftActivityDocHydrated copyWith({
+    double? timestamp,
     String? txHash,
     String? eventIdentifier,
-    double? timestamp,
-    String? activityType,
-    String? source,
-    FromToDto? from,
-    FromToDto? to,
-    ActivityDataDto? activityData,
+    double? eventOrder,
+    enums.NftActivityDocHydratedChain? chain,
+    enums.NftActivityDocHydratedSource? source,
+    enums.NftActivityDocHydratedActivityType? activityType,
+    NftActivityData? activityData,
+    String? id,
+    String? pk,
+    double? ts,
   }) {
-    return ActivityBodyDto(
+    return NftActivityDocHydrated(
+      timestamp: timestamp ?? this.timestamp,
       txHash: txHash ?? this.txHash,
       eventIdentifier: eventIdentifier ?? this.eventIdentifier,
-      timestamp: timestamp ?? this.timestamp,
-      activityType: activityType ?? this.activityType,
+      eventOrder: eventOrder ?? this.eventOrder,
+      chain: chain ?? this.chain,
       source: source ?? this.source,
-      from: from ?? this.from,
-      to: to ?? this.to,
+      activityType: activityType ?? this.activityType,
       activityData: activityData ?? this.activityData,
+      id: id ?? this.id,
+      pk: pk ?? this.pk,
+      ts: ts ?? this.ts,
     );
   }
 
-  ActivityBodyDto copyWithWrapped({
+  NftActivityDocHydrated copyWithWrapped({
+    Wrapped<double>? timestamp,
     Wrapped<String>? txHash,
     Wrapped<String>? eventIdentifier,
-    Wrapped<double>? timestamp,
-    Wrapped<String>? activityType,
-    Wrapped<String>? source,
-    Wrapped<FromToDto>? from,
-    Wrapped<FromToDto>? to,
-    Wrapped<ActivityDataDto>? activityData,
+    Wrapped<double?>? eventOrder,
+    Wrapped<enums.NftActivityDocHydratedChain>? chain,
+    Wrapped<enums.NftActivityDocHydratedSource>? source,
+    Wrapped<enums.NftActivityDocHydratedActivityType>? activityType,
+    Wrapped<NftActivityData>? activityData,
+    Wrapped<String>? id,
+    Wrapped<String>? pk,
+    Wrapped<double>? ts,
   }) {
-    return ActivityBodyDto(
+    return NftActivityDocHydrated(
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
       txHash: (txHash != null ? txHash.value : this.txHash),
       eventIdentifier: (eventIdentifier != null
           ? eventIdentifier.value
           : this.eventIdentifier),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      eventOrder: (eventOrder != null ? eventOrder.value : this.eventOrder),
+      chain: (chain != null ? chain.value : this.chain),
+      source: (source != null ? source.value : this.source),
       activityType: (activityType != null
           ? activityType.value
           : this.activityType),
-      source: (source != null ? source.value : this.source),
-      from: (from != null ? from.value : this.from),
-      to: (to != null ? to.value : this.to),
       activityData: (activityData != null
           ? activityData.value
           : this.activityData),
+      id: (id != null ? id.value : this.id),
+      pk: (pk != null ? pk.value : this.pk),
+      ts: (ts != null ? ts.value : this.ts),
     );
   }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ActivityHistoryDto {
-  const ActivityHistoryDto({
-    required this.resources,
-    required this.hasMoreResults,
-  });
-
-  factory ActivityHistoryDto.fromJson(Map<String, dynamic> json) =>
-      _$ActivityHistoryDtoFromJson(json);
-
-  static const toJsonFactory = _$ActivityHistoryDtoToJson;
-  Map<String, dynamic> toJson() => _$ActivityHistoryDtoToJson(this);
-
-  @JsonKey(name: 'resources', defaultValue: <ActivityBodyDto>[])
-  final List<ActivityBodyDto> resources;
-  @JsonKey(name: 'hasMoreResults')
-  final bool hasMoreResults;
-  static const fromJsonFactory = _$ActivityHistoryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ActivityHistoryDto &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      runtimeType.hashCode;
-}
-
-extension $ActivityHistoryDtoExtension on ActivityHistoryDto {
-  ActivityHistoryDto copyWith({
-    List<ActivityBodyDto>? resources,
-    bool? hasMoreResults,
-  }) {
-    return ActivityHistoryDto(
-      resources: resources ?? this.resources,
-      hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-    );
-  }
-
-  ActivityHistoryDto copyWithWrapped({
-    Wrapped<List<ActivityBodyDto>>? resources,
-    Wrapped<bool>? hasMoreResults,
-  }) {
-    return ActivityHistoryDto(
-      resources: (resources != null ? resources.value : this.resources),
-      hasMoreResults: (hasMoreResults != null
-          ? hasMoreResults.value
-          : this.hasMoreResults),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class NftActivityDoc {
-  const NftActivityDoc();
-
-  factory NftActivityDoc.fromJson(Map<String, dynamic> json) =>
-      _$NftActivityDocFromJson(json);
-
-  static const toJsonFactory = _$NftActivityDocToJson;
-  Map<String, dynamic> toJson() => _$NftActivityDocToJson(this);
-
-  static const fromJsonFactory = _$NftActivityDocFromJson;
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -22954,6 +22301,254 @@ extension $UserAnalyticsDtoExtension on UserAnalyticsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class AllTimeHighDto {
+  const AllTimeHighDto({
+    required this.price,
+    required this.timestamp,
+    required this.txHash,
+    required this.identifier,
+  });
+
+  factory AllTimeHighDto.fromJson(Map<String, dynamic> json) =>
+      _$AllTimeHighDtoFromJson(json);
+
+  static const toJsonFactory = _$AllTimeHighDtoToJson;
+  Map<String, dynamic> toJson() => _$AllTimeHighDtoToJson(this);
+
+  @JsonKey(name: 'price')
+  final double price;
+  @JsonKey(name: 'timestamp')
+  final double timestamp;
+  @JsonKey(name: 'txHash')
+  final String txHash;
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  static const fromJsonFactory = _$AllTimeHighDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is AllTimeHighDto &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )) &&
+            (identical(other.txHash, txHash) ||
+                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(timestamp) ^
+      const DeepCollectionEquality().hash(txHash) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      runtimeType.hashCode;
+}
+
+extension $AllTimeHighDtoExtension on AllTimeHighDto {
+  AllTimeHighDto copyWith({
+    double? price,
+    double? timestamp,
+    String? txHash,
+    String? identifier,
+  }) {
+    return AllTimeHighDto(
+      price: price ?? this.price,
+      timestamp: timestamp ?? this.timestamp,
+      txHash: txHash ?? this.txHash,
+      identifier: identifier ?? this.identifier,
+    );
+  }
+
+  AllTimeHighDto copyWithWrapped({
+    Wrapped<double>? price,
+    Wrapped<double>? timestamp,
+    Wrapped<String>? txHash,
+    Wrapped<String>? identifier,
+  }) {
+    return AllTimeHighDto(
+      price: (price != null ? price.value : this.price),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+      txHash: (txHash != null ? txHash.value : this.txHash),
+      identifier: (identifier != null ? identifier.value : this.identifier),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TradingStatsDto {
+  const TradingStatsDto({
+    required this.totalVolume,
+    required this.totalTrades,
+    required this.averagePrice,
+    required this.allTimeHigh,
+    required this.day,
+    required this.week,
+    required this.month,
+    required this.quarter,
+    required this.halfYear,
+    required this.year,
+  });
+
+  factory TradingStatsDto.fromJson(Map<String, dynamic> json) =>
+      _$TradingStatsDtoFromJson(json);
+
+  static const toJsonFactory = _$TradingStatsDtoToJson;
+  Map<String, dynamic> toJson() => _$TradingStatsDtoToJson(this);
+
+  @JsonKey(name: 'totalVolume')
+  final double totalVolume;
+  @JsonKey(name: 'totalTrades')
+  final double totalTrades;
+  @JsonKey(name: 'averagePrice')
+  final double averagePrice;
+  @JsonKey(name: 'allTimeHigh')
+  final AllTimeHighDto allTimeHigh;
+  @JsonKey(name: 'day')
+  final Object day;
+  @JsonKey(name: 'week')
+  final Object week;
+  @JsonKey(name: 'month')
+  final Object month;
+  @JsonKey(name: 'quarter')
+  final Object quarter;
+  @JsonKey(name: 'halfYear')
+  final Object halfYear;
+  @JsonKey(name: 'year')
+  final Object year;
+  static const fromJsonFactory = _$TradingStatsDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TradingStatsDto &&
+            (identical(other.totalVolume, totalVolume) ||
+                const DeepCollectionEquality().equals(
+                  other.totalVolume,
+                  totalVolume,
+                )) &&
+            (identical(other.totalTrades, totalTrades) ||
+                const DeepCollectionEquality().equals(
+                  other.totalTrades,
+                  totalTrades,
+                )) &&
+            (identical(other.averagePrice, averagePrice) ||
+                const DeepCollectionEquality().equals(
+                  other.averagePrice,
+                  averagePrice,
+                )) &&
+            (identical(other.allTimeHigh, allTimeHigh) ||
+                const DeepCollectionEquality().equals(
+                  other.allTimeHigh,
+                  allTimeHigh,
+                )) &&
+            (identical(other.day, day) ||
+                const DeepCollectionEquality().equals(other.day, day)) &&
+            (identical(other.week, week) ||
+                const DeepCollectionEquality().equals(other.week, week)) &&
+            (identical(other.month, month) ||
+                const DeepCollectionEquality().equals(other.month, month)) &&
+            (identical(other.quarter, quarter) ||
+                const DeepCollectionEquality().equals(
+                  other.quarter,
+                  quarter,
+                )) &&
+            (identical(other.halfYear, halfYear) ||
+                const DeepCollectionEquality().equals(
+                  other.halfYear,
+                  halfYear,
+                )) &&
+            (identical(other.year, year) ||
+                const DeepCollectionEquality().equals(other.year, year)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(totalVolume) ^
+      const DeepCollectionEquality().hash(totalTrades) ^
+      const DeepCollectionEquality().hash(averagePrice) ^
+      const DeepCollectionEquality().hash(allTimeHigh) ^
+      const DeepCollectionEquality().hash(day) ^
+      const DeepCollectionEquality().hash(week) ^
+      const DeepCollectionEquality().hash(month) ^
+      const DeepCollectionEquality().hash(quarter) ^
+      const DeepCollectionEquality().hash(halfYear) ^
+      const DeepCollectionEquality().hash(year) ^
+      runtimeType.hashCode;
+}
+
+extension $TradingStatsDtoExtension on TradingStatsDto {
+  TradingStatsDto copyWith({
+    double? totalVolume,
+    double? totalTrades,
+    double? averagePrice,
+    AllTimeHighDto? allTimeHigh,
+    Object? day,
+    Object? week,
+    Object? month,
+    Object? quarter,
+    Object? halfYear,
+    Object? year,
+  }) {
+    return TradingStatsDto(
+      totalVolume: totalVolume ?? this.totalVolume,
+      totalTrades: totalTrades ?? this.totalTrades,
+      averagePrice: averagePrice ?? this.averagePrice,
+      allTimeHigh: allTimeHigh ?? this.allTimeHigh,
+      day: day ?? this.day,
+      week: week ?? this.week,
+      month: month ?? this.month,
+      quarter: quarter ?? this.quarter,
+      halfYear: halfYear ?? this.halfYear,
+      year: year ?? this.year,
+    );
+  }
+
+  TradingStatsDto copyWithWrapped({
+    Wrapped<double>? totalVolume,
+    Wrapped<double>? totalTrades,
+    Wrapped<double>? averagePrice,
+    Wrapped<AllTimeHighDto>? allTimeHigh,
+    Wrapped<Object>? day,
+    Wrapped<Object>? week,
+    Wrapped<Object>? month,
+    Wrapped<Object>? quarter,
+    Wrapped<Object>? halfYear,
+    Wrapped<Object>? year,
+  }) {
+    return TradingStatsDto(
+      totalVolume: (totalVolume != null ? totalVolume.value : this.totalVolume),
+      totalTrades: (totalTrades != null ? totalTrades.value : this.totalTrades),
+      averagePrice: (averagePrice != null
+          ? averagePrice.value
+          : this.averagePrice),
+      allTimeHigh: (allTimeHigh != null ? allTimeHigh.value : this.allTimeHigh),
+      day: (day != null ? day.value : this.day),
+      week: (week != null ? week.value : this.week),
+      month: (month != null ? month.value : this.month),
+      quarter: (quarter != null ? quarter.value : this.quarter),
+      halfYear: (halfYear != null ? halfYear.value : this.halfYear),
+      year: (year != null ? year.value : this.year),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class GlobalAnalyticsOverviewResponseDto {
   const GlobalAnalyticsOverviewResponseDto({
     required this.userCount,
@@ -23048,7 +22643,7 @@ class PriceDataDto {
     required this.identifier,
     required this.txHash,
     required this.usdValue,
-    required this.nftInfo,
+    this.nftInfo,
   });
 
   factory PriceDataDto.fromJson(Map<String, dynamic> json) =>
@@ -23068,7 +22663,7 @@ class PriceDataDto {
   @JsonKey(name: 'usdValue')
   final double usdValue;
   @JsonKey(name: 'nftInfo')
-  final NftInfoDto nftInfo;
+  final PartialType? nftInfo;
   static const fromJsonFactory = _$PriceDataDtoFromJson;
 
   @override
@@ -23119,7 +22714,7 @@ extension $PriceDataDtoExtension on PriceDataDto {
     String? identifier,
     String? txHash,
     double? usdValue,
-    NftInfoDto? nftInfo,
+    PartialType? nftInfo,
   }) {
     return PriceDataDto(
       price: price ?? this.price,
@@ -23137,7 +22732,7 @@ extension $PriceDataDtoExtension on PriceDataDto {
     Wrapped<String>? identifier,
     Wrapped<String>? txHash,
     Wrapped<double>? usdValue,
-    Wrapped<NftInfoDto>? nftInfo,
+    Wrapped<PartialType?>? nftInfo,
   }) {
     return PriceDataDto(
       price: (price != null ? price.value : this.price),
@@ -23468,53 +23063,6 @@ extension $UserStatsDtoExtension on UserStatsDto {
       sellerMinPriceData: (sellerMinPriceData != null
           ? sellerMinPriceData.value
           : this.sellerMinPriceData),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class GetUsersStatsResponseDto {
-  const GetUsersStatsResponseDto({required this.usersStats});
-
-  factory GetUsersStatsResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$GetUsersStatsResponseDtoFromJson(json);
-
-  static const toJsonFactory = _$GetUsersStatsResponseDtoToJson;
-  Map<String, dynamic> toJson() => _$GetUsersStatsResponseDtoToJson(this);
-
-  @JsonKey(name: 'usersStats', defaultValue: <UserStatsDto>[])
-  final List<UserStatsDto> usersStats;
-  static const fromJsonFactory = _$GetUsersStatsResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GetUsersStatsResponseDto &&
-            (identical(other.usersStats, usersStats) ||
-                const DeepCollectionEquality().equals(
-                  other.usersStats,
-                  usersStats,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(usersStats) ^ runtimeType.hashCode;
-}
-
-extension $GetUsersStatsResponseDtoExtension on GetUsersStatsResponseDto {
-  GetUsersStatsResponseDto copyWith({List<UserStatsDto>? usersStats}) {
-    return GetUsersStatsResponseDto(usersStats: usersStats ?? this.usersStats);
-  }
-
-  GetUsersStatsResponseDto copyWithWrapped({
-    Wrapped<List<UserStatsDto>>? usersStats,
-  }) {
-    return GetUsersStatsResponseDto(
-      usersStats: (usersStats != null ? usersStats.value : this.usersStats),
     );
   }
 }
@@ -24081,7 +23629,7 @@ class ChatMessageContentDto {
   const ChatMessageContentDto({
     required this.type,
     required this.$value,
-    required this.replyTo,
+    this.replyTo,
   });
 
   factory ChatMessageContentDto.fromJson(Map<String, dynamic> json) =>
@@ -24095,7 +23643,7 @@ class ChatMessageContentDto {
   @JsonKey(name: 'value')
   final String $value;
   @JsonKey(name: 'replyTo')
-  final ChatMessageReplyDto replyTo;
+  final ChatMessageReplyDto? replyTo;
   static const fromJsonFactory = _$ChatMessageContentDtoFromJson;
 
   @override
@@ -24137,7 +23685,7 @@ extension $ChatMessageContentDtoExtension on ChatMessageContentDto {
   ChatMessageContentDto copyWithWrapped({
     Wrapped<String>? type,
     Wrapped<String>? $value,
-    Wrapped<ChatMessageReplyDto>? replyTo,
+    Wrapped<ChatMessageReplyDto?>? replyTo,
   }) {
     return ChatMessageContentDto(
       type: (type != null ? type.value : this.type),
@@ -24225,532 +23773,52 @@ extension $SendChatMessageDtoExtension on SendChatMessageDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ProfileDto {
-  const ProfileDto({
-    required this.address,
-    required this.username,
-    required this.profile,
-  });
+class ChatMessageDocHydrated {
+  const ChatMessageDocHydrated();
 
-  factory ProfileDto.fromJson(Map<String, dynamic> json) =>
-      _$ProfileDtoFromJson(json);
+  factory ChatMessageDocHydrated.fromJson(Map<String, dynamic> json) =>
+      _$ChatMessageDocHydratedFromJson(json);
 
-  static const toJsonFactory = _$ProfileDtoToJson;
-  Map<String, dynamic> toJson() => _$ProfileDtoToJson(this);
+  static const toJsonFactory = _$ChatMessageDocHydratedToJson;
+  Map<String, dynamic> toJson() => _$ChatMessageDocHydratedToJson(this);
 
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'username')
-  final String username;
-  @JsonKey(name: 'profile')
-  final String profile;
-  static const fromJsonFactory = _$ProfileDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ProfileDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
-  }
+  static const fromJsonFactory = _$ChatMessageDocHydratedFromJson;
 
   @override
   String toString() => jsonEncode(this);
 
   @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(profile) ^
-      runtimeType.hashCode;
-}
-
-extension $ProfileDtoExtension on ProfileDto {
-  ProfileDto copyWith({String? address, String? username, String? profile}) {
-    return ProfileDto(
-      address: address ?? this.address,
-      username: username ?? this.username,
-      profile: profile ?? this.profile,
-    );
-  }
-
-  ProfileDto copyWithWrapped({
-    Wrapped<String>? address,
-    Wrapped<String>? username,
-    Wrapped<String>? profile,
-  }) {
-    return ProfileDto(
-      address: (address != null ? address.value : this.address),
-      username: (username != null ? username.value : this.username),
-      profile: (profile != null ? profile.value : this.profile),
-    );
-  }
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
-class MessageContentDto {
-  const MessageContentDto({
-    required this.type,
-    required this.$value,
-    this.replyTo,
-  });
-
-  factory MessageContentDto.fromJson(Map<String, dynamic> json) =>
-      _$MessageContentDtoFromJson(json);
-
-  static const toJsonFactory = _$MessageContentDtoToJson;
-  Map<String, dynamic> toJson() => _$MessageContentDtoToJson(this);
-
-  @JsonKey(name: 'type')
-  final String type;
-  @JsonKey(name: 'value')
-  final String $value;
-  @JsonKey(name: 'replyTo')
-  final Object? replyTo;
-  static const fromJsonFactory = _$MessageContentDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MessageContentDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.replyTo, replyTo) ||
-                const DeepCollectionEquality().equals(other.replyTo, replyTo)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(replyTo) ^
-      runtimeType.hashCode;
-}
-
-extension $MessageContentDtoExtension on MessageContentDto {
-  MessageContentDto copyWith({String? type, String? $value, Object? replyTo}) {
-    return MessageContentDto(
-      type: type ?? this.type,
-      $value: $value ?? this.$value,
-      replyTo: replyTo ?? this.replyTo,
-    );
-  }
-
-  MessageContentDto copyWithWrapped({
-    Wrapped<String>? type,
-    Wrapped<String>? $value,
-    Wrapped<Object?>? replyTo,
-  }) {
-    return MessageContentDto(
-      type: (type != null ? type.value : this.type),
-      $value: ($value != null ? $value.value : this.$value),
-      replyTo: (replyTo != null ? replyTo.value : this.replyTo),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class MessageDto {
-  const MessageDto({
-    required this.content,
-    required this.isRead,
-    required this.timestamp,
-  });
-
-  factory MessageDto.fromJson(Map<String, dynamic> json) =>
-      _$MessageDtoFromJson(json);
-
-  static const toJsonFactory = _$MessageDtoToJson;
-  Map<String, dynamic> toJson() => _$MessageDtoToJson(this);
-
-  @JsonKey(name: 'content')
-  final MessageContentDto content;
-  @JsonKey(name: 'isRead')
-  final bool isRead;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  static const fromJsonFactory = _$MessageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MessageDto &&
-            (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(
-                  other.content,
-                  content,
-                )) &&
-            (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(isRead) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      runtimeType.hashCode;
-}
-
-extension $MessageDtoExtension on MessageDto {
-  MessageDto copyWith({
-    MessageContentDto? content,
-    bool? isRead,
-    double? timestamp,
-  }) {
-    return MessageDto(
-      content: content ?? this.content,
-      isRead: isRead ?? this.isRead,
-      timestamp: timestamp ?? this.timestamp,
-    );
-  }
-
-  MessageDto copyWithWrapped({
-    Wrapped<MessageContentDto>? content,
-    Wrapped<bool>? isRead,
-    Wrapped<double>? timestamp,
-  }) {
-    return MessageDto(
-      content: (content != null ? content.value : this.content),
-      isRead: (isRead != null ? isRead.value : this.isRead),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ChatMessageDto {
-  const ChatMessageDto({
-    required this.dataType,
-    required this.chatId,
-    required this.receiver,
-    required this.sender,
-    required this.isGroupChat,
-    required this.message,
-    required this.id,
-    required this.chatName,
-  });
-
-  factory ChatMessageDto.fromJson(Map<String, dynamic> json) =>
-      _$ChatMessageDtoFromJson(json);
-
-  static const toJsonFactory = _$ChatMessageDtoToJson;
-  Map<String, dynamic> toJson() => _$ChatMessageDtoToJson(this);
-
-  @JsonKey(name: 'dataType')
-  final String dataType;
-  @JsonKey(name: 'chatId')
-  final String chatId;
-  @JsonKey(name: 'receiver')
-  final ProfileDto receiver;
-  @JsonKey(name: 'sender')
-  final ProfileDto sender;
-  @JsonKey(name: 'isGroupChat')
-  final bool isGroupChat;
-  @JsonKey(name: 'message')
-  final MessageDto message;
-  @JsonKey(name: 'id')
-  final String id;
-  @JsonKey(name: 'chatName')
-  final String chatName;
-  static const fromJsonFactory = _$ChatMessageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatMessageDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.chatId, chatId) ||
-                const DeepCollectionEquality().equals(other.chatId, chatId)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.isGroupChat, isGroupChat) ||
-                const DeepCollectionEquality().equals(
-                  other.isGroupChat,
-                  isGroupChat,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.chatName, chatName) ||
-                const DeepCollectionEquality().equals(
-                  other.chatName,
-                  chatName,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(chatId) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(isGroupChat) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(chatName) ^
-      runtimeType.hashCode;
-}
-
-extension $ChatMessageDtoExtension on ChatMessageDto {
-  ChatMessageDto copyWith({
-    String? dataType,
-    String? chatId,
-    ProfileDto? receiver,
-    ProfileDto? sender,
-    bool? isGroupChat,
-    MessageDto? message,
-    String? id,
-    String? chatName,
-  }) {
-    return ChatMessageDto(
-      dataType: dataType ?? this.dataType,
-      chatId: chatId ?? this.chatId,
-      receiver: receiver ?? this.receiver,
-      sender: sender ?? this.sender,
-      isGroupChat: isGroupChat ?? this.isGroupChat,
-      message: message ?? this.message,
-      id: id ?? this.id,
-      chatName: chatName ?? this.chatName,
-    );
-  }
-
-  ChatMessageDto copyWithWrapped({
-    Wrapped<String>? dataType,
-    Wrapped<String>? chatId,
-    Wrapped<ProfileDto>? receiver,
-    Wrapped<ProfileDto>? sender,
-    Wrapped<bool>? isGroupChat,
-    Wrapped<MessageDto>? message,
-    Wrapped<String>? id,
-    Wrapped<String>? chatName,
-  }) {
-    return ChatMessageDto(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      chatId: (chatId != null ? chatId.value : this.chatId),
-      receiver: (receiver != null ? receiver.value : this.receiver),
-      sender: (sender != null ? sender.value : this.sender),
-      isGroupChat: (isGroupChat != null ? isGroupChat.value : this.isGroupChat),
-      message: (message != null ? message.value : this.message),
-      id: (id != null ? id.value : this.id),
-      chatName: (chatName != null ? chatName.value : this.chatName),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class ChatConversationDto {
-  const ChatConversationDto({
-    required this.dataType,
-    required this.chatId,
-    required this.sender,
-    required this.receiver,
-    required this.isGroupChat,
-    required this.message,
-    required this.id,
-    required this.chatName,
-    required this.unreadCount,
-  });
-
-  factory ChatConversationDto.fromJson(Map<String, dynamic> json) =>
-      _$ChatConversationDtoFromJson(json);
-
-  static const toJsonFactory = _$ChatConversationDtoToJson;
-  Map<String, dynamic> toJson() => _$ChatConversationDtoToJson(this);
-
-  @JsonKey(name: 'dataType')
-  final String dataType;
-  @JsonKey(name: 'chatId')
-  final String chatId;
-  @JsonKey(name: 'sender')
-  final ProfileDto sender;
-  @JsonKey(name: 'receiver')
-  final ProfileDto receiver;
-  @JsonKey(name: 'isGroupChat')
-  final bool isGroupChat;
-  @JsonKey(name: 'message')
-  final MessageDto message;
-  @JsonKey(name: 'id')
-  final String id;
-  @JsonKey(name: 'chatName')
-  final String chatName;
-  @JsonKey(name: 'unreadCount')
-  final double unreadCount;
-  static const fromJsonFactory = _$ChatConversationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatConversationDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.chatId, chatId) ||
-                const DeepCollectionEquality().equals(other.chatId, chatId)) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.isGroupChat, isGroupChat) ||
-                const DeepCollectionEquality().equals(
-                  other.isGroupChat,
-                  isGroupChat,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.chatName, chatName) ||
-                const DeepCollectionEquality().equals(
-                  other.chatName,
-                  chatName,
-                )) &&
-            (identical(other.unreadCount, unreadCount) ||
-                const DeepCollectionEquality().equals(
-                  other.unreadCount,
-                  unreadCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(chatId) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(isGroupChat) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(chatName) ^
-      const DeepCollectionEquality().hash(unreadCount) ^
-      runtimeType.hashCode;
-}
-
-extension $ChatConversationDtoExtension on ChatConversationDto {
-  ChatConversationDto copyWith({
-    String? dataType,
-    String? chatId,
-    ProfileDto? sender,
-    ProfileDto? receiver,
-    bool? isGroupChat,
-    MessageDto? message,
-    String? id,
-    String? chatName,
-    double? unreadCount,
-  }) {
-    return ChatConversationDto(
-      dataType: dataType ?? this.dataType,
-      chatId: chatId ?? this.chatId,
-      sender: sender ?? this.sender,
-      receiver: receiver ?? this.receiver,
-      isGroupChat: isGroupChat ?? this.isGroupChat,
-      message: message ?? this.message,
-      id: id ?? this.id,
-      chatName: chatName ?? this.chatName,
-      unreadCount: unreadCount ?? this.unreadCount,
-    );
-  }
-
-  ChatConversationDto copyWithWrapped({
-    Wrapped<String>? dataType,
-    Wrapped<String>? chatId,
-    Wrapped<ProfileDto>? sender,
-    Wrapped<ProfileDto>? receiver,
-    Wrapped<bool>? isGroupChat,
-    Wrapped<MessageDto>? message,
-    Wrapped<String>? id,
-    Wrapped<String>? chatName,
-    Wrapped<double>? unreadCount,
-  }) {
-    return ChatConversationDto(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      chatId: (chatId != null ? chatId.value : this.chatId),
-      sender: (sender != null ? sender.value : this.sender),
-      receiver: (receiver != null ? receiver.value : this.receiver),
-      isGroupChat: (isGroupChat != null ? isGroupChat.value : this.isGroupChat),
-      message: (message != null ? message.value : this.message),
-      id: (id != null ? id.value : this.id),
-      chatName: (chatName != null ? chatName.value : this.chatName),
-      unreadCount: (unreadCount != null ? unreadCount.value : this.unreadCount),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class FetchChatConversationsSummaryDto {
-  const FetchChatConversationsSummaryDto({
+class UserConversationPaginated {
+  const UserConversationPaginated({
+    this.count,
     required this.hasMoreResults,
     required this.resources,
   });
 
-  factory FetchChatConversationsSummaryDto.fromJson(
-    Map<String, dynamic> json,
-  ) => _$FetchChatConversationsSummaryDtoFromJson(json);
+  factory UserConversationPaginated.fromJson(Map<String, dynamic> json) =>
+      _$UserConversationPaginatedFromJson(json);
 
-  static const toJsonFactory = _$FetchChatConversationsSummaryDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$FetchChatConversationsSummaryDtoToJson(this);
+  static const toJsonFactory = _$UserConversationPaginatedToJson;
+  Map<String, dynamic> toJson() => _$UserConversationPaginatedToJson(this);
 
+  @JsonKey(name: 'count')
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <ChatConversationDto>[])
-  final List<ChatConversationDto> resources;
-  static const fromJsonFactory = _$FetchChatConversationsSummaryDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$UserConversationPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is FetchChatConversationsSummaryDto &&
+        (other is UserConversationPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
                   other.hasMoreResults,
@@ -24768,28 +23836,32 @@ class FetchChatConversationsSummaryDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(hasMoreResults) ^
       const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $FetchChatConversationsSummaryDtoExtension
-    on FetchChatConversationsSummaryDto {
-  FetchChatConversationsSummaryDto copyWith({
+extension $UserConversationPaginatedExtension on UserConversationPaginated {
+  UserConversationPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    List<ChatConversationDto>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return FetchChatConversationsSummaryDto(
+    return UserConversationPaginated(
+      count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  FetchChatConversationsSummaryDto copyWithWrapped({
+  UserConversationPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
-    Wrapped<List<ChatConversationDto>>? resources,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return FetchChatConversationsSummaryDto(
+    return UserConversationPaginated(
+      count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
@@ -24799,40 +23871,37 @@ extension $FetchChatConversationsSummaryDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class FetchChatMessagesDto {
-  const FetchChatMessagesDto({
+class ChatMessagePaginated {
+  const ChatMessagePaginated({
+    this.count,
     required this.hasMoreResults,
-    required this.receiver,
     required this.resources,
   });
 
-  factory FetchChatMessagesDto.fromJson(Map<String, dynamic> json) =>
-      _$FetchChatMessagesDtoFromJson(json);
+  factory ChatMessagePaginated.fromJson(Map<String, dynamic> json) =>
+      _$ChatMessagePaginatedFromJson(json);
 
-  static const toJsonFactory = _$FetchChatMessagesDtoToJson;
-  Map<String, dynamic> toJson() => _$FetchChatMessagesDtoToJson(this);
+  static const toJsonFactory = _$ChatMessagePaginatedToJson;
+  Map<String, dynamic> toJson() => _$ChatMessagePaginatedToJson(this);
 
+  @JsonKey(name: 'count')
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  @JsonKey(name: 'receiver')
-  final ProfileDto receiver;
-  @JsonKey(name: 'resources', defaultValue: <ChatMessageDto>[])
-  final List<ChatMessageDto> resources;
-  static const fromJsonFactory = _$FetchChatMessagesDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$ChatMessagePaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is FetchChatMessagesDto &&
+        (other is ChatMessagePaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
                   other.hasMoreResults,
                   hasMoreResults,
-                )) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
                 )) &&
             (identical(other.resources, resources) ||
                 const DeepCollectionEquality().equals(
@@ -24846,35 +23915,35 @@ class FetchChatMessagesDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(receiver) ^
       const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $FetchChatMessagesDtoExtension on FetchChatMessagesDto {
-  FetchChatMessagesDto copyWith({
+extension $ChatMessagePaginatedExtension on ChatMessagePaginated {
+  ChatMessagePaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    ProfileDto? receiver,
-    List<ChatMessageDto>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return FetchChatMessagesDto(
+    return ChatMessagePaginated(
+      count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
-      receiver: receiver ?? this.receiver,
       resources: resources ?? this.resources,
     );
   }
 
-  FetchChatMessagesDto copyWithWrapped({
+  ChatMessagePaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
-    Wrapped<ProfileDto>? receiver,
-    Wrapped<List<ChatMessageDto>>? resources,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return FetchChatMessagesDto(
+    return ChatMessagePaginated(
+      count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
-      receiver: (receiver != null ? receiver.value : this.receiver),
       resources: (resources != null ? resources.value : this.resources),
     );
   }
@@ -25040,141 +24109,33 @@ extension $GlobalConversationSummaryDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class BlockedChatResourceDto {
-  const BlockedChatResourceDto({
-    required this.dataType,
-    required this.timestamp,
-    required this.sender,
-    required this.receiver,
-    required this.id,
-    required this.chatName,
-  });
-
-  factory BlockedChatResourceDto.fromJson(Map<String, dynamic> json) =>
-      _$BlockedChatResourceDtoFromJson(json);
-
-  static const toJsonFactory = _$BlockedChatResourceDtoToJson;
-  Map<String, dynamic> toJson() => _$BlockedChatResourceDtoToJson(this);
-
-  @JsonKey(name: 'dataType')
-  final String dataType;
-  @JsonKey(name: 'timestamp')
-  final double timestamp;
-  @JsonKey(name: 'sender')
-  final OwnerDto sender;
-  @JsonKey(name: 'receiver')
-  final OwnerDto receiver;
-  @JsonKey(name: 'id')
-  final String id;
-  @JsonKey(name: 'chatName')
-  final String chatName;
-  static const fromJsonFactory = _$BlockedChatResourceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is BlockedChatResourceDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.chatName, chatName) ||
-                const DeepCollectionEquality().equals(
-                  other.chatName,
-                  chatName,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(chatName) ^
-      runtimeType.hashCode;
-}
-
-extension $BlockedChatResourceDtoExtension on BlockedChatResourceDto {
-  BlockedChatResourceDto copyWith({
-    String? dataType,
-    double? timestamp,
-    OwnerDto? sender,
-    OwnerDto? receiver,
-    String? id,
-    String? chatName,
-  }) {
-    return BlockedChatResourceDto(
-      dataType: dataType ?? this.dataType,
-      timestamp: timestamp ?? this.timestamp,
-      sender: sender ?? this.sender,
-      receiver: receiver ?? this.receiver,
-      id: id ?? this.id,
-      chatName: chatName ?? this.chatName,
-    );
-  }
-
-  BlockedChatResourceDto copyWithWrapped({
-    Wrapped<String>? dataType,
-    Wrapped<double>? timestamp,
-    Wrapped<OwnerDto>? sender,
-    Wrapped<OwnerDto>? receiver,
-    Wrapped<String>? id,
-    Wrapped<String>? chatName,
-  }) {
-    return BlockedChatResourceDto(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
-      sender: (sender != null ? sender.value : this.sender),
-      receiver: (receiver != null ? receiver.value : this.receiver),
-      id: (id != null ? id.value : this.id),
-      chatName: (chatName != null ? chatName.value : this.chatName),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class FetchBlockedChatsDto {
-  const FetchBlockedChatsDto({
+class UserBlockPaginated {
+  const UserBlockPaginated({
+    this.count,
     required this.hasMoreResults,
     required this.resources,
   });
 
-  factory FetchBlockedChatsDto.fromJson(Map<String, dynamic> json) =>
-      _$FetchBlockedChatsDtoFromJson(json);
+  factory UserBlockPaginated.fromJson(Map<String, dynamic> json) =>
+      _$UserBlockPaginatedFromJson(json);
 
-  static const toJsonFactory = _$FetchBlockedChatsDtoToJson;
-  Map<String, dynamic> toJson() => _$FetchBlockedChatsDtoToJson(this);
+  static const toJsonFactory = _$UserBlockPaginatedToJson;
+  Map<String, dynamic> toJson() => _$UserBlockPaginatedToJson(this);
 
+  @JsonKey(name: 'count')
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <BlockedChatResourceDto>[])
-  final List<BlockedChatResourceDto> resources;
-  static const fromJsonFactory = _$FetchBlockedChatsDtoFromJson;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$UserBlockPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is FetchBlockedChatsDto &&
+        (other is UserBlockPaginated &&
+            (identical(other.count, count) ||
+                const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
                 const DeepCollectionEquality().equals(
                   other.hasMoreResults,
@@ -25192,27 +24153,32 @@ class FetchBlockedChatsDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(count) ^
       const DeepCollectionEquality().hash(hasMoreResults) ^
       const DeepCollectionEquality().hash(resources) ^
       runtimeType.hashCode;
 }
 
-extension $FetchBlockedChatsDtoExtension on FetchBlockedChatsDto {
-  FetchBlockedChatsDto copyWith({
+extension $UserBlockPaginatedExtension on UserBlockPaginated {
+  UserBlockPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    List<BlockedChatResourceDto>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return FetchBlockedChatsDto(
+    return UserBlockPaginated(
+      count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  FetchBlockedChatsDto copyWithWrapped({
+  UserBlockPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
-    Wrapped<List<BlockedChatResourceDto>>? resources,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return FetchBlockedChatsDto(
+    return UserBlockPaginated(
+      count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
           : this.hasMoreResults),
@@ -25660,206 +24626,6 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       seo: (seo != null ? seo.value : this.seo),
       category: (category != null ? category.value : this.category),
       subCategory: (subCategory != null ? subCategory.value : this.subCategory),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CreatorProfileDoc {
-  const CreatorProfileDoc({
-    required this.dataType,
-    required this.address,
-    required this.name,
-    required this.creatorTag,
-    this.contractAddress,
-    this.ticketingContractAddress,
-    required this.profile,
-    required this.banner,
-    required this.joinedDate,
-    this.description,
-    this.socials,
-    this.id,
-  });
-
-  factory CreatorProfileDoc.fromJson(Map<String, dynamic> json) =>
-      _$CreatorProfileDocFromJson(json);
-
-  static const toJsonFactory = _$CreatorProfileDocToJson;
-  Map<String, dynamic> toJson() => _$CreatorProfileDocToJson(this);
-
-  @JsonKey(
-    name: 'dataType',
-    toJson: userDataTypeToJson,
-    fromJson: userDataTypeFromJson,
-  )
-  final enums.UserDataType dataType;
-  @JsonKey(name: 'address')
-  final String address;
-  @JsonKey(name: 'name')
-  final String name;
-  @JsonKey(name: 'creatorTag')
-  final String creatorTag;
-  @JsonKey(name: 'contractAddress')
-  final String? contractAddress;
-  @JsonKey(name: 'ticketingContractAddress')
-  final String? ticketingContractAddress;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'banner')
-  final String banner;
-  @JsonKey(name: 'joinedDate')
-  final double joinedDate;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'socials')
-  final Object? socials;
-  @JsonKey(name: 'id')
-  final String? id;
-  static const fromJsonFactory = _$CreatorProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(ticketingContractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(id) ^
-      runtimeType.hashCode;
-}
-
-extension $CreatorProfileDocExtension on CreatorProfileDoc {
-  CreatorProfileDoc copyWith({
-    enums.UserDataType? dataType,
-    String? address,
-    String? name,
-    String? creatorTag,
-    String? contractAddress,
-    String? ticketingContractAddress,
-    String? profile,
-    String? banner,
-    double? joinedDate,
-    String? description,
-    Object? socials,
-    String? id,
-  }) {
-    return CreatorProfileDoc(
-      dataType: dataType ?? this.dataType,
-      address: address ?? this.address,
-      name: name ?? this.name,
-      creatorTag: creatorTag ?? this.creatorTag,
-      contractAddress: contractAddress ?? this.contractAddress,
-      ticketingContractAddress:
-          ticketingContractAddress ?? this.ticketingContractAddress,
-      profile: profile ?? this.profile,
-      banner: banner ?? this.banner,
-      joinedDate: joinedDate ?? this.joinedDate,
-      description: description ?? this.description,
-      socials: socials ?? this.socials,
-      id: id ?? this.id,
-    );
-  }
-
-  CreatorProfileDoc copyWithWrapped({
-    Wrapped<enums.UserDataType>? dataType,
-    Wrapped<String>? address,
-    Wrapped<String>? name,
-    Wrapped<String>? creatorTag,
-    Wrapped<String?>? contractAddress,
-    Wrapped<String?>? ticketingContractAddress,
-    Wrapped<String>? profile,
-    Wrapped<String>? banner,
-    Wrapped<double>? joinedDate,
-    Wrapped<String?>? description,
-    Wrapped<Object?>? socials,
-    Wrapped<String?>? id,
-  }) {
-    return CreatorProfileDoc(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      address: (address != null ? address.value : this.address),
-      name: (name != null ? name.value : this.name),
-      creatorTag: (creatorTag != null ? creatorTag.value : this.creatorTag),
-      contractAddress: (contractAddress != null
-          ? contractAddress.value
-          : this.contractAddress),
-      ticketingContractAddress: (ticketingContractAddress != null
-          ? ticketingContractAddress.value
-          : this.ticketingContractAddress),
-      profile: (profile != null ? profile.value : this.profile),
-      banner: (banner != null ? banner.value : this.banner),
-      joinedDate: (joinedDate != null ? joinedDate.value : this.joinedDate),
-      description: (description != null ? description.value : this.description),
-      socials: (socials != null ? socials.value : this.socials),
-      id: (id != null ? id.value : this.id),
     );
   }
 }
@@ -26920,7 +25686,7 @@ class EventProfileQuery {
   Map<String, dynamic> toJson() => _$EventProfileQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <EventProfile>[])
@@ -26958,7 +25724,7 @@ class EventProfileQuery {
 
 extension $EventProfileQueryExtension on EventProfileQuery {
   EventProfileQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<EventProfile>? resources,
   }) {
@@ -26970,7 +25736,7 @@ extension $EventProfileQueryExtension on EventProfileQuery {
   }
 
   EventProfileQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<EventProfile>>? resources,
   }) {
@@ -28403,85 +27169,6 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EgldOrEsdtTokenPaymentDto {
-  const EgldOrEsdtTokenPaymentDto({
-    required this.tokenIdentifier,
-    required this.tokenNonce,
-    required this.amount,
-  });
-
-  factory EgldOrEsdtTokenPaymentDto.fromJson(Map<String, dynamic> json) =>
-      _$EgldOrEsdtTokenPaymentDtoFromJson(json);
-
-  static const toJsonFactory = _$EgldOrEsdtTokenPaymentDtoToJson;
-  Map<String, dynamic> toJson() => _$EgldOrEsdtTokenPaymentDtoToJson(this);
-
-  @JsonKey(name: 'tokenIdentifier')
-  final String tokenIdentifier;
-  @JsonKey(name: 'tokenNonce')
-  final double tokenNonce;
-  @JsonKey(name: 'amount')
-  final String amount;
-  static const fromJsonFactory = _$EgldOrEsdtTokenPaymentDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EgldOrEsdtTokenPaymentDto &&
-            (identical(other.tokenIdentifier, tokenIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIdentifier,
-                  tokenIdentifier,
-                )) &&
-            (identical(other.tokenNonce, tokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenNonce,
-                  tokenNonce,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIdentifier) ^
-      const DeepCollectionEquality().hash(tokenNonce) ^
-      const DeepCollectionEquality().hash(amount) ^
-      runtimeType.hashCode;
-}
-
-extension $EgldOrEsdtTokenPaymentDtoExtension on EgldOrEsdtTokenPaymentDto {
-  EgldOrEsdtTokenPaymentDto copyWith({
-    String? tokenIdentifier,
-    double? tokenNonce,
-    String? amount,
-  }) {
-    return EgldOrEsdtTokenPaymentDto(
-      tokenIdentifier: tokenIdentifier ?? this.tokenIdentifier,
-      tokenNonce: tokenNonce ?? this.tokenNonce,
-      amount: amount ?? this.amount,
-    );
-  }
-
-  EgldOrEsdtTokenPaymentDto copyWithWrapped({
-    Wrapped<String>? tokenIdentifier,
-    Wrapped<double>? tokenNonce,
-    Wrapped<String>? amount,
-  }) {
-    return EgldOrEsdtTokenPaymentDto(
-      tokenIdentifier: (tokenIdentifier != null
-          ? tokenIdentifier.value
-          : this.tokenIdentifier),
-      tokenNonce: (tokenNonce != null ? tokenNonce.value : this.tokenNonce),
-      amount: (amount != null ? amount.value : this.amount),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class EventStageProfileCreateDto {
   const EventStageProfileCreateDto({
     required this.ticketId,
@@ -28520,8 +27207,8 @@ class EventStageProfileCreateDto {
   final bool? isWhitelist;
   @JsonKey(name: 'requiredApproval')
   final bool? requiredApproval;
-  @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPaymentDto>[])
-  final List<EgldOrEsdtTokenPaymentDto> prices;
+  @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
+  final List<EgldOrEsdtTokenPayment> prices;
   static const fromJsonFactory = _$EventStageProfileCreateDtoFromJson;
 
   @override
@@ -28603,7 +27290,7 @@ extension $EventStageProfileCreateDtoExtension on EventStageProfileCreateDto {
     bool? isEnabled,
     bool? isWhitelist,
     bool? requiredApproval,
-    List<EgldOrEsdtTokenPaymentDto>? prices,
+    List<EgldOrEsdtTokenPayment>? prices,
   }) {
     return EventStageProfileCreateDto(
       ticketId: ticketId ?? this.ticketId,
@@ -28629,7 +27316,7 @@ extension $EventStageProfileCreateDtoExtension on EventStageProfileCreateDto {
     Wrapped<bool?>? isEnabled,
     Wrapped<bool?>? isWhitelist,
     Wrapped<bool?>? requiredApproval,
-    Wrapped<List<EgldOrEsdtTokenPaymentDto>>? prices,
+    Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
   }) {
     return EventStageProfileCreateDto(
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
@@ -28905,8 +27592,8 @@ class EventStageProfileEditDto {
   final bool? isWhitelist;
   @JsonKey(name: 'requiredApproval')
   final bool? requiredApproval;
-  @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPaymentDto>[])
-  final List<EgldOrEsdtTokenPaymentDto> prices;
+  @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
+  final List<EgldOrEsdtTokenPayment> prices;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'startTime')
@@ -28981,7 +27668,7 @@ extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
     bool? isEnabled,
     bool? isWhitelist,
     bool? requiredApproval,
-    List<EgldOrEsdtTokenPaymentDto>? prices,
+    List<EgldOrEsdtTokenPayment>? prices,
     String? name,
     int? startTime,
     int? endTime,
@@ -29005,7 +27692,7 @@ extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
     Wrapped<bool?>? isEnabled,
     Wrapped<bool?>? isWhitelist,
     Wrapped<bool?>? requiredApproval,
-    Wrapped<List<EgldOrEsdtTokenPaymentDto>>? prices,
+    Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
     Wrapped<String>? name,
     Wrapped<int>? startTime,
     Wrapped<int>? endTime,
@@ -29255,7 +27942,7 @@ class TicketPricesResponse {
   const TicketPricesResponse({
     required this.currency,
     required this.stagePrices,
-    required this.vat,
+    this.vat,
   });
 
   factory TicketPricesResponse.fromJson(Map<String, dynamic> json) =>
@@ -29269,7 +27956,7 @@ class TicketPricesResponse {
   @JsonKey(name: 'stagePrices', defaultValue: <StagePrice>[])
   final List<StagePrice> stagePrices;
   @JsonKey(name: 'vat')
-  final double vat;
+  final double? vat;
   static const fromJsonFactory = _$TicketPricesResponseFromJson;
 
   @override
@@ -29317,7 +28004,7 @@ extension $TicketPricesResponseExtension on TicketPricesResponse {
   TicketPricesResponse copyWithWrapped({
     Wrapped<String>? currency,
     Wrapped<List<StagePrice>>? stagePrices,
-    Wrapped<double>? vat,
+    Wrapped<double?>? vat,
   }) {
     return TicketPricesResponse(
       currency: (currency != null ? currency.value : this.currency),
@@ -29333,7 +28020,7 @@ class DiscountCodeValidationResponse {
     required this.isValid,
     required this.discountType,
     required this.discountAmount,
-    required this.discountMaxAmount,
+    this.discountMaxAmount,
   });
 
   factory DiscountCodeValidationResponse.fromJson(Map<String, dynamic> json) =>
@@ -29349,7 +28036,7 @@ class DiscountCodeValidationResponse {
   @JsonKey(name: 'discountAmount')
   final double discountAmount;
   @JsonKey(name: 'discountMaxAmount')
-  final double discountMaxAmount;
+  final double? discountMaxAmount;
   static const fromJsonFactory = _$DiscountCodeValidationResponseFromJson;
 
   @override
@@ -29410,7 +28097,7 @@ extension $DiscountCodeValidationResponseExtension
     Wrapped<bool>? isValid,
     Wrapped<String>? discountType,
     Wrapped<double>? discountAmount,
-    Wrapped<double>? discountMaxAmount,
+    Wrapped<double?>? discountMaxAmount,
   }) {
     return DiscountCodeValidationResponse(
       isValid: (isValid != null ? isValid.value : this.isValid),
@@ -30242,7 +28929,7 @@ class EventInvitationQuery {
   Map<String, dynamic> toJson() => _$EventInvitationQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <EventInvitation>[])
@@ -30280,7 +28967,7 @@ class EventInvitationQuery {
 
 extension $EventInvitationQueryExtension on EventInvitationQuery {
   EventInvitationQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<EventInvitation>? resources,
   }) {
@@ -30292,7 +28979,7 @@ extension $EventInvitationQueryExtension on EventInvitationQuery {
   }
 
   EventInvitationQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<EventInvitation>>? resources,
   }) {
@@ -30320,13 +29007,13 @@ class EventVoucherDoc {
     required this.usedCount,
     required this.eventId,
     required this.ticketTypeIds,
-    required this.stageIds,
+    this.stageIds,
     this.minTicketCount,
     this.maxTicketCount,
     required this.startDate,
     required this.endDate,
     required this.isActive,
-    required this.ownerId,
+    this.ownerId,
     required this.createdAt,
     required this.createdBy,
   });
@@ -30372,7 +29059,7 @@ class EventVoucherDoc {
   @JsonKey(name: 'ticketTypeIds', defaultValue: <String>[])
   final List<String> ticketTypeIds;
   @JsonKey(name: 'stageIds', defaultValue: <String>[])
-  final List<String> stageIds;
+  final List<String>? stageIds;
   @JsonKey(name: 'minTicketCount')
   final int? minTicketCount;
   @JsonKey(name: 'maxTicketCount')
@@ -30384,7 +29071,7 @@ class EventVoucherDoc {
   @JsonKey(name: 'isActive', defaultValue: true)
   final bool isActive;
   @JsonKey(name: 'ownerId')
-  final String ownerId;
+  final String? ownerId;
   @JsonKey(name: 'createdAt')
   final int createdAt;
   @JsonKey(name: 'createdBy')
@@ -30572,13 +29259,13 @@ extension $EventVoucherDocExtension on EventVoucherDoc {
     Wrapped<int>? usedCount,
     Wrapped<String>? eventId,
     Wrapped<List<String>>? ticketTypeIds,
-    Wrapped<List<String>>? stageIds,
+    Wrapped<List<String>?>? stageIds,
     Wrapped<int?>? minTicketCount,
     Wrapped<int?>? maxTicketCount,
     Wrapped<int>? startDate,
     Wrapped<int>? endDate,
     Wrapped<bool>? isActive,
-    Wrapped<String>? ownerId,
+    Wrapped<String?>? ownerId,
     Wrapped<int>? createdAt,
     Wrapped<String>? createdBy,
   }) {
@@ -30632,7 +29319,7 @@ class EventVoucherQuery {
   Map<String, dynamic> toJson() => _$EventVoucherQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <EventVoucherDoc>[])
@@ -30670,7 +29357,7 @@ class EventVoucherQuery {
 
 extension $EventVoucherQueryExtension on EventVoucherQuery {
   EventVoucherQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<EventVoucherDoc>? resources,
   }) {
@@ -30682,7 +29369,7 @@ extension $EventVoucherQueryExtension on EventVoucherQuery {
   }
 
   EventVoucherQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<EventVoucherDoc>>? resources,
   }) {
@@ -30706,7 +29393,7 @@ class EventQuestionDoc {
     required this.required,
     required this.answerType,
     required this.requireTime,
-    required this.answers,
+    this.answers,
     required this.createdAt,
   });
 
@@ -30743,7 +29430,7 @@ class EventQuestionDoc {
   @JsonKey(name: 'requireTime')
   final bool requireTime;
   @JsonKey(name: 'answers', defaultValue: <String>[])
-  final List<String> answers;
+  final List<String>? answers;
   @JsonKey(name: 'createdAt')
   final int createdAt;
   static const fromJsonFactory = _$EventQuestionDocFromJson;
@@ -30843,7 +29530,7 @@ extension $EventQuestionDocExtension on EventQuestionDoc {
     Wrapped<bool>? required,
     Wrapped<enums.EventQuestionAnswerType>? answerType,
     Wrapped<bool>? requireTime,
-    Wrapped<List<String>>? answers,
+    Wrapped<List<String>?>? answers,
     Wrapped<int>? createdAt,
   }) {
     return EventQuestionDoc(
@@ -30970,7 +29657,7 @@ class EventQuestionEditDto {
     this.title,
     this.required,
     this.answerType,
-    required this.requireTime,
+    this.requireTime,
     this.answers,
   });
 
@@ -30991,7 +29678,7 @@ class EventQuestionEditDto {
   )
   final enums.EventQuestionAnswerType? answerType;
   @JsonKey(name: 'requireTime')
-  final bool requireTime;
+  final bool? requireTime;
   @JsonKey(name: 'answers', defaultValue: <String>[])
   final List<String>? answers;
   static const fromJsonFactory = _$EventQuestionEditDtoFromJson;
@@ -31055,7 +29742,7 @@ extension $EventQuestionEditDtoExtension on EventQuestionEditDto {
     Wrapped<String?>? title,
     Wrapped<bool?>? required,
     Wrapped<enums.EventQuestionAnswerType?>? answerType,
-    Wrapped<bool>? requireTime,
+    Wrapped<bool?>? requireTime,
     Wrapped<List<String>?>? answers,
   }) {
     return EventQuestionEditDto(
@@ -31319,7 +30006,7 @@ class EventGuestProfileQuery {
   Map<String, dynamic> toJson() => _$EventGuestProfileQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <EventGuestProfile>[])
@@ -31357,7 +30044,7 @@ class EventGuestProfileQuery {
 
 extension $EventGuestProfileQueryExtension on EventGuestProfileQuery {
   EventGuestProfileQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<EventGuestProfile>? resources,
   }) {
@@ -31369,7 +30056,7 @@ extension $EventGuestProfileQueryExtension on EventGuestProfileQuery {
   }
 
   EventGuestProfileQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<EventGuestProfile>>? resources,
   }) {
@@ -31388,8 +30075,8 @@ class EventGuestExport {
   const EventGuestExport({
     required this.wallet,
     this.email,
-    required this.name,
-    required this.phone,
+    this.name,
+    this.phone,
     required this.status,
   });
 
@@ -31404,9 +30091,9 @@ class EventGuestExport {
   @JsonKey(name: 'email')
   final String? email;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'phone')
-  final String phone;
+  final String? phone;
   @JsonKey(
     name: 'status',
     toJson: eventGuestStatusToJson,
@@ -31464,8 +30151,8 @@ extension $EventGuestExportExtension on EventGuestExport {
   EventGuestExport copyWithWrapped({
     Wrapped<String>? wallet,
     Wrapped<String?>? email,
-    Wrapped<String>? name,
-    Wrapped<String>? phone,
+    Wrapped<String?>? name,
+    Wrapped<String?>? phone,
     Wrapped<enums.EventGuestStatus>? status,
   }) {
     return EventGuestExport(
@@ -31481,9 +30168,9 @@ extension $EventGuestExportExtension on EventGuestExport {
 @JsonSerializable(explicitToJson: true)
 class EventUserRoleCreateDto {
   const EventUserRoleCreateDto({
-    required this.wallet,
+    this.wallet,
     required this.name,
-    required this.email,
+    this.email,
     required this.role,
     required this.permissions,
     required this.endTime,
@@ -31496,11 +30183,11 @@ class EventUserRoleCreateDto {
   Map<String, dynamic> toJson() => _$EventUserRoleCreateDtoToJson(this);
 
   @JsonKey(name: 'wallet')
-  final String wallet;
+  final String? wallet;
   @JsonKey(name: 'name')
   final String name;
   @JsonKey(name: 'email')
-  final String email;
+  final String? email;
   @JsonKey(
     name: 'role',
     toJson: eventUserRolesListToJson,
@@ -31572,9 +30259,9 @@ extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
   }
 
   EventUserRoleCreateDto copyWithWrapped({
-    Wrapped<String>? wallet,
+    Wrapped<String?>? wallet,
     Wrapped<String>? name,
-    Wrapped<String>? email,
+    Wrapped<String?>? email,
     Wrapped<List<enums.EventUserRoles>>? role,
     Wrapped<List<enums.EventUserRolePermission>>? permissions,
     Wrapped<int>? endTime,
@@ -31603,7 +30290,7 @@ class EventUserRole {
     this.createdAt,
     this.endTime,
     this.id,
-    required this.status,
+    this.status,
     required this.profile,
     required this.herotag,
   });
@@ -31648,10 +30335,10 @@ class EventUserRole {
   final String? id;
   @JsonKey(
     name: 'status',
-    toJson: roleStatusToJson,
-    fromJson: roleStatusFromJson,
+    toJson: roleStatusNullableToJson,
+    fromJson: roleStatusNullableFromJson,
   )
-  final enums.RoleStatus status;
+  final enums.RoleStatus? status;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(name: 'herotag')
@@ -31773,7 +30460,7 @@ extension $EventUserRoleExtension on EventUserRole {
     Wrapped<int?>? createdAt,
     Wrapped<int?>? endTime,
     Wrapped<String?>? id,
-    Wrapped<enums.RoleStatus>? status,
+    Wrapped<enums.RoleStatus?>? status,
     Wrapped<String>? profile,
     Wrapped<String>? herotag,
   }) {
@@ -31893,7 +30580,7 @@ class GetMyEventsQuery {
   Map<String, dynamic> toJson() => _$GetMyEventsQueryToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   @JsonKey(name: 'resources', defaultValue: <MyEvents>[])
@@ -31931,7 +30618,7 @@ class GetMyEventsQuery {
 
 extension $GetMyEventsQueryExtension on GetMyEventsQuery {
   GetMyEventsQuery copyWith({
-    double? count,
+    Object? count,
     bool? hasMoreResults,
     List<MyEvents>? resources,
   }) {
@@ -31943,7 +30630,7 @@ extension $GetMyEventsQueryExtension on GetMyEventsQuery {
   }
 
   GetMyEventsQuery copyWithWrapped({
-    Wrapped<double?>? count,
+    Wrapped<Object?>? count,
     Wrapped<bool>? hasMoreResults,
     Wrapped<List<MyEvents>>? resources,
   }) {
@@ -32131,7 +30818,7 @@ extension $TicketsTypeExtension on TicketsType {
 
 @JsonSerializable(explicitToJson: true)
 class EventCheckInQR {
-  const EventCheckInQR({required this.qr, required this.tickets});
+  const EventCheckInQR({required this.qr, this.tickets});
 
   factory EventCheckInQR.fromJson(Map<String, dynamic> json) =>
       _$EventCheckInQRFromJson(json);
@@ -32142,7 +30829,7 @@ class EventCheckInQR {
   @JsonKey(name: 'qr')
   final QRBody qr;
   @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
-  final List<TicketsType> tickets;
+  final List<TicketsType>? tickets;
   static const fromJsonFactory = _$EventCheckInQRFromJson;
 
   @override
@@ -32172,7 +30859,7 @@ extension $EventCheckInQRExtension on EventCheckInQR {
 
   EventCheckInQR copyWithWrapped({
     Wrapped<QRBody>? qr,
-    Wrapped<List<TicketsType>>? tickets,
+    Wrapped<List<TicketsType>?>? tickets,
   }) {
     return EventCheckInQR(
       qr: (qr != null ? qr.value : this.qr),
@@ -32316,8 +31003,8 @@ class TicketValidationResult {
   final EventGuestProfile? guest;
   @JsonKey(name: 'invitation')
   final EventInvitation? invitation;
-  @JsonKey(name: 'nfts', defaultValue: <NftDoc>[])
-  final List<NftDoc>? nfts;
+  @JsonKey(name: 'nfts', defaultValue: <NftHydrated>[])
+  final List<NftHydrated>? nfts;
   @JsonKey(name: 'availableTickets', defaultValue: <TicketSelection>[])
   final List<TicketSelection>? availableTickets;
   static const fromJsonFactory = _$TicketValidationResultFromJson;
@@ -32373,7 +31060,7 @@ extension $TicketValidationResultExtension on TicketValidationResult {
     enums.EventScanMessage? message,
     EventGuestProfile? guest,
     EventInvitation? invitation,
-    List<NftDoc>? nfts,
+    List<NftHydrated>? nfts,
     List<TicketSelection>? availableTickets,
   }) {
     return TicketValidationResult(
@@ -32393,7 +31080,7 @@ extension $TicketValidationResultExtension on TicketValidationResult {
     Wrapped<enums.EventScanMessage>? message,
     Wrapped<EventGuestProfile?>? guest,
     Wrapped<EventInvitation?>? invitation,
-    Wrapped<List<NftDoc>?>? nfts,
+    Wrapped<List<NftHydrated>?>? nfts,
     Wrapped<List<TicketSelection>?>? availableTickets,
   }) {
     return TicketValidationResult(
@@ -33142,7 +31829,7 @@ extension $AnsweredQuestionWithDetailsExtension on AnsweredQuestionWithDetails {
 
 @JsonSerializable(explicitToJson: true)
 class EventGuestApproveDto {
-  const EventGuestApproveDto({required this.address, required this.isApproved});
+  const EventGuestApproveDto({this.address, required this.isApproved});
 
   factory EventGuestApproveDto.fromJson(Map<String, dynamic> json) =>
       _$EventGuestApproveDtoFromJson(json);
@@ -33151,7 +31838,7 @@ class EventGuestApproveDto {
   Map<String, dynamic> toJson() => _$EventGuestApproveDtoToJson(this);
 
   @JsonKey(name: 'address')
-  final String address;
+  final String? address;
   @JsonKey(name: 'isApproved')
   final bool isApproved;
   static const fromJsonFactory = _$EventGuestApproveDtoFromJson;
@@ -33191,7 +31878,7 @@ extension $EventGuestApproveDtoExtension on EventGuestApproveDto {
   }
 
   EventGuestApproveDto copyWithWrapped({
-    Wrapped<String>? address,
+    Wrapped<String?>? address,
     Wrapped<bool>? isApproved,
   }) {
     return EventGuestApproveDto(
@@ -33342,7 +32029,7 @@ class RewardDetails {
     required this.rewardType,
     required this.conditionType,
     required this.condition,
-    required this.currency,
+    this.currency,
     this.voucherInfo,
   });
 
@@ -33367,7 +32054,7 @@ class RewardDetails {
   @JsonKey(name: 'condition')
   final double condition;
   @JsonKey(name: 'currency')
-  final String currency;
+  final String? currency;
   @JsonKey(name: 'voucherInfo')
   final EventVoucherDoc? voucherInfo;
   static const fromJsonFactory = _$RewardDetailsFromJson;
@@ -33437,7 +32124,7 @@ extension $RewardDetailsExtension on RewardDetails {
     Wrapped<enums.RewardDetailsRewardType>? rewardType,
     Wrapped<enums.ReferralConditionType>? conditionType,
     Wrapped<double>? condition,
-    Wrapped<String>? currency,
+    Wrapped<String?>? currency,
     Wrapped<EventVoucherDoc?>? voucherInfo,
   }) {
     return RewardDetails(
@@ -33824,31 +32511,31 @@ extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EventReferralConfigQuery {
-  const EventReferralConfigQuery({
+class EventReferralConfigPaginated {
+  const EventReferralConfigPaginated({
     this.count,
-    this.hasMoreResults,
+    required this.hasMoreResults,
     required this.resources,
   });
 
-  factory EventReferralConfigQuery.fromJson(Map<String, dynamic> json) =>
-      _$EventReferralConfigQueryFromJson(json);
+  factory EventReferralConfigPaginated.fromJson(Map<String, dynamic> json) =>
+      _$EventReferralConfigPaginatedFromJson(json);
 
-  static const toJsonFactory = _$EventReferralConfigQueryToJson;
-  Map<String, dynamic> toJson() => _$EventReferralConfigQueryToJson(this);
+  static const toJsonFactory = _$EventReferralConfigPaginatedToJson;
+  Map<String, dynamic> toJson() => _$EventReferralConfigPaginatedToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
-  final bool? hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <EventReferralConfigDoc>[])
-  final List<EventReferralConfigDoc> resources;
-  static const fromJsonFactory = _$EventReferralConfigQueryFromJson;
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$EventReferralConfigPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EventReferralConfigQuery &&
+        (other is EventReferralConfigPaginated &&
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
@@ -33874,25 +32561,26 @@ class EventReferralConfigQuery {
       runtimeType.hashCode;
 }
 
-extension $EventReferralConfigQueryExtension on EventReferralConfigQuery {
-  EventReferralConfigQuery copyWith({
-    double? count,
+extension $EventReferralConfigPaginatedExtension
+    on EventReferralConfigPaginated {
+  EventReferralConfigPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    List<EventReferralConfigDoc>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return EventReferralConfigQuery(
+    return EventReferralConfigPaginated(
       count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  EventReferralConfigQuery copyWithWrapped({
-    Wrapped<double?>? count,
-    Wrapped<bool?>? hasMoreResults,
-    Wrapped<List<EventReferralConfigDoc>>? resources,
+  EventReferralConfigPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return EventReferralConfigQuery(
+    return EventReferralConfigPaginated(
       count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
@@ -34209,31 +32897,31 @@ extension $EventReferralEditDtoExtension on EventReferralEditDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EventReferralQuery {
-  const EventReferralQuery({
+class EventReferralPaginated {
+  const EventReferralPaginated({
     this.count,
-    this.hasMoreResults,
+    required this.hasMoreResults,
     required this.resources,
   });
 
-  factory EventReferralQuery.fromJson(Map<String, dynamic> json) =>
-      _$EventReferralQueryFromJson(json);
+  factory EventReferralPaginated.fromJson(Map<String, dynamic> json) =>
+      _$EventReferralPaginatedFromJson(json);
 
-  static const toJsonFactory = _$EventReferralQueryToJson;
-  Map<String, dynamic> toJson() => _$EventReferralQueryToJson(this);
+  static const toJsonFactory = _$EventReferralPaginatedToJson;
+  Map<String, dynamic> toJson() => _$EventReferralPaginatedToJson(this);
 
   @JsonKey(name: 'count')
-  final double? count;
+  final Object? count;
   @JsonKey(name: 'hasMoreResults')
-  final bool? hasMoreResults;
-  @JsonKey(name: 'resources', defaultValue: <EventReferralDoc>[])
-  final List<EventReferralDoc> resources;
-  static const fromJsonFactory = _$EventReferralQueryFromJson;
+  final bool hasMoreResults;
+  @JsonKey(name: 'resources', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> resources;
+  static const fromJsonFactory = _$EventReferralPaginatedFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EventReferralQuery &&
+        (other is EventReferralPaginated &&
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.hasMoreResults, hasMoreResults) ||
@@ -34259,25 +32947,25 @@ class EventReferralQuery {
       runtimeType.hashCode;
 }
 
-extension $EventReferralQueryExtension on EventReferralQuery {
-  EventReferralQuery copyWith({
-    double? count,
+extension $EventReferralPaginatedExtension on EventReferralPaginated {
+  EventReferralPaginated copyWith({
+    Object? count,
     bool? hasMoreResults,
-    List<EventReferralDoc>? resources,
+    List<List<Object?>>? resources,
   }) {
-    return EventReferralQuery(
+    return EventReferralPaginated(
       count: count ?? this.count,
       hasMoreResults: hasMoreResults ?? this.hasMoreResults,
       resources: resources ?? this.resources,
     );
   }
 
-  EventReferralQuery copyWithWrapped({
-    Wrapped<double?>? count,
-    Wrapped<bool?>? hasMoreResults,
-    Wrapped<List<EventReferralDoc>>? resources,
+  EventReferralPaginated copyWithWrapped({
+    Wrapped<Object?>? count,
+    Wrapped<bool>? hasMoreResults,
+    Wrapped<List<List<Object?>>>? resources,
   }) {
-    return EventReferralQuery(
+    return EventReferralPaginated(
       count: (count != null ? count.value : this.count),
       hasMoreResults: (hasMoreResults != null
           ? hasMoreResults.value
@@ -34346,6 +33034,70 @@ extension $RangeFilterExtension on RangeFilter {
       min: (min != null ? min.value : this.min),
       max: (max != null ? max.value : this.max),
       field: (field != null ? field.value : this.field),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActivityDataDto {
+  const ActivityDataDto({this.collection, this.identifier});
+
+  factory ActivityDataDto.fromJson(Map<String, dynamic> json) =>
+      _$ActivityDataDtoFromJson(json);
+
+  static const toJsonFactory = _$ActivityDataDtoToJson;
+  Map<String, dynamic> toJson() => _$ActivityDataDtoToJson(this);
+
+  @JsonKey(name: 'collection', defaultValue: <String>[])
+  final List<String>? collection;
+  @JsonKey(name: 'identifier', defaultValue: <String>[])
+  final List<String>? identifier;
+  static const fromJsonFactory = _$ActivityDataDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ActivityDataDto &&
+            (identical(other.collection, collection) ||
+                const DeepCollectionEquality().equals(
+                  other.collection,
+                  collection,
+                )) &&
+            (identical(other.identifier, identifier) ||
+                const DeepCollectionEquality().equals(
+                  other.identifier,
+                  identifier,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(collection) ^
+      const DeepCollectionEquality().hash(identifier) ^
+      runtimeType.hashCode;
+}
+
+extension $ActivityDataDtoExtension on ActivityDataDto {
+  ActivityDataDto copyWith({
+    List<String>? collection,
+    List<String>? identifier,
+  }) {
+    return ActivityDataDto(
+      collection: collection ?? this.collection,
+      identifier: identifier ?? this.identifier,
+    );
+  }
+
+  ActivityDataDto copyWithWrapped({
+    Wrapped<List<String>?>? collection,
+    Wrapped<List<String>?>? identifier,
+  }) {
+    return ActivityDataDto(
+      collection: (collection != null ? collection.value : this.collection),
+      identifier: (identifier != null ? identifier.value : this.identifier),
     );
   }
 }
@@ -34906,7 +33658,7 @@ extension $CollectionOffersFilterExtension on CollectionOffersFilter {
 
 @JsonSerializable(explicitToJson: true)
 class FilterQueryDto {
-  const FilterQueryDto({required this.name});
+  const FilterQueryDto({required this.name, this.top, this.skip});
 
   factory FilterQueryDto.fromJson(Map<String, dynamic> json) =>
       _$FilterQueryDtoFromJson(json);
@@ -34916,6 +33668,10 @@ class FilterQueryDto {
 
   @JsonKey(name: 'name')
   final String name;
+  @JsonKey(name: 'top')
+  final int? top;
+  @JsonKey(name: 'skip')
+  final int? skip;
   static const fromJsonFactory = _$FilterQueryDtoFromJson;
 
   @override
@@ -34923,7 +33679,11 @@ class FilterQueryDto {
     return identical(this, other) ||
         (other is FilterQueryDto &&
             (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.top, top) ||
+                const DeepCollectionEquality().equals(other.top, top)) &&
+            (identical(other.skip, skip) ||
+                const DeepCollectionEquality().equals(other.skip, skip)));
   }
 
   @override
@@ -34931,16 +33691,31 @@ class FilterQueryDto {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(top) ^
+      const DeepCollectionEquality().hash(skip) ^
+      runtimeType.hashCode;
 }
 
 extension $FilterQueryDtoExtension on FilterQueryDto {
-  FilterQueryDto copyWith({String? name}) {
-    return FilterQueryDto(name: name ?? this.name);
+  FilterQueryDto copyWith({String? name, int? top, int? skip}) {
+    return FilterQueryDto(
+      name: name ?? this.name,
+      top: top ?? this.top,
+      skip: skip ?? this.skip,
+    );
   }
 
-  FilterQueryDto copyWithWrapped({Wrapped<String>? name}) {
-    return FilterQueryDto(name: (name != null ? name.value : this.name));
+  FilterQueryDto copyWithWrapped({
+    Wrapped<String>? name,
+    Wrapped<int?>? top,
+    Wrapped<int?>? skip,
+  }) {
+    return FilterQueryDto(
+      name: (name != null ? name.value : this.name),
+      top: (top != null ? top.value : this.top),
+      skip: (skip != null ? skip.value : this.skip),
+    );
   }
 }
 
@@ -35039,498 +33814,6 @@ extension $CollectionStatsFilterCriteriaDtoExtension
           ? verifiedOnly.value
           : this.verifiedOnly),
       range: (range != null ? range.value : this.range),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class TransferPolicy {
-  const TransferPolicy({
-    required this.id,
-    required this.type,
-    required this.rules,
-    required this.isOriginByte,
-  });
-
-  factory TransferPolicy.fromJson(Map<String, dynamic> json) =>
-      _$TransferPolicyFromJson(json);
-
-  static const toJsonFactory = _$TransferPolicyToJson;
-  Map<String, dynamic> toJson() => _$TransferPolicyToJson(this);
-
-  @JsonKey(name: 'id')
-  final String id;
-  @JsonKey(name: 'type')
-  final String type;
-  @JsonKey(name: 'rules', defaultValue: <String>[])
-  final List<String> rules;
-  @JsonKey(name: 'is_origin_byte')
-  final bool isOriginByte;
-  static const fromJsonFactory = _$TransferPolicyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransferPolicy &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.rules, rules) ||
-                const DeepCollectionEquality().equals(other.rules, rules)) &&
-            (identical(other.isOriginByte, isOriginByte) ||
-                const DeepCollectionEquality().equals(
-                  other.isOriginByte,
-                  isOriginByte,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(rules) ^
-      const DeepCollectionEquality().hash(isOriginByte) ^
-      runtimeType.hashCode;
-}
-
-extension $TransferPolicyExtension on TransferPolicy {
-  TransferPolicy copyWith({
-    String? id,
-    String? type,
-    List<String>? rules,
-    bool? isOriginByte,
-  }) {
-    return TransferPolicy(
-      id: id ?? this.id,
-      type: type ?? this.type,
-      rules: rules ?? this.rules,
-      isOriginByte: isOriginByte ?? this.isOriginByte,
-    );
-  }
-
-  TransferPolicy copyWithWrapped({
-    Wrapped<String>? id,
-    Wrapped<String>? type,
-    Wrapped<List<String>>? rules,
-    Wrapped<bool>? isOriginByte,
-  }) {
-    return TransferPolicy(
-      id: (id != null ? id.value : this.id),
-      type: (type != null ? type.value : this.type),
-      rules: (rules != null ? rules.value : this.rules),
-      isOriginByte: (isOriginByte != null
-          ? isOriginByte.value
-          : this.isOriginByte),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class CollectionProfileDoc {
-  const CollectionProfileDoc({
-    required this.dataType,
-    required this.collection,
-    this.originalCollection,
-    required this.name,
-    required this.description,
-    required this.isVisible,
-    required this.isVerified,
-    required this.socials,
-    required this.type,
-    required this.subType,
-    required this.profile,
-    required this.banner,
-    required this.statistics,
-    required this.owner,
-    required this.creator,
-    required this.isMintable,
-    required this.hasStaking,
-    required this.roles,
-    this.transferPolicies,
-    required this.isEvent,
-    this.eventId,
-    this.royalty,
-    this.minSalePrice,
-    this.customConfig,
-    required this.id,
-    this.ts,
-    this.pinnedAt,
-    this.pinnedAtDrops,
-  });
-
-  factory CollectionProfileDoc.fromJson(Map<String, dynamic> json) =>
-      _$CollectionProfileDocFromJson(json);
-
-  static const toJsonFactory = _$CollectionProfileDocToJson;
-  Map<String, dynamic> toJson() => _$CollectionProfileDocToJson(this);
-
-  @JsonKey(
-    name: 'dataType',
-    toJson: collectionDataTypeToJson,
-    fromJson: collectionDataTypeFromJson,
-  )
-  final enums.CollectionDataType dataType;
-  @JsonKey(name: 'collection')
-  final Object collection;
-  @JsonKey(name: 'originalCollection')
-  final String? originalCollection;
-  @JsonKey(name: 'name')
-  final Object name;
-  @JsonKey(name: 'description')
-  final Object description;
-  @JsonKey(name: 'isVisible')
-  final Object isVisible;
-  @JsonKey(name: 'isVerified')
-  final Object isVerified;
-  @JsonKey(name: 'socials')
-  final SocialsDto socials;
-  @JsonKey(
-    name: 'type',
-    toJson: esdtTokenTypeToJson,
-    fromJson: esdtTokenTypeFromJson,
-  )
-  final enums.EsdtTokenType type;
-  @JsonKey(
-    name: 'subType',
-    toJson: esdtTokenSubTypeToJson,
-    fromJson: esdtTokenSubTypeFromJson,
-  )
-  final enums.EsdtTokenSubType subType;
-  @JsonKey(name: 'profile')
-  final String profile;
-  @JsonKey(name: 'banner')
-  final String banner;
-  @JsonKey(name: 'statistics')
-  final StatisticsDto statistics;
-  @JsonKey(name: 'owner')
-  final Object owner;
-  @JsonKey(name: 'creator')
-  final Object creator;
-  @JsonKey(name: 'isMintable')
-  final Object isMintable;
-  @JsonKey(name: 'hasStaking')
-  final Object hasStaking;
-  @JsonKey(name: 'roles')
-  final Object roles;
-  @JsonKey(name: 'transferPolicies', defaultValue: <TransferPolicy>[])
-  final List<TransferPolicy>? transferPolicies;
-  @JsonKey(name: 'isEvent')
-  final Object isEvent;
-  @JsonKey(name: 'eventId')
-  final String? eventId;
-  @JsonKey(name: 'royalty')
-  final double? royalty;
-  @JsonKey(name: 'minSalePrice')
-  final String? minSalePrice;
-  @JsonKey(name: 'customConfig')
-  final XoxnoMarketplaceScCollectionConfig? customConfig;
-  @JsonKey(name: 'id')
-  final Object id;
-  @JsonKey(name: '_ts')
-  final double? ts;
-  @JsonKey(name: 'pinnedAt')
-  final double? pinnedAt;
-  @JsonKey(name: 'pinnedAtDrops')
-  final double? pinnedAtDrops;
-  static const fromJsonFactory = _$CollectionProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.originalCollection, originalCollection) ||
-                const DeepCollectionEquality().equals(
-                  other.originalCollection,
-                  originalCollection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.subType, subType) ||
-                const DeepCollectionEquality().equals(
-                  other.subType,
-                  subType,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
-            (identical(other.isMintable, isMintable) ||
-                const DeepCollectionEquality().equals(
-                  other.isMintable,
-                  isMintable,
-                )) &&
-            (identical(other.hasStaking, hasStaking) ||
-                const DeepCollectionEquality().equals(
-                  other.hasStaking,
-                  hasStaking,
-                )) &&
-            (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)) &&
-            (identical(other.transferPolicies, transferPolicies) ||
-                const DeepCollectionEquality().equals(
-                  other.transferPolicies,
-                  transferPolicies,
-                )) &&
-            (identical(other.isEvent, isEvent) ||
-                const DeepCollectionEquality().equals(
-                  other.isEvent,
-                  isEvent,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.royalty, royalty) ||
-                const DeepCollectionEquality().equals(
-                  other.royalty,
-                  royalty,
-                )) &&
-            (identical(other.minSalePrice, minSalePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.minSalePrice,
-                  minSalePrice,
-                )) &&
-            (identical(other.customConfig, customConfig) ||
-                const DeepCollectionEquality().equals(
-                  other.customConfig,
-                  customConfig,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.pinnedAt, pinnedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.pinnedAt,
-                  pinnedAt,
-                )) &&
-            (identical(other.pinnedAtDrops, pinnedAtDrops) ||
-                const DeepCollectionEquality().equals(
-                  other.pinnedAtDrops,
-                  pinnedAtDrops,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(originalCollection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(subType) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(creator) ^
-      const DeepCollectionEquality().hash(isMintable) ^
-      const DeepCollectionEquality().hash(hasStaking) ^
-      const DeepCollectionEquality().hash(roles) ^
-      const DeepCollectionEquality().hash(transferPolicies) ^
-      const DeepCollectionEquality().hash(isEvent) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(royalty) ^
-      const DeepCollectionEquality().hash(minSalePrice) ^
-      const DeepCollectionEquality().hash(customConfig) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(pinnedAt) ^
-      const DeepCollectionEquality().hash(pinnedAtDrops) ^
-      runtimeType.hashCode;
-}
-
-extension $CollectionProfileDocExtension on CollectionProfileDoc {
-  CollectionProfileDoc copyWith({
-    enums.CollectionDataType? dataType,
-    Object? collection,
-    String? originalCollection,
-    Object? name,
-    Object? description,
-    Object? isVisible,
-    Object? isVerified,
-    SocialsDto? socials,
-    enums.EsdtTokenType? type,
-    enums.EsdtTokenSubType? subType,
-    String? profile,
-    String? banner,
-    StatisticsDto? statistics,
-    Object? owner,
-    Object? creator,
-    Object? isMintable,
-    Object? hasStaking,
-    Object? roles,
-    List<TransferPolicy>? transferPolicies,
-    Object? isEvent,
-    String? eventId,
-    double? royalty,
-    String? minSalePrice,
-    XoxnoMarketplaceScCollectionConfig? customConfig,
-    Object? id,
-    double? ts,
-    double? pinnedAt,
-    double? pinnedAtDrops,
-  }) {
-    return CollectionProfileDoc(
-      dataType: dataType ?? this.dataType,
-      collection: collection ?? this.collection,
-      originalCollection: originalCollection ?? this.originalCollection,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      isVisible: isVisible ?? this.isVisible,
-      isVerified: isVerified ?? this.isVerified,
-      socials: socials ?? this.socials,
-      type: type ?? this.type,
-      subType: subType ?? this.subType,
-      profile: profile ?? this.profile,
-      banner: banner ?? this.banner,
-      statistics: statistics ?? this.statistics,
-      owner: owner ?? this.owner,
-      creator: creator ?? this.creator,
-      isMintable: isMintable ?? this.isMintable,
-      hasStaking: hasStaking ?? this.hasStaking,
-      roles: roles ?? this.roles,
-      transferPolicies: transferPolicies ?? this.transferPolicies,
-      isEvent: isEvent ?? this.isEvent,
-      eventId: eventId ?? this.eventId,
-      royalty: royalty ?? this.royalty,
-      minSalePrice: minSalePrice ?? this.minSalePrice,
-      customConfig: customConfig ?? this.customConfig,
-      id: id ?? this.id,
-      ts: ts ?? this.ts,
-      pinnedAt: pinnedAt ?? this.pinnedAt,
-      pinnedAtDrops: pinnedAtDrops ?? this.pinnedAtDrops,
-    );
-  }
-
-  CollectionProfileDoc copyWithWrapped({
-    Wrapped<enums.CollectionDataType>? dataType,
-    Wrapped<Object>? collection,
-    Wrapped<String?>? originalCollection,
-    Wrapped<Object>? name,
-    Wrapped<Object>? description,
-    Wrapped<Object>? isVisible,
-    Wrapped<Object>? isVerified,
-    Wrapped<SocialsDto>? socials,
-    Wrapped<enums.EsdtTokenType>? type,
-    Wrapped<enums.EsdtTokenSubType>? subType,
-    Wrapped<String>? profile,
-    Wrapped<String>? banner,
-    Wrapped<StatisticsDto>? statistics,
-    Wrapped<Object>? owner,
-    Wrapped<Object>? creator,
-    Wrapped<Object>? isMintable,
-    Wrapped<Object>? hasStaking,
-    Wrapped<Object>? roles,
-    Wrapped<List<TransferPolicy>?>? transferPolicies,
-    Wrapped<Object>? isEvent,
-    Wrapped<String?>? eventId,
-    Wrapped<double?>? royalty,
-    Wrapped<String?>? minSalePrice,
-    Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
-    Wrapped<Object>? id,
-    Wrapped<double?>? ts,
-    Wrapped<double?>? pinnedAt,
-    Wrapped<double?>? pinnedAtDrops,
-  }) {
-    return CollectionProfileDoc(
-      dataType: (dataType != null ? dataType.value : this.dataType),
-      collection: (collection != null ? collection.value : this.collection),
-      originalCollection: (originalCollection != null
-          ? originalCollection.value
-          : this.originalCollection),
-      name: (name != null ? name.value : this.name),
-      description: (description != null ? description.value : this.description),
-      isVisible: (isVisible != null ? isVisible.value : this.isVisible),
-      isVerified: (isVerified != null ? isVerified.value : this.isVerified),
-      socials: (socials != null ? socials.value : this.socials),
-      type: (type != null ? type.value : this.type),
-      subType: (subType != null ? subType.value : this.subType),
-      profile: (profile != null ? profile.value : this.profile),
-      banner: (banner != null ? banner.value : this.banner),
-      statistics: (statistics != null ? statistics.value : this.statistics),
-      owner: (owner != null ? owner.value : this.owner),
-      creator: (creator != null ? creator.value : this.creator),
-      isMintable: (isMintable != null ? isMintable.value : this.isMintable),
-      hasStaking: (hasStaking != null ? hasStaking.value : this.hasStaking),
-      roles: (roles != null ? roles.value : this.roles),
-      transferPolicies: (transferPolicies != null
-          ? transferPolicies.value
-          : this.transferPolicies),
-      isEvent: (isEvent != null ? isEvent.value : this.isEvent),
-      eventId: (eventId != null ? eventId.value : this.eventId),
-      royalty: (royalty != null ? royalty.value : this.royalty),
-      minSalePrice: (minSalePrice != null
-          ? minSalePrice.value
-          : this.minSalePrice),
-      customConfig: (customConfig != null
-          ? customConfig.value
-          : this.customConfig),
-      id: (id != null ? id.value : this.id),
-      ts: (ts != null ? ts.value : this.ts),
-      pinnedAt: (pinnedAt != null ? pinnedAt.value : this.pinnedAt),
-      pinnedAtDrops: (pinnedAtDrops != null
-          ? pinnedAtDrops.value
-          : this.pinnedAtDrops),
     );
   }
 }
@@ -37972,6 +36255,7 @@ class EventGuestCheckIn {
     this.invitationId,
     this.timestamp,
     this.quantity,
+    this.transactionId,
   });
 
   factory EventGuestCheckIn.fromJson(Map<String, dynamic> json) =>
@@ -37996,6 +36280,8 @@ class EventGuestCheckIn {
   final int? timestamp;
   @JsonKey(name: 'quantity')
   final int? quantity;
+  @JsonKey(name: 'transactionId')
+  final String? transactionId;
   static const fromJsonFactory = _$EventGuestCheckInFromJson;
 
   @override
@@ -38041,6 +36327,11 @@ class EventGuestCheckIn {
                 const DeepCollectionEquality().equals(
                   other.quantity,
                   quantity,
+                )) &&
+            (identical(other.transactionId, transactionId) ||
+                const DeepCollectionEquality().equals(
+                  other.transactionId,
+                  transactionId,
                 )));
   }
 
@@ -38057,6 +36348,7 @@ class EventGuestCheckIn {
       const DeepCollectionEquality().hash(invitationId) ^
       const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(transactionId) ^
       runtimeType.hashCode;
 }
 
@@ -38070,6 +36362,7 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
     String? invitationId,
     int? timestamp,
     int? quantity,
+    String? transactionId,
   }) {
     return EventGuestCheckIn(
       ticketId: ticketId ?? this.ticketId,
@@ -38080,6 +36373,7 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
       invitationId: invitationId ?? this.invitationId,
       timestamp: timestamp ?? this.timestamp,
       quantity: quantity ?? this.quantity,
+      transactionId: transactionId ?? this.transactionId,
     );
   }
 
@@ -38092,6 +36386,7 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
     Wrapped<String?>? invitationId,
     Wrapped<int?>? timestamp,
     Wrapped<int?>? quantity,
+    Wrapped<String?>? transactionId,
   }) {
     return EventGuestCheckIn(
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
@@ -38106,6 +36401,9 @@ extension $EventGuestCheckInExtension on EventGuestCheckIn {
           : this.invitationId),
       timestamp: (timestamp != null ? timestamp.value : this.timestamp),
       quantity: (quantity != null ? quantity.value : this.quantity),
+      transactionId: (transactionId != null
+          ? transactionId.value
+          : this.transactionId),
     );
   }
 }
@@ -38805,6 +37103,241 @@ extension $LendingMarketTokenPriceEgldGet$ResponseExtension
   }
 }
 
+String? userProfileDtoDataTypeNullableToJson(
+  enums.UserProfileDtoDataType? userProfileDtoDataType,
+) {
+  return userProfileDtoDataType?.value;
+}
+
+String? userProfileDtoDataTypeToJson(
+  enums.UserProfileDtoDataType userProfileDtoDataType,
+) {
+  return userProfileDtoDataType.value;
+}
+
+enums.UserProfileDtoDataType userProfileDtoDataTypeFromJson(
+  Object? userProfileDtoDataType, [
+  enums.UserProfileDtoDataType? defaultValue,
+]) {
+  return enums.UserProfileDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == userProfileDtoDataType,
+      ) ??
+      defaultValue ??
+      enums.UserProfileDtoDataType.swaggerGeneratedUnknown;
+}
+
+enums.UserProfileDtoDataType? userProfileDtoDataTypeNullableFromJson(
+  Object? userProfileDtoDataType, [
+  enums.UserProfileDtoDataType? defaultValue,
+]) {
+  if (userProfileDtoDataType == null) {
+    return null;
+  }
+  return enums.UserProfileDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == userProfileDtoDataType,
+      ) ??
+      defaultValue;
+}
+
+String userProfileDtoDataTypeExplodedListToJson(
+  List<enums.UserProfileDtoDataType>? userProfileDtoDataType,
+) {
+  return userProfileDtoDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> userProfileDtoDataTypeListToJson(
+  List<enums.UserProfileDtoDataType>? userProfileDtoDataType,
+) {
+  if (userProfileDtoDataType == null) {
+    return [];
+  }
+
+  return userProfileDtoDataType.map((e) => e.value!).toList();
+}
+
+List<enums.UserProfileDtoDataType> userProfileDtoDataTypeListFromJson(
+  List? userProfileDtoDataType, [
+  List<enums.UserProfileDtoDataType>? defaultValue,
+]) {
+  if (userProfileDtoDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return userProfileDtoDataType
+      .map((e) => userProfileDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.UserProfileDtoDataType>? userProfileDtoDataTypeNullableListFromJson(
+  List? userProfileDtoDataType, [
+  List<enums.UserProfileDtoDataType>? defaultValue,
+]) {
+  if (userProfileDtoDataType == null) {
+    return defaultValue;
+  }
+
+  return userProfileDtoDataType
+      .map((e) => userProfileDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? userProfileDtoChainNullableToJson(
+  enums.UserProfileDtoChain? userProfileDtoChain,
+) {
+  return userProfileDtoChain?.value;
+}
+
+String? userProfileDtoChainToJson(
+  enums.UserProfileDtoChain userProfileDtoChain,
+) {
+  return userProfileDtoChain.value;
+}
+
+enums.UserProfileDtoChain userProfileDtoChainFromJson(
+  Object? userProfileDtoChain, [
+  enums.UserProfileDtoChain? defaultValue,
+]) {
+  return enums.UserProfileDtoChain.values.firstWhereOrNull(
+        (e) => e.value == userProfileDtoChain,
+      ) ??
+      defaultValue ??
+      enums.UserProfileDtoChain.swaggerGeneratedUnknown;
+}
+
+enums.UserProfileDtoChain? userProfileDtoChainNullableFromJson(
+  Object? userProfileDtoChain, [
+  enums.UserProfileDtoChain? defaultValue,
+]) {
+  if (userProfileDtoChain == null) {
+    return null;
+  }
+  return enums.UserProfileDtoChain.values.firstWhereOrNull(
+        (e) => e.value == userProfileDtoChain,
+      ) ??
+      defaultValue;
+}
+
+String userProfileDtoChainExplodedListToJson(
+  List<enums.UserProfileDtoChain>? userProfileDtoChain,
+) {
+  return userProfileDtoChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> userProfileDtoChainListToJson(
+  List<enums.UserProfileDtoChain>? userProfileDtoChain,
+) {
+  if (userProfileDtoChain == null) {
+    return [];
+  }
+
+  return userProfileDtoChain.map((e) => e.value!).toList();
+}
+
+List<enums.UserProfileDtoChain> userProfileDtoChainListFromJson(
+  List? userProfileDtoChain, [
+  List<enums.UserProfileDtoChain>? defaultValue,
+]) {
+  if (userProfileDtoChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return userProfileDtoChain
+      .map((e) => userProfileDtoChainFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.UserProfileDtoChain>? userProfileDtoChainNullableListFromJson(
+  List? userProfileDtoChain, [
+  List<enums.UserProfileDtoChain>? defaultValue,
+]) {
+  if (userProfileDtoChain == null) {
+    return defaultValue;
+  }
+
+  return userProfileDtoChain
+      .map((e) => userProfileDtoChainFromJson(e.toString()))
+      .toList();
+}
+
+String? creatorProfileDtoDataTypeNullableToJson(
+  enums.CreatorProfileDtoDataType? creatorProfileDtoDataType,
+) {
+  return creatorProfileDtoDataType?.value;
+}
+
+String? creatorProfileDtoDataTypeToJson(
+  enums.CreatorProfileDtoDataType creatorProfileDtoDataType,
+) {
+  return creatorProfileDtoDataType.value;
+}
+
+enums.CreatorProfileDtoDataType creatorProfileDtoDataTypeFromJson(
+  Object? creatorProfileDtoDataType, [
+  enums.CreatorProfileDtoDataType? defaultValue,
+]) {
+  return enums.CreatorProfileDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorProfileDtoDataType,
+      ) ??
+      defaultValue ??
+      enums.CreatorProfileDtoDataType.swaggerGeneratedUnknown;
+}
+
+enums.CreatorProfileDtoDataType? creatorProfileDtoDataTypeNullableFromJson(
+  Object? creatorProfileDtoDataType, [
+  enums.CreatorProfileDtoDataType? defaultValue,
+]) {
+  if (creatorProfileDtoDataType == null) {
+    return null;
+  }
+  return enums.CreatorProfileDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorProfileDtoDataType,
+      ) ??
+      defaultValue;
+}
+
+String creatorProfileDtoDataTypeExplodedListToJson(
+  List<enums.CreatorProfileDtoDataType>? creatorProfileDtoDataType,
+) {
+  return creatorProfileDtoDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> creatorProfileDtoDataTypeListToJson(
+  List<enums.CreatorProfileDtoDataType>? creatorProfileDtoDataType,
+) {
+  if (creatorProfileDtoDataType == null) {
+    return [];
+  }
+
+  return creatorProfileDtoDataType.map((e) => e.value!).toList();
+}
+
+List<enums.CreatorProfileDtoDataType> creatorProfileDtoDataTypeListFromJson(
+  List? creatorProfileDtoDataType, [
+  List<enums.CreatorProfileDtoDataType>? defaultValue,
+]) {
+  if (creatorProfileDtoDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return creatorProfileDtoDataType
+      .map((e) => creatorProfileDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CreatorProfileDtoDataType>?
+creatorProfileDtoDataTypeNullableListFromJson(
+  List? creatorProfileDtoDataType, [
+  List<enums.CreatorProfileDtoDataType>? defaultValue,
+]) {
+  if (creatorProfileDtoDataType == null) {
+    return defaultValue;
+  }
+
+  return creatorProfileDtoDataType
+      .map((e) => creatorProfileDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
 String? tokenCategoryNullableToJson(enums.TokenCategory? tokenCategory) {
   return tokenCategory?.value;
 }
@@ -39172,6 +37705,160 @@ List<enums.KustoOrderDirection>? kustoOrderDirectionNullableListFromJson(
       .toList();
 }
 
+String? nftOfferDocDataTypeNullableToJson(
+  enums.NftOfferDocDataType? nftOfferDocDataType,
+) {
+  return nftOfferDocDataType?.value;
+}
+
+String? nftOfferDocDataTypeToJson(
+  enums.NftOfferDocDataType nftOfferDocDataType,
+) {
+  return nftOfferDocDataType.value;
+}
+
+enums.NftOfferDocDataType nftOfferDocDataTypeFromJson(
+  Object? nftOfferDocDataType, [
+  enums.NftOfferDocDataType? defaultValue,
+]) {
+  return enums.NftOfferDocDataType.values.firstWhereOrNull(
+        (e) => e.value == nftOfferDocDataType,
+      ) ??
+      defaultValue ??
+      enums.NftOfferDocDataType.swaggerGeneratedUnknown;
+}
+
+enums.NftOfferDocDataType? nftOfferDocDataTypeNullableFromJson(
+  Object? nftOfferDocDataType, [
+  enums.NftOfferDocDataType? defaultValue,
+]) {
+  if (nftOfferDocDataType == null) {
+    return null;
+  }
+  return enums.NftOfferDocDataType.values.firstWhereOrNull(
+        (e) => e.value == nftOfferDocDataType,
+      ) ??
+      defaultValue;
+}
+
+String nftOfferDocDataTypeExplodedListToJson(
+  List<enums.NftOfferDocDataType>? nftOfferDocDataType,
+) {
+  return nftOfferDocDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> nftOfferDocDataTypeListToJson(
+  List<enums.NftOfferDocDataType>? nftOfferDocDataType,
+) {
+  if (nftOfferDocDataType == null) {
+    return [];
+  }
+
+  return nftOfferDocDataType.map((e) => e.value!).toList();
+}
+
+List<enums.NftOfferDocDataType> nftOfferDocDataTypeListFromJson(
+  List? nftOfferDocDataType, [
+  List<enums.NftOfferDocDataType>? defaultValue,
+]) {
+  if (nftOfferDocDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return nftOfferDocDataType
+      .map((e) => nftOfferDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NftOfferDocDataType>? nftOfferDocDataTypeNullableListFromJson(
+  List? nftOfferDocDataType, [
+  List<enums.NftOfferDocDataType>? defaultValue,
+]) {
+  if (nftOfferDocDataType == null) {
+    return defaultValue;
+  }
+
+  return nftOfferDocDataType
+      .map((e) => nftOfferDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? nftOfferDocChainNullableToJson(
+  enums.NftOfferDocChain? nftOfferDocChain,
+) {
+  return nftOfferDocChain?.value;
+}
+
+String? nftOfferDocChainToJson(enums.NftOfferDocChain nftOfferDocChain) {
+  return nftOfferDocChain.value;
+}
+
+enums.NftOfferDocChain nftOfferDocChainFromJson(
+  Object? nftOfferDocChain, [
+  enums.NftOfferDocChain? defaultValue,
+]) {
+  return enums.NftOfferDocChain.values.firstWhereOrNull(
+        (e) => e.value == nftOfferDocChain,
+      ) ??
+      defaultValue ??
+      enums.NftOfferDocChain.swaggerGeneratedUnknown;
+}
+
+enums.NftOfferDocChain? nftOfferDocChainNullableFromJson(
+  Object? nftOfferDocChain, [
+  enums.NftOfferDocChain? defaultValue,
+]) {
+  if (nftOfferDocChain == null) {
+    return null;
+  }
+  return enums.NftOfferDocChain.values.firstWhereOrNull(
+        (e) => e.value == nftOfferDocChain,
+      ) ??
+      defaultValue;
+}
+
+String nftOfferDocChainExplodedListToJson(
+  List<enums.NftOfferDocChain>? nftOfferDocChain,
+) {
+  return nftOfferDocChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> nftOfferDocChainListToJson(
+  List<enums.NftOfferDocChain>? nftOfferDocChain,
+) {
+  if (nftOfferDocChain == null) {
+    return [];
+  }
+
+  return nftOfferDocChain.map((e) => e.value!).toList();
+}
+
+List<enums.NftOfferDocChain> nftOfferDocChainListFromJson(
+  List? nftOfferDocChain, [
+  List<enums.NftOfferDocChain>? defaultValue,
+]) {
+  if (nftOfferDocChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return nftOfferDocChain
+      .map((e) => nftOfferDocChainFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NftOfferDocChain>? nftOfferDocChainNullableListFromJson(
+  List? nftOfferDocChain, [
+  List<enums.NftOfferDocChain>? defaultValue,
+]) {
+  if (nftOfferDocChain == null) {
+    return defaultValue;
+  }
+
+  return nftOfferDocChain
+      .map((e) => nftOfferDocChainFromJson(e.toString()))
+      .toList();
+}
+
 String? esdtTokenTypeNullableToJson(enums.EsdtTokenType? esdtTokenType) {
   return esdtTokenType?.value;
 }
@@ -39316,6 +38003,74 @@ List<enums.EsdtTokenSubType>? esdtTokenSubTypeNullableListFromJson(
       .toList();
 }
 
+String? activityChainNullableToJson(enums.ActivityChain? activityChain) {
+  return activityChain?.value;
+}
+
+String? activityChainToJson(enums.ActivityChain activityChain) {
+  return activityChain.value;
+}
+
+enums.ActivityChain activityChainFromJson(
+  Object? activityChain, [
+  enums.ActivityChain? defaultValue,
+]) {
+  return enums.ActivityChain.values.firstWhereOrNull(
+        (e) => e.value == activityChain,
+      ) ??
+      defaultValue ??
+      enums.ActivityChain.swaggerGeneratedUnknown;
+}
+
+enums.ActivityChain? activityChainNullableFromJson(
+  Object? activityChain, [
+  enums.ActivityChain? defaultValue,
+]) {
+  if (activityChain == null) {
+    return null;
+  }
+  return enums.ActivityChain.values.firstWhereOrNull(
+        (e) => e.value == activityChain,
+      ) ??
+      defaultValue;
+}
+
+String activityChainExplodedListToJson(
+  List<enums.ActivityChain>? activityChain,
+) {
+  return activityChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> activityChainListToJson(List<enums.ActivityChain>? activityChain) {
+  if (activityChain == null) {
+    return [];
+  }
+
+  return activityChain.map((e) => e.value!).toList();
+}
+
+List<enums.ActivityChain> activityChainListFromJson(
+  List? activityChain, [
+  List<enums.ActivityChain>? defaultValue,
+]) {
+  if (activityChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return activityChain.map((e) => activityChainFromJson(e.toString())).toList();
+}
+
+List<enums.ActivityChain>? activityChainNullableListFromJson(
+  List? activityChain, [
+  List<enums.ActivityChain>? defaultValue,
+]) {
+  if (activityChain == null) {
+    return defaultValue;
+  }
+
+  return activityChain.map((e) => activityChainFromJson(e.toString())).toList();
+}
+
 String? marketplacesOnSaleNamesNullableToJson(
   enums.MarketplacesOnSaleNames? marketplacesOnSaleNames,
 ) {
@@ -39395,145 +38150,479 @@ marketplacesOnSaleNamesNullableListFromJson(
       .toList();
 }
 
-String? userDataTypeNullableToJson(enums.UserDataType? userDataType) {
-  return userDataType?.value;
+String? collectionProfileDocDataTypeNullableToJson(
+  enums.CollectionProfileDocDataType? collectionProfileDocDataType,
+) {
+  return collectionProfileDocDataType?.value;
 }
 
-String? userDataTypeToJson(enums.UserDataType userDataType) {
-  return userDataType.value;
+String? collectionProfileDocDataTypeToJson(
+  enums.CollectionProfileDocDataType collectionProfileDocDataType,
+) {
+  return collectionProfileDocDataType.value;
 }
 
-enums.UserDataType userDataTypeFromJson(
-  Object? userDataType, [
-  enums.UserDataType? defaultValue,
+enums.CollectionProfileDocDataType collectionProfileDocDataTypeFromJson(
+  Object? collectionProfileDocDataType, [
+  enums.CollectionProfileDocDataType? defaultValue,
 ]) {
-  return enums.UserDataType.values.firstWhereOrNull(
-        (e) => e.value == userDataType,
+  return enums.CollectionProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocDataType,
       ) ??
       defaultValue ??
-      enums.UserDataType.swaggerGeneratedUnknown;
+      enums.CollectionProfileDocDataType.swaggerGeneratedUnknown;
 }
 
-enums.UserDataType? userDataTypeNullableFromJson(
-  Object? userDataType, [
-  enums.UserDataType? defaultValue,
+enums.CollectionProfileDocDataType?
+collectionProfileDocDataTypeNullableFromJson(
+  Object? collectionProfileDocDataType, [
+  enums.CollectionProfileDocDataType? defaultValue,
 ]) {
-  if (userDataType == null) {
+  if (collectionProfileDocDataType == null) {
     return null;
   }
-  return enums.UserDataType.values.firstWhereOrNull(
-        (e) => e.value == userDataType,
+  return enums.CollectionProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocDataType,
       ) ??
       defaultValue;
 }
 
-String userDataTypeExplodedListToJson(List<enums.UserDataType>? userDataType) {
-  return userDataType?.map((e) => e.value!).join(',') ?? '';
+String collectionProfileDocDataTypeExplodedListToJson(
+  List<enums.CollectionProfileDocDataType>? collectionProfileDocDataType,
+) {
+  return collectionProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
 }
 
-List<String> userDataTypeListToJson(List<enums.UserDataType>? userDataType) {
-  if (userDataType == null) {
+List<String> collectionProfileDocDataTypeListToJson(
+  List<enums.CollectionProfileDocDataType>? collectionProfileDocDataType,
+) {
+  if (collectionProfileDocDataType == null) {
     return [];
   }
 
-  return userDataType.map((e) => e.value!).toList();
+  return collectionProfileDocDataType.map((e) => e.value!).toList();
 }
 
-List<enums.UserDataType> userDataTypeListFromJson(
-  List? userDataType, [
-  List<enums.UserDataType>? defaultValue,
+List<enums.CollectionProfileDocDataType>
+collectionProfileDocDataTypeListFromJson(
+  List? collectionProfileDocDataType, [
+  List<enums.CollectionProfileDocDataType>? defaultValue,
 ]) {
-  if (userDataType == null) {
+  if (collectionProfileDocDataType == null) {
     return defaultValue ?? [];
   }
 
-  return userDataType.map((e) => userDataTypeFromJson(e.toString())).toList();
-}
-
-List<enums.UserDataType>? userDataTypeNullableListFromJson(
-  List? userDataType, [
-  List<enums.UserDataType>? defaultValue,
-]) {
-  if (userDataType == null) {
-    return defaultValue;
-  }
-
-  return userDataType.map((e) => userDataTypeFromJson(e.toString())).toList();
-}
-
-String? collectionDataTypeNullableToJson(
-  enums.CollectionDataType? collectionDataType,
-) {
-  return collectionDataType?.value;
-}
-
-String? collectionDataTypeToJson(enums.CollectionDataType collectionDataType) {
-  return collectionDataType.value;
-}
-
-enums.CollectionDataType collectionDataTypeFromJson(
-  Object? collectionDataType, [
-  enums.CollectionDataType? defaultValue,
-]) {
-  return enums.CollectionDataType.values.firstWhereOrNull(
-        (e) => e.value == collectionDataType,
-      ) ??
-      defaultValue ??
-      enums.CollectionDataType.swaggerGeneratedUnknown;
-}
-
-enums.CollectionDataType? collectionDataTypeNullableFromJson(
-  Object? collectionDataType, [
-  enums.CollectionDataType? defaultValue,
-]) {
-  if (collectionDataType == null) {
-    return null;
-  }
-  return enums.CollectionDataType.values.firstWhereOrNull(
-        (e) => e.value == collectionDataType,
-      ) ??
-      defaultValue;
-}
-
-String collectionDataTypeExplodedListToJson(
-  List<enums.CollectionDataType>? collectionDataType,
-) {
-  return collectionDataType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> collectionDataTypeListToJson(
-  List<enums.CollectionDataType>? collectionDataType,
-) {
-  if (collectionDataType == null) {
-    return [];
-  }
-
-  return collectionDataType.map((e) => e.value!).toList();
-}
-
-List<enums.CollectionDataType> collectionDataTypeListFromJson(
-  List? collectionDataType, [
-  List<enums.CollectionDataType>? defaultValue,
-]) {
-  if (collectionDataType == null) {
-    return defaultValue ?? [];
-  }
-
-  return collectionDataType
-      .map((e) => collectionDataTypeFromJson(e.toString()))
+  return collectionProfileDocDataType
+      .map((e) => collectionProfileDocDataTypeFromJson(e.toString()))
       .toList();
 }
 
-List<enums.CollectionDataType>? collectionDataTypeNullableListFromJson(
-  List? collectionDataType, [
-  List<enums.CollectionDataType>? defaultValue,
+List<enums.CollectionProfileDocDataType>?
+collectionProfileDocDataTypeNullableListFromJson(
+  List? collectionProfileDocDataType, [
+  List<enums.CollectionProfileDocDataType>? defaultValue,
 ]) {
-  if (collectionDataType == null) {
+  if (collectionProfileDocDataType == null) {
     return defaultValue;
   }
 
-  return collectionDataType
-      .map((e) => collectionDataTypeFromJson(e.toString()))
+  return collectionProfileDocDataType
+      .map((e) => collectionProfileDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionProfileDocTypeNullableToJson(
+  enums.CollectionProfileDocType? collectionProfileDocType,
+) {
+  return collectionProfileDocType?.value;
+}
+
+String? collectionProfileDocTypeToJson(
+  enums.CollectionProfileDocType collectionProfileDocType,
+) {
+  return collectionProfileDocType.value;
+}
+
+enums.CollectionProfileDocType collectionProfileDocTypeFromJson(
+  Object? collectionProfileDocType, [
+  enums.CollectionProfileDocType? defaultValue,
+]) {
+  return enums.CollectionProfileDocType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocType,
+      ) ??
+      defaultValue ??
+      enums.CollectionProfileDocType.swaggerGeneratedUnknown;
+}
+
+enums.CollectionProfileDocType? collectionProfileDocTypeNullableFromJson(
+  Object? collectionProfileDocType, [
+  enums.CollectionProfileDocType? defaultValue,
+]) {
+  if (collectionProfileDocType == null) {
+    return null;
+  }
+  return enums.CollectionProfileDocType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocType,
+      ) ??
+      defaultValue;
+}
+
+String collectionProfileDocTypeExplodedListToJson(
+  List<enums.CollectionProfileDocType>? collectionProfileDocType,
+) {
+  return collectionProfileDocType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionProfileDocTypeListToJson(
+  List<enums.CollectionProfileDocType>? collectionProfileDocType,
+) {
+  if (collectionProfileDocType == null) {
+    return [];
+  }
+
+  return collectionProfileDocType.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionProfileDocType> collectionProfileDocTypeListFromJson(
+  List? collectionProfileDocType, [
+  List<enums.CollectionProfileDocType>? defaultValue,
+]) {
+  if (collectionProfileDocType == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionProfileDocType
+      .map((e) => collectionProfileDocTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionProfileDocType>?
+collectionProfileDocTypeNullableListFromJson(
+  List? collectionProfileDocType, [
+  List<enums.CollectionProfileDocType>? defaultValue,
+]) {
+  if (collectionProfileDocType == null) {
+    return defaultValue;
+  }
+
+  return collectionProfileDocType
+      .map((e) => collectionProfileDocTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionProfileDocSubTypeNullableToJson(
+  enums.CollectionProfileDocSubType? collectionProfileDocSubType,
+) {
+  return collectionProfileDocSubType?.value;
+}
+
+String? collectionProfileDocSubTypeToJson(
+  enums.CollectionProfileDocSubType collectionProfileDocSubType,
+) {
+  return collectionProfileDocSubType.value;
+}
+
+enums.CollectionProfileDocSubType collectionProfileDocSubTypeFromJson(
+  Object? collectionProfileDocSubType, [
+  enums.CollectionProfileDocSubType? defaultValue,
+]) {
+  return enums.CollectionProfileDocSubType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocSubType,
+      ) ??
+      defaultValue ??
+      enums.CollectionProfileDocSubType.swaggerGeneratedUnknown;
+}
+
+enums.CollectionProfileDocSubType? collectionProfileDocSubTypeNullableFromJson(
+  Object? collectionProfileDocSubType, [
+  enums.CollectionProfileDocSubType? defaultValue,
+]) {
+  if (collectionProfileDocSubType == null) {
+    return null;
+  }
+  return enums.CollectionProfileDocSubType.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocSubType,
+      ) ??
+      defaultValue;
+}
+
+String collectionProfileDocSubTypeExplodedListToJson(
+  List<enums.CollectionProfileDocSubType>? collectionProfileDocSubType,
+) {
+  return collectionProfileDocSubType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionProfileDocSubTypeListToJson(
+  List<enums.CollectionProfileDocSubType>? collectionProfileDocSubType,
+) {
+  if (collectionProfileDocSubType == null) {
+    return [];
+  }
+
+  return collectionProfileDocSubType.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionProfileDocSubType> collectionProfileDocSubTypeListFromJson(
+  List? collectionProfileDocSubType, [
+  List<enums.CollectionProfileDocSubType>? defaultValue,
+]) {
+  if (collectionProfileDocSubType == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionProfileDocSubType
+      .map((e) => collectionProfileDocSubTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionProfileDocSubType>?
+collectionProfileDocSubTypeNullableListFromJson(
+  List? collectionProfileDocSubType, [
+  List<enums.CollectionProfileDocSubType>? defaultValue,
+]) {
+  if (collectionProfileDocSubType == null) {
+    return defaultValue;
+  }
+
+  return collectionProfileDocSubType
+      .map((e) => collectionProfileDocSubTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionProfileDocChainNullableToJson(
+  enums.CollectionProfileDocChain? collectionProfileDocChain,
+) {
+  return collectionProfileDocChain?.value;
+}
+
+String? collectionProfileDocChainToJson(
+  enums.CollectionProfileDocChain collectionProfileDocChain,
+) {
+  return collectionProfileDocChain.value;
+}
+
+enums.CollectionProfileDocChain collectionProfileDocChainFromJson(
+  Object? collectionProfileDocChain, [
+  enums.CollectionProfileDocChain? defaultValue,
+]) {
+  return enums.CollectionProfileDocChain.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocChain,
+      ) ??
+      defaultValue ??
+      enums.CollectionProfileDocChain.swaggerGeneratedUnknown;
+}
+
+enums.CollectionProfileDocChain? collectionProfileDocChainNullableFromJson(
+  Object? collectionProfileDocChain, [
+  enums.CollectionProfileDocChain? defaultValue,
+]) {
+  if (collectionProfileDocChain == null) {
+    return null;
+  }
+  return enums.CollectionProfileDocChain.values.firstWhereOrNull(
+        (e) => e.value == collectionProfileDocChain,
+      ) ??
+      defaultValue;
+}
+
+String collectionProfileDocChainExplodedListToJson(
+  List<enums.CollectionProfileDocChain>? collectionProfileDocChain,
+) {
+  return collectionProfileDocChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionProfileDocChainListToJson(
+  List<enums.CollectionProfileDocChain>? collectionProfileDocChain,
+) {
+  if (collectionProfileDocChain == null) {
+    return [];
+  }
+
+  return collectionProfileDocChain.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionProfileDocChain> collectionProfileDocChainListFromJson(
+  List? collectionProfileDocChain, [
+  List<enums.CollectionProfileDocChain>? defaultValue,
+]) {
+  if (collectionProfileDocChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionProfileDocChain
+      .map((e) => collectionProfileDocChainFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionProfileDocChain>?
+collectionProfileDocChainNullableListFromJson(
+  List? collectionProfileDocChain, [
+  List<enums.CollectionProfileDocChain>? defaultValue,
+]) {
+  if (collectionProfileDocChain == null) {
+    return defaultValue;
+  }
+
+  return collectionProfileDocChain
+      .map((e) => collectionProfileDocChainFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionStatsDtoChainNullableToJson(
+  enums.CollectionStatsDtoChain? collectionStatsDtoChain,
+) {
+  return collectionStatsDtoChain?.value;
+}
+
+String? collectionStatsDtoChainToJson(
+  enums.CollectionStatsDtoChain collectionStatsDtoChain,
+) {
+  return collectionStatsDtoChain.value;
+}
+
+enums.CollectionStatsDtoChain collectionStatsDtoChainFromJson(
+  Object? collectionStatsDtoChain, [
+  enums.CollectionStatsDtoChain? defaultValue,
+]) {
+  return enums.CollectionStatsDtoChain.values.firstWhereOrNull(
+        (e) => e.value == collectionStatsDtoChain,
+      ) ??
+      defaultValue ??
+      enums.CollectionStatsDtoChain.swaggerGeneratedUnknown;
+}
+
+enums.CollectionStatsDtoChain? collectionStatsDtoChainNullableFromJson(
+  Object? collectionStatsDtoChain, [
+  enums.CollectionStatsDtoChain? defaultValue,
+]) {
+  if (collectionStatsDtoChain == null) {
+    return null;
+  }
+  return enums.CollectionStatsDtoChain.values.firstWhereOrNull(
+        (e) => e.value == collectionStatsDtoChain,
+      ) ??
+      defaultValue;
+}
+
+String collectionStatsDtoChainExplodedListToJson(
+  List<enums.CollectionStatsDtoChain>? collectionStatsDtoChain,
+) {
+  return collectionStatsDtoChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionStatsDtoChainListToJson(
+  List<enums.CollectionStatsDtoChain>? collectionStatsDtoChain,
+) {
+  if (collectionStatsDtoChain == null) {
+    return [];
+  }
+
+  return collectionStatsDtoChain.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionStatsDtoChain> collectionStatsDtoChainListFromJson(
+  List? collectionStatsDtoChain, [
+  List<enums.CollectionStatsDtoChain>? defaultValue,
+]) {
+  if (collectionStatsDtoChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionStatsDtoChain
+      .map((e) => collectionStatsDtoChainFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionStatsDtoChain>?
+collectionStatsDtoChainNullableListFromJson(
+  List? collectionStatsDtoChain, [
+  List<enums.CollectionStatsDtoChain>? defaultValue,
+]) {
+  if (collectionStatsDtoChain == null) {
+    return defaultValue;
+  }
+
+  return collectionStatsDtoChain
+      .map((e) => collectionStatsDtoChainFromJson(e.toString()))
+      .toList();
+}
+
+String? mintingListingDtoDataTypeNullableToJson(
+  enums.MintingListingDtoDataType? mintingListingDtoDataType,
+) {
+  return mintingListingDtoDataType?.value;
+}
+
+String? mintingListingDtoDataTypeToJson(
+  enums.MintingListingDtoDataType mintingListingDtoDataType,
+) {
+  return mintingListingDtoDataType.value;
+}
+
+enums.MintingListingDtoDataType mintingListingDtoDataTypeFromJson(
+  Object? mintingListingDtoDataType, [
+  enums.MintingListingDtoDataType? defaultValue,
+]) {
+  return enums.MintingListingDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == mintingListingDtoDataType,
+      ) ??
+      defaultValue ??
+      enums.MintingListingDtoDataType.swaggerGeneratedUnknown;
+}
+
+enums.MintingListingDtoDataType? mintingListingDtoDataTypeNullableFromJson(
+  Object? mintingListingDtoDataType, [
+  enums.MintingListingDtoDataType? defaultValue,
+]) {
+  if (mintingListingDtoDataType == null) {
+    return null;
+  }
+  return enums.MintingListingDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == mintingListingDtoDataType,
+      ) ??
+      defaultValue;
+}
+
+String mintingListingDtoDataTypeExplodedListToJson(
+  List<enums.MintingListingDtoDataType>? mintingListingDtoDataType,
+) {
+  return mintingListingDtoDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> mintingListingDtoDataTypeListToJson(
+  List<enums.MintingListingDtoDataType>? mintingListingDtoDataType,
+) {
+  if (mintingListingDtoDataType == null) {
+    return [];
+  }
+
+  return mintingListingDtoDataType.map((e) => e.value!).toList();
+}
+
+List<enums.MintingListingDtoDataType> mintingListingDtoDataTypeListFromJson(
+  List? mintingListingDtoDataType, [
+  List<enums.MintingListingDtoDataType>? defaultValue,
+]) {
+  if (mintingListingDtoDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return mintingListingDtoDataType
+      .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.MintingListingDtoDataType>?
+mintingListingDtoDataTypeNullableListFromJson(
+  List? mintingListingDtoDataType, [
+  List<enums.MintingListingDtoDataType>? defaultValue,
+]) {
+  if (mintingListingDtoDataType == null) {
+    return defaultValue;
+  }
+
+  return mintingListingDtoDataType
+      .map((e) => mintingListingDtoDataTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -40042,6 +39131,85 @@ List<enums.RoleStatus>? roleStatusNullableListFromJson(
   return roleStatus.map((e) => roleStatusFromJson(e.toString())).toList();
 }
 
+String? creatorDetailsDtoDataTypeNullableToJson(
+  enums.CreatorDetailsDtoDataType? creatorDetailsDtoDataType,
+) {
+  return creatorDetailsDtoDataType?.value;
+}
+
+String? creatorDetailsDtoDataTypeToJson(
+  enums.CreatorDetailsDtoDataType creatorDetailsDtoDataType,
+) {
+  return creatorDetailsDtoDataType.value;
+}
+
+enums.CreatorDetailsDtoDataType creatorDetailsDtoDataTypeFromJson(
+  Object? creatorDetailsDtoDataType, [
+  enums.CreatorDetailsDtoDataType? defaultValue,
+]) {
+  return enums.CreatorDetailsDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorDetailsDtoDataType,
+      ) ??
+      defaultValue ??
+      enums.CreatorDetailsDtoDataType.swaggerGeneratedUnknown;
+}
+
+enums.CreatorDetailsDtoDataType? creatorDetailsDtoDataTypeNullableFromJson(
+  Object? creatorDetailsDtoDataType, [
+  enums.CreatorDetailsDtoDataType? defaultValue,
+]) {
+  if (creatorDetailsDtoDataType == null) {
+    return null;
+  }
+  return enums.CreatorDetailsDtoDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorDetailsDtoDataType,
+      ) ??
+      defaultValue;
+}
+
+String creatorDetailsDtoDataTypeExplodedListToJson(
+  List<enums.CreatorDetailsDtoDataType>? creatorDetailsDtoDataType,
+) {
+  return creatorDetailsDtoDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> creatorDetailsDtoDataTypeListToJson(
+  List<enums.CreatorDetailsDtoDataType>? creatorDetailsDtoDataType,
+) {
+  if (creatorDetailsDtoDataType == null) {
+    return [];
+  }
+
+  return creatorDetailsDtoDataType.map((e) => e.value!).toList();
+}
+
+List<enums.CreatorDetailsDtoDataType> creatorDetailsDtoDataTypeListFromJson(
+  List? creatorDetailsDtoDataType, [
+  List<enums.CreatorDetailsDtoDataType>? defaultValue,
+]) {
+  if (creatorDetailsDtoDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return creatorDetailsDtoDataType
+      .map((e) => creatorDetailsDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CreatorDetailsDtoDataType>?
+creatorDetailsDtoDataTypeNullableListFromJson(
+  List? creatorDetailsDtoDataType, [
+  List<enums.CreatorDetailsDtoDataType>? defaultValue,
+]) {
+  if (creatorDetailsDtoDataType == null) {
+    return defaultValue;
+  }
+
+  return creatorDetailsDtoDataType
+      .map((e) => creatorDetailsDtoDataTypeFromJson(e.toString()))
+      .toList();
+}
+
 String? stakingDataTypeNullableToJson(enums.StakingDataType? stakingDataType) {
   return stakingDataType?.value;
 }
@@ -40113,6 +39281,168 @@ List<enums.StakingDataType>? stakingDataTypeNullableListFromJson(
 
   return stakingDataType
       .map((e) => stakingDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionMintProfileDocDataTypeNullableToJson(
+  enums.CollectionMintProfileDocDataType? collectionMintProfileDocDataType,
+) {
+  return collectionMintProfileDocDataType?.value;
+}
+
+String? collectionMintProfileDocDataTypeToJson(
+  enums.CollectionMintProfileDocDataType collectionMintProfileDocDataType,
+) {
+  return collectionMintProfileDocDataType.value;
+}
+
+enums.CollectionMintProfileDocDataType collectionMintProfileDocDataTypeFromJson(
+  Object? collectionMintProfileDocDataType, [
+  enums.CollectionMintProfileDocDataType? defaultValue,
+]) {
+  return enums.CollectionMintProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionMintProfileDocDataType,
+      ) ??
+      defaultValue ??
+      enums.CollectionMintProfileDocDataType.swaggerGeneratedUnknown;
+}
+
+enums.CollectionMintProfileDocDataType?
+collectionMintProfileDocDataTypeNullableFromJson(
+  Object? collectionMintProfileDocDataType, [
+  enums.CollectionMintProfileDocDataType? defaultValue,
+]) {
+  if (collectionMintProfileDocDataType == null) {
+    return null;
+  }
+  return enums.CollectionMintProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionMintProfileDocDataType,
+      ) ??
+      defaultValue;
+}
+
+String collectionMintProfileDocDataTypeExplodedListToJson(
+  List<enums.CollectionMintProfileDocDataType>?
+  collectionMintProfileDocDataType,
+) {
+  return collectionMintProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionMintProfileDocDataTypeListToJson(
+  List<enums.CollectionMintProfileDocDataType>?
+  collectionMintProfileDocDataType,
+) {
+  if (collectionMintProfileDocDataType == null) {
+    return [];
+  }
+
+  return collectionMintProfileDocDataType.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionMintProfileDocDataType>
+collectionMintProfileDocDataTypeListFromJson(
+  List? collectionMintProfileDocDataType, [
+  List<enums.CollectionMintProfileDocDataType>? defaultValue,
+]) {
+  if (collectionMintProfileDocDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionMintProfileDocDataType
+      .map((e) => collectionMintProfileDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionMintProfileDocDataType>?
+collectionMintProfileDocDataTypeNullableListFromJson(
+  List? collectionMintProfileDocDataType, [
+  List<enums.CollectionMintProfileDocDataType>? defaultValue,
+]) {
+  if (collectionMintProfileDocDataType == null) {
+    return defaultValue;
+  }
+
+  return collectionMintProfileDocDataType
+      .map((e) => collectionMintProfileDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? creatorProfileDocDataTypeNullableToJson(
+  enums.CreatorProfileDocDataType? creatorProfileDocDataType,
+) {
+  return creatorProfileDocDataType?.value;
+}
+
+String? creatorProfileDocDataTypeToJson(
+  enums.CreatorProfileDocDataType creatorProfileDocDataType,
+) {
+  return creatorProfileDocDataType.value;
+}
+
+enums.CreatorProfileDocDataType creatorProfileDocDataTypeFromJson(
+  Object? creatorProfileDocDataType, [
+  enums.CreatorProfileDocDataType? defaultValue,
+]) {
+  return enums.CreatorProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorProfileDocDataType,
+      ) ??
+      defaultValue ??
+      enums.CreatorProfileDocDataType.swaggerGeneratedUnknown;
+}
+
+enums.CreatorProfileDocDataType? creatorProfileDocDataTypeNullableFromJson(
+  Object? creatorProfileDocDataType, [
+  enums.CreatorProfileDocDataType? defaultValue,
+]) {
+  if (creatorProfileDocDataType == null) {
+    return null;
+  }
+  return enums.CreatorProfileDocDataType.values.firstWhereOrNull(
+        (e) => e.value == creatorProfileDocDataType,
+      ) ??
+      defaultValue;
+}
+
+String creatorProfileDocDataTypeExplodedListToJson(
+  List<enums.CreatorProfileDocDataType>? creatorProfileDocDataType,
+) {
+  return creatorProfileDocDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> creatorProfileDocDataTypeListToJson(
+  List<enums.CreatorProfileDocDataType>? creatorProfileDocDataType,
+) {
+  if (creatorProfileDocDataType == null) {
+    return [];
+  }
+
+  return creatorProfileDocDataType.map((e) => e.value!).toList();
+}
+
+List<enums.CreatorProfileDocDataType> creatorProfileDocDataTypeListFromJson(
+  List? creatorProfileDocDataType, [
+  List<enums.CreatorProfileDocDataType>? defaultValue,
+]) {
+  if (creatorProfileDocDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return creatorProfileDocDataType
+      .map((e) => creatorProfileDocDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CreatorProfileDocDataType>?
+creatorProfileDocDataTypeNullableListFromJson(
+  List? creatorProfileDocDataType, [
+  List<enums.CreatorProfileDocDataType>? defaultValue,
+]) {
+  if (creatorProfileDocDataType == null) {
+    return defaultValue;
+  }
+
+  return creatorProfileDocDataType
+      .map((e) => creatorProfileDocDataTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -40651,6 +39981,251 @@ List<enums.WalletClientType>? walletClientTypeNullableListFromJson(
 
   return walletClientType
       .map((e) => walletClientTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? nftActivityDocHydratedChainNullableToJson(
+  enums.NftActivityDocHydratedChain? nftActivityDocHydratedChain,
+) {
+  return nftActivityDocHydratedChain?.value;
+}
+
+String? nftActivityDocHydratedChainToJson(
+  enums.NftActivityDocHydratedChain nftActivityDocHydratedChain,
+) {
+  return nftActivityDocHydratedChain.value;
+}
+
+enums.NftActivityDocHydratedChain nftActivityDocHydratedChainFromJson(
+  Object? nftActivityDocHydratedChain, [
+  enums.NftActivityDocHydratedChain? defaultValue,
+]) {
+  return enums.NftActivityDocHydratedChain.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedChain,
+      ) ??
+      defaultValue ??
+      enums.NftActivityDocHydratedChain.swaggerGeneratedUnknown;
+}
+
+enums.NftActivityDocHydratedChain? nftActivityDocHydratedChainNullableFromJson(
+  Object? nftActivityDocHydratedChain, [
+  enums.NftActivityDocHydratedChain? defaultValue,
+]) {
+  if (nftActivityDocHydratedChain == null) {
+    return null;
+  }
+  return enums.NftActivityDocHydratedChain.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedChain,
+      ) ??
+      defaultValue;
+}
+
+String nftActivityDocHydratedChainExplodedListToJson(
+  List<enums.NftActivityDocHydratedChain>? nftActivityDocHydratedChain,
+) {
+  return nftActivityDocHydratedChain?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> nftActivityDocHydratedChainListToJson(
+  List<enums.NftActivityDocHydratedChain>? nftActivityDocHydratedChain,
+) {
+  if (nftActivityDocHydratedChain == null) {
+    return [];
+  }
+
+  return nftActivityDocHydratedChain.map((e) => e.value!).toList();
+}
+
+List<enums.NftActivityDocHydratedChain> nftActivityDocHydratedChainListFromJson(
+  List? nftActivityDocHydratedChain, [
+  List<enums.NftActivityDocHydratedChain>? defaultValue,
+]) {
+  if (nftActivityDocHydratedChain == null) {
+    return defaultValue ?? [];
+  }
+
+  return nftActivityDocHydratedChain
+      .map((e) => nftActivityDocHydratedChainFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NftActivityDocHydratedChain>?
+nftActivityDocHydratedChainNullableListFromJson(
+  List? nftActivityDocHydratedChain, [
+  List<enums.NftActivityDocHydratedChain>? defaultValue,
+]) {
+  if (nftActivityDocHydratedChain == null) {
+    return defaultValue;
+  }
+
+  return nftActivityDocHydratedChain
+      .map((e) => nftActivityDocHydratedChainFromJson(e.toString()))
+      .toList();
+}
+
+String? nftActivityDocHydratedSourceNullableToJson(
+  enums.NftActivityDocHydratedSource? nftActivityDocHydratedSource,
+) {
+  return nftActivityDocHydratedSource?.value;
+}
+
+String? nftActivityDocHydratedSourceToJson(
+  enums.NftActivityDocHydratedSource nftActivityDocHydratedSource,
+) {
+  return nftActivityDocHydratedSource.value;
+}
+
+enums.NftActivityDocHydratedSource nftActivityDocHydratedSourceFromJson(
+  Object? nftActivityDocHydratedSource, [
+  enums.NftActivityDocHydratedSource? defaultValue,
+]) {
+  return enums.NftActivityDocHydratedSource.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedSource,
+      ) ??
+      defaultValue ??
+      enums.NftActivityDocHydratedSource.swaggerGeneratedUnknown;
+}
+
+enums.NftActivityDocHydratedSource?
+nftActivityDocHydratedSourceNullableFromJson(
+  Object? nftActivityDocHydratedSource, [
+  enums.NftActivityDocHydratedSource? defaultValue,
+]) {
+  if (nftActivityDocHydratedSource == null) {
+    return null;
+  }
+  return enums.NftActivityDocHydratedSource.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedSource,
+      ) ??
+      defaultValue;
+}
+
+String nftActivityDocHydratedSourceExplodedListToJson(
+  List<enums.NftActivityDocHydratedSource>? nftActivityDocHydratedSource,
+) {
+  return nftActivityDocHydratedSource?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> nftActivityDocHydratedSourceListToJson(
+  List<enums.NftActivityDocHydratedSource>? nftActivityDocHydratedSource,
+) {
+  if (nftActivityDocHydratedSource == null) {
+    return [];
+  }
+
+  return nftActivityDocHydratedSource.map((e) => e.value!).toList();
+}
+
+List<enums.NftActivityDocHydratedSource>
+nftActivityDocHydratedSourceListFromJson(
+  List? nftActivityDocHydratedSource, [
+  List<enums.NftActivityDocHydratedSource>? defaultValue,
+]) {
+  if (nftActivityDocHydratedSource == null) {
+    return defaultValue ?? [];
+  }
+
+  return nftActivityDocHydratedSource
+      .map((e) => nftActivityDocHydratedSourceFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NftActivityDocHydratedSource>?
+nftActivityDocHydratedSourceNullableListFromJson(
+  List? nftActivityDocHydratedSource, [
+  List<enums.NftActivityDocHydratedSource>? defaultValue,
+]) {
+  if (nftActivityDocHydratedSource == null) {
+    return defaultValue;
+  }
+
+  return nftActivityDocHydratedSource
+      .map((e) => nftActivityDocHydratedSourceFromJson(e.toString()))
+      .toList();
+}
+
+String? nftActivityDocHydratedActivityTypeNullableToJson(
+  enums.NftActivityDocHydratedActivityType? nftActivityDocHydratedActivityType,
+) {
+  return nftActivityDocHydratedActivityType?.value;
+}
+
+String? nftActivityDocHydratedActivityTypeToJson(
+  enums.NftActivityDocHydratedActivityType nftActivityDocHydratedActivityType,
+) {
+  return nftActivityDocHydratedActivityType.value;
+}
+
+enums.NftActivityDocHydratedActivityType
+nftActivityDocHydratedActivityTypeFromJson(
+  Object? nftActivityDocHydratedActivityType, [
+  enums.NftActivityDocHydratedActivityType? defaultValue,
+]) {
+  return enums.NftActivityDocHydratedActivityType.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedActivityType,
+      ) ??
+      defaultValue ??
+      enums.NftActivityDocHydratedActivityType.swaggerGeneratedUnknown;
+}
+
+enums.NftActivityDocHydratedActivityType?
+nftActivityDocHydratedActivityTypeNullableFromJson(
+  Object? nftActivityDocHydratedActivityType, [
+  enums.NftActivityDocHydratedActivityType? defaultValue,
+]) {
+  if (nftActivityDocHydratedActivityType == null) {
+    return null;
+  }
+  return enums.NftActivityDocHydratedActivityType.values.firstWhereOrNull(
+        (e) => e.value == nftActivityDocHydratedActivityType,
+      ) ??
+      defaultValue;
+}
+
+String nftActivityDocHydratedActivityTypeExplodedListToJson(
+  List<enums.NftActivityDocHydratedActivityType>?
+  nftActivityDocHydratedActivityType,
+) {
+  return nftActivityDocHydratedActivityType?.map((e) => e.value!).join(',') ??
+      '';
+}
+
+List<String> nftActivityDocHydratedActivityTypeListToJson(
+  List<enums.NftActivityDocHydratedActivityType>?
+  nftActivityDocHydratedActivityType,
+) {
+  if (nftActivityDocHydratedActivityType == null) {
+    return [];
+  }
+
+  return nftActivityDocHydratedActivityType.map((e) => e.value!).toList();
+}
+
+List<enums.NftActivityDocHydratedActivityType>
+nftActivityDocHydratedActivityTypeListFromJson(
+  List? nftActivityDocHydratedActivityType, [
+  List<enums.NftActivityDocHydratedActivityType>? defaultValue,
+]) {
+  if (nftActivityDocHydratedActivityType == null) {
+    return defaultValue ?? [];
+  }
+
+  return nftActivityDocHydratedActivityType
+      .map((e) => nftActivityDocHydratedActivityTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.NftActivityDocHydratedActivityType>?
+nftActivityDocHydratedActivityTypeNullableListFromJson(
+  List? nftActivityDocHydratedActivityType, [
+  List<enums.NftActivityDocHydratedActivityType>? defaultValue,
+]) {
+  if (nftActivityDocHydratedActivityType == null) {
+    return defaultValue;
+  }
+
+  return nftActivityDocHydratedActivityType
+      .map((e) => nftActivityDocHydratedActivityTypeFromJson(e.toString()))
       .toList();
 }
 
@@ -41713,6 +41288,82 @@ List<enums.NftActivityEventSource>? nftActivityEventSourceNullableListFromJson(
 
   return nftActivityEventSource
       .map((e) => nftActivityEventSourceFromJson(e.toString()))
+      .toList();
+}
+
+String? collectionDataTypeNullableToJson(
+  enums.CollectionDataType? collectionDataType,
+) {
+  return collectionDataType?.value;
+}
+
+String? collectionDataTypeToJson(enums.CollectionDataType collectionDataType) {
+  return collectionDataType.value;
+}
+
+enums.CollectionDataType collectionDataTypeFromJson(
+  Object? collectionDataType, [
+  enums.CollectionDataType? defaultValue,
+]) {
+  return enums.CollectionDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionDataType,
+      ) ??
+      defaultValue ??
+      enums.CollectionDataType.swaggerGeneratedUnknown;
+}
+
+enums.CollectionDataType? collectionDataTypeNullableFromJson(
+  Object? collectionDataType, [
+  enums.CollectionDataType? defaultValue,
+]) {
+  if (collectionDataType == null) {
+    return null;
+  }
+  return enums.CollectionDataType.values.firstWhereOrNull(
+        (e) => e.value == collectionDataType,
+      ) ??
+      defaultValue;
+}
+
+String collectionDataTypeExplodedListToJson(
+  List<enums.CollectionDataType>? collectionDataType,
+) {
+  return collectionDataType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> collectionDataTypeListToJson(
+  List<enums.CollectionDataType>? collectionDataType,
+) {
+  if (collectionDataType == null) {
+    return [];
+  }
+
+  return collectionDataType.map((e) => e.value!).toList();
+}
+
+List<enums.CollectionDataType> collectionDataTypeListFromJson(
+  List? collectionDataType, [
+  List<enums.CollectionDataType>? defaultValue,
+]) {
+  if (collectionDataType == null) {
+    return defaultValue ?? [];
+  }
+
+  return collectionDataType
+      .map((e) => collectionDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CollectionDataType>? collectionDataTypeNullableListFromJson(
+  List? collectionDataType, [
+  List<enums.CollectionDataType>? defaultValue,
+]) {
+  if (collectionDataType == null) {
+    return defaultValue;
+  }
+
+  return collectionDataType
+      .map((e) => collectionDataTypeFromJson(e.toString()))
       .toList();
 }
 
