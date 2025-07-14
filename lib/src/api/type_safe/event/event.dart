@@ -14,7 +14,6 @@ class EventTypeSafeApi {
     return data.map((item) => item as String).toList();
   }
 
-
   Future<EventProfile> createEvent({
     required EventProfileCreateDto body,
   }) async {
@@ -29,9 +28,7 @@ class EventTypeSafeApi {
     return MobileDeviceDoc.fromJson(data);
   }
 
-  Future<void> deactivateDevice({
-    required String deviceId,
-  }) async {
+  Future<void> deactivateDevice({required String deviceId}) async {
     await _api.deactivateDevice(deviceId: deviceId);
   }
 
@@ -51,7 +48,9 @@ class EventTypeSafeApi {
   Future<PushNotificationDoc> markNotificationAsRead({
     required String notificationId,
   }) async {
-    final data = await _api.markNotificationAsRead(notificationId: notificationId);
+    final data = await _api.markNotificationAsRead(
+      notificationId: notificationId,
+    );
     return PushNotificationDoc.fromJson(data);
   }
 
@@ -563,9 +562,9 @@ class EventTypeSafeApi {
     return EventUserRoleDoc.fromJson(data);
   }
 
-  Future<GetMyEventsQuery> getMyEvents(bool extended) async {
+  Future<List<EventProfile>> getMyEvents(bool extended) async {
     final data = await _api.getMyEvents(extended);
-    return GetMyEventsQuery.fromJson(data);
+    return data.map((item) => EventProfile.fromJson(item)).toList();
   }
 
   Future<List<AnsweredQuestionWithDetails>> getAnsweredQuestions({
@@ -582,5 +581,20 @@ class EventTypeSafeApi {
   Future<CreatorDetailsDto> getCreatorEvents({required String address}) async {
     final data = await _api.getCreatorEvents(address: address);
     return CreatorDetailsDto.fromJson(data);
+  }
+
+  Future<List<EventProfile>> getMyPastEvents() async {
+    final data = await _api.getMyPastEvents();
+    return data.map((item) => EventProfile.fromJson(item)).toList();
+  }
+
+  Future<List<EventProfile>> getMyHostedEvents() async {
+    final data = await _api.getMyHostedEvents();
+    return data.map((item) => EventProfile.fromJson(item)).toList();
+  }
+
+  Future<List<EventProfile>> getMyUpcomingEvents() async {
+    final data = await _api.getMyUpcomingEvents();
+    return data.map((item) => EventProfile.fromJson(item)).toList();
   }
 }

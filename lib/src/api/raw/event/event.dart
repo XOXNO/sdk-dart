@@ -44,9 +44,7 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> deactivateDevice({
-    required String deviceId,
-  }) {
+  Future<Map<String, dynamic>> deactivateDevice({required String deviceId}) {
     final logger = Logger('Xoxno.EventRawApi.deactivateDevice');
     logger.finest('deactivate device');
     return genericDelete(
@@ -86,7 +84,9 @@ class EventRawApi {
     logger.finest('mark notification as read');
     return genericPut(
       client,
-      generateUri(path: '${client.baseUrl}/mobile/history/$notificationId/read'),
+      generateUri(
+        path: '${client.baseUrl}/mobile/history/$notificationId/read',
+      ),
     );
   }
 
@@ -107,7 +107,6 @@ class EventRawApi {
       generateUri(path: '${client.baseUrl}/mobile/history/clear-all'),
     );
   }
-
 
   Future<Map<String, dynamic>> getEventById({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventById');
@@ -687,7 +686,7 @@ class EventRawApi {
     );
   }
 
-  Future<Map<String, dynamic>> getMyEvents(bool extended) {
+  Future<List<dynamic>> getMyEvents(bool extended) {
     final logger = Logger('Xoxno.EventRawApi.getMyEvents');
     logger.finest('get my events');
     return genericGet(
@@ -696,6 +695,33 @@ class EventRawApi {
         path: '${client.baseUrl}/user/me/event',
         queryParameters: ['extended=$extended'],
       ),
+    );
+  }
+
+  Future<List<dynamic>> getMyPastEvents() {
+    final logger = Logger('Xoxno.EventRawApi.getMyPastEvents');
+    logger.finest('get my past events');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/user/me/events/past'),
+    );
+  }
+
+  Future<List<dynamic>> getMyHostedEvents() {
+    final logger = Logger('Xoxno.EventRawApi.getMyHostedEvents');
+    logger.finest('get my hosted events');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/user/me/events/hosted'),
+    );
+  }
+
+  Future<List<dynamic>> getMyUpcomingEvents() {
+    final logger = Logger('Xoxno.EventRawApi.getMyUpcomingEvents');
+    logger.finest('get my upcoming events');
+    return genericGet(
+      client,
+      generateUri(path: '${client.baseUrl}/user/me/events/upcoming'),
     );
   }
 
