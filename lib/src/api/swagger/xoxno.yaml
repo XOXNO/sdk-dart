@@ -123,7 +123,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/'
+                type: string
       responses:
         '201':
           description: User bulk network info response
@@ -182,6 +182,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get user private profile response with email
       tags:
@@ -263,6 +264,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Edit user profile
       tags:
@@ -297,6 +299,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get me user profile
       tags:
@@ -331,6 +334,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get user settings
       tags:
@@ -376,6 +380,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get user notification settings after update
       tags:
@@ -416,6 +421,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Patch user email settings
       tags:
@@ -449,6 +455,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredJwt: []
         - bearer: []
       summary: Delete user email settings
       tags:
@@ -489,6 +496,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Patch user phone settings
       tags:
@@ -529,6 +537,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Patch user billing settings
       tags:
@@ -569,8 +578,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Verify user pending email!
+      tags:
+        - User
+  /user/buy/signature:
+    post:
+      operationId: UserDataController_buyTokens
+      parameters: []
+      responses:
+        '201':
+          description: Signature for buys
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradesilvaniaSignature'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - requiredAny: []
+        - bearer: []
+      summary: Tradesilvania signature
       tags:
         - User
   /user/{address}/upload-picture:
@@ -625,6 +670,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Set user profile public picture
       tags:
@@ -676,6 +722,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Set user public banner image
       tags:
@@ -715,6 +762,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Reset to default the public profile picture of a user
       tags:
@@ -754,6 +802,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Reset to default the public banner picture of a user
       tags:
@@ -872,6 +921,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update creator profile information
       tags:
@@ -924,6 +974,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update creator profile picture
       tags:
@@ -975,6 +1026,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update creator profile banner
       tags:
@@ -1014,6 +1066,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Reset creator profile picture
       tags:
@@ -1053,6 +1106,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Reset creator profile banner
       tags:
@@ -1066,6 +1120,14 @@ paths:
           in: path
           schema:
             type: string
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/CollectionStatsFilter'
       responses:
         '200':
           description: Explore collections statistics response
@@ -1130,6 +1192,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Check if user has liked an NFT
       tags:
@@ -1170,6 +1233,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Follow or unfollow a user
       tags:
@@ -1224,7 +1288,9 @@ paths:
           in: query
           description: Comma separated token identifiers
           schema:
-            type: string
+            type: array
+            items:
+              type: string
         - name: category
           required: false
           in: query
@@ -1232,12 +1298,11 @@ paths:
           schema:
             $ref: '#/components/schemas/TokenCategory'
         - name: chain
-          required: true
+          required: false
           in: query
+          description: Comma separated chain list
           schema:
-            type: array
-            items:
-              type: string
+            $ref: '#/components/schemas/ActivityChain'
       responses:
         '200':
           description: List of tokens
@@ -1320,7 +1385,15 @@ paths:
             type: boolean
       responses:
         '200':
-          description: ''
+          description: XOXNO usd prices
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: number
+                example:
+                  EGLD: 30.45
         '400':
           description: Bad Request
           content:
@@ -1359,7 +1432,15 @@ paths:
             type: string
       responses:
         '200':
-          description: ''
+          description: XOXNO usd prices
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: number
+                example:
+                  EUR: 12.45
         '400':
           description: Bad Request
           content:
@@ -1514,7 +1595,11 @@ paths:
       parameters: []
       responses:
         '200':
-          description: ''
+          description: XOXNO info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XoxnoInfo'
         '400':
           description: Bad Request
           content:
@@ -1533,6 +1618,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Fetch XOXNO statistics
       tags:
         - Token
   /liquid/xoxno/stats:
@@ -2017,14 +2103,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  apr:
-                    type: number
-                    example: 7.3
-                  apy:
-                    type: number
-                    example: 7.6
+                $ref: '#/components/schemas/ProtocolAprType'
         '400':
           description: Bad Request
           content:
@@ -2078,33 +2157,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       summary: Fetch Liquid EGLD providers
-      tags:
-        - LiquidEGLD
-  /liquid/egld/simulate-provider-selection:
-    post:
-      operationId: XoxnoEgldLiquidScController_simulateDelegatorSelection
-      parameters: []
-      responses:
-        '201':
-          description: ''
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '403':
-          description: Forbidden resource
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - LiquidEGLD
   /ash/min-token-quantity:
@@ -2328,7 +2380,15 @@ paths:
   /lending/market/query:
     get:
       operationId: LendingDataController_retrieveMarketProfiles
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/LendingMarketProfileFilter'
       responses:
         '200':
           description: Explore lending markets
@@ -2367,6 +2427,22 @@ paths:
       summary: Get my lending & borrowing positions
       tags:
         - Lending And Borrowing
+  /lending/market/indexes:
+    get:
+      operationId: LendingDataController_retrieveMarketIndexes
+      parameters: []
+      responses:
+        '200':
+          description: Lending market indexes
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/LendingIndexesDto'
+      summary: Get lending market indexes
+      tags:
+        - Lending And Borrowing
   /user/lending/position/{identifier}:
     get:
       operationId: LendingDataController_retrieveUserLendingSinglePosition
@@ -2399,7 +2475,11 @@ paths:
             type: string
       responses:
         '200':
-          description: Lending picture
+          description: User lending image as svg
+          content:
+            application/json:
+              schema:
+                type: string
       summary: Get picture of lending position
       tags:
         - Lending And Borrowing
@@ -2565,6 +2645,8 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties:
+                  type: string
                 example:
                   EGLD: 1
       summary: Get token prices as EGLD for all lending markets
@@ -2573,7 +2655,15 @@ paths:
   /nft/query:
     get:
       operationId: NftDataController_retrieveNfts
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/NftDocFilter'
       responses:
         '200':
           description: NFT query response for the used filters
@@ -2638,6 +2728,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Like an NFT
       tags:
@@ -2748,7 +2839,15 @@ paths:
   /nft/offer/query:
     get:
       operationId: NftDataController_retrieveNftOffers
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/NftOfferDocFilter'
       responses:
         '200':
           description: User offers
@@ -2883,19 +2982,18 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  type: object
-                  additionalProperties:
-                    type: object
-                    properties:
-                      onSale:
-                        type: number
+                  allOf:
+                    - $ref: '#/components/schemas/ValueFp'
+                    - type: object
+                      additionalProperties:
+                        $ref: '#/components/schemas/TraitInfo'
                 example:
                   Background:
                     Blue:
-                      onSale: 23
+                      onSaleCount: 23
                   Type:
                     General:
-                      onSale: 23
+                      onSaleCount: 23
         '400':
           description: Bad Request
           content:
@@ -3122,6 +3220,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get signed data
       tags:
@@ -3168,6 +3267,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get signed data
       tags:
@@ -3214,6 +3314,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get signed data
       tags:
@@ -3335,6 +3436,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection profile
       tags:
@@ -3350,9 +3452,10 @@ paths:
           schema:
             type: string
         - name: token
-          required: true
+          required: false
           in: query
           schema:
+            default: EGLD
             type: string
       responses:
         '200':
@@ -3394,7 +3497,9 @@ paths:
             A comma-separated list of collection tickers. For example:
             collection=TEST-123,TEST2-123. Maximum 10 collections.
           schema:
-            type: string
+            type: array
+            items:
+              type: string
       responses:
         '200':
           description: Floor price of the collections
@@ -3468,6 +3573,47 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       summary: Get pinned collections
+      tags:
+        - CollectionData
+        - Collection
+  /collection/pinned-drops:
+    get:
+      operationId: CollectionDataController_retrieveDropsPinnedCollection
+      parameters:
+        - name: chain
+          required: true
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Pinned drops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CollectionMintProfileDocHydrated'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - CollectionData
         - Collection
@@ -3582,6 +3728,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Follow a specific collection
       tags:
@@ -3598,7 +3745,7 @@ paths:
             A JSON string representing the filter criteria. For example: {"key":
             "value"}
           schema:
-            type: string
+            $ref: '#/components/schemas/CollectionProfileFilter'
       responses:
         '200':
           description: Drops query response
@@ -3639,7 +3786,7 @@ paths:
             A JSON string representing the filter criteria. For example: {"key":
             "value"}
           schema:
-            type: string
+            $ref: '#/components/schemas/CollectionMintProfileFilter'
       responses:
         '200':
           description: Drops query response
@@ -3703,6 +3850,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - optionalAny: []
       summary: Get drop info
       tags:
         - CollectionData
@@ -3746,6 +3895,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - optionalAny: []
       summary: Get drop info
       tags:
         - CollectionData
@@ -3797,6 +3948,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection profile
       tags:
@@ -3849,6 +4001,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection profile
       tags:
@@ -3889,6 +4042,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection profile
       tags:
@@ -3929,6 +4083,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection profile
       tags:
@@ -4051,7 +4206,15 @@ paths:
   /collection/stats/query:
     get:
       operationId: CollectionDataController_retrieveCollectionStatistics
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/CollectionStatsFilter'
       responses:
         '200':
           description: Explore collections statistics response
@@ -4084,7 +4247,15 @@ paths:
   /collection/global-offer/query:
     get:
       operationId: CollectionDataController_retrieveCollectionOffers
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/CollectionOffersFilter'
       responses:
         '200':
           description: Global offers response
@@ -4268,6 +4439,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection staking pool summary
       tags:
@@ -4360,6 +4532,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Update collection staking pool summary
       tags:
@@ -4693,6 +4866,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - optionalAny: []
       summary: Get collection staking summary
       tags:
         - StakingData
@@ -4813,7 +4988,15 @@ paths:
   /search:
     get:
       operationId: SearchDataController_globalSearch
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/FilterQueryDto'
       responses:
         '200':
           description: Global search response
@@ -4845,7 +5028,15 @@ paths:
   /user/search:
     get:
       operationId: SearchDataController_userSearch
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/FilterQueryDto'
       responses:
         '200':
           description: Global user search response
@@ -4877,7 +5068,15 @@ paths:
   /collection/search:
     get:
       operationId: SearchDataController_collectionSearch
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/FilterQueryDto'
       responses:
         '200':
           description: Global collection search response
@@ -4909,7 +5108,15 @@ paths:
   /collection/drops/search:
     get:
       operationId: SearchDataController_collectionDropsSearch
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/FilterQueryDto'
       responses:
         '200':
           description: Global collection drops search response
@@ -4941,10 +5148,22 @@ paths:
   /nft/search/query:
     get:
       operationId: SearchDataController_nftSearch
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/NftDocFilter'
       responses:
         '200':
-          description: ''
+          description: Global collection drops search response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NftPaginated'
         '400':
           description: Bad Request
           content:
@@ -4988,7 +5207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationResponse'
+                $ref: '#/components/schemas/NotificationPaginated'
         '400':
           description: Bad Request
           content:
@@ -5008,6 +5227,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get notifications of an user
       tags:
@@ -5022,7 +5242,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationCountResponse'
+                $ref: '#/components/schemas/NotificationPaginated'
         '400':
           description: Bad Request
           content:
@@ -5042,6 +5262,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get the un read notification count
       tags:
@@ -5076,6 +5297,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Delete a user conversation
       tags:
@@ -5116,6 +5338,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Set as read notifications, leave empty ID to read all
       tags:
@@ -5157,6 +5380,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Register mobile device for push notifications
       tags:
         - Mobile Notifications
@@ -5199,6 +5423,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Get mobile device by device ID
       tags:
         - Mobile Notifications
@@ -5214,6 +5439,10 @@ paths:
       responses:
         '200':
           description: Device deactivated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
         '400':
           description: Bad Request
           content:
@@ -5234,6 +5463,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Deactivate mobile device
       tags:
         - Mobile Notifications
@@ -5246,13 +5476,13 @@ paths:
           in: query
           description: Number of notifications to return
           schema:
-            type: integer
+            type: number
         - name: skip
           required: false
           in: query
           description: Number of notifications to skip
           schema:
-            type: integer
+            type: number
       responses:
         '200':
           description: Push notification history retrieved successfully
@@ -5280,6 +5510,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get push notification history for user
       tags:
         - Mobile Notifications
@@ -5314,6 +5545,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get unread push notification count for user
       tags:
         - Mobile Notifications
@@ -5354,6 +5586,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Mark push notification as read
       tags:
         - Mobile Notifications
@@ -5388,6 +5621,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Mark all push notifications as read
       tags:
         - Mobile Notifications
@@ -5422,6 +5656,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Clear all push notification history
       tags:
         - Mobile Notifications
@@ -5468,6 +5703,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Send update notification to event attendees
       tags:
         - Event Notifications
@@ -5514,6 +5750,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Send reminder notification to event attendees
       tags:
         - Event Notifications
@@ -5554,6 +5791,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Send marketing notification to all past attendees of creator events
       tags:
         - Event Notifications
@@ -5600,6 +5838,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Send direct notification to specific user
       tags:
         - Event Notifications
@@ -5680,6 +5919,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Get Web2 user data
       tags:
         - Web2User
@@ -5690,6 +5930,10 @@ paths:
       responses:
         '200':
           description: Returns session cookie creation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithMessageDto'
         '400':
           description: Bad Request
           content:
@@ -5710,6 +5954,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Create session cookie
       tags:
         - Web2User
@@ -5750,6 +5995,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Create Web2 user native wallet
       tags:
         - Web2User
@@ -5790,6 +6036,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Switch to another wallet
       tags:
         - Web2User
@@ -5830,6 +6077,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Link external wallet
       tags:
         - Web2User
@@ -5869,6 +6117,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Unlink external wallet
       tags:
         - Web2User
@@ -5903,6 +6152,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
         - bearer: []
+        - requiredWeb2: []
       summary: Get Web2 user shards
       tags:
         - Web2User
@@ -5936,17 +6186,38 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  price:
-                    type: string
-                    example: '1234546542142543'
+                $ref: '#/components/schemas/LendingTokenPriceDto'
       tags:
         - Lending SC
+  /faucet:
+    post:
+      operationId: XoxnoLendingScController_setTokenPrice
+      parameters: []
+      responses:
+        '200':
+          description: Request faucet tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
+      security:
+        - requiredAny: []
+        - bearer: []
+      tags:
+        - Lending SC
+        - User
   /activity/query:
     get:
       operationId: NftActivityDataController_retrieveNftActivity
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/NftActivityFilter'
       responses:
         '200':
           description: Activity history response
@@ -6267,13 +6538,37 @@ paths:
       tags:
         - NftActivityData
         - User
-  /analytics/dune/egld-ls:
+  /user/xoxno-drop:
     get:
-      operationId: NftActivityDataController_retrieveEgldLs
-      parameters: []
+      operationId: NftActivityDataController_retrieveUserXoxnoDropScore
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          description: The number of records to skip
+          schema:
+            type: number
+        - name: top
+          required: false
+          in: query
+          description: The number of records to return
+          schema:
+            type: number
+        - name: address
+          required: false
+          in: query
+          description: The user address to filter by
+          schema:
+            type: string
       responses:
         '200':
-          description: ''
+          description: List of user stats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirdropDto'
         '400':
           description: Bad Request
           content:
@@ -6294,14 +6589,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponseDto'
       tags:
         - NftActivityData
-        - Dune
-  /sync/lending:
+        - User
+  /user/me/xoxno-drop:
     get:
-      operationId: NftActivityDataController_retrieveLending
+      operationId: NftActivityDataController_retrieveMyXoxnoDropScore
       parameters: []
       responses:
         '200':
-          description: ''
+          description: List of user stats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirdropDto'
         '400':
           description: Bad Request
           content:
@@ -6320,9 +6621,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
+      security:
+        - requiredAny: []
+        - bearer: []
       tags:
         - NftActivityData
-        - Dune
+        - User
   /transactions/{txHash}/status:
     get:
       operationId: TransactionController_getTransactionStatus
@@ -6482,6 +6786,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Send a private message
       tags:
@@ -6536,6 +6841,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Fetch user chat conversations summary
       tags:
@@ -6592,6 +6898,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Fetch user chat conversation messages
       tags:
@@ -6630,6 +6937,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Delete a user conversation
       tags:
@@ -6664,6 +6972,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Fetch global conversation summary
       tags:
@@ -6714,6 +7023,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Delete a user conversation
       tags:
@@ -6748,6 +7058,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Fetch blocked chats
       tags:
@@ -6787,6 +7098,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Block a user
       tags:
@@ -6821,22 +7133,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDto'
       security:
+        - requiredAny: []
         - bearer: []
       summary: Get WebSocket connection token
       tags:
         - AzureWs
         - Chat
-  /notify:
-    get:
-      operationId: TicketingDataController_sendPostEventEmail
-      parameters: []
-      responses:
-        '200':
-          description: ''
-      security:
-        - bearer: []
-      tags:
-        - Ticketing
   /countries:
     get:
       operationId: TicketingDataController_getCountries
@@ -6873,6 +7175,7 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create new event
       tags:
         - Ticketing
@@ -6895,6 +7198,7 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - optionalAny: []
       summary: Get event details
       tags:
         - Ticketing
@@ -6922,13 +7226,22 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event details
       tags:
         - Ticketing
   /event/profile/query:
     get:
       operationId: TicketingDataController_getEvents
-      parameters: []
+      parameters:
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/EventProfileFilter'
       responses:
         '200':
           description: Event profile
@@ -6972,6 +7285,7 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event profile image
       tags:
         - Ticketing
@@ -7006,6 +7320,7 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event background image
       tags:
         - Ticketing
@@ -7040,6 +7355,7 @@ paths:
                 $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event description
       tags:
         - Ticketing
@@ -7074,6 +7390,7 @@ paths:
                 type: string
       security:
         - bearer: []
+        - requiredAny: []
       summary: Upload event description image
       tags:
         - Ticketing
@@ -7102,6 +7419,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Delete event description image
       tags:
         - Ticketing
@@ -7130,6 +7448,7 @@ paths:
                 $ref: '#/components/schemas/EventRegistrationResponseDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Register for an event
       tags:
         - Ticketing
@@ -7158,6 +7477,7 @@ paths:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create new event ticket
       tags:
         - Ticketing
@@ -7242,6 +7562,7 @@ paths:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event ticket details
       tags:
         - Ticketing
@@ -7282,6 +7603,7 @@ paths:
                 $ref: '#/components/schemas/EventTicketProfileDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Upload event ticket profile
       tags:
         - Ticketing
@@ -7310,6 +7632,7 @@ paths:
                 $ref: '#/components/schemas/EventStageProfileDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create new event stage
       tags:
         - Ticketing
@@ -7400,6 +7723,7 @@ paths:
                 $ref: '#/components/schemas/EventStageProfileDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Update event stage details
       tags:
         - Ticketing
@@ -7427,6 +7751,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Delete event stage
       tags:
         - Ticketing
@@ -7499,6 +7824,7 @@ paths:
                 $ref: '#/components/schemas/CreatorDetailsDto'
       security:
         - bearer: []
+        - optionalAny: []
       summary: Get creator events created
       tags:
         - Ticketing
@@ -7532,6 +7858,7 @@ paths:
                   $ref: '#/components/schemas/EventInvitationDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create event invitation
       tags:
         - Ticketing
@@ -7545,6 +7872,14 @@ paths:
           description: ID of the event
           schema:
             type: string
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/EventInvitationFilter'
       responses:
         '200':
           description: Event invitation details
@@ -7554,6 +7889,7 @@ paths:
                 $ref: '#/components/schemas/EventInvitationQuery'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event invitations
       tags:
         - Ticketing
@@ -7595,6 +7931,14 @@ paths:
           description: ID of the event
           schema:
             type: string
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/EventVoucherFilter'
       responses:
         '200':
           description: List of vouchers for the event
@@ -7604,6 +7948,7 @@ paths:
                 $ref: '#/components/schemas/EventVoucherQuery'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event vouchers for event
       tags:
         - Ticketing
@@ -7628,6 +7973,7 @@ paths:
                   $ref: '#/components/schemas/EventQuestionDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event custom questions
       tags:
         - Ticketing
@@ -7656,6 +8002,7 @@ paths:
                 $ref: '#/components/schemas/EventQuestionDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create custom question for event
       tags:
         - Ticketing
@@ -7690,6 +8037,7 @@ paths:
                 $ref: '#/components/schemas/EventQuestionDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Edit custom question for event
       tags:
         - Ticketing
@@ -7717,6 +8065,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Delete custom question for event
       tags:
         - Ticketing
@@ -7751,6 +8100,7 @@ paths:
                 $ref: '#/components/schemas/EventInvitation'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Claim invitation
       tags:
         - Ticketing
@@ -7779,6 +8129,7 @@ paths:
                 $ref: '#/components/schemas/EventInvitationDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Cancel invitation
       tags:
         - Ticketing
@@ -7792,6 +8143,14 @@ paths:
           description: ID of the event
           schema:
             type: string
+        - name: filter
+          required: true
+          in: query
+          description: >-
+            A JSON object representing the filter criteria. Example:
+            {"includeCount":true,"top":25,"skip":0,"strictSelect":false}
+          schema:
+            $ref: '#/components/schemas/EventGuestFilter'
       responses:
         '200':
           description: Event guest details
@@ -7801,6 +8160,7 @@ paths:
                 $ref: '#/components/schemas/EventGuestProfileQuery'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event guests
       tags:
         - Ticketing
@@ -7829,6 +8189,7 @@ paths:
                 $ref: '#/components/schemas/EventGuestProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event guest details
       tags:
         - Ticketing
@@ -7853,6 +8214,7 @@ paths:
                   $ref: '#/components/schemas/EventGuestExport'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get list of all guests
       tags:
         - Ticketing
@@ -7883,6 +8245,7 @@ paths:
                   $ref: '#/components/schemas/EventUserRole'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create event user role
       tags:
         - Ticketing
@@ -7906,6 +8269,7 @@ paths:
                   $ref: '#/components/schemas/EventUserRole'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event roles
       tags:
         - Ticketing
@@ -7934,6 +8298,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Delete event user role
       tags:
         - Ticketing
@@ -7961,6 +8326,7 @@ paths:
                 $ref: '#/components/schemas/EventUserRoleDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get event user role details
       tags:
         - Ticketing
@@ -7983,6 +8349,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       tags:
         - Ticketing
   /event/{eventId}/role/{roleId}/accept:
@@ -8010,6 +8377,7 @@ paths:
                 $ref: '#/components/schemas/EventUserRoleDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Accept event user role
       tags:
         - Ticketing
@@ -8053,14 +8421,74 @@ paths:
             type: boolean
       responses:
         '200':
-          description: My event details
+          description: Top upcoming events
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetMyEventsQuery'
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventProfile'
       security:
         - bearer: []
-      summary: Get my events
+        - requiredAny: []
+      summary: Get my top upcoming events (3 attending + 3 hosting)
+      tags:
+        - Ticketing
+  /user/me/events/past:
+    get:
+      operationId: TicketingDataController_getPastEventsAttended
+      parameters: []
+      responses:
+        '200':
+          description: Past events attended by the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventProfile'
+      security:
+        - bearer: []
+        - requiredAny: []
+      summary: Get past events where user attended as guest
+      tags:
+        - Ticketing
+  /user/me/events/hosted:
+    get:
+      operationId: TicketingDataController_getHostedEventsOrWithRole
+      parameters: []
+      responses:
+        '200':
+          description: Events where user is host or has a role
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventProfile'
+      security:
+        - bearer: []
+        - requiredAny: []
+      summary: Get events where user is host or has a role
+      tags:
+        - Ticketing
+  /user/me/events/upcoming:
+    get:
+      operationId: TicketingDataController_getOngoingAndFutureEventsAttending
+      parameters: []
+      responses:
+        '200':
+          description: Ongoing and future events user is attending
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventProfile'
+      security:
+        - bearer: []
+        - requiredAny: []
+      summary: Get ongoing and future events user is attending
       tags:
         - Ticketing
   /user/me/event/badge:
@@ -8076,6 +8504,7 @@ paths:
                 type: string
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create badge QR
       tags:
         - Ticketing
@@ -8092,6 +8521,7 @@ paths:
                 $ref: '#/components/schemas/BageQRData'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create badge QR
       tags:
         - Ticketing
@@ -8120,6 +8550,7 @@ paths:
                 $ref: '#/components/schemas/TicketValidationResult'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Validate QR
       tags:
         - Ticketing
@@ -8148,6 +8579,7 @@ paths:
                 $ref: '#/components/schemas/EventVoucherDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Create a new event voucher
       tags:
         - Ticketing
@@ -8182,6 +8614,7 @@ paths:
                 $ref: '#/components/schemas/EventVoucherDoc'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Edit an existing event voucher
       tags:
         - Ticketing
@@ -8209,6 +8642,7 @@ paths:
                 $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Delete an existing event voucher
       tags:
         - Ticketing
@@ -8237,6 +8671,7 @@ paths:
                 $ref: '#/components/schemas/TicketValidationResult'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Manual check-in
       tags:
         - Ticketing
@@ -8267,6 +8702,7 @@ paths:
                   $ref: '#/components/schemas/AnsweredQuestionWithDetails'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Get answered questions with details for a guest
       tags:
         - Ticketing
@@ -8299,6 +8735,7 @@ paths:
                   $ref: '#/components/schemas/EventGuestProfile'
       security:
         - bearer: []
+        - requiredAny: []
       summary: Approve or reject guests registration
       tags:
         - Ticketing
@@ -8321,6 +8758,10 @@ paths:
       responses:
         '201':
           description: Google Pass class created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
       security:
         - bearer: []
       summary: Create or update Google Pass class
@@ -8345,6 +8786,12 @@ paths:
       responses:
         '201':
           description: Google Pass created for guest
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
       security:
         - bearer: []
       summary: Create Google Pass for guest
@@ -8393,6 +8840,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Create a new referral configuration for an event
       tags:
@@ -8428,6 +8876,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Edit a referral configuration for an event
       tags:
@@ -8456,6 +8905,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralConfigDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Delete a referral configuration for an event
       tags:
@@ -8475,7 +8925,7 @@ paths:
           in: query
           description: Filter query string
           schema:
-            type: string
+            $ref: '#/components/schemas/EventReferralConfigFilter'
       responses:
         '200':
           description: ''
@@ -8485,6 +8935,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralConfigPaginated'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Get referral configurations for an event
       tags:
@@ -8514,6 +8965,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Create a new referral for an event
       tags:
@@ -8549,6 +9001,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Edit a referral for an event
       tags:
@@ -8577,6 +9030,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Delete a referral for an event
       tags:
@@ -8596,7 +9050,7 @@ paths:
           in: query
           description: Filter query string
           schema:
-            type: string
+            $ref: '#/components/schemas/EventReferralFilter'
       responses:
         '200':
           description: ''
@@ -8606,6 +9060,7 @@ paths:
                 $ref: '#/components/schemas/EventReferralPaginated'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Get referrals for an event
       tags:
@@ -8631,6 +9086,7 @@ paths:
                   $ref: '#/components/schemas/EventReferralDoc'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Get self-serviced referrals for a specific event or all events
       tags:
@@ -8657,8 +9113,13 @@ paths:
       responses:
         '200':
           description: Notification sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithMessageDto'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Send notification to all attendees of an event
       tags:
@@ -8677,8 +9138,13 @@ paths:
       responses:
         '200':
           description: Global broadcast sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithMessageDto'
       security:
         - bearer: []
+        - requiredAny: []
         - bearer: []
       summary: Send global broadcast notification to all users
       tags:
@@ -9034,34 +9500,34 @@ components:
       type: object
       properties:
         sales:
-          type: object
+          type: boolean
           description: Sales notifications
         bids:
-          type: object
+          type: boolean
           description: Bids notifications
         offersReceived:
-          type: object
+          type: boolean
           description: Offers received notifications
         offersAccepted:
-          type: object
+          type: boolean
           description: Offers accepted notifications
         offersRejected:
-          type: object
+          type: boolean
           description: Offers rejected notifications
         deposits:
-          type: object
+          type: boolean
           description: Deposits notifications
         eventUpdates:
-          type: object
+          type: boolean
           description: Event updates from organizers
         eventReminders:
-          type: object
+          type: boolean
           description: Event reminders before start time
         eventCheckIn:
-          type: object
+          type: boolean
           description: Event check-in notifications
         eventMarketing:
-          type: object
+          type: boolean
           description: Marketing notifications from past event creators
     UserSettingsDto:
       type: object
@@ -9364,6 +9830,14 @@ components:
           maxLength: 6
       required:
         - verificationCode
+    TradesilvaniaSignature:
+      type: object
+      properties:
+        url:
+          type: string
+          example: htps://tradesilvania.com/asdasd
+      required:
+        - url
     EditUserProfileDto:
       type: object
       properties:
@@ -9460,6 +9934,65 @@ components:
         - banner
         - joinedDate
         - followCount
+    CollectionDataType:
+      type: string
+      enum:
+        - collectionProfile
+        - globalOffer
+        - mintProfile
+        - mintStage
+        - collectionStats
+        - collectionVerification
+    RangeFilter:
+      type: object
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+        field:
+          type: string
+    CollectionStatsFilterCriteriaDto:
+      type: object
+      properties:
+        dataType:
+          example: collectionStats
+          allOf:
+            - $ref: '#/components/schemas/CollectionDataType'
+        collection:
+          type: array
+          items:
+            type: string
+        verifiedOnly:
+          type: boolean
+          example: true
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    CollectionStatsFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/CollectionStatsFilterCriteriaDto'
+      required:
+        - filters
     CollectionStatsPaginated:
       type: object
       properties:
@@ -9511,6 +10044,11 @@ components:
         - fiat
         - minting
         - userInventory
+    ActivityChain:
+      type: string
+      enum:
+        - MVX
+        - SUI
     TokenDocDto:
       type: object
       properties:
@@ -9794,6 +10332,16 @@ components:
         - UniqueUsers
         - UniqueBuyers
         - UniqueSellers
+    ProtocolAprType:
+      type: object
+      properties:
+        apr:
+          type: number
+        apy:
+          type: number
+      required:
+        - apr
+        - apy
     ProviderDto:
       type: object
       properties:
@@ -10377,6 +10925,69 @@ components:
         - eModeCategoryProfiles
         - oraclePrice
         - participants
+    LendingMarketProfileFilterCriteriaDto:
+      type: object
+      properties:
+        token:
+          type: array
+          items:
+            type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+        eMode:
+          type: boolean
+        flashLoan:
+          type: boolean
+        isolated:
+          type: boolean
+        siloed:
+          type: boolean
+        canBeCollateral:
+          type: boolean
+        canBeBorrowed:
+          type: boolean
+        canBorrowInIsolation:
+          type: boolean
+        isDebtCeilingReached:
+          type: boolean
+    LendingMarketProfileExtraProperties:
+      type: object
+      properties:
+        eModeCategoryProfile:
+          type: boolean
+        oraclePrice:
+          type: boolean
+        participants:
+          type: boolean
+    LendingMarketProfileFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/LendingMarketProfileFilterCriteriaDto'
+        extraProperties:
+          $ref: '#/components/schemas/LendingMarketProfileExtraProperties'
+      required:
+        - filters
     LendingMarketProfileQuery:
       type: object
       properties:
@@ -11073,6 +11684,128 @@ components:
         - borrowed
         - suppliedMargin
         - borrowedMargin
+    SaleInfoFilterDto:
+      type: object
+      properties:
+        seller:
+          type: array
+          items:
+            type: string
+        paymentToken:
+          type: array
+          items:
+            type: string
+        marketplace:
+          example:
+            - xoxno
+          type: array
+          items:
+            type: string
+        auctionType:
+          type: array
+          items:
+            type: string
+    NftMetadataAttributes:
+      type: object
+      properties:
+        trait_type:
+          type: string
+          example: Background
+        value:
+          type: string
+          example: Black
+      required:
+        - trait_type
+        - value
+    MetadataAttributesDto:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NftMetadataAttributes'
+    NftDocFilterCriteriaDto:
+      type: object
+      properties:
+        dataType:
+          type: array
+          items:
+            type: string
+        identifier:
+          type: array
+          items:
+            type: string
+        collection:
+          type: array
+          items:
+            type: string
+        nonce:
+          type: array
+          items:
+            type: number
+        type:
+          type: array
+          items:
+            type: string
+        onSale:
+          type: boolean
+          example: true
+        owner:
+          type: array
+          items:
+            type: string
+        currentOwner:
+          type: array
+          items:
+            type: string
+        saleInfo:
+          $ref: '#/components/schemas/SaleInfoFilterDto'
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+        metadata:
+          $ref: '#/components/schemas/MetadataAttributesDto'
+        wasProcessed:
+          type: boolean
+          example: true
+        cp_staked:
+          type: boolean
+          example: true
+        activeAuction:
+          type: boolean
+          example: true
+        verifiedOnly:
+          type: boolean
+          example: true
+        sftOriginalDoc:
+          type: boolean
+          example: true
+    NftDocFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/NftDocFilterCriteriaDto'
+        applyNftExtraDetails:
+          type: boolean
+      required:
+        - filters
     NftPaginated:
       type: object
       properties:
@@ -11150,6 +11883,62 @@ components:
       required:
         - hasMoreResults
         - resources
+    NftOfferDocFilterCriteria:
+      type: object
+      properties:
+        isActive:
+          type: array
+          items:
+            type: boolean
+        identifier:
+          type: array
+          items:
+            type: string
+        collection:
+          type: array
+          items:
+            type: string
+        owner:
+          type: array
+          items:
+            type: string
+        nftOwner:
+          type: array
+          items:
+            type: string
+        marketplace:
+          type: array
+          items:
+            type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    NftOfferDocFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+            enum:
+              - priceShort desc
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/NftOfferDocFilterCriteria'
+      required:
+        - filters
     NftOfferDoc:
       type: object
       properties:
@@ -11430,18 +12219,6 @@ components:
       properties:
         likedCount:
           type: number
-    NftMetadataAttributes:
-      type: object
-      properties:
-        trait_type:
-          type: string
-          example: Background
-        value:
-          type: string
-          example: Black
-      required:
-        - trait_type
-        - value
     Rarity:
       type: object
       properties:
@@ -11485,12 +12262,6 @@ components:
         - eventId
         - ticketId
         - checkInStatus
-    ActivityChain:
-      type: string
-      enum:
-        - MVX
-        - SUI
-      description: The chain of the NFT
     MarketplacesOnSaleNames:
       type: string
       enum:
@@ -12061,6 +12832,197 @@ components:
         - banner
         - description
         - creator
+    EgldOrEsdtTokenPayment:
+      type: object
+      properties:
+        tokenIdentifier:
+          type: string
+          example: EGLD
+        tokenNonce:
+          type: number
+          example: 0
+        amount:
+          type: string
+          example: '500000000000000000'
+        amountShort:
+          type: number
+          example: 0
+          description: Short amount
+        usdValue:
+          type: number
+          example: 0
+          description: USD value
+        decimals:
+          type: number
+          example: 0
+          description: Decimals
+      required:
+        - tokenIdentifier
+        - tokenNonce
+        - amount
+    CollectionMintProfileDocHydrated:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Data type identifier for the mint profile
+          enum:
+            - collectionProfile
+            - globalOffer
+            - mintProfile
+            - mintStage
+            - collectionStats
+            - collectionVerification
+          example: mintProfile
+        collection:
+          type: string
+          description: Collection identifier
+          example: COLLECTION-123456
+        creatorTag:
+          type: string
+          description: Creator tag/identifier
+          example: creator123
+        creatorName:
+          type: string
+          description: Name of the collection creator
+          example: John Doe
+        contractAddress:
+          type: string
+          description: Smart contract address for minting
+          example: erd1qqqqqqqqqqqqqpgqw0t0ef0jdpeva2v7qy7q7qjjfq6yq0wq0w0qjjfq6yq
+        collectionTag:
+          type: string
+          description: Collection tag for identification
+          example: MYNFT
+        cid:
+          type: string
+          description: IPFS CID for metadata
+          example: QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco
+        mediaType:
+          type: string
+          description: Media type of the NFT collection
+          example: image/png
+        baseNftName:
+          type: string
+          description: Base name for NFTs in the collection
+          example: My NFT Collection
+        hasAttributes:
+          type: boolean
+          description: Whether the collection has attributes/traits
+          example: true
+        ownerTransferred:
+          type: boolean
+          description: Whether the collection owner has been transferred
+          example: false
+        collectionSize:
+          type: number
+          description: Total size of the collection
+          example: 10000
+        totalNftMinted:
+          type: number
+          description: Total number of NFTs minted
+          example: 5000
+        globalWalletLimit:
+          type: number
+          description: Global wallet limit for minting
+          example: 10
+        royalties:
+          type: number
+          description: Royalties percentage (basis points)
+          example: 500
+        oldVersion:
+          type: boolean
+          description: Whether this is an old version of the contract
+          example: false
+        nameShuffle:
+          type: boolean
+          description: Whether names are shuffled during minting
+          example: true
+        nftTransferLimited:
+          type: boolean
+          description: Whether NFT transfers are limited
+          example: false
+        allowsPublicBurn:
+          type: boolean
+          description: Whether public burning is allowed
+          example: false
+        kycRequired:
+          type: boolean
+          description: Whether KYC is required for minting
+          example: false
+        allowsRefund:
+          type: boolean
+          description: Whether refunds are allowed
+          example: false
+        hasBotProtection:
+          type: boolean
+          description: Whether bot protection is enabled
+          example: true
+        hasReveal:
+          type: boolean
+          description: Whether the collection has reveal mechanics
+          example: false
+        tags:
+          type: object
+          description: Tags associated with the collection
+          example:
+            - gaming
+            - art
+            - utility
+        prices:
+          description: Minimum starting prices for each public stage
+          type: array
+          items:
+            $ref: '#/components/schemas/EgldOrEsdtTokenPayment'
+        startTime:
+          type: number
+          description: Earliest start time of all public stages (Unix timestamp)
+          example: 1640995200
+        endTime:
+          type: number
+          description: Latest end time of all public stages (Unix timestamp)
+          example: 1641081600
+        isSoldOut:
+          type: boolean
+          description: Whether the collection is sold out
+          example: false
+        id:
+          type: string
+          description: Unique identifier for the document
+          example: COLLECTION-123456-mintProfile
+        _ts:
+          type: number
+          description: Cosmos DB timestamp
+          example: 1640995200
+      required:
+        - dataType
+        - collection
+        - creatorTag
+        - creatorName
+        - contractAddress
+        - collectionTag
+        - cid
+        - mediaType
+        - baseNftName
+        - hasAttributes
+        - ownerTransferred
+        - collectionSize
+        - totalNftMinted
+        - globalWalletLimit
+        - royalties
+        - oldVersion
+        - nameShuffle
+        - nftTransferLimited
+        - kycRequired
+        - allowsRefund
+        - hasBotProtection
+        - hasReveal
+        - tags
+        - prices
+        - startTime
+        - endTime
+        - isSoldOut
+        - id
     CollectionPinnedStatusDto:
       type: object
       properties:
@@ -12086,6 +13048,25 @@ components:
           example: Mice-213123
       required:
         - isFavorite
+    CollectionProfileFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
     CollectionProfilePaginated:
       type: object
       properties:
@@ -12105,6 +13086,25 @@ components:
       required:
         - hasMoreResults
         - resources
+    CollectionMintProfileFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
     CollectionMintProfilePaginated:
       type: object
       properties:
@@ -12183,34 +13183,6 @@ components:
         - nftTransferLimited
         - kycRequired
         - hasBotProtection
-    EgldOrEsdtTokenPayment:
-      type: object
-      properties:
-        tokenIdentifier:
-          type: string
-          example: EGLD
-        tokenNonce:
-          type: number
-          example: 0
-        amount:
-          type: string
-          example: '500000000000000000'
-        amountShort:
-          type: number
-          example: 0
-          description: Short amount
-        usdValue:
-          type: number
-          example: 0
-          description: USD value
-        decimals:
-          type: number
-          example: 0
-          description: Decimals
-      required:
-        - tokenIdentifier
-        - tokenNonce
-        - amount
     MintStageDto:
       type: object
       properties:
@@ -12691,6 +13663,72 @@ components:
         - chain
         - _ts
         - id
+    CollectionOffersFilterCriteriaDto:
+      type: object
+      properties:
+        dataType:
+          example: globalOffer
+          allOf:
+            - $ref: '#/components/schemas/CollectionDataType'
+        collection:
+          example:
+            - collection1
+          type: array
+          items:
+            type: string
+        offerId:
+          example:
+            - 123
+          type: array
+          items:
+            type: number
+        owner:
+          example:
+            - owner1
+          type: array
+          items:
+            type: string
+        marketplace:
+          example:
+            - marketplace1
+          type: array
+          items:
+            type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NftMetadataAttributes'
+        isActive:
+          type: boolean
+          example: true
+        withAttributes:
+          type: boolean
+          example: true
+    CollectionOffersFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/CollectionOffersFilterCriteriaDto'
     GlobalOfferPaginated:
       type: object
       properties:
@@ -14093,6 +15131,19 @@ components:
         - events
         - creatorProfile
         - address
+    FilterQueryDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The search query
+          example: '@mihai'
+        top:
+          type: integer
+        skip:
+          type: integer
+      required:
+        - name
     GlobalSearchResourcesPaginated:
       type: object
       properties:
@@ -14110,128 +15161,28 @@ components:
       required:
         - hasMoreResults
         - resources
-    MarketplaceActivity:
-      type: string
-      enum:
-        - listingCreate
-        - listingWithdraw
-        - listingUpdate
-        - auctionBid
-        - auctionOutBid
-        - offerCreate
-        - offerWithdraw
-        - offerReject
-        - globalOfferCreate
-        - globalOfferWithdraw
-        - trade
-        - bulkTrade
-        - auctionTrade
-        - otherTrade
-        - offerTrade
-        - globalOfferTrade
-        - deposit
-        - withdrawDeposit
-        - setCollectionConfig
-    NotificationAssetType:
-      type: string
-      enum:
-        - nft
-        - user
-    NotificationAssetDto:
-      type: object
-      properties:
-        type:
-          allOf:
-            - $ref: '#/components/schemas/NotificationAssetType'
-        collection:
-          type: string
-        identifier:
-          type: string
-        address:
-          type: string
-        name:
-          type: string
-        url:
-          type: string
-      required:
-        - type
-    NotificationActivityDto:
-      type: object
-      properties:
-        price:
-          type: number
-        paymentToken:
-          type: string
-        quantity:
-          type: number
-        buyer:
-          type: string
-        seller:
-          type: string
-        previousBidder:
-          type: string
-        deadline:
-          type: number
-    NotificationDoc:
-      type: object
-      properties:
-        dataType:
-          type: string
-        txHash:
-          type: string
-        source:
-          type: string
-        activityType:
-          allOf:
-            - $ref: '#/components/schemas/MarketplaceActivity'
-        owner:
-          type: string
-        message:
-          type: string
-        asset:
-          $ref: '#/components/schemas/NotificationAssetDto'
-        activity:
-          $ref: '#/components/schemas/NotificationActivityDto'
-        isRead:
-          type: object
-        timestamp:
-          type: number
-        id:
-          type: string
-        pk:
-          type: string
-        _ts:
-          type: number
-      required:
-        - dataType
-        - txHash
-        - source
-        - activityType
-        - owner
-        - asset
-        - activity
-        - isRead
-        - timestamp
-    NotificationResponse:
-      type: object
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationDoc'
-        hasMoreResults:
-          type: boolean
-      required:
-        - resources
-        - hasMoreResults
-    NotificationCountResponse:
+    NotificationPaginated:
       type: object
       properties:
         count:
-          type: number
-          description: Total count of notifications
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
+          type: boolean
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
+          type: array
+          items:
+            type: array
       required:
-        - count
+        - hasMoreResults
+        - resources
+    NotificationDoc:
+      type: object
+      properties: {}
     DevicePlatform:
       type: string
       enum:
@@ -14679,6 +15630,14 @@ components:
         - hasNativeWallet
         - salt
         - pk
+    SuccessWithMessageDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+      required:
+        - success
     Web2WalletDto:
       type: object
       properties:
@@ -14757,6 +15716,126 @@ components:
             type: string
       required:
         - shards
+    LendingTokenPriceDto:
+      type: object
+      properties: {}
+    NftActivityType:
+      type: string
+      enum:
+        - nftCreate
+        - nftBurn
+        - nftUpdate
+        - nftTransfer
+        - listingCreate
+        - listingWithdraw
+        - listingUpdate
+        - auctionBid
+        - auctionOutBid
+        - offerCreate
+        - offerWithdraw
+        - offerReject
+        - globalOfferCreate
+        - globalOfferWithdraw
+        - trade
+        - bulkTrade
+        - auctionTrade
+        - otherTrade
+        - offerTrade
+        - globalOfferTrade
+        - stake
+        - unStake
+        - createGame
+        - joinGame
+        - cancelGame
+        - endGame
+    NftActivityEventSource:
+      type: string
+      enum:
+        - mvxBuiltIn
+        - xoxno
+        - frameit
+        - deadrare
+        - krogan
+        - xoxnoLaunchpad
+        - xoxnoStaking
+        - xoxnoP2P
+        - xoxnoLs
+        - xoxnoEgldLs
+        - xoxnoLending
+        - boberBattle
+        - boberWheel
+    ActivityDataDto:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            type: string
+          example:
+            - collection1
+        identifier:
+          type: array
+          items:
+            type: string
+          example:
+            - identifier1
+    NftActivityFilterCriteriaDto:
+      type: object
+      properties:
+        txHash:
+          type: array
+          items:
+            type: string
+        activityAddress:
+          type: array
+          items:
+            type: string
+        from:
+          type: array
+          items:
+            type: string
+        to:
+          type: array
+          items:
+            type: string
+        activityType:
+          type: array
+          example:
+            - listingCreate
+          items:
+            $ref: '#/components/schemas/NftActivityType'
+        source:
+          type: array
+          items:
+            $ref: '#/components/schemas/NftActivityEventSource'
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+        activityData:
+          $ref: '#/components/schemas/ActivityDataDto'
+    NftActivityFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
     NftActivityPaginated:
       type: object
       properties:
@@ -15250,6 +16329,9 @@ components:
         - sellerPartners
         - sellerMaxPriceData
         - sellerMinPriceData
+    AirdropDto:
+      type: object
+      properties: {}
     TransactionStatus:
       type: string
       enum:
@@ -15575,7 +16657,7 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752433028
+          minimum: 1752597507
         endTime:
           type: integer
         location:
@@ -15765,11 +16847,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1752433028
+          example: 1752597507
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 850dd026-ba3e-4482-bdba-2f303ce504ab
+          example: 06710cac-a79d-4ee8-9d47-e7df25e0cbfc
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -15904,6 +16986,65 @@ components:
         - registration
         - premium
         - id
+    EventProfileFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+        area:
+          type: array
+          items:
+            type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+        category:
+          type: array
+          items:
+            type: string
+        subCategory:
+          type: array
+          items:
+            type: string
+    EventExtraProperties:
+      type: object
+      properties:
+        creatorProfile:
+          type: boolean
+        guestSummary:
+          type: boolean
+        startsFrom:
+          type: boolean
+    EventProfileFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/EventProfileFilterCriteriaDto'
+        extraProperties:
+          default: false
+          allOf:
+            - $ref: '#/components/schemas/EventExtraProperties'
+      required:
+        - filters
     EventProfileQuery:
       type: object
       properties:
@@ -15931,10 +17072,10 @@ components:
           example: Event Title
         startTime:
           type: integer
-          example: 1752433028
+          example: 1752597507
         endTime:
           type: integer
-          example: 1752433028
+          example: 1752597507
         location:
           $ref: '#/components/schemas/EventLocationDto'
         isVirtualEvent:
@@ -16191,11 +17332,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1752433028
+          example: 1752597507
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: b1f2ba43-0a09-4efb-bea8-4656cb1af9b8
+          example: 96fb44f9-1b70-44a0-a445-bf2b231319e5
       required:
         - dataType
         - eventId
@@ -16237,11 +17378,11 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752433028
+          minimum: 1752597508
           description: Start time timestamp
         endTime:
           type: integer
-          minimum: 1752519428
+          minimum: 1752683908
           description: End time timestamp
         maxLimit:
           type: integer
@@ -16290,11 +17431,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1752433028
+          example: 1752597508
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1752433028
+          example: 1752597508
         maxLimit:
           type: integer
           description: >-
@@ -16325,7 +17466,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: ba11396a-1dd4-40a1-84d5-4c6d5fcc0422
+          example: 01ceb6d7-9f2e-4437-9d6a-352901f61bc3
       required:
         - dataType
         - eventId
@@ -16367,10 +17508,10 @@ components:
           type: string
         startTime:
           type: integer
-          minimum: 1752433028
+          minimum: 1752597508
         endTime:
           type: integer
-          minimum: 1752519428
+          minimum: 1752683908
       required:
         - prices
         - name
@@ -16505,7 +17646,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 5d95b6d7-b93a-49b2-8862-8bb184408f62
+          example: 4b8af5b1-81fa-41d9-a906-2cfd3a919c9c
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -16557,7 +17698,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1752433028
+          example: 1752597507
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16586,7 +17727,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 8dc3f33b-eda0-46ce-b94e-cde249bb4ae3
+          example: 7a005352-9661-4950-a4fd-0586902249fd
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16603,6 +17744,60 @@ components:
         - status
         - claimedAt
         - id
+    EventInvitationFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+        claimedBy:
+          type: array
+          items:
+            type: string
+        eventId:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventInvitationStatus'
+        isClaimed:
+          type: boolean
+        isUsed:
+          type: boolean
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventInvitationFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/EventInvitationFilterCriteriaDto'
+      required:
+        - filters
     EventInvitation:
       type: object
       properties:
@@ -16642,7 +17837,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1752433028
+          example: 1752597507
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -16671,7 +17866,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 8dc3f33b-eda0-46ce-b94e-cde249bb4ae3
+          example: 7a005352-9661-4950-a4fd-0586902249fd
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -16720,7 +17915,73 @@ components:
       enum:
         - fixed
         - percentage
-      description: Type of discount provided by the voucher.
+      description: Filter by type of discount (fixed or percentage).
+    EventVoucherFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+          description: Search text for voucher code or other attributes.
+        code:
+          description: Filter by specific voucher codes.
+          type: array
+          items:
+            type: string
+        type:
+          type: array
+          description: Filter by type of discount (fixed or percentage).
+          items:
+            $ref: '#/components/schemas/VoucherType'
+        amount:
+          type: number
+          description: Filter vouchers by exact discount amount.
+        maxDiscountAmount:
+          type: number
+          description: Optional maximum discount cap for percentage-based vouchers.
+        maxUses:
+          type: number
+          description: Filter vouchers by maximum allowed uses.
+        maxUsesPerUser:
+          type: number
+          description: Filter vouchers by maximum uses per user.
+        isActive:
+          type: boolean
+          description: Filter by active status of the voucher.
+        ownerId:
+          type: string
+          description: Filter by owner ID who can use the voucher.
+        range:
+          description: Filter vouchers within a range of dates.
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventVoucherFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+          description: Include total count of results.
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          description: Criteria to filter event vouchers.
+          allOf:
+            - $ref: '#/components/schemas/EventVoucherFilterCriteriaDto'
+      required:
+        - filters
     EventVoucherDoc:
       type: object
       properties:
@@ -16780,11 +18041,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752433028
+          example: 1752597508
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752433028
+          example: 1752597508
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -16795,7 +18056,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1752433028
+          example: 1752597508
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -16884,7 +18145,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1752433028
+          example: 1752597507
       required:
         - dataType
         - id
@@ -16945,6 +18206,54 @@ components:
           type: array
           items:
             type: string
+    EventGuestFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+        wallet:
+          type: array
+          items:
+            type: string
+        eventId:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGuestStatus'
+        questionnaireFilled:
+          type: boolean
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventGuestFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/EventGuestFilterCriteriaDto'
+      required:
+        - filters
     EventGuestProfile:
       type: object
       properties:
@@ -16996,11 +18305,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1752433028
+          example: 1752597507
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 850dd026-ba3e-4482-bdba-2f303ce504ab
+          example: 06710cac-a79d-4ee8-9d47-e7df25e0cbfc
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -17154,44 +18463,6 @@ components:
         - permissions
         - profile
         - herotag
-    MyEvents:
-      type: object
-      properties:
-        ticketCount:
-          type: integer
-          description: The number of tickets the user has for the event.
-          example: 1
-        status:
-          description: The status of the user for the event.
-          allOf:
-            - $ref: '#/components/schemas/EventGuestStatus'
-        eventProfile:
-          description: The event profile.
-          allOf:
-            - $ref: '#/components/schemas/EventProfile'
-      required:
-        - ticketCount
-        - status
-        - eventProfile
-    GetMyEventsQuery:
-      type: object
-      properties:
-        count:
-          type: object
-          description: Total number of documents
-          example: 100
-        hasMoreResults:
-          type: boolean
-          description: Indicates if there are more documents available
-          example: true
-        resources:
-          description: List of documents
-          type: array
-          items:
-            $ref: '#/components/schemas/MyEvents'
-      required:
-        - hasMoreResults
-        - resources
     EventTicketQrType:
       type: string
       enum:
@@ -17387,11 +18658,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752433028
+          example: 1752597508
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752433028
+          example: 1752597508
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17441,11 +18712,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1752433028
+          example: 1752597508
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1752433028
+          example: 1752597508
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -17477,7 +18748,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: e56a5e1a-4357-4cc7-9567-33d0474374d3
+          example: b101b190-d9b8-490f-a838-c8f18b748e12
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -17493,7 +18764,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1752433028
+          example: 1752597507
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -17636,7 +18907,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 2b409ec4-dfca-4457-9197-f1b114b47e2f
+          example: 5ae309d5-452b-417a-80cd-47449c511093
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -17663,7 +18934,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1752433028
+          example: 1752597508
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -17698,6 +18969,53 @@ components:
         isActive:
           type: boolean
           description: Indicates whether the referral program is currently active.
+    EventReferralConfigFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+          description: Search text for config or other attributes.
+        ownerId:
+          type: string
+          description: Filter by owner ID of the config.
+        isActive:
+          type: boolean
+          description: Filter by active status of the config.
+        isSelfService:
+          type: boolean
+          description: Filter by self service status of the config.
+        createdAt:
+          description: Filter referrals within a range of dates.
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventReferralConfigFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+          description: Include total count of results.
+        strictSelect:
+          type: boolean
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          description: Criteria to filter event referral configs.
+          allOf:
+            - $ref: '#/components/schemas/EventReferralConfigFilterCriteriaDto'
+      required:
+        - filters
     EventReferralConfigPaginated:
       type: object
       properties:
@@ -17740,7 +19058,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 3fec61cd-a1d9-4a68-8485-bdc08f0d26d6
+          example: bd1277c8-cff7-4c26-8e00-7255217b871b
         referralCode:
           type: string
           description: The code shared by the referral owner.
@@ -17759,7 +19077,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1752433028
+          example: 1752597508
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -17781,588 +19099,43 @@ components:
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
-    EventReferralPaginated:
-      type: object
-      properties:
-        count:
-          type: object
-          description: Total number of documents
-          example: 100
-        hasMoreResults:
-          type: boolean
-          description: Indicates if there are more documents available
-          example: true
-        resources:
-          description: List of documents
-          type: array
-          items:
-            type: array
-      required:
-        - hasMoreResults
-        - resources
-    NftActivityType:
-      type: string
-      enum:
-        - nftCreate
-        - nftBurn
-        - nftUpdate
-        - nftTransfer
-        - listingCreate
-        - listingWithdraw
-        - listingUpdate
-        - auctionBid
-        - auctionOutBid
-        - offerCreate
-        - offerWithdraw
-        - offerReject
-        - globalOfferCreate
-        - globalOfferWithdraw
-        - trade
-        - bulkTrade
-        - auctionTrade
-        - otherTrade
-        - offerTrade
-        - globalOfferTrade
-        - stake
-        - unStake
-        - createGame
-        - joinGame
-        - cancelGame
-        - endGame
-    NftActivityEventSource:
-      type: string
-      enum:
-        - mvxBuiltIn
-        - xoxno
-        - frameit
-        - deadrare
-        - krogan
-        - xoxnoLaunchpad
-        - xoxnoStaking
-        - xoxnoP2P
-        - xoxnoLs
-        - xoxnoEgldLs
-        - xoxnoLending
-        - boberBattle
-        - boberWheel
-    RangeFilter:
-      type: object
-      properties:
-        min:
-          type: number
-        max:
-          type: number
-        field:
-          type: string
-    ActivityDataDto:
-      type: object
-      properties:
-        collection:
-          type: array
-          items:
-            type: string
-          example:
-            - collection1
-        identifier:
-          type: array
-          items:
-            type: string
-          example:
-            - identifier1
-    NftActivityFilterCriteriaDto:
-      type: object
-      properties:
-        txHash:
-          type: array
-          items:
-            type: string
-        activityAddress:
-          type: array
-          items:
-            type: string
-        from:
-          type: array
-          items:
-            type: string
-        to:
-          type: array
-          items:
-            type: string
-        activityType:
-          type: array
-          example:
-            - listingCreate
-          items:
-            $ref: '#/components/schemas/NftActivityType'
-        source:
-          type: array
-          items:
-            $ref: '#/components/schemas/NftActivityEventSource'
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-        activityData:
-          $ref: '#/components/schemas/ActivityDataDto'
-    NftActivityFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/NftActivityFilterCriteriaDto'
-    CollectionDataType:
-      type: string
-      enum:
-        - collectionProfile
-        - globalOffer
-        - mintProfile
-        - mintStage
-        - collectionStats
-        - collectionVerification
-    CollectionOffersFilterCriteriaDto:
-      type: object
-      properties:
-        dataType:
-          example: globalOffer
-          allOf:
-            - $ref: '#/components/schemas/CollectionDataType'
-        collection:
-          example:
-            - collection1
-          type: array
-          items:
-            type: string
-        offerId:
-          example:
-            - 123
-          type: array
-          items:
-            type: number
-        owner:
-          example:
-            - owner1
-          type: array
-          items:
-            type: string
-        marketplace:
-          example:
-            - marketplace1
-          type: array
-          items:
-            type: string
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NftMetadataAttributes'
-        isActive:
-          type: boolean
-          example: true
-        withAttributes:
-          type: boolean
-          example: true
-    CollectionOffersFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/CollectionOffersFilterCriteriaDto'
-    FilterQueryDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The search query
-          example: '@mihai'
-        top:
-          type: integer
-        skip:
-          type: integer
-      required:
-        - name
-    CollectionStatsFilterCriteriaDto:
-      type: object
-      properties:
-        dataType:
-          example: collectionStats
-          allOf:
-            - $ref: '#/components/schemas/CollectionDataType'
-        collection:
-          type: array
-          items:
-            type: string
-        verifiedOnly:
-          type: boolean
-          example: true
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-    CollectionStatsFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/CollectionStatsFilterCriteriaDto'
-      required:
-        - filters
-    SaleInfoFilterDto:
-      type: object
-      properties:
-        seller:
-          type: array
-          items:
-            type: string
-        paymentToken:
-          type: array
-          items:
-            type: string
-        marketplace:
-          example:
-            - xoxno
-          type: array
-          items:
-            type: string
-        auctionType:
-          type: array
-          items:
-            type: string
-    MetadataAttributesDto:
-      type: object
-      properties:
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NftMetadataAttributes'
-    NftDocFilterCriteriaDto:
-      type: object
-      properties:
-        dataType:
-          type: array
-          items:
-            type: string
-        identifier:
-          type: array
-          items:
-            type: string
-        collection:
-          type: array
-          items:
-            type: string
-        nonce:
-          type: array
-          items:
-            type: number
-        type:
-          type: array
-          items:
-            type: string
-        onSale:
-          type: boolean
-          example: true
-        owner:
-          type: array
-          items:
-            type: string
-        currentOwner:
-          type: array
-          items:
-            type: string
-        saleInfo:
-          $ref: '#/components/schemas/SaleInfoFilterDto'
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-        metadata:
-          $ref: '#/components/schemas/MetadataAttributesDto'
-        wasProcessed:
-          type: boolean
-          example: true
-        cp_staked:
-          type: boolean
-          example: true
-        activeAuction:
-          type: boolean
-          example: true
-        verifiedOnly:
-          type: boolean
-          example: true
-        sftOriginalDoc:
-          type: boolean
-          example: true
-    NftDocFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/NftDocFilterCriteriaDto'
-        applyNftExtraDetails:
-          type: boolean
-      required:
-        - filters
-    NftOfferDocFilterCriteria:
-      type: object
-      properties:
-        isActive:
-          type: array
-          items:
-            type: boolean
-        identifier:
-          type: array
-          items:
-            type: string
-        collection:
-          type: array
-          items:
-            type: string
-        owner:
-          type: array
-          items:
-            type: string
-        nftOwner:
-          type: array
-          items:
-            type: string
-        marketplace:
-          type: array
-          items:
-            type: string
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-    NftOfferDocFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-            enum:
-              - priceShort desc
-        includeCount:
-          type: boolean
-        strictSelect:
-          type: boolean
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/NftOfferDocFilterCriteria'
-      required:
-        - filters
-    EventGuestFilterCriteriaDto:
+    EventReferralFilterCriteriaDto:
       type: object
       properties:
         searchText:
           type: string
-        wallet:
+          description: Search text for referral code or other attributes.
+        referralCode:
+          description: Filter by specific referral codes.
           type: array
           items:
             type: string
-        eventId:
-          type: array
-          items:
-            type: string
-        status:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventGuestStatus'
-        questionnaireFilled:
-          type: boolean
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-    EventGuestFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-          default: false
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/EventGuestFilterCriteriaDto'
-      required:
-        - filters
-    EventInvitationFilterCriteriaDto:
-      type: object
-      properties:
-        searchText:
-          type: string
-        claimedBy:
-          type: array
-          items:
-            type: string
-        eventId:
-          type: array
-          items:
-            type: string
-        email:
-          type: array
-          items:
-            type: string
-        status:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventInvitationStatus'
-        isClaimed:
-          type: boolean
-        isUsed:
-          type: boolean
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-    EventInvitationFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-          default: false
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/EventInvitationFilterCriteriaDto'
-      required:
-        - filters
-    EventVoucherFilterCriteriaDto:
-      type: object
-      properties:
-        searchText:
-          type: string
-          description: Search text for voucher code or other attributes.
-        code:
-          description: Filter by specific voucher codes.
-          type: array
-          items:
-            type: string
-        type:
-          type: array
-          description: Filter by type of discount (fixed or percentage).
-          items:
-            $ref: '#/components/schemas/VoucherType'
-        amount:
-          type: number
-          description: Filter vouchers by exact discount amount.
-        maxDiscountAmount:
-          type: number
-          description: Optional maximum discount cap for percentage-based vouchers.
-        maxUses:
-          type: number
-          description: Filter vouchers by maximum allowed uses.
-        maxUsesPerUser:
-          type: number
-          description: Filter vouchers by maximum uses per user.
-        isActive:
-          type: boolean
-          description: Filter by active status of the voucher.
         ownerId:
           type: string
-          description: Filter by owner ID who can use the voucher.
-        range:
-          description: Filter vouchers within a range of dates.
+          description: Filter by owner ID of the referral.
+        referralConfigId:
+          type: string
+          description: The ID of the referral configuration this referral follows.
+        isActive:
+          type: boolean
+          description: Filter by active status of the referral.
+        minSuccessfulReferrals:
+          type: number
+          description: Filter referrals by minimum successful referrals count.
+        maxSuccessfulReferrals:
+          type: number
+          description: Filter referrals by maximum successful referrals count.
+        conditionType:
+          type: array
+          description: Filter referrals by condition type.
+          items:
+            $ref: '#/components/schemas/ReferralConditionType'
+        createdAt:
+          description: Filter referrals within a range of dates.
           type: array
           items:
             $ref: '#/components/schemas/RangeFilter'
-    EventVoucherFilter:
+    EventReferralFilter:
       type: object
       properties:
         select:
@@ -18384,140 +19157,37 @@ components:
         skip:
           type: integer
         filters:
-          description: Criteria to filter event vouchers.
+          description: Criteria to filter event referrals.
           allOf:
-            - $ref: '#/components/schemas/EventVoucherFilterCriteriaDto'
+            - $ref: '#/components/schemas/EventReferralFilterCriteriaDto'
       required:
         - filters
-    EventProfileFilterCriteriaDto:
+    EventReferralPaginated:
       type: object
       properties:
-        searchText:
-          type: string
-        area:
-          type: array
-          items:
-            type: string
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-        category:
-          type: array
-          items:
-            type: string
-        subCategory:
-          type: array
-          items:
-            type: string
-    EventExtraProperties:
-      type: object
-      properties:
-        creatorProfile:
+        count:
+          type: object
+          description: Total number of documents
+          example: 100
+        hasMoreResults:
           type: boolean
-        guestSummary:
-          type: boolean
-        startsFrom:
-          type: boolean
-    EventProfileFilter:
-      type: object
-      properties:
-        select:
+          description: Indicates if there are more documents available
+          example: true
+        resources:
+          description: List of documents
           type: array
           items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-          default: false
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/EventProfileFilterCriteriaDto'
-        extraProperties:
-          default: false
-          allOf:
-            - $ref: '#/components/schemas/EventExtraProperties'
+            type: array
       required:
-        - filters
-    LendingMarketProfileFilterCriteriaDto:
-      type: object
-      properties:
-        token:
-          type: array
-          items:
-            type: string
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-        eMode:
-          type: boolean
-        flashLoan:
-          type: boolean
-        isolated:
-          type: boolean
-        siloed:
-          type: boolean
-        canBeCollateral:
-          type: boolean
-        canBeBorrowed:
-          type: boolean
-        canBorrowInIsolation:
-          type: boolean
-        isDebtCeilingReached:
-          type: boolean
-    LendingMarketProfileExtraProperties:
-      type: object
-      properties:
-        eModeCategoryProfile:
-          type: boolean
-        oraclePrice:
-          type: boolean
-        participants:
-          type: boolean
-    LendingMarketProfileFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-          default: false
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/LendingMarketProfileFilterCriteriaDto'
-        extraProperties:
-          $ref: '#/components/schemas/LendingMarketProfileExtraProperties'
-      required:
-        - filters
+        - hasMoreResults
+        - resources
     EventGuestCheckIn:
       type: object
       properties:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: be8c9f1e-322a-4abd-b90d-fbef452df434
+          example: db33ed5b-da07-4845-9159-92efe292e5e1
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -18534,15 +19204,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1752433028
+          example: 1752597507
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: b53e89a9-8405-4f7e-88fd-2c8b9d71ca10
+          example: 47455190-ba64-4946-9059-51c607f2058b
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1752433028
+          example: 1752597507
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -18550,7 +19220,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: 7ebc17a6-9ee0-4a8f-a4bc-c1de2151b8bc
+          example: 6b983315-6e70-4fef-b460-37b7f05a1456
       required:
         - ticketId
         - isCheckIn

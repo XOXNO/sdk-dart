@@ -268,16 +268,16 @@ Map<String, dynamic> _$UserEmailNotificationSettingsToJson(
 UserNotificationPreferences _$UserNotificationPreferencesFromJson(
   Map<String, dynamic> json,
 ) => UserNotificationPreferences(
-  sales: json['sales'],
-  bids: json['bids'],
-  offersReceived: json['offersReceived'],
-  offersAccepted: json['offersAccepted'],
-  offersRejected: json['offersRejected'],
-  deposits: json['deposits'],
-  eventUpdates: json['eventUpdates'],
-  eventReminders: json['eventReminders'],
-  eventCheckIn: json['eventCheckIn'],
-  eventMarketing: json['eventMarketing'],
+  sales: json['sales'] as bool?,
+  bids: json['bids'] as bool?,
+  offersReceived: json['offersReceived'] as bool?,
+  offersAccepted: json['offersAccepted'] as bool?,
+  offersRejected: json['offersRejected'] as bool?,
+  deposits: json['deposits'] as bool?,
+  eventUpdates: json['eventUpdates'] as bool?,
+  eventReminders: json['eventReminders'] as bool?,
+  eventCheckIn: json['eventCheckIn'] as bool?,
+  eventMarketing: json['eventMarketing'] as bool?,
 );
 
 Map<String, dynamic> _$UserNotificationPreferencesToJson(
@@ -510,6 +510,14 @@ VerifyEmailDto _$VerifyEmailDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VerifyEmailDtoToJson(VerifyEmailDto instance) =>
     <String, dynamic>{'verificationCode': instance.verificationCode};
 
+TradesilvaniaSignature _$TradesilvaniaSignatureFromJson(
+  Map<String, dynamic> json,
+) => TradesilvaniaSignature(url: json['url'] as String);
+
+Map<String, dynamic> _$TradesilvaniaSignatureToJson(
+  TradesilvaniaSignature instance,
+) => <String, dynamic>{'url': instance.url};
+
 EditUserProfileDto _$EditUserProfileDtoFromJson(Map<String, dynamic> json) =>
     EditUserProfileDto(
       description: json['description'] as String?,
@@ -571,6 +579,75 @@ Map<String, dynamic> _$CreatorProfileDtoToJson(CreatorProfileDto instance) =>
       '_ts': instance.ts,
       'followCount': instance.followCount,
     };
+
+RangeFilter _$RangeFilterFromJson(Map<String, dynamic> json) => RangeFilter(
+  min: (json['min'] as num?)?.toDouble(),
+  max: (json['max'] as num?)?.toDouble(),
+  field: json['field'] as String?,
+);
+
+Map<String, dynamic> _$RangeFilterToJson(RangeFilter instance) =>
+    <String, dynamic>{
+      'min': instance.min,
+      'max': instance.max,
+      'field': instance.field,
+    };
+
+CollectionStatsFilterCriteriaDto _$CollectionStatsFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => CollectionStatsFilterCriteriaDto(
+  dataType: collectionDataTypeNullableFromJson(json['dataType']),
+  collection:
+      (json['collection'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  verifiedOnly: json['verifiedOnly'] as bool?,
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$CollectionStatsFilterCriteriaDtoToJson(
+  CollectionStatsFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'dataType': collectionDataTypeNullableToJson(instance.dataType),
+  'collection': instance.collection,
+  'verifiedOnly': instance.verifiedOnly,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+CollectionStatsFilter _$CollectionStatsFilterFromJson(
+  Map<String, dynamic> json,
+) => CollectionStatsFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: CollectionStatsFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$CollectionStatsFilterToJson(
+  CollectionStatsFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters.toJson(),
+};
 
 CollectionStatsPaginated _$CollectionStatsPaginatedFromJson(
   Map<String, dynamic> json,
@@ -791,6 +868,15 @@ Map<String, dynamic> _$AnalyticsMarketplaceUniqueUsersToJson(
   'UniqueBuyers': instance.uniqueBuyers,
   'UniqueSellers': instance.uniqueSellers,
 };
+
+ProtocolAprType _$ProtocolAprTypeFromJson(Map<String, dynamic> json) =>
+    ProtocolAprType(
+      apr: (json['apr'] as num).toDouble(),
+      apy: (json['apy'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$ProtocolAprTypeToJson(ProtocolAprType instance) =>
+    <String, dynamic>{'apr': instance.apr, 'apy': instance.apy};
 
 ProviderDto _$ProviderDtoFromJson(Map<String, dynamic> json) => ProviderDto(
   address: json['address'] as String,
@@ -1142,6 +1228,95 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
   'oraclePrice': instance.oraclePrice,
   'participants': instance.participants.toJson(),
   'extraApy': instance.extraApy?.toJson(),
+};
+
+LendingMarketProfileFilterCriteriaDto
+_$LendingMarketProfileFilterCriteriaDtoFromJson(Map<String, dynamic> json) =>
+    LendingMarketProfileFilterCriteriaDto(
+      token:
+          (json['token'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+          [],
+      range:
+          (json['range'] as List<dynamic>?)
+              ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+      eMode: json['eMode'] as bool?,
+      flashLoan: json['flashLoan'] as bool?,
+      isolated: json['isolated'] as bool?,
+      siloed: json['siloed'] as bool?,
+      canBeCollateral: json['canBeCollateral'] as bool?,
+      canBeBorrowed: json['canBeBorrowed'] as bool?,
+      canBorrowInIsolation: json['canBorrowInIsolation'] as bool?,
+      isDebtCeilingReached: json['isDebtCeilingReached'] as bool?,
+    );
+
+Map<String, dynamic> _$LendingMarketProfileFilterCriteriaDtoToJson(
+  LendingMarketProfileFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'token': instance.token,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+  'eMode': instance.eMode,
+  'flashLoan': instance.flashLoan,
+  'isolated': instance.isolated,
+  'siloed': instance.siloed,
+  'canBeCollateral': instance.canBeCollateral,
+  'canBeBorrowed': instance.canBeBorrowed,
+  'canBorrowInIsolation': instance.canBorrowInIsolation,
+  'isDebtCeilingReached': instance.isDebtCeilingReached,
+};
+
+LendingMarketProfileExtraProperties
+_$LendingMarketProfileExtraPropertiesFromJson(Map<String, dynamic> json) =>
+    LendingMarketProfileExtraProperties(
+      eModeCategoryProfile: json['eModeCategoryProfile'] as bool?,
+      oraclePrice: json['oraclePrice'] as bool?,
+      participants: json['participants'] as bool?,
+    );
+
+Map<String, dynamic> _$LendingMarketProfileExtraPropertiesToJson(
+  LendingMarketProfileExtraProperties instance,
+) => <String, dynamic>{
+  'eModeCategoryProfile': instance.eModeCategoryProfile,
+  'oraclePrice': instance.oraclePrice,
+  'participants': instance.participants,
+};
+
+LendingMarketProfileFilter _$LendingMarketProfileFilterFromJson(
+  Map<String, dynamic> json,
+) => LendingMarketProfileFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool? ?? false,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: LendingMarketProfileFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+  extraProperties:
+      json['extraProperties'] == null
+          ? null
+          : LendingMarketProfileExtraProperties.fromJson(
+            json['extraProperties'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$LendingMarketProfileFilterToJson(
+  LendingMarketProfileFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters.toJson(),
+  'extraProperties': instance.extraProperties?.toJson(),
 };
 
 LendingMarketProfileQuery _$LendingMarketProfileQueryFromJson(
@@ -1560,6 +1735,175 @@ Map<String, dynamic> _$LendingOverallStatsToJson(
   'borrowedMargin': instance.borrowedMargin,
 };
 
+SaleInfoFilterDto _$SaleInfoFilterDtoFromJson(Map<String, dynamic> json) =>
+    SaleInfoFilterDto(
+      seller:
+          (json['seller'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      paymentToken:
+          (json['paymentToken'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      marketplace:
+          (json['marketplace'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      auctionType:
+          (json['auctionType'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$SaleInfoFilterDtoToJson(SaleInfoFilterDto instance) =>
+    <String, dynamic>{
+      'seller': instance.seller,
+      'paymentToken': instance.paymentToken,
+      'marketplace': instance.marketplace,
+      'auctionType': instance.auctionType,
+    };
+
+NftMetadataAttributes _$NftMetadataAttributesFromJson(
+  Map<String, dynamic> json,
+) => NftMetadataAttributes(
+  traitType: json['trait_type'] as String,
+  $value: json['value'] as String,
+);
+
+Map<String, dynamic> _$NftMetadataAttributesToJson(
+  NftMetadataAttributes instance,
+) => <String, dynamic>{
+  'trait_type': instance.traitType,
+  'value': instance.$value,
+};
+
+MetadataAttributesDto _$MetadataAttributesDtoFromJson(
+  Map<String, dynamic> json,
+) => MetadataAttributesDto(
+  attributes:
+      (json['attributes'] as List<dynamic>?)
+          ?.map(
+            (e) => NftMetadataAttributes.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$MetadataAttributesDtoToJson(
+  MetadataAttributesDto instance,
+) => <String, dynamic>{
+  'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
+};
+
+NftDocFilterCriteriaDto _$NftDocFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => NftDocFilterCriteriaDto(
+  dataType:
+      (json['dataType'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  identifier:
+      (json['identifier'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  collection:
+      (json['collection'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  nonce:
+      (json['nonce'] as List<dynamic>?)
+          ?.map((e) => (e as num).toDouble())
+          .toList() ??
+      [],
+  type:
+      (json['type'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  onSale: json['onSale'] as bool?,
+  owner:
+      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  currentOwner:
+      (json['currentOwner'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  saleInfo:
+      json['saleInfo'] == null
+          ? null
+          : SaleInfoFilterDto.fromJson(
+            json['saleInfo'] as Map<String, dynamic>,
+          ),
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  metadata:
+      json['metadata'] == null
+          ? null
+          : MetadataAttributesDto.fromJson(
+            json['metadata'] as Map<String, dynamic>,
+          ),
+  wasProcessed: json['wasProcessed'] as bool?,
+  cpStaked: json['cp_staked'] as bool?,
+  activeAuction: json['activeAuction'] as bool?,
+  verifiedOnly: json['verifiedOnly'] as bool?,
+  sftOriginalDoc: json['sftOriginalDoc'] as bool?,
+);
+
+Map<String, dynamic> _$NftDocFilterCriteriaDtoToJson(
+  NftDocFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'dataType': instance.dataType,
+  'identifier': instance.identifier,
+  'collection': instance.collection,
+  'nonce': instance.nonce,
+  'type': instance.type,
+  'onSale': instance.onSale,
+  'owner': instance.owner,
+  'currentOwner': instance.currentOwner,
+  'saleInfo': instance.saleInfo?.toJson(),
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+  'metadata': instance.metadata?.toJson(),
+  'wasProcessed': instance.wasProcessed,
+  'cp_staked': instance.cpStaked,
+  'activeAuction': instance.activeAuction,
+  'verifiedOnly': instance.verifiedOnly,
+  'sftOriginalDoc': instance.sftOriginalDoc,
+};
+
+NftDocFilter _$NftDocFilterFromJson(Map<String, dynamic> json) => NftDocFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: NftDocFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+  applyNftExtraDetails: json['applyNftExtraDetails'] as bool?,
+);
+
+Map<String, dynamic> _$NftDocFilterToJson(NftDocFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+      'applyNftExtraDetails': instance.applyNftExtraDetails,
+    };
+
 NftPaginated _$NftPaginatedFromJson(Map<String, dynamic> json) => NftPaginated(
   count: json['count'],
   hasMoreResults: json['hasMoreResults'] as bool,
@@ -1623,6 +1967,79 @@ Map<String, dynamic> _$NftOfferPaginatedToJson(NftOfferPaginated instance) =>
       'count': instance.count,
       'hasMoreResults': instance.hasMoreResults,
       'resources': instance.resources,
+    };
+
+NftOfferDocFilterCriteria _$NftOfferDocFilterCriteriaFromJson(
+  Map<String, dynamic> json,
+) => NftOfferDocFilterCriteria(
+  isActive:
+      (json['isActive'] as List<dynamic>?)?.map((e) => e as bool).toList() ??
+      [],
+  identifier:
+      (json['identifier'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  collection:
+      (json['collection'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  owner:
+      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  nftOwner:
+      (json['nftOwner'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  marketplace:
+      (json['marketplace'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$NftOfferDocFilterCriteriaToJson(
+  NftOfferDocFilterCriteria instance,
+) => <String, dynamic>{
+  'isActive': instance.isActive,
+  'identifier': instance.identifier,
+  'collection': instance.collection,
+  'owner': instance.owner,
+  'nftOwner': instance.nftOwner,
+  'marketplace': instance.marketplace,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+NftOfferDocFilter _$NftOfferDocFilterFromJson(Map<String, dynamic> json) =>
+    NftOfferDocFilter(
+      select:
+          (json['select'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      orderBy: nftOfferDocFilterOrderByListFromJson(json['orderBy'] as List?),
+      includeCount: json['includeCount'] as bool?,
+      strictSelect: json['strictSelect'] as bool?,
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
+      filters: NftOfferDocFilterCriteria.fromJson(
+        json['filters'] as Map<String, dynamic>,
+      ),
+    );
+
+Map<String, dynamic> _$NftOfferDocFilterToJson(NftOfferDocFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': nftOfferDocFilterOrderByListToJson(instance.orderBy),
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
     };
 
 NftOfferDoc _$NftOfferDocFromJson(Map<String, dynamic> json) => NftOfferDoc(
@@ -1805,20 +2222,6 @@ NftStats _$NftStatsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$NftStatsToJson(NftStats instance) => <String, dynamic>{
   'likedCount': instance.likedCount,
-};
-
-NftMetadataAttributes _$NftMetadataAttributesFromJson(
-  Map<String, dynamic> json,
-) => NftMetadataAttributes(
-  traitType: json['trait_type'] as String,
-  $value: json['value'] as String,
-);
-
-Map<String, dynamic> _$NftMetadataAttributesToJson(
-  NftMetadataAttributes instance,
-) => <String, dynamic>{
-  'trait_type': instance.traitType,
-  'value': instance.$value,
 };
 
 Rarity _$RarityFromJson(Map<String, dynamic> json) => Rarity(
@@ -2305,6 +2708,104 @@ Map<String, dynamic> _$PinnedCollectionDtoToJson(
   'isMintable': instance.isMintable,
 };
 
+EgldOrEsdtTokenPayment _$EgldOrEsdtTokenPaymentFromJson(
+  Map<String, dynamic> json,
+) => EgldOrEsdtTokenPayment(
+  tokenIdentifier: json['tokenIdentifier'] as String,
+  tokenNonce: (json['tokenNonce'] as num).toDouble(),
+  amount: json['amount'] as String,
+  amountShort: (json['amountShort'] as num?)?.toDouble(),
+  usdValue: (json['usdValue'] as num?)?.toDouble(),
+  decimals: (json['decimals'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$EgldOrEsdtTokenPaymentToJson(
+  EgldOrEsdtTokenPayment instance,
+) => <String, dynamic>{
+  'tokenIdentifier': instance.tokenIdentifier,
+  'tokenNonce': instance.tokenNonce,
+  'amount': instance.amount,
+  'amountShort': instance.amountShort,
+  'usdValue': instance.usdValue,
+  'decimals': instance.decimals,
+};
+
+CollectionMintProfileDocHydrated _$CollectionMintProfileDocHydratedFromJson(
+  Map<String, dynamic> json,
+) => CollectionMintProfileDocHydrated(
+  dataType: collectionMintProfileDocHydratedDataTypeFromJson(json['dataType']),
+  collection: json['collection'] as String,
+  creatorTag: json['creatorTag'] as String,
+  creatorName: json['creatorName'] as String,
+  contractAddress: json['contractAddress'] as String,
+  collectionTag: json['collectionTag'] as String,
+  cid: json['cid'] as String,
+  mediaType: json['mediaType'] as String,
+  baseNftName: json['baseNftName'] as String,
+  hasAttributes: json['hasAttributes'] as bool,
+  ownerTransferred: json['ownerTransferred'] as bool,
+  collectionSize: (json['collectionSize'] as num).toDouble(),
+  totalNftMinted: (json['totalNftMinted'] as num).toDouble(),
+  globalWalletLimit: (json['globalWalletLimit'] as num).toDouble(),
+  royalties: (json['royalties'] as num).toDouble(),
+  oldVersion: json['oldVersion'] as bool,
+  nameShuffle: json['nameShuffle'] as bool,
+  nftTransferLimited: json['nftTransferLimited'] as bool,
+  allowsPublicBurn: json['allowsPublicBurn'] as bool?,
+  kycRequired: json['kycRequired'] as bool,
+  allowsRefund: json['allowsRefund'] as bool,
+  hasBotProtection: json['hasBotProtection'] as bool,
+  hasReveal: json['hasReveal'] as bool,
+  tags: json['tags'] as Object,
+  prices:
+      (json['prices'] as List<dynamic>?)
+          ?.map(
+            (e) => EgldOrEsdtTokenPayment.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+  startTime: (json['startTime'] as num).toDouble(),
+  endTime: (json['endTime'] as num).toDouble(),
+  isSoldOut: json['isSoldOut'] as bool,
+  id: json['id'] as String,
+  ts: (json['_ts'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$CollectionMintProfileDocHydratedToJson(
+  CollectionMintProfileDocHydrated instance,
+) => <String, dynamic>{
+  'dataType': collectionMintProfileDocHydratedDataTypeToJson(instance.dataType),
+  'collection': instance.collection,
+  'creatorTag': instance.creatorTag,
+  'creatorName': instance.creatorName,
+  'contractAddress': instance.contractAddress,
+  'collectionTag': instance.collectionTag,
+  'cid': instance.cid,
+  'mediaType': instance.mediaType,
+  'baseNftName': instance.baseNftName,
+  'hasAttributes': instance.hasAttributes,
+  'ownerTransferred': instance.ownerTransferred,
+  'collectionSize': instance.collectionSize,
+  'totalNftMinted': instance.totalNftMinted,
+  'globalWalletLimit': instance.globalWalletLimit,
+  'royalties': instance.royalties,
+  'oldVersion': instance.oldVersion,
+  'nameShuffle': instance.nameShuffle,
+  'nftTransferLimited': instance.nftTransferLimited,
+  'allowsPublicBurn': instance.allowsPublicBurn,
+  'kycRequired': instance.kycRequired,
+  'allowsRefund': instance.allowsRefund,
+  'hasBotProtection': instance.hasBotProtection,
+  'hasReveal': instance.hasReveal,
+  'tags': instance.tags,
+  'prices': instance.prices.map((e) => e.toJson()).toList(),
+  'startTime': instance.startTime,
+  'endTime': instance.endTime,
+  'isSoldOut': instance.isSoldOut,
+  'id': instance.id,
+  '_ts': instance.ts,
+};
+
 CollectionPinnedStatusDto _$CollectionPinnedStatusDtoFromJson(
   Map<String, dynamic> json,
 ) => CollectionPinnedStatusDto(
@@ -2332,6 +2833,32 @@ Map<String, dynamic> _$FollowCollectionDtoToJson(
   'collection': instance.collection,
 };
 
+CollectionProfileFilter _$CollectionProfileFilterFromJson(
+  Map<String, dynamic> json,
+) => CollectionProfileFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$CollectionProfileFilterToJson(
+  CollectionProfileFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+};
+
 CollectionProfilePaginated _$CollectionProfilePaginatedFromJson(
   Map<String, dynamic> json,
 ) => CollectionProfilePaginated(
@@ -2350,6 +2877,32 @@ Map<String, dynamic> _$CollectionProfilePaginatedToJson(
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
   'resources': instance.resources,
+};
+
+CollectionMintProfileFilter _$CollectionMintProfileFilterFromJson(
+  Map<String, dynamic> json,
+) => CollectionMintProfileFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+);
+
+Map<String, dynamic> _$CollectionMintProfileFilterToJson(
+  CollectionMintProfileFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
 };
 
 CollectionMintProfilePaginated _$CollectionMintProfilePaginatedFromJson(
@@ -2402,28 +2955,6 @@ Map<String, dynamic> _$CollectionMintProfileDocWithStagesToJson(
   'nftTransferLimited': instance.nftTransferLimited,
   'kycRequired': instance.kycRequired,
   'hasBotProtection': instance.hasBotProtection,
-};
-
-EgldOrEsdtTokenPayment _$EgldOrEsdtTokenPaymentFromJson(
-  Map<String, dynamic> json,
-) => EgldOrEsdtTokenPayment(
-  tokenIdentifier: json['tokenIdentifier'] as String,
-  tokenNonce: (json['tokenNonce'] as num).toDouble(),
-  amount: json['amount'] as String,
-  amountShort: (json['amountShort'] as num?)?.toDouble(),
-  usdValue: (json['usdValue'] as num?)?.toDouble(),
-  decimals: (json['decimals'] as num?)?.toDouble(),
-);
-
-Map<String, dynamic> _$EgldOrEsdtTokenPaymentToJson(
-  EgldOrEsdtTokenPayment instance,
-) => <String, dynamic>{
-  'tokenIdentifier': instance.tokenIdentifier,
-  'tokenNonce': instance.tokenNonce,
-  'amount': instance.amount,
-  'amountShort': instance.amountShort,
-  'usdValue': instance.usdValue,
-  'decimals': instance.decimals,
 };
 
 MintStageDto _$MintStageDtoFromJson(Map<String, dynamic> json) => MintStageDto(
@@ -2722,6 +3253,90 @@ Map<String, dynamic> _$CollectionStatsDtoToJson(CollectionStatsDto instance) =>
       '_ts': instance.ts,
       'id': instance.id,
     };
+
+CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => CollectionOffersFilterCriteriaDto(
+  dataType: collectionDataTypeNullableFromJson(json['dataType']),
+  collection:
+      (json['collection'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  offerId:
+      (json['offerId'] as List<dynamic>?)
+          ?.map((e) => (e as num).toDouble())
+          .toList() ??
+      [],
+  owner:
+      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  marketplace:
+      (json['marketplace'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  attributes:
+      (json['attributes'] as List<dynamic>?)
+          ?.map(
+            (e) => NftMetadataAttributes.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+  isActive: json['isActive'] as bool?,
+  withAttributes: json['withAttributes'] as bool?,
+);
+
+Map<String, dynamic> _$CollectionOffersFilterCriteriaDtoToJson(
+  CollectionOffersFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'dataType': collectionDataTypeNullableToJson(instance.dataType),
+  'collection': instance.collection,
+  'offerId': instance.offerId,
+  'owner': instance.owner,
+  'marketplace': instance.marketplace,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+  'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
+  'isActive': instance.isActive,
+  'withAttributes': instance.withAttributes,
+};
+
+CollectionOffersFilter _$CollectionOffersFilterFromJson(
+  Map<String, dynamic> json,
+) => CollectionOffersFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters:
+      json['filters'] == null
+          ? null
+          : CollectionOffersFilterCriteriaDto.fromJson(
+            json['filters'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$CollectionOffersFilterToJson(
+  CollectionOffersFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters?.toJson(),
+};
 
 GlobalOfferPaginated _$GlobalOfferPaginatedFromJson(
   Map<String, dynamic> json,
@@ -3576,6 +4191,20 @@ Map<String, dynamic> _$OwnedServicesDtoToJson(OwnedServicesDto instance) =>
       'address': instance.address,
     };
 
+FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
+    FilterQueryDto(
+      name: json['name'] as String,
+      top: (json['top'] as num?)?.toInt(),
+      skip: (json['skip'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'top': instance.top,
+      'skip': instance.skip,
+    };
+
 GlobalSearchResourcesPaginated _$GlobalSearchResourcesPaginatedFromJson(
   Map<String, dynamic> json,
 ) => GlobalSearchResourcesPaginated(
@@ -3592,115 +4221,31 @@ Map<String, dynamic> _$GlobalSearchResourcesPaginatedToJson(
   'resources': instance.resources,
 };
 
-NotificationAssetDto _$NotificationAssetDtoFromJson(
+NotificationPaginated _$NotificationPaginatedFromJson(
   Map<String, dynamic> json,
-) => NotificationAssetDto(
-  type: notificationAssetTypeFromJson(json['type']),
-  collection: json['collection'] as String?,
-  identifier: json['identifier'] as String?,
-  address: json['address'] as String?,
-  name: json['name'] as String?,
-  url: json['url'] as String?,
+) => NotificationPaginated(
+  count: json['count'],
+  hasMoreResults: json['hasMoreResults'] as bool,
+  resources:
+      (json['resources'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
 );
 
-Map<String, dynamic> _$NotificationAssetDtoToJson(
-  NotificationAssetDto instance,
+Map<String, dynamic> _$NotificationPaginatedToJson(
+  NotificationPaginated instance,
 ) => <String, dynamic>{
-  'type': notificationAssetTypeToJson(instance.type),
-  'collection': instance.collection,
-  'identifier': instance.identifier,
-  'address': instance.address,
-  'name': instance.name,
-  'url': instance.url,
-};
-
-NotificationActivityDto _$NotificationActivityDtoFromJson(
-  Map<String, dynamic> json,
-) => NotificationActivityDto(
-  price: (json['price'] as num?)?.toDouble(),
-  paymentToken: json['paymentToken'] as String?,
-  quantity: (json['quantity'] as num?)?.toDouble(),
-  buyer: json['buyer'] as String?,
-  seller: json['seller'] as String?,
-  previousBidder: json['previousBidder'] as String?,
-  deadline: (json['deadline'] as num?)?.toDouble(),
-);
-
-Map<String, dynamic> _$NotificationActivityDtoToJson(
-  NotificationActivityDto instance,
-) => <String, dynamic>{
-  'price': instance.price,
-  'paymentToken': instance.paymentToken,
-  'quantity': instance.quantity,
-  'buyer': instance.buyer,
-  'seller': instance.seller,
-  'previousBidder': instance.previousBidder,
-  'deadline': instance.deadline,
+  'count': instance.count,
+  'hasMoreResults': instance.hasMoreResults,
+  'resources': instance.resources,
 };
 
 NotificationDoc _$NotificationDocFromJson(Map<String, dynamic> json) =>
-    NotificationDoc(
-      dataType: json['dataType'] as String,
-      txHash: json['txHash'] as String,
-      source: json['source'] as String,
-      activityType: marketplaceActivityFromJson(json['activityType']),
-      owner: json['owner'] as String,
-      message: json['message'] as String?,
-      asset: NotificationAssetDto.fromJson(
-        json['asset'] as Map<String, dynamic>,
-      ),
-      activity: NotificationActivityDto.fromJson(
-        json['activity'] as Map<String, dynamic>,
-      ),
-      isRead: json['isRead'] as Object,
-      timestamp: (json['timestamp'] as num).toDouble(),
-      id: json['id'] as String?,
-      pk: json['pk'] as String?,
-      ts: (json['_ts'] as num?)?.toDouble(),
-    );
+    NotificationDoc();
 
 Map<String, dynamic> _$NotificationDocToJson(NotificationDoc instance) =>
-    <String, dynamic>{
-      'dataType': instance.dataType,
-      'txHash': instance.txHash,
-      'source': instance.source,
-      'activityType': marketplaceActivityToJson(instance.activityType),
-      'owner': instance.owner,
-      'message': instance.message,
-      'asset': instance.asset.toJson(),
-      'activity': instance.activity.toJson(),
-      'isRead': instance.isRead,
-      'timestamp': instance.timestamp,
-      'id': instance.id,
-      'pk': instance.pk,
-      '_ts': instance.ts,
-    };
-
-NotificationResponse _$NotificationResponseFromJson(
-  Map<String, dynamic> json,
-) => NotificationResponse(
-  resources:
-      (json['resources'] as List<dynamic>?)
-          ?.map((e) => NotificationDoc.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  hasMoreResults: json['hasMoreResults'] as bool,
-);
-
-Map<String, dynamic> _$NotificationResponseToJson(
-  NotificationResponse instance,
-) => <String, dynamic>{
-  'resources': instance.resources.map((e) => e.toJson()).toList(),
-  'hasMoreResults': instance.hasMoreResults,
-};
-
-NotificationCountResponse _$NotificationCountResponseFromJson(
-  Map<String, dynamic> json,
-) => NotificationCountResponse(count: (json['count'] as num).toDouble());
-
-Map<String, dynamic> _$NotificationCountResponseToJson(
-  NotificationCountResponse instance,
-) => <String, dynamic>{'count': instance.count};
+    <String, dynamic>{};
 
 MobileDeviceRegistrationDto _$MobileDeviceRegistrationDtoFromJson(
   Map<String, dynamic> json,
@@ -4054,6 +4599,14 @@ Map<String, dynamic> _$Web2UserDocToJson(Web2UserDoc instance) =>
       '_ts': instance.ts,
     };
 
+SuccessWithMessageDto _$SuccessWithMessageDtoFromJson(
+  Map<String, dynamic> json,
+) => SuccessWithMessageDto(success: json['success'] as bool);
+
+Map<String, dynamic> _$SuccessWithMessageDtoToJson(
+  SuccessWithMessageDto instance,
+) => <String, dynamic>{'success': instance.success};
+
 Web2WalletDto _$Web2WalletDtoFromJson(Map<String, dynamic> json) =>
     Web2WalletDto(
       type: linkedAccountTypeFromJson(json['type']),
@@ -4113,6 +4666,108 @@ Web2UserShardsDto _$Web2UserShardsDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$Web2UserShardsDtoToJson(Web2UserShardsDto instance) =>
     <String, dynamic>{'shards': instance.shards};
+
+LendingTokenPriceDto _$LendingTokenPriceDtoFromJson(
+  Map<String, dynamic> json,
+) => LendingTokenPriceDto();
+
+Map<String, dynamic> _$LendingTokenPriceDtoToJson(
+  LendingTokenPriceDto instance,
+) => <String, dynamic>{};
+
+ActivityDataDto _$ActivityDataDtoFromJson(Map<String, dynamic> json) =>
+    ActivityDataDto(
+      collection:
+          (json['collection'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      identifier:
+          (json['identifier'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ActivityDataDtoToJson(ActivityDataDto instance) =>
+    <String, dynamic>{
+      'collection': instance.collection,
+      'identifier': instance.identifier,
+    };
+
+NftActivityFilterCriteriaDto _$NftActivityFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => NftActivityFilterCriteriaDto(
+  txHash:
+      (json['txHash'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  activityAddress:
+      (json['activityAddress'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  from:
+      (json['from'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  to: (json['to'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  activityType: nftActivityTypeListFromJson(json['activityType'] as List?),
+  source: nftActivityEventSourceListFromJson(json['source'] as List?),
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  activityData:
+      json['activityData'] == null
+          ? null
+          : ActivityDataDto.fromJson(
+            json['activityData'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$NftActivityFilterCriteriaDtoToJson(
+  NftActivityFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'txHash': instance.txHash,
+  'activityAddress': instance.activityAddress,
+  'from': instance.from,
+  'to': instance.to,
+  'activityType': nftActivityTypeListToJson(instance.activityType),
+  'source': nftActivityEventSourceListToJson(instance.source),
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+  'activityData': instance.activityData?.toJson(),
+};
+
+NftActivityFilter _$NftActivityFilterFromJson(
+  Map<String, dynamic> json,
+) => NftActivityFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool? ?? false,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters:
+      json['filters'] == null
+          ? null
+          : NftActivityFilterCriteriaDto.fromJson(
+            json['filters'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$NftActivityFilterToJson(NftActivityFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters?.toJson(),
+    };
 
 NftActivityPaginated _$NftActivityPaginatedFromJson(
   Map<String, dynamic> json,
@@ -4434,6 +5089,11 @@ Map<String, dynamic> _$UserStatsDtoToJson(UserStatsDto instance) =>
       'sellerMaxPriceData': instance.sellerMaxPriceData.toJson(),
       'sellerMinPriceData': instance.sellerMinPriceData.toJson(),
     };
+
+AirdropDto _$AirdropDtoFromJson(Map<String, dynamic> json) => AirdropDto();
+
+Map<String, dynamic> _$AirdropDtoToJson(AirdropDto instance) =>
+    <String, dynamic>{};
 
 TransactionProcessStatus _$TransactionProcessStatusFromJson(
   Map<String, dynamic> json,
@@ -4979,6 +5639,89 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'guestSummary': instance.guestSummary?.toJson(),
       'startsFrom': instance.startsFrom?.toJson(),
       'guestProfile': instance.guestProfile?.toJson(),
+    };
+
+EventProfileFilterCriteriaDto _$EventProfileFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => EventProfileFilterCriteriaDto(
+  searchText: json['searchText'] as String?,
+  area:
+      (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  category:
+      (json['category'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  subCategory:
+      (json['subCategory'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventProfileFilterCriteriaDtoToJson(
+  EventProfileFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'area': instance.area,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+  'category': instance.category,
+  'subCategory': instance.subCategory,
+};
+
+EventExtraProperties _$EventExtraPropertiesFromJson(
+  Map<String, dynamic> json,
+) => EventExtraProperties(
+  creatorProfile: json['creatorProfile'] as bool?,
+  guestSummary: json['guestSummary'] as bool?,
+  startsFrom: json['startsFrom'] as bool?,
+);
+
+Map<String, dynamic> _$EventExtraPropertiesToJson(
+  EventExtraProperties instance,
+) => <String, dynamic>{
+  'creatorProfile': instance.creatorProfile,
+  'guestSummary': instance.guestSummary,
+  'startsFrom': instance.startsFrom,
+};
+
+EventProfileFilter _$EventProfileFilterFromJson(
+  Map<String, dynamic> json,
+) => EventProfileFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool? ?? false,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventProfileFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+  extraProperties:
+      json['extraProperties'] == null
+          ? null
+          : EventExtraProperties.fromJson(
+            json['extraProperties'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$EventProfileFilterToJson(EventProfileFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+      'extraProperties': instance.extraProperties?.toJson(),
     };
 
 EventProfileQuery _$EventProfileQueryFromJson(Map<String, dynamic> json) =>
@@ -5597,6 +6340,71 @@ Map<String, dynamic> _$EventInvitationDocToJson(EventInvitationDoc instance) =>
       'pk': instance.pk,
     };
 
+EventInvitationFilterCriteriaDto _$EventInvitationFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => EventInvitationFilterCriteriaDto(
+  searchText: json['searchText'] as String?,
+  claimedBy:
+      (json['claimedBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  eventId:
+      (json['eventId'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  email:
+      (json['email'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  status: eventInvitationStatusListFromJson(json['status'] as List?),
+  isClaimed: json['isClaimed'] as bool?,
+  isUsed: json['isUsed'] as bool?,
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventInvitationFilterCriteriaDtoToJson(
+  EventInvitationFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'claimedBy': instance.claimedBy,
+  'eventId': instance.eventId,
+  'email': instance.email,
+  'status': eventInvitationStatusListToJson(instance.status),
+  'isClaimed': instance.isClaimed,
+  'isUsed': instance.isUsed,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+EventInvitationFilter _$EventInvitationFilterFromJson(
+  Map<String, dynamic> json,
+) => EventInvitationFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool? ?? false,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventInvitationFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$EventInvitationFilterToJson(
+  EventInvitationFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters.toJson(),
+};
+
 EventInvitation _$EventInvitationFromJson(
   Map<String, dynamic> json,
 ) => EventInvitation(
@@ -5665,6 +6473,70 @@ Map<String, dynamic> _$EventInvitationQueryToJson(
   'hasMoreResults': instance.hasMoreResults,
   'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
+
+EventVoucherFilterCriteriaDto _$EventVoucherFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => EventVoucherFilterCriteriaDto(
+  searchText: json['searchText'] as String?,
+  code:
+      (json['code'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  type: voucherTypeListFromJson(json['type'] as List?),
+  amount: (json['amount'] as num?)?.toDouble(),
+  maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
+  maxUses: (json['maxUses'] as num?)?.toDouble(),
+  maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
+  isActive: json['isActive'] as bool?,
+  ownerId: json['ownerId'] as String?,
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventVoucherFilterCriteriaDtoToJson(
+  EventVoucherFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'code': instance.code,
+  'type': voucherTypeListToJson(instance.type),
+  'amount': instance.amount,
+  'maxDiscountAmount': instance.maxDiscountAmount,
+  'maxUses': instance.maxUses,
+  'maxUsesPerUser': instance.maxUsesPerUser,
+  'isActive': instance.isActive,
+  'ownerId': instance.ownerId,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+EventVoucherFilter _$EventVoucherFilterFromJson(
+  Map<String, dynamic> json,
+) => EventVoucherFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventVoucherFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$EventVoucherFilterToJson(EventVoucherFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+    };
 
 EventVoucherDoc _$EventVoucherDocFromJson(
   Map<String, dynamic> json,
@@ -5815,6 +6687,65 @@ Map<String, dynamic> _$EventQuestionEditDtoToJson(
   'answers': instance.answers,
 };
 
+EventGuestFilterCriteriaDto _$EventGuestFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => EventGuestFilterCriteriaDto(
+  searchText: json['searchText'] as String?,
+  wallet:
+      (json['wallet'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  eventId:
+      (json['eventId'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  status: eventGuestStatusListFromJson(json['status'] as List?),
+  questionnaireFilled: json['questionnaireFilled'] as bool?,
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventGuestFilterCriteriaDtoToJson(
+  EventGuestFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'wallet': instance.wallet,
+  'eventId': instance.eventId,
+  'status': eventGuestStatusListToJson(instance.status),
+  'questionnaireFilled': instance.questionnaireFilled,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+EventGuestFilter _$EventGuestFilterFromJson(
+  Map<String, dynamic> json,
+) => EventGuestFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool? ?? false,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventGuestFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$EventGuestFilterToJson(EventGuestFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters.toJson(),
+    };
+
 EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
     EventGuestProfile(
       dataType: EventGuestProfile.ticketingDataTypeDataTypeFromJson(
@@ -5961,38 +6892,6 @@ Map<String, dynamic> _$EventUserRoleToJson(EventUserRole instance) =>
       'status': roleStatusNullableToJson(instance.status),
       'profile': instance.profile,
       'herotag': instance.herotag,
-    };
-
-MyEvents _$MyEventsFromJson(Map<String, dynamic> json) => MyEvents(
-  ticketCount: (json['ticketCount'] as num).toInt(),
-  status: eventGuestStatusFromJson(json['status']),
-  eventProfile: EventProfile.fromJson(
-    json['eventProfile'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$MyEventsToJson(MyEvents instance) => <String, dynamic>{
-  'ticketCount': instance.ticketCount,
-  'status': eventGuestStatusToJson(instance.status),
-  'eventProfile': instance.eventProfile.toJson(),
-};
-
-GetMyEventsQuery _$GetMyEventsQueryFromJson(Map<String, dynamic> json) =>
-    GetMyEventsQuery(
-      count: json['count'],
-      hasMoreResults: json['hasMoreResults'] as bool,
-      resources:
-          (json['resources'] as List<dynamic>?)
-              ?.map((e) => MyEvents.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$GetMyEventsQueryToJson(GetMyEventsQuery instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
 BageQRData _$BageQRDataFromJson(Map<String, dynamic> json) => BageQRData(
@@ -6426,6 +7325,60 @@ Map<String, dynamic> _$EventReferralConfigEditDtoToJson(
   'isActive': instance.isActive,
 };
 
+EventReferralConfigFilterCriteriaDto
+_$EventReferralConfigFilterCriteriaDtoFromJson(Map<String, dynamic> json) =>
+    EventReferralConfigFilterCriteriaDto(
+      searchText: json['searchText'] as String?,
+      ownerId: json['ownerId'] as String?,
+      isActive: json['isActive'] as bool?,
+      isSelfService: json['isSelfService'] as bool?,
+      createdAt:
+          (json['createdAt'] as List<dynamic>?)
+              ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$EventReferralConfigFilterCriteriaDtoToJson(
+  EventReferralConfigFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'ownerId': instance.ownerId,
+  'isActive': instance.isActive,
+  'isSelfService': instance.isSelfService,
+  'createdAt': instance.createdAt?.map((e) => e.toJson()).toList(),
+};
+
+EventReferralConfigFilter _$EventReferralConfigFilterFromJson(
+  Map<String, dynamic> json,
+) => EventReferralConfigFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventReferralConfigFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$EventReferralConfigFilterToJson(
+  EventReferralConfigFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters.toJson(),
+};
+
 EventReferralConfigPaginated _$EventReferralConfigPaginatedFromJson(
   Map<String, dynamic> json,
 ) => EventReferralConfigPaginated(
@@ -6502,6 +7455,74 @@ Map<String, dynamic> _$EventReferralEditDtoToJson(
   'isActive': instance.isActive,
 };
 
+EventReferralFilterCriteriaDto _$EventReferralFilterCriteriaDtoFromJson(
+  Map<String, dynamic> json,
+) => EventReferralFilterCriteriaDto(
+  searchText: json['searchText'] as String?,
+  referralCode:
+      (json['referralCode'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  ownerId: json['ownerId'] as String?,
+  referralConfigId: json['referralConfigId'] as String?,
+  isActive: json['isActive'] as bool?,
+  minSuccessfulReferrals: (json['minSuccessfulReferrals'] as num?)?.toDouble(),
+  maxSuccessfulReferrals: (json['maxSuccessfulReferrals'] as num?)?.toDouble(),
+  conditionType: referralConditionTypeListFromJson(
+    json['conditionType'] as List?,
+  ),
+  createdAt:
+      (json['createdAt'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventReferralFilterCriteriaDtoToJson(
+  EventReferralFilterCriteriaDto instance,
+) => <String, dynamic>{
+  'searchText': instance.searchText,
+  'referralCode': instance.referralCode,
+  'ownerId': instance.ownerId,
+  'referralConfigId': instance.referralConfigId,
+  'isActive': instance.isActive,
+  'minSuccessfulReferrals': instance.minSuccessfulReferrals,
+  'maxSuccessfulReferrals': instance.maxSuccessfulReferrals,
+  'conditionType': referralConditionTypeListToJson(instance.conditionType),
+  'createdAt': instance.createdAt?.map((e) => e.toJson()).toList(),
+};
+
+EventReferralFilter _$EventReferralFilterFromJson(
+  Map<String, dynamic> json,
+) => EventReferralFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool? ?? false,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters: EventReferralFilterCriteriaDto.fromJson(
+    json['filters'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$EventReferralFilterToJson(
+  EventReferralFilter instance,
+) => <String, dynamic>{
+  'select': instance.select,
+  'orderBy': instance.orderBy,
+  'includeCount': instance.includeCount,
+  'strictSelect': instance.strictSelect,
+  'top': instance.top,
+  'skip': instance.skip,
+  'filters': instance.filters.toJson(),
+};
+
 EventReferralPaginated _$EventReferralPaginatedFromJson(
   Map<String, dynamic> json,
 ) => EventReferralPaginated(
@@ -6520,855 +7541,6 @@ Map<String, dynamic> _$EventReferralPaginatedToJson(
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
   'resources': instance.resources,
-};
-
-RangeFilter _$RangeFilterFromJson(Map<String, dynamic> json) => RangeFilter(
-  min: (json['min'] as num?)?.toDouble(),
-  max: (json['max'] as num?)?.toDouble(),
-  field: json['field'] as String?,
-);
-
-Map<String, dynamic> _$RangeFilterToJson(RangeFilter instance) =>
-    <String, dynamic>{
-      'min': instance.min,
-      'max': instance.max,
-      'field': instance.field,
-    };
-
-ActivityDataDto _$ActivityDataDtoFromJson(Map<String, dynamic> json) =>
-    ActivityDataDto(
-      collection:
-          (json['collection'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      identifier:
-          (json['identifier'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$ActivityDataDtoToJson(ActivityDataDto instance) =>
-    <String, dynamic>{
-      'collection': instance.collection,
-      'identifier': instance.identifier,
-    };
-
-NftActivityFilterCriteriaDto _$NftActivityFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => NftActivityFilterCriteriaDto(
-  txHash:
-      (json['txHash'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  activityAddress:
-      (json['activityAddress'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  from:
-      (json['from'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  to: (json['to'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  activityType: nftActivityTypeListFromJson(json['activityType'] as List?),
-  source: nftActivityEventSourceListFromJson(json['source'] as List?),
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  activityData:
-      json['activityData'] == null
-          ? null
-          : ActivityDataDto.fromJson(
-            json['activityData'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$NftActivityFilterCriteriaDtoToJson(
-  NftActivityFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'txHash': instance.txHash,
-  'activityAddress': instance.activityAddress,
-  'from': instance.from,
-  'to': instance.to,
-  'activityType': nftActivityTypeListToJson(instance.activityType),
-  'source': nftActivityEventSourceListToJson(instance.source),
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-  'activityData': instance.activityData?.toJson(),
-};
-
-NftActivityFilter _$NftActivityFilterFromJson(
-  Map<String, dynamic> json,
-) => NftActivityFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool?,
-  strictSelect: json['strictSelect'] as bool? ?? false,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters:
-      json['filters'] == null
-          ? null
-          : NftActivityFilterCriteriaDto.fromJson(
-            json['filters'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$NftActivityFilterToJson(NftActivityFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters?.toJson(),
-    };
-
-CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => CollectionOffersFilterCriteriaDto(
-  dataType: collectionDataTypeNullableFromJson(json['dataType']),
-  collection:
-      (json['collection'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  offerId:
-      (json['offerId'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
-          .toList() ??
-      [],
-  owner:
-      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  marketplace:
-      (json['marketplace'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  attributes:
-      (json['attributes'] as List<dynamic>?)
-          ?.map(
-            (e) => NftMetadataAttributes.fromJson(e as Map<String, dynamic>),
-          )
-          .toList() ??
-      [],
-  isActive: json['isActive'] as bool?,
-  withAttributes: json['withAttributes'] as bool?,
-);
-
-Map<String, dynamic> _$CollectionOffersFilterCriteriaDtoToJson(
-  CollectionOffersFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'dataType': collectionDataTypeNullableToJson(instance.dataType),
-  'collection': instance.collection,
-  'offerId': instance.offerId,
-  'owner': instance.owner,
-  'marketplace': instance.marketplace,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-  'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
-  'isActive': instance.isActive,
-  'withAttributes': instance.withAttributes,
-};
-
-CollectionOffersFilter _$CollectionOffersFilterFromJson(
-  Map<String, dynamic> json,
-) => CollectionOffersFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool?,
-  strictSelect: json['strictSelect'] as bool?,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters:
-      json['filters'] == null
-          ? null
-          : CollectionOffersFilterCriteriaDto.fromJson(
-            json['filters'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$CollectionOffersFilterToJson(
-  CollectionOffersFilter instance,
-) => <String, dynamic>{
-  'select': instance.select,
-  'orderBy': instance.orderBy,
-  'includeCount': instance.includeCount,
-  'strictSelect': instance.strictSelect,
-  'top': instance.top,
-  'skip': instance.skip,
-  'filters': instance.filters?.toJson(),
-};
-
-FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
-    FilterQueryDto(
-      name: json['name'] as String,
-      top: (json['top'] as num?)?.toInt(),
-      skip: (json['skip'] as num?)?.toInt(),
-    );
-
-Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'top': instance.top,
-      'skip': instance.skip,
-    };
-
-CollectionStatsFilterCriteriaDto _$CollectionStatsFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => CollectionStatsFilterCriteriaDto(
-  dataType: collectionDataTypeNullableFromJson(json['dataType']),
-  collection:
-      (json['collection'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  verifiedOnly: json['verifiedOnly'] as bool?,
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$CollectionStatsFilterCriteriaDtoToJson(
-  CollectionStatsFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'dataType': collectionDataTypeNullableToJson(instance.dataType),
-  'collection': instance.collection,
-  'verifiedOnly': instance.verifiedOnly,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-CollectionStatsFilter _$CollectionStatsFilterFromJson(
-  Map<String, dynamic> json,
-) => CollectionStatsFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool?,
-  strictSelect: json['strictSelect'] as bool?,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: CollectionStatsFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$CollectionStatsFilterToJson(
-  CollectionStatsFilter instance,
-) => <String, dynamic>{
-  'select': instance.select,
-  'orderBy': instance.orderBy,
-  'includeCount': instance.includeCount,
-  'strictSelect': instance.strictSelect,
-  'top': instance.top,
-  'skip': instance.skip,
-  'filters': instance.filters.toJson(),
-};
-
-SaleInfoFilterDto _$SaleInfoFilterDtoFromJson(Map<String, dynamic> json) =>
-    SaleInfoFilterDto(
-      seller:
-          (json['seller'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      paymentToken:
-          (json['paymentToken'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      marketplace:
-          (json['marketplace'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      auctionType:
-          (json['auctionType'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$SaleInfoFilterDtoToJson(SaleInfoFilterDto instance) =>
-    <String, dynamic>{
-      'seller': instance.seller,
-      'paymentToken': instance.paymentToken,
-      'marketplace': instance.marketplace,
-      'auctionType': instance.auctionType,
-    };
-
-MetadataAttributesDto _$MetadataAttributesDtoFromJson(
-  Map<String, dynamic> json,
-) => MetadataAttributesDto(
-  attributes:
-      (json['attributes'] as List<dynamic>?)
-          ?.map(
-            (e) => NftMetadataAttributes.fromJson(e as Map<String, dynamic>),
-          )
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$MetadataAttributesDtoToJson(
-  MetadataAttributesDto instance,
-) => <String, dynamic>{
-  'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
-};
-
-NftDocFilterCriteriaDto _$NftDocFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => NftDocFilterCriteriaDto(
-  dataType:
-      (json['dataType'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  identifier:
-      (json['identifier'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  collection:
-      (json['collection'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  nonce:
-      (json['nonce'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
-          .toList() ??
-      [],
-  type:
-      (json['type'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  onSale: json['onSale'] as bool?,
-  owner:
-      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  currentOwner:
-      (json['currentOwner'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  saleInfo:
-      json['saleInfo'] == null
-          ? null
-          : SaleInfoFilterDto.fromJson(
-            json['saleInfo'] as Map<String, dynamic>,
-          ),
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  metadata:
-      json['metadata'] == null
-          ? null
-          : MetadataAttributesDto.fromJson(
-            json['metadata'] as Map<String, dynamic>,
-          ),
-  wasProcessed: json['wasProcessed'] as bool?,
-  cpStaked: json['cp_staked'] as bool?,
-  activeAuction: json['activeAuction'] as bool?,
-  verifiedOnly: json['verifiedOnly'] as bool?,
-  sftOriginalDoc: json['sftOriginalDoc'] as bool?,
-);
-
-Map<String, dynamic> _$NftDocFilterCriteriaDtoToJson(
-  NftDocFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'dataType': instance.dataType,
-  'identifier': instance.identifier,
-  'collection': instance.collection,
-  'nonce': instance.nonce,
-  'type': instance.type,
-  'onSale': instance.onSale,
-  'owner': instance.owner,
-  'currentOwner': instance.currentOwner,
-  'saleInfo': instance.saleInfo?.toJson(),
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-  'metadata': instance.metadata?.toJson(),
-  'wasProcessed': instance.wasProcessed,
-  'cp_staked': instance.cpStaked,
-  'activeAuction': instance.activeAuction,
-  'verifiedOnly': instance.verifiedOnly,
-  'sftOriginalDoc': instance.sftOriginalDoc,
-};
-
-NftDocFilter _$NftDocFilterFromJson(Map<String, dynamic> json) => NftDocFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool?,
-  strictSelect: json['strictSelect'] as bool?,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: NftDocFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-  applyNftExtraDetails: json['applyNftExtraDetails'] as bool?,
-);
-
-Map<String, dynamic> _$NftDocFilterToJson(NftDocFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
-      'applyNftExtraDetails': instance.applyNftExtraDetails,
-    };
-
-NftOfferDocFilterCriteria _$NftOfferDocFilterCriteriaFromJson(
-  Map<String, dynamic> json,
-) => NftOfferDocFilterCriteria(
-  isActive:
-      (json['isActive'] as List<dynamic>?)?.map((e) => e as bool).toList() ??
-      [],
-  identifier:
-      (json['identifier'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  collection:
-      (json['collection'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  owner:
-      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  nftOwner:
-      (json['nftOwner'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  marketplace:
-      (json['marketplace'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$NftOfferDocFilterCriteriaToJson(
-  NftOfferDocFilterCriteria instance,
-) => <String, dynamic>{
-  'isActive': instance.isActive,
-  'identifier': instance.identifier,
-  'collection': instance.collection,
-  'owner': instance.owner,
-  'nftOwner': instance.nftOwner,
-  'marketplace': instance.marketplace,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-NftOfferDocFilter _$NftOfferDocFilterFromJson(Map<String, dynamic> json) =>
-    NftOfferDocFilter(
-      select:
-          (json['select'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      orderBy: nftOfferDocFilterOrderByListFromJson(json['orderBy'] as List?),
-      includeCount: json['includeCount'] as bool?,
-      strictSelect: json['strictSelect'] as bool?,
-      top: (json['top'] as num?)?.toInt(),
-      skip: (json['skip'] as num?)?.toInt(),
-      filters: NftOfferDocFilterCriteria.fromJson(
-        json['filters'] as Map<String, dynamic>,
-      ),
-    );
-
-Map<String, dynamic> _$NftOfferDocFilterToJson(NftOfferDocFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': nftOfferDocFilterOrderByListToJson(instance.orderBy),
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
-    };
-
-EventGuestFilterCriteriaDto _$EventGuestFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => EventGuestFilterCriteriaDto(
-  searchText: json['searchText'] as String?,
-  wallet:
-      (json['wallet'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  eventId:
-      (json['eventId'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  status: eventGuestStatusListFromJson(json['status'] as List?),
-  questionnaireFilled: json['questionnaireFilled'] as bool?,
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$EventGuestFilterCriteriaDtoToJson(
-  EventGuestFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'searchText': instance.searchText,
-  'wallet': instance.wallet,
-  'eventId': instance.eventId,
-  'status': eventGuestStatusListToJson(instance.status),
-  'questionnaireFilled': instance.questionnaireFilled,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-EventGuestFilter _$EventGuestFilterFromJson(
-  Map<String, dynamic> json,
-) => EventGuestFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool? ?? false,
-  strictSelect: json['strictSelect'] as bool? ?? false,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: EventGuestFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$EventGuestFilterToJson(EventGuestFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
-    };
-
-EventInvitationFilterCriteriaDto _$EventInvitationFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => EventInvitationFilterCriteriaDto(
-  searchText: json['searchText'] as String?,
-  claimedBy:
-      (json['claimedBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  eventId:
-      (json['eventId'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  email:
-      (json['email'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  status: eventInvitationStatusListFromJson(json['status'] as List?),
-  isClaimed: json['isClaimed'] as bool?,
-  isUsed: json['isUsed'] as bool?,
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$EventInvitationFilterCriteriaDtoToJson(
-  EventInvitationFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'searchText': instance.searchText,
-  'claimedBy': instance.claimedBy,
-  'eventId': instance.eventId,
-  'email': instance.email,
-  'status': eventInvitationStatusListToJson(instance.status),
-  'isClaimed': instance.isClaimed,
-  'isUsed': instance.isUsed,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-EventInvitationFilter _$EventInvitationFilterFromJson(
-  Map<String, dynamic> json,
-) => EventInvitationFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool? ?? false,
-  strictSelect: json['strictSelect'] as bool? ?? false,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: EventInvitationFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$EventInvitationFilterToJson(
-  EventInvitationFilter instance,
-) => <String, dynamic>{
-  'select': instance.select,
-  'orderBy': instance.orderBy,
-  'includeCount': instance.includeCount,
-  'strictSelect': instance.strictSelect,
-  'top': instance.top,
-  'skip': instance.skip,
-  'filters': instance.filters.toJson(),
-};
-
-EventVoucherFilterCriteriaDto _$EventVoucherFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => EventVoucherFilterCriteriaDto(
-  searchText: json['searchText'] as String?,
-  code:
-      (json['code'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  type: voucherTypeListFromJson(json['type'] as List?),
-  amount: (json['amount'] as num?)?.toDouble(),
-  maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
-  maxUses: (json['maxUses'] as num?)?.toDouble(),
-  maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
-  isActive: json['isActive'] as bool?,
-  ownerId: json['ownerId'] as String?,
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$EventVoucherFilterCriteriaDtoToJson(
-  EventVoucherFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'searchText': instance.searchText,
-  'code': instance.code,
-  'type': voucherTypeListToJson(instance.type),
-  'amount': instance.amount,
-  'maxDiscountAmount': instance.maxDiscountAmount,
-  'maxUses': instance.maxUses,
-  'maxUsesPerUser': instance.maxUsesPerUser,
-  'isActive': instance.isActive,
-  'ownerId': instance.ownerId,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-EventVoucherFilter _$EventVoucherFilterFromJson(
-  Map<String, dynamic> json,
-) => EventVoucherFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool? ?? false,
-  strictSelect: json['strictSelect'] as bool?,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: EventVoucherFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$EventVoucherFilterToJson(EventVoucherFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
-    };
-
-EventProfileFilterCriteriaDto _$EventProfileFilterCriteriaDtoFromJson(
-  Map<String, dynamic> json,
-) => EventProfileFilterCriteriaDto(
-  searchText: json['searchText'] as String?,
-  area:
-      (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-  category:
-      (json['category'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  subCategory:
-      (json['subCategory'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$EventProfileFilterCriteriaDtoToJson(
-  EventProfileFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'searchText': instance.searchText,
-  'area': instance.area,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-  'category': instance.category,
-  'subCategory': instance.subCategory,
-};
-
-EventExtraProperties _$EventExtraPropertiesFromJson(
-  Map<String, dynamic> json,
-) => EventExtraProperties(
-  creatorProfile: json['creatorProfile'] as bool?,
-  guestSummary: json['guestSummary'] as bool?,
-  startsFrom: json['startsFrom'] as bool?,
-);
-
-Map<String, dynamic> _$EventExtraPropertiesToJson(
-  EventExtraProperties instance,
-) => <String, dynamic>{
-  'creatorProfile': instance.creatorProfile,
-  'guestSummary': instance.guestSummary,
-  'startsFrom': instance.startsFrom,
-};
-
-EventProfileFilter _$EventProfileFilterFromJson(
-  Map<String, dynamic> json,
-) => EventProfileFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool? ?? false,
-  strictSelect: json['strictSelect'] as bool? ?? false,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: EventProfileFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-  extraProperties:
-      json['extraProperties'] == null
-          ? null
-          : EventExtraProperties.fromJson(
-            json['extraProperties'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$EventProfileFilterToJson(EventProfileFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
-      'extraProperties': instance.extraProperties?.toJson(),
-    };
-
-LendingMarketProfileFilterCriteriaDto
-_$LendingMarketProfileFilterCriteriaDtoFromJson(Map<String, dynamic> json) =>
-    LendingMarketProfileFilterCriteriaDto(
-      token:
-          (json['token'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-          [],
-      range:
-          (json['range'] as List<dynamic>?)
-              ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      eMode: json['eMode'] as bool?,
-      flashLoan: json['flashLoan'] as bool?,
-      isolated: json['isolated'] as bool?,
-      siloed: json['siloed'] as bool?,
-      canBeCollateral: json['canBeCollateral'] as bool?,
-      canBeBorrowed: json['canBeBorrowed'] as bool?,
-      canBorrowInIsolation: json['canBorrowInIsolation'] as bool?,
-      isDebtCeilingReached: json['isDebtCeilingReached'] as bool?,
-    );
-
-Map<String, dynamic> _$LendingMarketProfileFilterCriteriaDtoToJson(
-  LendingMarketProfileFilterCriteriaDto instance,
-) => <String, dynamic>{
-  'token': instance.token,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-  'eMode': instance.eMode,
-  'flashLoan': instance.flashLoan,
-  'isolated': instance.isolated,
-  'siloed': instance.siloed,
-  'canBeCollateral': instance.canBeCollateral,
-  'canBeBorrowed': instance.canBeBorrowed,
-  'canBorrowInIsolation': instance.canBorrowInIsolation,
-  'isDebtCeilingReached': instance.isDebtCeilingReached,
-};
-
-LendingMarketProfileExtraProperties
-_$LendingMarketProfileExtraPropertiesFromJson(Map<String, dynamic> json) =>
-    LendingMarketProfileExtraProperties(
-      eModeCategoryProfile: json['eModeCategoryProfile'] as bool?,
-      oraclePrice: json['oraclePrice'] as bool?,
-      participants: json['participants'] as bool?,
-    );
-
-Map<String, dynamic> _$LendingMarketProfileExtraPropertiesToJson(
-  LendingMarketProfileExtraProperties instance,
-) => <String, dynamic>{
-  'eModeCategoryProfile': instance.eModeCategoryProfile,
-  'oraclePrice': instance.oraclePrice,
-  'participants': instance.participants,
-};
-
-LendingMarketProfileFilter _$LendingMarketProfileFilterFromJson(
-  Map<String, dynamic> json,
-) => LendingMarketProfileFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool? ?? false,
-  strictSelect: json['strictSelect'] as bool? ?? false,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: LendingMarketProfileFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-  extraProperties:
-      json['extraProperties'] == null
-          ? null
-          : LendingMarketProfileExtraProperties.fromJson(
-            json['extraProperties'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$LendingMarketProfileFilterToJson(
-  LendingMarketProfileFilter instance,
-) => <String, dynamic>{
-  'select': instance.select,
-  'orderBy': instance.orderBy,
-  'includeCount': instance.includeCount,
-  'strictSelect': instance.strictSelect,
-  'top': instance.top,
-  'skip': instance.skip,
-  'filters': instance.filters.toJson(),
-  'extraProperties': instance.extraProperties?.toJson(),
 };
 
 EventGuestCheckIn _$EventGuestCheckInFromJson(Map<String, dynamic> json) =>
@@ -7512,22 +7684,3 @@ _$EventEventIdTicketTicketIdProfilePut$RequestBodyFromJson(
 Map<String, dynamic> _$EventEventIdTicketTicketIdProfilePut$RequestBodyToJson(
   EventEventIdTicketTicketIdProfilePut$RequestBody instance,
 ) => <String, dynamic>{'file': instance.file};
-
-LiquidEgldProtocolAprGet$Response _$LiquidEgldProtocolAprGet$ResponseFromJson(
-  Map<String, dynamic> json,
-) => LiquidEgldProtocolAprGet$Response(
-  apr: (json['apr'] as num?)?.toDouble(),
-  apy: (json['apy'] as num?)?.toDouble(),
-);
-
-Map<String, dynamic> _$LiquidEgldProtocolAprGet$ResponseToJson(
-  LiquidEgldProtocolAprGet$Response instance,
-) => <String, dynamic>{'apr': instance.apr, 'apy': instance.apy};
-
-LendingMarketTokenPriceEgldGet$Response
-_$LendingMarketTokenPriceEgldGet$ResponseFromJson(Map<String, dynamic> json) =>
-    LendingMarketTokenPriceEgldGet$Response(price: json['price'] as String?);
-
-Map<String, dynamic> _$LendingMarketTokenPriceEgldGet$ResponseToJson(
-  LendingMarketTokenPriceEgldGet$Response instance,
-) => <String, dynamic>{'price': instance.price};

@@ -51,6 +51,28 @@ enum CreatorProfileDtoDataType {
   const CreatorProfileDtoDataType(this.value);
 }
 
+enum CollectionDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('collectionProfile')
+  collectionprofile('collectionProfile'),
+  @JsonValue('globalOffer')
+  globaloffer('globalOffer'),
+  @JsonValue('mintProfile')
+  mintprofile('mintProfile'),
+  @JsonValue('mintStage')
+  mintstage('mintStage'),
+  @JsonValue('collectionStats')
+  collectionstats('collectionStats'),
+  @JsonValue('collectionVerification')
+  collectionverification('collectionVerification');
+
+  final String? value;
+
+  const CollectionDataType(this.value);
+}
+
 enum TokenCategory {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -73,6 +95,20 @@ enum TokenCategory {
   final String? value;
 
   const TokenCategory(this.value);
+}
+
+enum ActivityChain {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('MVX')
+  mvx('MVX'),
+  @JsonValue('SUI')
+  sui('SUI');
+
+  final String? value;
+
+  const ActivityChain(this.value);
 }
 
 enum LendingDataType {
@@ -141,6 +177,18 @@ enum KustoOrderDirection {
   final String? value;
 
   const KustoOrderDirection(this.value);
+}
+
+enum NftOfferDocFilterOrderBy {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('priceShort desc')
+  priceshortDesc('priceShort desc');
+
+  final String? value;
+
+  const NftOfferDocFilterOrderBy(this.value);
 }
 
 enum NftOfferDocDataType {
@@ -213,20 +261,6 @@ enum EsdtTokenSubType {
   final String? value;
 
   const EsdtTokenSubType(this.value);
-}
-
-enum ActivityChain {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('MVX')
-  mvx('MVX'),
-  @JsonValue('SUI')
-  sui('SUI');
-
-  final String? value;
-
-  const ActivityChain(this.value);
 }
 
 enum MarketplacesOnSaleNames {
@@ -317,6 +351,28 @@ enum CollectionProfileDocChain {
   final String? value;
 
   const CollectionProfileDocChain(this.value);
+}
+
+enum CollectionMintProfileDocHydratedDataType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('collectionProfile')
+  collectionprofile('collectionProfile'),
+  @JsonValue('globalOffer')
+  globaloffer('globalOffer'),
+  @JsonValue('mintProfile')
+  mintprofile('mintProfile'),
+  @JsonValue('mintStage')
+  mintstage('mintStage'),
+  @JsonValue('collectionStats')
+  collectionstats('collectionStats'),
+  @JsonValue('collectionVerification')
+  collectionverification('collectionVerification');
+
+  final String? value;
+
+  const CollectionMintProfileDocHydratedDataType(this.value);
 }
 
 enum CollectionStatsDtoChain {
@@ -625,68 +681,6 @@ enum CreatorProfileDocDataType {
   const CreatorProfileDocDataType(this.value);
 }
 
-enum MarketplaceActivity {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('listingCreate')
-  listingcreate('listingCreate'),
-  @JsonValue('listingWithdraw')
-  listingwithdraw('listingWithdraw'),
-  @JsonValue('listingUpdate')
-  listingupdate('listingUpdate'),
-  @JsonValue('auctionBid')
-  auctionbid('auctionBid'),
-  @JsonValue('auctionOutBid')
-  auctionoutbid('auctionOutBid'),
-  @JsonValue('offerCreate')
-  offercreate('offerCreate'),
-  @JsonValue('offerWithdraw')
-  offerwithdraw('offerWithdraw'),
-  @JsonValue('offerReject')
-  offerreject('offerReject'),
-  @JsonValue('globalOfferCreate')
-  globaloffercreate('globalOfferCreate'),
-  @JsonValue('globalOfferWithdraw')
-  globalofferwithdraw('globalOfferWithdraw'),
-  @JsonValue('trade')
-  trade('trade'),
-  @JsonValue('bulkTrade')
-  bulktrade('bulkTrade'),
-  @JsonValue('auctionTrade')
-  auctiontrade('auctionTrade'),
-  @JsonValue('otherTrade')
-  othertrade('otherTrade'),
-  @JsonValue('offerTrade')
-  offertrade('offerTrade'),
-  @JsonValue('globalOfferTrade')
-  globaloffertrade('globalOfferTrade'),
-  @JsonValue('deposit')
-  deposit('deposit'),
-  @JsonValue('withdrawDeposit')
-  withdrawdeposit('withdrawDeposit'),
-  @JsonValue('setCollectionConfig')
-  setcollectionconfig('setCollectionConfig');
-
-  final String? value;
-
-  const MarketplaceActivity(this.value);
-}
-
-enum NotificationAssetType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('nft')
-  nft('nft'),
-  @JsonValue('user')
-  user('user');
-
-  final String? value;
-
-  const NotificationAssetType(this.value);
-}
-
 enum DevicePlatform {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -791,6 +785,104 @@ enum WalletClientType {
   final String? value;
 
   const WalletClientType(this.value);
+}
+
+enum NftActivityType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('nftCreate')
+  nftcreate('nftCreate'),
+  @JsonValue('nftBurn')
+  nftburn('nftBurn'),
+  @JsonValue('nftUpdate')
+  nftupdate('nftUpdate'),
+  @JsonValue('nftTransfer')
+  nfttransfer('nftTransfer'),
+  @JsonValue('listingCreate')
+  listingcreate('listingCreate'),
+  @JsonValue('listingWithdraw')
+  listingwithdraw('listingWithdraw'),
+  @JsonValue('listingUpdate')
+  listingupdate('listingUpdate'),
+  @JsonValue('auctionBid')
+  auctionbid('auctionBid'),
+  @JsonValue('auctionOutBid')
+  auctionoutbid('auctionOutBid'),
+  @JsonValue('offerCreate')
+  offercreate('offerCreate'),
+  @JsonValue('offerWithdraw')
+  offerwithdraw('offerWithdraw'),
+  @JsonValue('offerReject')
+  offerreject('offerReject'),
+  @JsonValue('globalOfferCreate')
+  globaloffercreate('globalOfferCreate'),
+  @JsonValue('globalOfferWithdraw')
+  globalofferwithdraw('globalOfferWithdraw'),
+  @JsonValue('trade')
+  trade('trade'),
+  @JsonValue('bulkTrade')
+  bulktrade('bulkTrade'),
+  @JsonValue('auctionTrade')
+  auctiontrade('auctionTrade'),
+  @JsonValue('otherTrade')
+  othertrade('otherTrade'),
+  @JsonValue('offerTrade')
+  offertrade('offerTrade'),
+  @JsonValue('globalOfferTrade')
+  globaloffertrade('globalOfferTrade'),
+  @JsonValue('stake')
+  stake('stake'),
+  @JsonValue('unStake')
+  unstake('unStake'),
+  @JsonValue('createGame')
+  creategame('createGame'),
+  @JsonValue('joinGame')
+  joingame('joinGame'),
+  @JsonValue('cancelGame')
+  cancelgame('cancelGame'),
+  @JsonValue('endGame')
+  endgame('endGame');
+
+  final String? value;
+
+  const NftActivityType(this.value);
+}
+
+enum NftActivityEventSource {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('mvxBuiltIn')
+  mvxbuiltin('mvxBuiltIn'),
+  @JsonValue('xoxno')
+  xoxno('xoxno'),
+  @JsonValue('frameit')
+  frameit('frameit'),
+  @JsonValue('deadrare')
+  deadrare('deadrare'),
+  @JsonValue('krogan')
+  krogan('krogan'),
+  @JsonValue('xoxnoLaunchpad')
+  xoxnolaunchpad('xoxnoLaunchpad'),
+  @JsonValue('xoxnoStaking')
+  xoxnostaking('xoxnoStaking'),
+  @JsonValue('xoxnoP2P')
+  xoxnop2p('xoxnoP2P'),
+  @JsonValue('xoxnoLs')
+  xoxnols('xoxnoLs'),
+  @JsonValue('xoxnoEgldLs')
+  xoxnoegldls('xoxnoEgldLs'),
+  @JsonValue('xoxnoLending')
+  xoxnolending('xoxnoLending'),
+  @JsonValue('boberBattle')
+  boberbattle('boberBattle'),
+  @JsonValue('boberWheel')
+  boberwheel('boberWheel');
+
+  final String? value;
+
+  const NftActivityEventSource(this.value);
 }
 
 enum NftActivityDocHydratedChain {
@@ -1143,136 +1235,4 @@ enum RewardDetailsRewardType {
   final String? value;
 
   const RewardDetailsRewardType(this.value);
-}
-
-enum NftActivityType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('nftCreate')
-  nftcreate('nftCreate'),
-  @JsonValue('nftBurn')
-  nftburn('nftBurn'),
-  @JsonValue('nftUpdate')
-  nftupdate('nftUpdate'),
-  @JsonValue('nftTransfer')
-  nfttransfer('nftTransfer'),
-  @JsonValue('listingCreate')
-  listingcreate('listingCreate'),
-  @JsonValue('listingWithdraw')
-  listingwithdraw('listingWithdraw'),
-  @JsonValue('listingUpdate')
-  listingupdate('listingUpdate'),
-  @JsonValue('auctionBid')
-  auctionbid('auctionBid'),
-  @JsonValue('auctionOutBid')
-  auctionoutbid('auctionOutBid'),
-  @JsonValue('offerCreate')
-  offercreate('offerCreate'),
-  @JsonValue('offerWithdraw')
-  offerwithdraw('offerWithdraw'),
-  @JsonValue('offerReject')
-  offerreject('offerReject'),
-  @JsonValue('globalOfferCreate')
-  globaloffercreate('globalOfferCreate'),
-  @JsonValue('globalOfferWithdraw')
-  globalofferwithdraw('globalOfferWithdraw'),
-  @JsonValue('trade')
-  trade('trade'),
-  @JsonValue('bulkTrade')
-  bulktrade('bulkTrade'),
-  @JsonValue('auctionTrade')
-  auctiontrade('auctionTrade'),
-  @JsonValue('otherTrade')
-  othertrade('otherTrade'),
-  @JsonValue('offerTrade')
-  offertrade('offerTrade'),
-  @JsonValue('globalOfferTrade')
-  globaloffertrade('globalOfferTrade'),
-  @JsonValue('stake')
-  stake('stake'),
-  @JsonValue('unStake')
-  unstake('unStake'),
-  @JsonValue('createGame')
-  creategame('createGame'),
-  @JsonValue('joinGame')
-  joingame('joinGame'),
-  @JsonValue('cancelGame')
-  cancelgame('cancelGame'),
-  @JsonValue('endGame')
-  endgame('endGame');
-
-  final String? value;
-
-  const NftActivityType(this.value);
-}
-
-enum NftActivityEventSource {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('mvxBuiltIn')
-  mvxbuiltin('mvxBuiltIn'),
-  @JsonValue('xoxno')
-  xoxno('xoxno'),
-  @JsonValue('frameit')
-  frameit('frameit'),
-  @JsonValue('deadrare')
-  deadrare('deadrare'),
-  @JsonValue('krogan')
-  krogan('krogan'),
-  @JsonValue('xoxnoLaunchpad')
-  xoxnolaunchpad('xoxnoLaunchpad'),
-  @JsonValue('xoxnoStaking')
-  xoxnostaking('xoxnoStaking'),
-  @JsonValue('xoxnoP2P')
-  xoxnop2p('xoxnoP2P'),
-  @JsonValue('xoxnoLs')
-  xoxnols('xoxnoLs'),
-  @JsonValue('xoxnoEgldLs')
-  xoxnoegldls('xoxnoEgldLs'),
-  @JsonValue('xoxnoLending')
-  xoxnolending('xoxnoLending'),
-  @JsonValue('boberBattle')
-  boberbattle('boberBattle'),
-  @JsonValue('boberWheel')
-  boberwheel('boberWheel');
-
-  final String? value;
-
-  const NftActivityEventSource(this.value);
-}
-
-enum CollectionDataType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('collectionProfile')
-  collectionprofile('collectionProfile'),
-  @JsonValue('globalOffer')
-  globaloffer('globalOffer'),
-  @JsonValue('mintProfile')
-  mintprofile('mintProfile'),
-  @JsonValue('mintStage')
-  mintstage('mintStage'),
-  @JsonValue('collectionStats')
-  collectionstats('collectionStats'),
-  @JsonValue('collectionVerification')
-  collectionverification('collectionVerification');
-
-  final String? value;
-
-  const CollectionDataType(this.value);
-}
-
-enum NftOfferDocFilterOrderBy {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('priceShort desc')
-  priceshortDesc('priceShort desc');
-
-  final String? value;
-
-  const NftOfferDocFilterOrderBy(this.value);
 }
