@@ -236,9 +236,7 @@ class UserTypeSafeApi {
         .toList();
   }
 
-  Future<NftOfferPaginated> offers({
-    required final String address,
-  }) async {
+  Future<NftOfferPaginated> offers({required final String address}) async {
     final data = await _api.offers(address: address);
     return NftOfferPaginated.fromJson(data);
   }
@@ -362,17 +360,17 @@ class UserTypeSafeApi {
     return UserStatsDto.fromJson(data);
   }
 
-  Future<NotificationResponse> notifications({
+  Future<PushNotificationResponse> notifications({
     final int skip = -1,
     final int top = -1,
   }) async {
     final data = await _api.notifications(skip: skip, top: top);
-    return NotificationResponse.fromJson(data);
+    return PushNotificationResponse.fromJson(data);
   }
 
-  Future<NotificationCountResponse> notificationsUnreadCount() async {
+  Future<PushNotificationResponse> notificationsUnreadCount() async {
     final data = await _api.notificationsUnreadCount();
-    return NotificationCountResponse.fromJson(data);
+    return PushNotificationResponse.fromJson(data);
   }
 
   Future<SuccessDto> notificationsClear() async {
