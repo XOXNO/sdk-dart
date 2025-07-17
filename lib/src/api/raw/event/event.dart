@@ -108,6 +108,17 @@ class EventRawApi {
     );
   }
 
+  Future<Map<String, dynamic>> clearNotification({
+    required String notificationId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.clearNotification');
+    logger.finest('clear notification');
+    return genericDelete(
+      client,
+      generateUri(path: '${client.baseUrl}/mobile/history/clear-id/$notificationId'),
+    );
+  }
+
   Future<Map<String, dynamic>> getEventById({required String eventId}) {
     final logger = Logger('Xoxno.EventRawApi.getEventById');
     logger.finest('get event by id');

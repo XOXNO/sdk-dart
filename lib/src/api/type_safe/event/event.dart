@@ -54,6 +54,13 @@ class EventTypeSafeApi {
     return PushNotificationDoc.fromJson(data);
   }
 
+  Future<NotificationSuccessResponseDto> clearNotification({
+    required String notificationId,
+  }) async {
+    final data = await _api.clearNotification(notificationId: notificationId);
+    return NotificationSuccessResponseDto.fromJson(data);
+  }
+
   Future<NotificationSuccessResponseDto> markAllNotificationsAsRead() async {
     final data = await _api.markAllNotificationsAsRead();
     return NotificationSuccessResponseDto.fromJson(data);
