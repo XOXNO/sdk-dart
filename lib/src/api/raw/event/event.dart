@@ -833,15 +833,14 @@ class EventRawApi {
 
   Future<List<dynamic>> getAnsweredQuestions({
     required String eventId,
-    required String guestId,
+    required String address,
   }) {
     final logger = Logger('Xoxno.EventRawApi.getAnsweredQuestions');
     logger.finest('get answered questions');
     return genericGet(
       client,
       generateUri(
-        path:
-            '${client.baseUrl}/event/$eventId/guest/$guestId/answered-questions',
+        path: '${client.baseUrl}/event/$eventId/answered-questions/$address',
       ),
     );
   }

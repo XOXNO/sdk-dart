@@ -576,11 +576,11 @@ class EventTypeSafeApi {
 
   Future<List<AnsweredQuestionWithDetails>> getAnsweredQuestions({
     required String eventId,
-    required String guestId,
+    required String address,
   }) async {
     final data = await _api.getAnsweredQuestions(
       eventId: eventId,
-      guestId: guestId,
+      address: address,
     );
     return data.map((e) => AnsweredQuestionWithDetails.fromJson(e)).toList();
   }

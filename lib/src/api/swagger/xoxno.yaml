@@ -8699,7 +8699,7 @@ paths:
       summary: Manual check-in
       tags:
         - Ticketing
-  /event/{eventId}/guest/{guestId}/answered-questions:
+  /event/{eventId}/answered-questions/{address}:
     get:
       operationId: TicketingDataController_getAnsweredQuestions
       parameters:
@@ -8709,7 +8709,7 @@ paths:
           description: ID of the event
           schema:
             type: string
-        - name: guestId
+        - name: address
           required: true
           in: path
           description: Guest wallet address
@@ -8763,7 +8763,7 @@ paths:
       summary: Approve or reject guests registration
       tags:
         - Ticketing
-  /event/{eventId}/guest/{address}/google/pass:
+  /event/{eventId}/google-pass/{address}:
     get:
       operationId: TicketingDataController_createGooglePassForGuest
       parameters:
