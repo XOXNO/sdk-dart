@@ -115,7 +115,9 @@ class EventRawApi {
     logger.finest('clear notification');
     return genericDelete(
       client,
-      generateUri(path: '${client.baseUrl}/mobile/history/clear-id/$notificationId'),
+      generateUri(
+        path: '${client.baseUrl}/mobile/history/clear-id/$notificationId',
+      ),
     );
   }
 
@@ -321,9 +323,7 @@ class EventRawApi {
 
     final request = http.MultipartRequest(
       'PUT',
-      generateUri(
-        path: '${client.baseUrl}/event/$eventId/ticket/$ticketId/profile',
-      ),
+      generateUri(path: '${client.baseUrl}/event/$eventId/ticket/$ticketId'),
     );
 
     final mimeTypeStr = lookupMimeType(file.path) ?? 'image/jpeg';
@@ -568,9 +568,7 @@ class EventRawApi {
     logger.finest('claim invitation');
     return genericPost(
       client,
-      generateUri(
-        path: '${client.baseUrl}/event/$eventId/invite/$inviteId/claim',
-      ),
+      generateUri(path: '${client.baseUrl}/event/$eventId/invite/$inviteId'),
       body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
@@ -582,11 +580,9 @@ class EventRawApi {
   }) {
     final logger = Logger('Xoxno.EventRawApi.cancelInvitation');
     logger.finest('cancel invitation');
-    return genericPost(
+    return genericDelete(
       client,
-      generateUri(
-        path: '${client.baseUrl}/event/$eventId/invite/$inviteId/cancel',
-      ),
+      generateUri(path: '${client.baseUrl}/event/$eventId/invite/$inviteId'),
     );
   }
 
