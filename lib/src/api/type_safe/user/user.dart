@@ -72,7 +72,7 @@ class UserTypeSafeApi {
     return UserProfileDoc.fromJson(data);
   }
 
-  Future<UserProfileDto> me({required final String address}) async {
+  Future<UserProfileDto> me() async {
     final data = await _api.me();
     return UserProfileDto.fromJson(data);
   }
