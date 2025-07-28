@@ -17,14 +17,14 @@ class NftActivityTypeSafeApi {
     return NftActivityPaginated.fromJson(data);
   }
 
-  Future<AnalyticsVolumeResponseDto> volume({
+  Future<VolumeGraph> volume({
     DateTime? startTime,
     DateTime? endTime,
     String bin = '',
   }) async {
     final data =
         await _api.volume(startTime: startTime, endTime: endTime, bin: bin);
-    return AnalyticsVolumeResponseDto.fromJson(data);
+    return VolumeGraph.fromJson(data);
   }
 
   Future<GlobalAnalyticsOverviewResponseDto> overview() async {

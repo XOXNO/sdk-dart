@@ -5,7 +5,7 @@ class TokensTypeSafeApi {
 
   const TokensTypeSafeApi(this._api);
 
-  Future<List<TokenDocDto>> tokens({
+  Future<List<TokenDataDocHydrated>> tokens({
     final String identifier = '',
     final List<TokenCategory> category = const [],
   }) async {
@@ -13,21 +13,19 @@ class TokensTypeSafeApi {
       identifier: identifier,
       category: category.map((element) => element.name).toList(),
     );
-    return data.map((element) => TokenDocDto.fromJson(element)).toList();
+    return data.map((element) => TokenDataDocHydrated.fromJson(element)).toList();
   }
 
-  Future<List<TokenDocDto>> swapTokens() async {
+  Future<List<TokenDataDocHydrated>> swapTokens() async {
     final data = await _api.swapTokens();
-    return data.map((element) => TokenDocDto.fromJson(element)).toList();
+    return data.map((element) => TokenDataDocHydrated.fromJson(element)).toList();
   }
 
-  // TODO(kevin): missing return type
   Future<Map<String, num>> usdPrice({final String identifier = ''}) async {
     final data = await _api.usdPrice(identifier: identifier);
     return data;
   }
 
-  // TODO(kevin): missing return type
   Future<Map<String, num>> egldFiatPrice({
     required final String fiatCurrencies,
     final int value = -1,

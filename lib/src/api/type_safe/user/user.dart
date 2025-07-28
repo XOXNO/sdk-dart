@@ -61,15 +61,15 @@ class UserTypeSafeApi {
     return UserProfileDto.fromJson(data);
   }
 
-  Future<UserProfileDto> updateProfile({
+  Future<UserProfileDoc> updateProfile({
     required final String address,
-    required final EditUserProfileDto body,
+    required final UserProfileEditDto body,
   }) async {
     final data = await _api.updateProfile(
       address: address,
       body: body.toJson(),
     );
-    return UserProfileDto.fromJson(data);
+    return UserProfileDoc.fromJson(data);
   }
 
   Future<UserProfileDto> me({required final String address}) async {
@@ -223,7 +223,7 @@ class UserTypeSafeApi {
     return data;
   }
 
-  Future<List<InventorySummaryDto>> inventorySummary({
+  Future<List<InventorySummaryDtoHydrated>> inventorySummary({
     required final String address,
     final bool? activeAuctions,
   }) async {
@@ -232,7 +232,7 @@ class UserTypeSafeApi {
       activeAuctions: activeAuctions,
     );
     return data
-        .map((element) => InventorySummaryDto.fromJson(element))
+        .map((element) => InventorySummaryDtoHydrated.fromJson(element))
         .toList();
   }
 
@@ -254,12 +254,12 @@ class UserTypeSafeApi {
     return LikeNftDto.fromJson(data);
   }
 
-  Future<List<CollectionMintProfileDoc>> creatorListing({
+  Future<List<CreatorDetailsDto>> creatorListing({
     required final String scAddress,
   }) async {
     final data = await _api.creatorListing(scAddress: scAddress);
     return data
-        .map((element) => CollectionMintProfileDoc.fromJson(element))
+        .map((element) => CreatorDetailsDto.fromJson(element))
         .toList();
   }
 
@@ -378,8 +378,8 @@ class UserTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<NotificationDoc> notificationsRead() async {
+  Future<SuccessDto> notificationsRead() async {
     final data = await _api.notificationsRead();
-    return NotificationDoc.fromJson(data);
+    return SuccessDto.fromJson(data);
   }
 }

@@ -53,7 +53,7 @@ class CollectionTypeSafeApi {
 
   Future<CollectionProfileDoc> updateProfile({
     required final String collection,
-    required final EditUserProfileDto body,
+    required final UserProfileEditDto body,
   }) async {
     final data = await _api.updateProfile(
       collection: collection,
@@ -73,7 +73,6 @@ class CollectionTypeSafeApi {
     return FloorPriceDto.fromJson(data);
   }
 
-  // TODO(kevin): missing return type
   Future<Map<String, num>> floorPrice({
     required final List<String> collections,
   }) async {
@@ -106,12 +105,12 @@ class CollectionTypeSafeApi {
     return CollectionMintProfilePaginated.fromJson(data);
   }
 
-  Future<DropInfoDto> dropInfo({required final String collection}) async {
+  Future<CollectionMintProfileDocWithStages> dropInfo({required final String collection}) async {
     final data = await _api.dropInfo(collection: collection);
-    return DropInfoDto.fromJson(data);
+    return CollectionMintProfileDocWithStages.fromJson(data);
   }
 
-  Future<DropInfoDto> creatorDropInfo({
+  Future<CollectionMintProfileDocWithStages> creatorDropInfo({
     required final String creator,
     required final String collection,
   }) async {
@@ -119,7 +118,7 @@ class CollectionTypeSafeApi {
       creator: creator,
       collection: collection,
     );
-    return DropInfoDto.fromJson(data);
+    return CollectionMintProfileDocWithStages.fromJson(data);
   }
 
   Future<CollectionProfileDoc> uploadPicture({
@@ -168,12 +167,12 @@ class CollectionTypeSafeApi {
     return CollectionOwnerDto.fromJson(data);
   }
 
-  Future<CollectionStatsDto> stats({required final String collection}) async {
+  Future<CollectionStatsDocHydrated> stats({required final String collection}) async {
     final data = await _api.stats(collection: collection);
-    return CollectionStatsDto.fromJson(data);
+    return CollectionStatsDocHydrated.fromJson(data);
   }
 
-  Future<CollectionStatsDto> statsQuery({
+  Future<CollectionStatsPaginated> statsQuery({
     final CollectionStatsFilter? filter,
   }) async {
     final f = switch (filter?.toJson()) {
@@ -181,7 +180,7 @@ class CollectionTypeSafeApi {
       (Map<String, dynamic> value) => json.encode(value),
     };
     final data = await _api.statsQuery(filter: f);
-    return CollectionStatsDto.fromJson(data);
+    return CollectionStatsPaginated.fromJson(data);
   }
 
   Future<GlobalOfferPaginated> globalOfferQuery({
@@ -202,9 +201,9 @@ class CollectionTypeSafeApi {
     return StakingSummary.fromJson(data);
   }
 
-  Future<StakingExploreDto> stakingExplore() async {
+  Future<StakingExploreDtoHydrated> stakingExplore() async {
     final data = await _api.stakingExplore();
-    return StakingExploreDto.fromJson(data);
+    return StakingExploreDtoHydrated.fromJson(data);
   }
 
   Future<AnalyticsVolumeDto> analyticsVolume({

@@ -35,9 +35,9 @@ class NftTypeSafeApi {
     return NftOfferPaginated.fromJson(data);
   }
 
-  Future<List<NftDoc>> pinned() async {
+  Future<List<NftDocHydrated>> pinned() async {
     final data = await _api.pinned();
-    return data.map((element) => NftDoc.fromJson(element)).toList();
+    return data.map((element) => NftDocHydrated.fromJson(element)).toList();
   }
 
   Future<SignDataDto> signWithdraw({
@@ -47,8 +47,8 @@ class NftTypeSafeApi {
     return SignDataDto.fromJson(data);
   }
 
-  Future<NftHydrated> nft({required final String identifier}) async {
+  Future<NftDocFull> nft({required final String identifier}) async {
     final data = await _api.nft(identifier: identifier);
-    return NftHydrated.fromJson(data);
+    return NftDocFull.fromJson(data);
   }
 }

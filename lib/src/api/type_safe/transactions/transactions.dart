@@ -19,13 +19,13 @@ class TransactionsTypeSafeApi {
     return TransactionSendResult.fromJson(data);
   }
 
-  Future<List<BatchTransactionResponse>> batchTransactions({
+  Future<List<TransactionCreate>> batchTransactions({
     required final List<TransactionCreate> transactions,
   }) async {
     final data = await _api.batchTransactions(
         body: transactions.map((tx) => tx.toJson()).toList());
     return data
-        .map((element) => BatchTransactionResponse.fromJson(element))
+        .map((element) => TransactionCreate.fromJson(element))
         .toList();
   }
 }

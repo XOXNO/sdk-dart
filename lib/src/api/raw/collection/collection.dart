@@ -167,7 +167,7 @@ class CollectionRawApi {
     logger.finest('drop info');
     return genericGet(
       client,
-      generateUri(path: '${client.baseUrl}/collection/$collection/drops-info'),
+      generateUri(path: '${client.baseUrl}/collection/$collection/drop-info'),
     );
   }
 
@@ -180,7 +180,7 @@ class CollectionRawApi {
     return genericGet(
       client,
       generateUri(
-        path: '${client.baseUrl}/collection/$creator/$collection/drops-info',
+        path: '${client.baseUrl}/collection/$creator/$collection/drop-info',
       ),
     );
   }

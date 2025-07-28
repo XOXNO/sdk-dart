@@ -13,14 +13,14 @@ class StakingTypeSafeApi {
 
   Future<StakingSummary> updateProfile(
       {required final String poolId,
-      required final StakingPostDTO body}) async {
+      required final StakingEditDto body}) async {
     final data = await _api.updateProfile(poolId: poolId, body: body.toJson());
     return StakingSummary.fromJson(data);
   }
 
-  Future<List<NftDoc>> whitelist({required final String poolId}) async {
+  Future<List<NftDocHydrated>> whitelist({required final String poolId}) async {
     final data = await _api.whitelist(poolId: poolId);
-    return data.map((element) => NftDoc.fromJson(element)).toList();
+    return data.map((element) => NftDocHydrated.fromJson(element)).toList();
   }
 
   Future<StakingSummary> uploadPicture({
