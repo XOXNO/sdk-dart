@@ -4110,7 +4110,7 @@ RegistrationDetailsDto _$RegistrationDetailsDtoFromJson(
   refundable: json['refundable'] as bool,
   nameWithNumber: json['nameWithNumber'] as bool,
   botProtection: json['botProtection'] as bool,
-  acceptCrypto: json['acceptCrypto'] as bool,
+  acceptCrypto: json['acceptCrypto'] as bool?,
   soldCount: (json['soldCount'] as num?)?.toInt(),
   hasCustomQuestions: json['hasCustomQuestions'] as bool?,
   emailSender: json['emailSender'] as String?,

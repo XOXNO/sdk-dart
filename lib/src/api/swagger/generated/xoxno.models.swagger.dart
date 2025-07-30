@@ -20688,7 +20688,7 @@ class RegistrationDetailsDto {
     required this.refundable,
     required this.nameWithNumber,
     required this.botProtection,
-    required this.acceptCrypto,
+    this.acceptCrypto,
     this.soldCount,
     this.hasCustomQuestions,
     this.emailSender,
@@ -20733,7 +20733,7 @@ class RegistrationDetailsDto {
   @JsonKey(name: 'botProtection')
   final bool botProtection;
   @JsonKey(name: 'acceptCrypto')
-  final bool acceptCrypto;
+  final bool? acceptCrypto;
   @JsonKey(name: 'soldCount')
   final int? soldCount;
   @JsonKey(name: 'hasCustomQuestions')
@@ -20922,7 +20922,7 @@ extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
     Wrapped<bool>? refundable,
     Wrapped<bool>? nameWithNumber,
     Wrapped<bool>? botProtection,
-    Wrapped<bool>? acceptCrypto,
+    Wrapped<bool?>? acceptCrypto,
     Wrapped<int?>? soldCount,
     Wrapped<bool?>? hasCustomQuestions,
     Wrapped<String?>? emailSender,
