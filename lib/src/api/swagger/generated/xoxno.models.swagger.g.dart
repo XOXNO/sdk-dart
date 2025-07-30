@@ -114,9 +114,32 @@ Map<String, dynamic> _$StablesDtoToJson(StablesDto instance) =>
       'weight': instance.weight,
     };
 
+SuiCoinObjectDto _$SuiCoinObjectDtoFromJson(Map<String, dynamic> json) =>
+    SuiCoinObjectDto(
+      objectId: json['objectId'] as String,
+      balance: json['balance'] as String,
+      digest: json['digest'] as String,
+      version: json['version'] as String,
+    );
+
+Map<String, dynamic> _$SuiCoinObjectDtoToJson(SuiCoinObjectDto instance) =>
+    <String, dynamic>{
+      'objectId': instance.objectId,
+      'balance': instance.balance,
+      'digest': instance.digest,
+      'version': instance.version,
+    };
+
 TokenDataDocWithBalance _$TokenDataDocWithBalanceFromJson(
   Map<String, dynamic> json,
 ) => TokenDataDocWithBalance(
+  identifier: json['identifier'] as String,
+  decimals: (json['decimals'] as num).toDouble(),
+  ticker: json['ticker'] as String,
+  name: json['name'] as String,
+  svgUrl: json['svgUrl'] as String,
+  pngUrl: json['pngUrl'] as String,
+  chain: TokenDataDocWithBalance.activityChainChainFromJson(json['chain']),
   usdPrice: (json['usdPrice'] as num).toDouble(),
   isAshSupported: json['isAshSupported'] as bool,
   nonce: (json['nonce'] as num).toDouble(),
@@ -125,11 +148,23 @@ TokenDataDocWithBalance _$TokenDataDocWithBalanceFromJson(
   usdValue: (json['usdValue'] as num).toDouble(),
   egldValue: (json['egldValue'] as num).toDouble(),
   weight: (json['weight'] as num).toDouble(),
+  objects:
+      (json['objects'] as List<dynamic>?)
+          ?.map((e) => SuiCoinObjectDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
 );
 
 Map<String, dynamic> _$TokenDataDocWithBalanceToJson(
   TokenDataDocWithBalance instance,
 ) => <String, dynamic>{
+  'identifier': instance.identifier,
+  'decimals': instance.decimals,
+  'ticker': instance.ticker,
+  'name': instance.name,
+  'svgUrl': instance.svgUrl,
+  'pngUrl': instance.pngUrl,
+  'chain': activityChainToJson(instance.chain),
   'usdPrice': instance.usdPrice,
   'isAshSupported': instance.isAshSupported,
   'nonce': instance.nonce,
@@ -138,6 +173,7 @@ Map<String, dynamic> _$TokenDataDocWithBalanceToJson(
   'usdValue': instance.usdValue,
   'egldValue': instance.egldValue,
   'weight': instance.weight,
+  'objects': instance.objects?.map((e) => e.toJson()).toList(),
 };
 
 UserTokenInventoryResponseDto _$UserTokenInventoryResponseDtoFromJson(
@@ -153,6 +189,7 @@ UserTokenInventoryResponseDto _$UserTokenInventoryResponseDtoFromJson(
           )
           .toList() ??
       [],
+  chain: activityChainFromJson(json['chain']),
 );
 
 Map<String, dynamic> _$UserTokenInventoryResponseDtoToJson(
@@ -162,6 +199,7 @@ Map<String, dynamic> _$UserTokenInventoryResponseDtoToJson(
   'esdts': instance.esdts.toJson(),
   'stables': instance.stables.toJson(),
   'tokens': instance.tokens.map((e) => e.toJson()).toList(),
+  'chain': activityChainToJson(instance.chain),
 };
 
 SocialsDto _$SocialsDtoFromJson(Map<String, dynamic> json) => SocialsDto(
@@ -699,6 +737,148 @@ Map<String, dynamic> _$CollectionStatsFilterToJson(
   'filters': instance.filters.toJson(),
 };
 
+AllTimeHigh _$AllTimeHighFromJson(Map<String, dynamic> json) => AllTimeHigh(
+  price: (json['price'] as num).toDouble(),
+  timestamp: (json['timestamp'] as num).toDouble(),
+  txHash: json['txHash'] as String,
+  identifier: json['identifier'] as String,
+);
+
+Map<String, dynamic> _$AllTimeHighToJson(AllTimeHigh instance) =>
+    <String, dynamic>{
+      'price': instance.price,
+      'timestamp': instance.timestamp,
+      'txHash': instance.txHash,
+      'identifier': instance.identifier,
+    };
+
+TradingDataSummary _$TradingDataSummaryFromJson(Map<String, dynamic> json) =>
+    TradingDataSummary(
+      volume: (json['volume'] as num).toDouble(),
+      volumeMargin: (json['volumeMargin'] as num).toDouble(),
+      trades: (json['trades'] as num).toDouble(),
+      tradesMargin: (json['tradesMargin'] as num).toDouble(),
+      minPrice: (json['minPrice'] as num?)?.toDouble(),
+      maxPrice: (json['maxPrice'] as num?)?.toDouble(),
+      averagePrice: (json['averagePrice'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$TradingDataSummaryToJson(TradingDataSummary instance) =>
+    <String, dynamic>{
+      'volume': instance.volume,
+      'volumeMargin': instance.volumeMargin,
+      'trades': instance.trades,
+      'tradesMargin': instance.tradesMargin,
+      'minPrice': instance.minPrice,
+      'maxPrice': instance.maxPrice,
+      'averagePrice': instance.averagePrice,
+    };
+
+TradingStatistics _$TradingStatisticsFromJson(Map<String, dynamic> json) =>
+    TradingStatistics(
+      totalVolume: (json['totalVolume'] as num).toDouble(),
+      totalTrades: (json['totalTrades'] as num).toDouble(),
+      averagePrice: (json['averagePrice'] as num?)?.toDouble(),
+      allTimeHigh: AllTimeHigh.fromJson(
+        json['allTimeHigh'] as Map<String, dynamic>,
+      ),
+      day: TradingDataSummary.fromJson(json['day'] as Map<String, dynamic>),
+      week: TradingDataSummary.fromJson(json['week'] as Map<String, dynamic>),
+      month: TradingDataSummary.fromJson(json['month'] as Map<String, dynamic>),
+      quarter: TradingDataSummary.fromJson(
+        json['quarter'] as Map<String, dynamic>,
+      ),
+      halfYear: TradingDataSummary.fromJson(
+        json['halfYear'] as Map<String, dynamic>,
+      ),
+      year: TradingDataSummary.fromJson(json['year'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TradingStatisticsToJson(TradingStatistics instance) =>
+    <String, dynamic>{
+      'totalVolume': instance.totalVolume,
+      'totalTrades': instance.totalTrades,
+      'averagePrice': instance.averagePrice,
+      'allTimeHigh': instance.allTimeHigh.toJson(),
+      'day': instance.day.toJson(),
+      'week': instance.week.toJson(),
+      'month': instance.month.toJson(),
+      'quarter': instance.quarter.toJson(),
+      'halfYear': instance.halfYear.toJson(),
+      'year': instance.year.toJson(),
+    };
+
+ShortCollectionInfoDoc _$ShortCollectionInfoDocFromJson(
+  Map<String, dynamic> json,
+) => ShortCollectionInfoDoc(
+  name: json['name'] as String,
+  description: json['description'] as String,
+  isVisible: json['isVisible'] as bool,
+  isVerified: json['isVerified'] as bool,
+  socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+  profile: json['profile'] as String,
+  banner: json['banner'] as String,
+  chain: shortCollectionInfoDocChainFromJson(json['chain']),
+  owner: json['owner'] as String,
+  collectionSize: (json['collectionSize'] as num?)?.toDouble(),
+  holdersCount: (json['holdersCount'] as num?)?.toDouble(),
+  followCount: (json['followCount'] as num?)?.toDouble(),
+  volume: (json['volume'] as num).toDouble(),
+);
+
+Map<String, dynamic> _$ShortCollectionInfoDocToJson(
+  ShortCollectionInfoDoc instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'description': instance.description,
+  'isVisible': instance.isVisible,
+  'isVerified': instance.isVerified,
+  'socials': instance.socials.toJson(),
+  'profile': instance.profile,
+  'banner': instance.banner,
+  'chain': shortCollectionInfoDocChainToJson(instance.chain),
+  'owner': instance.owner,
+  'collectionSize': instance.collectionSize,
+  'holdersCount': instance.holdersCount,
+  'followCount': instance.followCount,
+  'volume': instance.volume,
+};
+
+CollectionStatsDocHydrated _$CollectionStatsDocHydratedFromJson(
+  Map<String, dynamic> json,
+) => CollectionStatsDocHydrated(
+  dataType: json['dataType'] as Object,
+  collection: json['collection'] as String,
+  floorPrice: (json['floorPrice'] as num?)?.toDouble(),
+  listedCount: (json['listedCount'] as num).toDouble(),
+  tradingStats: TradingStatistics.fromJson(
+    json['tradingStats'] as Map<String, dynamic>,
+  ),
+  chain: collectionStatsDocHydratedChainFromJson(json['chain']),
+  ts: (json['_ts'] as num).toDouble(),
+  id: json['id'] as String,
+  collectionInfo:
+      json['collectionInfo'] == null
+          ? null
+          : ShortCollectionInfoDoc.fromJson(
+            json['collectionInfo'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$CollectionStatsDocHydratedToJson(
+  CollectionStatsDocHydrated instance,
+) => <String, dynamic>{
+  'dataType': instance.dataType,
+  'collection': instance.collection,
+  'floorPrice': instance.floorPrice,
+  'listedCount': instance.listedCount,
+  'tradingStats': instance.tradingStats.toJson(),
+  'chain': collectionStatsDocHydratedChainToJson(instance.chain),
+  '_ts': instance.ts,
+  'id': instance.id,
+  'collectionInfo': instance.collectionInfo?.toJson(),
+};
+
 CollectionStatsPaginated _$CollectionStatsPaginatedFromJson(
   Map<String, dynamic> json,
 ) => CollectionStatsPaginated(
@@ -706,7 +886,10 @@ CollectionStatsPaginated _$CollectionStatsPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) =>
+                CollectionStatsDocHydrated.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       [],
 );
@@ -716,7 +899,7 @@ Map<String, dynamic> _$CollectionStatsPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 CheckLikeStatusResponseDto _$CheckLikeStatusResponseDtoFromJson(
@@ -744,6 +927,23 @@ Map<String, dynamic> _$UserFavoriteResponseDtoToJson(
 TokenDataDocHydrated _$TokenDataDocHydratedFromJson(
   Map<String, dynamic> json,
 ) => TokenDataDocHydrated(
+  identifier: json['identifier'] as String,
+  decimals: (json['decimals'] as num).toDouble(),
+  ticker: json['ticker'] as String,
+  name: json['name'] as String,
+  svgUrl: json['svgUrl'] as String,
+  pngUrl: json['pngUrl'] as String,
+  chain: TokenDataDocHydrated.activityChainChainFromJson(json['chain']),
+  id: json['id'] as String,
+  collection: json['collection'] as String,
+  dataType: TokenDataDocHydrated.tokenDataTypeDataTypeFromJson(
+    json['dataType'],
+  ),
+  type: json['type'] as String,
+  category:
+      (json['category'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  ts: (json['_ts'] as num).toDouble(),
   usdPrice: (json['usdPrice'] as num).toDouble(),
   isAshSupported: json['isAshSupported'] as bool,
 );
@@ -751,6 +951,19 @@ TokenDataDocHydrated _$TokenDataDocHydratedFromJson(
 Map<String, dynamic> _$TokenDataDocHydratedToJson(
   TokenDataDocHydrated instance,
 ) => <String, dynamic>{
+  'identifier': instance.identifier,
+  'decimals': instance.decimals,
+  'ticker': instance.ticker,
+  'name': instance.name,
+  'svgUrl': instance.svgUrl,
+  'pngUrl': instance.pngUrl,
+  'chain': activityChainToJson(instance.chain),
+  'id': instance.id,
+  'collection': instance.collection,
+  'dataType': tokenDataTypeToJson(instance.dataType),
+  'type': instance.type,
+  'category': instance.category,
+  '_ts': instance.ts,
   'usdPrice': instance.usdPrice,
   'isAshSupported': instance.isAshSupported,
 };
@@ -783,7 +996,7 @@ IMetrics _$IMetricsFromJson(Map<String, dynamic> json) => IMetrics(
   holdersCount: (json['holdersCount'] as num).toDouble(),
   rateInfo: RateType.fromJson(json['rateInfo'] as Map<String, dynamic>),
   apr: (json['apr'] as num).toDouble(),
-  apy: (json['apy'] as num).toDouble(),
+  apy: (json['apy'] as num?)?.toDouble(),
   totalStakedCount: (json['totalStakedCount'] as num).toDouble(),
   totalStakedCountUsd: (json['totalStakedCountUsd'] as num).toDouble(),
   totalRewardsPaid: (json['totalRewardsPaid'] as num).toDouble(),
@@ -901,7 +1114,7 @@ Map<String, dynamic> _$AnalyticsMarketplaceUniqueUsersToJson(
 ProtocolAprType _$ProtocolAprTypeFromJson(Map<String, dynamic> json) =>
     ProtocolAprType(
       apr: (json['apr'] as num).toDouble(),
-      apy: (json['apy'] as num).toDouble(),
+      apy: (json['apy'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ProtocolAprTypeToJson(ProtocolAprType instance) =>
@@ -934,11 +1147,33 @@ Map<String, dynamic> _$ProviderDtoToJson(ProviderDto instance) =>
 
 DelegationDataOutput _$DelegationDataOutputFromJson(
   Map<String, dynamic> json,
-) => DelegationDataOutput();
+) => DelegationDataOutput(
+  address: json['address'] as String,
+  contract: json['contract'] as String,
+  activeStake: json['activeStake'] as String,
+  activeStakeShort: (json['activeStakeShort'] as num).toDouble(),
+  unDelegateInfo:
+      (json['unDelegateInfo'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  claimableRewards: (json['claimableRewards'] as num).toDouble(),
+  claimableRewardsShort: (json['claimableRewardsShort'] as num).toDouble(),
+  totalUnbondEligible: json['totalUnbondEligible'] as String,
+);
 
 Map<String, dynamic> _$DelegationDataOutputToJson(
   DelegationDataOutput instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{
+  'address': instance.address,
+  'contract': instance.contract,
+  'activeStake': instance.activeStake,
+  'activeStakeShort': instance.activeStakeShort,
+  'unDelegateInfo': instance.unDelegateInfo,
+  'claimableRewards': instance.claimableRewards,
+  'claimableRewardsShort': instance.claimableRewardsShort,
+  'totalUnbondEligible': instance.totalUnbondEligible,
+};
 
 SwapDto _$SwapDtoFromJson(Map<String, dynamic> json) => SwapDto(
   poolId: json['poolId'] as String,
@@ -1264,6 +1499,9 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
   oracleProvider: LendingOracleUpdateStruct.fromJson(
     json['oracleProvider'] as Map<String, dynamic>,
   ),
+  id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toDouble(),
   eModeCategoryProfiles:
       (json['eModeCategoryProfiles'] as List<dynamic>?)
           ?.map((e) => e as List<dynamic>)
@@ -1333,6 +1571,9 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
   'flashLoanFee': instance.flashLoanFee,
   'canBorrowInIsolation': instance.canBorrowInIsolation,
   'oracleProvider': instance.oracleProvider.toJson(),
+  'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
   'eModeCategoryProfiles': instance.eModeCategoryProfiles,
   'oraclePrice': instance.oraclePrice,
   'participants': instance.participants.toJson(),
@@ -1458,6 +1699,8 @@ LendingEModeCategoryProfileDoc _$LendingEModeCategoryProfileDocFromJson(
   liquidationBonus: json['liquidationBonus'] as String,
   isDeprecated: json['isDeprecated'] as bool,
   id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$LendingEModeCategoryProfileDocToJson(
@@ -1470,6 +1713,8 @@ Map<String, dynamic> _$LendingEModeCategoryProfileDocToJson(
   'liquidationBonus': instance.liquidationBonus,
   'isDeprecated': instance.isDeprecated,
   'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
 };
 
 PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
@@ -1596,6 +1841,9 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
   leverageInitialBorrow: (json['leverageInitialBorrow'] as num?)?.toDouble(),
   leverageInitialBorrowPrice:
       (json['leverageInitialBorrowPrice'] as num?)?.toDouble(),
+  id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toDouble(),
   supplyAmount: json['supplyAmount'] as String,
   borrowAmount: json['borrowAmount'] as String,
   eModeCategoryProfile:
@@ -1632,6 +1880,9 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'leverageInitialSupplyPrice': instance.leverageInitialSupplyPrice,
   'leverageInitialBorrow': instance.leverageInitialBorrow,
   'leverageInitialBorrowPrice': instance.leverageInitialBorrowPrice,
+  'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
   'supplyAmount': instance.supplyAmount,
   'borrowAmount': instance.borrowAmount,
   'eModeCategoryProfile': instance.eModeCategoryProfile?.toJson(),
@@ -1666,6 +1917,8 @@ LendingEModeCategoryProfile _$LendingEModeCategoryProfileFromJson(
   liquidationBonus: json['liquidationBonus'] as String,
   isDeprecated: json['isDeprecated'] as bool,
   id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num?)?.toDouble(),
   eModeTokenProfiles:
       (json['eModeTokenProfiles'] as List<dynamic>?)
           ?.map(
@@ -1687,6 +1940,8 @@ Map<String, dynamic> _$LendingEModeCategoryProfileToJson(
   'liquidationBonus': instance.liquidationBonus,
   'isDeprecated': instance.isDeprecated,
   'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
   'eModeTokenProfiles':
       instance.eModeTokenProfiles.map((e) => e.toJson()).toList(),
 };
@@ -1841,6 +2096,7 @@ LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       marketCount: (json['marketCount'] as num).toDouble(),
+      supplied: (json['supplied'] as num).toDouble(),
       participantsCount: (json['participantsCount'] as num).toDouble(),
       bestApy: (json['bestApy'] as num).toDouble(),
       borrowed: (json['borrowed'] as num).toDouble(),
@@ -1853,6 +2109,7 @@ Map<String, dynamic> _$LendingOverallStatsToJson(
 ) => <String, dynamic>{
   'topMarkets': instance.topMarkets,
   'marketCount': instance.marketCount,
+  'supplied': instance.supplied,
   'participantsCount': instance.participantsCount,
   'bestApy': instance.bestApy,
   'borrowed': instance.borrowed,
@@ -1922,6 +2179,11 @@ NftMetadata _$NftMetadataFromJson(Map<String, dynamic> json) => NftMetadata(
       json['rarity'] == null
           ? null
           : Rarity.fromJson(json['rarity'] as Map<String, dynamic>),
+  extraAttributes:
+      (json['extraAttributes'] as List<dynamic>?)
+          ?.map((e) => e as Object)
+          .toList() ??
+      [],
   attributes:
       (json['attributes'] as List<dynamic>?)
           ?.map(
@@ -1935,6 +2197,7 @@ Map<String, dynamic> _$NftMetadataToJson(NftMetadata instance) =>
     <String, dynamic>{
       'description': instance.description,
       'rarity': instance.rarity?.toJson(),
+      'extraAttributes': instance.extraAttributes,
       'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
     };
 
@@ -2023,9 +2286,12 @@ NftDocFilter _$NftDocFilterFromJson(Map<String, dynamic> json) => NftDocFilter(
   strictSelect: json['strictSelect'] as bool?,
   top: (json['top'] as num?)?.toInt(),
   skip: (json['skip'] as num?)?.toInt(),
-  filters: NftDocFilterCriteriaDto.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
+  filters:
+      json['filters'] == null
+          ? null
+          : NftDocFilterCriteriaDto.fromJson(
+            json['filters'] as Map<String, dynamic>,
+          ),
   applyNftExtraDetails: json['applyNftExtraDetails'] as bool?,
 );
 
@@ -2037,164 +2303,8 @@ Map<String, dynamic> _$NftDocFilterToJson(NftDocFilter instance) =>
       'strictSelect': instance.strictSelect,
       'top': instance.top,
       'skip': instance.skip,
-      'filters': instance.filters.toJson(),
+      'filters': instance.filters?.toJson(),
       'applyNftExtraDetails': instance.applyNftExtraDetails,
-    };
-
-NftPaginated _$NftPaginatedFromJson(Map<String, dynamic> json) => NftPaginated(
-  count: json['count'],
-  hasMoreResults: json['hasMoreResults'] as bool,
-  resources:
-      (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$NftPaginatedToJson(NftPaginated instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources,
-    };
-
-LikeNftDto _$LikeNftDtoFromJson(Map<String, dynamic> json) => LikeNftDto(
-  isFavorite: json['isFavorite'] as bool,
-  collection: json['collection'] as String,
-  identifier: json['identifier'] as String,
-);
-
-Map<String, dynamic> _$LikeNftDtoToJson(LikeNftDto instance) =>
-    <String, dynamic>{
-      'isFavorite': instance.isFavorite,
-      'collection': instance.collection,
-      'identifier': instance.identifier,
-    };
-
-InventorySummaryDtoHydrated _$InventorySummaryDtoHydratedFromJson(
-  Map<String, dynamic> json,
-) => InventorySummaryDtoHydrated(
-  collection: json['collection'] as String,
-  inventoryCount: (json['inventoryCount'] as num).toDouble(),
-  listedCount: (json['listedCount'] as num).toDouble(),
-  stakedCount: (json['stakedCount'] as num).toDouble(),
-  floorPrice: (json['floorPrice'] as num).toDouble(),
-  name: json['name'] as String,
-  isVerified: json['isVerified'] as bool,
-  isVisible: json['isVisible'] as bool,
-  profile: json['profile'] as String,
-  banner: json['banner'] as String,
-  $value: (json['value'] as num).toDouble(),
-  chain: inventorySummaryDtoHydratedChainNullableFromJson(json['chain']),
-);
-
-Map<String, dynamic> _$InventorySummaryDtoHydratedToJson(
-  InventorySummaryDtoHydrated instance,
-) => <String, dynamic>{
-  'collection': instance.collection,
-  'inventoryCount': instance.inventoryCount,
-  'listedCount': instance.listedCount,
-  'stakedCount': instance.stakedCount,
-  'floorPrice': instance.floorPrice,
-  'name': instance.name,
-  'isVerified': instance.isVerified,
-  'isVisible': instance.isVisible,
-  'profile': instance.profile,
-  'banner': instance.banner,
-  'value': instance.$value,
-  'chain': inventorySummaryDtoHydratedChainNullableToJson(instance.chain),
-};
-
-NftOfferPaginated _$NftOfferPaginatedFromJson(Map<String, dynamic> json) =>
-    NftOfferPaginated(
-      count: json['count'],
-      hasMoreResults: json['hasMoreResults'] as bool,
-      resources:
-          (json['resources'] as List<dynamic>?)
-              ?.map((e) => e as List<dynamic>)
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$NftOfferPaginatedToJson(NftOfferPaginated instance) =>
-    <String, dynamic>{
-      'count': instance.count,
-      'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources,
-    };
-
-NftOfferDocFilterCriteria _$NftOfferDocFilterCriteriaFromJson(
-  Map<String, dynamic> json,
-) => NftOfferDocFilterCriteria(
-  isActive:
-      (json['isActive'] as List<dynamic>?)?.map((e) => e as bool).toList() ??
-      [],
-  identifier:
-      (json['identifier'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  collection:
-      (json['collection'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  owner:
-      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  nftOwner:
-      (json['nftOwner'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  marketplace:
-      (json['marketplace'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList() ??
-      [],
-  range:
-      (json['range'] as List<dynamic>?)
-          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$NftOfferDocFilterCriteriaToJson(
-  NftOfferDocFilterCriteria instance,
-) => <String, dynamic>{
-  'isActive': instance.isActive,
-  'identifier': instance.identifier,
-  'collection': instance.collection,
-  'owner': instance.owner,
-  'nftOwner': instance.nftOwner,
-  'marketplace': instance.marketplace,
-  'range': instance.range?.map((e) => e.toJson()).toList(),
-};
-
-NftOfferDocFilter _$NftOfferDocFilterFromJson(
-  Map<String, dynamic> json,
-) => NftOfferDocFilter(
-  select:
-      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  orderBy:
-      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      [],
-  includeCount: json['includeCount'] as bool?,
-  strictSelect: json['strictSelect'] as bool?,
-  top: (json['top'] as num?)?.toInt(),
-  skip: (json['skip'] as num?)?.toInt(),
-  filters: NftOfferDocFilterCriteria.fromJson(
-    json['filters'] as Map<String, dynamic>,
-  ),
-);
-
-Map<String, dynamic> _$NftOfferDocFilterToJson(NftOfferDocFilter instance) =>
-    <String, dynamic>{
-      'select': instance.select,
-      'orderBy': instance.orderBy,
-      'includeCount': instance.includeCount,
-      'strictSelect': instance.strictSelect,
-      'top': instance.top,
-      'skip': instance.skip,
-      'filters': instance.filters.toJson(),
     };
 
 OriginalMedia _$OriginalMediaFromJson(Map<String, dynamic> json) =>
@@ -2256,7 +2366,7 @@ NftSaleInfoHydrated _$NftSaleInfoHydratedFromJson(Map<String, dynamic> json) =>
       deadline: (json['deadline'] as num).toDouble(),
       paymentToken: json['paymentToken'] as String,
       paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
-      auctionType: json['auctionType'] as String,
+      auctionType: xoxnoAuctionTypeStringFromJson(json['auctionType']),
       timestamp: (json['timestamp'] as num).toDouble(),
       minBidShort: (json['minBidShort'] as num).toDouble(),
       minBidUsdValue: (json['minBidUsdValue'] as num?)?.toDouble(),
@@ -2286,7 +2396,7 @@ Map<String, dynamic> _$NftSaleInfoHydratedToJson(
   'deadline': instance.deadline,
   'paymentToken': instance.paymentToken,
   'paymentTokenNonce': instance.paymentTokenNonce,
-  'auctionType': instance.auctionType,
+  'auctionType': xoxnoAuctionTypeStringToJson(instance.auctionType),
   'timestamp': instance.timestamp,
   'minBidShort': instance.minBidShort,
   'minBidUsdValue': instance.minBidUsdValue,
@@ -2304,6 +2414,11 @@ NftMetadataAttributesHydrated _$NftMetadataAttributesHydratedFromJson(
 ) => NftMetadataAttributesHydrated(
   traitType: json['trait_type'] as String,
   $value: json['value'] as String,
+  occurance: (json['occurance'] as num).toDouble(),
+  frequency: (json['frequency'] as num).toDouble(),
+  floorPrice: (json['floorPrice'] as num).toDouble(),
+  onSaleCount: (json['onSaleCount'] as num).toDouble(),
+  usdValue: (json['usdValue'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$NftMetadataAttributesHydratedToJson(
@@ -2311,6 +2426,11 @@ Map<String, dynamic> _$NftMetadataAttributesHydratedToJson(
 ) => <String, dynamic>{
   'trait_type': instance.traitType,
   'value': instance.$value,
+  'occurance': instance.occurance,
+  'frequency': instance.frequency,
+  'floorPrice': instance.floorPrice,
+  'onSaleCount': instance.onSaleCount,
+  'usdValue': instance.usdValue,
 };
 
 NftMetadataHydrated _$NftMetadataHydratedFromJson(Map<String, dynamic> json) =>
@@ -2320,6 +2440,11 @@ NftMetadataHydrated _$NftMetadataHydratedFromJson(Map<String, dynamic> json) =>
           json['rarity'] == null
               ? null
               : Rarity.fromJson(json['rarity'] as Map<String, dynamic>),
+      extraAttributes:
+          (json['extraAttributes'] as List<dynamic>?)
+              ?.map((e) => e as Object)
+              .toList() ??
+          [],
       attributes:
           (json['attributes'] as List<dynamic>?)
               ?.map(
@@ -2336,16 +2461,49 @@ Map<String, dynamic> _$NftMetadataHydratedToJson(
 ) => <String, dynamic>{
   'description': instance.description,
   'rarity': instance.rarity?.toJson(),
+  'extraAttributes': instance.extraAttributes,
   'attributes': instance.attributes?.map((e) => e.toJson()).toList(),
 };
 
+CollectionExtraFeesConfig _$CollectionExtraFeesConfigFromJson(
+  Map<String, dynamic> json,
+) => CollectionExtraFeesConfig(
+  amount: (json['amount'] as num).toDouble(),
+  address: json['address'] as String,
+);
+
+Map<String, dynamic> _$CollectionExtraFeesConfigToJson(
+  CollectionExtraFeesConfig instance,
+) => <String, dynamic>{'amount': instance.amount, 'address': instance.address};
+
 XoxnoMarketplaceScCollectionConfig _$XoxnoMarketplaceScCollectionConfigFromJson(
   Map<String, dynamic> json,
-) => XoxnoMarketplaceScCollectionConfig();
+) => XoxnoMarketplaceScCollectionConfig(
+  reversedCutFees: json['reversedCutFees'] as bool? ?? false,
+  reversedRoyalties: json['reversedRoyalties'] as bool? ?? false,
+  customRoyalties: json['customRoyalties'] as bool? ?? false,
+  minRoyalties: (json['minRoyalties'] as num).toDouble(),
+  maxRoyalties: (json['maxRoyalties'] as num).toDouble(),
+  extraFees:
+      json['extraFees'] == null
+          ? null
+          : CollectionExtraFeesConfig.fromJson(
+            json['extraFees'] as Map<String, dynamic>,
+          ),
+  adminAddress: json['adminAddress'] as String?,
+);
 
 Map<String, dynamic> _$XoxnoMarketplaceScCollectionConfigToJson(
   XoxnoMarketplaceScCollectionConfig instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{
+  'reversedCutFees': instance.reversedCutFees,
+  'reversedRoyalties': instance.reversedRoyalties,
+  'customRoyalties': instance.customRoyalties,
+  'minRoyalties': instance.minRoyalties,
+  'maxRoyalties': instance.maxRoyalties,
+  'extraFees': instance.extraFees?.toJson(),
+  'adminAddress': instance.adminAddress,
+};
 
 ShortNftCollectionInfoDoc _$ShortNftCollectionInfoDocFromJson(
   Map<String, dynamic> json,
@@ -2400,6 +2558,7 @@ Map<String, dynamic> _$ExtraPropertiesToJson(ExtraProperties instance) =>
 
 NftDocHydrated _$NftDocHydratedFromJson(Map<String, dynamic> json) =>
     NftDocHydrated(
+      dataType: NftDocHydrated.tokenDataTypeDataTypeFromJson(json['dataType']),
       identifier: json['identifier'] as String,
       collection: json['collection'] as String,
       originalCollection: json['originalCollection'] as String?,
@@ -2476,6 +2635,7 @@ NftDocHydrated _$NftDocHydratedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$NftDocHydratedToJson(NftDocHydrated instance) =>
     <String, dynamic>{
+      'dataType': tokenDataTypeToJson(instance.dataType),
       'identifier': instance.identifier,
       'collection': instance.collection,
       'originalCollection': instance.originalCollection,
@@ -2512,6 +2672,70 @@ Map<String, dynamic> _$NftDocHydratedToJson(NftDocHydrated instance) =>
       'unboundEpoch': instance.unboundEpoch,
       'extraProperties': instance.extraProperties?.toJson(),
     };
+
+NftPaginated _$NftPaginatedFromJson(Map<String, dynamic> json) => NftPaginated(
+  count: json['count'],
+  hasMoreResults: json['hasMoreResults'] as bool,
+  resources:
+      (json['resources'] as List<dynamic>?)
+          ?.map((e) => NftDocHydrated.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$NftPaginatedToJson(NftPaginated instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+LikeNftDto _$LikeNftDtoFromJson(Map<String, dynamic> json) => LikeNftDto(
+  isFavorite: json['isFavorite'] as bool,
+  collection: json['collection'] as String,
+  identifier: json['identifier'] as String,
+);
+
+Map<String, dynamic> _$LikeNftDtoToJson(LikeNftDto instance) =>
+    <String, dynamic>{
+      'isFavorite': instance.isFavorite,
+      'collection': instance.collection,
+      'identifier': instance.identifier,
+    };
+
+InventorySummaryDtoHydrated _$InventorySummaryDtoHydratedFromJson(
+  Map<String, dynamic> json,
+) => InventorySummaryDtoHydrated(
+  collection: json['collection'] as String,
+  inventoryCount: (json['inventoryCount'] as num).toDouble(),
+  listedCount: (json['listedCount'] as num).toDouble(),
+  stakedCount: (json['stakedCount'] as num).toDouble(),
+  floorPrice: (json['floorPrice'] as num).toDouble(),
+  name: json['name'] as String,
+  isVerified: json['isVerified'] as bool,
+  isVisible: json['isVisible'] as bool,
+  profile: json['profile'] as String,
+  banner: json['banner'] as String,
+  $value: (json['value'] as num).toDouble(),
+  chain: inventorySummaryDtoHydratedChainNullableFromJson(json['chain']),
+);
+
+Map<String, dynamic> _$InventorySummaryDtoHydratedToJson(
+  InventorySummaryDtoHydrated instance,
+) => <String, dynamic>{
+  'collection': instance.collection,
+  'inventoryCount': instance.inventoryCount,
+  'listedCount': instance.listedCount,
+  'stakedCount': instance.stakedCount,
+  'floorPrice': instance.floorPrice,
+  'name': instance.name,
+  'isVerified': instance.isVerified,
+  'isVisible': instance.isVisible,
+  'profile': instance.profile,
+  'banner': instance.banner,
+  'value': instance.$value,
+  'chain': inventorySummaryDtoHydratedChainNullableToJson(instance.chain),
+};
 
 NftOfferDocHydrated _$NftOfferDocHydratedFromJson(Map<String, dynamic> json) =>
     NftOfferDocHydrated(
@@ -2569,6 +2793,103 @@ Map<String, dynamic> _$NftOfferDocHydratedToJson(
   'floorPrice': instance.floorPrice,
   'nftInfo': instance.nftInfo.toJson(),
 };
+
+NftOfferPaginated _$NftOfferPaginatedFromJson(Map<String, dynamic> json) =>
+    NftOfferPaginated(
+      count: json['count'],
+      hasMoreResults: json['hasMoreResults'] as bool,
+      resources:
+          (json['resources'] as List<dynamic>?)
+              ?.map(
+                (e) => NftOfferDocHydrated.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$NftOfferPaginatedToJson(NftOfferPaginated instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'hasMoreResults': instance.hasMoreResults,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
+    };
+
+NftOfferDocFilterCriteria _$NftOfferDocFilterCriteriaFromJson(
+  Map<String, dynamic> json,
+) => NftOfferDocFilterCriteria(
+  isActive:
+      (json['isActive'] as List<dynamic>?)?.map((e) => e as bool).toList() ??
+      [],
+  identifier:
+      (json['identifier'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  collection:
+      (json['collection'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  owner:
+      (json['owner'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+  nftOwner:
+      (json['nftOwner'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  marketplace:
+      (json['marketplace'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+  range:
+      (json['range'] as List<dynamic>?)
+          ?.map((e) => RangeFilter.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$NftOfferDocFilterCriteriaToJson(
+  NftOfferDocFilterCriteria instance,
+) => <String, dynamic>{
+  'isActive': instance.isActive,
+  'identifier': instance.identifier,
+  'collection': instance.collection,
+  'owner': instance.owner,
+  'nftOwner': instance.nftOwner,
+  'marketplace': instance.marketplace,
+  'range': instance.range?.map((e) => e.toJson()).toList(),
+};
+
+NftOfferDocFilter _$NftOfferDocFilterFromJson(
+  Map<String, dynamic> json,
+) => NftOfferDocFilter(
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  includeCount: json['includeCount'] as bool?,
+  strictSelect: json['strictSelect'] as bool?,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  filters:
+      json['filters'] == null
+          ? null
+          : NftOfferDocFilterCriteria.fromJson(
+            json['filters'] as Map<String, dynamic>,
+          ),
+);
+
+Map<String, dynamic> _$NftOfferDocFilterToJson(NftOfferDocFilter instance) =>
+    <String, dynamic>{
+      'select': instance.select,
+      'orderBy': instance.orderBy,
+      'includeCount': instance.includeCount,
+      'strictSelect': instance.strictSelect,
+      'top': instance.top,
+      'skip': instance.skip,
+      'filters': instance.filters?.toJson(),
+    };
 
 CollectionRanksDTO _$CollectionRanksDTOFromJson(Map<String, dynamic> json) =>
     CollectionRanksDTO(
@@ -2714,7 +3035,92 @@ SignMintDto _$SignMintDtoFromJson(Map<String, dynamic> json) => SignMintDto(
 Map<String, dynamic> _$SignMintDtoToJson(SignMintDto instance) =>
     <String, dynamic>{'quantity': instance.quantity, 'stage': instance.stage};
 
+ShortCollectionDoc _$ShortCollectionDocFromJson(Map<String, dynamic> json) =>
+    ShortCollectionDoc(
+      name: json['name'] as String,
+      description: json['description'] as String,
+      isVisible: json['isVisible'] as bool,
+      isVerified: json['isVerified'] as bool,
+      profile: json['profile'] as String,
+      chain: shortCollectionDocChainFromJson(json['chain']),
+      collectionSize: (json['collectionSize'] as num?)?.toDouble(),
+      holdersCount: (json['holdersCount'] as num?)?.toDouble(),
+      followCount: (json['followCount'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$ShortCollectionDocToJson(ShortCollectionDoc instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'description': instance.description,
+      'isVisible': instance.isVisible,
+      'isVerified': instance.isVerified,
+      'profile': instance.profile,
+      'chain': shortCollectionDocChainToJson(instance.chain),
+      'collectionSize': instance.collectionSize,
+      'holdersCount': instance.holdersCount,
+      'followCount': instance.followCount,
+    };
+
+GlobalOfferDocHydrated _$GlobalOfferDocHydratedFromJson(
+  Map<String, dynamic> json,
+) => GlobalOfferDocHydrated(
+  dataType: globalOfferDocHydratedDataTypeFromJson(json['dataType']),
+  offerId: (json['offerId'] as num).toDouble(),
+  collection: json['collection'] as String,
+  price: json['price'] as String,
+  paymentToken: json['paymentToken'] as String,
+  paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
+  quantity: (json['quantity'] as num).toDouble(),
+  marketplace: json['marketplace'] as String,
+  timestamp: (json['timestamp'] as num).toDouble(),
+  attributes:
+      (json['attributes'] as List<dynamic>?)
+          ?.map(
+            (e) => NftMetadataAttributes.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+  priceShort: (json['priceShort'] as num).toDouble(),
+  floorPriceMargin: (json['floorPriceMargin'] as num?)?.toDouble(),
+  floorPrice: (json['floorPrice'] as num?)?.toDouble(),
+  isActive: json['isActive'] as bool,
+  chain: globalOfferDocHydratedChainFromJson(json['chain']),
+  usdValue: (json['usdValue'] as num?)?.toDouble(),
+  id: json['id'] as String,
+  ts: (json['_ts'] as num).toDouble(),
+  owner: OwnerDto.fromJson(json['owner'] as Map<String, dynamic>),
+  collectionInfo: ShortCollectionDoc.fromJson(
+    json['collectionInfo'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$GlobalOfferDocHydratedToJson(
+  GlobalOfferDocHydrated instance,
+) => <String, dynamic>{
+  'dataType': globalOfferDocHydratedDataTypeToJson(instance.dataType),
+  'offerId': instance.offerId,
+  'collection': instance.collection,
+  'price': instance.price,
+  'paymentToken': instance.paymentToken,
+  'paymentTokenNonce': instance.paymentTokenNonce,
+  'quantity': instance.quantity,
+  'marketplace': instance.marketplace,
+  'timestamp': instance.timestamp,
+  'attributes': instance.attributes.map((e) => e.toJson()).toList(),
+  'priceShort': instance.priceShort,
+  'floorPriceMargin': instance.floorPriceMargin,
+  'floorPrice': instance.floorPrice,
+  'isActive': instance.isActive,
+  'chain': globalOfferDocHydratedChainToJson(instance.chain),
+  'usdValue': instance.usdValue,
+  'id': instance.id,
+  '_ts': instance.ts,
+  'owner': instance.owner.toJson(),
+  'collectionInfo': instance.collectionInfo.toJson(),
+};
+
 NftDocFull _$NftDocFullFromJson(Map<String, dynamic> json) => NftDocFull(
+  dataType: NftDocFull.tokenDataTypeDataTypeFromJson(json['dataType']),
   identifier: json['identifier'] as String,
   collection: json['collection'] as String,
   originalCollection: json['originalCollection'] as String?,
@@ -2785,10 +3191,17 @@ NftDocFull _$NftDocFullFromJson(Map<String, dynamic> json) => NftDocFull(
           : ExtraProperties.fromJson(
             json['extraProperties'] as Map<String, dynamic>,
           ),
+  globalOffer:
+      json['globalOffer'] == null
+          ? null
+          : GlobalOfferDocHydrated.fromJson(
+            json['globalOffer'] as Map<String, dynamic>,
+          ),
 );
 
 Map<String, dynamic> _$NftDocFullToJson(NftDocFull instance) =>
     <String, dynamic>{
+      'dataType': tokenDataTypeToJson(instance.dataType),
       'identifier': instance.identifier,
       'collection': instance.collection,
       'originalCollection': instance.originalCollection,
@@ -2824,6 +3237,7 @@ Map<String, dynamic> _$NftDocFullToJson(NftDocFull instance) =>
       'unboundDaysLeft': instance.unboundDaysLeft,
       'unboundEpoch': instance.unboundEpoch,
       'extraProperties': instance.extraProperties?.toJson(),
+      'globalOffer': instance.globalOffer?.toJson(),
     };
 
 StatisticsOtherDto _$StatisticsOtherDtoFromJson(Map<String, dynamic> json) =>
@@ -2846,6 +3260,10 @@ StatisticsTradeDataDto _$StatisticsTradeDataDtoFromJson(
   dayEgldVolume: (json['dayEgldVolume'] as num).toDouble(),
   weekEgldVolume: (json['weekEgldVolume'] as num).toDouble(),
   totalEgldVolume: (json['totalEgldVolume'] as num).toDouble(),
+  averageEgldPrice: (json['averageEgldPrice'] as num).toDouble(),
+  athEgldPrice: (json['athEgldPrice'] as num).toDouble(),
+  athTxHash: json['athTxHash'] as String,
+  totalTrades: (json['totalTrades'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$StatisticsTradeDataDtoToJson(
@@ -2854,15 +3272,27 @@ Map<String, dynamic> _$StatisticsTradeDataDtoToJson(
   'dayEgldVolume': instance.dayEgldVolume,
   'weekEgldVolume': instance.weekEgldVolume,
   'totalEgldVolume': instance.totalEgldVolume,
+  'averageEgldPrice': instance.averageEgldPrice,
+  'athEgldPrice': instance.athEgldPrice,
+  'athTxHash': instance.athTxHash,
+  'totalTrades': instance.totalTrades,
 };
 
 StatisticsMintDataDto _$StatisticsMintDataDtoFromJson(
   Map<String, dynamic> json,
-) => StatisticsMintDataDto();
+) => StatisticsMintDataDto(
+  totalMintEgldVolume: (json['totalMintEgldVolume'] as num).toDouble(),
+  weekMintEgldVolume: (json['weekMintEgldVolume'] as num).toDouble(),
+  dayMintEgldVolume: (json['dayMintEgldVolume'] as num).toDouble(),
+);
 
 Map<String, dynamic> _$StatisticsMintDataDtoToJson(
   StatisticsMintDataDto instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{
+  'totalMintEgldVolume': instance.totalMintEgldVolume,
+  'weekMintEgldVolume': instance.weekMintEgldVolume,
+  'dayMintEgldVolume': instance.dayMintEgldVolume,
+};
 
 StatisticsDto _$StatisticsDtoFromJson(Map<String, dynamic> json) =>
     StatisticsDto(
@@ -3051,42 +3481,6 @@ Map<String, dynamic> _$EgldOrEsdtTokenPaymentToJson(
   'decimals': instance.decimals,
 };
 
-ShortCollectionInfoDoc _$ShortCollectionInfoDocFromJson(
-  Map<String, dynamic> json,
-) => ShortCollectionInfoDoc(
-  name: json['name'] as String,
-  description: json['description'] as String,
-  isVisible: json['isVisible'] as bool,
-  isVerified: json['isVerified'] as bool,
-  socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-  profile: json['profile'] as String,
-  banner: json['banner'] as String,
-  chain: shortCollectionInfoDocChainFromJson(json['chain']),
-  owner: json['owner'] as String,
-  collectionSize: (json['collectionSize'] as num?)?.toDouble(),
-  holdersCount: (json['holdersCount'] as num?)?.toDouble(),
-  followCount: (json['followCount'] as num?)?.toDouble(),
-  volume: (json['volume'] as num).toDouble(),
-);
-
-Map<String, dynamic> _$ShortCollectionInfoDocToJson(
-  ShortCollectionInfoDoc instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'description': instance.description,
-  'isVisible': instance.isVisible,
-  'isVerified': instance.isVerified,
-  'socials': instance.socials.toJson(),
-  'profile': instance.profile,
-  'banner': instance.banner,
-  'chain': shortCollectionInfoDocChainToJson(instance.chain),
-  'owner': instance.owner,
-  'collectionSize': instance.collectionSize,
-  'holdersCount': instance.holdersCount,
-  'followCount': instance.followCount,
-  'volume': instance.volume,
-};
-
 ShortCreatorDoc _$ShortCreatorDocFromJson(Map<String, dynamic> json) =>
     ShortCreatorDoc(
       name: json['name'] as String,
@@ -3264,7 +3658,7 @@ CollectionProfilePaginated _$CollectionProfilePaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map((e) => CollectionProfileDoc.fromJson(e as Map<String, dynamic>))
           .toList() ??
       [],
 );
@@ -3274,7 +3668,7 @@ Map<String, dynamic> _$CollectionProfilePaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 CollectionMintProfileFilter _$CollectionMintProfileFilterFromJson(
@@ -3310,7 +3704,11 @@ CollectionMintProfilePaginated _$CollectionMintProfilePaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) => CollectionMintProfileDocHydrated.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
           .toList() ??
       [],
 );
@@ -3320,8 +3718,57 @@ Map<String, dynamic> _$CollectionMintProfilePaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
+
+MintStageDto _$MintStageDtoFromJson(Map<String, dynamic> json) => MintStageDto(
+  dataType: json['dataType'] as Object,
+  collection: json['collection'] as String,
+  contractAddress: json['contractAddress'] as String,
+  collectionTag: json['collectionTag'] as String,
+  name: json['name'] as String,
+  startTime: (json['startTime'] as num).toDouble(),
+  endTime: (json['endTime'] as num).toDouble(),
+  mintCount: (json['mintCount'] as num).toDouble(),
+  mintLimit: (json['mintLimit'] as num).toDouble(),
+  mintEnabled: json['mintEnabled'] as bool,
+  isWhitelist: json['isWhitelist'] as bool,
+  walletLimit: (json['walletLimit'] as num).toDouble(),
+  prices:
+      (json['prices'] as List<dynamic>?)
+          ?.map(
+            (e) => EgldOrEsdtTokenPayment.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+  id: json['id'] as String,
+  ts: (json['_ts'] as num).toDouble(),
+  walletLimitReached: json['walletLimitReached'] as bool,
+  maxBuyable: json['maxBuyable'],
+  userMintsPerStage: (json['userMintsPerStage'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$MintStageDtoToJson(MintStageDto instance) =>
+    <String, dynamic>{
+      'dataType': instance.dataType,
+      'collection': instance.collection,
+      'contractAddress': instance.contractAddress,
+      'collectionTag': instance.collectionTag,
+      'name': instance.name,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'mintCount': instance.mintCount,
+      'mintLimit': instance.mintLimit,
+      'mintEnabled': instance.mintEnabled,
+      'isWhitelist': instance.isWhitelist,
+      'walletLimit': instance.walletLimit,
+      'prices': instance.prices.map((e) => e.toJson()).toList(),
+      'id': instance.id,
+      '_ts': instance.ts,
+      'walletLimitReached': instance.walletLimitReached,
+      'maxBuyable': instance.maxBuyable,
+      'userMintsPerStage': instance.userMintsPerStage,
+    };
 
 CollectionMintProfileDocWithStages _$CollectionMintProfileDocWithStagesFromJson(
   Map<String, dynamic> json,
@@ -3340,6 +3787,17 @@ CollectionMintProfileDocWithStages _$CollectionMintProfileDocWithStagesFromJson(
   collectionInfo: ShortCollectionInfoDoc.fromJson(
     json['collectionInfo'] as Map<String, dynamic>,
   ),
+  collection: json['collection'] as String,
+  isExcludedFromMint: json['isExcludedFromMint'] as bool,
+  userMintsGlobal: (json['userMintsGlobal'] as num).toDouble(),
+  mintStages:
+      (json['mintStages'] as List<dynamic>?)
+          ?.map((e) => MintStageDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  creatorInfo: CreatorProfileDoc.fromJson(
+    json['creatorInfo'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$CollectionMintProfileDocWithStagesToJson(
@@ -3357,6 +3815,11 @@ Map<String, dynamic> _$CollectionMintProfileDocWithStagesToJson(
   'kycRequired': instance.kycRequired,
   'hasBotProtection': instance.hasBotProtection,
   'collectionInfo': instance.collectionInfo.toJson(),
+  'collection': instance.collection,
+  'isExcludedFromMint': instance.isExcludedFromMint,
+  'userMintsGlobal': instance.userMintsGlobal,
+  'mintStages': instance.mintStages.map((e) => e.toJson()).toList(),
+  'creatorInfo': instance.creatorInfo.toJson(),
 };
 
 WalletDetailDto _$WalletDetailDtoFromJson(Map<String, dynamic> json) =>
@@ -3420,112 +3883,6 @@ CollectionOwnerDto _$CollectionOwnerDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CollectionOwnerDtoToJson(CollectionOwnerDto instance) =>
     <String, dynamic>{'owner': instance.owner};
-
-AllTimeHigh _$AllTimeHighFromJson(Map<String, dynamic> json) => AllTimeHigh(
-  price: (json['price'] as num).toDouble(),
-  timestamp: (json['timestamp'] as num).toDouble(),
-  txHash: json['txHash'] as String,
-  identifier: json['identifier'] as String,
-);
-
-Map<String, dynamic> _$AllTimeHighToJson(AllTimeHigh instance) =>
-    <String, dynamic>{
-      'price': instance.price,
-      'timestamp': instance.timestamp,
-      'txHash': instance.txHash,
-      'identifier': instance.identifier,
-    };
-
-TradingDataSummary _$TradingDataSummaryFromJson(Map<String, dynamic> json) =>
-    TradingDataSummary(
-      volume: (json['volume'] as num).toDouble(),
-      volumeMargin: (json['volumeMargin'] as num).toDouble(),
-      trades: (json['trades'] as num).toDouble(),
-      tradesMargin: (json['tradesMargin'] as num).toDouble(),
-      minPrice: (json['minPrice'] as num?)?.toDouble(),
-      maxPrice: (json['maxPrice'] as num?)?.toDouble(),
-      averagePrice: (json['averagePrice'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$TradingDataSummaryToJson(TradingDataSummary instance) =>
-    <String, dynamic>{
-      'volume': instance.volume,
-      'volumeMargin': instance.volumeMargin,
-      'trades': instance.trades,
-      'tradesMargin': instance.tradesMargin,
-      'minPrice': instance.minPrice,
-      'maxPrice': instance.maxPrice,
-      'averagePrice': instance.averagePrice,
-    };
-
-TradingStatistics _$TradingStatisticsFromJson(Map<String, dynamic> json) =>
-    TradingStatistics(
-      totalVolume: (json['totalVolume'] as num).toDouble(),
-      totalTrades: (json['totalTrades'] as num).toDouble(),
-      averagePrice: (json['averagePrice'] as num?)?.toDouble(),
-      allTimeHigh: AllTimeHigh.fromJson(
-        json['allTimeHigh'] as Map<String, dynamic>,
-      ),
-      day: TradingDataSummary.fromJson(json['day'] as Map<String, dynamic>),
-      week: TradingDataSummary.fromJson(json['week'] as Map<String, dynamic>),
-      month: TradingDataSummary.fromJson(json['month'] as Map<String, dynamic>),
-      quarter: TradingDataSummary.fromJson(
-        json['quarter'] as Map<String, dynamic>,
-      ),
-      halfYear: TradingDataSummary.fromJson(
-        json['halfYear'] as Map<String, dynamic>,
-      ),
-      year: TradingDataSummary.fromJson(json['year'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$TradingStatisticsToJson(TradingStatistics instance) =>
-    <String, dynamic>{
-      'totalVolume': instance.totalVolume,
-      'totalTrades': instance.totalTrades,
-      'averagePrice': instance.averagePrice,
-      'allTimeHigh': instance.allTimeHigh.toJson(),
-      'day': instance.day.toJson(),
-      'week': instance.week.toJson(),
-      'month': instance.month.toJson(),
-      'quarter': instance.quarter.toJson(),
-      'halfYear': instance.halfYear.toJson(),
-      'year': instance.year.toJson(),
-    };
-
-CollectionStatsDocHydrated _$CollectionStatsDocHydratedFromJson(
-  Map<String, dynamic> json,
-) => CollectionStatsDocHydrated(
-  dataType: json['dataType'] as Object,
-  collection: json['collection'] as String,
-  floorPrice: (json['floorPrice'] as num?)?.toDouble(),
-  listedCount: (json['listedCount'] as num).toDouble(),
-  tradingStats: TradingStatistics.fromJson(
-    json['tradingStats'] as Map<String, dynamic>,
-  ),
-  chain: collectionStatsDocHydratedChainFromJson(json['chain']),
-  ts: (json['_ts'] as num).toDouble(),
-  id: json['id'] as String,
-  collectionInfo:
-      json['collectionInfo'] == null
-          ? null
-          : ShortCollectionInfoDoc.fromJson(
-            json['collectionInfo'] as Map<String, dynamic>,
-          ),
-);
-
-Map<String, dynamic> _$CollectionStatsDocHydratedToJson(
-  CollectionStatsDocHydrated instance,
-) => <String, dynamic>{
-  'dataType': instance.dataType,
-  'collection': instance.collection,
-  'floorPrice': instance.floorPrice,
-  'listedCount': instance.listedCount,
-  'tradingStats': instance.tradingStats.toJson(),
-  'chain': collectionStatsDocHydratedChainToJson(instance.chain),
-  '_ts': instance.ts,
-  'id': instance.id,
-  'collectionInfo': instance.collectionInfo?.toJson(),
-};
 
 CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(
   Map<String, dynamic> json,
@@ -3618,7 +3975,9 @@ GlobalOfferPaginated _$GlobalOfferPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) => GlobalOfferDocHydrated.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       [],
 );
@@ -3628,7 +3987,7 @@ Map<String, dynamic> _$GlobalOfferPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 MintingListingDto _$MintingListingDtoFromJson(Map<String, dynamic> json) =>
@@ -3815,6 +4174,8 @@ EventUserRoleDoc _$EventUserRoleDocFromJson(Map<String, dynamic> json) =>
       endTime: (json['endTime'] as num?)?.toInt(),
       id: json['id'] as String?,
       status: roleStatusNullableFromJson(json['status']),
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventUserRoleDocToJson(EventUserRoleDoc instance) =>
@@ -3830,6 +4191,8 @@ Map<String, dynamic> _$EventUserRoleDocToJson(EventUserRoleDoc instance) =>
       'endTime': instance.endTime,
       'id': instance.id,
       'status': roleStatusNullableToJson(instance.status),
+      'pk': instance.pk,
+      '_ts': instance.ts,
     };
 
 EventGuestProfileSummary _$EventGuestProfileSummaryFromJson(
@@ -3946,6 +4309,8 @@ EventGuestDoc _$EventGuestDocFromJson(
   metadata: json['metadata'],
   id: json['id'] as String?,
   pk: json['pk'] as String?,
+  ts: (json['_ts'] as num).toInt(),
+  ttl: (json['ttl'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
@@ -3963,6 +4328,8 @@ Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
       'metadata': instance.metadata,
       'id': instance.id,
       'pk': instance.pk,
+      '_ts': instance.ts,
+      'ttl': instance.ttl,
     };
 
 EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
@@ -3997,6 +4364,8 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
           : EventUserRoleDoc.fromJson(
             json['eventPermissions'] as Map<String, dynamic>,
           ),
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toInt(),
   creatorProfile: CreatorProfileDoc.fromJson(
     json['creatorProfile'] as Map<String, dynamic>,
   ),
@@ -4043,6 +4412,8 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'seo': instance.seo?.toJson(),
       'id': instance.id,
       'eventPermissions': instance.eventPermissions?.toJson(),
+      'pk': instance.pk,
+      '_ts': instance.ts,
       'creatorProfile': instance.creatorProfile.toJson(),
       'guestSummary': instance.guestSummary?.toJson(),
       'startsFrom': instance.startsFrom?.toJson(),
@@ -4120,10 +4491,13 @@ Map<String, dynamic> _$EditUserCreatorProfileDtoToJson(
 };
 
 ShareholderDto _$ShareholderDtoFromJson(Map<String, dynamic> json) =>
-    ShareholderDto();
+    ShareholderDto(
+      address: json['address'] as String,
+      share: (json['share'] as num).toDouble(),
+    );
 
 Map<String, dynamic> _$ShareholderDtoToJson(ShareholderDto instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{'address': instance.address, 'share': instance.share};
 
 Web2UserWallet _$Web2UserWalletFromJson(Map<String, dynamic> json) =>
     Web2UserWallet(
@@ -4215,11 +4589,17 @@ Map<String, dynamic> _$Web2UserDocToJson(Web2UserDoc instance) =>
 
 SuccessWithMessageDto _$SuccessWithMessageDtoFromJson(
   Map<String, dynamic> json,
-) => SuccessWithMessageDto(success: json['success'] as bool);
+) => SuccessWithMessageDto(
+  success: json['success'] as bool,
+  message: json['message'] as String,
+);
 
 Map<String, dynamic> _$SuccessWithMessageDtoToJson(
   SuccessWithMessageDto instance,
-) => <String, dynamic>{'success': instance.success};
+) => <String, dynamic>{
+  'success': instance.success,
+  'message': instance.message,
+};
 
 Web2WalletDto _$Web2WalletDtoFromJson(Map<String, dynamic> json) =>
     Web2WalletDto(
@@ -4385,10 +4765,68 @@ Map<String, dynamic> _$StakingSummaryToJson(StakingSummary instance) =>
     };
 
 StakingPoolDoc _$StakingPoolDocFromJson(Map<String, dynamic> json) =>
-    StakingPoolDoc();
+    StakingPoolDoc(
+      dataType: stakingDataTypeFromJson(json['dataType']),
+      poolId: (json['poolId'] as num).toDouble(),
+      poolType: stakingPoolTypeStringFromJson(json['poolType']),
+      stakingEnabled: json['stakingEnabled'] as bool,
+      whitelistEnabled: json['whitelistEnabled'] as bool,
+      matchPairEnabled: json['matchPairEnabled'] as bool,
+      maxStakePerWallet: (json['maxStakePerWallet'] as num).toDouble(),
+      maxStakePerPool: (json['maxStakePerPool'] as num).toDouble(),
+      issuingType: stakingIssuingTypeStringFromJson(json['issuingType']),
+      issuingDeadline: (json['issuingDeadline'] as num).toDouble(),
+      issuingStart: (json['issuingStart'] as num).toDouble(),
+      unboundPeriod: (json['unboundPeriod'] as num).toDouble(),
+      collection:
+          (json['collection'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      reward:
+          (json['reward'] as List<dynamic>?)
+              ?.map(
+                (e) => XoxnoStakingReward.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          [],
+      cutFee: (json['cutFee'] as num).toDouble(),
+      owner: json['owner'] as String,
+      name: json['name'] as String?,
+      profile: json['profile'] as String?,
+      totalWhitelisted: (json['totalWhitelisted'] as num?)?.toDouble(),
+      delegatorCount: (json['delegatorCount'] as num?)?.toDouble(),
+      poolStakedCount: (json['poolStakedCount'] as num?)?.toDouble(),
+      pk: json['pk'] as String?,
+      id: json['id'] as String?,
+    );
 
 Map<String, dynamic> _$StakingPoolDocToJson(StakingPoolDoc instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'dataType': stakingDataTypeToJson(instance.dataType),
+      'poolId': instance.poolId,
+      'poolType': stakingPoolTypeStringToJson(instance.poolType),
+      'stakingEnabled': instance.stakingEnabled,
+      'whitelistEnabled': instance.whitelistEnabled,
+      'matchPairEnabled': instance.matchPairEnabled,
+      'maxStakePerWallet': instance.maxStakePerWallet,
+      'maxStakePerPool': instance.maxStakePerPool,
+      'issuingType': stakingIssuingTypeStringToJson(instance.issuingType),
+      'issuingDeadline': instance.issuingDeadline,
+      'issuingStart': instance.issuingStart,
+      'unboundPeriod': instance.unboundPeriod,
+      'collection': instance.collection,
+      'reward': instance.reward.map((e) => e.toJson()).toList(),
+      'cutFee': instance.cutFee,
+      'owner': instance.owner,
+      'name': instance.name,
+      'profile': instance.profile,
+      'totalWhitelisted': instance.totalWhitelisted,
+      'delegatorCount': instance.delegatorCount,
+      'poolStakedCount': instance.poolStakedCount,
+      'pk': instance.pk,
+      'id': instance.id,
+    };
 
 StakingEditDto _$StakingEditDtoFromJson(Map<String, dynamic> json) =>
     StakingEditDto(
@@ -4432,6 +4870,16 @@ UserStakingSummaryDto _$UserStakingSummaryDtoFromJson(
   isVerified: json['isVerified'] as bool,
   profile: json['profile'] as String,
   banner: json['banner'] as String,
+  poolIds:
+      (json['poolIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toDouble())
+          .toList() ??
+      [],
+  userReward:
+      (json['userReward'] as List<dynamic>?)
+          ?.map((e) => XoxnoStakingReward.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
 );
 
 Map<String, dynamic> _$UserStakingSummaryDtoToJson(
@@ -4443,6 +4891,8 @@ Map<String, dynamic> _$UserStakingSummaryDtoToJson(
   'isVerified': instance.isVerified,
   'profile': instance.profile,
   'banner': instance.banner,
+  'poolIds': instance.poolIds,
+  'userReward': instance.userReward.map((e) => e.toJson()).toList(),
 };
 
 StakingCreatorDoc _$StakingCreatorDocFromJson(Map<String, dynamic> json) =>
@@ -4495,32 +4945,6 @@ Map<String, dynamic> _$StakingUserPoolNftsToJson(
   'nftDocs': instance.nftDocs.map((e) => e.toJson()).toList(),
   'count': instance.count,
 };
-
-ShortCollectionDoc _$ShortCollectionDocFromJson(Map<String, dynamic> json) =>
-    ShortCollectionDoc(
-      name: json['name'] as String,
-      description: json['description'] as String,
-      isVisible: json['isVisible'] as bool,
-      isVerified: json['isVerified'] as bool,
-      profile: json['profile'] as String,
-      chain: shortCollectionDocChainFromJson(json['chain']),
-      collectionSize: (json['collectionSize'] as num?)?.toDouble(),
-      holdersCount: (json['holdersCount'] as num?)?.toDouble(),
-      followCount: (json['followCount'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$ShortCollectionDocToJson(ShortCollectionDoc instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'description': instance.description,
-      'isVisible': instance.isVisible,
-      'isVerified': instance.isVerified,
-      'profile': instance.profile,
-      'chain': shortCollectionDocChainToJson(instance.chain),
-      'collectionSize': instance.collectionSize,
-      'holdersCount': instance.holdersCount,
-      'followCount': instance.followCount,
-    };
 
 StakingExploreDtoHydrated _$StakingExploreDtoHydratedFromJson(
   Map<String, dynamic> json,
@@ -4586,26 +5010,172 @@ Map<String, dynamic> _$OwnedServicesDtoToJson(OwnedServicesDto instance) =>
       'address': instance.address,
     };
 
-FilterQueryDto _$FilterQueryDtoFromJson(Map<String, dynamic> json) =>
-    FilterQueryDto(
-      name: json['name'] as String,
-      top: (json['top'] as num?)?.toInt(),
-      skip: (json['skip'] as num?)?.toInt(),
-    );
+FilterQueryDto _$FilterQueryDtoFromJson(
+  Map<String, dynamic> json,
+) => FilterQueryDto(
+  name: json['name'] as String,
+  top: (json['top'] as num?)?.toInt(),
+  skip: (json['skip'] as num?)?.toInt(),
+  chain: activityChainListFromJson(json['chain'] as List?),
+  orderBy:
+      (json['orderBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  select:
+      (json['select'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+);
 
 Map<String, dynamic> _$FilterQueryDtoToJson(FilterQueryDto instance) =>
     <String, dynamic>{
       'name': instance.name,
       'top': instance.top,
       'skip': instance.skip,
+      'chain': activityChainListToJson(instance.chain),
+      'orderBy': instance.orderBy,
+      'select': instance.select,
     };
+
+CollectionDto _$CollectionDtoFromJson(Map<String, dynamic> json) =>
+    CollectionDto(
+      collection: json['collection'] as String,
+      name: json['name'] as String,
+      isVisible: json['isVisible'] as bool,
+      isVerified: json['isVerified'] as bool,
+      profile: json['profile'] as String,
+      type: json['type'] as String,
+      statistics: StatisticsDto.fromJson(
+        json['statistics'] as Map<String, dynamic>,
+      ),
+      floorPrice: (json['floorPrice'] as num).toDouble(),
+      chain: collectionDtoChainNullableFromJson(json['chain']),
+    );
+
+Map<String, dynamic> _$CollectionDtoToJson(CollectionDto instance) =>
+    <String, dynamic>{
+      'collection': instance.collection,
+      'name': instance.name,
+      'isVisible': instance.isVisible,
+      'isVerified': instance.isVerified,
+      'profile': instance.profile,
+      'type': instance.type,
+      'statistics': instance.statistics.toJson(),
+      'floorPrice': instance.floorPrice,
+      'chain': collectionDtoChainNullableToJson(instance.chain),
+    };
+
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
+  address: json['address'] as String,
+  herotag: json['herotag'] as String,
+  isVerified: json['isVerified'] as bool,
+  profile: json['profile'] as String,
+  isCreator: json['isCreator'] as bool?,
+  addressTrimmed: json['addressTrimmed'] as String,
+  chain: userDtoChainNullableFromJson(json['chain']),
+);
+
+Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
+  'address': instance.address,
+  'herotag': instance.herotag,
+  'isVerified': instance.isVerified,
+  'profile': instance.profile,
+  'isCreator': instance.isCreator,
+  'addressTrimmed': instance.addressTrimmed,
+  'chain': userDtoChainNullableToJson(instance.chain),
+};
+
+CreatorDto _$CreatorDtoFromJson(Map<String, dynamic> json) => CreatorDto(
+  address: json['address'] as String,
+  herotag: json['herotag'] as String,
+  addressTrimmed: json['addressTrimmed'] as String,
+  isCreator: json['isCreator'] as bool,
+  contractAddress: json['contractAddress'] as String,
+  name: json['name'] as String,
+  creatorTag: json['creatorTag'] as String,
+  joinedDate: (json['joinedDate'] as num).toDouble(),
+  profile: json['profile'] as String,
+  chain: creatorDtoChainNullableFromJson(json['chain']),
+);
+
+Map<String, dynamic> _$CreatorDtoToJson(CreatorDto instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'herotag': instance.herotag,
+      'addressTrimmed': instance.addressTrimmed,
+      'isCreator': instance.isCreator,
+      'contractAddress': instance.contractAddress,
+      'name': instance.name,
+      'creatorTag': instance.creatorTag,
+      'joinedDate': instance.joinedDate,
+      'profile': instance.profile,
+      'chain': creatorDtoChainNullableToJson(instance.chain),
+    };
+
+NftDto _$NftDtoFromJson(Map<String, dynamic> json) => NftDto(
+  identifier: json['identifier'] as String,
+  name: json['name'] as String,
+  collection: json['collection'] as String,
+  onSale: json['onSale'] as bool,
+  url: json['url'] as String,
+  media: NftMedia.fromJson(json['media'] as Map<String, dynamic>),
+  wasProcessed: json['wasProcessed'] as bool,
+  metadata: MetadataDto.fromJson(json['metadata'] as Map<String, dynamic>),
+  chain: nftDtoChainNullableFromJson(json['chain']),
+);
+
+Map<String, dynamic> _$NftDtoToJson(NftDto instance) => <String, dynamic>{
+  'identifier': instance.identifier,
+  'name': instance.name,
+  'collection': instance.collection,
+  'onSale': instance.onSale,
+  'url': instance.url,
+  'media': instance.media.toJson(),
+  'wasProcessed': instance.wasProcessed,
+  'metadata': instance.metadata.toJson(),
+  'chain': nftDtoChainNullableToJson(instance.chain),
+};
+
+GlobalSearchResourcesDto _$GlobalSearchResourcesDtoFromJson(
+  Map<String, dynamic> json,
+) => GlobalSearchResourcesDto(
+  collections:
+      (json['collections'] as List<dynamic>?)
+          ?.map((e) => CollectionDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  users:
+      (json['users'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  creators:
+      (json['creators'] as List<dynamic>?)
+          ?.map((e) => CreatorDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+  nft:
+      (json['nft'] as List<dynamic>?)
+          ?.map((e) => NftDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$GlobalSearchResourcesDtoToJson(
+  GlobalSearchResourcesDto instance,
+) => <String, dynamic>{
+  'collections': instance.collections.map((e) => e.toJson()).toList(),
+  'users': instance.users.map((e) => e.toJson()).toList(),
+  'creators': instance.creators.map((e) => e.toJson()).toList(),
+  'nft': instance.nft.map((e) => e.toJson()).toList(),
+};
 
 GlobalSearchResourcesPaginated _$GlobalSearchResourcesPaginatedFromJson(
   Map<String, dynamic> json,
 ) => GlobalSearchResourcesPaginated(
   count: json['count'],
   hasMoreResults: json['hasMoreResults'] as bool,
-  resources: json['resources'] as Object,
+  resources: GlobalSearchResourcesDto.fromJson(
+    json['resources'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$GlobalSearchResourcesPaginatedToJson(
@@ -4613,8 +5183,44 @@ Map<String, dynamic> _$GlobalSearchResourcesPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.toJson(),
 };
+
+NotificationDoc _$NotificationDocFromJson(Map<String, dynamic> json) =>
+    NotificationDoc(
+      dataType: NotificationDoc.notificationDocDataTypeDataTypeFromJson(
+        json['dataType'],
+      ),
+      txHash: json['txHash'] as String,
+      source: json['source'] as String,
+      activityType: notificationDocActivityTypeFromJson(json['activityType']),
+      owner: json['owner'] as String,
+      message: json['message'] as String?,
+      asset: json['asset'] as Object,
+      activity: json['activity'] as Object,
+      isRead: json['isRead'] as bool? ?? false,
+      timestamp: (json['timestamp'] as num).toDouble(),
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$NotificationDocToJson(NotificationDoc instance) =>
+    <String, dynamic>{
+      'dataType': notificationDocDataTypeToJson(instance.dataType),
+      'txHash': instance.txHash,
+      'source': instance.source,
+      'activityType': notificationDocActivityTypeToJson(instance.activityType),
+      'owner': instance.owner,
+      'message': instance.message,
+      'asset': instance.asset,
+      'activity': instance.activity,
+      'isRead': instance.isRead,
+      'timestamp': instance.timestamp,
+      'id': instance.id,
+      'pk': instance.pk,
+      '_ts': instance.ts,
+    };
 
 NotificationPaginated _$NotificationPaginatedFromJson(
   Map<String, dynamic> json,
@@ -4623,7 +5229,7 @@ NotificationPaginated _$NotificationPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map((e) => NotificationDoc.fromJson(e as Map<String, dynamic>))
           .toList() ??
       [],
 );
@@ -4633,7 +5239,7 @@ Map<String, dynamic> _$NotificationPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 PushNotificationCountResponse _$PushNotificationCountResponseFromJson(
@@ -4760,7 +5366,7 @@ Map<String, dynamic> _$PushNotificationTargetingDtoToJson(
 
 PushNotificationDoc _$PushNotificationDocFromJson(Map<String, dynamic> json) =>
     PushNotificationDoc(
-      dataType: json['dataType'] as Object,
+      dataType: notificationDataTypeFromJson(json['dataType']),
       title: json['title'] as String,
       message: json['message'] as String,
       imageUrl: json['imageUrl'] as String?,
@@ -4778,7 +5384,7 @@ PushNotificationDoc _$PushNotificationDocFromJson(Map<String, dynamic> json) =>
       targeting: PushNotificationTargetingDto.fromJson(
         json['targeting'] as Map<String, dynamic>,
       ),
-      isRead: json['isRead'] as Object,
+      isRead: json['isRead'] as bool? ?? false,
       timestamp: (json['timestamp'] as num).toDouble(),
       deliveredAt: (json['deliveredAt'] as num?)?.toDouble(),
       clickedAt: (json['clickedAt'] as num?)?.toDouble(),
@@ -4793,7 +5399,7 @@ PushNotificationDoc _$PushNotificationDocFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PushNotificationDocToJson(
   PushNotificationDoc instance,
 ) => <String, dynamic>{
-  'dataType': instance.dataType,
+  'dataType': notificationDataTypeToJson(instance.dataType),
   'title': instance.title,
   'message': instance.message,
   'imageUrl': instance.imageUrl,
@@ -4994,24 +5600,89 @@ Map<String, dynamic> _$NftActivityFilterToJson(NftActivityFilter instance) =>
       'filters': instance.filters?.toJson(),
     };
 
-NftActivityPaginated _$NftActivityPaginatedFromJson(
-  Map<String, dynamic> json,
-) => NftActivityPaginated(
-  count: json['count'],
-  hasMoreResults: json['hasMoreResults'] as bool,
-  resources:
-      (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
-          .toList() ??
-      [],
+ShortNftDoc _$ShortNftDocFromJson(Map<String, dynamic> json) => ShortNftDoc(
+  identifier: json['identifier'] as String,
+  collection: json['collection'] as String,
+  name: json['name'] as String,
+  url: json['url'] as String,
+  wasProcessed: json['wasProcessed'] as bool,
+  media:
+      json['media'] == null
+          ? null
+          : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
+  metadata:
+      json['metadata'] == null
+          ? null
+          : NftMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
 );
 
-Map<String, dynamic> _$NftActivityPaginatedToJson(
-  NftActivityPaginated instance,
+Map<String, dynamic> _$ShortNftDocToJson(ShortNftDoc instance) =>
+    <String, dynamic>{
+      'identifier': instance.identifier,
+      'collection': instance.collection,
+      'name': instance.name,
+      'url': instance.url,
+      'wasProcessed': instance.wasProcessed,
+      'media': instance.media?.toJson(),
+      'metadata': instance.metadata?.toJson(),
+    };
+
+NftActivityDataHydrated _$NftActivityDataHydratedFromJson(
+  Map<String, dynamic> json,
+) => NftActivityDataHydrated(
+  collection: json['collection'] as String,
+  identifier: json['identifier'] as String?,
+  price: (json['price'] as num).toDouble(),
+  paymentToken: json['paymentToken'] as String,
+  quantity: (json['quantity'] as num).toDouble(),
+  scId: (json['scId'] as num).toDouble(),
+  usdValue: (json['usdValue'] as num).toDouble(),
+  egldValue: (json['egldValue'] as num).toDouble(),
+  auctionType: nftActivityDataHydratedAuctionTypeNullableFromJson(
+    json['auctionType'],
+  ),
+  deadline: (json['deadline'] as num?)?.toDouble(),
+  originalPayment:
+      json['originalPayment'] == null
+          ? null
+          : NftActivityDataHydrated$OriginalPayment.fromJson(
+            json['originalPayment'] as Map<String, dynamic>,
+          ),
+  originalTokenAmount: json['originalTokenAmount'] as String?,
+  originalTokenAmountShort:
+      (json['originalTokenAmountShort'] as num?)?.toDouble(),
+  originalTokenEgldValue: (json['originalTokenEgldValue'] as num?)?.toDouble(),
+  originalTokenUsdValue: (json['originalTokenUsdValue'] as num?)?.toDouble(),
+  originalTokenIdentifier: json['originalTokenIdentifier'] as String?,
+  nftInfo: ShortNftDoc.fromJson(json['nftInfo'] as Map<String, dynamic>),
+  collectionInfo: ShortCollectionDoc.fromJson(
+    json['collectionInfo'] as Map<String, dynamic>,
+  ),
+);
+
+Map<String, dynamic> _$NftActivityDataHydratedToJson(
+  NftActivityDataHydrated instance,
 ) => <String, dynamic>{
-  'count': instance.count,
-  'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'collection': instance.collection,
+  'identifier': instance.identifier,
+  'price': instance.price,
+  'paymentToken': instance.paymentToken,
+  'quantity': instance.quantity,
+  'scId': instance.scId,
+  'usdValue': instance.usdValue,
+  'egldValue': instance.egldValue,
+  'auctionType': nftActivityDataHydratedAuctionTypeNullableToJson(
+    instance.auctionType,
+  ),
+  'deadline': instance.deadline,
+  'originalPayment': instance.originalPayment?.toJson(),
+  'originalTokenAmount': instance.originalTokenAmount,
+  'originalTokenAmountShort': instance.originalTokenAmountShort,
+  'originalTokenEgldValue': instance.originalTokenEgldValue,
+  'originalTokenUsdValue': instance.originalTokenUsdValue,
+  'originalTokenIdentifier': instance.originalTokenIdentifier,
+  'nftInfo': instance.nftInfo.toJson(),
+  'collectionInfo': instance.collectionInfo.toJson(),
 };
 
 NftActivityDocHydrated _$NftActivityDocHydratedFromJson(
@@ -5029,6 +5700,11 @@ NftActivityDocHydrated _$NftActivityDocHydratedFromJson(
   id: json['id'] as String,
   pk: json['pk'] as String,
   ts: (json['_ts'] as num).toDouble(),
+  from: OwnerDto.fromJson(json['from'] as Map<String, dynamic>),
+  to: OwnerDto.fromJson(json['to'] as Map<String, dynamic>),
+  activityData: NftActivityDataHydrated.fromJson(
+    json['activityData'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$NftActivityDocHydratedToJson(
@@ -5046,12 +5722,83 @@ Map<String, dynamic> _$NftActivityDocHydratedToJson(
   'id': instance.id,
   'pk': instance.pk,
   '_ts': instance.ts,
+  'from': instance.from.toJson(),
+  'to': instance.to.toJson(),
+  'activityData': instance.activityData.toJson(),
 };
 
-VolumeGraph _$VolumeGraphFromJson(Map<String, dynamic> json) => VolumeGraph();
+NftActivityPaginated _$NftActivityPaginatedFromJson(
+  Map<String, dynamic> json,
+) => NftActivityPaginated(
+  count: json['count'],
+  hasMoreResults: json['hasMoreResults'] as bool,
+  resources:
+      (json['resources'] as List<dynamic>?)
+          ?.map(
+            (e) => NftActivityDocHydrated.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$NftActivityPaginatedToJson(
+  NftActivityPaginated instance,
+) => <String, dynamic>{
+  'count': instance.count,
+  'hasMoreResults': instance.hasMoreResults,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
+};
+
+VolumeGraph _$VolumeGraphFromJson(Map<String, dynamic> json) => VolumeGraph(
+  marketplace: json['marketplace'] as String,
+  timestamp:
+      (json['timestamp'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  totalEgldVolume:
+      (json['totalEgldVolume'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  totalUsdVolume:
+      (json['totalUsdVolume'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  totalTrades:
+      (json['totalTrades'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  floorPrice:
+      (json['floorPrice'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  athPrice:
+      (json['athPrice'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+  avgPrice:
+      (json['avgPrice'] as List<dynamic>?)
+          ?.map((e) => e as List<dynamic>)
+          .toList() ??
+      [],
+);
 
 Map<String, dynamic> _$VolumeGraphToJson(VolumeGraph instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'marketplace': instance.marketplace,
+      'timestamp': instance.timestamp,
+      'totalEgldVolume': instance.totalEgldVolume,
+      'totalUsdVolume': instance.totalUsdVolume,
+      'totalTrades': instance.totalTrades,
+      'floorPrice': instance.floorPrice,
+      'athPrice': instance.athPrice,
+      'avgPrice': instance.avgPrice,
+    };
 
 AnalyticsVolumeDto _$AnalyticsVolumeDtoFromJson(
   Map<String, dynamic> json,
@@ -5217,33 +5964,6 @@ Map<String, dynamic> _$GlobalAnalyticsOverviewResponseDtoToJson(
   'tradingStats': instance.tradingStats.toJson(),
 };
 
-ShortNftDoc _$ShortNftDocFromJson(Map<String, dynamic> json) => ShortNftDoc(
-  identifier: json['identifier'] as String,
-  collection: json['collection'] as String,
-  name: json['name'] as String,
-  url: json['url'] as String,
-  wasProcessed: json['wasProcessed'] as bool,
-  media:
-      json['media'] == null
-          ? null
-          : NftMedia.fromJson(json['media'] as Map<String, dynamic>),
-  metadata:
-      json['metadata'] == null
-          ? null
-          : NftMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
-);
-
-Map<String, dynamic> _$ShortNftDocToJson(ShortNftDoc instance) =>
-    <String, dynamic>{
-      'identifier': instance.identifier,
-      'collection': instance.collection,
-      'name': instance.name,
-      'url': instance.url,
-      'wasProcessed': instance.wasProcessed,
-      'media': instance.media?.toJson(),
-      'metadata': instance.metadata?.toJson(),
-    };
-
 PriceDataDto _$PriceDataDtoFromJson(Map<String, dynamic> json) => PriceDataDto(
   price: (json['price'] as num).toDouble(),
   timestamp: (json['timestamp'] as num).toDouble(),
@@ -5322,18 +6042,34 @@ Map<String, dynamic> _$UserStatsDtoToJson(UserStatsDto instance) =>
     };
 
 AirdropDtoHydrated _$AirdropDtoHydratedFromJson(Map<String, dynamic> json) =>
-    AirdropDtoHydrated();
+    AirdropDtoHydrated(
+      tokenAllocation: (json['tokenAllocation'] as num).toDouble(),
+      totalScore: (json['totalScore'] as num).toDouble(),
+      rank: (json['rank'] as num).toDouble(),
+      wallet: json['wallet'] as Object,
+      signature: json['signature'],
+      isClaimed: json['isClaimed'] as bool?,
+      amount: json['amount'] as String?,
+    );
 
 Map<String, dynamic> _$AirdropDtoHydratedToJson(AirdropDtoHydrated instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'tokenAllocation': instance.tokenAllocation,
+      'totalScore': instance.totalScore,
+      'rank': instance.rank,
+      'wallet': instance.wallet,
+      'signature': instance.signature,
+      'isClaimed': instance.isClaimed,
+      'amount': instance.amount,
+    };
 
 LendingTokenPriceDto _$LendingTokenPriceDtoFromJson(
   Map<String, dynamic> json,
-) => LendingTokenPriceDto();
+) => LendingTokenPriceDto(price: json['price'] as String);
 
 Map<String, dynamic> _$LendingTokenPriceDtoToJson(
   LendingTokenPriceDto instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{'price': instance.price};
 
 LoginRequestDto _$LoginRequestDtoFromJson(Map<String, dynamic> json) =>
     LoginRequestDto(
@@ -5341,6 +6077,9 @@ LoginRequestDto _$LoginRequestDtoFromJson(Map<String, dynamic> json) =>
       loginToken: json['loginToken'] as String,
       signature: json['signature'] as String?,
       data: json['data'],
+      service: LoginRequestDto.loginRequestDtoServiceServiceNullableFromJson(
+        json['service'],
+      ),
     );
 
 Map<String, dynamic> _$LoginRequestDtoToJson(LoginRequestDto instance) =>
@@ -5349,6 +6088,7 @@ Map<String, dynamic> _$LoginRequestDtoToJson(LoginRequestDto instance) =>
       'loginToken': instance.loginToken,
       'signature': instance.signature,
       'data': instance.data,
+      'service': loginRequestDtoServiceNullableToJson(instance.service),
     };
 
 LoginAccessDto _$LoginAccessDtoFromJson(Map<String, dynamic> json) =>
@@ -5363,12 +6103,101 @@ Map<String, dynamic> _$LoginAccessDtoToJson(LoginAccessDto instance) =>
       'expires': instance.expires,
     };
 
+TransactionLog _$TransactionLogFromJson(Map<String, dynamic> json) =>
+    TransactionLog(
+      id: json['id'] as String?,
+      address: json['address'] as String,
+      events:
+          (json['events'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      timestamp: (json['timestamp'] as num).toDouble(),
+      txHash: json['txHash'] as String,
+    );
+
+Map<String, dynamic> _$TransactionLogToJson(TransactionLog instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'address': instance.address,
+      'events': instance.events,
+      'timestamp': instance.timestamp,
+      'txHash': instance.txHash,
+    };
+
 TransactionDetailed _$TransactionDetailedFromJson(Map<String, dynamic> json) =>
-    TransactionDetailed();
+    TransactionDetailed(
+      txHash: json['txHash'] as String,
+      gasLimit: (json['gasLimit'] as num?)?.toDouble(),
+      gasPrice: (json['gasPrice'] as num?)?.toDouble(),
+      gasUsed: (json['gasUsed'] as num?)?.toDouble(),
+      miniBlockHash: json['miniBlockHash'] as String?,
+      nonce: (json['nonce'] as num?)?.toDouble(),
+      receiver: json['receiver'] as String,
+      receiverShard: (json['receiverShard'] as num).toDouble(),
+      round: (json['round'] as num?)?.toDouble(),
+      sender: json['sender'] as String,
+      senderShard: (json['senderShard'] as num).toDouble(),
+      signature: json['signature'] as String?,
+      status: json['status'] as String,
+      $value: json['value'] as String,
+      fee: json['fee'] as String?,
+      timestamp: (json['timestamp'] as num).toDouble(),
+      data: json['data'] as String?,
+      function: json['function'] as String?,
+      action: json['action'],
+      scamInfo: json['scamInfo'],
+      type: transactionTypeNullableFromJson(json['type']),
+      originalTxHash: json['originalTxHash'] as String?,
+      pendingResults: json['pendingResults'] as bool?,
+      results:
+          (json['results'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      price: (json['price'] as num?)?.toDouble(),
+      logs:
+          json['logs'] == null
+              ? null
+              : TransactionLog.fromJson(json['logs'] as Map<String, dynamic>),
+      operations:
+          (json['operations'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+    );
 
 Map<String, dynamic> _$TransactionDetailedToJson(
   TransactionDetailed instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{
+  'txHash': instance.txHash,
+  'gasLimit': instance.gasLimit,
+  'gasPrice': instance.gasPrice,
+  'gasUsed': instance.gasUsed,
+  'miniBlockHash': instance.miniBlockHash,
+  'nonce': instance.nonce,
+  'receiver': instance.receiver,
+  'receiverShard': instance.receiverShard,
+  'round': instance.round,
+  'sender': instance.sender,
+  'senderShard': instance.senderShard,
+  'signature': instance.signature,
+  'status': instance.status,
+  'value': instance.$value,
+  'fee': instance.fee,
+  'timestamp': instance.timestamp,
+  'data': instance.data,
+  'function': instance.function,
+  'action': instance.action,
+  'scamInfo': instance.scamInfo,
+  'type': transactionTypeNullableToJson(instance.type),
+  'originalTxHash': instance.originalTxHash,
+  'pendingResults': instance.pendingResults,
+  'results': instance.results,
+  'price': instance.price,
+  'logs': instance.logs?.toJson(),
+  'operations': instance.operations,
+};
 
 TransactionProcessStatus _$TransactionProcessStatusFromJson(
   Map<String, dynamic> json,
@@ -5500,13 +6329,95 @@ Map<String, dynamic> _$SendChatMessageDtoToJson(SendChatMessageDto instance) =>
       'receiver': instance.receiver,
     };
 
+MessageDto _$MessageDtoFromJson(Map<String, dynamic> json) => MessageDto(
+  content: ChatMessageContentDto.fromJson(
+    json['content'] as Map<String, dynamic>,
+  ),
+  isRead: json['isRead'] as bool,
+  timestamp: (json['timestamp'] as num).toDouble(),
+  sender: json['sender'] as String,
+  isDeletedFor:
+      (json['isDeletedFor'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$MessageDtoToJson(MessageDto instance) =>
+    <String, dynamic>{
+      'content': instance.content.toJson(),
+      'isRead': instance.isRead,
+      'timestamp': instance.timestamp,
+      'sender': instance.sender,
+      'isDeletedFor': instance.isDeletedFor,
+    };
+
 ChatMessageDocHydrated _$ChatMessageDocHydratedFromJson(
   Map<String, dynamic> json,
-) => ChatMessageDocHydrated();
+) => ChatMessageDocHydrated(
+  dataType: json['dataType'] as Object,
+  chatId: json['chatId'] as String,
+  isGroupChat: json['isGroupChat'] as bool,
+  message: MessageDto.fromJson(json['message'] as Map<String, dynamic>),
+  pk: json['pk'] as String,
+  id: json['id'] as String,
+  ttl: (json['ttl'] as num).toDouble(),
+  ts: (json['_ts'] as num).toDouble(),
+  sender: OwnerDto.fromJson(json['sender'] as Map<String, dynamic>),
+  receiver: OwnerDto.fromJson(json['receiver'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$ChatMessageDocHydratedToJson(
   ChatMessageDocHydrated instance,
-) => <String, dynamic>{};
+) => <String, dynamic>{
+  'dataType': instance.dataType,
+  'chatId': instance.chatId,
+  'isGroupChat': instance.isGroupChat,
+  'message': instance.message.toJson(),
+  'pk': instance.pk,
+  'id': instance.id,
+  'ttl': instance.ttl,
+  '_ts': instance.ts,
+  'sender': instance.sender.toJson(),
+  'receiver': instance.receiver.toJson(),
+};
+
+UserConversationDocHydrated _$UserConversationDocHydratedFromJson(
+  Map<String, dynamic> json,
+) => UserConversationDocHydrated(
+  dataType:
+      UserConversationDocHydrated.userConversationDocHydratedDataTypeDataTypeFromJson(
+        json['dataType'],
+      ),
+  chatName: json['chatName'],
+  isGroupChat: json['isGroupChat'] as bool,
+  chatId: json['chatId'] as String,
+  message: MessageDto.fromJson(json['message'] as Map<String, dynamic>),
+  deleteTimestamp: json['deleteTimestamp'],
+  unreadCount: json['unreadCount'],
+  id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toDouble(),
+  sender: OwnerDto.fromJson(json['sender'] as Map<String, dynamic>),
+  receiver: OwnerDto.fromJson(json['receiver'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$UserConversationDocHydratedToJson(
+  UserConversationDocHydrated instance,
+) => <String, dynamic>{
+  'dataType': userConversationDocHydratedDataTypeToJson(instance.dataType),
+  'chatName': instance.chatName,
+  'isGroupChat': instance.isGroupChat,
+  'chatId': instance.chatId,
+  'message': instance.message.toJson(),
+  'deleteTimestamp': instance.deleteTimestamp,
+  'unreadCount': instance.unreadCount,
+  'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
+  'sender': instance.sender.toJson(),
+  'receiver': instance.receiver.toJson(),
+};
 
 UserConversationPaginated _$UserConversationPaginatedFromJson(
   Map<String, dynamic> json,
@@ -5515,7 +6426,10 @@ UserConversationPaginated _$UserConversationPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) =>
+                UserConversationDocHydrated.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       [],
 );
@@ -5525,7 +6439,7 @@ Map<String, dynamic> _$UserConversationPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 ChatMessagePaginated _$ChatMessagePaginatedFromJson(
@@ -5535,9 +6449,12 @@ ChatMessagePaginated _$ChatMessagePaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) => ChatMessageDocHydrated.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       [],
+  receiver: OwnerDto.fromJson(json['receiver'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$ChatMessagePaginatedToJson(
@@ -5545,7 +6462,8 @@ Map<String, dynamic> _$ChatMessagePaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
+  'receiver': instance.receiver.toJson(),
 };
 
 UnreadMessageCountByChatIdDto _$UnreadMessageCountByChatIdDtoFromJson(
@@ -5587,13 +6505,41 @@ Map<String, dynamic> _$GlobalConversationSummaryDtoToJson(
       instance.unreadMessageCountByChatId.map((e) => e.toJson()).toList(),
 };
 
+UserBlockDocHydrated _$UserBlockDocHydratedFromJson(
+  Map<String, dynamic> json,
+) => UserBlockDocHydrated(
+  dataType: UserBlockDocHydrated.userBlockDocHydratedDataTypeDataTypeFromJson(
+    json['dataType'],
+  ),
+  timestamp: json['timestamp'] as Object,
+  id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toDouble(),
+  sender: OwnerDto.fromJson(json['sender'] as Map<String, dynamic>),
+  receiver: OwnerDto.fromJson(json['receiver'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$UserBlockDocHydratedToJson(
+  UserBlockDocHydrated instance,
+) => <String, dynamic>{
+  'dataType': userBlockDocHydratedDataTypeToJson(instance.dataType),
+  'timestamp': instance.timestamp,
+  'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
+  'sender': instance.sender.toJson(),
+  'receiver': instance.receiver.toJson(),
+};
+
 UserBlockPaginated _$UserBlockPaginatedFromJson(Map<String, dynamic> json) =>
     UserBlockPaginated(
       count: json['count'],
       hasMoreResults: json['hasMoreResults'] as bool,
       resources:
           (json['resources'] as List<dynamic>?)
-              ?.map((e) => e as List<dynamic>)
+              ?.map(
+                (e) => UserBlockDocHydrated.fromJson(e as Map<String, dynamic>),
+              )
               .toList() ??
           [],
     );
@@ -5602,7 +6548,7 @@ Map<String, dynamic> _$UserBlockPaginatedToJson(UserBlockPaginated instance) =>
     <String, dynamic>{
       'count': instance.count,
       'hasMoreResults': instance.hasMoreResults,
-      'resources': instance.resources,
+      'resources': instance.resources.map((e) => e.toJson()).toList(),
     };
 
 WebSocketTokenDto _$WebSocketTokenDtoFromJson(Map<String, dynamic> json) =>
@@ -5989,6 +6935,8 @@ EventTicketProfileDoc _$EventTicketProfileDocFromJson(
   soldCount: (json['soldCount'] as num).toInt(),
   createdAt: (json['createdAt'] as num).toInt(),
   id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toInt(),
 );
 
 Map<String, dynamic> _$EventTicketProfileDocToJson(
@@ -6007,6 +6955,8 @@ Map<String, dynamic> _$EventTicketProfileDocToJson(
   'soldCount': instance.soldCount,
   'createdAt': instance.createdAt,
   'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
 };
 
 EventTicketProfileEditDto _$EventTicketProfileEditDtoFromJson(
@@ -6094,6 +7044,8 @@ EventStageProfileDoc _$EventStageProfileDocFromJson(
       [],
   soldCount: (json['soldCount'] as num).toInt(),
   id: json['id'] as String,
+  pk: json['pk'] as String,
+  ts: (json['_ts'] as num).toInt(),
 );
 
 Map<String, dynamic> _$EventStageProfileDocToJson(
@@ -6113,6 +7065,8 @@ Map<String, dynamic> _$EventStageProfileDocToJson(
   'prices': instance.prices.map((e) => e.toJson()).toList(),
   'soldCount': instance.soldCount,
   'id': instance.id,
+  'pk': instance.pk,
+  '_ts': instance.ts,
 };
 
 EventStageProfileEditDto _$EventStageProfileEditDtoFromJson(
@@ -6317,6 +7271,7 @@ EventInvitationDoc _$EventInvitationDocFromJson(Map<String, dynamic> json) =>
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
       pk: json['pk'] as String?,
+      ts: (json['_ts'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventInvitationDocToJson(EventInvitationDoc instance) =>
@@ -6338,6 +7293,7 @@ Map<String, dynamic> _$EventInvitationDocToJson(EventInvitationDoc instance) =>
       'txHash': instance.txHash,
       'id': instance.id,
       'pk': instance.pk,
+      '_ts': instance.ts,
     };
 
 EventInvitationFilterCriteriaDto _$EventInvitationFilterCriteriaDtoFromJson(
@@ -6429,6 +7385,7 @@ EventInvitation _$EventInvitationFromJson(
   txHash: json['txHash'] as String?,
   id: json['id'] as String,
   pk: json['pk'] as String?,
+  ts: (json['_ts'] as num).toInt(),
   profile: json['profile'] as String?,
   herotag: json['herotag'] as String?,
 );
@@ -6452,6 +7409,7 @@ Map<String, dynamic> _$EventInvitationToJson(EventInvitation instance) =>
       'txHash': instance.txHash,
       'id': instance.id,
       'pk': instance.pk,
+      '_ts': instance.ts,
       'profile': instance.profile,
       'herotag': instance.herotag,
     };
@@ -6569,6 +7527,7 @@ EventVoucherDoc _$EventVoucherDocFromJson(
   ownerId: json['ownerId'] as String?,
   createdAt: (json['createdAt'] as num).toInt(),
   createdBy: json['createdBy'] as String,
+  pk: json['pk'] as String,
 );
 
 Map<String, dynamic> _$EventVoucherDocToJson(EventVoucherDoc instance) =>
@@ -6593,6 +7552,7 @@ Map<String, dynamic> _$EventVoucherDocToJson(EventVoucherDoc instance) =>
       'ownerId': instance.ownerId,
       'createdAt': instance.createdAt,
       'createdBy': instance.createdBy,
+      'pk': instance.pk,
     };
 
 EventVoucherQuery _$EventVoucherQueryFromJson(Map<String, dynamic> json) =>
@@ -6630,6 +7590,7 @@ EventQuestionDoc _$EventQuestionDocFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       createdAt: (json['createdAt'] as num).toInt(),
+      pk: json['pk'] as String,
     );
 
 Map<String, dynamic> _$EventQuestionDocToJson(EventQuestionDoc instance) =>
@@ -6643,6 +7604,7 @@ Map<String, dynamic> _$EventQuestionDocToJson(EventQuestionDoc instance) =>
       'requireTime': instance.requireTime,
       'answers': instance.answers,
       'createdAt': instance.createdAt,
+      'pk': instance.pk,
     };
 
 EventQuestionCreateDto _$EventQuestionCreateDtoFromJson(
@@ -6775,6 +7737,8 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
       metadata: json['metadata'],
       id: json['id'] as String?,
       pk: json['pk'] as String?,
+      ts: (json['_ts'] as num).toInt(),
+      ttl: (json['ttl'] as num?)?.toInt(),
       profile: json['profile'] as String,
       herotag: json['herotag'] as String,
     );
@@ -6794,6 +7758,8 @@ Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
       'metadata': instance.metadata,
       'id': instance.id,
       'pk': instance.pk,
+      '_ts': instance.ts,
+      'ttl': instance.ttl,
       'profile': instance.profile,
       'herotag': instance.herotag,
     };
@@ -6875,6 +7841,8 @@ EventUserRole _$EventUserRoleFromJson(Map<String, dynamic> json) =>
       endTime: (json['endTime'] as num?)?.toInt(),
       id: json['id'] as String?,
       status: roleStatusNullableFromJson(json['status']),
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toInt(),
       profile: json['profile'] as String,
       herotag: json['herotag'] as String,
     );
@@ -6892,6 +7860,8 @@ Map<String, dynamic> _$EventUserRoleToJson(EventUserRole instance) =>
       'endTime': instance.endTime,
       'id': instance.id,
       'status': roleStatusNullableToJson(instance.status),
+      'pk': instance.pk,
+      '_ts': instance.ts,
       'profile': instance.profile,
       'herotag': instance.herotag,
     };
@@ -7054,6 +8024,7 @@ EventVoucherCreateDto _$EventVoucherCreateDtoFromJson(
   endDate: (json['endDate'] as num?)?.toInt(),
   isActive: json['isActive'] as bool? ?? true,
   ownerId: json['ownerId'] as String?,
+  pk: json['pk'] as String?,
 );
 
 Map<String, dynamic> _$EventVoucherCreateDtoToJson(
@@ -7074,6 +8045,7 @@ Map<String, dynamic> _$EventVoucherCreateDtoToJson(
   'endDate': instance.endDate,
   'isActive': instance.isActive,
   'ownerId': instance.ownerId,
+  'pk': instance.pk,
 };
 
 EventVoucherEditDto _$EventVoucherEditDtoFromJson(Map<String, dynamic> json) =>
@@ -7099,6 +8071,7 @@ EventVoucherEditDto _$EventVoucherEditDtoFromJson(Map<String, dynamic> json) =>
       endDate: (json['endDate'] as num?)?.toInt(),
       isActive: json['isActive'] as bool? ?? true,
       ownerId: json['ownerId'] as String?,
+      pk: json['pk'] as String?,
     );
 
 Map<String, dynamic> _$EventVoucherEditDtoToJson(
@@ -7117,6 +8090,7 @@ Map<String, dynamic> _$EventVoucherEditDtoToJson(
   'endDate': instance.endDate,
   'isActive': instance.isActive,
   'ownerId': instance.ownerId,
+  'pk': instance.pk,
 };
 
 ManualCheckInDto _$ManualCheckInDtoFromJson(Map<String, dynamic> json) =>
@@ -7321,6 +8295,7 @@ EventReferralConfigDoc _$EventReferralConfigDocFromJson(
   isActive: json['isActive'] as bool,
   createdAt: (json['createdAt'] as num).toInt(),
   createdBy: json['createdBy'] as String,
+  pk: json['pk'] as String,
 );
 
 Map<String, dynamic> _$EventReferralConfigDocToJson(
@@ -7335,6 +8310,7 @@ Map<String, dynamic> _$EventReferralConfigDocToJson(
   'isActive': instance.isActive,
   'createdAt': instance.createdAt,
   'createdBy': instance.createdBy,
+  'pk': instance.pk,
 };
 
 EventReferralConfigEditDto _$EventReferralConfigEditDtoFromJson(
@@ -7426,7 +8402,9 @@ EventReferralConfigPaginated _$EventReferralConfigPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map(
+            (e) => EventReferralConfigDoc.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       [],
 );
@@ -7436,7 +8414,7 @@ Map<String, dynamic> _$EventReferralConfigPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 EventReferralCreateDto _$EventReferralCreateDtoFromJson(
@@ -7459,6 +8437,7 @@ EventReferralDoc _$EventReferralDocFromJson(Map<String, dynamic> json) =>
         json['dataType'],
       ),
       id: json['id'] as String,
+      pk: json['pk'] as String,
       referralCode: json['referralCode'] as String,
       ownerId: json['ownerId'] as String?,
       eventId: json['eventId'] as String,
@@ -7472,6 +8451,7 @@ Map<String, dynamic> _$EventReferralDocToJson(EventReferralDoc instance) =>
     <String, dynamic>{
       'dataType': ticketingDataTypeToJson(instance.dataType),
       'id': instance.id,
+      'pk': instance.pk,
       'referralCode': instance.referralCode,
       'ownerId': instance.ownerId,
       'eventId': instance.eventId,
@@ -7564,7 +8544,7 @@ EventReferralPaginated _$EventReferralPaginatedFromJson(
   hasMoreResults: json['hasMoreResults'] as bool,
   resources:
       (json['resources'] as List<dynamic>?)
-          ?.map((e) => e as List<dynamic>)
+          ?.map((e) => EventReferralDoc.fromJson(e as Map<String, dynamic>))
           .toList() ??
       [],
 );
@@ -7574,7 +8554,7 @@ Map<String, dynamic> _$EventReferralPaginatedToJson(
 ) => <String, dynamic>{
   'count': instance.count,
   'hasMoreResults': instance.hasMoreResults,
-  'resources': instance.resources,
+  'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
 NftSaleInfo _$NftSaleInfoFromJson(Map<String, dynamic> json) => NftSaleInfo(
@@ -7587,7 +8567,7 @@ NftSaleInfo _$NftSaleInfoFromJson(Map<String, dynamic> json) => NftSaleInfo(
   deadline: (json['deadline'] as num).toDouble(),
   paymentToken: json['paymentToken'] as String,
   paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
-  auctionType: json['auctionType'] as String,
+  auctionType: xoxnoAuctionTypeStringFromJson(json['auctionType']),
   timestamp: (json['timestamp'] as num).toDouble(),
   minBidShort: (json['minBidShort'] as num).toDouble(),
   minBidUsdValue: (json['minBidUsdValue'] as num?)?.toDouble(),
@@ -7611,7 +8591,7 @@ Map<String, dynamic> _$NftSaleInfoToJson(NftSaleInfo instance) =>
       'deadline': instance.deadline,
       'paymentToken': instance.paymentToken,
       'paymentTokenNonce': instance.paymentTokenNonce,
-      'auctionType': instance.auctionType,
+      'auctionType': xoxnoAuctionTypeStringToJson(instance.auctionType),
       'timestamp': instance.timestamp,
       'minBidShort': instance.minBidShort,
       'minBidUsdValue': instance.minBidUsdValue,
@@ -7763,3 +8743,17 @@ _$EventEventIdTicketTicketIdPut$RequestBodyFromJson(
 Map<String, dynamic> _$EventEventIdTicketTicketIdPut$RequestBodyToJson(
   EventEventIdTicketTicketIdPut$RequestBody instance,
 ) => <String, dynamic>{'file': instance.file};
+
+NftActivityDataHydrated$OriginalPayment
+_$NftActivityDataHydrated$OriginalPaymentFromJson(Map<String, dynamic> json) =>
+    NftActivityDataHydrated$OriginalPayment(
+      paymentToken: json['paymentToken'] as String?,
+      price: (json['price'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$NftActivityDataHydrated$OriginalPaymentToJson(
+  NftActivityDataHydrated$OriginalPayment instance,
+) => <String, dynamic>{
+  'paymentToken': instance.paymentToken,
+  'price': instance.price,
+};
