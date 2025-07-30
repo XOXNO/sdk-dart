@@ -32507,6 +32507,246 @@ extension $WebSocketTokenDtoExtension on WebSocketTokenDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RegistrationDetailsCreateDto {
+  const RegistrationDetailsCreateDto({
+    required this.visibility,
+    required this.maxLimit,
+    required this.userLimit,
+    required this.requireKYC,
+    required this.requireName,
+    required this.requireEmail,
+    required this.requirePhoneNumber,
+    required this.isPublished,
+    required this.hasSideEvents,
+    required this.hasWaitlist,
+    required this.showGuestCount,
+    required this.refundable,
+    required this.nameWithNumber,
+    required this.botProtection,
+  });
+
+  factory RegistrationDetailsCreateDto.fromJson(Map<String, dynamic> json) =>
+      _$RegistrationDetailsCreateDtoFromJson(json);
+
+  static const toJsonFactory = _$RegistrationDetailsCreateDtoToJson;
+  Map<String, dynamic> toJson() => _$RegistrationDetailsCreateDtoToJson(this);
+
+  @JsonKey(
+    name: 'visibility',
+    toJson: visibilityToJson,
+    fromJson: visibilityFromJson,
+  )
+  final enums.Visibility visibility;
+  @JsonKey(name: 'maxLimit')
+  final int maxLimit;
+  @JsonKey(name: 'userLimit')
+  final int userLimit;
+  @JsonKey(name: 'requireKYC')
+  final bool requireKYC;
+  @JsonKey(name: 'requireName')
+  final bool requireName;
+  @JsonKey(name: 'requireEmail')
+  final bool requireEmail;
+  @JsonKey(name: 'requirePhoneNumber')
+  final bool requirePhoneNumber;
+  @JsonKey(name: 'isPublished')
+  final bool isPublished;
+  @JsonKey(name: 'hasSideEvents')
+  final bool hasSideEvents;
+  @JsonKey(name: 'hasWaitlist')
+  final bool hasWaitlist;
+  @JsonKey(name: 'showGuestCount')
+  final bool showGuestCount;
+  @JsonKey(name: 'refundable')
+  final bool refundable;
+  @JsonKey(name: 'nameWithNumber')
+  final bool nameWithNumber;
+  @JsonKey(name: 'botProtection')
+  final bool botProtection;
+  static const fromJsonFactory = _$RegistrationDetailsCreateDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is RegistrationDetailsCreateDto &&
+            (identical(other.visibility, visibility) ||
+                const DeepCollectionEquality().equals(
+                  other.visibility,
+                  visibility,
+                )) &&
+            (identical(other.maxLimit, maxLimit) ||
+                const DeepCollectionEquality().equals(
+                  other.maxLimit,
+                  maxLimit,
+                )) &&
+            (identical(other.userLimit, userLimit) ||
+                const DeepCollectionEquality().equals(
+                  other.userLimit,
+                  userLimit,
+                )) &&
+            (identical(other.requireKYC, requireKYC) ||
+                const DeepCollectionEquality().equals(
+                  other.requireKYC,
+                  requireKYC,
+                )) &&
+            (identical(other.requireName, requireName) ||
+                const DeepCollectionEquality().equals(
+                  other.requireName,
+                  requireName,
+                )) &&
+            (identical(other.requireEmail, requireEmail) ||
+                const DeepCollectionEquality().equals(
+                  other.requireEmail,
+                  requireEmail,
+                )) &&
+            (identical(other.requirePhoneNumber, requirePhoneNumber) ||
+                const DeepCollectionEquality().equals(
+                  other.requirePhoneNumber,
+                  requirePhoneNumber,
+                )) &&
+            (identical(other.isPublished, isPublished) ||
+                const DeepCollectionEquality().equals(
+                  other.isPublished,
+                  isPublished,
+                )) &&
+            (identical(other.hasSideEvents, hasSideEvents) ||
+                const DeepCollectionEquality().equals(
+                  other.hasSideEvents,
+                  hasSideEvents,
+                )) &&
+            (identical(other.hasWaitlist, hasWaitlist) ||
+                const DeepCollectionEquality().equals(
+                  other.hasWaitlist,
+                  hasWaitlist,
+                )) &&
+            (identical(other.showGuestCount, showGuestCount) ||
+                const DeepCollectionEquality().equals(
+                  other.showGuestCount,
+                  showGuestCount,
+                )) &&
+            (identical(other.refundable, refundable) ||
+                const DeepCollectionEquality().equals(
+                  other.refundable,
+                  refundable,
+                )) &&
+            (identical(other.nameWithNumber, nameWithNumber) ||
+                const DeepCollectionEquality().equals(
+                  other.nameWithNumber,
+                  nameWithNumber,
+                )) &&
+            (identical(other.botProtection, botProtection) ||
+                const DeepCollectionEquality().equals(
+                  other.botProtection,
+                  botProtection,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(visibility) ^
+      const DeepCollectionEquality().hash(maxLimit) ^
+      const DeepCollectionEquality().hash(userLimit) ^
+      const DeepCollectionEquality().hash(requireKYC) ^
+      const DeepCollectionEquality().hash(requireName) ^
+      const DeepCollectionEquality().hash(requireEmail) ^
+      const DeepCollectionEquality().hash(requirePhoneNumber) ^
+      const DeepCollectionEquality().hash(isPublished) ^
+      const DeepCollectionEquality().hash(hasSideEvents) ^
+      const DeepCollectionEquality().hash(hasWaitlist) ^
+      const DeepCollectionEquality().hash(showGuestCount) ^
+      const DeepCollectionEquality().hash(refundable) ^
+      const DeepCollectionEquality().hash(nameWithNumber) ^
+      const DeepCollectionEquality().hash(botProtection) ^
+      runtimeType.hashCode;
+}
+
+extension $RegistrationDetailsCreateDtoExtension
+    on RegistrationDetailsCreateDto {
+  RegistrationDetailsCreateDto copyWith({
+    enums.Visibility? visibility,
+    int? maxLimit,
+    int? userLimit,
+    bool? requireKYC,
+    bool? requireName,
+    bool? requireEmail,
+    bool? requirePhoneNumber,
+    bool? isPublished,
+    bool? hasSideEvents,
+    bool? hasWaitlist,
+    bool? showGuestCount,
+    bool? refundable,
+    bool? nameWithNumber,
+    bool? botProtection,
+  }) {
+    return RegistrationDetailsCreateDto(
+      visibility: visibility ?? this.visibility,
+      maxLimit: maxLimit ?? this.maxLimit,
+      userLimit: userLimit ?? this.userLimit,
+      requireKYC: requireKYC ?? this.requireKYC,
+      requireName: requireName ?? this.requireName,
+      requireEmail: requireEmail ?? this.requireEmail,
+      requirePhoneNumber: requirePhoneNumber ?? this.requirePhoneNumber,
+      isPublished: isPublished ?? this.isPublished,
+      hasSideEvents: hasSideEvents ?? this.hasSideEvents,
+      hasWaitlist: hasWaitlist ?? this.hasWaitlist,
+      showGuestCount: showGuestCount ?? this.showGuestCount,
+      refundable: refundable ?? this.refundable,
+      nameWithNumber: nameWithNumber ?? this.nameWithNumber,
+      botProtection: botProtection ?? this.botProtection,
+    );
+  }
+
+  RegistrationDetailsCreateDto copyWithWrapped({
+    Wrapped<enums.Visibility>? visibility,
+    Wrapped<int>? maxLimit,
+    Wrapped<int>? userLimit,
+    Wrapped<bool>? requireKYC,
+    Wrapped<bool>? requireName,
+    Wrapped<bool>? requireEmail,
+    Wrapped<bool>? requirePhoneNumber,
+    Wrapped<bool>? isPublished,
+    Wrapped<bool>? hasSideEvents,
+    Wrapped<bool>? hasWaitlist,
+    Wrapped<bool>? showGuestCount,
+    Wrapped<bool>? refundable,
+    Wrapped<bool>? nameWithNumber,
+    Wrapped<bool>? botProtection,
+  }) {
+    return RegistrationDetailsCreateDto(
+      visibility: (visibility != null ? visibility.value : this.visibility),
+      maxLimit: (maxLimit != null ? maxLimit.value : this.maxLimit),
+      userLimit: (userLimit != null ? userLimit.value : this.userLimit),
+      requireKYC: (requireKYC != null ? requireKYC.value : this.requireKYC),
+      requireName: (requireName != null ? requireName.value : this.requireName),
+      requireEmail: (requireEmail != null
+          ? requireEmail.value
+          : this.requireEmail),
+      requirePhoneNumber: (requirePhoneNumber != null
+          ? requirePhoneNumber.value
+          : this.requirePhoneNumber),
+      isPublished: (isPublished != null ? isPublished.value : this.isPublished),
+      hasSideEvents: (hasSideEvents != null
+          ? hasSideEvents.value
+          : this.hasSideEvents),
+      hasWaitlist: (hasWaitlist != null ? hasWaitlist.value : this.hasWaitlist),
+      showGuestCount: (showGuestCount != null
+          ? showGuestCount.value
+          : this.showGuestCount),
+      refundable: (refundable != null ? refundable.value : this.refundable),
+      nameWithNumber: (nameWithNumber != null
+          ? nameWithNumber.value
+          : this.nameWithNumber),
+      botProtection: (botProtection != null
+          ? botProtection.value
+          : this.botProtection),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventProfileCreateDto {
   const EventProfileCreateDto({
     required this.title,
@@ -32518,6 +32758,7 @@ class EventProfileCreateDto {
     required this.category,
     this.subCategory,
     this.seo,
+    required this.registration,
   });
 
   factory EventProfileCreateDto.fromJson(Map<String, dynamic> json) =>
@@ -32552,6 +32793,8 @@ class EventProfileCreateDto {
   final enums.EventSubCategory? subCategory;
   @JsonKey(name: 'seo')
   final EventSeoDto? seo;
+  @JsonKey(name: 'registration')
+  final RegistrationDetailsCreateDto registration;
   static const fromJsonFactory = _$EventProfileCreateDtoFromJson;
 
   @override
@@ -32593,7 +32836,12 @@ class EventProfileCreateDto {
                   subCategory,
                 )) &&
             (identical(other.seo, seo) ||
-                const DeepCollectionEquality().equals(other.seo, seo)));
+                const DeepCollectionEquality().equals(other.seo, seo)) &&
+            (identical(other.registration, registration) ||
+                const DeepCollectionEquality().equals(
+                  other.registration,
+                  registration,
+                )));
   }
 
   @override
@@ -32610,6 +32858,7 @@ class EventProfileCreateDto {
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(subCategory) ^
       const DeepCollectionEquality().hash(seo) ^
+      const DeepCollectionEquality().hash(registration) ^
       runtimeType.hashCode;
 }
 
@@ -32624,6 +32873,7 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
     enums.EventCategory? category,
     enums.EventSubCategory? subCategory,
     EventSeoDto? seo,
+    RegistrationDetailsCreateDto? registration,
   }) {
     return EventProfileCreateDto(
       title: title ?? this.title,
@@ -32635,6 +32885,7 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
       seo: seo ?? this.seo,
+      registration: registration ?? this.registration,
     );
   }
 
@@ -32648,6 +32899,7 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
     Wrapped<enums.EventCategory>? category,
     Wrapped<enums.EventSubCategory?>? subCategory,
     Wrapped<EventSeoDto?>? seo,
+    Wrapped<RegistrationDetailsCreateDto>? registration,
   }) {
     return EventProfileCreateDto(
       title: (title != null ? title.value : this.title),
@@ -32661,6 +32913,9 @@ extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
       category: (category != null ? category.value : this.category),
       subCategory: (subCategory != null ? subCategory.value : this.subCategory),
       seo: (seo != null ? seo.value : this.seo),
+      registration: (registration != null
+          ? registration.value
+          : this.registration),
     );
   }
 }
@@ -33083,6 +33338,7 @@ class EventProfileEditDto {
     this.category,
     this.subCategory,
     this.seo,
+    this.registration,
   });
 
   factory EventProfileEditDto.fromJson(Map<String, dynamic> json) =>
@@ -33117,6 +33373,8 @@ class EventProfileEditDto {
   final enums.EventSubCategory? subCategory;
   @JsonKey(name: 'seo')
   final EventSeoDto? seo;
+  @JsonKey(name: 'registration')
+  final RegistrationDetailsCreateDto? registration;
   static const fromJsonFactory = _$EventProfileEditDtoFromJson;
 
   @override
@@ -33158,7 +33416,12 @@ class EventProfileEditDto {
                   subCategory,
                 )) &&
             (identical(other.seo, seo) ||
-                const DeepCollectionEquality().equals(other.seo, seo)));
+                const DeepCollectionEquality().equals(other.seo, seo)) &&
+            (identical(other.registration, registration) ||
+                const DeepCollectionEquality().equals(
+                  other.registration,
+                  registration,
+                )));
   }
 
   @override
@@ -33175,6 +33438,7 @@ class EventProfileEditDto {
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(subCategory) ^
       const DeepCollectionEquality().hash(seo) ^
+      const DeepCollectionEquality().hash(registration) ^
       runtimeType.hashCode;
 }
 
@@ -33189,6 +33453,7 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
     enums.EventCategory? category,
     enums.EventSubCategory? subCategory,
     EventSeoDto? seo,
+    RegistrationDetailsCreateDto? registration,
   }) {
     return EventProfileEditDto(
       title: title ?? this.title,
@@ -33200,6 +33465,7 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
       seo: seo ?? this.seo,
+      registration: registration ?? this.registration,
     );
   }
 
@@ -33213,6 +33479,7 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
     Wrapped<enums.EventCategory?>? category,
     Wrapped<enums.EventSubCategory?>? subCategory,
     Wrapped<EventSeoDto?>? seo,
+    Wrapped<RegistrationDetailsCreateDto?>? registration,
   }) {
     return EventProfileEditDto(
       title: (title != null ? title.value : this.title),
@@ -33226,6 +33493,9 @@ extension $EventProfileEditDtoExtension on EventProfileEditDto {
       category: (category != null ? category.value : this.category),
       subCategory: (subCategory != null ? subCategory.value : this.subCategory),
       seo: (seo != null ? seo.value : this.seo),
+      registration: (registration != null
+          ? registration.value
+          : this.registration),
     );
   }
 }

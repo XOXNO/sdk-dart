@@ -6557,6 +6557,44 @@ WebSocketTokenDto _$WebSocketTokenDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$WebSocketTokenDtoToJson(WebSocketTokenDto instance) =>
     <String, dynamic>{'token': instance.token};
 
+RegistrationDetailsCreateDto _$RegistrationDetailsCreateDtoFromJson(
+  Map<String, dynamic> json,
+) => RegistrationDetailsCreateDto(
+  visibility: visibilityFromJson(json['visibility']),
+  maxLimit: (json['maxLimit'] as num).toInt(),
+  userLimit: (json['userLimit'] as num).toInt(),
+  requireKYC: json['requireKYC'] as bool,
+  requireName: json['requireName'] as bool,
+  requireEmail: json['requireEmail'] as bool,
+  requirePhoneNumber: json['requirePhoneNumber'] as bool,
+  isPublished: json['isPublished'] as bool,
+  hasSideEvents: json['hasSideEvents'] as bool,
+  hasWaitlist: json['hasWaitlist'] as bool,
+  showGuestCount: json['showGuestCount'] as bool,
+  refundable: json['refundable'] as bool,
+  nameWithNumber: json['nameWithNumber'] as bool,
+  botProtection: json['botProtection'] as bool,
+);
+
+Map<String, dynamic> _$RegistrationDetailsCreateDtoToJson(
+  RegistrationDetailsCreateDto instance,
+) => <String, dynamic>{
+  'visibility': visibilityToJson(instance.visibility),
+  'maxLimit': instance.maxLimit,
+  'userLimit': instance.userLimit,
+  'requireKYC': instance.requireKYC,
+  'requireName': instance.requireName,
+  'requireEmail': instance.requireEmail,
+  'requirePhoneNumber': instance.requirePhoneNumber,
+  'isPublished': instance.isPublished,
+  'hasSideEvents': instance.hasSideEvents,
+  'hasWaitlist': instance.hasWaitlist,
+  'showGuestCount': instance.showGuestCount,
+  'refundable': instance.refundable,
+  'nameWithNumber': instance.nameWithNumber,
+  'botProtection': instance.botProtection,
+};
+
 EventProfileCreateDto _$EventProfileCreateDtoFromJson(
   Map<String, dynamic> json,
 ) => EventProfileCreateDto(
@@ -6572,6 +6610,9 @@ EventProfileCreateDto _$EventProfileCreateDtoFromJson(
       json['seo'] == null
           ? null
           : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+  registration: RegistrationDetailsCreateDto.fromJson(
+    json['registration'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$EventProfileCreateDtoToJson(
@@ -6586,6 +6627,7 @@ Map<String, dynamic> _$EventProfileCreateDtoToJson(
   'category': eventCategoryToJson(instance.category),
   'subCategory': eventSubCategoryNullableToJson(instance.subCategory),
   'seo': instance.seo?.toJson(),
+  'registration': instance.registration.toJson(),
 };
 
 EventProfileFilterCriteriaDto _$EventProfileFilterCriteriaDtoFromJson(
@@ -6708,6 +6750,12 @@ EventProfileEditDto _$EventProfileEditDtoFromJson(Map<String, dynamic> json) =>
           json['seo'] == null
               ? null
               : EventSeoDto.fromJson(json['seo'] as Map<String, dynamic>),
+      registration:
+          json['registration'] == null
+              ? null
+              : RegistrationDetailsCreateDto.fromJson(
+                json['registration'] as Map<String, dynamic>,
+              ),
     );
 
 Map<String, dynamic> _$EventProfileEditDtoToJson(
@@ -6722,6 +6770,7 @@ Map<String, dynamic> _$EventProfileEditDtoToJson(
   'category': eventCategoryNullableToJson(instance.category),
   'subCategory': eventSubCategoryNullableToJson(instance.subCategory),
   'seo': instance.seo?.toJson(),
+  'registration': instance.registration?.toJson(),
 };
 
 TicketSelectionDto _$TicketSelectionDtoFromJson(Map<String, dynamic> json) =>

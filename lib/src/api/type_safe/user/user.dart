@@ -121,30 +121,30 @@ class UserTypeSafeApi {
     return UserSettingsDoc.fromJson(data);
   }
 
-  Future<UserProfileDto> uploadPicture({
+  Future<UserProfileDoc> uploadPicture({
     required final String address,
     required final File file,
   }) async {
     final data = await _api.uploadPicture(address: address, file: file);
-    return UserProfileDto.fromJson(data);
+    return UserProfileDoc.fromJson(data);
   }
 
-  Future<UserProfileDto> uploadBanner({
+  Future<UserProfileDoc> uploadBanner({
     required final String address,
     required final File file,
   }) async {
     final data = await _api.uploadBanner(address: address, file: file);
-    return UserProfileDto.fromJson(data);
+    return UserProfileDoc.fromJson(data);
   }
 
-  Future<UserProfileDto> resetPicture({required final String address}) async {
+  Future<UserProfileDoc> resetPicture({required final String address}) async {
     final data = await _api.resetPicture(address: address);
-    return UserProfileDto.fromJson(data);
+    return UserProfileDoc.fromJson(data);
   }
 
-  Future<UserProfileDto> resetBanner({required final String address}) async {
+  Future<UserProfileDoc> resetBanner({required final String address}) async {
     final data = await _api.resetBanner(address: address);
-    return UserProfileDto.fromJson(data);
+    return UserProfileDoc.fromJson(data);
   }
 
   Future<SuccessDto> creatorIsRegistered({required final String tag}) async {
