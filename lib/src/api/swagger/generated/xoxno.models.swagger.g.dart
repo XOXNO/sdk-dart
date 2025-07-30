@@ -4364,8 +4364,8 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
           : EventUserRoleDoc.fromJson(
             json['eventPermissions'] as Map<String, dynamic>,
           ),
-  pk: json['pk'] as String,
-  ts: (json['_ts'] as num).toInt(),
+  pk: json['pk'] as String?,
+  ts: (json['_ts'] as num?)?.toInt(),
   creatorProfile: CreatorProfileDoc.fromJson(
     json['creatorProfile'] as Map<String, dynamic>,
   ),
