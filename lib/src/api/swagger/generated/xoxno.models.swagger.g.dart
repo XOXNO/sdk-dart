@@ -4309,7 +4309,7 @@ EventGuestDoc _$EventGuestDocFromJson(
   metadata: json['metadata'],
   id: json['id'] as String?,
   pk: json['pk'] as String?,
-  ts: (json['_ts'] as num).toInt(),
+  ts: (json['_ts'] as num?)?.toInt(),
   ttl: (json['ttl'] as num?)?.toInt(),
 );
 
@@ -6984,8 +6984,8 @@ EventTicketProfileDoc _$EventTicketProfileDocFromJson(
   soldCount: (json['soldCount'] as num).toInt(),
   createdAt: (json['createdAt'] as num).toInt(),
   id: json['id'] as String,
-  pk: json['pk'] as String,
-  ts: (json['_ts'] as num).toInt(),
+  pk: json['pk'] as String?,
+  ts: (json['_ts'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$EventTicketProfileDocToJson(
@@ -7093,8 +7093,8 @@ EventStageProfileDoc _$EventStageProfileDocFromJson(
       [],
   soldCount: (json['soldCount'] as num).toInt(),
   id: json['id'] as String,
-  pk: json['pk'] as String,
-  ts: (json['_ts'] as num).toInt(),
+  pk: json['pk'] as String?,
+  ts: (json['_ts'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$EventStageProfileDocToJson(
@@ -7786,7 +7786,7 @@ EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
       metadata: json['metadata'],
       id: json['id'] as String?,
       pk: json['pk'] as String?,
-      ts: (json['_ts'] as num).toInt(),
+      ts: (json['_ts'] as num?)?.toInt(),
       ttl: (json['ttl'] as num?)?.toInt(),
       profile: json['profile'] as String,
       herotag: json['herotag'] as String,

@@ -21744,7 +21744,7 @@ class EventGuestDoc {
     this.metadata,
     this.id,
     this.pk,
-    required this.ts,
+    this.ts,
     this.ttl,
   });
 
@@ -21793,7 +21793,7 @@ class EventGuestDoc {
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   @JsonKey(name: 'ttl')
   final int? ttl;
   static const fromJsonFactory = _$EventGuestDocFromJson;
@@ -21932,7 +21932,7 @@ extension $EventGuestDocExtension on EventGuestDoc {
     Wrapped<Object?>? metadata,
     Wrapped<String?>? id,
     Wrapped<String?>? pk,
-    Wrapped<int>? ts,
+    Wrapped<int?>? ts,
     Wrapped<int?>? ttl,
   }) {
     return EventGuestDoc(
@@ -34434,8 +34434,8 @@ class EventTicketProfileDoc {
     required this.soldCount,
     required this.createdAt,
     required this.id,
-    required this.pk,
-    required this.ts,
+    this.pk,
+    this.ts,
   });
 
   factory EventTicketProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -34475,9 +34475,9 @@ class EventTicketProfileDoc {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   static const fromJsonFactory = _$EventTicketProfileDocFromJson;
 
   @override
@@ -34623,8 +34623,8 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
     Wrapped<int>? soldCount,
     Wrapped<int>? createdAt,
     Wrapped<String>? id,
-    Wrapped<String>? pk,
-    Wrapped<int>? ts,
+    Wrapped<String?>? pk,
+    Wrapped<int?>? ts,
   }) {
     return EventTicketProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -34963,8 +34963,8 @@ class EventStageProfileDoc {
     required this.prices,
     required this.soldCount,
     required this.id,
-    required this.pk,
-    required this.ts,
+    this.pk,
+    this.ts,
   });
 
   factory EventStageProfileDoc.fromJson(Map<String, dynamic> json) =>
@@ -35013,9 +35013,9 @@ class EventStageProfileDoc {
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
-  final String pk;
+  final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   static const fromJsonFactory = _$EventStageProfileDocFromJson;
 
   @override
@@ -35167,8 +35167,8 @@ extension $EventStageProfileDocExtension on EventStageProfileDoc {
     Wrapped<List<EgldOrEsdtTokenPayment>>? prices,
     Wrapped<int>? soldCount,
     Wrapped<String>? id,
-    Wrapped<String>? pk,
-    Wrapped<int>? ts,
+    Wrapped<String?>? pk,
+    Wrapped<int?>? ts,
   }) {
     return EventStageProfileDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -38270,7 +38270,7 @@ class EventGuestProfile {
     this.metadata,
     this.id,
     this.pk,
-    required this.ts,
+    this.ts,
     this.ttl,
     required this.profile,
     required this.herotag,
@@ -38321,7 +38321,7 @@ class EventGuestProfile {
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   @JsonKey(name: 'ttl')
   final int? ttl;
   @JsonKey(name: 'profile')
@@ -38477,7 +38477,7 @@ extension $EventGuestProfileExtension on EventGuestProfile {
     Wrapped<Object?>? metadata,
     Wrapped<String?>? id,
     Wrapped<String?>? pk,
-    Wrapped<int>? ts,
+    Wrapped<int?>? ts,
     Wrapped<int?>? ttl,
     Wrapped<String>? profile,
     Wrapped<String>? herotag,
