@@ -5924,11 +5924,11 @@ class AnalyticsMarketplaceUniqueUsers {
   @JsonKey(name: 'Day')
   final DateTime day;
   @JsonKey(name: 'UniqueUsers')
-  final double uniqueUsers;
+  final int uniqueUsers;
   @JsonKey(name: 'UniqueBuyers')
-  final double uniqueBuyers;
+  final int uniqueBuyers;
   @JsonKey(name: 'UniqueSellers')
-  final double uniqueSellers;
+  final int uniqueSellers;
   static const fromJsonFactory = _$AnalyticsMarketplaceUniqueUsersFromJson;
 
   @override
@@ -5970,9 +5970,9 @@ extension $AnalyticsMarketplaceUniqueUsersExtension
     on AnalyticsMarketplaceUniqueUsers {
   AnalyticsMarketplaceUniqueUsers copyWith({
     DateTime? day,
-    double? uniqueUsers,
-    double? uniqueBuyers,
-    double? uniqueSellers,
+    int? uniqueUsers,
+    int? uniqueBuyers,
+    int? uniqueSellers,
   }) {
     return AnalyticsMarketplaceUniqueUsers(
       day: day ?? this.day,
@@ -5984,9 +5984,9 @@ extension $AnalyticsMarketplaceUniqueUsersExtension
 
   AnalyticsMarketplaceUniqueUsers copyWithWrapped({
     Wrapped<DateTime>? day,
-    Wrapped<double>? uniqueUsers,
-    Wrapped<double>? uniqueBuyers,
-    Wrapped<double>? uniqueSellers,
+    Wrapped<int>? uniqueUsers,
+    Wrapped<int>? uniqueBuyers,
+    Wrapped<int>? uniqueSellers,
   }) {
     return AnalyticsMarketplaceUniqueUsers(
       day: (day != null ? day.value : this.day),
@@ -7563,11 +7563,11 @@ class LendingOracleUpdateStruct {
   )
   final enums.ExchangeSource exchangeSource;
   @JsonKey(name: 'assetDecimals')
-  final double assetDecimals;
+  final int assetDecimals;
   @JsonKey(name: 'onedexPairId')
-  final double onedexPairId;
+  final int onedexPairId;
   @JsonKey(name: 'maxPriceStaleSeconds')
-  final double maxPriceStaleSeconds;
+  final int maxPriceStaleSeconds;
   static const fromJsonFactory = _$LendingOracleUpdateStructFromJson;
 
   @override
@@ -7653,9 +7653,9 @@ extension $LendingOracleUpdateStructExtension on LendingOracleUpdateStruct {
     enums.PricingMethod? pricingMethod,
     enums.OracleType? oracleType,
     enums.ExchangeSource? exchangeSource,
-    double? assetDecimals,
-    double? onedexPairId,
-    double? maxPriceStaleSeconds,
+    int? assetDecimals,
+    int? onedexPairId,
+    int? maxPriceStaleSeconds,
   }) {
     return LendingOracleUpdateStruct(
       baseTokenId: baseTokenId ?? this.baseTokenId,
@@ -7680,9 +7680,9 @@ extension $LendingOracleUpdateStructExtension on LendingOracleUpdateStruct {
     Wrapped<enums.PricingMethod>? pricingMethod,
     Wrapped<enums.OracleType>? oracleType,
     Wrapped<enums.ExchangeSource>? exchangeSource,
-    Wrapped<double>? assetDecimals,
-    Wrapped<double>? onedexPairId,
-    Wrapped<double>? maxPriceStaleSeconds,
+    Wrapped<int>? assetDecimals,
+    Wrapped<int>? onedexPairId,
+    Wrapped<int>? maxPriceStaleSeconds,
   }) {
     return LendingOracleUpdateStruct(
       baseTokenId: (baseTokenId != null ? baseTokenId.value : this.baseTokenId),
@@ -11340,7 +11340,7 @@ class Rarity {
   Map<String, dynamic> toJson() => _$RarityToJson(this);
 
   @JsonKey(name: 'rank')
-  final double rank;
+  final int rank;
   @JsonKey(name: 'rarityScore')
   final double? rarityScore;
   static const fromJsonFactory = _$RarityFromJson;
@@ -11369,17 +11369,14 @@ class Rarity {
 }
 
 extension $RarityExtension on Rarity {
-  Rarity copyWith({double? rank, double? rarityScore}) {
+  Rarity copyWith({int? rank, double? rarityScore}) {
     return Rarity(
       rank: rank ?? this.rank,
       rarityScore: rarityScore ?? this.rarityScore,
     );
   }
 
-  Rarity copyWithWrapped({
-    Wrapped<double>? rank,
-    Wrapped<double?>? rarityScore,
-  }) {
+  Rarity copyWithWrapped({Wrapped<int>? rank, Wrapped<double?>? rarityScore}) {
     return Rarity(
       rank: (rank != null ? rank.value : this.rank),
       rarityScore: (rarityScore != null ? rarityScore.value : this.rarityScore),
@@ -12092,7 +12089,7 @@ class NftStats {
   Map<String, dynamic> toJson() => _$NftStatsToJson(this);
 
   @JsonKey(name: 'likedCount')
-  final double? likedCount;
+  final int? likedCount;
   static const fromJsonFactory = _$NftStatsFromJson;
 
   @override
@@ -12115,11 +12112,11 @@ class NftStats {
 }
 
 extension $NftStatsExtension on NftStats {
-  NftStats copyWith({double? likedCount}) {
+  NftStats copyWith({int? likedCount}) {
     return NftStats(likedCount: likedCount ?? this.likedCount);
   }
 
-  NftStats copyWithWrapped({Wrapped<double?>? likedCount}) {
+  NftStats copyWithWrapped({Wrapped<int?>? likedCount}) {
     return NftStats(
       likedCount: (likedCount != null ? likedCount.value : this.likedCount),
     );
@@ -12250,13 +12247,13 @@ class NftSaleInfoHydrated {
   @JsonKey(name: 'currentBid')
   final String? currentBid;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'deadline')
-  final double deadline;
+  final int deadline;
   @JsonKey(name: 'paymentToken')
   final String paymentToken;
   @JsonKey(name: 'paymentTokenNonce')
-  final double paymentTokenNonce;
+  final int paymentTokenNonce;
   @JsonKey(
     name: 'auctionType',
     toJson: xoxnoAuctionTypeStringToJson,
@@ -12264,7 +12261,7 @@ class NftSaleInfoHydrated {
   )
   final enums.XoxnoAuctionTypeString auctionType;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final int timestamp;
   @JsonKey(name: 'minBidShort')
   final double minBidShort;
   @JsonKey(name: 'minBidUsdValue')
@@ -12421,12 +12418,12 @@ extension $NftSaleInfoHydratedExtension on NftSaleInfoHydrated {
     String? minBid,
     String? maxBid,
     String? currentBid,
-    double? startTime,
-    double? deadline,
+    int? startTime,
+    int? deadline,
     String? paymentToken,
-    double? paymentTokenNonce,
+    int? paymentTokenNonce,
     enums.XoxnoAuctionTypeString? auctionType,
-    double? timestamp,
+    int? timestamp,
     double? minBidShort,
     double? minBidUsdValue,
     double? maxBidShort,
@@ -12467,12 +12464,12 @@ extension $NftSaleInfoHydratedExtension on NftSaleInfoHydrated {
     Wrapped<String>? minBid,
     Wrapped<String>? maxBid,
     Wrapped<String?>? currentBid,
-    Wrapped<double>? startTime,
-    Wrapped<double>? deadline,
+    Wrapped<int>? startTime,
+    Wrapped<int>? deadline,
     Wrapped<String>? paymentToken,
-    Wrapped<double>? paymentTokenNonce,
+    Wrapped<int>? paymentTokenNonce,
     Wrapped<enums.XoxnoAuctionTypeString>? auctionType,
-    Wrapped<double>? timestamp,
+    Wrapped<int>? timestamp,
     Wrapped<double>? minBidShort,
     Wrapped<double?>? minBidUsdValue,
     Wrapped<double>? maxBidShort,
@@ -12543,13 +12540,13 @@ class NftMetadataAttributesHydrated {
   @JsonKey(name: 'value')
   final String $value;
   @JsonKey(name: 'occurance')
-  final double occurance;
+  final int occurance;
   @JsonKey(name: 'frequency')
   final double frequency;
   @JsonKey(name: 'floorPrice')
   final double floorPrice;
   @JsonKey(name: 'onSaleCount')
-  final double onSaleCount;
+  final int onSaleCount;
   @JsonKey(name: 'usdValue')
   final double usdValue;
   static const fromJsonFactory = _$NftMetadataAttributesHydratedFromJson;
@@ -12612,10 +12609,10 @@ extension $NftMetadataAttributesHydratedExtension
   NftMetadataAttributesHydrated copyWith({
     String? traitType,
     String? $value,
-    double? occurance,
+    int? occurance,
     double? frequency,
     double? floorPrice,
-    double? onSaleCount,
+    int? onSaleCount,
     double? usdValue,
   }) {
     return NftMetadataAttributesHydrated(
@@ -12632,10 +12629,10 @@ extension $NftMetadataAttributesHydratedExtension
   NftMetadataAttributesHydrated copyWithWrapped({
     Wrapped<String>? traitType,
     Wrapped<String>? $value,
-    Wrapped<double>? occurance,
+    Wrapped<int>? occurance,
     Wrapped<double>? frequency,
     Wrapped<double>? floorPrice,
-    Wrapped<double>? onSaleCount,
+    Wrapped<int>? onSaleCount,
     Wrapped<double>? usdValue,
   }) {
     return NftMetadataAttributesHydrated(
@@ -13267,7 +13264,7 @@ class NftDocHydrated {
   @JsonKey(name: 'attributes')
   final String? attributes;
   @JsonKey(name: 'nonce')
-  final double nonce;
+  final int nonce;
   @JsonKey(
     name: 'type',
     toJson: esdtTokenTypeToJson,
@@ -13281,7 +13278,7 @@ class NftDocHydrated {
   )
   final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
-  final double supply;
+  final int supply;
   @JsonKey(name: 'supplyLong')
   final String? supplyLong;
   @JsonKey(name: 'name')
@@ -13317,7 +13314,7 @@ class NftDocHydrated {
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: '_ts')
-  final double? ts;
+  final int? ts;
   @JsonKey(name: 'creator')
   final OwnerDto? creator;
   @JsonKey(name: 'currentOwner')
@@ -13335,9 +13332,9 @@ class NftDocHydrated {
   @JsonKey(name: 'balanceLong')
   final String? balanceLong;
   @JsonKey(name: 'unboundDaysLeft')
-  final double? unboundDaysLeft;
+  final int? unboundDaysLeft;
   @JsonKey(name: 'unboundEpoch')
-  final double? unboundEpoch;
+  final int? unboundEpoch;
   @JsonKey(name: 'extraProperties')
   final ExtraProperties? extraProperties;
   static const fromJsonFactory = _$NftDocHydratedFromJson;
@@ -13537,10 +13534,10 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     String? collection,
     String? originalCollection,
     String? attributes,
-    double? nonce,
+    int? nonce,
     enums.EsdtTokenType? type,
     enums.EsdtTokenSubType? subType,
-    double? supply,
+    int? supply,
     String? supplyLong,
     String? name,
     double? royalties,
@@ -13556,7 +13553,7 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     String? kiosk,
     bool? onSale,
     String? id,
-    double? ts,
+    int? ts,
     OwnerDto? creator,
     OwnerDto? currentOwner,
     OwnerDto? owner,
@@ -13565,8 +13562,8 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     ShortNftCollectionInfoDoc? collectionInfo,
     double? balance,
     String? balanceLong,
-    double? unboundDaysLeft,
-    double? unboundEpoch,
+    int? unboundDaysLeft,
+    int? unboundEpoch,
     ExtraProperties? extraProperties,
   }) {
     return NftDocHydrated(
@@ -13615,10 +13612,10 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     Wrapped<String>? collection,
     Wrapped<String?>? originalCollection,
     Wrapped<String?>? attributes,
-    Wrapped<double>? nonce,
+    Wrapped<int>? nonce,
     Wrapped<enums.EsdtTokenType>? type,
     Wrapped<enums.EsdtTokenSubType?>? subType,
-    Wrapped<double>? supply,
+    Wrapped<int>? supply,
     Wrapped<String?>? supplyLong,
     Wrapped<String>? name,
     Wrapped<double>? royalties,
@@ -13634,7 +13631,7 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     Wrapped<String?>? kiosk,
     Wrapped<bool>? onSale,
     Wrapped<String?>? id,
-    Wrapped<double?>? ts,
+    Wrapped<int?>? ts,
     Wrapped<OwnerDto?>? creator,
     Wrapped<OwnerDto?>? currentOwner,
     Wrapped<OwnerDto?>? owner,
@@ -13643,8 +13640,8 @@ extension $NftDocHydratedExtension on NftDocHydrated {
     Wrapped<ShortNftCollectionInfoDoc>? collectionInfo,
     Wrapped<double?>? balance,
     Wrapped<String?>? balanceLong,
-    Wrapped<double?>? unboundDaysLeft,
-    Wrapped<double?>? unboundEpoch,
+    Wrapped<int?>? unboundDaysLeft,
+    Wrapped<int?>? unboundEpoch,
     Wrapped<ExtraProperties?>? extraProperties,
   }) {
     return NftDocHydrated(
@@ -15997,7 +15994,7 @@ class NftDocFull {
   @JsonKey(name: 'attributes')
   final String? attributes;
   @JsonKey(name: 'nonce')
-  final double nonce;
+  final int nonce;
   @JsonKey(
     name: 'type',
     toJson: esdtTokenTypeToJson,
@@ -16011,7 +16008,7 @@ class NftDocFull {
   )
   final enums.EsdtTokenSubType? subType;
   @JsonKey(name: 'supply')
-  final double supply;
+  final int supply;
   @JsonKey(name: 'supplyLong')
   final String? supplyLong;
   @JsonKey(name: 'name')
@@ -16047,7 +16044,7 @@ class NftDocFull {
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: '_ts')
-  final double? ts;
+  final int? ts;
   @JsonKey(name: 'creator')
   final OwnerDto? creator;
   @JsonKey(name: 'currentOwner')
@@ -16065,9 +16062,9 @@ class NftDocFull {
   @JsonKey(name: 'balanceLong')
   final String? balanceLong;
   @JsonKey(name: 'unboundDaysLeft')
-  final double? unboundDaysLeft;
+  final int? unboundDaysLeft;
   @JsonKey(name: 'unboundEpoch')
-  final double? unboundEpoch;
+  final int? unboundEpoch;
   @JsonKey(name: 'extraProperties')
   final ExtraProperties? extraProperties;
   @JsonKey(name: 'globalOffer')
@@ -16275,10 +16272,10 @@ extension $NftDocFullExtension on NftDocFull {
     String? collection,
     String? originalCollection,
     String? attributes,
-    double? nonce,
+    int? nonce,
     enums.EsdtTokenType? type,
     enums.EsdtTokenSubType? subType,
-    double? supply,
+    int? supply,
     String? supplyLong,
     String? name,
     double? royalties,
@@ -16294,7 +16291,7 @@ extension $NftDocFullExtension on NftDocFull {
     String? kiosk,
     bool? onSale,
     String? id,
-    double? ts,
+    int? ts,
     OwnerDto? creator,
     OwnerDto? currentOwner,
     OwnerDto? owner,
@@ -16303,8 +16300,8 @@ extension $NftDocFullExtension on NftDocFull {
     ShortNftCollectionInfoDoc? collectionInfo,
     double? balance,
     String? balanceLong,
-    double? unboundDaysLeft,
-    double? unboundEpoch,
+    int? unboundDaysLeft,
+    int? unboundEpoch,
     ExtraProperties? extraProperties,
     GlobalOfferDocHydrated? globalOffer,
   }) {
@@ -16355,10 +16352,10 @@ extension $NftDocFullExtension on NftDocFull {
     Wrapped<String>? collection,
     Wrapped<String?>? originalCollection,
     Wrapped<String?>? attributes,
-    Wrapped<double>? nonce,
+    Wrapped<int>? nonce,
     Wrapped<enums.EsdtTokenType>? type,
     Wrapped<enums.EsdtTokenSubType?>? subType,
-    Wrapped<double>? supply,
+    Wrapped<int>? supply,
     Wrapped<String?>? supplyLong,
     Wrapped<String>? name,
     Wrapped<double>? royalties,
@@ -16374,7 +16371,7 @@ extension $NftDocFullExtension on NftDocFull {
     Wrapped<String?>? kiosk,
     Wrapped<bool>? onSale,
     Wrapped<String?>? id,
-    Wrapped<double?>? ts,
+    Wrapped<int?>? ts,
     Wrapped<OwnerDto?>? creator,
     Wrapped<OwnerDto?>? currentOwner,
     Wrapped<OwnerDto?>? owner,
@@ -16383,8 +16380,8 @@ extension $NftDocFullExtension on NftDocFull {
     Wrapped<ShortNftCollectionInfoDoc>? collectionInfo,
     Wrapped<double?>? balance,
     Wrapped<String?>? balanceLong,
-    Wrapped<double?>? unboundDaysLeft,
-    Wrapped<double?>? unboundEpoch,
+    Wrapped<int?>? unboundDaysLeft,
+    Wrapped<int?>? unboundEpoch,
     Wrapped<ExtraProperties?>? extraProperties,
     Wrapped<GlobalOfferDocHydrated?>? globalOffer,
   }) {
@@ -24154,7 +24151,7 @@ class StakingPoolDoc {
   )
   final enums.StakingDataType dataType;
   @JsonKey(name: 'poolId')
-  final double poolId;
+  final int poolId;
   @JsonKey(
     name: 'poolType',
     toJson: stakingPoolTypeStringToJson,
@@ -24168,9 +24165,9 @@ class StakingPoolDoc {
   @JsonKey(name: 'matchPairEnabled')
   final bool matchPairEnabled;
   @JsonKey(name: 'maxStakePerWallet')
-  final double maxStakePerWallet;
+  final int maxStakePerWallet;
   @JsonKey(name: 'maxStakePerPool')
-  final double maxStakePerPool;
+  final int maxStakePerPool;
   @JsonKey(
     name: 'issuingType',
     toJson: stakingIssuingTypeStringToJson,
@@ -24178,11 +24175,11 @@ class StakingPoolDoc {
   )
   final enums.StakingIssuingTypeString issuingType;
   @JsonKey(name: 'issuingDeadline')
-  final double issuingDeadline;
+  final int issuingDeadline;
   @JsonKey(name: 'issuingStart')
-  final double issuingStart;
+  final int issuingStart;
   @JsonKey(name: 'unboundPeriod')
-  final double unboundPeriod;
+  final int unboundPeriod;
   @JsonKey(name: 'collection', defaultValue: <String>[])
   final List<String> collection;
   @JsonKey(name: 'reward', defaultValue: <XoxnoStakingReward>[])
@@ -24196,11 +24193,11 @@ class StakingPoolDoc {
   @JsonKey(name: 'profile')
   final String? profile;
   @JsonKey(name: 'totalWhitelisted')
-  final double? totalWhitelisted;
+  final int? totalWhitelisted;
   @JsonKey(name: 'delegatorCount')
-  final double? delegatorCount;
+  final int? delegatorCount;
   @JsonKey(name: 'poolStakedCount')
-  final double? poolStakedCount;
+  final int? poolStakedCount;
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: 'id')
@@ -24341,26 +24338,26 @@ class StakingPoolDoc {
 extension $StakingPoolDocExtension on StakingPoolDoc {
   StakingPoolDoc copyWith({
     enums.StakingDataType? dataType,
-    double? poolId,
+    int? poolId,
     enums.StakingPoolTypeString? poolType,
     bool? stakingEnabled,
     bool? whitelistEnabled,
     bool? matchPairEnabled,
-    double? maxStakePerWallet,
-    double? maxStakePerPool,
+    int? maxStakePerWallet,
+    int? maxStakePerPool,
     enums.StakingIssuingTypeString? issuingType,
-    double? issuingDeadline,
-    double? issuingStart,
-    double? unboundPeriod,
+    int? issuingDeadline,
+    int? issuingStart,
+    int? unboundPeriod,
     List<String>? collection,
     List<XoxnoStakingReward>? reward,
     double? cutFee,
     String? owner,
     String? name,
     String? profile,
-    double? totalWhitelisted,
-    double? delegatorCount,
-    double? poolStakedCount,
+    int? totalWhitelisted,
+    int? delegatorCount,
+    int? poolStakedCount,
     String? pk,
     String? id,
   }) {
@@ -24393,26 +24390,26 @@ extension $StakingPoolDocExtension on StakingPoolDoc {
 
   StakingPoolDoc copyWithWrapped({
     Wrapped<enums.StakingDataType>? dataType,
-    Wrapped<double>? poolId,
+    Wrapped<int>? poolId,
     Wrapped<enums.StakingPoolTypeString>? poolType,
     Wrapped<bool>? stakingEnabled,
     Wrapped<bool>? whitelistEnabled,
     Wrapped<bool>? matchPairEnabled,
-    Wrapped<double>? maxStakePerWallet,
-    Wrapped<double>? maxStakePerPool,
+    Wrapped<int>? maxStakePerWallet,
+    Wrapped<int>? maxStakePerPool,
     Wrapped<enums.StakingIssuingTypeString>? issuingType,
-    Wrapped<double>? issuingDeadline,
-    Wrapped<double>? issuingStart,
-    Wrapped<double>? unboundPeriod,
+    Wrapped<int>? issuingDeadline,
+    Wrapped<int>? issuingStart,
+    Wrapped<int>? unboundPeriod,
     Wrapped<List<String>>? collection,
     Wrapped<List<XoxnoStakingReward>>? reward,
     Wrapped<double>? cutFee,
     Wrapped<String>? owner,
     Wrapped<String?>? name,
     Wrapped<String?>? profile,
-    Wrapped<double?>? totalWhitelisted,
-    Wrapped<double?>? delegatorCount,
-    Wrapped<double?>? poolStakedCount,
+    Wrapped<int?>? totalWhitelisted,
+    Wrapped<int?>? delegatorCount,
+    Wrapped<int?>? poolStakedCount,
     Wrapped<String?>? pk,
     Wrapped<String?>? id,
   }) {
@@ -24880,7 +24877,7 @@ class StakingUserPoolNfts {
   @JsonKey(name: 'nftDocs', defaultValue: <NftDocHydrated>[])
   final List<NftDocHydrated> nftDocs;
   @JsonKey(name: 'count')
-  final double count;
+  final int count;
   static const fromJsonFactory = _$StakingUserPoolNftsFromJson;
 
   @override
@@ -24916,7 +24913,7 @@ extension $StakingUserPoolNftsExtension on StakingUserPoolNfts {
   StakingUserPoolNfts copyWith({
     StakingSummary? poolInfo,
     List<NftDocHydrated>? nftDocs,
-    double? count,
+    int? count,
   }) {
     return StakingUserPoolNfts(
       poolInfo: poolInfo ?? this.poolInfo,
@@ -24928,7 +24925,7 @@ extension $StakingUserPoolNftsExtension on StakingUserPoolNfts {
   StakingUserPoolNfts copyWithWrapped({
     Wrapped<StakingSummary>? poolInfo,
     Wrapped<List<NftDocHydrated>>? nftDocs,
-    Wrapped<double>? count,
+    Wrapped<int>? count,
   }) {
     return StakingUserPoolNfts(
       poolInfo: (poolInfo != null ? poolInfo.value : this.poolInfo),
@@ -31261,7 +31258,7 @@ class ChatMessageReplyDto {
   @JsonKey(name: 'content')
   final ChatMessageReplyDto content;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final int timestamp;
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$ChatMessageReplyDtoFromJson;
@@ -31302,7 +31299,7 @@ extension $ChatMessageReplyDtoExtension on ChatMessageReplyDto {
   ChatMessageReplyDto copyWith({
     String? sender,
     ChatMessageReplyDto? content,
-    double? timestamp,
+    int? timestamp,
     String? id,
   }) {
     return ChatMessageReplyDto(
@@ -31316,7 +31313,7 @@ extension $ChatMessageReplyDtoExtension on ChatMessageReplyDto {
   ChatMessageReplyDto copyWithWrapped({
     Wrapped<String>? sender,
     Wrapped<ChatMessageReplyDto>? content,
-    Wrapped<double>? timestamp,
+    Wrapped<int>? timestamp,
     Wrapped<String>? id,
   }) {
     return ChatMessageReplyDto(
@@ -35770,7 +35767,7 @@ class TicketsType {
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   static const fromJsonFactory = _$TicketsTypeFromJson;
 
   @override
@@ -35800,7 +35797,7 @@ class TicketsType {
 }
 
 extension $TicketsTypeExtension on TicketsType {
-  TicketsType copyWith({String? ticketId, double? quantity}) {
+  TicketsType copyWith({String? ticketId, int? quantity}) {
     return TicketsType(
       ticketId: ticketId ?? this.ticketId,
       quantity: quantity ?? this.quantity,
@@ -35809,7 +35806,7 @@ extension $TicketsTypeExtension on TicketsType {
 
   TicketsType copyWithWrapped({
     Wrapped<String>? ticketId,
-    Wrapped<double>? quantity,
+    Wrapped<int>? quantity,
   }) {
     return TicketsType(
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
@@ -36980,9 +36977,9 @@ class EventVoucherFilterCriteriaDto {
   @JsonKey(name: 'maxDiscountAmount')
   final double? maxDiscountAmount;
   @JsonKey(name: 'maxUses')
-  final double? maxUses;
+  final int? maxUses;
   @JsonKey(name: 'maxUsesPerUser')
-  final double? maxUsesPerUser;
+  final int? maxUsesPerUser;
   @JsonKey(name: 'isActive')
   final bool? isActive;
   @JsonKey(name: 'ownerId')
@@ -37061,8 +37058,8 @@ extension $EventVoucherFilterCriteriaDtoExtension
     List<enums.VoucherType>? type,
     double? amount,
     double? maxDiscountAmount,
-    double? maxUses,
-    double? maxUsesPerUser,
+    int? maxUses,
+    int? maxUsesPerUser,
     bool? isActive,
     String? ownerId,
     List<RangeFilter>? range,
@@ -37087,8 +37084,8 @@ extension $EventVoucherFilterCriteriaDtoExtension
     Wrapped<List<enums.VoucherType>?>? type,
     Wrapped<double?>? amount,
     Wrapped<double?>? maxDiscountAmount,
-    Wrapped<double?>? maxUses,
-    Wrapped<double?>? maxUsesPerUser,
+    Wrapped<int?>? maxUses,
+    Wrapped<int?>? maxUsesPerUser,
     Wrapped<bool?>? isActive,
     Wrapped<String?>? ownerId,
     Wrapped<List<RangeFilter>?>? range,
@@ -39320,7 +39317,7 @@ class TicketSelection {
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   @JsonKey(name: 'ticketProfile')
   final TicketProfileSummary? ticketProfile;
   static const fromJsonFactory = _$TicketSelectionFromJson;
@@ -39367,7 +39364,7 @@ extension $TicketSelectionExtension on TicketSelection {
   TicketSelection copyWith({
     String? identifier,
     String? ticketId,
-    double? quantity,
+    int? quantity,
     TicketProfileSummary? ticketProfile,
   }) {
     return TicketSelection(
@@ -39381,7 +39378,7 @@ extension $TicketSelectionExtension on TicketSelection {
   TicketSelection copyWithWrapped({
     Wrapped<String>? identifier,
     Wrapped<String>? ticketId,
-    Wrapped<double>? quantity,
+    Wrapped<int>? quantity,
     Wrapped<TicketProfileSummary?>? ticketProfile,
   }) {
     return TicketSelection(
@@ -40359,7 +40356,7 @@ class EventLocationCities {
   @JsonKey(name: 'city')
   final String city;
   @JsonKey(name: 'eventCount')
-  final double eventCount;
+  final int eventCount;
   static const fromJsonFactory = _$EventLocationCitiesFromJson;
 
   @override
@@ -40386,7 +40383,7 @@ class EventLocationCities {
 }
 
 extension $EventLocationCitiesExtension on EventLocationCities {
-  EventLocationCities copyWith({String? city, double? eventCount}) {
+  EventLocationCities copyWith({String? city, int? eventCount}) {
     return EventLocationCities(
       city: city ?? this.city,
       eventCount: eventCount ?? this.eventCount,
@@ -40395,7 +40392,7 @@ extension $EventLocationCitiesExtension on EventLocationCities {
 
   EventLocationCities copyWithWrapped({
     Wrapped<String>? city,
-    Wrapped<double>? eventCount,
+    Wrapped<int>? eventCount,
   }) {
     return EventLocationCities(
       city: (city != null ? city.value : this.city),
@@ -40421,7 +40418,7 @@ class EventCountGroupedByCountry {
   @JsonKey(name: 'country')
   final String country;
   @JsonKey(name: 'eventCount')
-  final double eventCount;
+  final int eventCount;
   @JsonKey(name: 'cities', defaultValue: <EventLocationCities>[])
   final List<EventLocationCities> cities;
   static const fromJsonFactory = _$EventCountGroupedByCountryFromJson;
@@ -40458,7 +40455,7 @@ class EventCountGroupedByCountry {
 extension $EventCountGroupedByCountryExtension on EventCountGroupedByCountry {
   EventCountGroupedByCountry copyWith({
     String? country,
-    double? eventCount,
+    int? eventCount,
     List<EventLocationCities>? cities,
   }) {
     return EventCountGroupedByCountry(
@@ -40470,7 +40467,7 @@ extension $EventCountGroupedByCountryExtension on EventCountGroupedByCountry {
 
   EventCountGroupedByCountry copyWithWrapped({
     Wrapped<String>? country,
-    Wrapped<double>? eventCount,
+    Wrapped<int>? eventCount,
     Wrapped<List<EventLocationCities>>? cities,
   }) {
     return EventCountGroupedByCountry(
@@ -41702,9 +41699,9 @@ class EventReferralFilterCriteriaDto {
   @JsonKey(name: 'isActive')
   final bool? isActive;
   @JsonKey(name: 'minSuccessfulReferrals')
-  final double? minSuccessfulReferrals;
+  final int? minSuccessfulReferrals;
   @JsonKey(name: 'maxSuccessfulReferrals')
-  final double? maxSuccessfulReferrals;
+  final int? maxSuccessfulReferrals;
   @JsonKey(
     name: 'conditionType',
     toJson: referralConditionTypeListToJson,
@@ -41791,8 +41788,8 @@ extension $EventReferralFilterCriteriaDtoExtension
     String? ownerId,
     String? referralConfigId,
     bool? isActive,
-    double? minSuccessfulReferrals,
-    double? maxSuccessfulReferrals,
+    int? minSuccessfulReferrals,
+    int? maxSuccessfulReferrals,
     List<enums.ReferralConditionType>? conditionType,
     List<RangeFilter>? createdAt,
   }) {
@@ -41817,8 +41814,8 @@ extension $EventReferralFilterCriteriaDtoExtension
     Wrapped<String?>? ownerId,
     Wrapped<String?>? referralConfigId,
     Wrapped<bool?>? isActive,
-    Wrapped<double?>? minSuccessfulReferrals,
-    Wrapped<double?>? maxSuccessfulReferrals,
+    Wrapped<int?>? minSuccessfulReferrals,
+    Wrapped<int?>? maxSuccessfulReferrals,
     Wrapped<List<enums.ReferralConditionType>?>? conditionType,
     Wrapped<List<RangeFilter>?>? createdAt,
   }) {
@@ -42091,13 +42088,13 @@ class NftSaleInfo {
   @JsonKey(name: 'currentBid')
   final String? currentBid;
   @JsonKey(name: 'startTime')
-  final double startTime;
+  final int startTime;
   @JsonKey(name: 'deadline')
-  final double deadline;
+  final int deadline;
   @JsonKey(name: 'paymentToken')
   final String paymentToken;
   @JsonKey(name: 'paymentTokenNonce')
-  final double paymentTokenNonce;
+  final int paymentTokenNonce;
   @JsonKey(
     name: 'auctionType',
     toJson: xoxnoAuctionTypeStringToJson,
@@ -42105,7 +42102,7 @@ class NftSaleInfo {
   )
   final enums.XoxnoAuctionTypeString auctionType;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final int timestamp;
   @JsonKey(name: 'minBidShort')
   final double minBidShort;
   @JsonKey(name: 'minBidUsdValue')
@@ -42262,12 +42259,12 @@ extension $NftSaleInfoExtension on NftSaleInfo {
     String? minBid,
     String? maxBid,
     String? currentBid,
-    double? startTime,
-    double? deadline,
+    int? startTime,
+    int? deadline,
     String? paymentToken,
-    double? paymentTokenNonce,
+    int? paymentTokenNonce,
     enums.XoxnoAuctionTypeString? auctionType,
-    double? timestamp,
+    int? timestamp,
     double? minBidShort,
     double? minBidUsdValue,
     double? maxBidShort,
@@ -42308,12 +42305,12 @@ extension $NftSaleInfoExtension on NftSaleInfo {
     Wrapped<String>? minBid,
     Wrapped<String>? maxBid,
     Wrapped<String?>? currentBid,
-    Wrapped<double>? startTime,
-    Wrapped<double>? deadline,
+    Wrapped<int>? startTime,
+    Wrapped<int>? deadline,
     Wrapped<String>? paymentToken,
-    Wrapped<double>? paymentTokenNonce,
+    Wrapped<int>? paymentTokenNonce,
     Wrapped<enums.XoxnoAuctionTypeString>? auctionType,
-    Wrapped<double>? timestamp,
+    Wrapped<int>? timestamp,
     Wrapped<double>? minBidShort,
     Wrapped<double?>? minBidUsdValue,
     Wrapped<double>? maxBidShort,

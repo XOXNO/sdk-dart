@@ -1097,9 +1097,9 @@ AnalyticsMarketplaceUniqueUsers _$AnalyticsMarketplaceUniqueUsersFromJson(
   Map<String, dynamic> json,
 ) => AnalyticsMarketplaceUniqueUsers(
   day: DateTime.parse(json['Day'] as String),
-  uniqueUsers: (json['UniqueUsers'] as num).toDouble(),
-  uniqueBuyers: (json['UniqueBuyers'] as num).toDouble(),
-  uniqueSellers: (json['UniqueSellers'] as num).toDouble(),
+  uniqueUsers: (json['UniqueUsers'] as num).toInt(),
+  uniqueBuyers: (json['UniqueBuyers'] as num).toInt(),
+  uniqueSellers: (json['UniqueSellers'] as num).toInt(),
 );
 
 Map<String, dynamic> _$AnalyticsMarketplaceUniqueUsersToJson(
@@ -1392,9 +1392,9 @@ LendingOracleUpdateStruct _$LendingOracleUpdateStructFromJson(
   pricingMethod: pricingMethodFromJson(json['pricingMethod']),
   oracleType: oracleTypeFromJson(json['oracleType']),
   exchangeSource: exchangeSourceFromJson(json['exchangeSource']),
-  assetDecimals: (json['assetDecimals'] as num).toDouble(),
-  onedexPairId: (json['onedexPairId'] as num).toDouble(),
-  maxPriceStaleSeconds: (json['maxPriceStaleSeconds'] as num).toDouble(),
+  assetDecimals: (json['assetDecimals'] as num).toInt(),
+  onedexPairId: (json['onedexPairId'] as num).toInt(),
+  maxPriceStaleSeconds: (json['maxPriceStaleSeconds'] as num).toInt(),
 );
 
 Map<String, dynamic> _$LendingOracleUpdateStructToJson(
@@ -2150,7 +2150,7 @@ Map<String, dynamic> _$SaleInfoFilterDtoToJson(SaleInfoFilterDto instance) =>
     };
 
 Rarity _$RarityFromJson(Map<String, dynamic> json) => Rarity(
-  rank: (json['rank'] as num).toDouble(),
+  rank: (json['rank'] as num).toInt(),
   rarityScore: (json['rarityScore'] as num?)?.toDouble(),
 );
 
@@ -2336,7 +2336,7 @@ Map<String, dynamic> _$NftMediaToJson(NftMedia instance) => <String, dynamic>{
 };
 
 NftStats _$NftStatsFromJson(Map<String, dynamic> json) =>
-    NftStats(likedCount: (json['likedCount'] as num?)?.toDouble());
+    NftStats(likedCount: (json['likedCount'] as num?)?.toInt());
 
 Map<String, dynamic> _$NftStatsToJson(NftStats instance) => <String, dynamic>{
   'likedCount': instance.likedCount,
@@ -2362,12 +2362,12 @@ NftSaleInfoHydrated _$NftSaleInfoHydratedFromJson(Map<String, dynamic> json) =>
       minBid: json['minBid'] as String,
       maxBid: json['maxBid'] as String,
       currentBid: json['currentBid'] as String?,
-      startTime: (json['startTime'] as num).toDouble(),
-      deadline: (json['deadline'] as num).toDouble(),
+      startTime: (json['startTime'] as num).toInt(),
+      deadline: (json['deadline'] as num).toInt(),
       paymentToken: json['paymentToken'] as String,
-      paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
+      paymentTokenNonce: (json['paymentTokenNonce'] as num).toInt(),
       auctionType: xoxnoAuctionTypeStringFromJson(json['auctionType']),
-      timestamp: (json['timestamp'] as num).toDouble(),
+      timestamp: (json['timestamp'] as num).toInt(),
       minBidShort: (json['minBidShort'] as num).toDouble(),
       minBidUsdValue: (json['minBidUsdValue'] as num?)?.toDouble(),
       maxBidShort: (json['maxBidShort'] as num).toDouble(),
@@ -2414,10 +2414,10 @@ NftMetadataAttributesHydrated _$NftMetadataAttributesHydratedFromJson(
 ) => NftMetadataAttributesHydrated(
   traitType: json['trait_type'] as String,
   $value: json['value'] as String,
-  occurance: (json['occurance'] as num).toDouble(),
+  occurance: (json['occurance'] as num).toInt(),
   frequency: (json['frequency'] as num).toDouble(),
   floorPrice: (json['floorPrice'] as num).toDouble(),
-  onSaleCount: (json['onSaleCount'] as num).toDouble(),
+  onSaleCount: (json['onSaleCount'] as num).toInt(),
   usdValue: (json['usdValue'] as num).toDouble(),
 );
 
@@ -2563,10 +2563,10 @@ NftDocHydrated _$NftDocHydratedFromJson(Map<String, dynamic> json) =>
       collection: json['collection'] as String,
       originalCollection: json['originalCollection'] as String?,
       attributes: json['attributes'] as String?,
-      nonce: (json['nonce'] as num).toDouble(),
+      nonce: (json['nonce'] as num).toInt(),
       type: esdtTokenTypeFromJson(json['type']),
       subType: esdtTokenSubTypeNullableFromJson(json['subType']),
-      supply: (json['supply'] as num).toDouble(),
+      supply: (json['supply'] as num).toInt(),
       supplyLong: json['supplyLong'] as String?,
       name: json['name'] as String,
       royalties: (json['royalties'] as num).toDouble(),
@@ -2593,7 +2593,7 @@ NftDocHydrated _$NftDocHydratedFromJson(Map<String, dynamic> json) =>
       kiosk: json['kiosk'] as String?,
       onSale: json['onSale'] as bool,
       id: json['id'] as String?,
-      ts: (json['_ts'] as num?)?.toDouble(),
+      ts: (json['_ts'] as num?)?.toInt(),
       creator:
           json['creator'] == null
               ? null
@@ -2623,8 +2623,8 @@ NftDocHydrated _$NftDocHydratedFromJson(Map<String, dynamic> json) =>
       ),
       balance: (json['balance'] as num?)?.toDouble(),
       balanceLong: json['balanceLong'] as String?,
-      unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toDouble(),
-      unboundEpoch: (json['unboundEpoch'] as num?)?.toDouble(),
+      unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toInt(),
+      unboundEpoch: (json['unboundEpoch'] as num?)?.toInt(),
       extraProperties:
           json['extraProperties'] == null
               ? null
@@ -3125,10 +3125,10 @@ NftDocFull _$NftDocFullFromJson(Map<String, dynamic> json) => NftDocFull(
   collection: json['collection'] as String,
   originalCollection: json['originalCollection'] as String?,
   attributes: json['attributes'] as String?,
-  nonce: (json['nonce'] as num).toDouble(),
+  nonce: (json['nonce'] as num).toInt(),
   type: esdtTokenTypeFromJson(json['type']),
   subType: esdtTokenSubTypeNullableFromJson(json['subType']),
-  supply: (json['supply'] as num).toDouble(),
+  supply: (json['supply'] as num).toInt(),
   supplyLong: json['supplyLong'] as String?,
   name: json['name'] as String,
   royalties: (json['royalties'] as num).toDouble(),
@@ -3153,7 +3153,7 @@ NftDocFull _$NftDocFullFromJson(Map<String, dynamic> json) => NftDocFull(
   kiosk: json['kiosk'] as String?,
   onSale: json['onSale'] as bool,
   id: json['id'] as String?,
-  ts: (json['_ts'] as num?)?.toDouble(),
+  ts: (json['_ts'] as num?)?.toInt(),
   creator:
       json['creator'] == null
           ? null
@@ -3183,8 +3183,8 @@ NftDocFull _$NftDocFullFromJson(Map<String, dynamic> json) => NftDocFull(
   ),
   balance: (json['balance'] as num?)?.toDouble(),
   balanceLong: json['balanceLong'] as String?,
-  unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toDouble(),
-  unboundEpoch: (json['unboundEpoch'] as num?)?.toDouble(),
+  unboundDaysLeft: (json['unboundDaysLeft'] as num?)?.toInt(),
+  unboundEpoch: (json['unboundEpoch'] as num?)?.toInt(),
   extraProperties:
       json['extraProperties'] == null
           ? null
@@ -4767,17 +4767,17 @@ Map<String, dynamic> _$StakingSummaryToJson(StakingSummary instance) =>
 StakingPoolDoc _$StakingPoolDocFromJson(Map<String, dynamic> json) =>
     StakingPoolDoc(
       dataType: stakingDataTypeFromJson(json['dataType']),
-      poolId: (json['poolId'] as num).toDouble(),
+      poolId: (json['poolId'] as num).toInt(),
       poolType: stakingPoolTypeStringFromJson(json['poolType']),
       stakingEnabled: json['stakingEnabled'] as bool,
       whitelistEnabled: json['whitelistEnabled'] as bool,
       matchPairEnabled: json['matchPairEnabled'] as bool,
-      maxStakePerWallet: (json['maxStakePerWallet'] as num).toDouble(),
-      maxStakePerPool: (json['maxStakePerPool'] as num).toDouble(),
+      maxStakePerWallet: (json['maxStakePerWallet'] as num).toInt(),
+      maxStakePerPool: (json['maxStakePerPool'] as num).toInt(),
       issuingType: stakingIssuingTypeStringFromJson(json['issuingType']),
-      issuingDeadline: (json['issuingDeadline'] as num).toDouble(),
-      issuingStart: (json['issuingStart'] as num).toDouble(),
-      unboundPeriod: (json['unboundPeriod'] as num).toDouble(),
+      issuingDeadline: (json['issuingDeadline'] as num).toInt(),
+      issuingStart: (json['issuingStart'] as num).toInt(),
+      unboundPeriod: (json['unboundPeriod'] as num).toInt(),
       collection:
           (json['collection'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -4794,9 +4794,9 @@ StakingPoolDoc _$StakingPoolDocFromJson(Map<String, dynamic> json) =>
       owner: json['owner'] as String,
       name: json['name'] as String?,
       profile: json['profile'] as String?,
-      totalWhitelisted: (json['totalWhitelisted'] as num?)?.toDouble(),
-      delegatorCount: (json['delegatorCount'] as num?)?.toDouble(),
-      poolStakedCount: (json['poolStakedCount'] as num?)?.toDouble(),
+      totalWhitelisted: (json['totalWhitelisted'] as num?)?.toInt(),
+      delegatorCount: (json['delegatorCount'] as num?)?.toInt(),
+      poolStakedCount: (json['poolStakedCount'] as num?)?.toInt(),
       pk: json['pk'] as String?,
       id: json['id'] as String?,
     );
@@ -4935,7 +4935,7 @@ StakingUserPoolNfts _$StakingUserPoolNftsFromJson(Map<String, dynamic> json) =>
               ?.map((e) => NftDocHydrated.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      count: (json['count'] as num).toDouble(),
+      count: (json['count'] as num).toInt(),
     );
 
 Map<String, dynamic> _$StakingUserPoolNftsToJson(
@@ -6279,7 +6279,7 @@ ChatMessageReplyDto _$ChatMessageReplyDtoFromJson(Map<String, dynamic> json) =>
       content: ChatMessageReplyDto.fromJson(
         json['content'] as Map<String, dynamic>,
       ),
-      timestamp: (json['timestamp'] as num).toDouble(),
+      timestamp: (json['timestamp'] as num).toInt(),
       id: json['id'] as String,
     );
 
@@ -7235,7 +7235,7 @@ Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
 
 TicketsType _$TicketsTypeFromJson(Map<String, dynamic> json) => TicketsType(
   ticketId: json['ticketId'] as String,
-  quantity: (json['quantity'] as num).toDouble(),
+  quantity: (json['quantity'] as num).toInt(),
 );
 
 Map<String, dynamic> _$TicketsTypeToJson(TicketsType instance) =>
@@ -7493,8 +7493,8 @@ EventVoucherFilterCriteriaDto _$EventVoucherFilterCriteriaDtoFromJson(
   type: voucherTypeListFromJson(json['type'] as List?),
   amount: (json['amount'] as num?)?.toDouble(),
   maxDiscountAmount: (json['maxDiscountAmount'] as num?)?.toDouble(),
-  maxUses: (json['maxUses'] as num?)?.toDouble(),
-  maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toDouble(),
+  maxUses: (json['maxUses'] as num?)?.toInt(),
+  maxUsesPerUser: (json['maxUsesPerUser'] as num?)?.toInt(),
   isActive: json['isActive'] as bool?,
   ownerId: json['ownerId'] as String?,
   range:
@@ -7981,7 +7981,7 @@ TicketSelection _$TicketSelectionFromJson(Map<String, dynamic> json) =>
     TicketSelection(
       identifier: json['identifier'] as String,
       ticketId: json['ticketId'] as String,
-      quantity: (json['quantity'] as num).toDouble(),
+      quantity: (json['quantity'] as num).toInt(),
       ticketProfile:
           json['ticketProfile'] == null
               ? null
@@ -8215,7 +8215,7 @@ Map<String, dynamic> _$EventGuestApproveDtoToJson(
 EventLocationCities _$EventLocationCitiesFromJson(Map<String, dynamic> json) =>
     EventLocationCities(
       city: json['city'] as String,
-      eventCount: (json['eventCount'] as num).toDouble(),
+      eventCount: (json['eventCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EventLocationCitiesToJson(
@@ -8229,7 +8229,7 @@ EventCountGroupedByCountry _$EventCountGroupedByCountryFromJson(
   Map<String, dynamic> json,
 ) => EventCountGroupedByCountry(
   country: json['country'] as String,
-  eventCount: (json['eventCount'] as num).toDouble(),
+  eventCount: (json['eventCount'] as num).toInt(),
   cities:
       (json['cities'] as List<dynamic>?)
           ?.map((e) => EventLocationCities.fromJson(e as Map<String, dynamic>))
@@ -8520,8 +8520,8 @@ EventReferralFilterCriteriaDto _$EventReferralFilterCriteriaDtoFromJson(
   ownerId: json['ownerId'] as String?,
   referralConfigId: json['referralConfigId'] as String?,
   isActive: json['isActive'] as bool?,
-  minSuccessfulReferrals: (json['minSuccessfulReferrals'] as num?)?.toDouble(),
-  maxSuccessfulReferrals: (json['maxSuccessfulReferrals'] as num?)?.toDouble(),
+  minSuccessfulReferrals: (json['minSuccessfulReferrals'] as num?)?.toInt(),
+  maxSuccessfulReferrals: (json['maxSuccessfulReferrals'] as num?)?.toInt(),
   conditionType: referralConditionTypeListFromJson(
     json['conditionType'] as List?,
   ),
@@ -8602,12 +8602,12 @@ NftSaleInfo _$NftSaleInfoFromJson(Map<String, dynamic> json) => NftSaleInfo(
   minBid: json['minBid'] as String,
   maxBid: json['maxBid'] as String,
   currentBid: json['currentBid'] as String?,
-  startTime: (json['startTime'] as num).toDouble(),
-  deadline: (json['deadline'] as num).toDouble(),
+  startTime: (json['startTime'] as num).toInt(),
+  deadline: (json['deadline'] as num).toInt(),
   paymentToken: json['paymentToken'] as String,
-  paymentTokenNonce: (json['paymentTokenNonce'] as num).toDouble(),
+  paymentTokenNonce: (json['paymentTokenNonce'] as num).toInt(),
   auctionType: xoxnoAuctionTypeStringFromJson(json['auctionType']),
-  timestamp: (json['timestamp'] as num).toDouble(),
+  timestamp: (json['timestamp'] as num).toInt(),
   minBidShort: (json['minBidShort'] as num).toDouble(),
   minBidUsdValue: (json['minBidUsdValue'] as num?)?.toDouble(),
   maxBidShort: (json['maxBidShort'] as num).toDouble(),
