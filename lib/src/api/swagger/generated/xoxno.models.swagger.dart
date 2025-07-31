@@ -35758,24 +35758,25 @@ extension $DiscountCodeValidationResponseExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class Ticket {
-  const Ticket({required this.ticketId, required this.quantity});
+class TicketsType {
+  const TicketsType({required this.ticketId, required this.quantity});
 
-  factory Ticket.fromJson(Map<String, dynamic> json) => _$TicketFromJson(json);
+  factory TicketsType.fromJson(Map<String, dynamic> json) =>
+      _$TicketsTypeFromJson(json);
 
-  static const toJsonFactory = _$TicketToJson;
-  Map<String, dynamic> toJson() => _$TicketToJson(this);
+  static const toJsonFactory = _$TicketsTypeToJson;
+  Map<String, dynamic> toJson() => _$TicketsTypeToJson(this);
 
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final int quantity;
-  static const fromJsonFactory = _$TicketFromJson;
+  final double quantity;
+  static const fromJsonFactory = _$TicketsTypeFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is Ticket &&
+        (other is TicketsType &&
             (identical(other.ticketId, ticketId) ||
                 const DeepCollectionEquality().equals(
                   other.ticketId,
@@ -35798,16 +35799,19 @@ class Ticket {
       runtimeType.hashCode;
 }
 
-extension $TicketExtension on Ticket {
-  Ticket copyWith({String? ticketId, int? quantity}) {
-    return Ticket(
+extension $TicketsTypeExtension on TicketsType {
+  TicketsType copyWith({String? ticketId, double? quantity}) {
+    return TicketsType(
       ticketId: ticketId ?? this.ticketId,
       quantity: quantity ?? this.quantity,
     );
   }
 
-  Ticket copyWithWrapped({Wrapped<String>? ticketId, Wrapped<int>? quantity}) {
-    return Ticket(
+  TicketsType copyWithWrapped({
+    Wrapped<String>? ticketId,
+    Wrapped<double>? quantity,
+  }) {
+    return TicketsType(
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
       quantity: (quantity != null ? quantity.value : this.quantity),
     );
@@ -35838,8 +35842,8 @@ class EventInvitationCreateDto {
   final int startTime;
   @JsonKey(name: 'endTime')
   final int endTime;
-  @JsonKey(name: 'tickets', defaultValue: <Ticket>[])
-  final List<Ticket> tickets;
+  @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
+  final List<TicketsType> tickets;
   static const fromJsonFactory = _$EventInvitationCreateDtoFromJson;
 
   @override
@@ -35883,7 +35887,7 @@ extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
     String? email,
     int? startTime,
     int? endTime,
-    List<Ticket>? tickets,
+    List<TicketsType>? tickets,
   }) {
     return EventInvitationCreateDto(
       name: name ?? this.name,
@@ -35899,7 +35903,7 @@ extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
     Wrapped<String?>? email,
     Wrapped<int>? startTime,
     Wrapped<int>? endTime,
-    Wrapped<List<Ticket>>? tickets,
+    Wrapped<List<TicketsType>>? tickets,
   }) {
     return EventInvitationCreateDto(
       name: (name != null ? name.value : this.name),
@@ -36062,7 +36066,7 @@ class EventInvitationDoc {
     this.txHash,
     required this.id,
     this.pk,
-    required this.ts,
+    this.ts,
   });
 
   factory EventInvitationDoc.fromJson(Map<String, dynamic> json) =>
@@ -36124,7 +36128,7 @@ class EventInvitationDoc {
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   static const fromJsonFactory = _$EventInvitationDocFromJson;
 
   @override
@@ -36283,7 +36287,7 @@ extension $EventInvitationDocExtension on EventInvitationDoc {
     Wrapped<String?>? txHash,
     Wrapped<String>? id,
     Wrapped<String?>? pk,
-    Wrapped<int>? ts,
+    Wrapped<int?>? ts,
   }) {
     return EventInvitationDoc(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -36592,7 +36596,7 @@ class EventInvitation {
     this.txHash,
     required this.id,
     this.pk,
-    required this.ts,
+    this.ts,
     this.profile,
     this.herotag,
   });
@@ -36656,7 +36660,7 @@ class EventInvitation {
   @JsonKey(name: 'pk')
   final String? pk;
   @JsonKey(name: '_ts')
-  final int ts;
+  final int? ts;
   @JsonKey(name: 'profile')
   final String? profile;
   @JsonKey(name: 'herotag')
@@ -36832,7 +36836,7 @@ extension $EventInvitationExtension on EventInvitation {
     Wrapped<String?>? txHash,
     Wrapped<String>? id,
     Wrapped<String?>? pk,
-    Wrapped<int>? ts,
+    Wrapped<int?>? ts,
     Wrapped<String?>? profile,
     Wrapped<String?>? herotag,
   }) {
@@ -39240,67 +39244,6 @@ extension $QRBodyExtension on QRBody {
     return QRBody(
       type: (type != null ? type.value : this.type),
       data: (data != null ? data.value : this.data),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class TicketsType {
-  const TicketsType({required this.ticketId, required this.quantity});
-
-  factory TicketsType.fromJson(Map<String, dynamic> json) =>
-      _$TicketsTypeFromJson(json);
-
-  static const toJsonFactory = _$TicketsTypeToJson;
-  Map<String, dynamic> toJson() => _$TicketsTypeToJson(this);
-
-  @JsonKey(name: 'ticketId')
-  final String ticketId;
-  @JsonKey(name: 'quantity')
-  final double quantity;
-  static const fromJsonFactory = _$TicketsTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketsType &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      runtimeType.hashCode;
-}
-
-extension $TicketsTypeExtension on TicketsType {
-  TicketsType copyWith({String? ticketId, double? quantity}) {
-    return TicketsType(
-      ticketId: ticketId ?? this.ticketId,
-      quantity: quantity ?? this.quantity,
-    );
-  }
-
-  TicketsType copyWithWrapped({
-    Wrapped<String>? ticketId,
-    Wrapped<double>? quantity,
-  }) {
-    return TicketsType(
-      ticketId: (ticketId != null ? ticketId.value : this.ticketId),
-      quantity: (quantity != null ? quantity.value : this.quantity),
     );
   }
 }

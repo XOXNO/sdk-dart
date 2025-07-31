@@ -7233,15 +7233,16 @@ Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
   'discountMaxAmount': instance.discountMaxAmount,
 };
 
-Ticket _$TicketFromJson(Map<String, dynamic> json) => Ticket(
+TicketsType _$TicketsTypeFromJson(Map<String, dynamic> json) => TicketsType(
   ticketId: json['ticketId'] as String,
-  quantity: (json['quantity'] as num).toInt(),
+  quantity: (json['quantity'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$TicketToJson(Ticket instance) => <String, dynamic>{
-  'ticketId': instance.ticketId,
-  'quantity': instance.quantity,
-};
+Map<String, dynamic> _$TicketsTypeToJson(TicketsType instance) =>
+    <String, dynamic>{
+      'ticketId': instance.ticketId,
+      'quantity': instance.quantity,
+    };
 
 EventInvitationCreateDto _$EventInvitationCreateDtoFromJson(
   Map<String, dynamic> json,
@@ -7252,7 +7253,7 @@ EventInvitationCreateDto _$EventInvitationCreateDtoFromJson(
   endTime: (json['endTime'] as num).toInt(),
   tickets:
       (json['tickets'] as List<dynamic>?)
-          ?.map((e) => Ticket.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TicketsType.fromJson(e as Map<String, dynamic>))
           .toList() ??
       [],
 );
@@ -7320,7 +7321,7 @@ EventInvitationDoc _$EventInvitationDocFromJson(Map<String, dynamic> json) =>
       txHash: json['txHash'] as String?,
       id: json['id'] as String,
       pk: json['pk'] as String?,
-      ts: (json['_ts'] as num).toInt(),
+      ts: (json['_ts'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$EventInvitationDocToJson(EventInvitationDoc instance) =>
@@ -7434,7 +7435,7 @@ EventInvitation _$EventInvitationFromJson(
   txHash: json['txHash'] as String?,
   id: json['id'] as String,
   pk: json['pk'] as String?,
-  ts: (json['_ts'] as num).toInt(),
+  ts: (json['_ts'] as num?)?.toInt(),
   profile: json['profile'] as String?,
   herotag: json['herotag'] as String?,
 );
@@ -7959,17 +7960,6 @@ Map<String, dynamic> _$QRBodyToJson(QRBody instance) => <String, dynamic>{
   'type': eventTicketQrTypeToJson(instance.type),
   'data': instance.data,
 };
-
-TicketsType _$TicketsTypeFromJson(Map<String, dynamic> json) => TicketsType(
-  ticketId: json['ticketId'] as String,
-  quantity: (json['quantity'] as num).toDouble(),
-);
-
-Map<String, dynamic> _$TicketsTypeToJson(TicketsType instance) =>
-    <String, dynamic>{
-      'ticketId': instance.ticketId,
-      'quantity': instance.quantity,
-    };
 
 EventCheckInQR _$EventCheckInQRFromJson(Map<String, dynamic> json) =>
     EventCheckInQR(
