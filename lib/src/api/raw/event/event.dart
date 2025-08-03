@@ -656,7 +656,7 @@ class EventRawApi {
     logger.finest('accept role');
     return genericPost(
       client,
-      generateUri(path: '${client.baseUrl}/event/$eventId/role/$roleId/accept'),
+      generateUri(path: '${client.baseUrl}/event/$eventId/role/$roleId'),
     );
   }
 
@@ -689,7 +689,7 @@ class EventRawApi {
     logger.finest('get event user roles by id');
     return genericGet(
       client,
-      generateUri(path: '${client.baseUrl}/event/$eventId/roleId/$roleId'),
+      generateUri(path: '${client.baseUrl}/event/$eventId/role/$roleId'),
     );
   }
 
