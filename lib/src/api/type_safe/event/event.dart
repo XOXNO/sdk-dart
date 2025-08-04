@@ -513,7 +513,7 @@ class EventTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-  Future<EventInvitation> claimInvitation({
+  Future<EventAcceptInvitation> claimInvitation({
     required String eventId,
     required String inviteId,
     required EventGuestRegistrationDto body,
@@ -523,7 +523,7 @@ class EventTypeSafeApi {
       inviteId: inviteId,
       body: body.toJson(),
     );
-    return EventInvitation.fromJson(data);
+    return EventAcceptInvitation.fromJson(data);
   }
 
   Future<EventInvitation> cancelInvitation({

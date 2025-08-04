@@ -8208,7 +8208,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventInvitation'
+                $ref: '#/components/schemas/EventAcceptInvitation'
       security:
         - bearer: []
         - requiredAny: []
@@ -8557,7 +8557,7 @@ paths:
       summary: Get event roles
       tags:
         - Ticketing
-  /event/{eventId}/role/{address}:
+  /event/{eventId}/role/{roleId}:
     delete:
       operationId: TicketingDataController_deleteRole
       parameters:
@@ -8565,6 +8565,11 @@ paths:
           required: true
           in: path
           description: ID of the event
+          schema:
+            type: string
+        - name: roleId
+          required: true
+          in: path
           schema:
             type: string
         - name: address
@@ -8586,57 +8591,6 @@ paths:
       summary: Delete event user role
       tags:
         - Ticketing
-    get:
-      operationId: TicketingDataController_getEventUserRole
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-        - name: address
-          required: true
-          in: path
-          description: User wallet address
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Event user role details
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventUserRoleDoc'
-      security:
-        - bearer: []
-        - requiredAny: []
-      summary: Get event user role details
-      tags:
-        - Ticketing
-  /event/{eventId}/guest:
-    delete:
-      operationId: TicketingDataController_deleteGuest
-      parameters:
-        - name: eventId
-          required: true
-          in: path
-          description: ID of the event
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Guest deleted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SuccessDto'
-      security:
-        - bearer: []
-        - requiredAny: []
-      tags:
-        - Ticketing
-  /event/{eventId}/role/{roleId}/accept:
     post:
       operationId: TicketingDataController_acceptRole
       parameters:
@@ -8665,7 +8619,6 @@ paths:
       summary: Accept event user role
       tags:
         - Ticketing
-  /event/{eventId}/role/{roleId}:
     get:
       operationId: TicketingDataController_getEventUserRolesById
       parameters:
@@ -8691,6 +8644,57 @@ paths:
       security:
         - bearer: []
       summary: Get event roles by id
+      tags:
+        - Ticketing
+  /event/{eventId}/guest:
+    delete:
+      operationId: TicketingDataController_deleteGuest
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Guest deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
+      security:
+        - bearer: []
+        - requiredAny: []
+      tags:
+        - Ticketing
+  /event/{eventId}/role/{address}:
+    get:
+      operationId: TicketingDataController_getEventUserRole
+      parameters:
+        - name: eventId
+          required: true
+          in: path
+          description: ID of the event
+          schema:
+            type: string
+        - name: address
+          required: true
+          in: path
+          description: User wallet address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event user role details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUserRoleDoc'
+      security:
+        - bearer: []
+        - requiredAny: []
+      summary: Get event user role details
       tags:
         - Ticketing
   /user/me/event:
@@ -11579,6 +11583,100 @@ components:
           type: number
           description: LP fees APR
           example: 0.03
+    LendingIndexesDto:
+      type: object
+      properties:
+        supplyIndex:
+          type: string
+          description: Supply index as a string to preserve precision
+          example: '1050000000000000000'
+        supplyIndexShort:
+          type: number
+          description: Supply index as a number (may lose precision)
+          example: 1.05
+        borrowIndex:
+          type: string
+          description: Borrow index as a string to preserve precision
+          example: '1025000000000000000'
+        borrowIndexShort:
+          type: number
+          description: Borrow index as a number (may lose precision)
+          example: 1.025
+        egldPrice:
+          type: string
+          description: EGLD price in USD as a string to preserve precision
+          example: '65.50'
+        egldPriceShort:
+          type: number
+          description: EGLD price in USD as a number
+          example: 65.5
+        usdPrice:
+          type: string
+          description: USD price (typically 1.0) as a string
+          example: '1.0'
+        usdPriceShort:
+          type: number
+          description: USD price (typically 1.0) as a number
+          example: 1
+        safePriceEgld:
+          type: string
+          description: Safe price in EGLD as a string to preserve precision
+          example: '1000000000000000000'
+        safePriceEgldShort:
+          type: number
+          description: Safe price in EGLD as a number (may lose precision)
+          example: 1
+        safePriceUsd:
+          type: string
+          description: Safe price in USD as a string to preserve precision
+          example: '16124645832563882000'
+        safePriceUsdShort:
+          type: number
+          description: Safe price in USD as a number (may lose precision)
+          example: 16.124645832563882
+        aggregatorPriceEgld:
+          type: string
+          description: Aggregator price in EGLD as a string to preserve precision
+          example: '1000000000000000000'
+        aggregatorPriceEgldShort:
+          type: number
+          description: Aggregator price in EGLD as a number (may lose precision)
+          example: 1
+        aggregatorPriceUsd:
+          type: string
+          description: Aggregator price in USD as a string to preserve precision
+          example: '16124645832563882000'
+        aggregatorPriceUsdShort:
+          type: number
+          description: Aggregator price in USD as a number (may lose precision)
+          example: 16.124645832563882
+        withinFirstTolerance:
+          type: boolean
+          description: Within first tolerance
+          example: true
+        withinSecondTolerance:
+          type: boolean
+          description: Within second tolerance
+          example: true
+      required:
+        - supplyIndex
+        - supplyIndexShort
+        - borrowIndex
+        - borrowIndexShort
+        - egldPrice
+        - egldPriceShort
+        - usdPrice
+        - usdPriceShort
+        - safePriceEgld
+        - safePriceEgldShort
+        - safePriceUsd
+        - safePriceUsdShort
+        - aggregatorPriceEgld
+        - aggregatorPriceEgldShort
+        - aggregatorPriceUsd
+        - aggregatorPriceUsdShort
+        - withinFirstTolerance
+        - withinSecondTolerance
     LendingMarketProfile:
       type: object
       properties:
@@ -11706,14 +11804,6 @@ components:
           type: object
           description: Short borrow cap
           example: 1250000
-        supplyIndex:
-          type: object
-          description: Supply index
-          example: '1.02'
-        borrowIndex:
-          type: object
-          description: Borrow index
-          example: '1.05'
         timestamp:
           type: object
           description: Timestamp of last market activity
@@ -11808,10 +11898,6 @@ components:
             type: array
           example: true
           type: array
-        oraclePrice:
-          type: string
-          description: Oracle price
-          example: '100'
         participants:
           description: Participants in the lending market
           allOf:
@@ -11820,6 +11906,10 @@ components:
           description: Extra APY for derivatives & LP tokens
           allOf:
             - $ref: '#/components/schemas/MarketExtraApy'
+        indexes:
+          description: Indexes
+          allOf:
+            - $ref: '#/components/schemas/LendingIndexesDto'
       required:
         - dataType
         - token
@@ -11852,8 +11942,6 @@ components:
         - borrowCap
         - supplyCapShort
         - borrowCapShort
-        - supplyIndex
-        - borrowIndex
         - timestamp
         - borrowApy
         - supplyApy
@@ -11874,8 +11962,8 @@ components:
         - pk
         - _ts
         - eModeCategoryProfiles
-        - oraclePrice
         - participants
+        - indexes
     LendingMarketProfileFilterCriteriaDto:
       type: object
       properties:
@@ -11967,6 +12055,25 @@ components:
         - Long
         - Short
       description: Position mode
+    InitialPaymentMultiplier:
+      type: object
+      properties:
+        initialPaymentAmount:
+          type: string
+          description: Initial payment amount
+          example: 1
+        initialPaymentToken:
+          type: string
+          description: Initial payment token
+          example: 1
+        usdValue:
+          type: string
+          description: USD value
+          example: 1
+      required:
+        - initialPaymentAmount
+        - initialPaymentToken
+        - usdValue
     LendingEModeCategoryProfileDoc:
       type: object
       properties:
@@ -12114,14 +12221,6 @@ components:
           type: string
           description: Borrow cap
           example: '2500000'
-        supplyIndex:
-          type: object
-          description: Supply index
-          example: '1.02'
-        borrowIndex:
-          type: object
-          description: Borrow index
-          example: '1.05'
         timestamp:
           type: object
           description: Timestamp of last market activity
@@ -12178,14 +12277,14 @@ components:
           description: Oracle provider data
           allOf:
             - $ref: '#/components/schemas/LendingOracleUpdateStruct'
-        oraclePrice:
-          type: string
-          description: Oracle price
-          example: '100'
         extraApy:
           description: Extra APY for derivatives & LP tokens
           allOf:
             - $ref: '#/components/schemas/MarketExtraApy'
+        indexes:
+          description: Indexes
+          allOf:
+            - $ref: '#/components/schemas/LendingIndexesDto'
       required:
         - token
         - name
@@ -12211,8 +12310,6 @@ components:
         - borrowAmountScaled
         - supplyCap
         - borrowCap
-        - supplyIndex
-        - borrowIndex
         - timestamp
         - borrowApy
         - supplyApy
@@ -12226,7 +12323,7 @@ components:
         - flashLoanFee
         - canBorrowInIsolation
         - oracleProvider
-        - oraclePrice
+        - indexes
     LendingAccountProfile:
       type: object
       properties:
@@ -12254,14 +12351,6 @@ components:
           type: object
           description: The amount borrowed from the lending account
           example: '500'
-        supplyIndex:
-          type: object
-          description: Supply index
-          example: 0
-        borrowIndex:
-          type: object
-          description: Borrow index
-          example: 0
         entryLiquidationThreshold:
           type: string
           description: Entry liquidation threshold
@@ -12295,30 +12384,10 @@ components:
           type: string
           description: Address of the lending account
           example: erd123
-        leverageInitialSupply:
-          type: number
-          description: Initial strategy values
-          example:
-            leverageInitialSupply: '1000'
-            leverageInitialSupplyPrice: '1000'
-        leverageInitialSupplyPrice:
-          type: number
-          description: Initial strategy values
-          example:
-            leverageInitialSupply: '1000'
-            leverageInitialSupplyPrice: '1000'
-        leverageInitialBorrow:
-          type: number
-          description: Initial strategy values
-          example:
-            leverageInitialBorrow: '1000'
-            leverageInitialBorrowPrice: '1000'
-        leverageInitialBorrowPrice:
-          type: number
-          description: Initial strategy values
-          example:
-            leverageInitialBorrow: '1000'
-            leverageInitialBorrowPrice: '1000'
+        initialPaymentMultiplier:
+          description: Initial payment multiplier
+          allOf:
+            - $ref: '#/components/schemas/InitialPaymentMultiplier'
         id:
           type: string
           description: Cosmos DB document identifier
@@ -12354,8 +12423,6 @@ components:
         - token
         - supplyAmountScaled
         - borrowAmountScaled
-        - supplyIndex
-        - borrowIndex
         - entryLiquidationThreshold
         - entryLiquidationBonus
         - entryLiquidationFee
@@ -12669,6 +12736,10 @@ components:
           description: The owner of the lending account
           allOf:
             - $ref: '#/components/schemas/OwnerDto'
+        isEMode:
+          type: boolean
+          description: Wether the position is E-Mode or not
+          example: false
       required:
         - position
         - identifier
@@ -12676,6 +12747,7 @@ components:
         - borrowed
         - healthFactor
         - wallet
+        - isEMode
     LendingOverallStats:
       type: object
       properties:
@@ -15801,11 +15873,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1753972754
+          example: 1754319948
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: ffb87546-8936-4a58-851d-065dae32207a
+          example: a2a7ad04-81d3-45b8-818c-399542383f44
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -19533,11 +19605,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1753972754
+          example: 1754319948
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 551b657c-3865-42bf-b001-6a1f8798d2cf
+          example: 635e6278-667d-4c52-9488-41589797bfca
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19600,11 +19672,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1753972754
+          example: 1754319948
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1753972754
+          example: 1754319948
         maxLimit:
           type: integer
           description: >-
@@ -19662,11 +19734,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1753972754
+          example: 1754319948
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1753972754
+          example: 1754319948
         maxLimit:
           type: integer
           description: >-
@@ -19697,7 +19769,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 27f567d3-b59b-470a-8445-17812a23328c
+          example: 8bd4a99c-0b92-41cf-b2ee-ed384b6a497c
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19728,11 +19800,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1753972754
+          example: 1754319948
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1753972754
+          example: 1754319948
         maxLimit:
           type: integer
           description: >-
@@ -19893,7 +19965,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 382c173d-285e-46ce-94b1-fb522b7b0657
+          example: fead000a-4215-4001-b4e9-8b85845558e2
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -19953,7 +20025,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1753972754
+          example: 1754319948
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -19982,7 +20054,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: ab43ee79-748c-4c8b-b725-5365d972bec6
+          example: 964022ed-1f65-4860-8cde-ae9c33e3b108
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20098,7 +20170,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1753972754
+          example: 1754319948
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20127,7 +20199,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: ab43ee79-748c-4c8b-b725-5365d972bec6
+          example: 964022ed-1f65-4860-8cde-ae9c33e3b108
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20305,11 +20377,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1753972754
+          example: 1754319948
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1753972754
+          example: 1754319948
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -20320,7 +20392,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1753972754
+          example: 1754319948
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -20413,7 +20485,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1753972754
+          example: 1754319948
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20482,54 +20554,6 @@ components:
           type: array
           items:
             type: string
-    EventGuestFilterCriteriaDto:
-      type: object
-      properties:
-        searchText:
-          type: string
-        wallet:
-          type: array
-          items:
-            type: string
-        eventId:
-          type: array
-          items:
-            type: string
-        status:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventGuestStatus'
-        questionnaireFilled:
-          type: boolean
-        range:
-          type: array
-          items:
-            $ref: '#/components/schemas/RangeFilter'
-    EventGuestFilter:
-      type: object
-      properties:
-        select:
-          type: array
-          items:
-            type: string
-        orderBy:
-          type: array
-          items:
-            type: string
-        includeCount:
-          type: boolean
-          default: false
-        strictSelect:
-          type: boolean
-          default: false
-        top:
-          type: integer
-        skip:
-          type: integer
-        filters:
-          $ref: '#/components/schemas/EventGuestFilterCriteriaDto'
-      required:
-        - filters
     EventGuestProfile:
       type: object
       properties:
@@ -20581,11 +20605,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1753972754
+          example: 1754319948
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: ffb87546-8936-4a58-851d-065dae32207a
+          example: a2a7ad04-81d3-45b8-818c-399542383f44
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -20619,6 +20643,64 @@ components:
         - createdAt
         - profile
         - herotag
+    EventAcceptInvitation:
+      type: object
+      properties:
+        invitation:
+          $ref: '#/components/schemas/EventInvitation'
+        guest:
+          $ref: '#/components/schemas/EventGuestProfile'
+      required:
+        - invitation
+        - guest
+    EventGuestFilterCriteriaDto:
+      type: object
+      properties:
+        searchText:
+          type: string
+        wallet:
+          type: array
+          items:
+            type: string
+        eventId:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventGuestStatus'
+        questionnaireFilled:
+          type: boolean
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangeFilter'
+    EventGuestFilter:
+      type: object
+      properties:
+        select:
+          type: array
+          items:
+            type: string
+        orderBy:
+          type: array
+          items:
+            type: string
+        includeCount:
+          type: boolean
+          default: false
+        strictSelect:
+          type: boolean
+          default: false
+        top:
+          type: integer
+        skip:
+          type: integer
+        filters:
+          $ref: '#/components/schemas/EventGuestFilterCriteriaDto'
+      required:
+        - filters
     EventGuestProfileQuery:
       type: object
       properties:
@@ -20956,11 +21038,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1753972754
+          example: 1754319948
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1753972754
+          example: 1754319948
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21013,11 +21095,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1753972754
+          example: 1754319948
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1753972754
+          example: 1754319948
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21052,7 +21134,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: decf09ff-37a2-43f6-9efb-e8eea7589028
+          example: 08fe8eda-f03e-4723-b6f1-4b5dc7bc2a0c
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21068,7 +21150,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1753972754
+          example: 1754319948
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -21231,7 +21313,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 8a2acdb2-cbd9-46b4-851c-e937edeb48c2
+          example: b1edb5db-8b26-4a0e-8ab0-d3c25d3b723b
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -21258,7 +21340,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1753972754
+          example: 1754319948
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -21386,7 +21468,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 76803994-ede9-4d0f-9009-fc435a67732f
+          example: 49a50f68-765c-43df-925c-73a8cba04e73
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21408,7 +21490,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1753972754
+          example: 1754319948
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -21614,7 +21696,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: bac48ff3-559a-4f6a-87d0-704dbb082c81
+          example: 0b679f26-e020-45c1-9181-d72c0526b8c0
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -21631,15 +21713,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1753972754
+          example: 1754319948
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 154ef883-0f82-4bf5-a5cf-38dae4f9ac99
+          example: 84ce67a4-afef-4fe1-b83c-d3c626d41198
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1753972754
+          example: 1754319948
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -21647,7 +21729,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: 77ea4c0b-0361-4934-83ce-248d4b4cf351
+          example: b756c09c-7a7a-4263-86f1-87a1a57f41d2
       required:
         - ticketId
         - isCheckIn

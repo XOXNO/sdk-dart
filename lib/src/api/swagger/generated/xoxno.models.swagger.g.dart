@@ -1439,6 +1439,52 @@ Map<String, dynamic> _$MarketExtraApyToJson(MarketExtraApy instance) =>
       'feesApr': instance.feesApr,
     };
 
+LendingIndexesDto _$LendingIndexesDtoFromJson(Map<String, dynamic> json) =>
+    LendingIndexesDto(
+      supplyIndex: json['supplyIndex'] as String,
+      supplyIndexShort: (json['supplyIndexShort'] as num).toDouble(),
+      borrowIndex: json['borrowIndex'] as String,
+      borrowIndexShort: (json['borrowIndexShort'] as num).toDouble(),
+      egldPrice: json['egldPrice'] as String,
+      egldPriceShort: (json['egldPriceShort'] as num).toDouble(),
+      usdPrice: json['usdPrice'] as String,
+      usdPriceShort: (json['usdPriceShort'] as num).toDouble(),
+      safePriceEgld: json['safePriceEgld'] as String,
+      safePriceEgldShort: (json['safePriceEgldShort'] as num).toDouble(),
+      safePriceUsd: json['safePriceUsd'] as String,
+      safePriceUsdShort: (json['safePriceUsdShort'] as num).toDouble(),
+      aggregatorPriceEgld: json['aggregatorPriceEgld'] as String,
+      aggregatorPriceEgldShort:
+          (json['aggregatorPriceEgldShort'] as num).toDouble(),
+      aggregatorPriceUsd: json['aggregatorPriceUsd'] as String,
+      aggregatorPriceUsdShort:
+          (json['aggregatorPriceUsdShort'] as num).toDouble(),
+      withinFirstTolerance: json['withinFirstTolerance'] as bool,
+      withinSecondTolerance: json['withinSecondTolerance'] as bool,
+    );
+
+Map<String, dynamic> _$LendingIndexesDtoToJson(LendingIndexesDto instance) =>
+    <String, dynamic>{
+      'supplyIndex': instance.supplyIndex,
+      'supplyIndexShort': instance.supplyIndexShort,
+      'borrowIndex': instance.borrowIndex,
+      'borrowIndexShort': instance.borrowIndexShort,
+      'egldPrice': instance.egldPrice,
+      'egldPriceShort': instance.egldPriceShort,
+      'usdPrice': instance.usdPrice,
+      'usdPriceShort': instance.usdPriceShort,
+      'safePriceEgld': instance.safePriceEgld,
+      'safePriceEgldShort': instance.safePriceEgldShort,
+      'safePriceUsd': instance.safePriceUsd,
+      'safePriceUsdShort': instance.safePriceUsdShort,
+      'aggregatorPriceEgld': instance.aggregatorPriceEgld,
+      'aggregatorPriceEgldShort': instance.aggregatorPriceEgldShort,
+      'aggregatorPriceUsd': instance.aggregatorPriceUsd,
+      'aggregatorPriceUsdShort': instance.aggregatorPriceUsdShort,
+      'withinFirstTolerance': instance.withinFirstTolerance,
+      'withinSecondTolerance': instance.withinSecondTolerance,
+    };
+
 LendingMarketProfile _$LendingMarketProfileFromJson(
   Map<String, dynamic> json,
 ) => LendingMarketProfile(
@@ -1473,8 +1519,6 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
   borrowCap: json['borrowCap'] as String,
   supplyCapShort: json['supplyCapShort'] as Object,
   borrowCapShort: json['borrowCapShort'] as Object,
-  supplyIndex: json['supplyIndex'] as Object,
-  borrowIndex: json['borrowIndex'] as Object,
   timestamp: json['timestamp'] as Object,
   borrowApy: json['borrowApy'] as Object,
   supplyApy: json['supplyApy'] as Object,
@@ -1507,7 +1551,6 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
           ?.map((e) => e as List<dynamic>)
           .toList() ??
       [],
-  oraclePrice: json['oraclePrice'] as String,
   participants: LendingMarketParticipants.fromJson(
     json['participants'] as Map<String, dynamic>,
   ),
@@ -1515,6 +1558,7 @@ LendingMarketProfile _$LendingMarketProfileFromJson(
       json['extraApy'] == null
           ? null
           : MarketExtraApy.fromJson(json['extraApy'] as Map<String, dynamic>),
+  indexes: LendingIndexesDto.fromJson(json['indexes'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$LendingMarketProfileToJson(
@@ -1551,8 +1595,6 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
   'borrowCap': instance.borrowCap,
   'supplyCapShort': instance.supplyCapShort,
   'borrowCapShort': instance.borrowCapShort,
-  'supplyIndex': instance.supplyIndex,
-  'borrowIndex': instance.borrowIndex,
   'timestamp': instance.timestamp,
   'borrowApy': instance.borrowApy,
   'supplyApy': instance.supplyApy,
@@ -1575,9 +1617,9 @@ Map<String, dynamic> _$LendingMarketProfileToJson(
   'pk': instance.pk,
   '_ts': instance.ts,
   'eModeCategoryProfiles': instance.eModeCategoryProfiles,
-  'oraclePrice': instance.oraclePrice,
   'participants': instance.participants.toJson(),
   'extraApy': instance.extraApy?.toJson(),
+  'indexes': instance.indexes.toJson(),
 };
 
 LendingMarketProfileFilterCriteriaDto
@@ -1689,6 +1731,22 @@ Map<String, dynamic> _$LendingMarketProfileQueryToJson(
   'resources': instance.resources.map((e) => e.toJson()).toList(),
 };
 
+InitialPaymentMultiplier _$InitialPaymentMultiplierFromJson(
+  Map<String, dynamic> json,
+) => InitialPaymentMultiplier(
+  initialPaymentAmount: json['initialPaymentAmount'] as String,
+  initialPaymentToken: json['initialPaymentToken'] as String,
+  usdValue: json['usdValue'] as String,
+);
+
+Map<String, dynamic> _$InitialPaymentMultiplierToJson(
+  InitialPaymentMultiplier instance,
+) => <String, dynamic>{
+  'initialPaymentAmount': instance.initialPaymentAmount,
+  'initialPaymentToken': instance.initialPaymentToken,
+  'usdValue': instance.usdValue,
+};
+
 LendingEModeCategoryProfileDoc _$LendingEModeCategoryProfileDocFromJson(
   Map<String, dynamic> json,
 ) => LendingEModeCategoryProfileDoc(
@@ -1717,58 +1775,55 @@ Map<String, dynamic> _$LendingEModeCategoryProfileDocToJson(
   '_ts': instance.ts,
 };
 
-PickTypeClass _$PickTypeClassFromJson(Map<String, dynamic> json) =>
-    PickTypeClass(
-      token: json['token'] as String,
-      name: json['name'] as String,
-      decimals: (json['decimals'] as num).toDouble(),
-      address: json['address'] as String,
-      baseRate: json['baseRate'] as String,
-      maxBorrowRate: json['maxBorrowRate'] as String,
-      slopeRate1: json['slopeRate1'] as String,
-      slopeRate2: json['slopeRate2'] as String,
-      slopeRate3: json['slopeRate3'] as String,
-      midUsageRate: json['midUsageRate'] as String,
-      optimalUsageRate: json['optimalUsageRate'] as String,
-      reserveFactor: json['reserveFactor'] as String,
-      liquidationFee: json['liquidationFee'] as String,
-      ltv: json['ltv'] as String,
-      liquidationBonus: json['liquidationBonus'] as String,
-      liquidationThreshold: json['liquidationThreshold'] as String,
-      rewardsReserve: json['rewardsReserve'] as Object,
-      reserves: json['reserves'] as Object,
-      supplyAmount: json['supplyAmount'] as Object,
-      supplyAmountScaled: json['supplyAmountScaled'] as Object,
-      borrowAmount: json['borrowAmount'] as Object,
-      borrowAmountScaled: json['borrowAmountScaled'] as Object,
-      supplyCap: json['supplyCap'] as String,
-      borrowCap: json['borrowCap'] as String,
-      supplyIndex: json['supplyIndex'] as Object,
-      borrowIndex: json['borrowIndex'] as Object,
-      timestamp: json['timestamp'] as Object,
-      borrowApy: json['borrowApy'] as Object,
-      supplyApy: json['supplyApy'] as Object,
-      utilizationRate: json['utilizationRate'] as Object,
-      canBeCollateral: json['canBeCollateral'] as bool,
-      canBeBorrowed: json['canBeBorrowed'] as bool,
-      isolated: json['isolated'] as bool,
-      maxDebtUsd: json['maxDebtUsd'] as Object,
-      debtCeiling: json['debtCeiling'] as String?,
-      siloed: json['siloed'] as bool,
-      flashLoan: json['flashLoan'] as bool,
-      flashLoanFee: json['flashLoanFee'] as String,
-      canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
-      oracleProvider: LendingOracleUpdateStruct.fromJson(
-        json['oracleProvider'] as Map<String, dynamic>,
-      ),
-      oraclePrice: json['oraclePrice'] as String,
-      extraApy:
-          json['extraApy'] == null
-              ? null
-              : MarketExtraApy.fromJson(
-                json['extraApy'] as Map<String, dynamic>,
-              ),
-    );
+PickTypeClass _$PickTypeClassFromJson(
+  Map<String, dynamic> json,
+) => PickTypeClass(
+  token: json['token'] as String,
+  name: json['name'] as String,
+  decimals: (json['decimals'] as num).toDouble(),
+  address: json['address'] as String,
+  baseRate: json['baseRate'] as String,
+  maxBorrowRate: json['maxBorrowRate'] as String,
+  slopeRate1: json['slopeRate1'] as String,
+  slopeRate2: json['slopeRate2'] as String,
+  slopeRate3: json['slopeRate3'] as String,
+  midUsageRate: json['midUsageRate'] as String,
+  optimalUsageRate: json['optimalUsageRate'] as String,
+  reserveFactor: json['reserveFactor'] as String,
+  liquidationFee: json['liquidationFee'] as String,
+  ltv: json['ltv'] as String,
+  liquidationBonus: json['liquidationBonus'] as String,
+  liquidationThreshold: json['liquidationThreshold'] as String,
+  rewardsReserve: json['rewardsReserve'] as Object,
+  reserves: json['reserves'] as Object,
+  supplyAmount: json['supplyAmount'] as Object,
+  supplyAmountScaled: json['supplyAmountScaled'] as Object,
+  borrowAmount: json['borrowAmount'] as Object,
+  borrowAmountScaled: json['borrowAmountScaled'] as Object,
+  supplyCap: json['supplyCap'] as String,
+  borrowCap: json['borrowCap'] as String,
+  timestamp: json['timestamp'] as Object,
+  borrowApy: json['borrowApy'] as Object,
+  supplyApy: json['supplyApy'] as Object,
+  utilizationRate: json['utilizationRate'] as Object,
+  canBeCollateral: json['canBeCollateral'] as bool,
+  canBeBorrowed: json['canBeBorrowed'] as bool,
+  isolated: json['isolated'] as bool,
+  maxDebtUsd: json['maxDebtUsd'] as Object,
+  debtCeiling: json['debtCeiling'] as String?,
+  siloed: json['siloed'] as bool,
+  flashLoan: json['flashLoan'] as bool,
+  flashLoanFee: json['flashLoanFee'] as String,
+  canBorrowInIsolation: json['canBorrowInIsolation'] as bool,
+  oracleProvider: LendingOracleUpdateStruct.fromJson(
+    json['oracleProvider'] as Map<String, dynamic>,
+  ),
+  extraApy:
+      json['extraApy'] == null
+          ? null
+          : MarketExtraApy.fromJson(json['extraApy'] as Map<String, dynamic>),
+  indexes: LendingIndexesDto.fromJson(json['indexes'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
     <String, dynamic>{
@@ -1796,8 +1851,6 @@ Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
       'borrowAmountScaled': instance.borrowAmountScaled,
       'supplyCap': instance.supplyCap,
       'borrowCap': instance.borrowCap,
-      'supplyIndex': instance.supplyIndex,
-      'borrowIndex': instance.borrowIndex,
       'timestamp': instance.timestamp,
       'borrowApy': instance.borrowApy,
       'supplyApy': instance.supplyApy,
@@ -1812,8 +1865,8 @@ Map<String, dynamic> _$PickTypeClassToJson(PickTypeClass instance) =>
       'flashLoanFee': instance.flashLoanFee,
       'canBorrowInIsolation': instance.canBorrowInIsolation,
       'oracleProvider': instance.oracleProvider.toJson(),
-      'oraclePrice': instance.oraclePrice,
       'extraApy': instance.extraApy?.toJson(),
+      'indexes': instance.indexes.toJson(),
     };
 
 LendingAccountProfile _$LendingAccountProfileFromJson(
@@ -1825,8 +1878,6 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
   token: json['token'] as String,
   supplyAmountScaled: json['supplyAmountScaled'] as Object,
   borrowAmountScaled: json['borrowAmountScaled'] as Object,
-  supplyIndex: json['supplyIndex'] as Object,
-  borrowIndex: json['borrowIndex'] as Object,
   entryLiquidationThreshold: json['entryLiquidationThreshold'] as String,
   entryLiquidationBonus: json['entryLiquidationBonus'] as String,
   entryLiquidationFee: json['entryLiquidationFee'] as String,
@@ -1835,12 +1886,12 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
   positionMode: positionModeFromJson(json['positionMode']),
   eModeCategory: json['eModeCategory'] as String?,
   address: json['address'] as String,
-  leverageInitialSupply: (json['leverageInitialSupply'] as num?)?.toDouble(),
-  leverageInitialSupplyPrice:
-      (json['leverageInitialSupplyPrice'] as num?)?.toDouble(),
-  leverageInitialBorrow: (json['leverageInitialBorrow'] as num?)?.toDouble(),
-  leverageInitialBorrowPrice:
-      (json['leverageInitialBorrowPrice'] as num?)?.toDouble(),
+  initialPaymentMultiplier:
+      json['initialPaymentMultiplier'] == null
+          ? null
+          : InitialPaymentMultiplier.fromJson(
+            json['initialPaymentMultiplier'] as Map<String, dynamic>,
+          ),
   id: json['id'] as String,
   pk: json['pk'] as String,
   ts: (json['_ts'] as num).toDouble(),
@@ -1866,8 +1917,6 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'token': instance.token,
   'supplyAmountScaled': instance.supplyAmountScaled,
   'borrowAmountScaled': instance.borrowAmountScaled,
-  'supplyIndex': instance.supplyIndex,
-  'borrowIndex': instance.borrowIndex,
   'entryLiquidationThreshold': instance.entryLiquidationThreshold,
   'entryLiquidationBonus': instance.entryLiquidationBonus,
   'entryLiquidationFee': instance.entryLiquidationFee,
@@ -1876,10 +1925,7 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'positionMode': positionModeToJson(instance.positionMode),
   'eModeCategory': instance.eModeCategory,
   'address': instance.address,
-  'leverageInitialSupply': instance.leverageInitialSupply,
-  'leverageInitialSupplyPrice': instance.leverageInitialSupplyPrice,
-  'leverageInitialBorrow': instance.leverageInitialBorrow,
-  'leverageInitialBorrowPrice': instance.leverageInitialBorrowPrice,
+  'initialPaymentMultiplier': instance.initialPaymentMultiplier?.toJson(),
   'id': instance.id,
   'pk': instance.pk,
   '_ts': instance.ts,
@@ -2075,6 +2121,7 @@ LendingPositionStatus _$LendingPositionStatusFromJson(
   borrowed: (json['borrowed'] as num).toDouble(),
   healthFactor: (json['healthFactor'] as num).toDouble(),
   wallet: OwnerDto.fromJson(json['wallet'] as Map<String, dynamic>),
+  isEMode: json['isEMode'] as bool,
 );
 
 Map<String, dynamic> _$LendingPositionStatusToJson(
@@ -2086,6 +2133,7 @@ Map<String, dynamic> _$LendingPositionStatusToJson(
   'borrowed': instance.borrowed,
   'healthFactor': instance.healthFactor,
   'wallet': instance.wallet.toJson(),
+  'isEMode': instance.isEMode,
 };
 
 LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
@@ -7701,6 +7749,76 @@ Map<String, dynamic> _$EventQuestionEditDtoToJson(
   'answers': instance.answers,
 };
 
+EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
+    EventGuestProfile(
+      dataType: EventGuestProfile.ticketingDataTypeDataTypeFromJson(
+        json['dataType'],
+      ),
+      wallet: json['wallet'] as String,
+      eventId: json['eventId'] as String,
+      ticket: json['ticket'] as Map<String, dynamic>,
+      questionnaireFilled: json['questionnaireFilled'] as bool,
+      registration:
+          json['registration'] == null
+              ? null
+              : EventGuestRegistration.fromJson(
+                json['registration'] as Map<String, dynamic>,
+              ),
+      billing:
+          json['billing'] == null
+              ? null
+              : EventGuestBilling.fromJson(
+                json['billing'] as Map<String, dynamic>,
+              ),
+      status: eventGuestStatusFromJson(json['status']),
+      createdAt: (json['createdAt'] as num).toInt(),
+      invitationId: json['invitationId'] as String?,
+      metadata: json['metadata'],
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toInt(),
+      ttl: (json['ttl'] as num?)?.toInt(),
+      profile: json['profile'] as String,
+      herotag: json['herotag'] as String,
+    );
+
+Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
+    <String, dynamic>{
+      'dataType': ticketingDataTypeToJson(instance.dataType),
+      'wallet': instance.wallet,
+      'eventId': instance.eventId,
+      'ticket': instance.ticket,
+      'questionnaireFilled': instance.questionnaireFilled,
+      'registration': instance.registration?.toJson(),
+      'billing': instance.billing?.toJson(),
+      'status': eventGuestStatusToJson(instance.status),
+      'createdAt': instance.createdAt,
+      'invitationId': instance.invitationId,
+      'metadata': instance.metadata,
+      'id': instance.id,
+      'pk': instance.pk,
+      '_ts': instance.ts,
+      'ttl': instance.ttl,
+      'profile': instance.profile,
+      'herotag': instance.herotag,
+    };
+
+EventAcceptInvitation _$EventAcceptInvitationFromJson(
+  Map<String, dynamic> json,
+) => EventAcceptInvitation(
+  invitation: EventInvitation.fromJson(
+    json['invitation'] as Map<String, dynamic>,
+  ),
+  guest: EventGuestProfile.fromJson(json['guest'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$EventAcceptInvitationToJson(
+  EventAcceptInvitation instance,
+) => <String, dynamic>{
+  'invitation': instance.invitation.toJson(),
+  'guest': instance.guest.toJson(),
+};
+
 EventGuestFilterCriteriaDto _$EventGuestFilterCriteriaDtoFromJson(
   Map<String, dynamic> json,
 ) => EventGuestFilterCriteriaDto(
@@ -7758,60 +7876,6 @@ Map<String, dynamic> _$EventGuestFilterToJson(EventGuestFilter instance) =>
       'top': instance.top,
       'skip': instance.skip,
       'filters': instance.filters.toJson(),
-    };
-
-EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
-    EventGuestProfile(
-      dataType: EventGuestProfile.ticketingDataTypeDataTypeFromJson(
-        json['dataType'],
-      ),
-      wallet: json['wallet'] as String,
-      eventId: json['eventId'] as String,
-      ticket: json['ticket'] as Map<String, dynamic>,
-      questionnaireFilled: json['questionnaireFilled'] as bool,
-      registration:
-          json['registration'] == null
-              ? null
-              : EventGuestRegistration.fromJson(
-                json['registration'] as Map<String, dynamic>,
-              ),
-      billing:
-          json['billing'] == null
-              ? null
-              : EventGuestBilling.fromJson(
-                json['billing'] as Map<String, dynamic>,
-              ),
-      status: eventGuestStatusFromJson(json['status']),
-      createdAt: (json['createdAt'] as num).toInt(),
-      invitationId: json['invitationId'] as String?,
-      metadata: json['metadata'],
-      id: json['id'] as String?,
-      pk: json['pk'] as String?,
-      ts: (json['_ts'] as num?)?.toInt(),
-      ttl: (json['ttl'] as num?)?.toInt(),
-      profile: json['profile'] as String,
-      herotag: json['herotag'] as String,
-    );
-
-Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
-    <String, dynamic>{
-      'dataType': ticketingDataTypeToJson(instance.dataType),
-      'wallet': instance.wallet,
-      'eventId': instance.eventId,
-      'ticket': instance.ticket,
-      'questionnaireFilled': instance.questionnaireFilled,
-      'registration': instance.registration?.toJson(),
-      'billing': instance.billing?.toJson(),
-      'status': eventGuestStatusToJson(instance.status),
-      'createdAt': instance.createdAt,
-      'invitationId': instance.invitationId,
-      'metadata': instance.metadata,
-      'id': instance.id,
-      'pk': instance.pk,
-      '_ts': instance.ts,
-      'ttl': instance.ttl,
-      'profile': instance.profile,
-      'herotag': instance.herotag,
     };
 
 EventGuestProfileQuery _$EventGuestProfileQueryFromJson(
