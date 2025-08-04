@@ -153,10 +153,12 @@ class EventTypeSafeApi {
   Future<EventRegistrationResponseDto> registerForEvent({
     required String eventId,
     required EventGuestRegistrationDto body,
+    String? invitationId,
   }) async {
     final data = await _api.registerForEvent(
       eventId: eventId,
       body: body.toJson(),
+      invitationId: invitationId,
     );
     return EventRegistrationResponseDto.fromJson(data);
   }

@@ -7667,6 +7667,12 @@ paths:
           description: ID of the event
           schema:
             type: string
+        - name: invitationId
+          required: false
+          in: query
+          description: ID of the invitation
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -15873,11 +15879,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1754319948
+          example: 1754321044
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: a2a7ad04-81d3-45b8-818c-399542383f44
+          example: 9ae82000-1fa7-4e44-9c3f-0bc66ef7fcd4
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -19457,6 +19463,95 @@ components:
           description: Callback URL
           allOf:
             - $ref: '#/components/schemas/CallbackUrl'
+    EventGuestProfile:
+      type: object
+      properties:
+        dataType:
+          description: The type of document data.
+          default: event-guest
+          allOf:
+            - $ref: '#/components/schemas/TicketingDataType'
+        wallet:
+          type: string
+          description: Guest wallet address.
+        eventId:
+          type: string
+          description: Event ID that the guest is attending.
+          example: event123
+        ticket:
+          type: object
+          description: >-
+            Object with dynamic keys, each representing a ticket for the event.
+            The value is an object with check-in status and timestamps.
+          example:
+            key1:
+              isCheckIn: true
+              timestamp: 1724089378
+              receivedAt: 1724089378
+            key2:
+              isCheckIn: false
+              timestamp: 1724089379
+              receivedAt: 1724089379
+          additionalProperties:
+            $ref: '#/components/schemas/EventGuestCheckInHydrated'
+        questionnaireFilled:
+          type: boolean
+          description: Indicates whether the guest has filled out the questionnaire.
+          example: true
+        registration:
+          description: Data from the guest registration form.
+          allOf:
+            - $ref: '#/components/schemas/EventGuestRegistration'
+        billing:
+          description: Data from the guest billing form.
+          allOf:
+            - $ref: '#/components/schemas/EventGuestBilling'
+        status:
+          description: Current status of the guest document
+          example: pending
+          allOf:
+            - $ref: '#/components/schemas/EventGuestStatus'
+        createdAt:
+          type: integer
+          description: Timestamp of guest creation.
+          example: 1754321044
+        invitationId:
+          type: string
+          description: Invitation ID for the guest
+          example: 9ae82000-1fa7-4e44-9c3f-0bc66ef7fcd4
+        metadata:
+          type: object
+          description: Custom metadata for the guest
+        id:
+          type: string
+          description: Unique identifier for the document.
+          example: guest123
+        pk:
+          type: string
+          description: Partition key for the document.
+          example: event123
+        _ts:
+          type: integer
+          description: Timestamp for document in Cosmos DB.
+        ttl:
+          type: integer
+          description: Time to live in seconds for the document.
+        profile:
+          type: string
+          description: Guest profile picture.
+        herotag:
+          type: string
+          description: Guest wallet herotag.
+      required:
+        - dataType
+        - wallet
+        - eventId
+        - ticket
+        - questionnaireFilled
+        - status
+        - createdAt
+        - profile
+        - herotag
     TwispayPaymentFormData:
       type: object
       properties:
@@ -19511,7 +19606,7 @@ components:
       type: object
       properties:
         guestDoc:
-          $ref: '#/components/schemas/EventGuestDoc'
+          $ref: '#/components/schemas/EventGuestProfile'
         fiatPaymentForm:
           $ref: '#/components/schemas/FiatPaymentForm'
         cryptoPayment:
@@ -19605,11 +19700,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1754319948
+          example: 1754321044
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 635e6278-667d-4c52-9488-41589797bfca
+          example: def1d848-7a9b-4a19-aa7d-66422aad6f3b
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19672,11 +19767,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754319948
+          example: 1754321044
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754319948
+          example: 1754321044
         maxLimit:
           type: integer
           description: >-
@@ -19734,11 +19829,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754319948
+          example: 1754321044
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754319948
+          example: 1754321044
         maxLimit:
           type: integer
           description: >-
@@ -19769,7 +19864,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 8bd4a99c-0b92-41cf-b2ee-ed384b6a497c
+          example: 4eee6dc3-4702-4394-abc2-cbd80a0e4852
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19800,11 +19895,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754319948
+          example: 1754321044
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754319948
+          example: 1754321044
         maxLimit:
           type: integer
           description: >-
@@ -19965,7 +20060,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: fead000a-4215-4001-b4e9-8b85845558e2
+          example: 3592488a-b282-4549-9b8c-ead8aae8fd7f
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -20025,7 +20120,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1754319948
+          example: 1754321044
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20054,7 +20149,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 964022ed-1f65-4860-8cde-ae9c33e3b108
+          example: 8be70470-1eec-4084-8bed-3dae2ac2dd49
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20170,7 +20265,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1754319948
+          example: 1754321044
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20199,7 +20294,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 964022ed-1f65-4860-8cde-ae9c33e3b108
+          example: 8be70470-1eec-4084-8bed-3dae2ac2dd49
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20377,11 +20472,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754319948
+          example: 1754321044
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754319948
+          example: 1754321044
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -20392,7 +20487,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1754319948
+          example: 1754321044
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -20485,7 +20580,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1754319948
+          example: 1754321044
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20554,95 +20649,6 @@ components:
           type: array
           items:
             type: string
-    EventGuestProfile:
-      type: object
-      properties:
-        dataType:
-          description: The type of document data.
-          default: event-guest
-          allOf:
-            - $ref: '#/components/schemas/TicketingDataType'
-        wallet:
-          type: string
-          description: Guest wallet address.
-        eventId:
-          type: string
-          description: Event ID that the guest is attending.
-          example: event123
-        ticket:
-          type: object
-          description: >-
-            Object with dynamic keys, each representing a ticket for the event.
-            The value is an object with check-in status and timestamps.
-          example:
-            key1:
-              isCheckIn: true
-              timestamp: 1724089378
-              receivedAt: 1724089378
-            key2:
-              isCheckIn: false
-              timestamp: 1724089379
-              receivedAt: 1724089379
-          additionalProperties:
-            $ref: '#/components/schemas/EventGuestCheckInHydrated'
-        questionnaireFilled:
-          type: boolean
-          description: Indicates whether the guest has filled out the questionnaire.
-          example: true
-        registration:
-          description: Data from the guest registration form.
-          allOf:
-            - $ref: '#/components/schemas/EventGuestRegistration'
-        billing:
-          description: Data from the guest billing form.
-          allOf:
-            - $ref: '#/components/schemas/EventGuestBilling'
-        status:
-          description: Current status of the guest document
-          example: pending
-          allOf:
-            - $ref: '#/components/schemas/EventGuestStatus'
-        createdAt:
-          type: integer
-          description: Timestamp of guest creation.
-          example: 1754319948
-        invitationId:
-          type: string
-          description: Invitation ID for the guest
-          example: a2a7ad04-81d3-45b8-818c-399542383f44
-        metadata:
-          type: object
-          description: Custom metadata for the guest
-        id:
-          type: string
-          description: Unique identifier for the document.
-          example: guest123
-        pk:
-          type: string
-          description: Partition key for the document.
-          example: event123
-        _ts:
-          type: integer
-          description: Timestamp for document in Cosmos DB.
-        ttl:
-          type: integer
-          description: Time to live in seconds for the document.
-        profile:
-          type: string
-          description: Guest profile picture.
-        herotag:
-          type: string
-          description: Guest wallet herotag.
-      required:
-        - dataType
-        - wallet
-        - eventId
-        - ticket
-        - questionnaireFilled
-        - status
-        - createdAt
-        - profile
-        - herotag
     EventAcceptInvitation:
       type: object
       properties:
@@ -21038,11 +21044,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754319948
+          example: 1754321044
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754319948
+          example: 1754321044
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21095,11 +21101,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754319948
+          example: 1754321044
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754319948
+          example: 1754321044
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21134,7 +21140,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 08fe8eda-f03e-4723-b6f1-4b5dc7bc2a0c
+          example: d5885a75-4e23-44bd-8778-81af44bf8a14
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21150,7 +21156,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1754319948
+          example: 1754321044
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -21313,7 +21319,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: b1edb5db-8b26-4a0e-8ab0-d3c25d3b723b
+          example: cab89704-25c4-477d-bc4f-246ea0a052ae
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -21340,7 +21346,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1754319948
+          example: 1754321044
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -21468,7 +21474,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 49a50f68-765c-43df-925c-73a8cba04e73
+          example: 7c9af53a-6b6c-4a37-a120-8f727238e8dd
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21490,7 +21496,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1754319948
+          example: 1754321044
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -21696,7 +21702,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 0b679f26-e020-45c1-9181-d72c0526b8c0
+          example: aeaefe7e-aef3-43aa-a95a-515bb3a95c57
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -21713,15 +21719,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1754319948
+          example: 1754321044
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 84ce67a4-afef-4fe1-b83c-d3c626d41198
+          example: 22b9eaf3-757b-410d-9949-88df71cc3e3c
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1754319948
+          example: 1754321044
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -21729,7 +21735,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: b756c09c-7a7a-4263-86f1-87a1a57f41d2
+          example: 1e35cc24-4812-44da-be41-dcbba76553dd
       required:
         - ticketId
         - isCheckIn

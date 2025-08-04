@@ -252,12 +252,18 @@ class EventRawApi {
   Future<Map<String, dynamic>> registerForEvent({
     required String eventId,
     required Map<String, dynamic> body,
+    String? invitationId,
   }) {
     final logger = Logger('Xoxno.EventRawApi.registerForEvent');
     logger.finest('register for event');
     return genericPost(
       client,
-      generateUri(path: '${client.baseUrl}/event/$eventId/register'),
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/register',
+        queryParameters: [
+          if (invitationId != null) 'invitationId=$invitationId',
+        ],
+      ),
       body: json.encode(body),
       headers: {'content-type': 'application/json'},
     );
