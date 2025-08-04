@@ -4333,35 +4333,40 @@ Map<String, dynamic> _$EventGuestBillingToJson(EventGuestBilling instance) =>
       'postalCode': instance.postalCode,
     };
 
-EventGuestDoc _$EventGuestDocFromJson(
-  Map<String, dynamic> json,
-) => EventGuestDoc(
-  dataType: EventGuestDoc.ticketingDataTypeDataTypeFromJson(json['dataType']),
-  wallet: json['wallet'] as String,
-  eventId: json['eventId'] as String,
-  ticket: json['ticket'] as Map<String, dynamic>,
-  questionnaireFilled: json['questionnaireFilled'] as bool,
-  registration:
-      json['registration'] == null
-          ? null
-          : EventGuestRegistration.fromJson(
-            json['registration'] as Map<String, dynamic>,
-          ),
-  billing:
-      json['billing'] == null
-          ? null
-          : EventGuestBilling.fromJson(json['billing'] as Map<String, dynamic>),
-  status: eventGuestStatusFromJson(json['status']),
-  createdAt: (json['createdAt'] as num).toInt(),
-  invitationId: json['invitationId'] as String?,
-  metadata: json['metadata'],
-  id: json['id'] as String?,
-  pk: json['pk'] as String?,
-  ts: (json['_ts'] as num?)?.toInt(),
-  ttl: (json['ttl'] as num?)?.toInt(),
-);
+EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
+    EventGuestProfile(
+      dataType: EventGuestProfile.ticketingDataTypeDataTypeFromJson(
+        json['dataType'],
+      ),
+      wallet: json['wallet'] as String,
+      eventId: json['eventId'] as String,
+      ticket: json['ticket'] as Map<String, dynamic>,
+      questionnaireFilled: json['questionnaireFilled'] as bool,
+      registration:
+          json['registration'] == null
+              ? null
+              : EventGuestRegistration.fromJson(
+                json['registration'] as Map<String, dynamic>,
+              ),
+      billing:
+          json['billing'] == null
+              ? null
+              : EventGuestBilling.fromJson(
+                json['billing'] as Map<String, dynamic>,
+              ),
+      status: eventGuestStatusFromJson(json['status']),
+      createdAt: (json['createdAt'] as num).toInt(),
+      invitationId: json['invitationId'] as String?,
+      metadata: json['metadata'],
+      id: json['id'] as String?,
+      pk: json['pk'] as String?,
+      ts: (json['_ts'] as num?)?.toInt(),
+      ttl: (json['ttl'] as num?)?.toInt(),
+      profile: json['profile'] as String,
+      herotag: json['herotag'] as String,
+    );
 
-Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
+Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
     <String, dynamic>{
       'dataType': ticketingDataTypeToJson(instance.dataType),
       'wallet': instance.wallet,
@@ -4378,6 +4383,8 @@ Map<String, dynamic> _$EventGuestDocToJson(EventGuestDoc instance) =>
       'pk': instance.pk,
       '_ts': instance.ts,
       'ttl': instance.ttl,
+      'profile': instance.profile,
+      'herotag': instance.herotag,
     };
 
 EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
@@ -4432,7 +4439,7 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
   guestProfile:
       json['guestProfile'] == null
           ? null
-          : EventGuestDoc.fromJson(
+          : EventGuestProfile.fromJson(
             json['guestProfile'] as Map<String, dynamic>,
           ),
 );
@@ -6915,60 +6922,6 @@ Map<String, dynamic> _$EventGuestRegistrationDtoToJson(
   'questionAnswers': instance.questionAnswers?.map((e) => e.toJson()).toList(),
   'callbackUrl': instance.callbackUrl?.toJson(),
 };
-
-EventGuestProfile _$EventGuestProfileFromJson(Map<String, dynamic> json) =>
-    EventGuestProfile(
-      dataType: EventGuestProfile.ticketingDataTypeDataTypeFromJson(
-        json['dataType'],
-      ),
-      wallet: json['wallet'] as String,
-      eventId: json['eventId'] as String,
-      ticket: json['ticket'] as Map<String, dynamic>,
-      questionnaireFilled: json['questionnaireFilled'] as bool,
-      registration:
-          json['registration'] == null
-              ? null
-              : EventGuestRegistration.fromJson(
-                json['registration'] as Map<String, dynamic>,
-              ),
-      billing:
-          json['billing'] == null
-              ? null
-              : EventGuestBilling.fromJson(
-                json['billing'] as Map<String, dynamic>,
-              ),
-      status: eventGuestStatusFromJson(json['status']),
-      createdAt: (json['createdAt'] as num).toInt(),
-      invitationId: json['invitationId'] as String?,
-      metadata: json['metadata'],
-      id: json['id'] as String?,
-      pk: json['pk'] as String?,
-      ts: (json['_ts'] as num?)?.toInt(),
-      ttl: (json['ttl'] as num?)?.toInt(),
-      profile: json['profile'] as String,
-      herotag: json['herotag'] as String,
-    );
-
-Map<String, dynamic> _$EventGuestProfileToJson(EventGuestProfile instance) =>
-    <String, dynamic>{
-      'dataType': ticketingDataTypeToJson(instance.dataType),
-      'wallet': instance.wallet,
-      'eventId': instance.eventId,
-      'ticket': instance.ticket,
-      'questionnaireFilled': instance.questionnaireFilled,
-      'registration': instance.registration?.toJson(),
-      'billing': instance.billing?.toJson(),
-      'status': eventGuestStatusToJson(instance.status),
-      'createdAt': instance.createdAt,
-      'invitationId': instance.invitationId,
-      'metadata': instance.metadata,
-      'id': instance.id,
-      'pk': instance.pk,
-      '_ts': instance.ts,
-      'ttl': instance.ttl,
-      'profile': instance.profile,
-      'herotag': instance.herotag,
-    };
 
 TwispayPaymentFormData _$TwispayPaymentFormDataFromJson(
   Map<String, dynamic> json,
