@@ -7301,6 +7301,41 @@ Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
   'discountMaxAmount': instance.discountMaxAmount,
 };
 
+TicketsType _$TicketsTypeFromJson(Map<String, dynamic> json) => TicketsType(
+  ticketId: json['ticketId'] as String,
+  quantity: (json['quantity'] as num).toDouble(),
+);
+
+Map<String, dynamic> _$TicketsTypeToJson(TicketsType instance) =>
+    <String, dynamic>{
+      'ticketId': instance.ticketId,
+      'quantity': instance.quantity,
+    };
+
+EventInvitationCreateDto _$EventInvitationCreateDtoFromJson(
+  Map<String, dynamic> json,
+) => EventInvitationCreateDto(
+  name: json['name'] as String?,
+  email: json['email'] as String?,
+  startTime: (json['startTime'] as num).toInt(),
+  endTime: (json['endTime'] as num).toInt(),
+  tickets:
+      (json['tickets'] as List<dynamic>?)
+          ?.map((e) => TicketsType.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventInvitationCreateDtoToJson(
+  EventInvitationCreateDto instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'email': instance.email,
+  'startTime': instance.startTime,
+  'endTime': instance.endTime,
+  'tickets': instance.tickets.map((e) => e.toJson()).toList(),
+};
+
 TicketProfileSummary _$TicketProfileSummaryFromJson(
   Map<String, dynamic> json,
 ) => TicketProfileSummary(
@@ -7323,30 +7358,6 @@ Map<String, dynamic> _$TicketProfileSummaryToJson(
   'characteristics': instance.characteristics,
   'ticketId': instance.ticketId,
   'quantity': instance.quantity,
-};
-
-EventInvitationCreateDto _$EventInvitationCreateDtoFromJson(
-  Map<String, dynamic> json,
-) => EventInvitationCreateDto(
-  name: json['name'] as String?,
-  email: json['email'] as String?,
-  startTime: (json['startTime'] as num).toInt(),
-  endTime: (json['endTime'] as num).toInt(),
-  tickets:
-      (json['tickets'] as List<dynamic>?)
-          ?.map((e) => TicketProfileSummary.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      [],
-);
-
-Map<String, dynamic> _$EventInvitationCreateDtoToJson(
-  EventInvitationCreateDto instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'email': instance.email,
-  'startTime': instance.startTime,
-  'endTime': instance.endTime,
-  'tickets': instance.tickets.map((e) => e.toJson()).toList(),
 };
 
 EventInvitationDoc _$EventInvitationDocFromJson(Map<String, dynamic> json) =>
@@ -8009,9 +8020,7 @@ EventCheckInQR _$EventCheckInQRFromJson(Map<String, dynamic> json) =>
       qr: QRBody.fromJson(json['qr'] as Map<String, dynamic>),
       tickets:
           (json['tickets'] as List<dynamic>?)
-              ?.map(
-                (e) => TicketProfileSummary.fromJson(e as Map<String, dynamic>),
-              )
+              ?.map((e) => TicketsType.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
@@ -8182,9 +8191,7 @@ ManualCheckInDto _$ManualCheckInDtoFromJson(Map<String, dynamic> json) =>
       invitationIdOrAddress: json['invitationIdOrAddress'] as String,
       selectedTickets:
           (json['selectedTickets'] as List<dynamic>?)
-              ?.map(
-                (e) => TicketProfileSummary.fromJson(e as Map<String, dynamic>),
-              )
+              ?.map((e) => TicketsType.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );
