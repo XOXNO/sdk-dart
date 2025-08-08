@@ -34634,8 +34634,8 @@ extension $EventRegistrationResponseDtoExtension
 @JsonSerializable(explicitToJson: true)
 class EventTicketProfileCreateDto {
   const EventTicketProfileCreateDto({
-    required this.name,
-    required this.description,
+    this.name,
+    this.description,
     this.royalties,
     this.badgeColor,
     this.characteristics,
@@ -34650,9 +34650,9 @@ class EventTicketProfileCreateDto {
   Map<String, dynamic> toJson() => _$EventTicketProfileCreateDtoToJson(this);
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'royalties')
   final double? royalties;
   @JsonKey(name: 'badgeColor')
@@ -34740,8 +34740,8 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
   }
 
   EventTicketProfileCreateDto copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<String>? description,
+    Wrapped<String?>? name,
+    Wrapped<String?>? description,
     Wrapped<double?>? royalties,
     Wrapped<String?>? badgeColor,
     Wrapped<Object?>? characteristics,
@@ -34767,9 +34767,9 @@ class EventTicketProfileDoc {
   const EventTicketProfileDoc({
     required this.dataType,
     required this.eventId,
-    required this.name,
-    required this.description,
-    required this.profile,
+    this.name,
+    this.description,
+    this.profile,
     this.royalties,
     this.badgeColor,
     this.characteristics,
@@ -34797,11 +34797,11 @@ class EventTicketProfileDoc {
   @JsonKey(name: 'eventId')
   final String eventId;
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'profile')
-  final String profile;
+  final String? profile;
   @JsonKey(name: 'royalties')
   final double? royalties;
   @JsonKey(name: 'badgeColor')
@@ -34956,9 +34956,9 @@ extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
   EventTicketProfileDoc copyWithWrapped({
     Wrapped<enums.TicketingDataType>? dataType,
     Wrapped<String>? eventId,
-    Wrapped<String>? name,
-    Wrapped<String>? description,
-    Wrapped<String>? profile,
+    Wrapped<String?>? name,
+    Wrapped<String?>? description,
+    Wrapped<String?>? profile,
     Wrapped<double?>? royalties,
     Wrapped<String?>? badgeColor,
     Wrapped<Object?>? characteristics,
@@ -36102,169 +36102,11 @@ extension $DiscountCodeValidationResponseExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class TicketsType {
-  const TicketsType({required this.ticketId, required this.quantity});
-
-  factory TicketsType.fromJson(Map<String, dynamic> json) =>
-      _$TicketsTypeFromJson(json);
-
-  static const toJsonFactory = _$TicketsTypeToJson;
-  Map<String, dynamic> toJson() => _$TicketsTypeToJson(this);
-
-  @JsonKey(name: 'ticketId')
-  final String ticketId;
-  @JsonKey(name: 'quantity')
-  final int quantity;
-  static const fromJsonFactory = _$TicketsTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketsType &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      runtimeType.hashCode;
-}
-
-extension $TicketsTypeExtension on TicketsType {
-  TicketsType copyWith({String? ticketId, int? quantity}) {
-    return TicketsType(
-      ticketId: ticketId ?? this.ticketId,
-      quantity: quantity ?? this.quantity,
-    );
-  }
-
-  TicketsType copyWithWrapped({
-    Wrapped<String>? ticketId,
-    Wrapped<int>? quantity,
-  }) {
-    return TicketsType(
-      ticketId: (ticketId != null ? ticketId.value : this.ticketId),
-      quantity: (quantity != null ? quantity.value : this.quantity),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class EventInvitationCreateDto {
-  const EventInvitationCreateDto({
-    this.name,
-    this.email,
-    required this.startTime,
-    required this.endTime,
-    required this.tickets,
-  });
-
-  factory EventInvitationCreateDto.fromJson(Map<String, dynamic> json) =>
-      _$EventInvitationCreateDtoFromJson(json);
-
-  static const toJsonFactory = _$EventInvitationCreateDtoToJson;
-  Map<String, dynamic> toJson() => _$EventInvitationCreateDtoToJson(this);
-
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'email')
-  final String? email;
-  @JsonKey(name: 'startTime')
-  final int startTime;
-  @JsonKey(name: 'endTime')
-  final int endTime;
-  @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
-  final List<TicketsType> tickets;
-  static const fromJsonFactory = _$EventInvitationCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationCreateDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.tickets, tickets) ||
-                const DeepCollectionEquality().equals(other.tickets, tickets)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(tickets) ^
-      runtimeType.hashCode;
-}
-
-extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
-  EventInvitationCreateDto copyWith({
-    String? name,
-    String? email,
-    int? startTime,
-    int? endTime,
-    List<TicketsType>? tickets,
-  }) {
-    return EventInvitationCreateDto(
-      name: name ?? this.name,
-      email: email ?? this.email,
-      startTime: startTime ?? this.startTime,
-      endTime: endTime ?? this.endTime,
-      tickets: tickets ?? this.tickets,
-    );
-  }
-
-  EventInvitationCreateDto copyWithWrapped({
-    Wrapped<String?>? name,
-    Wrapped<String?>? email,
-    Wrapped<int>? startTime,
-    Wrapped<int>? endTime,
-    Wrapped<List<TicketsType>>? tickets,
-  }) {
-    return EventInvitationCreateDto(
-      name: (name != null ? name.value : this.name),
-      email: (email != null ? email.value : this.email),
-      startTime: (startTime != null ? startTime.value : this.startTime),
-      endTime: (endTime != null ? endTime.value : this.endTime),
-      tickets: (tickets != null ? tickets.value : this.tickets),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class TicketProfileSummary {
   const TicketProfileSummary({
-    required this.name,
-    required this.description,
-    required this.profile,
+    this.name,
+    this.description,
+    this.profile,
     this.badgeColor,
     this.characteristics,
     this.ticketId,
@@ -36278,11 +36120,11 @@ class TicketProfileSummary {
   Map<String, dynamic> toJson() => _$TicketProfileSummaryToJson(this);
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'profile')
-  final String profile;
+  final String? profile;
   @JsonKey(name: 'badgeColor')
   final String? badgeColor;
   @JsonKey(name: 'characteristics')
@@ -36368,9 +36210,9 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
   }
 
   TicketProfileSummary copyWithWrapped({
-    Wrapped<String>? name,
-    Wrapped<String>? description,
-    Wrapped<String>? profile,
+    Wrapped<String?>? name,
+    Wrapped<String?>? description,
+    Wrapped<String?>? profile,
     Wrapped<String?>? badgeColor,
     Wrapped<Object?>? characteristics,
     Wrapped<String?>? ticketId,
@@ -36386,6 +36228,103 @@ extension $TicketProfileSummaryExtension on TicketProfileSummary {
           : this.characteristics),
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
       quantity: (quantity != null ? quantity.value : this.quantity),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventInvitationCreateDto {
+  const EventInvitationCreateDto({
+    this.name,
+    this.email,
+    required this.startTime,
+    required this.endTime,
+    required this.tickets,
+  });
+
+  factory EventInvitationCreateDto.fromJson(Map<String, dynamic> json) =>
+      _$EventInvitationCreateDtoFromJson(json);
+
+  static const toJsonFactory = _$EventInvitationCreateDtoToJson;
+  Map<String, dynamic> toJson() => _$EventInvitationCreateDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'startTime')
+  final int startTime;
+  @JsonKey(name: 'endTime')
+  final int endTime;
+  @JsonKey(name: 'tickets', defaultValue: <TicketProfileSummary>[])
+  final List<TicketProfileSummary> tickets;
+  static const fromJsonFactory = _$EventInvitationCreateDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventInvitationCreateDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality().equals(
+                  other.startTime,
+                  startTime,
+                )) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality().equals(
+                  other.endTime,
+                  endTime,
+                )) &&
+            (identical(other.tickets, tickets) ||
+                const DeepCollectionEquality().equals(other.tickets, tickets)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(tickets) ^
+      runtimeType.hashCode;
+}
+
+extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
+  EventInvitationCreateDto copyWith({
+    String? name,
+    String? email,
+    int? startTime,
+    int? endTime,
+    List<TicketProfileSummary>? tickets,
+  }) {
+    return EventInvitationCreateDto(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      startTime: startTime ?? this.startTime,
+      endTime: endTime ?? this.endTime,
+      tickets: tickets ?? this.tickets,
+    );
+  }
+
+  EventInvitationCreateDto copyWithWrapped({
+    Wrapped<String?>? name,
+    Wrapped<String?>? email,
+    Wrapped<int>? startTime,
+    Wrapped<int>? endTime,
+    Wrapped<List<TicketProfileSummary>>? tickets,
+  }) {
+    return EventInvitationCreateDto(
+      name: (name != null ? name.value : this.name),
+      email: (email != null ? email.value : this.email),
+      startTime: (startTime != null ? startTime.value : this.startTime),
+      endTime: (endTime != null ? endTime.value : this.endTime),
+      tickets: (tickets != null ? tickets.value : this.tickets),
     );
   }
 }
@@ -39495,8 +39434,8 @@ class EventCheckInQR {
 
   @JsonKey(name: 'qr')
   final QRBody qr;
-  @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
-  final List<TicketsType>? tickets;
+  @JsonKey(name: 'tickets', defaultValue: <TicketProfileSummary>[])
+  final List<TicketProfileSummary>? tickets;
   static const fromJsonFactory = _$EventCheckInQRFromJson;
 
   @override
@@ -39520,13 +39459,13 @@ class EventCheckInQR {
 }
 
 extension $EventCheckInQRExtension on EventCheckInQR {
-  EventCheckInQR copyWith({QRBody? qr, List<TicketsType>? tickets}) {
+  EventCheckInQR copyWith({QRBody? qr, List<TicketProfileSummary>? tickets}) {
     return EventCheckInQR(qr: qr ?? this.qr, tickets: tickets ?? this.tickets);
   }
 
   EventCheckInQR copyWithWrapped({
     Wrapped<QRBody>? qr,
-    Wrapped<List<TicketsType>?>? tickets,
+    Wrapped<List<TicketProfileSummary>?>? tickets,
   }) {
     return EventCheckInQR(
       qr: (qr != null ? qr.value : this.qr),
@@ -40258,8 +40197,8 @@ class ManualCheckInDto {
 
   @JsonKey(name: 'invitationIdOrAddress')
   final String invitationIdOrAddress;
-  @JsonKey(name: 'selectedTickets', defaultValue: <TicketsType>[])
-  final List<TicketsType>? selectedTickets;
+  @JsonKey(name: 'selectedTickets', defaultValue: <TicketProfileSummary>[])
+  final List<TicketProfileSummary>? selectedTickets;
   static const fromJsonFactory = _$ManualCheckInDtoFromJson;
 
   @override
@@ -40291,7 +40230,7 @@ class ManualCheckInDto {
 extension $ManualCheckInDtoExtension on ManualCheckInDto {
   ManualCheckInDto copyWith({
     String? invitationIdOrAddress,
-    List<TicketsType>? selectedTickets,
+    List<TicketProfileSummary>? selectedTickets,
   }) {
     return ManualCheckInDto(
       invitationIdOrAddress:
@@ -40302,7 +40241,7 @@ extension $ManualCheckInDtoExtension on ManualCheckInDto {
 
   ManualCheckInDto copyWithWrapped({
     Wrapped<String>? invitationIdOrAddress,
-    Wrapped<List<TicketsType>?>? selectedTickets,
+    Wrapped<List<TicketProfileSummary>?>? selectedTickets,
   }) {
     return ManualCheckInDto(
       invitationIdOrAddress: (invitationIdOrAddress != null
