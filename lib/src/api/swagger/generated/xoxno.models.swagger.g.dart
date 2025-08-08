@@ -141,7 +141,6 @@ TokenDataDocWithBalance _$TokenDataDocWithBalanceFromJson(
   pngUrl: json['pngUrl'] as String,
   chain: TokenDataDocWithBalance.activityChainChainFromJson(json['chain']),
   usdPrice: (json['usdPrice'] as num).toDouble(),
-  isAshSupported: json['isAshSupported'] as bool,
   nonce: (json['nonce'] as num).toDouble(),
   balance: json['balance'] as String,
   shortBalance: (json['shortBalance'] as num).toDouble(),
@@ -166,7 +165,6 @@ Map<String, dynamic> _$TokenDataDocWithBalanceToJson(
   'pngUrl': instance.pngUrl,
   'chain': activityChainToJson(instance.chain),
   'usdPrice': instance.usdPrice,
-  'isAshSupported': instance.isAshSupported,
   'nonce': instance.nonce,
   'balance': instance.balance,
   'shortBalance': instance.shortBalance,
@@ -604,10 +602,7 @@ CreatorProfileDto _$CreatorProfileDtoFromJson(Map<String, dynamic> json) =>
       banner: json['banner'] as String,
       joinedDate: (json['joinedDate'] as num).toDouble(),
       description: json['description'] as String?,
-      socials:
-          json['socials'] == null
-              ? null
-              : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+      socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
       ts: (json['_ts'] as num?)?.toDouble(),
       followCount: (json['followCount'] as num).toDouble(),
@@ -625,7 +620,7 @@ Map<String, dynamic> _$CreatorProfileDtoToJson(CreatorProfileDto instance) =>
       'banner': instance.banner,
       'joinedDate': instance.joinedDate,
       'description': instance.description,
-      'socials': instance.socials?.toJson(),
+      'socials': instance.socials.toJson(),
       'id': instance.id,
       '_ts': instance.ts,
       'followCount': instance.followCount,
@@ -643,10 +638,7 @@ CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
       banner: json['banner'] as String,
       joinedDate: (json['joinedDate'] as num).toDouble(),
       description: json['description'] as String?,
-      socials:
-          json['socials'] == null
-              ? null
-              : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+      socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
       ts: (json['_ts'] as num?)?.toDouble(),
     );
@@ -663,7 +655,7 @@ Map<String, dynamic> _$CreatorProfileDocToJson(CreatorProfileDoc instance) =>
       'banner': instance.banner,
       'joinedDate': instance.joinedDate,
       'description': instance.description,
-      'socials': instance.socials?.toJson(),
+      'socials': instance.socials.toJson(),
       'id': instance.id,
       '_ts': instance.ts,
     };
@@ -945,7 +937,6 @@ TokenDataDocHydrated _$TokenDataDocHydratedFromJson(
       [],
   ts: (json['_ts'] as num).toDouble(),
   usdPrice: (json['usdPrice'] as num).toDouble(),
-  isAshSupported: json['isAshSupported'] as bool,
 );
 
 Map<String, dynamic> _$TokenDataDocHydratedToJson(
@@ -965,7 +956,6 @@ Map<String, dynamic> _$TokenDataDocHydratedToJson(
   'category': instance.category,
   '_ts': instance.ts,
   'usdPrice': instance.usdPrice,
-  'isAshSupported': instance.isAshSupported,
 };
 
 RateType _$RateTypeFromJson(Map<String, dynamic> json) => RateType(
@@ -1662,7 +1652,6 @@ LendingMarketProfileExtraProperties
 _$LendingMarketProfileExtraPropertiesFromJson(Map<String, dynamic> json) =>
     LendingMarketProfileExtraProperties(
       eModeCategoryProfile: json['eModeCategoryProfile'] as bool?,
-      oraclePrice: json['oraclePrice'] as bool?,
       participants: json['participants'] as bool?,
     );
 
@@ -1670,7 +1659,6 @@ Map<String, dynamic> _$LendingMarketProfileExtraPropertiesToJson(
   LendingMarketProfileExtraProperties instance,
 ) => <String, dynamic>{
   'eModeCategoryProfile': instance.eModeCategoryProfile,
-  'oraclePrice': instance.oraclePrice,
   'participants': instance.participants,
 };
 
@@ -2553,6 +2541,18 @@ Map<String, dynamic> _$XoxnoMarketplaceScCollectionConfigToJson(
   'adminAddress': instance.adminAddress,
 };
 
+CollectionFeatures _$CollectionFeaturesFromJson(Map<String, dynamic> json) =>
+    CollectionFeatures(
+      isCustomOffersDisabled: json['isCustomOffersDisabled'] as bool?,
+      isGlobalOffersDisabled: json['isGlobalOffersDisabled'] as bool?,
+    );
+
+Map<String, dynamic> _$CollectionFeaturesToJson(CollectionFeatures instance) =>
+    <String, dynamic>{
+      'isCustomOffersDisabled': instance.isCustomOffersDisabled,
+      'isGlobalOffersDisabled': instance.isGlobalOffersDisabled,
+    };
+
 ShortNftCollectionInfoDoc _$ShortNftCollectionInfoDocFromJson(
   Map<String, dynamic> json,
 ) => ShortNftCollectionInfoDoc(
@@ -2569,6 +2569,12 @@ ShortNftCollectionInfoDoc _$ShortNftCollectionInfoDocFromJson(
           ? null
           : XoxnoMarketplaceScCollectionConfig.fromJson(
             json['customConfig'] as Map<String, dynamic>,
+          ),
+  features:
+      json['features'] == null
+          ? null
+          : CollectionFeatures.fromJson(
+            json['features'] as Map<String, dynamic>,
           ),
   collectionSize: (json['collectionSize'] as num?)?.toDouble(),
   holdersCount: (json['holdersCount'] as num?)?.toDouble(),
@@ -2587,6 +2593,7 @@ Map<String, dynamic> _$ShortNftCollectionInfoDocToJson(
   'chain': shortNftCollectionInfoDocChainToJson(instance.chain),
   'roles': instance.roles,
   'customConfig': instance.customConfig?.toJson(),
+  'features': instance.features?.toJson(),
   'collectionSize': instance.collectionSize,
   'holdersCount': instance.holdersCount,
   'followCount': instance.followCount,
@@ -3420,6 +3427,12 @@ CollectionProfileDoc _$CollectionProfileDocFromJson(
           : XoxnoMarketplaceScCollectionConfig.fromJson(
             json['customConfig'] as Map<String, dynamic>,
           ),
+  features:
+      json['features'] == null
+          ? null
+          : CollectionFeatures.fromJson(
+            json['features'] as Map<String, dynamic>,
+          ),
   royalty: (json['royalty'] as num?)?.toDouble(),
   collectionSize: (json['collectionSize'] as num?)?.toDouble(),
   holdersCount: (json['holdersCount'] as num?)?.toDouble(),
@@ -3457,6 +3470,7 @@ Map<String, dynamic> _$CollectionProfileDocToJson(
   'pinnedAtDrops': instance.pinnedAtDrops,
   'pinnedAt': instance.pinnedAt,
   'customConfig': instance.customConfig?.toJson(),
+  'features': instance.features?.toJson(),
   'royalty': instance.royalty,
   'collectionSize': instance.collectionSize,
   'holdersCount': instance.holdersCount,
@@ -4487,10 +4501,7 @@ CreatorDetailsDto _$CreatorDetailsDtoFromJson(Map<String, dynamic> json) =>
       banner: json['banner'] as String,
       joinedDate: (json['joinedDate'] as num).toDouble(),
       description: json['description'] as String?,
-      socials:
-          json['socials'] == null
-              ? null
-              : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
+      socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
       ts: (json['_ts'] as num?)?.toDouble(),
       listing:
@@ -4519,30 +4530,30 @@ Map<String, dynamic> _$CreatorDetailsDtoToJson(CreatorDetailsDto instance) =>
       'banner': instance.banner,
       'joinedDate': instance.joinedDate,
       'description': instance.description,
-      'socials': instance.socials?.toJson(),
+      'socials': instance.socials.toJson(),
       'id': instance.id,
       '_ts': instance.ts,
       'listing': instance.listing?.map((e) => e.toJson()).toList(),
       'events': instance.events?.map((e) => e.toJson()).toList(),
     };
 
-EditUserCreatorProfileDto _$EditUserCreatorProfileDtoFromJson(
+CreatorProfileEditDto _$CreatorProfileEditDtoFromJson(
   Map<String, dynamic> json,
-) => EditUserCreatorProfileDto(
+) => CreatorProfileEditDto(
+  name: json['name'] as String?,
   description: json['description'] as String?,
   socials:
       json['socials'] == null
           ? null
           : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-  name: json['name'] as String?,
 );
 
-Map<String, dynamic> _$EditUserCreatorProfileDtoToJson(
-  EditUserCreatorProfileDto instance,
+Map<String, dynamic> _$CreatorProfileEditDtoToJson(
+  CreatorProfileEditDto instance,
 ) => <String, dynamic>{
+  'name': instance.name,
   'description': instance.description,
   'socials': instance.socials?.toJson(),
-  'name': instance.name,
 };
 
 ShareholderDto _$ShareholderDtoFromJson(Map<String, dynamic> json) =>
@@ -7756,6 +7767,30 @@ Map<String, dynamic> _$EventQuestionEditDtoToJson(
   'answerType': eventQuestionAnswerTypeNullableToJson(instance.answerType),
   'requireTime': instance.requireTime,
   'answers': instance.answers,
+};
+
+EventClaimInvitationDto _$EventClaimInvitationDtoFromJson(
+  Map<String, dynamic> json,
+) => EventClaimInvitationDto(
+  email: json['email'] as String?,
+  name: json['name'] as String?,
+  phone: json['phone'] as String?,
+  questionAnswers:
+      (json['questionAnswers'] as List<dynamic>?)
+          ?.map(
+            (e) => EventQuestionAnswerDto.fromJson(e as Map<String, dynamic>),
+          )
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$EventClaimInvitationDtoToJson(
+  EventClaimInvitationDto instance,
+) => <String, dynamic>{
+  'email': instance.email,
+  'name': instance.name,
+  'phone': instance.phone,
+  'questionAnswers': instance.questionAnswers?.map((e) => e.toJson()).toList(),
 };
 
 EventAcceptInvitation _$EventAcceptInvitationFromJson(

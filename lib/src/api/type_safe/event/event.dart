@@ -518,7 +518,7 @@ class EventTypeSafeApi {
   Future<EventAcceptInvitation> claimInvitation({
     required String eventId,
     required String inviteId,
-    required EventGuestRegistrationDto body,
+    required EventClaimInvitationDto body,
   }) async {
     final data = await _api.claimInvitation(
       eventId: eventId,

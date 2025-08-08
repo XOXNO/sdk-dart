@@ -726,7 +726,6 @@ class TokenDataDocWithBalance {
     required this.pngUrl,
     required this.chain,
     required this.usdPrice,
-    required this.isAshSupported,
     required this.nonce,
     required this.balance,
     required this.shortBalance,
@@ -765,8 +764,6 @@ class TokenDataDocWithBalance {
 
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
-  @JsonKey(name: 'isAshSupported')
-  final bool isAshSupported;
   @JsonKey(name: 'nonce')
   final double nonce;
   @JsonKey(name: 'balance')
@@ -812,11 +809,6 @@ class TokenDataDocWithBalance {
                   other.usdPrice,
                   usdPrice,
                 )) &&
-            (identical(other.isAshSupported, isAshSupported) ||
-                const DeepCollectionEquality().equals(
-                  other.isAshSupported,
-                  isAshSupported,
-                )) &&
             (identical(other.nonce, nonce) ||
                 const DeepCollectionEquality().equals(other.nonce, nonce)) &&
             (identical(other.balance, balance) ||
@@ -858,7 +850,6 @@ class TokenDataDocWithBalance {
       const DeepCollectionEquality().hash(pngUrl) ^
       const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(usdPrice) ^
-      const DeepCollectionEquality().hash(isAshSupported) ^
       const DeepCollectionEquality().hash(nonce) ^
       const DeepCollectionEquality().hash(balance) ^
       const DeepCollectionEquality().hash(shortBalance) ^
@@ -879,7 +870,6 @@ extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
     String? pngUrl,
     enums.ActivityChain? chain,
     double? usdPrice,
-    bool? isAshSupported,
     double? nonce,
     String? balance,
     double? shortBalance,
@@ -897,7 +887,6 @@ extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
       pngUrl: pngUrl ?? this.pngUrl,
       chain: chain ?? this.chain,
       usdPrice: usdPrice ?? this.usdPrice,
-      isAshSupported: isAshSupported ?? this.isAshSupported,
       nonce: nonce ?? this.nonce,
       balance: balance ?? this.balance,
       shortBalance: shortBalance ?? this.shortBalance,
@@ -917,7 +906,6 @@ extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
     Wrapped<String>? pngUrl,
     Wrapped<enums.ActivityChain>? chain,
     Wrapped<double>? usdPrice,
-    Wrapped<bool>? isAshSupported,
     Wrapped<double>? nonce,
     Wrapped<String>? balance,
     Wrapped<double>? shortBalance,
@@ -935,9 +923,6 @@ extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
       pngUrl: (pngUrl != null ? pngUrl.value : this.pngUrl),
       chain: (chain != null ? chain.value : this.chain),
       usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice),
-      isAshSupported: (isAshSupported != null
-          ? isAshSupported.value
-          : this.isAshSupported),
       nonce: (nonce != null ? nonce.value : this.nonce),
       balance: (balance != null ? balance.value : this.balance),
       shortBalance: (shortBalance != null
@@ -3219,7 +3204,7 @@ class CreatorProfileDto {
     required this.banner,
     required this.joinedDate,
     this.description,
-    this.socials,
+    required this.socials,
     this.id,
     this.ts,
     required this.followCount,
@@ -3256,7 +3241,7 @@ class CreatorProfileDto {
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
-  final SocialsDto? socials;
+  final SocialsDto socials;
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: '_ts')
@@ -3401,7 +3386,7 @@ extension $CreatorProfileDtoExtension on CreatorProfileDto {
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
-    Wrapped<SocialsDto?>? socials,
+    Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
     Wrapped<double?>? ts,
     Wrapped<double>? followCount,
@@ -3442,7 +3427,7 @@ class CreatorProfileDoc {
     required this.banner,
     required this.joinedDate,
     this.description,
-    this.socials,
+    required this.socials,
     this.id,
     this.ts,
   });
@@ -3478,7 +3463,7 @@ class CreatorProfileDoc {
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
-  final SocialsDto? socials;
+  final SocialsDto socials;
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: '_ts')
@@ -3613,7 +3598,7 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
-    Wrapped<SocialsDto?>? socials,
+    Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
     Wrapped<double?>? ts,
   }) {
@@ -4877,7 +4862,6 @@ class TokenDataDocHydrated {
     required this.category,
     required this.ts,
     required this.usdPrice,
-    required this.isAshSupported,
   });
 
   factory TokenDataDocHydrated.fromJson(Map<String, dynamic> json) =>
@@ -4928,8 +4912,6 @@ class TokenDataDocHydrated {
   final double ts;
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
-  @JsonKey(name: 'isAshSupported')
-  final bool isAshSupported;
   static const fromJsonFactory = _$TokenDataDocHydratedFromJson;
 
   @override
@@ -4981,11 +4963,6 @@ class TokenDataDocHydrated {
                 const DeepCollectionEquality().equals(
                   other.usdPrice,
                   usdPrice,
-                )) &&
-            (identical(other.isAshSupported, isAshSupported) ||
-                const DeepCollectionEquality().equals(
-                  other.isAshSupported,
-                  isAshSupported,
                 )));
   }
 
@@ -5008,7 +4985,6 @@ class TokenDataDocHydrated {
       const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(ts) ^
       const DeepCollectionEquality().hash(usdPrice) ^
-      const DeepCollectionEquality().hash(isAshSupported) ^
       runtimeType.hashCode;
 }
 
@@ -5028,7 +5004,6 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
     List<String>? category,
     double? ts,
     double? usdPrice,
-    bool? isAshSupported,
   }) {
     return TokenDataDocHydrated(
       identifier: identifier ?? this.identifier,
@@ -5045,7 +5020,6 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
       category: category ?? this.category,
       ts: ts ?? this.ts,
       usdPrice: usdPrice ?? this.usdPrice,
-      isAshSupported: isAshSupported ?? this.isAshSupported,
     );
   }
 
@@ -5064,7 +5038,6 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
     Wrapped<List<String>>? category,
     Wrapped<double>? ts,
     Wrapped<double>? usdPrice,
-    Wrapped<bool>? isAshSupported,
   }) {
     return TokenDataDocHydrated(
       identifier: (identifier != null ? identifier.value : this.identifier),
@@ -5081,9 +5054,6 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
       category: (category != null ? category.value : this.category),
       ts: (ts != null ? ts.value : this.ts),
       usdPrice: (usdPrice != null ? usdPrice.value : this.usdPrice),
-      isAshSupported: (isAshSupported != null
-          ? isAshSupported.value
-          : this.isAshSupported),
     );
   }
 }
@@ -9121,7 +9091,6 @@ extension $LendingMarketProfileFilterCriteriaDtoExtension
 class LendingMarketProfileExtraProperties {
   const LendingMarketProfileExtraProperties({
     this.eModeCategoryProfile,
-    this.oraclePrice,
     this.participants,
   });
 
@@ -9135,8 +9104,6 @@ class LendingMarketProfileExtraProperties {
 
   @JsonKey(name: 'eModeCategoryProfile')
   final bool? eModeCategoryProfile;
-  @JsonKey(name: 'oraclePrice')
-  final bool? oraclePrice;
   @JsonKey(name: 'participants')
   final bool? participants;
   static const fromJsonFactory = _$LendingMarketProfileExtraPropertiesFromJson;
@@ -9149,11 +9116,6 @@ class LendingMarketProfileExtraProperties {
                 const DeepCollectionEquality().equals(
                   other.eModeCategoryProfile,
                   eModeCategoryProfile,
-                )) &&
-            (identical(other.oraclePrice, oraclePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.oraclePrice,
-                  oraclePrice,
                 )) &&
             (identical(other.participants, participants) ||
                 const DeepCollectionEquality().equals(
@@ -9168,7 +9130,6 @@ class LendingMarketProfileExtraProperties {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(eModeCategoryProfile) ^
-      const DeepCollectionEquality().hash(oraclePrice) ^
       const DeepCollectionEquality().hash(participants) ^
       runtimeType.hashCode;
 }
@@ -9177,26 +9138,22 @@ extension $LendingMarketProfileExtraPropertiesExtension
     on LendingMarketProfileExtraProperties {
   LendingMarketProfileExtraProperties copyWith({
     bool? eModeCategoryProfile,
-    bool? oraclePrice,
     bool? participants,
   }) {
     return LendingMarketProfileExtraProperties(
       eModeCategoryProfile: eModeCategoryProfile ?? this.eModeCategoryProfile,
-      oraclePrice: oraclePrice ?? this.oraclePrice,
       participants: participants ?? this.participants,
     );
   }
 
   LendingMarketProfileExtraProperties copyWithWrapped({
     Wrapped<bool?>? eModeCategoryProfile,
-    Wrapped<bool?>? oraclePrice,
     Wrapped<bool?>? participants,
   }) {
     return LendingMarketProfileExtraProperties(
       eModeCategoryProfile: (eModeCategoryProfile != null
           ? eModeCategoryProfile.value
           : this.eModeCategoryProfile),
-      oraclePrice: (oraclePrice != null ? oraclePrice.value : this.oraclePrice),
       participants: (participants != null
           ? participants.value
           : this.participants),
@@ -13216,6 +13173,79 @@ extension $XoxnoMarketplaceScCollectionConfigExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class CollectionFeatures {
+  const CollectionFeatures({
+    this.isCustomOffersDisabled,
+    this.isGlobalOffersDisabled,
+  });
+
+  factory CollectionFeatures.fromJson(Map<String, dynamic> json) =>
+      _$CollectionFeaturesFromJson(json);
+
+  static const toJsonFactory = _$CollectionFeaturesToJson;
+  Map<String, dynamic> toJson() => _$CollectionFeaturesToJson(this);
+
+  @JsonKey(name: 'isCustomOffersDisabled')
+  final bool? isCustomOffersDisabled;
+  @JsonKey(name: 'isGlobalOffersDisabled')
+  final bool? isGlobalOffersDisabled;
+  static const fromJsonFactory = _$CollectionFeaturesFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CollectionFeatures &&
+            (identical(other.isCustomOffersDisabled, isCustomOffersDisabled) ||
+                const DeepCollectionEquality().equals(
+                  other.isCustomOffersDisabled,
+                  isCustomOffersDisabled,
+                )) &&
+            (identical(other.isGlobalOffersDisabled, isGlobalOffersDisabled) ||
+                const DeepCollectionEquality().equals(
+                  other.isGlobalOffersDisabled,
+                  isGlobalOffersDisabled,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isCustomOffersDisabled) ^
+      const DeepCollectionEquality().hash(isGlobalOffersDisabled) ^
+      runtimeType.hashCode;
+}
+
+extension $CollectionFeaturesExtension on CollectionFeatures {
+  CollectionFeatures copyWith({
+    bool? isCustomOffersDisabled,
+    bool? isGlobalOffersDisabled,
+  }) {
+    return CollectionFeatures(
+      isCustomOffersDisabled:
+          isCustomOffersDisabled ?? this.isCustomOffersDisabled,
+      isGlobalOffersDisabled:
+          isGlobalOffersDisabled ?? this.isGlobalOffersDisabled,
+    );
+  }
+
+  CollectionFeatures copyWithWrapped({
+    Wrapped<bool?>? isCustomOffersDisabled,
+    Wrapped<bool?>? isGlobalOffersDisabled,
+  }) {
+    return CollectionFeatures(
+      isCustomOffersDisabled: (isCustomOffersDisabled != null
+          ? isCustomOffersDisabled.value
+          : this.isCustomOffersDisabled),
+      isGlobalOffersDisabled: (isGlobalOffersDisabled != null
+          ? isGlobalOffersDisabled.value
+          : this.isGlobalOffersDisabled),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ShortNftCollectionInfoDoc {
   const ShortNftCollectionInfoDoc({
     required this.name,
@@ -13227,6 +13257,7 @@ class ShortNftCollectionInfoDoc {
     required this.chain,
     required this.roles,
     this.customConfig,
+    this.features,
     this.collectionSize,
     this.holdersCount,
     this.followCount,
@@ -13260,6 +13291,8 @@ class ShortNftCollectionInfoDoc {
   final Map<String, dynamic> roles;
   @JsonKey(name: 'customConfig')
   final XoxnoMarketplaceScCollectionConfig? customConfig;
+  @JsonKey(name: 'features')
+  final CollectionFeatures? features;
   @JsonKey(name: 'collectionSize')
   final double? collectionSize;
   @JsonKey(name: 'holdersCount')
@@ -13305,6 +13338,11 @@ class ShortNftCollectionInfoDoc {
                   other.customConfig,
                   customConfig,
                 )) &&
+            (identical(other.features, features) ||
+                const DeepCollectionEquality().equals(
+                  other.features,
+                  features,
+                )) &&
             (identical(other.collectionSize, collectionSize) ||
                 const DeepCollectionEquality().equals(
                   other.collectionSize,
@@ -13336,6 +13374,7 @@ class ShortNftCollectionInfoDoc {
       const DeepCollectionEquality().hash(chain) ^
       const DeepCollectionEquality().hash(roles) ^
       const DeepCollectionEquality().hash(customConfig) ^
+      const DeepCollectionEquality().hash(features) ^
       const DeepCollectionEquality().hash(collectionSize) ^
       const DeepCollectionEquality().hash(holdersCount) ^
       const DeepCollectionEquality().hash(followCount) ^
@@ -13353,6 +13392,7 @@ extension $ShortNftCollectionInfoDocExtension on ShortNftCollectionInfoDoc {
     enums.ShortNftCollectionInfoDocChain? chain,
     Map<String, dynamic>? roles,
     XoxnoMarketplaceScCollectionConfig? customConfig,
+    CollectionFeatures? features,
     double? collectionSize,
     double? holdersCount,
     double? followCount,
@@ -13367,6 +13407,7 @@ extension $ShortNftCollectionInfoDocExtension on ShortNftCollectionInfoDoc {
       chain: chain ?? this.chain,
       roles: roles ?? this.roles,
       customConfig: customConfig ?? this.customConfig,
+      features: features ?? this.features,
       collectionSize: collectionSize ?? this.collectionSize,
       holdersCount: holdersCount ?? this.holdersCount,
       followCount: followCount ?? this.followCount,
@@ -13383,6 +13424,7 @@ extension $ShortNftCollectionInfoDocExtension on ShortNftCollectionInfoDoc {
     Wrapped<enums.ShortNftCollectionInfoDocChain>? chain,
     Wrapped<Map<String, dynamic>>? roles,
     Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
+    Wrapped<CollectionFeatures?>? features,
     Wrapped<double?>? collectionSize,
     Wrapped<double?>? holdersCount,
     Wrapped<double?>? followCount,
@@ -13399,6 +13441,7 @@ extension $ShortNftCollectionInfoDocExtension on ShortNftCollectionInfoDoc {
       customConfig: (customConfig != null
           ? customConfig.value
           : this.customConfig),
+      features: (features != null ? features.value : this.features),
       collectionSize: (collectionSize != null
           ? collectionSize.value
           : this.collectionSize),
@@ -17213,6 +17256,7 @@ class CollectionProfileDoc {
     this.pinnedAtDrops,
     this.pinnedAt,
     this.customConfig,
+    this.features,
     this.royalty,
     this.collectionSize,
     this.holdersCount,
@@ -17294,6 +17338,8 @@ class CollectionProfileDoc {
   final double? pinnedAt;
   @JsonKey(name: 'customConfig')
   final XoxnoMarketplaceScCollectionConfig? customConfig;
+  @JsonKey(name: 'features')
+  final CollectionFeatures? features;
   @JsonKey(name: 'royalty')
   final double? royalty;
   @JsonKey(name: 'collectionSize')
@@ -17421,6 +17467,11 @@ class CollectionProfileDoc {
                   other.customConfig,
                   customConfig,
                 )) &&
+            (identical(other.features, features) ||
+                const DeepCollectionEquality().equals(
+                  other.features,
+                  features,
+                )) &&
             (identical(other.royalty, royalty) ||
                 const DeepCollectionEquality().equals(
                   other.royalty,
@@ -17482,6 +17533,7 @@ class CollectionProfileDoc {
       const DeepCollectionEquality().hash(pinnedAtDrops) ^
       const DeepCollectionEquality().hash(pinnedAt) ^
       const DeepCollectionEquality().hash(customConfig) ^
+      const DeepCollectionEquality().hash(features) ^
       const DeepCollectionEquality().hash(royalty) ^
       const DeepCollectionEquality().hash(collectionSize) ^
       const DeepCollectionEquality().hash(holdersCount) ^
@@ -17519,6 +17571,7 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
     double? pinnedAtDrops,
     double? pinnedAt,
     XoxnoMarketplaceScCollectionConfig? customConfig,
+    CollectionFeatures? features,
     double? royalty,
     double? collectionSize,
     double? holdersCount,
@@ -17553,6 +17606,7 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
       pinnedAtDrops: pinnedAtDrops ?? this.pinnedAtDrops,
       pinnedAt: pinnedAt ?? this.pinnedAt,
       customConfig: customConfig ?? this.customConfig,
+      features: features ?? this.features,
       royalty: royalty ?? this.royalty,
       collectionSize: collectionSize ?? this.collectionSize,
       holdersCount: holdersCount ?? this.holdersCount,
@@ -17589,6 +17643,7 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
     Wrapped<double?>? pinnedAtDrops,
     Wrapped<double?>? pinnedAt,
     Wrapped<XoxnoMarketplaceScCollectionConfig?>? customConfig,
+    Wrapped<CollectionFeatures?>? features,
     Wrapped<double?>? royalty,
     Wrapped<double?>? collectionSize,
     Wrapped<double?>? holdersCount,
@@ -17631,6 +17686,7 @@ extension $CollectionProfileDocExtension on CollectionProfileDoc {
       customConfig: (customConfig != null
           ? customConfig.value
           : this.customConfig),
+      features: (features != null ? features.value : this.features),
       royalty: (royalty != null ? royalty.value : this.royalty),
       collectionSize: (collectionSize != null
           ? collectionSize.value
@@ -22673,7 +22729,7 @@ class CreatorDetailsDto {
     required this.banner,
     required this.joinedDate,
     this.description,
-    this.socials,
+    required this.socials,
     this.id,
     this.ts,
     this.listing,
@@ -22711,7 +22767,7 @@ class CreatorDetailsDto {
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
-  final SocialsDto? socials;
+  final SocialsDto socials;
   @JsonKey(name: 'id')
   final String? id;
   @JsonKey(name: '_ts')
@@ -22863,7 +22919,7 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
     Wrapped<String>? banner,
     Wrapped<double>? joinedDate,
     Wrapped<String?>? description,
-    Wrapped<SocialsDto?>? socials,
+    Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
     Wrapped<double?>? ts,
     Wrapped<List<MintingListingDto>?>? listing,
@@ -22894,39 +22950,36 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EditUserCreatorProfileDto {
-  const EditUserCreatorProfileDto({this.description, this.socials, this.name});
+class CreatorProfileEditDto {
+  const CreatorProfileEditDto({this.name, this.description, this.socials});
 
-  factory EditUserCreatorProfileDto.fromJson(Map<String, dynamic> json) =>
-      _$EditUserCreatorProfileDtoFromJson(json);
+  factory CreatorProfileEditDto.fromJson(Map<String, dynamic> json) =>
+      _$CreatorProfileEditDtoFromJson(json);
 
-  static const toJsonFactory = _$EditUserCreatorProfileDtoToJson;
-  Map<String, dynamic> toJson() => _$EditUserCreatorProfileDtoToJson(this);
+  static const toJsonFactory = _$CreatorProfileEditDtoToJson;
+  Map<String, dynamic> toJson() => _$CreatorProfileEditDtoToJson(this);
 
+  @JsonKey(name: 'name')
+  final String? name;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
-  @JsonKey(name: 'name')
-  final String? name;
-  static const fromJsonFactory = _$EditUserCreatorProfileDtoFromJson;
+  static const fromJsonFactory = _$CreatorProfileEditDtoFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is EditUserCreatorProfileDto &&
+        (other is CreatorProfileEditDto &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality().equals(
                   other.description,
                   description,
                 )) &&
             (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                const DeepCollectionEquality().equals(other.socials, socials)));
   }
 
   @override
@@ -22934,34 +22987,34 @@ class EditUserCreatorProfileDto {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(name) ^
       runtimeType.hashCode;
 }
 
-extension $EditUserCreatorProfileDtoExtension on EditUserCreatorProfileDto {
-  EditUserCreatorProfileDto copyWith({
+extension $CreatorProfileEditDtoExtension on CreatorProfileEditDto {
+  CreatorProfileEditDto copyWith({
+    String? name,
     String? description,
     SocialsDto? socials,
-    String? name,
   }) {
-    return EditUserCreatorProfileDto(
+    return CreatorProfileEditDto(
+      name: name ?? this.name,
       description: description ?? this.description,
       socials: socials ?? this.socials,
-      name: name ?? this.name,
     );
   }
 
-  EditUserCreatorProfileDto copyWithWrapped({
+  CreatorProfileEditDto copyWithWrapped({
+    Wrapped<String?>? name,
     Wrapped<String?>? description,
     Wrapped<SocialsDto?>? socials,
-    Wrapped<String?>? name,
   }) {
-    return EditUserCreatorProfileDto(
+    return CreatorProfileEditDto(
+      name: (name != null ? name.value : this.name),
       description: (description != null ? description.value : this.description),
       socials: (socials != null ? socials.value : this.socials),
-      name: (name != null ? name.value : this.name),
     );
   }
 }
@@ -38305,6 +38358,92 @@ extension $EventQuestionEditDtoExtension on EventQuestionEditDto {
       answerType: (answerType != null ? answerType.value : this.answerType),
       requireTime: (requireTime != null ? requireTime.value : this.requireTime),
       answers: (answers != null ? answers.value : this.answers),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class EventClaimInvitationDto {
+  const EventClaimInvitationDto({
+    this.email,
+    this.name,
+    this.phone,
+    this.questionAnswers,
+  });
+
+  factory EventClaimInvitationDto.fromJson(Map<String, dynamic> json) =>
+      _$EventClaimInvitationDtoFromJson(json);
+
+  static const toJsonFactory = _$EventClaimInvitationDtoToJson;
+  Map<String, dynamic> toJson() => _$EventClaimInvitationDtoToJson(this);
+
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'phone')
+  final String? phone;
+  @JsonKey(name: 'questionAnswers', defaultValue: <EventQuestionAnswerDto>[])
+  final List<EventQuestionAnswerDto>? questionAnswers;
+  static const fromJsonFactory = _$EventClaimInvitationDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is EventClaimInvitationDto &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.phone, phone) ||
+                const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.questionAnswers, questionAnswers) ||
+                const DeepCollectionEquality().equals(
+                  other.questionAnswers,
+                  questionAnswers,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(questionAnswers) ^
+      runtimeType.hashCode;
+}
+
+extension $EventClaimInvitationDtoExtension on EventClaimInvitationDto {
+  EventClaimInvitationDto copyWith({
+    String? email,
+    String? name,
+    String? phone,
+    List<EventQuestionAnswerDto>? questionAnswers,
+  }) {
+    return EventClaimInvitationDto(
+      email: email ?? this.email,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      questionAnswers: questionAnswers ?? this.questionAnswers,
+    );
+  }
+
+  EventClaimInvitationDto copyWithWrapped({
+    Wrapped<String?>? email,
+    Wrapped<String?>? name,
+    Wrapped<String?>? phone,
+    Wrapped<List<EventQuestionAnswerDto>?>? questionAnswers,
+  }) {
+    return EventClaimInvitationDto(
+      email: (email != null ? email.value : this.email),
+      name: (name != null ? name.value : this.name),
+      phone: (phone != null ? phone.value : this.phone),
+      questionAnswers: (questionAnswers != null
+          ? questionAnswers.value
+          : this.questionAnswers),
     );
   }
 }

@@ -874,7 +874,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EditUserCreatorProfileDto'
+              $ref: '#/components/schemas/CreatorProfileEditDto'
       responses:
         '200':
           description: Creator profile information updated successfully
@@ -2461,6 +2461,11 @@ paths:
           in: path
           schema:
             type: string
+        - name: isStatic
+          required: true
+          in: query
+          schema:
+            type: boolean
       responses:
         '200':
           description: User lending image as svg
@@ -8207,7 +8212,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EventGuestRegistrationDto'
+              $ref: '#/components/schemas/EventClaimInvitationDto'
       responses:
         '201':
           description: Invitation claimed
@@ -9626,9 +9631,6 @@ components:
         usdPrice:
           type: number
           example: 12.160648172030305
-        isAshSupported:
-          type: boolean
-          example: false
         nonce:
           type: number
           example: 0
@@ -9661,7 +9663,6 @@ components:
         - pngUrl
         - chain
         - usdPrice
-        - isAshSupported
         - nonce
         - balance
         - shortBalance
@@ -10299,7 +10300,7 @@ components:
           example: Leading NFT creator and artist
           description: Creator description
         socials:
-          description: Creator social media links
+          description: Social media links for the creator
           allOf:
             - $ref: '#/components/schemas/SocialsDto'
         id:
@@ -10322,6 +10323,7 @@ components:
         - profile
         - banner
         - joinedDate
+        - socials
         - followCount
     CreatorProfileDoc:
       type: object
@@ -10371,7 +10373,7 @@ components:
           example: Leading NFT creator and artist
           description: Creator description
         socials:
-          description: Creator social media links
+          description: Social media links for the creator
           allOf:
             - $ref: '#/components/schemas/SocialsDto'
         id:
@@ -10391,6 +10393,7 @@ components:
         - profile
         - banner
         - joinedDate
+        - socials
     CollectionDataType:
       type: string
       enum:
@@ -10798,9 +10801,6 @@ components:
         usdPrice:
           type: number
           example: 12.160648172030305
-        isAshSupported:
-          type: boolean
-          example: false
       required:
         - identifier
         - decimals
@@ -10816,7 +10816,6 @@ components:
         - category
         - _ts
         - usdPrice
-        - isAshSupported
     RateType:
       type: object
       properties:
@@ -12001,8 +12000,6 @@ components:
       type: object
       properties:
         eModeCategoryProfile:
-          type: boolean
-        oraclePrice:
           type: boolean
         participants:
           type: boolean
@@ -13261,6 +13258,13 @@ components:
         - customRoyalties
         - minRoyalties
         - maxRoyalties
+    CollectionFeatures:
+      type: object
+      properties:
+        isCustomOffersDisabled:
+          type: boolean
+        isGlobalOffersDisabled:
+          type: boolean
     ShortNftCollectionInfoDoc:
       type: object
       properties:
@@ -13309,6 +13313,10 @@ components:
           description: Custom configuration for the collection
           allOf:
             - $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
+        features:
+          description: Custom features for the collection
+          allOf:
+            - $ref: '#/components/schemas/CollectionFeatures'
         collectionSize:
           type: number
           description: Size of the collection, applied post processing
@@ -14500,6 +14508,10 @@ components:
           description: Custom configuration for the collection
           allOf:
             - $ref: '#/components/schemas/XoxnoMarketplaceScCollectionConfig'
+        features:
+          description: Custom features for the collection
+          allOf:
+            - $ref: '#/components/schemas/CollectionFeatures'
         royalty:
           type: number
           description: Royalty of the collection
@@ -15879,11 +15891,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1754322106
+          example: 1754663568
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 7518dbe9-8794-4426-9f94-9626c9134c3f
+          example: 13b8173d-cda6-4343-ab5e-5b1b9d668ff1
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16086,7 +16098,7 @@ components:
           example: Leading NFT creator and artist
           description: Creator description
         socials:
-          description: Creator social media links
+          description: Social media links for the creator
           allOf:
             - $ref: '#/components/schemas/SocialsDto'
         id:
@@ -16114,23 +16126,22 @@ components:
         - profile
         - banner
         - joinedDate
-    EditUserCreatorProfileDto:
+        - socials
+    CreatorProfileEditDto:
       type: object
       properties:
-        description:
-          type: string
-          description: User description
-          maxLength: 300
-          example: I am a creator
-        socials:
-          description: Social media profiles
-          allOf:
-            - $ref: '#/components/schemas/SocialsDto'
         name:
           type: string
-          description: Creator name
-          maxLength: 30
-          example: Creator Name
+          example: Awesome Creator
+          description: Creator name (editable by creator)
+        description:
+          type: string
+          example: Leading NFT creator and artist
+          description: Creator description
+        socials:
+          description: Social media links for the creator
+          allOf:
+            - $ref: '#/components/schemas/SocialsDto'
     ShareholderDto:
       type: object
       properties:
@@ -19619,11 +19630,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1754322106
+          example: 1754663568
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: ab3701c8-39fb-422b-91a1-64a4419b675b
+          example: 3e687375-19d2-45ee-aeb7-8be48cb5a21f
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19686,11 +19697,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754322106
+          example: 1754663568
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754322106
+          example: 1754663568
         maxLimit:
           type: integer
           description: >-
@@ -19748,11 +19759,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754322106
+          example: 1754663568
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754322106
+          example: 1754663568
         maxLimit:
           type: integer
           description: >-
@@ -19783,7 +19794,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 198c7ad2-87a9-4818-91f0-467eb4d123ef
+          example: b481174e-af6b-4b55-9276-a79f01f747ae
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19814,11 +19825,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1754322106
+          example: 1754663568
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1754322106
+          example: 1754663568
         maxLimit:
           type: integer
           description: >-
@@ -19979,7 +19990,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 36ada315-e9d3-417a-a7d3-108f585923aa
+          example: b0222b7c-f84c-4239-a34c-4d1e17d77d8b
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -20039,7 +20050,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1754322106
+          example: 1754663568
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20068,7 +20079,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f38777ac-74d7-4680-ae8f-17c41a5fc402
+          example: b6614918-5d65-4bb2-a6cc-51990f39275e
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20184,7 +20195,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1754322106
+          example: 1754663568
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20213,7 +20224,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f38777ac-74d7-4680-ae8f-17c41a5fc402
+          example: b6614918-5d65-4bb2-a6cc-51990f39275e
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20391,11 +20402,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754322106
+          example: 1754663568
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754322106
+          example: 1754663568
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -20406,7 +20417,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1754322106
+          example: 1754663568
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -20499,7 +20510,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1754322106
+          example: 1754663568
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20568,6 +20579,26 @@ components:
           type: array
           items:
             type: string
+    EventClaimInvitationDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email address of the guest
+          example: john@example.com
+        name:
+          type: string
+          description: Name of the guest
+          example: John Doe
+        phone:
+          type: string
+          description: Phone number of the guest
+          example: '+1234567890'
+        questionAnswers:
+          description: Answers to custom questions
+          type: array
+          items:
+            $ref: '#/components/schemas/EventQuestionAnswerDto'
     EventAcceptInvitation:
       type: object
       properties:
@@ -20963,11 +20994,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754322106
+          example: 1754663568
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754322106
+          example: 1754663568
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21020,11 +21051,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1754322106
+          example: 1754663568
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1754322106
+          example: 1754663568
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21059,7 +21090,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 203ac18a-dd3c-424b-9254-b567ffc14cda
+          example: 9754f3da-ae31-46b0-895e-a1cf3a5b82ec
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21075,7 +21106,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1754322106
+          example: 1754663568
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -21238,7 +21269,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 75b1fed3-0856-462c-8fb0-faea46110f7b
+          example: 069d6bdd-4ab6-4888-b494-ea8cbabb11a0
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -21265,7 +21296,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1754322106
+          example: 1754663568
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -21393,7 +21424,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 34b84a4e-8486-457f-9c02-545e706f8cc6
+          example: 35564a5b-d21d-48cb-87dd-765e7136fe1b
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21415,7 +21446,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1754322106
+          example: 1754663568
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -21621,7 +21652,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 137785a1-b7c7-4977-9376-b1308461d324
+          example: 9a12b01b-7bd9-4bb6-a3f0-0e95e798c447
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -21638,15 +21669,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1754322106
+          example: 1754663568
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: a23731b4-c0f6-4690-8d7a-2439d3fce369
+          example: c22a17a0-dc3c-4f36-a7c7-60c8bc37f815
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1754322106
+          example: 1754663568
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -21654,7 +21685,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: d3aee86a-da1a-438f-9fbf-50def03c3089
+          example: c0f1cb8a-76c0-4318-ba78-e974e60877bc
       required:
         - ticketId
         - isCheckIn
