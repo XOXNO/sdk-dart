@@ -7303,7 +7303,7 @@ Map<String, dynamic> _$DiscountCodeValidationResponseToJson(
 
 TicketsType _$TicketsTypeFromJson(Map<String, dynamic> json) => TicketsType(
   ticketId: json['ticketId'] as String,
-  quantity: (json['quantity'] as num).toDouble(),
+  quantity: (json['quantity'] as num).toInt(),
 );
 
 Map<String, dynamic> _$TicketsTypeToJson(TicketsType instance) =>

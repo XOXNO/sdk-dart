@@ -36114,7 +36114,7 @@ class TicketsType {
   @JsonKey(name: 'ticketId')
   final String ticketId;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   static const fromJsonFactory = _$TicketsTypeFromJson;
 
   @override
@@ -36144,7 +36144,7 @@ class TicketsType {
 }
 
 extension $TicketsTypeExtension on TicketsType {
-  TicketsType copyWith({String? ticketId, double? quantity}) {
+  TicketsType copyWith({String? ticketId, int? quantity}) {
     return TicketsType(
       ticketId: ticketId ?? this.ticketId,
       quantity: quantity ?? this.quantity,
@@ -36153,7 +36153,7 @@ extension $TicketsTypeExtension on TicketsType {
 
   TicketsType copyWithWrapped({
     Wrapped<String>? ticketId,
-    Wrapped<double>? quantity,
+    Wrapped<int>? quantity,
   }) {
     return TicketsType(
       ticketId: (ticketId != null ? ticketId.value : this.ticketId),
