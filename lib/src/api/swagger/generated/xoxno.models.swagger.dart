@@ -34979,7 +34979,6 @@ class EventTicketProfileCreateDto {
     this.description,
     this.royalties,
     this.badgeColor,
-    this.characteristics,
     this.maxLimit,
     required this.userLimit,
   });
@@ -34998,8 +34997,6 @@ class EventTicketProfileCreateDto {
   final double? royalties;
   @JsonKey(name: 'badgeColor')
   final String? badgeColor;
-  @JsonKey(name: 'characteristics')
-  final Object? characteristics;
   @JsonKey(name: 'maxLimit')
   final int? maxLimit;
   @JsonKey(name: 'userLimit')
@@ -35027,11 +35024,6 @@ class EventTicketProfileCreateDto {
                   other.badgeColor,
                   badgeColor,
                 )) &&
-            (identical(other.characteristics, characteristics) ||
-                const DeepCollectionEquality().equals(
-                  other.characteristics,
-                  characteristics,
-                )) &&
             (identical(other.maxLimit, maxLimit) ||
                 const DeepCollectionEquality().equals(
                   other.maxLimit,
@@ -35053,7 +35045,6 @@ class EventTicketProfileCreateDto {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(royalties) ^
       const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(characteristics) ^
       const DeepCollectionEquality().hash(maxLimit) ^
       const DeepCollectionEquality().hash(userLimit) ^
       runtimeType.hashCode;
@@ -35065,7 +35056,6 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
     String? description,
     double? royalties,
     String? badgeColor,
-    Object? characteristics,
     int? maxLimit,
     int? userLimit,
   }) {
@@ -35074,7 +35064,6 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
       description: description ?? this.description,
       royalties: royalties ?? this.royalties,
       badgeColor: badgeColor ?? this.badgeColor,
-      characteristics: characteristics ?? this.characteristics,
       maxLimit: maxLimit ?? this.maxLimit,
       userLimit: userLimit ?? this.userLimit,
     );
@@ -35085,7 +35074,6 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
     Wrapped<String?>? description,
     Wrapped<double?>? royalties,
     Wrapped<String?>? badgeColor,
-    Wrapped<Object?>? characteristics,
     Wrapped<int?>? maxLimit,
     Wrapped<int>? userLimit,
   }) {
@@ -35094,9 +35082,6 @@ extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
       description: (description != null ? description.value : this.description),
       royalties: (royalties != null ? royalties.value : this.royalties),
       badgeColor: (badgeColor != null ? badgeColor.value : this.badgeColor),
-      characteristics: (characteristics != null
-          ? characteristics.value
-          : this.characteristics),
       maxLimit: (maxLimit != null ? maxLimit.value : this.maxLimit),
       userLimit: (userLimit != null ? userLimit.value : this.userLimit),
     );
@@ -35340,7 +35325,6 @@ class EventTicketProfileEditDto {
     this.description,
     this.royalties,
     this.badgeColor,
-    this.characteristics,
     this.maxLimit,
     this.userLimit,
   });
@@ -35359,8 +35343,6 @@ class EventTicketProfileEditDto {
   final double? royalties;
   @JsonKey(name: 'badgeColor')
   final String? badgeColor;
-  @JsonKey(name: 'characteristics')
-  final Object? characteristics;
   @JsonKey(name: 'maxLimit')
   final int? maxLimit;
   @JsonKey(name: 'userLimit')
@@ -35388,11 +35370,6 @@ class EventTicketProfileEditDto {
                   other.badgeColor,
                   badgeColor,
                 )) &&
-            (identical(other.characteristics, characteristics) ||
-                const DeepCollectionEquality().equals(
-                  other.characteristics,
-                  characteristics,
-                )) &&
             (identical(other.maxLimit, maxLimit) ||
                 const DeepCollectionEquality().equals(
                   other.maxLimit,
@@ -35414,7 +35391,6 @@ class EventTicketProfileEditDto {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(royalties) ^
       const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(characteristics) ^
       const DeepCollectionEquality().hash(maxLimit) ^
       const DeepCollectionEquality().hash(userLimit) ^
       runtimeType.hashCode;
@@ -35426,7 +35402,6 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
     String? description,
     double? royalties,
     String? badgeColor,
-    Object? characteristics,
     int? maxLimit,
     int? userLimit,
   }) {
@@ -35435,7 +35410,6 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
       description: description ?? this.description,
       royalties: royalties ?? this.royalties,
       badgeColor: badgeColor ?? this.badgeColor,
-      characteristics: characteristics ?? this.characteristics,
       maxLimit: maxLimit ?? this.maxLimit,
       userLimit: userLimit ?? this.userLimit,
     );
@@ -35446,7 +35420,6 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
     Wrapped<String?>? description,
     Wrapped<double?>? royalties,
     Wrapped<String?>? badgeColor,
-    Wrapped<Object?>? characteristics,
     Wrapped<int?>? maxLimit,
     Wrapped<int?>? userLimit,
   }) {
@@ -35455,9 +35428,6 @@ extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
       description: (description != null ? description.value : this.description),
       royalties: (royalties != null ? royalties.value : this.royalties),
       badgeColor: (badgeColor != null ? badgeColor.value : this.badgeColor),
-      characteristics: (characteristics != null
-          ? characteristics.value
-          : this.characteristics),
       maxLimit: (maxLimit != null ? maxLimit.value : this.maxLimit),
       userLimit: (userLimit != null ? userLimit.value : this.userLimit),
     );

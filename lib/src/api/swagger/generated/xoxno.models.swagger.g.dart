@@ -7083,7 +7083,6 @@ EventTicketProfileCreateDto _$EventTicketProfileCreateDtoFromJson(
   description: json['description'] as String?,
   royalties: (json['royalties'] as num?)?.toDouble(),
   badgeColor: json['badgeColor'] as String?,
-  characteristics: json['characteristics'],
   maxLimit: (json['maxLimit'] as num?)?.toInt(),
   userLimit: (json['userLimit'] as num).toInt(),
 );
@@ -7095,7 +7094,6 @@ Map<String, dynamic> _$EventTicketProfileCreateDtoToJson(
   'description': instance.description,
   'royalties': instance.royalties,
   'badgeColor': instance.badgeColor,
-  'characteristics': instance.characteristics,
   'maxLimit': instance.maxLimit,
   'userLimit': instance.userLimit,
 };
@@ -7147,7 +7145,6 @@ EventTicketProfileEditDto _$EventTicketProfileEditDtoFromJson(
   description: json['description'] as String?,
   royalties: (json['royalties'] as num?)?.toDouble(),
   badgeColor: json['badgeColor'] as String?,
-  characteristics: json['characteristics'],
   maxLimit: (json['maxLimit'] as num?)?.toInt(),
   userLimit: (json['userLimit'] as num?)?.toInt(),
 );
@@ -7159,7 +7156,6 @@ Map<String, dynamic> _$EventTicketProfileEditDtoToJson(
   'description': instance.description,
   'royalties': instance.royalties,
   'badgeColor': instance.badgeColor,
-  'characteristics': instance.characteristics,
   'maxLimit': instance.maxLimit,
   'userLimit': instance.userLimit,
 };
