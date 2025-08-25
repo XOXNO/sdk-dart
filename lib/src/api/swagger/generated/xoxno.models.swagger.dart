@@ -1288,7 +1288,7 @@ class UserProfileDoc {
     required this.joinedDate,
     required this.profile,
     required this.banner,
-    required this.description,
+    this.description,
     required this.herotag,
     required this.isCreator,
     required this.isPoolOwner,
@@ -1329,7 +1329,7 @@ class UserProfileDoc {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'herotag')
   final String herotag;
   @JsonKey(name: 'isCreator')
@@ -1522,7 +1522,7 @@ extension $UserProfileDocExtension on UserProfileDoc {
     Wrapped<double>? joinedDate,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<String>? description,
+    Wrapped<String?>? description,
     Wrapped<String>? herotag,
     Wrapped<bool>? isCreator,
     Wrapped<bool>? isPoolOwner,
@@ -1988,7 +1988,7 @@ class UserProfileDto {
     required this.joinedDate,
     required this.profile,
     required this.banner,
-    required this.description,
+    this.description,
     required this.herotag,
     required this.isCreator,
     required this.isPoolOwner,
@@ -2030,7 +2030,7 @@ class UserProfileDto {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
   @JsonKey(name: 'herotag')
   final String herotag;
   @JsonKey(name: 'isCreator')
@@ -2233,7 +2233,7 @@ extension $UserProfileDtoExtension on UserProfileDto {
     Wrapped<double>? joinedDate,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<String>? description,
+    Wrapped<String?>? description,
     Wrapped<String>? herotag,
     Wrapped<bool>? isCreator,
     Wrapped<bool>? isPoolOwner,
@@ -3058,7 +3058,6 @@ extension $TradesilvaniaSignatureExtension on TradesilvaniaSignature {
 class UserProfileEditDto {
   const UserProfileEditDto({
     this.socials,
-    this.profile,
     this.description,
     this.isBoberBattleUser,
   });
@@ -3071,8 +3070,6 @@ class UserProfileEditDto {
 
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
-  @JsonKey(name: 'profile')
-  final String? profile;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'isBoberBattleUser')
@@ -3087,11 +3084,6 @@ class UserProfileEditDto {
                 const DeepCollectionEquality().equals(
                   other.socials,
                   socials,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
                 )) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality().equals(
@@ -3111,7 +3103,6 @@ class UserProfileEditDto {
   @override
   int get hashCode =>
       const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(isBoberBattleUser) ^
       runtimeType.hashCode;
@@ -3120,13 +3111,11 @@ class UserProfileEditDto {
 extension $UserProfileEditDtoExtension on UserProfileEditDto {
   UserProfileEditDto copyWith({
     SocialsDto? socials,
-    String? profile,
     String? description,
     bool? isBoberBattleUser,
   }) {
     return UserProfileEditDto(
       socials: socials ?? this.socials,
-      profile: profile ?? this.profile,
       description: description ?? this.description,
       isBoberBattleUser: isBoberBattleUser ?? this.isBoberBattleUser,
     );
@@ -3134,13 +3123,11 @@ extension $UserProfileEditDtoExtension on UserProfileEditDto {
 
   UserProfileEditDto copyWithWrapped({
     Wrapped<SocialsDto?>? socials,
-    Wrapped<String?>? profile,
     Wrapped<String?>? description,
     Wrapped<bool?>? isBoberBattleUser,
   }) {
     return UserProfileEditDto(
       socials: (socials != null ? socials.value : this.socials),
-      profile: (profile != null ? profile.value : this.profile),
       description: (description != null ? description.value : this.description),
       isBoberBattleUser: (isBoberBattleUser != null
           ? isBoberBattleUser.value
@@ -10556,6 +10543,150 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
 }
 
 @JsonSerializable(explicitToJson: true)
+class LendingAccountSummary {
+  const LendingAccountSummary({
+    required this.supplied,
+    required this.borrowed,
+    required this.liquidationCollateralInDollars,
+    required this.collateralInDollars,
+    required this.borrowedInDollars,
+    required this.totalApy,
+    required this.healthFactor,
+  });
+
+  factory LendingAccountSummary.fromJson(Map<String, dynamic> json) =>
+      _$LendingAccountSummaryFromJson(json);
+
+  static const toJsonFactory = _$LendingAccountSummaryToJson;
+  Map<String, dynamic> toJson() => _$LendingAccountSummaryToJson(this);
+
+  @JsonKey(name: 'supplied', defaultValue: <String>[])
+  final List<String> supplied;
+  @JsonKey(name: 'borrowed', defaultValue: <String>[])
+  final List<String> borrowed;
+  @JsonKey(name: 'liquidationCollateralInDollars')
+  final String liquidationCollateralInDollars;
+  @JsonKey(name: 'collateralInDollars')
+  final String collateralInDollars;
+  @JsonKey(name: 'borrowedInDollars')
+  final String borrowedInDollars;
+  @JsonKey(name: 'totalApy')
+  final String totalApy;
+  @JsonKey(name: 'healthFactor')
+  final String healthFactor;
+  static const fromJsonFactory = _$LendingAccountSummaryFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LendingAccountSummary &&
+            (identical(other.supplied, supplied) ||
+                const DeepCollectionEquality().equals(
+                  other.supplied,
+                  supplied,
+                )) &&
+            (identical(other.borrowed, borrowed) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowed,
+                  borrowed,
+                )) &&
+            (identical(
+                  other.liquidationCollateralInDollars,
+                  liquidationCollateralInDollars,
+                ) ||
+                const DeepCollectionEquality().equals(
+                  other.liquidationCollateralInDollars,
+                  liquidationCollateralInDollars,
+                )) &&
+            (identical(other.collateralInDollars, collateralInDollars) ||
+                const DeepCollectionEquality().equals(
+                  other.collateralInDollars,
+                  collateralInDollars,
+                )) &&
+            (identical(other.borrowedInDollars, borrowedInDollars) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowedInDollars,
+                  borrowedInDollars,
+                )) &&
+            (identical(other.totalApy, totalApy) ||
+                const DeepCollectionEquality().equals(
+                  other.totalApy,
+                  totalApy,
+                )) &&
+            (identical(other.healthFactor, healthFactor) ||
+                const DeepCollectionEquality().equals(
+                  other.healthFactor,
+                  healthFactor,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(supplied) ^
+      const DeepCollectionEquality().hash(borrowed) ^
+      const DeepCollectionEquality().hash(liquidationCollateralInDollars) ^
+      const DeepCollectionEquality().hash(collateralInDollars) ^
+      const DeepCollectionEquality().hash(borrowedInDollars) ^
+      const DeepCollectionEquality().hash(totalApy) ^
+      const DeepCollectionEquality().hash(healthFactor) ^
+      runtimeType.hashCode;
+}
+
+extension $LendingAccountSummaryExtension on LendingAccountSummary {
+  LendingAccountSummary copyWith({
+    List<String>? supplied,
+    List<String>? borrowed,
+    String? liquidationCollateralInDollars,
+    String? collateralInDollars,
+    String? borrowedInDollars,
+    String? totalApy,
+    String? healthFactor,
+  }) {
+    return LendingAccountSummary(
+      supplied: supplied ?? this.supplied,
+      borrowed: borrowed ?? this.borrowed,
+      liquidationCollateralInDollars:
+          liquidationCollateralInDollars ?? this.liquidationCollateralInDollars,
+      collateralInDollars: collateralInDollars ?? this.collateralInDollars,
+      borrowedInDollars: borrowedInDollars ?? this.borrowedInDollars,
+      totalApy: totalApy ?? this.totalApy,
+      healthFactor: healthFactor ?? this.healthFactor,
+    );
+  }
+
+  LendingAccountSummary copyWithWrapped({
+    Wrapped<List<String>>? supplied,
+    Wrapped<List<String>>? borrowed,
+    Wrapped<String>? liquidationCollateralInDollars,
+    Wrapped<String>? collateralInDollars,
+    Wrapped<String>? borrowedInDollars,
+    Wrapped<String>? totalApy,
+    Wrapped<String>? healthFactor,
+  }) {
+    return LendingAccountSummary(
+      supplied: (supplied != null ? supplied.value : this.supplied),
+      borrowed: (borrowed != null ? borrowed.value : this.borrowed),
+      liquidationCollateralInDollars: (liquidationCollateralInDollars != null
+          ? liquidationCollateralInDollars.value
+          : this.liquidationCollateralInDollars),
+      collateralInDollars: (collateralInDollars != null
+          ? collateralInDollars.value
+          : this.collateralInDollars),
+      borrowedInDollars: (borrowedInDollars != null
+          ? borrowedInDollars.value
+          : this.borrowedInDollars),
+      totalApy: (totalApy != null ? totalApy.value : this.totalApy),
+      healthFactor: (healthFactor != null
+          ? healthFactor.value
+          : this.healthFactor),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ShortLendingTokenEModeProfileDoc {
   const ShortLendingTokenEModeProfileDoc({
     required this.token,
@@ -11197,6 +11328,7 @@ class LendingPositionStatus {
     required this.healthFactor,
     required this.wallet,
     required this.isEMode,
+    required this.positionMode,
   });
 
   factory LendingPositionStatus.fromJson(Map<String, dynamic> json) =>
@@ -11219,6 +11351,12 @@ class LendingPositionStatus {
   final OwnerDto wallet;
   @JsonKey(name: 'isEMode')
   final bool isEMode;
+  @JsonKey(
+    name: 'positionMode',
+    toJson: lendingPositionStatusPositionModeToJson,
+    fromJson: lendingPositionStatusPositionModeFromJson,
+  )
+  final enums.LendingPositionStatusPositionMode positionMode;
   static const fromJsonFactory = _$LendingPositionStatusFromJson;
 
   @override
@@ -11253,7 +11391,15 @@ class LendingPositionStatus {
             (identical(other.wallet, wallet) ||
                 const DeepCollectionEquality().equals(other.wallet, wallet)) &&
             (identical(other.isEMode, isEMode) ||
-                const DeepCollectionEquality().equals(other.isEMode, isEMode)));
+                const DeepCollectionEquality().equals(
+                  other.isEMode,
+                  isEMode,
+                )) &&
+            (identical(other.positionMode, positionMode) ||
+                const DeepCollectionEquality().equals(
+                  other.positionMode,
+                  positionMode,
+                )));
   }
 
   @override
@@ -11268,6 +11414,7 @@ class LendingPositionStatus {
       const DeepCollectionEquality().hash(healthFactor) ^
       const DeepCollectionEquality().hash(wallet) ^
       const DeepCollectionEquality().hash(isEMode) ^
+      const DeepCollectionEquality().hash(positionMode) ^
       runtimeType.hashCode;
 }
 
@@ -11280,6 +11427,7 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
     double? healthFactor,
     OwnerDto? wallet,
     bool? isEMode,
+    enums.LendingPositionStatusPositionMode? positionMode,
   }) {
     return LendingPositionStatus(
       position: position ?? this.position,
@@ -11289,6 +11437,7 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
       healthFactor: healthFactor ?? this.healthFactor,
       wallet: wallet ?? this.wallet,
       isEMode: isEMode ?? this.isEMode,
+      positionMode: positionMode ?? this.positionMode,
     );
   }
 
@@ -11300,6 +11449,7 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
     Wrapped<double>? healthFactor,
     Wrapped<OwnerDto>? wallet,
     Wrapped<bool>? isEMode,
+    Wrapped<enums.LendingPositionStatusPositionMode>? positionMode,
   }) {
     return LendingPositionStatus(
       position: (position != null ? position.value : this.position),
@@ -11311,6 +11461,9 @@ extension $LendingPositionStatusExtension on LendingPositionStatus {
           : this.healthFactor),
       wallet: (wallet != null ? wallet.value : this.wallet),
       isEMode: (isEMode != null ? isEMode.value : this.isEMode),
+      positionMode: (positionMode != null
+          ? positionMode.value
+          : this.positionMode),
     );
   }
 }
@@ -12308,7 +12461,7 @@ extension $NftMediaExtension on NftMedia {
 
 @JsonSerializable(explicitToJson: true)
 class NftStats {
-  const NftStats({this.likedCount});
+  const NftStats({this.likeCount});
 
   factory NftStats.fromJson(Map<String, dynamic> json) =>
       _$NftStatsFromJson(json);
@@ -12316,18 +12469,18 @@ class NftStats {
   static const toJsonFactory = _$NftStatsToJson;
   Map<String, dynamic> toJson() => _$NftStatsToJson(this);
 
-  @JsonKey(name: 'likedCount')
-  final int? likedCount;
+  @JsonKey(name: 'likeCount')
+  final int? likeCount;
   static const fromJsonFactory = _$NftStatsFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is NftStats &&
-            (identical(other.likedCount, likedCount) ||
+            (identical(other.likeCount, likeCount) ||
                 const DeepCollectionEquality().equals(
-                  other.likedCount,
-                  likedCount,
+                  other.likeCount,
+                  likeCount,
                 )));
   }
 
@@ -12336,17 +12489,17 @@ class NftStats {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(likedCount) ^ runtimeType.hashCode;
+      const DeepCollectionEquality().hash(likeCount) ^ runtimeType.hashCode;
 }
 
 extension $NftStatsExtension on NftStats {
-  NftStats copyWith({int? likedCount}) {
-    return NftStats(likedCount: likedCount ?? this.likedCount);
+  NftStats copyWith({int? likeCount}) {
+    return NftStats(likeCount: likeCount ?? this.likeCount);
   }
 
-  NftStats copyWithWrapped({Wrapped<int?>? likedCount}) {
+  NftStats copyWithWrapped({Wrapped<int?>? likeCount}) {
     return NftStats(
-      likedCount: (likedCount != null ? likedCount.value : this.likedCount),
+      likeCount: (likeCount != null ? likeCount.value : this.likeCount),
     );
   }
 }
@@ -30502,6 +30655,109 @@ extension $AirdropDtoHydratedExtension on AirdropDtoHydrated {
 }
 
 @JsonSerializable(explicitToJson: true)
+class LendingNftAttributes {
+  const LendingNftAttributes({
+    required this.isolated,
+    required this.eModeCategory,
+    required this.positionMode,
+    this.isolatedToken,
+  });
+
+  factory LendingNftAttributes.fromJson(Map<String, dynamic> json) =>
+      _$LendingNftAttributesFromJson(json);
+
+  static const toJsonFactory = _$LendingNftAttributesToJson;
+  Map<String, dynamic> toJson() => _$LendingNftAttributesToJson(this);
+
+  @JsonKey(name: 'isolated')
+  final bool isolated;
+  @JsonKey(name: 'eModeCategory')
+  final String eModeCategory;
+  @JsonKey(
+    name: 'positionMode',
+    toJson: positionModeToJson,
+    fromJson: positionModeFromJson,
+  )
+  final enums.PositionMode positionMode;
+  @JsonKey(name: 'isolatedToken')
+  final String? isolatedToken;
+  static const fromJsonFactory = _$LendingNftAttributesFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LendingNftAttributes &&
+            (identical(other.isolated, isolated) ||
+                const DeepCollectionEquality().equals(
+                  other.isolated,
+                  isolated,
+                )) &&
+            (identical(other.eModeCategory, eModeCategory) ||
+                const DeepCollectionEquality().equals(
+                  other.eModeCategory,
+                  eModeCategory,
+                )) &&
+            (identical(other.positionMode, positionMode) ||
+                const DeepCollectionEquality().equals(
+                  other.positionMode,
+                  positionMode,
+                )) &&
+            (identical(other.isolatedToken, isolatedToken) ||
+                const DeepCollectionEquality().equals(
+                  other.isolatedToken,
+                  isolatedToken,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isolated) ^
+      const DeepCollectionEquality().hash(eModeCategory) ^
+      const DeepCollectionEquality().hash(positionMode) ^
+      const DeepCollectionEquality().hash(isolatedToken) ^
+      runtimeType.hashCode;
+}
+
+extension $LendingNftAttributesExtension on LendingNftAttributes {
+  LendingNftAttributes copyWith({
+    bool? isolated,
+    String? eModeCategory,
+    enums.PositionMode? positionMode,
+    String? isolatedToken,
+  }) {
+    return LendingNftAttributes(
+      isolated: isolated ?? this.isolated,
+      eModeCategory: eModeCategory ?? this.eModeCategory,
+      positionMode: positionMode ?? this.positionMode,
+      isolatedToken: isolatedToken ?? this.isolatedToken,
+    );
+  }
+
+  LendingNftAttributes copyWithWrapped({
+    Wrapped<bool>? isolated,
+    Wrapped<String>? eModeCategory,
+    Wrapped<enums.PositionMode>? positionMode,
+    Wrapped<String?>? isolatedToken,
+  }) {
+    return LendingNftAttributes(
+      isolated: (isolated != null ? isolated.value : this.isolated),
+      eModeCategory: (eModeCategory != null
+          ? eModeCategory.value
+          : this.eModeCategory),
+      positionMode: (positionMode != null
+          ? positionMode.value
+          : this.positionMode),
+      isolatedToken: (isolatedToken != null
+          ? isolatedToken.value
+          : this.isolatedToken),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class LendingTokenPriceDto {
   const LendingTokenPriceDto({required this.price});
 
@@ -31466,6 +31722,91 @@ extension $TransactionCreateExtension on TransactionCreate {
           ? guardianSignature.value
           : this.guardianSignature),
     );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionCostData {
+  const TransactionCostData({required this.txGasUnits});
+
+  factory TransactionCostData.fromJson(Map<String, dynamic> json) =>
+      _$TransactionCostDataFromJson(json);
+
+  static const toJsonFactory = _$TransactionCostDataToJson;
+  Map<String, dynamic> toJson() => _$TransactionCostDataToJson(this);
+
+  @JsonKey(name: 'txGasUnits')
+  final double txGasUnits;
+  static const fromJsonFactory = _$TransactionCostDataFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TransactionCostData &&
+            (identical(other.txGasUnits, txGasUnits) ||
+                const DeepCollectionEquality().equals(
+                  other.txGasUnits,
+                  txGasUnits,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(txGasUnits) ^ runtimeType.hashCode;
+}
+
+extension $TransactionCostDataExtension on TransactionCostData {
+  TransactionCostData copyWith({double? txGasUnits}) {
+    return TransactionCostData(txGasUnits: txGasUnits ?? this.txGasUnits);
+  }
+
+  TransactionCostData copyWithWrapped({Wrapped<double>? txGasUnits}) {
+    return TransactionCostData(
+      txGasUnits: (txGasUnits != null ? txGasUnits.value : this.txGasUnits),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TransactionCost {
+  const TransactionCost({required this.data});
+
+  factory TransactionCost.fromJson(Map<String, dynamic> json) =>
+      _$TransactionCostFromJson(json);
+
+  static const toJsonFactory = _$TransactionCostToJson;
+  Map<String, dynamic> toJson() => _$TransactionCostToJson(this);
+
+  @JsonKey(name: 'data')
+  final TransactionCostData data;
+  static const fromJsonFactory = _$TransactionCostFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TransactionCost &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
+}
+
+extension $TransactionCostExtension on TransactionCost {
+  TransactionCost copyWith({TransactionCostData? data}) {
+    return TransactionCost(data: data ?? this.data);
+  }
+
+  TransactionCost copyWithWrapped({Wrapped<TransactionCostData>? data}) {
+    return TransactionCost(data: (data != null ? data.value : this.data));
   }
 }
 
@@ -44831,6 +45172,91 @@ List<enums.KustoOrderDirection>? kustoOrderDirectionNullableListFromJson(
 
   return kustoOrderDirection
       .map((e) => kustoOrderDirectionFromJson(e.toString()))
+      .toList();
+}
+
+String? lendingPositionStatusPositionModeNullableToJson(
+  enums.LendingPositionStatusPositionMode? lendingPositionStatusPositionMode,
+) {
+  return lendingPositionStatusPositionMode?.value;
+}
+
+String? lendingPositionStatusPositionModeToJson(
+  enums.LendingPositionStatusPositionMode lendingPositionStatusPositionMode,
+) {
+  return lendingPositionStatusPositionMode.value;
+}
+
+enums.LendingPositionStatusPositionMode
+lendingPositionStatusPositionModeFromJson(
+  Object? lendingPositionStatusPositionMode, [
+  enums.LendingPositionStatusPositionMode? defaultValue,
+]) {
+  return enums.LendingPositionStatusPositionMode.values.firstWhereOrNull(
+        (e) => e.value == lendingPositionStatusPositionMode,
+      ) ??
+      defaultValue ??
+      enums.LendingPositionStatusPositionMode.swaggerGeneratedUnknown;
+}
+
+enums.LendingPositionStatusPositionMode?
+lendingPositionStatusPositionModeNullableFromJson(
+  Object? lendingPositionStatusPositionMode, [
+  enums.LendingPositionStatusPositionMode? defaultValue,
+]) {
+  if (lendingPositionStatusPositionMode == null) {
+    return null;
+  }
+  return enums.LendingPositionStatusPositionMode.values.firstWhereOrNull(
+        (e) => e.value == lendingPositionStatusPositionMode,
+      ) ??
+      defaultValue;
+}
+
+String lendingPositionStatusPositionModeExplodedListToJson(
+  List<enums.LendingPositionStatusPositionMode>?
+  lendingPositionStatusPositionMode,
+) {
+  return lendingPositionStatusPositionMode?.map((e) => e.value!).join(',') ??
+      '';
+}
+
+List<String> lendingPositionStatusPositionModeListToJson(
+  List<enums.LendingPositionStatusPositionMode>?
+  lendingPositionStatusPositionMode,
+) {
+  if (lendingPositionStatusPositionMode == null) {
+    return [];
+  }
+
+  return lendingPositionStatusPositionMode.map((e) => e.value!).toList();
+}
+
+List<enums.LendingPositionStatusPositionMode>
+lendingPositionStatusPositionModeListFromJson(
+  List? lendingPositionStatusPositionMode, [
+  List<enums.LendingPositionStatusPositionMode>? defaultValue,
+]) {
+  if (lendingPositionStatusPositionMode == null) {
+    return defaultValue ?? [];
+  }
+
+  return lendingPositionStatusPositionMode
+      .map((e) => lendingPositionStatusPositionModeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.LendingPositionStatusPositionMode>?
+lendingPositionStatusPositionModeNullableListFromJson(
+  List? lendingPositionStatusPositionMode, [
+  List<enums.LendingPositionStatusPositionMode>? defaultValue,
+]) {
+  if (lendingPositionStatusPositionMode == null) {
+    return defaultValue;
+  }
+
+  return lendingPositionStatusPositionMode
+      .map((e) => lendingPositionStatusPositionModeFromJson(e.toString()))
       .toList();
 }
 

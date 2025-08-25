@@ -249,7 +249,7 @@ UserProfileDoc _$UserProfileDocFromJson(Map<String, dynamic> json) =>
       joinedDate: (json['joinedDate'] as num).toDouble(),
       profile: json['profile'] as String,
       banner: json['banner'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       herotag: json['herotag'] as String,
       isCreator: json['isCreator'] as bool,
       isPoolOwner: json['isPoolOwner'] as bool,
@@ -373,7 +373,7 @@ UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
       joinedDate: (json['joinedDate'] as num).toDouble(),
       profile: json['profile'] as String,
       banner: json['banner'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String?,
       herotag: json['herotag'] as String,
       isCreator: json['isCreator'] as bool,
       isPoolOwner: json['isPoolOwner'] as bool,
@@ -571,7 +571,6 @@ UserProfileEditDto _$UserProfileEditDtoFromJson(Map<String, dynamic> json) =>
           json['socials'] == null
               ? null
               : SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
-      profile: json['profile'] as String?,
       description: json['description'] as String?,
       isBoberBattleUser: json['isBoberBattleUser'] as bool?,
     );
@@ -579,7 +578,6 @@ UserProfileEditDto _$UserProfileEditDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$UserProfileEditDtoToJson(UserProfileEditDto instance) =>
     <String, dynamic>{
       'socials': instance.socials?.toJson(),
-      'profile': instance.profile,
       'description': instance.description,
       'isBoberBattleUser': instance.isBoberBattleUser,
     };
@@ -1923,6 +1921,35 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'marketProfile': instance.marketProfile.toJson(),
 };
 
+LendingAccountSummary _$LendingAccountSummaryFromJson(
+  Map<String, dynamic> json,
+) => LendingAccountSummary(
+  supplied:
+      (json['supplied'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  borrowed:
+      (json['borrowed'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+  liquidationCollateralInDollars:
+      json['liquidationCollateralInDollars'] as String,
+  collateralInDollars: json['collateralInDollars'] as String,
+  borrowedInDollars: json['borrowedInDollars'] as String,
+  totalApy: json['totalApy'] as String,
+  healthFactor: json['healthFactor'] as String,
+);
+
+Map<String, dynamic> _$LendingAccountSummaryToJson(
+  LendingAccountSummary instance,
+) => <String, dynamic>{
+  'supplied': instance.supplied,
+  'borrowed': instance.borrowed,
+  'liquidationCollateralInDollars': instance.liquidationCollateralInDollars,
+  'collateralInDollars': instance.collateralInDollars,
+  'borrowedInDollars': instance.borrowedInDollars,
+  'totalApy': instance.totalApy,
+  'healthFactor': instance.healthFactor,
+};
+
 ShortLendingTokenEModeProfileDoc _$ShortLendingTokenEModeProfileDocFromJson(
   Map<String, dynamic> json,
 ) => ShortLendingTokenEModeProfileDoc(
@@ -2110,6 +2137,7 @@ LendingPositionStatus _$LendingPositionStatusFromJson(
   healthFactor: (json['healthFactor'] as num).toDouble(),
   wallet: OwnerDto.fromJson(json['wallet'] as Map<String, dynamic>),
   isEMode: json['isEMode'] as bool,
+  positionMode: lendingPositionStatusPositionModeFromJson(json['positionMode']),
 );
 
 Map<String, dynamic> _$LendingPositionStatusToJson(
@@ -2122,6 +2150,9 @@ Map<String, dynamic> _$LendingPositionStatusToJson(
   'healthFactor': instance.healthFactor,
   'wallet': instance.wallet.toJson(),
   'isEMode': instance.isEMode,
+  'positionMode': lendingPositionStatusPositionModeToJson(
+    instance.positionMode,
+  ),
 };
 
 LendingOverallStats _$LendingOverallStatsFromJson(Map<String, dynamic> json) =>
@@ -2372,10 +2403,10 @@ Map<String, dynamic> _$NftMediaToJson(NftMedia instance) => <String, dynamic>{
 };
 
 NftStats _$NftStatsFromJson(Map<String, dynamic> json) =>
-    NftStats(likedCount: (json['likedCount'] as num?)?.toInt());
+    NftStats(likeCount: (json['likeCount'] as num?)?.toInt());
 
 Map<String, dynamic> _$NftStatsToJson(NftStats instance) => <String, dynamic>{
-  'likedCount': instance.likedCount,
+  'likeCount': instance.likeCount,
 };
 
 NFTEventData _$NFTEventDataFromJson(Map<String, dynamic> json) => NFTEventData(
@@ -6129,6 +6160,24 @@ Map<String, dynamic> _$AirdropDtoHydratedToJson(AirdropDtoHydrated instance) =>
       'amount': instance.amount,
     };
 
+LendingNftAttributes _$LendingNftAttributesFromJson(
+  Map<String, dynamic> json,
+) => LendingNftAttributes(
+  isolated: json['isolated'] as bool,
+  eModeCategory: json['eModeCategory'] as String,
+  positionMode: positionModeFromJson(json['positionMode']),
+  isolatedToken: json['isolatedToken'] as String?,
+);
+
+Map<String, dynamic> _$LendingNftAttributesToJson(
+  LendingNftAttributes instance,
+) => <String, dynamic>{
+  'isolated': instance.isolated,
+  'eModeCategory': instance.eModeCategory,
+  'positionMode': positionModeToJson(instance.positionMode),
+  'isolatedToken': instance.isolatedToken,
+};
+
 LendingTokenPriceDto _$LendingTokenPriceDtoFromJson(
   Map<String, dynamic> json,
 ) => LendingTokenPriceDto(price: json['price'] as String);
@@ -6316,6 +6365,21 @@ Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
       'guardian': instance.guardian,
       'guardianSignature': instance.guardianSignature,
     };
+
+TransactionCostData _$TransactionCostDataFromJson(Map<String, dynamic> json) =>
+    TransactionCostData(txGasUnits: (json['txGasUnits'] as num).toDouble());
+
+Map<String, dynamic> _$TransactionCostDataToJson(
+  TransactionCostData instance,
+) => <String, dynamic>{'txGasUnits': instance.txGasUnits};
+
+TransactionCost _$TransactionCostFromJson(Map<String, dynamic> json) =>
+    TransactionCost(
+      data: TransactionCostData.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TransactionCostToJson(TransactionCost instance) =>
+    <String, dynamic>{'data': instance.data.toJson()};
 
 TransactionSendResult _$TransactionSendResultFromJson(
   Map<String, dynamic> json,

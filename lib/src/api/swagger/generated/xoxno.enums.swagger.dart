@@ -339,6 +339,26 @@ enum KustoOrderDirection {
   const KustoOrderDirection(this.value);
 }
 
+enum LendingPositionStatusPositionMode {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('None')
+  none('None'),
+  @JsonValue('Normal')
+  normal('Normal'),
+  @JsonValue('Multiply')
+  multiply('Multiply'),
+  @JsonValue('Long')
+  long('Long'),
+  @JsonValue('Short')
+  short('Short');
+
+  final String? value;
+
+  const LendingPositionStatusPositionMode(this.value);
+}
+
 enum EsdtTokenType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
