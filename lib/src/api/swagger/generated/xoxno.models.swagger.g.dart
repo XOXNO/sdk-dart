@@ -134,7 +134,7 @@ TokenDataDocWithBalance _$TokenDataDocWithBalanceFromJson(
   Map<String, dynamic> json,
 ) => TokenDataDocWithBalance(
   identifier: json['identifier'] as String,
-  decimals: (json['decimals'] as num).toDouble(),
+  decimals: (json['decimals'] as num).toInt(),
   ticker: json['ticker'] as String,
   name: json['name'] as String,
   svgUrl: json['svgUrl'] as String,
@@ -291,12 +291,12 @@ Map<String, dynamic> _$UserProfileDocToJson(UserProfileDoc instance) =>
 UserEmailNotificationSettings _$UserEmailNotificationSettingsFromJson(
   Map<String, dynamic> json,
 ) => UserEmailNotificationSettings(
-  enabled: json['enabled'] as Object,
-  emailAddress: json['emailAddress'] as Object,
-  isEmailVerificationPending: json['isEmailVerificationPending'] as Object,
-  isEmailVerified: json['isEmailVerified'] as Object,
-  isWeb2User: json['isWeb2User'] as Object,
-  timestamp: (json['timestamp'] as num?)?.toDouble(),
+  enabled: json['enabled'] as bool,
+  emailAddress: json['emailAddress'] as String,
+  isEmailVerificationPending: json['isEmailVerificationPending'] as bool,
+  isEmailVerified: json['isEmailVerified'] as bool,
+  isWeb2User: json['isWeb2User'] as bool,
+  timestamp: (json['timestamp'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserEmailNotificationSettingsToJson(
@@ -450,11 +450,11 @@ Map<String, dynamic> _$UserBillingDetailsToJson(UserBillingDetails instance) =>
 UserPhoneNotificationSettings _$UserPhoneNotificationSettingsFromJson(
   Map<String, dynamic> json,
 ) => UserPhoneNotificationSettings(
-  enabled: json['enabled'] as Object,
-  phoneNumber: json['phoneNumber'] as Object,
-  isPhoneVerificationPending: json['isPhoneVerificationPending'] as Object,
-  isPhoneVerified: json['isPhoneVerified'] as Object,
-  timestamp: (json['timestamp'] as num?)?.toDouble(),
+  enabled: json['enabled'] as bool,
+  phoneNumber: json['phoneNumber'] as String,
+  isPhoneVerificationPending: json['isPhoneVerificationPending'] as bool,
+  isPhoneVerified: json['isPhoneVerified'] as bool,
+  timestamp: (json['timestamp'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserPhoneNotificationSettingsToJson(
@@ -918,7 +918,7 @@ TokenDataDocHydrated _$TokenDataDocHydratedFromJson(
   Map<String, dynamic> json,
 ) => TokenDataDocHydrated(
   identifier: json['identifier'] as String,
-  decimals: (json['decimals'] as num).toDouble(),
+  decimals: (json['decimals'] as num).toInt(),
   ticker: json['ticker'] as String,
   name: json['name'] as String,
   svgUrl: json['svgUrl'] as String,
@@ -933,7 +933,7 @@ TokenDataDocHydrated _$TokenDataDocHydratedFromJson(
   category:
       (json['category'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       [],
-  ts: (json['_ts'] as num).toDouble(),
+  ts: (json['_ts'] as num).toInt(),
   usdPrice: (json['usdPrice'] as num).toDouble(),
 );
 
@@ -2286,7 +2286,7 @@ NftDocFilterCriteriaDto _$NftDocFilterCriteriaDtoFromJson(
       [],
   nonce:
       (json['nonce'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
+          ?.map((e) => (e as num).toInt())
           .toList() ??
       [],
   type:
@@ -3079,7 +3079,7 @@ SignWithdrawDto _$SignWithdrawDtoFromJson(Map<String, dynamic> json) =>
     SignWithdrawDto(
       auctionId:
           (json['auctionId'] as List<dynamic>?)
-              ?.map((e) => (e as num).toDouble())
+              ?.map((e) => (e as num).toInt())
               .toList() ??
           [],
     );
@@ -3098,7 +3098,7 @@ Map<String, dynamic> _$SignDataDtoToJson(SignDataDto instance) =>
 SignAcceptGlobalOfferDto _$SignAcceptGlobalOfferDtoFromJson(
   Map<String, dynamic> json,
 ) => SignAcceptGlobalOfferDto(
-  offerId: (json['offerId'] as num).toDouble(),
+  offerId: (json['offerId'] as num).toInt(),
   identifier:
       (json['identifier'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -3114,7 +3114,7 @@ Map<String, dynamic> _$SignAcceptGlobalOfferDtoToJson(
 };
 
 SignMintDto _$SignMintDtoFromJson(Map<String, dynamic> json) => SignMintDto(
-  quantity: (json['quantity'] as num).toDouble(),
+  quantity: (json['quantity'] as num).toInt(),
   stage: json['stage'] as String,
 );
 
@@ -3988,7 +3988,7 @@ CollectionOffersFilterCriteriaDto _$CollectionOffersFilterCriteriaDtoFromJson(
       [],
   offerId:
       (json['offerId'] as List<dynamic>?)
-          ?.map((e) => (e as num).toDouble())
+          ?.map((e) => (e as num).toInt())
           .toList() ??
       [],
   owner:
@@ -4706,7 +4706,7 @@ Web2WalletDto _$Web2WalletDtoFromJson(Map<String, dynamic> json) =>
       signature: json['signature'] as String?,
       authToken: json['authToken'] as String?,
       walletClientType: walletClientTypeFromJson(json['walletClientType']),
-      index: (json['index'] as num?)?.toDouble(),
+      index: (json['index'] as num?)?.toInt(),
       recoveryMethod: json['recoveryMethod'] as String?,
     );
 
@@ -5757,14 +5757,14 @@ NftActivityDataHydrated _$NftActivityDataHydratedFromJson(
   identifier: json['identifier'] as String?,
   price: (json['price'] as num).toDouble(),
   paymentToken: json['paymentToken'] as String,
-  quantity: (json['quantity'] as num).toDouble(),
-  scId: (json['scId'] as num).toDouble(),
+  quantity: (json['quantity'] as num).toInt(),
+  scId: (json['scId'] as num).toInt(),
   usdValue: (json['usdValue'] as num).toDouble(),
   egldValue: (json['egldValue'] as num).toDouble(),
   auctionType: nftActivityDataHydratedAuctionTypeNullableFromJson(
     json['auctionType'],
   ),
-  deadline: (json['deadline'] as num?)?.toDouble(),
+  deadline: (json['deadline'] as num?)?.toInt(),
   originalPayment:
       json['originalPayment'] == null
           ? null
@@ -6227,7 +6227,7 @@ TransactionLog _$TransactionLogFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as List<dynamic>)
               .toList() ??
           [],
-      timestamp: (json['timestamp'] as num).toDouble(),
+      timestamp: (json['timestamp'] as num).toInt(),
       txHash: json['txHash'] as String,
     );
 
@@ -6243,21 +6243,21 @@ Map<String, dynamic> _$TransactionLogToJson(TransactionLog instance) =>
 TransactionDetailed _$TransactionDetailedFromJson(Map<String, dynamic> json) =>
     TransactionDetailed(
       txHash: json['txHash'] as String,
-      gasLimit: (json['gasLimit'] as num?)?.toDouble(),
-      gasPrice: (json['gasPrice'] as num?)?.toDouble(),
-      gasUsed: (json['gasUsed'] as num?)?.toDouble(),
+      gasLimit: (json['gasLimit'] as num?)?.toInt(),
+      gasPrice: (json['gasPrice'] as num?)?.toInt(),
+      gasUsed: (json['gasUsed'] as num?)?.toInt(),
       miniBlockHash: json['miniBlockHash'] as String?,
-      nonce: (json['nonce'] as num?)?.toDouble(),
+      nonce: (json['nonce'] as num?)?.toInt(),
       receiver: json['receiver'] as String,
-      receiverShard: (json['receiverShard'] as num).toDouble(),
-      round: (json['round'] as num?)?.toDouble(),
+      receiverShard: (json['receiverShard'] as num).toInt(),
+      round: (json['round'] as num?)?.toInt(),
       sender: json['sender'] as String,
-      senderShard: (json['senderShard'] as num).toDouble(),
+      senderShard: (json['senderShard'] as num).toInt(),
       signature: json['signature'] as String?,
       status: json['status'] as String,
       $value: json['value'] as String,
       fee: json['fee'] as String?,
-      timestamp: (json['timestamp'] as num).toDouble(),
+      timestamp: (json['timestamp'] as num).toInt(),
       data: json['data'] as String?,
       function: json['function'] as String?,
       action: json['action'],
@@ -6385,9 +6385,9 @@ TransactionSendResult _$TransactionSendResultFromJson(
   Map<String, dynamic> json,
 ) => TransactionSendResult(
   receiver: json['receiver'] as String,
-  receiverShard: (json['receiverShard'] as num).toDouble(),
+  receiverShard: (json['receiverShard'] as num).toInt(),
   sender: json['sender'] as String,
-  senderShard: (json['senderShard'] as num).toDouble(),
+  senderShard: (json['senderShard'] as num).toInt(),
   status: transactionStatusFromJson(json['status']),
   txHash: json['txHash'] as String,
 );

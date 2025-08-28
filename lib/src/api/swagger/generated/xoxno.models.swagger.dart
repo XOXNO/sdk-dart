@@ -744,7 +744,7 @@ class TokenDataDocWithBalance {
   @JsonKey(name: 'identifier')
   final String identifier;
   @JsonKey(name: 'decimals')
-  final double decimals;
+  final int decimals;
   @JsonKey(name: 'ticker')
   final String ticker;
   @JsonKey(name: 'name')
@@ -863,7 +863,7 @@ class TokenDataDocWithBalance {
 extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
   TokenDataDocWithBalance copyWith({
     String? identifier,
-    double? decimals,
+    int? decimals,
     String? ticker,
     String? name,
     String? svgUrl,
@@ -899,7 +899,7 @@ extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
 
   TokenDataDocWithBalance copyWithWrapped({
     Wrapped<String>? identifier,
-    Wrapped<double>? decimals,
+    Wrapped<int>? decimals,
     Wrapped<String>? ticker,
     Wrapped<String>? name,
     Wrapped<String>? svgUrl,
@@ -1577,17 +1577,17 @@ class UserEmailNotificationSettings {
   Map<String, dynamic> toJson() => _$UserEmailNotificationSettingsToJson(this);
 
   @JsonKey(name: 'enabled')
-  final Object enabled;
+  final bool enabled;
   @JsonKey(name: 'emailAddress')
-  final Object emailAddress;
+  final String emailAddress;
   @JsonKey(name: 'isEmailVerificationPending')
-  final Object isEmailVerificationPending;
+  final bool isEmailVerificationPending;
   @JsonKey(name: 'isEmailVerified')
-  final Object isEmailVerified;
+  final bool isEmailVerified;
   @JsonKey(name: 'isWeb2User')
-  final Object isWeb2User;
+  final bool isWeb2User;
   @JsonKey(name: 'timestamp')
-  final double? timestamp;
+  final int? timestamp;
   static const fromJsonFactory = _$UserEmailNotificationSettingsFromJson;
 
   @override
@@ -1646,12 +1646,12 @@ class UserEmailNotificationSettings {
 extension $UserEmailNotificationSettingsExtension
     on UserEmailNotificationSettings {
   UserEmailNotificationSettings copyWith({
-    Object? enabled,
-    Object? emailAddress,
-    Object? isEmailVerificationPending,
-    Object? isEmailVerified,
-    Object? isWeb2User,
-    double? timestamp,
+    bool? enabled,
+    String? emailAddress,
+    bool? isEmailVerificationPending,
+    bool? isEmailVerified,
+    bool? isWeb2User,
+    int? timestamp,
   }) {
     return UserEmailNotificationSettings(
       enabled: enabled ?? this.enabled,
@@ -1665,12 +1665,12 @@ extension $UserEmailNotificationSettingsExtension
   }
 
   UserEmailNotificationSettings copyWithWrapped({
-    Wrapped<Object>? enabled,
-    Wrapped<Object>? emailAddress,
-    Wrapped<Object>? isEmailVerificationPending,
-    Wrapped<Object>? isEmailVerified,
-    Wrapped<Object>? isWeb2User,
-    Wrapped<double?>? timestamp,
+    Wrapped<bool>? enabled,
+    Wrapped<String>? emailAddress,
+    Wrapped<bool>? isEmailVerificationPending,
+    Wrapped<bool>? isEmailVerified,
+    Wrapped<bool>? isWeb2User,
+    Wrapped<int?>? timestamp,
   }) {
     return UserEmailNotificationSettings(
       enabled: (enabled != null ? enabled.value : this.enabled),
@@ -2461,15 +2461,15 @@ class UserPhoneNotificationSettings {
   Map<String, dynamic> toJson() => _$UserPhoneNotificationSettingsToJson(this);
 
   @JsonKey(name: 'enabled')
-  final Object enabled;
+  final bool enabled;
   @JsonKey(name: 'phoneNumber')
-  final Object phoneNumber;
+  final String phoneNumber;
   @JsonKey(name: 'isPhoneVerificationPending')
-  final Object isPhoneVerificationPending;
+  final bool isPhoneVerificationPending;
   @JsonKey(name: 'isPhoneVerified')
-  final Object isPhoneVerified;
+  final bool isPhoneVerified;
   @JsonKey(name: 'timestamp')
-  final double? timestamp;
+  final int? timestamp;
   static const fromJsonFactory = _$UserPhoneNotificationSettingsFromJson;
 
   @override
@@ -2522,11 +2522,11 @@ class UserPhoneNotificationSettings {
 extension $UserPhoneNotificationSettingsExtension
     on UserPhoneNotificationSettings {
   UserPhoneNotificationSettings copyWith({
-    Object? enabled,
-    Object? phoneNumber,
-    Object? isPhoneVerificationPending,
-    Object? isPhoneVerified,
-    double? timestamp,
+    bool? enabled,
+    String? phoneNumber,
+    bool? isPhoneVerificationPending,
+    bool? isPhoneVerified,
+    int? timestamp,
   }) {
     return UserPhoneNotificationSettings(
       enabled: enabled ?? this.enabled,
@@ -2539,11 +2539,11 @@ extension $UserPhoneNotificationSettingsExtension
   }
 
   UserPhoneNotificationSettings copyWithWrapped({
-    Wrapped<Object>? enabled,
-    Wrapped<Object>? phoneNumber,
-    Wrapped<Object>? isPhoneVerificationPending,
-    Wrapped<Object>? isPhoneVerified,
-    Wrapped<double?>? timestamp,
+    Wrapped<bool>? enabled,
+    Wrapped<String>? phoneNumber,
+    Wrapped<bool>? isPhoneVerificationPending,
+    Wrapped<bool>? isPhoneVerified,
+    Wrapped<int?>? timestamp,
   }) {
     return UserPhoneNotificationSettings(
       enabled: (enabled != null ? enabled.value : this.enabled),
@@ -4860,7 +4860,7 @@ class TokenDataDocHydrated {
   @JsonKey(name: 'identifier')
   final String identifier;
   @JsonKey(name: 'decimals')
-  final double decimals;
+  final int decimals;
   @JsonKey(name: 'ticker')
   final String ticker;
   @JsonKey(name: 'name')
@@ -4896,7 +4896,7 @@ class TokenDataDocHydrated {
   @JsonKey(name: 'category', defaultValue: <String>[])
   final List<String> category;
   @JsonKey(name: '_ts')
-  final double ts;
+  final int ts;
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
   static const fromJsonFactory = _$TokenDataDocHydratedFromJson;
@@ -4978,7 +4978,7 @@ class TokenDataDocHydrated {
 extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
   TokenDataDocHydrated copyWith({
     String? identifier,
-    double? decimals,
+    int? decimals,
     String? ticker,
     String? name,
     String? svgUrl,
@@ -4989,7 +4989,7 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
     enums.TokenDataType? dataType,
     String? type,
     List<String>? category,
-    double? ts,
+    int? ts,
     double? usdPrice,
   }) {
     return TokenDataDocHydrated(
@@ -5012,7 +5012,7 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
 
   TokenDataDocHydrated copyWithWrapped({
     Wrapped<String>? identifier,
-    Wrapped<double>? decimals,
+    Wrapped<int>? decimals,
     Wrapped<String>? ticker,
     Wrapped<String>? name,
     Wrapped<String>? svgUrl,
@@ -5023,7 +5023,7 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
     Wrapped<enums.TokenDataType>? dataType,
     Wrapped<String>? type,
     Wrapped<List<String>>? category,
-    Wrapped<double>? ts,
+    Wrapped<int>? ts,
     Wrapped<double>? usdPrice,
   }) {
     return TokenDataDocHydrated(
@@ -11948,8 +11948,8 @@ class NftDocFilterCriteriaDto {
   final List<String>? identifier;
   @JsonKey(name: 'collection', defaultValue: <String>[])
   final List<String>? collection;
-  @JsonKey(name: 'nonce', defaultValue: <double>[])
-  final List<double>? nonce;
+  @JsonKey(name: 'nonce', defaultValue: <int>[])
+  final List<int>? nonce;
   @JsonKey(name: 'type', defaultValue: <String>[])
   final List<String>? type;
   @JsonKey(name: 'onSale')
@@ -12076,7 +12076,7 @@ extension $NftDocFilterCriteriaDtoExtension on NftDocFilterCriteriaDto {
     List<String>? dataType,
     List<String>? identifier,
     List<String>? collection,
-    List<double>? nonce,
+    List<int>? nonce,
     List<String>? type,
     bool? onSale,
     List<String>? owner,
@@ -12114,7 +12114,7 @@ extension $NftDocFilterCriteriaDtoExtension on NftDocFilterCriteriaDto {
     Wrapped<List<String>?>? dataType,
     Wrapped<List<String>?>? identifier,
     Wrapped<List<String>?>? collection,
-    Wrapped<List<double>?>? nonce,
+    Wrapped<List<int>?>? nonce,
     Wrapped<List<String>?>? type,
     Wrapped<bool?>? onSale,
     Wrapped<List<String>?>? owner,
@@ -15715,8 +15715,8 @@ class SignWithdrawDto {
   static const toJsonFactory = _$SignWithdrawDtoToJson;
   Map<String, dynamic> toJson() => _$SignWithdrawDtoToJson(this);
 
-  @JsonKey(name: 'auctionId', defaultValue: <double>[])
-  final List<double> auctionId;
+  @JsonKey(name: 'auctionId', defaultValue: <int>[])
+  final List<int> auctionId;
   static const fromJsonFactory = _$SignWithdrawDtoFromJson;
 
   @override
@@ -15739,11 +15739,11 @@ class SignWithdrawDto {
 }
 
 extension $SignWithdrawDtoExtension on SignWithdrawDto {
-  SignWithdrawDto copyWith({List<double>? auctionId}) {
+  SignWithdrawDto copyWith({List<int>? auctionId}) {
     return SignWithdrawDto(auctionId: auctionId ?? this.auctionId);
   }
 
-  SignWithdrawDto copyWithWrapped({Wrapped<List<double>>? auctionId}) {
+  SignWithdrawDto copyWithWrapped({Wrapped<List<int>>? auctionId}) {
     return SignWithdrawDto(
       auctionId: (auctionId != null ? auctionId.value : this.auctionId),
     );
@@ -15822,7 +15822,7 @@ class SignAcceptGlobalOfferDto {
   Map<String, dynamic> toJson() => _$SignAcceptGlobalOfferDtoToJson(this);
 
   @JsonKey(name: 'offerId')
-  final double offerId;
+  final int offerId;
   @JsonKey(name: 'identifier', defaultValue: <String>[])
   final List<String> identifier;
   static const fromJsonFactory = _$SignAcceptGlobalOfferDtoFromJson;
@@ -15854,10 +15854,7 @@ class SignAcceptGlobalOfferDto {
 }
 
 extension $SignAcceptGlobalOfferDtoExtension on SignAcceptGlobalOfferDto {
-  SignAcceptGlobalOfferDto copyWith({
-    double? offerId,
-    List<String>? identifier,
-  }) {
+  SignAcceptGlobalOfferDto copyWith({int? offerId, List<String>? identifier}) {
     return SignAcceptGlobalOfferDto(
       offerId: offerId ?? this.offerId,
       identifier: identifier ?? this.identifier,
@@ -15865,7 +15862,7 @@ extension $SignAcceptGlobalOfferDtoExtension on SignAcceptGlobalOfferDto {
   }
 
   SignAcceptGlobalOfferDto copyWithWrapped({
-    Wrapped<double>? offerId,
+    Wrapped<int>? offerId,
     Wrapped<List<String>>? identifier,
   }) {
     return SignAcceptGlobalOfferDto(
@@ -15886,7 +15883,7 @@ class SignMintDto {
   Map<String, dynamic> toJson() => _$SignMintDtoToJson(this);
 
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   @JsonKey(name: 'stage')
   final String stage;
   static const fromJsonFactory = _$SignMintDtoFromJson;
@@ -15915,7 +15912,7 @@ class SignMintDto {
 }
 
 extension $SignMintDtoExtension on SignMintDto {
-  SignMintDto copyWith({double? quantity, String? stage}) {
+  SignMintDto copyWith({int? quantity, String? stage}) {
     return SignMintDto(
       quantity: quantity ?? this.quantity,
       stage: stage ?? this.stage,
@@ -15923,7 +15920,7 @@ extension $SignMintDtoExtension on SignMintDto {
   }
 
   SignMintDto copyWithWrapped({
-    Wrapped<double>? quantity,
+    Wrapped<int>? quantity,
     Wrapped<String>? stage,
   }) {
     return SignMintDto(
@@ -20222,8 +20219,8 @@ class CollectionOffersFilterCriteriaDto {
   final enums.CollectionDataType? dataType;
   @JsonKey(name: 'collection', defaultValue: <String>[])
   final List<String>? collection;
-  @JsonKey(name: 'offerId', defaultValue: <double>[])
-  final List<double>? offerId;
+  @JsonKey(name: 'offerId', defaultValue: <int>[])
+  final List<int>? offerId;
   @JsonKey(name: 'owner', defaultValue: <String>[])
   final List<String>? owner;
   @JsonKey(name: 'marketplace', defaultValue: <String>[])
@@ -20305,7 +20302,7 @@ extension $CollectionOffersFilterCriteriaDtoExtension
   CollectionOffersFilterCriteriaDto copyWith({
     enums.CollectionDataType? dataType,
     List<String>? collection,
-    List<double>? offerId,
+    List<int>? offerId,
     List<String>? owner,
     List<String>? marketplace,
     List<RangeFilter>? range,
@@ -20329,7 +20326,7 @@ extension $CollectionOffersFilterCriteriaDtoExtension
   CollectionOffersFilterCriteriaDto copyWithWrapped({
     Wrapped<enums.CollectionDataType?>? dataType,
     Wrapped<List<String>?>? collection,
-    Wrapped<List<double>?>? offerId,
+    Wrapped<List<int>?>? offerId,
     Wrapped<List<String>?>? owner,
     Wrapped<List<String>?>? marketplace,
     Wrapped<List<RangeFilter>?>? range,
@@ -23753,7 +23750,7 @@ class Web2WalletDto {
   )
   final enums.WalletClientType walletClientType;
   @JsonKey(name: 'index')
-  final double? index;
+  final int? index;
   @JsonKey(name: 'recoveryMethod')
   final String? recoveryMethod;
   static const fromJsonFactory = _$Web2WalletDtoFromJson;
@@ -23819,7 +23816,7 @@ extension $Web2WalletDtoExtension on Web2WalletDto {
     String? signature,
     String? authToken,
     enums.WalletClientType? walletClientType,
-    double? index,
+    int? index,
     String? recoveryMethod,
   }) {
     return Web2WalletDto(
@@ -23841,7 +23838,7 @@ extension $Web2WalletDtoExtension on Web2WalletDto {
     Wrapped<String?>? signature,
     Wrapped<String?>? authToken,
     Wrapped<enums.WalletClientType>? walletClientType,
-    Wrapped<double?>? index,
+    Wrapped<int?>? index,
     Wrapped<String?>? recoveryMethod,
   }) {
     return Web2WalletDto(
@@ -28789,9 +28786,9 @@ class NftActivityDataHydrated {
   @JsonKey(name: 'paymentToken')
   final String paymentToken;
   @JsonKey(name: 'quantity')
-  final double quantity;
+  final int quantity;
   @JsonKey(name: 'scId')
-  final double scId;
+  final int scId;
   @JsonKey(name: 'usdValue')
   final double usdValue;
   @JsonKey(name: 'egldValue')
@@ -28803,7 +28800,7 @@ class NftActivityDataHydrated {
   )
   final enums.NftActivityDataHydratedAuctionType? auctionType;
   @JsonKey(name: 'deadline')
-  final double? deadline;
+  final int? deadline;
   @JsonKey(name: 'originalPayment')
   final NftActivityDataHydrated$OriginalPayment? originalPayment;
   @JsonKey(name: 'originalTokenAmount')
@@ -28950,12 +28947,12 @@ extension $NftActivityDataHydratedExtension on NftActivityDataHydrated {
     String? identifier,
     double? price,
     String? paymentToken,
-    double? quantity,
-    double? scId,
+    int? quantity,
+    int? scId,
     double? usdValue,
     double? egldValue,
     enums.NftActivityDataHydratedAuctionType? auctionType,
-    double? deadline,
+    int? deadline,
     NftActivityDataHydrated$OriginalPayment? originalPayment,
     String? originalTokenAmount,
     double? originalTokenAmountShort,
@@ -28996,12 +28993,12 @@ extension $NftActivityDataHydratedExtension on NftActivityDataHydrated {
     Wrapped<String?>? identifier,
     Wrapped<double>? price,
     Wrapped<String>? paymentToken,
-    Wrapped<double>? quantity,
-    Wrapped<double>? scId,
+    Wrapped<int>? quantity,
+    Wrapped<int>? scId,
     Wrapped<double>? usdValue,
     Wrapped<double>? egldValue,
     Wrapped<enums.NftActivityDataHydratedAuctionType?>? auctionType,
-    Wrapped<double?>? deadline,
+    Wrapped<int?>? deadline,
     Wrapped<NftActivityDataHydrated$OriginalPayment?>? originalPayment,
     Wrapped<String?>? originalTokenAmount,
     Wrapped<double?>? originalTokenAmountShort,
@@ -30991,7 +30988,7 @@ class TransactionLog {
   @JsonKey(name: 'events', defaultValue: <List<Object?>>[])
   final List<List<Object?>> events;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final int timestamp;
   @JsonKey(name: 'txHash')
   final String txHash;
   static const fromJsonFactory = _$TransactionLogFromJson;
@@ -31036,7 +31033,7 @@ extension $TransactionLogExtension on TransactionLog {
     String? id,
     String? address,
     List<List<Object?>>? events,
-    double? timestamp,
+    int? timestamp,
     String? txHash,
   }) {
     return TransactionLog(
@@ -31052,7 +31049,7 @@ extension $TransactionLogExtension on TransactionLog {
     Wrapped<String?>? id,
     Wrapped<String>? address,
     Wrapped<List<List<Object?>>>? events,
-    Wrapped<double>? timestamp,
+    Wrapped<int>? timestamp,
     Wrapped<String>? txHash,
   }) {
     return TransactionLog(
@@ -31106,25 +31103,25 @@ class TransactionDetailed {
   @JsonKey(name: 'txHash')
   final String txHash;
   @JsonKey(name: 'gasLimit')
-  final double? gasLimit;
+  final int? gasLimit;
   @JsonKey(name: 'gasPrice')
-  final double? gasPrice;
+  final int? gasPrice;
   @JsonKey(name: 'gasUsed')
-  final double? gasUsed;
+  final int? gasUsed;
   @JsonKey(name: 'miniBlockHash')
   final String? miniBlockHash;
   @JsonKey(name: 'nonce')
-  final double? nonce;
+  final int? nonce;
   @JsonKey(name: 'receiver')
   final String receiver;
   @JsonKey(name: 'receiverShard')
-  final double receiverShard;
+  final int receiverShard;
   @JsonKey(name: 'round')
-  final double? round;
+  final int? round;
   @JsonKey(name: 'sender')
   final String sender;
   @JsonKey(name: 'senderShard')
-  final double senderShard;
+  final int senderShard;
   @JsonKey(name: 'signature')
   final String? signature;
   @JsonKey(name: 'status')
@@ -31134,7 +31131,7 @@ class TransactionDetailed {
   @JsonKey(name: 'fee')
   final String? fee;
   @JsonKey(name: 'timestamp')
-  final double timestamp;
+  final int timestamp;
   @JsonKey(name: 'data')
   final String? data;
   @JsonKey(name: 'function')
@@ -31306,21 +31303,21 @@ class TransactionDetailed {
 extension $TransactionDetailedExtension on TransactionDetailed {
   TransactionDetailed copyWith({
     String? txHash,
-    double? gasLimit,
-    double? gasPrice,
-    double? gasUsed,
+    int? gasLimit,
+    int? gasPrice,
+    int? gasUsed,
     String? miniBlockHash,
-    double? nonce,
+    int? nonce,
     String? receiver,
-    double? receiverShard,
-    double? round,
+    int? receiverShard,
+    int? round,
     String? sender,
-    double? senderShard,
+    int? senderShard,
     String? signature,
     String? status,
     String? $value,
     String? fee,
-    double? timestamp,
+    int? timestamp,
     String? data,
     String? function,
     Object? action,
@@ -31366,21 +31363,21 @@ extension $TransactionDetailedExtension on TransactionDetailed {
 
   TransactionDetailed copyWithWrapped({
     Wrapped<String>? txHash,
-    Wrapped<double?>? gasLimit,
-    Wrapped<double?>? gasPrice,
-    Wrapped<double?>? gasUsed,
+    Wrapped<int?>? gasLimit,
+    Wrapped<int?>? gasPrice,
+    Wrapped<int?>? gasUsed,
     Wrapped<String?>? miniBlockHash,
-    Wrapped<double?>? nonce,
+    Wrapped<int?>? nonce,
     Wrapped<String>? receiver,
-    Wrapped<double>? receiverShard,
-    Wrapped<double?>? round,
+    Wrapped<int>? receiverShard,
+    Wrapped<int?>? round,
     Wrapped<String>? sender,
-    Wrapped<double>? senderShard,
+    Wrapped<int>? senderShard,
     Wrapped<String?>? signature,
     Wrapped<String>? status,
     Wrapped<String>? $value,
     Wrapped<String?>? fee,
-    Wrapped<double>? timestamp,
+    Wrapped<int>? timestamp,
     Wrapped<String?>? data,
     Wrapped<String?>? function,
     Wrapped<Object?>? action,
@@ -31830,11 +31827,11 @@ class TransactionSendResult {
   @JsonKey(name: 'receiver')
   final String receiver;
   @JsonKey(name: 'receiverShard')
-  final double receiverShard;
+  final int receiverShard;
   @JsonKey(name: 'sender')
   final String sender;
   @JsonKey(name: 'senderShard')
-  final double senderShard;
+  final int senderShard;
   @JsonKey(
     name: 'status',
     toJson: transactionStatusToJson,
@@ -31889,9 +31886,9 @@ class TransactionSendResult {
 extension $TransactionSendResultExtension on TransactionSendResult {
   TransactionSendResult copyWith({
     String? receiver,
-    double? receiverShard,
+    int? receiverShard,
     String? sender,
-    double? senderShard,
+    int? senderShard,
     enums.TransactionStatus? status,
     String? txHash,
   }) {
@@ -31907,9 +31904,9 @@ extension $TransactionSendResultExtension on TransactionSendResult {
 
   TransactionSendResult copyWithWrapped({
     Wrapped<String>? receiver,
-    Wrapped<double>? receiverShard,
+    Wrapped<int>? receiverShard,
     Wrapped<String>? sender,
-    Wrapped<double>? senderShard,
+    Wrapped<int>? senderShard,
     Wrapped<enums.TransactionStatus>? status,
     Wrapped<String>? txHash,
   }) {
