@@ -26556,6 +26556,151 @@ extension $GlobalSearchResourcesPaginatedExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class LendingNftAttributes {
+  const LendingNftAttributes({
+    required this.isolated,
+    required this.eModeCategory,
+    required this.positionMode,
+    this.isolatedToken,
+  });
+
+  factory LendingNftAttributes.fromJson(Map<String, dynamic> json) =>
+      _$LendingNftAttributesFromJson(json);
+
+  static const toJsonFactory = _$LendingNftAttributesToJson;
+  Map<String, dynamic> toJson() => _$LendingNftAttributesToJson(this);
+
+  @JsonKey(name: 'isolated')
+  final bool isolated;
+  @JsonKey(name: 'eModeCategory')
+  final String eModeCategory;
+  @JsonKey(
+    name: 'positionMode',
+    toJson: positionModeToJson,
+    fromJson: positionModeFromJson,
+  )
+  final enums.PositionMode positionMode;
+  @JsonKey(name: 'isolatedToken')
+  final String? isolatedToken;
+  static const fromJsonFactory = _$LendingNftAttributesFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LendingNftAttributes &&
+            (identical(other.isolated, isolated) ||
+                const DeepCollectionEquality().equals(
+                  other.isolated,
+                  isolated,
+                )) &&
+            (identical(other.eModeCategory, eModeCategory) ||
+                const DeepCollectionEquality().equals(
+                  other.eModeCategory,
+                  eModeCategory,
+                )) &&
+            (identical(other.positionMode, positionMode) ||
+                const DeepCollectionEquality().equals(
+                  other.positionMode,
+                  positionMode,
+                )) &&
+            (identical(other.isolatedToken, isolatedToken) ||
+                const DeepCollectionEquality().equals(
+                  other.isolatedToken,
+                  isolatedToken,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(isolated) ^
+      const DeepCollectionEquality().hash(eModeCategory) ^
+      const DeepCollectionEquality().hash(positionMode) ^
+      const DeepCollectionEquality().hash(isolatedToken) ^
+      runtimeType.hashCode;
+}
+
+extension $LendingNftAttributesExtension on LendingNftAttributes {
+  LendingNftAttributes copyWith({
+    bool? isolated,
+    String? eModeCategory,
+    enums.PositionMode? positionMode,
+    String? isolatedToken,
+  }) {
+    return LendingNftAttributes(
+      isolated: isolated ?? this.isolated,
+      eModeCategory: eModeCategory ?? this.eModeCategory,
+      positionMode: positionMode ?? this.positionMode,
+      isolatedToken: isolatedToken ?? this.isolatedToken,
+    );
+  }
+
+  LendingNftAttributes copyWithWrapped({
+    Wrapped<bool>? isolated,
+    Wrapped<String>? eModeCategory,
+    Wrapped<enums.PositionMode>? positionMode,
+    Wrapped<String?>? isolatedToken,
+  }) {
+    return LendingNftAttributes(
+      isolated: (isolated != null ? isolated.value : this.isolated),
+      eModeCategory: (eModeCategory != null
+          ? eModeCategory.value
+          : this.eModeCategory),
+      positionMode: (positionMode != null
+          ? positionMode.value
+          : this.positionMode),
+      isolatedToken: (isolatedToken != null
+          ? isolatedToken.value
+          : this.isolatedToken),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LendingTokenPriceDto {
+  const LendingTokenPriceDto({required this.price});
+
+  factory LendingTokenPriceDto.fromJson(Map<String, dynamic> json) =>
+      _$LendingTokenPriceDtoFromJson(json);
+
+  static const toJsonFactory = _$LendingTokenPriceDtoToJson;
+  Map<String, dynamic> toJson() => _$LendingTokenPriceDtoToJson(this);
+
+  @JsonKey(name: 'price')
+  final String price;
+  static const fromJsonFactory = _$LendingTokenPriceDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is LendingTokenPriceDto &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(price) ^ runtimeType.hashCode;
+}
+
+extension $LendingTokenPriceDtoExtension on LendingTokenPriceDto {
+  LendingTokenPriceDto copyWith({String? price}) {
+    return LendingTokenPriceDto(price: price ?? this.price);
+  }
+
+  LendingTokenPriceDto copyWithWrapped({Wrapped<String>? price}) {
+    return LendingTokenPriceDto(
+      price: (price != null ? price.value : this.price),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class NotificationDoc {
   const NotificationDoc({
     required this.dataType,
@@ -30650,151 +30795,6 @@ extension $AirdropDtoHydratedExtension on AirdropDtoHydrated {
       signature: (signature != null ? signature.value : this.signature),
       isClaimed: (isClaimed != null ? isClaimed.value : this.isClaimed),
       amount: (amount != null ? amount.value : this.amount),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class LendingNftAttributes {
-  const LendingNftAttributes({
-    required this.isolated,
-    required this.eModeCategory,
-    required this.positionMode,
-    this.isolatedToken,
-  });
-
-  factory LendingNftAttributes.fromJson(Map<String, dynamic> json) =>
-      _$LendingNftAttributesFromJson(json);
-
-  static const toJsonFactory = _$LendingNftAttributesToJson;
-  Map<String, dynamic> toJson() => _$LendingNftAttributesToJson(this);
-
-  @JsonKey(name: 'isolated')
-  final bool isolated;
-  @JsonKey(name: 'eModeCategory')
-  final String eModeCategory;
-  @JsonKey(
-    name: 'positionMode',
-    toJson: positionModeToJson,
-    fromJson: positionModeFromJson,
-  )
-  final enums.PositionMode positionMode;
-  @JsonKey(name: 'isolatedToken')
-  final String? isolatedToken;
-  static const fromJsonFactory = _$LendingNftAttributesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingNftAttributes &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.eModeCategory, eModeCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategory,
-                  eModeCategory,
-                )) &&
-            (identical(other.positionMode, positionMode) ||
-                const DeepCollectionEquality().equals(
-                  other.positionMode,
-                  positionMode,
-                )) &&
-            (identical(other.isolatedToken, isolatedToken) ||
-                const DeepCollectionEquality().equals(
-                  other.isolatedToken,
-                  isolatedToken,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(eModeCategory) ^
-      const DeepCollectionEquality().hash(positionMode) ^
-      const DeepCollectionEquality().hash(isolatedToken) ^
-      runtimeType.hashCode;
-}
-
-extension $LendingNftAttributesExtension on LendingNftAttributes {
-  LendingNftAttributes copyWith({
-    bool? isolated,
-    String? eModeCategory,
-    enums.PositionMode? positionMode,
-    String? isolatedToken,
-  }) {
-    return LendingNftAttributes(
-      isolated: isolated ?? this.isolated,
-      eModeCategory: eModeCategory ?? this.eModeCategory,
-      positionMode: positionMode ?? this.positionMode,
-      isolatedToken: isolatedToken ?? this.isolatedToken,
-    );
-  }
-
-  LendingNftAttributes copyWithWrapped({
-    Wrapped<bool>? isolated,
-    Wrapped<String>? eModeCategory,
-    Wrapped<enums.PositionMode>? positionMode,
-    Wrapped<String?>? isolatedToken,
-  }) {
-    return LendingNftAttributes(
-      isolated: (isolated != null ? isolated.value : this.isolated),
-      eModeCategory: (eModeCategory != null
-          ? eModeCategory.value
-          : this.eModeCategory),
-      positionMode: (positionMode != null
-          ? positionMode.value
-          : this.positionMode),
-      isolatedToken: (isolatedToken != null
-          ? isolatedToken.value
-          : this.isolatedToken),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class LendingTokenPriceDto {
-  const LendingTokenPriceDto({required this.price});
-
-  factory LendingTokenPriceDto.fromJson(Map<String, dynamic> json) =>
-      _$LendingTokenPriceDtoFromJson(json);
-
-  static const toJsonFactory = _$LendingTokenPriceDtoToJson;
-  Map<String, dynamic> toJson() => _$LendingTokenPriceDtoToJson(this);
-
-  @JsonKey(name: 'price')
-  final String price;
-  static const fromJsonFactory = _$LendingTokenPriceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingTokenPriceDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^ runtimeType.hashCode;
-}
-
-extension $LendingTokenPriceDtoExtension on LendingTokenPriceDto {
-  LendingTokenPriceDto copyWith({String? price}) {
-    return LendingTokenPriceDto(price: price ?? this.price);
-  }
-
-  LendingTokenPriceDto copyWithWrapped({Wrapped<String>? price}) {
-    return LendingTokenPriceDto(
-      price: (price != null ? price.value : this.price),
     );
   }
 }

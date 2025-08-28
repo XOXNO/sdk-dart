@@ -5283,6 +5283,32 @@ Map<String, dynamic> _$GlobalSearchResourcesPaginatedToJson(
   'resources': instance.resources.toJson(),
 };
 
+LendingNftAttributes _$LendingNftAttributesFromJson(
+  Map<String, dynamic> json,
+) => LendingNftAttributes(
+  isolated: json['isolated'] as bool,
+  eModeCategory: json['eModeCategory'] as String,
+  positionMode: positionModeFromJson(json['positionMode']),
+  isolatedToken: json['isolatedToken'] as String?,
+);
+
+Map<String, dynamic> _$LendingNftAttributesToJson(
+  LendingNftAttributes instance,
+) => <String, dynamic>{
+  'isolated': instance.isolated,
+  'eModeCategory': instance.eModeCategory,
+  'positionMode': positionModeToJson(instance.positionMode),
+  'isolatedToken': instance.isolatedToken,
+};
+
+LendingTokenPriceDto _$LendingTokenPriceDtoFromJson(
+  Map<String, dynamic> json,
+) => LendingTokenPriceDto(price: json['price'] as String);
+
+Map<String, dynamic> _$LendingTokenPriceDtoToJson(
+  LendingTokenPriceDto instance,
+) => <String, dynamic>{'price': instance.price};
+
 NotificationDoc _$NotificationDocFromJson(Map<String, dynamic> json) =>
     NotificationDoc(
       dataType: NotificationDoc.notificationDocDataTypeDataTypeFromJson(
@@ -6159,32 +6185,6 @@ Map<String, dynamic> _$AirdropDtoHydratedToJson(AirdropDtoHydrated instance) =>
       'isClaimed': instance.isClaimed,
       'amount': instance.amount,
     };
-
-LendingNftAttributes _$LendingNftAttributesFromJson(
-  Map<String, dynamic> json,
-) => LendingNftAttributes(
-  isolated: json['isolated'] as bool,
-  eModeCategory: json['eModeCategory'] as String,
-  positionMode: positionModeFromJson(json['positionMode']),
-  isolatedToken: json['isolatedToken'] as String?,
-);
-
-Map<String, dynamic> _$LendingNftAttributesToJson(
-  LendingNftAttributes instance,
-) => <String, dynamic>{
-  'isolated': instance.isolated,
-  'eModeCategory': instance.eModeCategory,
-  'positionMode': positionModeToJson(instance.positionMode),
-  'isolatedToken': instance.isolatedToken,
-};
-
-LendingTokenPriceDto _$LendingTokenPriceDtoFromJson(
-  Map<String, dynamic> json,
-) => LendingTokenPriceDto(price: json['price'] as String);
-
-Map<String, dynamic> _$LendingTokenPriceDtoToJson(
-  LendingTokenPriceDto instance,
-) => <String, dynamic>{'price': instance.price};
 
 LoginRequestDto _$LoginRequestDtoFromJson(Map<String, dynamic> json) =>
     LoginRequestDto(

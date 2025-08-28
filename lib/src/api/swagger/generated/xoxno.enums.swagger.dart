@@ -1298,7 +1298,11 @@ enum NftActivityType {
   @JsonValue('cancelGame')
   cancelgame('cancelGame'),
   @JsonValue('endGame')
-  endgame('endGame');
+  endgame('endGame'),
+  @JsonValue('spin')
+  spin('spin'),
+  @JsonValue('joinWheel')
+  joinwheel('joinWheel');
 
   final String? value;
 
@@ -1466,7 +1470,11 @@ enum NftActivityDocHydratedActivityType {
   @JsonValue('cancelGame')
   cancelgame('cancelGame'),
   @JsonValue('endGame')
-  endgame('endGame');
+  endgame('endGame'),
+  @JsonValue('spin')
+  spin('spin'),
+  @JsonValue('joinWheel')
+  joinwheel('joinWheel');
 
   final String? value;
 
