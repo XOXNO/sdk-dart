@@ -598,7 +598,7 @@ CreatorProfileDto _$CreatorProfileDtoFromJson(Map<String, dynamic> json) =>
       ticketingContractAddress: json['ticketingContractAddress'] as String?,
       profile: json['profile'] as String,
       banner: json['banner'] as String,
-      joinedDate: (json['joinedDate'] as num).toDouble(),
+      joinedDate: (json['joinedDate'] as num?)?.toDouble(),
       description: json['description'] as String?,
       socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
@@ -634,7 +634,7 @@ CreatorProfileDoc _$CreatorProfileDocFromJson(Map<String, dynamic> json) =>
       ticketingContractAddress: json['ticketingContractAddress'] as String?,
       profile: json['profile'] as String,
       banner: json['banner'] as String,
-      joinedDate: (json['joinedDate'] as num).toDouble(),
+      joinedDate: (json['joinedDate'] as num?)?.toDouble(),
       description: json['description'] as String?,
       socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
@@ -1878,6 +1878,7 @@ LendingAccountProfile _$LendingAccountProfileFromJson(
           : InitialPaymentMultiplier.fromJson(
             json['initialPaymentMultiplier'] as Map<String, dynamic>,
           ),
+  isClassic: json['isClassic'] as bool,
   id: json['id'] as String,
   pk: json['pk'] as String,
   ts: (json['_ts'] as num).toDouble(),
@@ -1912,6 +1913,7 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'eModeCategory': instance.eModeCategory,
   'address': instance.address,
   'initialPaymentMultiplier': instance.initialPaymentMultiplier?.toJson(),
+  'isClassic': instance.isClassic,
   'id': instance.id,
   'pk': instance.pk,
   '_ts': instance.ts,
@@ -1934,6 +1936,8 @@ LendingAccountSummary _$LendingAccountSummaryFromJson(
       json['liquidationCollateralInDollars'] as String,
   collateralInDollars: json['collateralInDollars'] as String,
   borrowedInDollars: json['borrowedInDollars'] as String,
+  collateralInEgld: json['collateralInEgld'] as String,
+  borrowedInEgld: json['borrowedInEgld'] as String,
   totalApy: json['totalApy'] as String,
   healthFactor: json['healthFactor'] as String,
 );
@@ -1946,6 +1950,8 @@ Map<String, dynamic> _$LendingAccountSummaryToJson(
   'liquidationCollateralInDollars': instance.liquidationCollateralInDollars,
   'collateralInDollars': instance.collateralInDollars,
   'borrowedInDollars': instance.borrowedInDollars,
+  'collateralInEgld': instance.collateralInEgld,
+  'borrowedInEgld': instance.borrowedInEgld,
   'totalApy': instance.totalApy,
   'healthFactor': instance.healthFactor,
 };
@@ -2091,6 +2097,11 @@ LendingMarketAnalyticsGraph _$LendingMarketAnalyticsGraphFromJson(
           ?.map((e) => e as List<dynamic>)
           .toList() ??
       [],
+  twapSupplyApy: (json['twapSupplyApy'] as num).toDouble(),
+  twapBorrowApy: (json['twapBorrowApy'] as num).toDouble(),
+  twapUtilizationRate: (json['twapUtilizationRate'] as num).toDouble(),
+  twapSupplyAmount: (json['twapSupplyAmount'] as num).toDouble(),
+  twapBorrowAmount: (json['twapBorrowAmount'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$LendingMarketAnalyticsGraphToJson(
@@ -2113,7 +2124,20 @@ Map<String, dynamic> _$LendingMarketAnalyticsGraphToJson(
   'minBorrowAmount': instance.minBorrowAmount,
   'maxBorrowAmount': instance.maxBorrowAmount,
   'avgBorrowAmount': instance.avgBorrowAmount,
+  'twapSupplyApy': instance.twapSupplyApy,
+  'twapBorrowApy': instance.twapBorrowApy,
+  'twapUtilizationRate': instance.twapUtilizationRate,
+  'twapSupplyAmount': instance.twapSupplyAmount,
+  'twapBorrowAmount': instance.twapBorrowAmount,
 };
+
+LendingMarketAverageGraph _$LendingMarketAverageGraphFromJson(
+  Map<String, dynamic> json,
+) => LendingMarketAverageGraph();
+
+Map<String, dynamic> _$LendingMarketAverageGraphToJson(
+  LendingMarketAverageGraph instance,
+) => <String, dynamic>{};
 
 OwnerDto _$OwnerDtoFromJson(Map<String, dynamic> json) => OwnerDto(
   username: json['username'] as String,
@@ -4530,7 +4554,7 @@ CreatorDetailsDto _$CreatorDetailsDtoFromJson(Map<String, dynamic> json) =>
       ticketingContractAddress: json['ticketingContractAddress'] as String?,
       profile: json['profile'] as String,
       banner: json['banner'] as String,
-      joinedDate: (json['joinedDate'] as num).toDouble(),
+      joinedDate: (json['joinedDate'] as num?)?.toDouble(),
       description: json['description'] as String?,
       socials: SocialsDto.fromJson(json['socials'] as Map<String, dynamic>),
       id: json['id'] as String?,
@@ -5188,7 +5212,7 @@ CreatorDto _$CreatorDtoFromJson(Map<String, dynamic> json) => CreatorDto(
   contractAddress: json['contractAddress'] as String,
   name: json['name'] as String,
   creatorTag: json['creatorTag'] as String,
-  joinedDate: (json['joinedDate'] as num).toDouble(),
+  joinedDate: (json['joinedDate'] as num?)?.toDouble(),
   profile: json['profile'] as String,
   chain: creatorDtoChainNullableFromJson(json['chain']),
 );
@@ -6373,14 +6397,6 @@ Map<String, dynamic> _$TransactionCostDataToJson(
   TransactionCostData instance,
 ) => <String, dynamic>{'txGasUnits': instance.txGasUnits};
 
-TransactionCost _$TransactionCostFromJson(Map<String, dynamic> json) =>
-    TransactionCost(
-      data: TransactionCostData.fromJson(json['data'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$TransactionCostToJson(TransactionCost instance) =>
-    <String, dynamic>{'data': instance.data.toJson()};
-
 TransactionSendResult _$TransactionSendResultFromJson(
   Map<String, dynamic> json,
 ) => TransactionSendResult(
@@ -6686,6 +6702,32 @@ WebSocketTokenDto _$WebSocketTokenDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$WebSocketTokenDtoToJson(WebSocketTokenDto instance) =>
     <String, dynamic>{'token': instance.token};
+
+UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
+  collateral: json['collateral'] as String,
+  collateralShort: (json['collateralShort'] as num).toDouble(),
+  collateralUsd: (json['collateralUsd'] as num).toDouble(),
+  borrow: json['borrow'] as String,
+  borrowShort: (json['borrowShort'] as num).toDouble(),
+  borrowUsd: (json['borrowUsd'] as num).toDouble(),
+  health: json['health'] as String,
+  healthPercentage: (json['healthPercentage'] as num).toDouble(),
+  markets:
+      (json['markets'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      [],
+);
+
+Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
+  'collateral': instance.collateral,
+  'collateralShort': instance.collateralShort,
+  'collateralUsd': instance.collateralUsd,
+  'borrow': instance.borrow,
+  'borrowShort': instance.borrowShort,
+  'borrowUsd': instance.borrowUsd,
+  'health': instance.health,
+  'healthPercentage': instance.healthPercentage,
+  'markets': instance.markets,
+};
 
 RegistrationDetailsCreateDto _$RegistrationDetailsCreateDtoFromJson(
   Map<String, dynamic> json,

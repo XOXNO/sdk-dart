@@ -2579,6 +2579,27 @@ paths:
       summary: Get lending market analytics graph data
       tags:
         - Lending And Borrowing
+  /lending/market/{token}/average:
+    get:
+      operationId: LendingDataController_retrieveMarketAverages
+      parameters:
+        - name: token
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lending market analytics graph data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LendingMarketAverageGraph'
+      summary: Get lending market average analytics graph data
+      tags:
+        - Lending And Borrowing
   /lending/leaderboard:
     get:
       operationId: LendingDataController_retrieveLendingLeaderboard
@@ -7025,7 +7046,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionCost'
+                $ref: '#/components/schemas/TransactionCostData'
         '400':
           description: Bad Request
           content:
@@ -7522,6 +7543,43 @@ paths:
       tags:
         - AzureWs
         - Chat
+  /hatom/user/{address}:
+    get:
+      operationId: LendingBorrowingController_getUser
+      parameters:
+        - name: address
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Hatom positions of user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Hatom positions of user
+      tags:
+        - Accumulator
   /countries:
     get:
       operationId: TicketingDataController_getCountries
@@ -10460,7 +10518,6 @@ components:
         - creatorTag
         - profile
         - banner
-        - joinedDate
         - socials
         - followCount
     CreatorProfileDoc:
@@ -10530,7 +10587,6 @@ components:
         - creatorTag
         - profile
         - banner
-        - joinedDate
         - socials
     CollectionDataType:
       type: string
@@ -12529,6 +12585,8 @@ components:
           description: Initial payment multiplier
           allOf:
             - $ref: '#/components/schemas/InitialPaymentMultiplier'
+        isClassic:
+          type: boolean
         id:
           type: string
           description: Cosmos DB document identifier
@@ -12570,6 +12628,7 @@ components:
         - entryLtv
         - positionMode
         - address
+        - isClassic
         - id
         - pk
         - _ts
@@ -12593,6 +12652,10 @@ components:
           type: string
         borrowedInDollars:
           type: string
+        collateralInEgld:
+          type: string
+        borrowedInEgld:
+          type: string
         totalApy:
           type: string
         healthFactor:
@@ -12603,6 +12666,8 @@ components:
         - liquidationCollateralInDollars
         - collateralInDollars
         - borrowedInDollars
+        - collateralInEgld
+        - borrowedInEgld
         - totalApy
         - healthFactor
     ShortLendingTokenEModeProfileDoc:
@@ -12834,6 +12899,26 @@ components:
           items:
             type: array
           type: array
+        twapSupplyApy:
+          type: number
+          description: TWAP supply APY for each the time range
+          example: 1.2
+        twapBorrowApy:
+          type: number
+          description: TWAP borrow APY for each the time range
+          example: 1.2
+        twapUtilizationRate:
+          type: number
+          description: TWAP utilization rate for each the time range
+          example: 1.2
+        twapSupplyAmount:
+          type: number
+          description: TWAP supply amount for each the time range
+          example: 1.2
+        twapBorrowAmount:
+          type: number
+          description: TWAP borrow amount for each the time range
+          example: 1.2
       required:
         - token
         - timestamp
@@ -12852,6 +12937,14 @@ components:
         - minBorrowAmount
         - maxBorrowAmount
         - avgBorrowAmount
+        - twapSupplyApy
+        - twapBorrowApy
+        - twapUtilizationRate
+        - twapSupplyAmount
+        - twapBorrowAmount
+    LendingMarketAverageGraph:
+      type: object
+      properties: {}
     LendingPositionOrderByColumn:
       type: string
       enum:
@@ -16068,11 +16161,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1756395053
+          example: 1757092694
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 689472ea-a372-4a65-a76b-aa3695e0697c
+          example: 3c816d47-7753-4915-949c-7be704de348d
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -16302,7 +16395,6 @@ components:
         - creatorTag
         - profile
         - banner
-        - joinedDate
         - socials
     CreatorProfileEditDto:
       type: object
@@ -17280,7 +17372,6 @@ components:
         - contractAddress
         - name
         - creatorTag
-        - joinedDate
         - profile
     NftDto:
       type: object
@@ -19026,13 +19117,6 @@ components:
           type: number
       required:
         - txGasUnits
-    TransactionCost:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/TransactionCostData'
-      required:
-        - data
     TransactionSendResult:
       type: object
       properties:
@@ -19380,6 +19464,39 @@ components:
           description: WebSocket connection token
       required:
         - token
+    UserInfo:
+      type: object
+      properties:
+        collateral:
+          type: string
+        collateralShort:
+          type: number
+        collateralUsd:
+          type: number
+        borrow:
+          type: string
+        borrowShort:
+          type: number
+        borrowUsd:
+          type: number
+        health:
+          type: string
+        healthPercentage:
+          type: number
+        markets:
+          type: array
+          items:
+            type: string
+      required:
+        - collateral
+        - collateralShort
+        - collateralUsd
+        - borrow
+        - borrowShort
+        - borrowUsd
+        - health
+        - healthPercentage
+        - markets
     RegistrationDetailsCreateDto:
       type: object
       properties:
@@ -19844,11 +19961,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1756395053
+          example: 1757092694
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: 4ae23c0b-835d-4a9c-a0b4-76380fb548d6
+          example: 46dc0791-030c-4364-b5e0-284c5c17c535
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19905,11 +20022,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1756395053
+          example: 1757092694
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1756395053
+          example: 1757092694
         maxLimit:
           type: integer
           description: >-
@@ -19967,11 +20084,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1756395053
+          example: 1757092694
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1756395053
+          example: 1757092694
         maxLimit:
           type: integer
           description: >-
@@ -20002,7 +20119,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 54405b0d-0fb3-4de7-b07c-eebcd63238cc
+          example: 19dcd0fa-7a10-4a34-8e65-f90ea86f1561
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20033,11 +20150,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1756395053
+          example: 1757092694
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1756395053
+          example: 1757092694
         maxLimit:
           type: integer
           description: >-
@@ -20196,7 +20313,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 48eb2c53-0e40-4cf5-997a-c95e1816c075
+          example: 3a22c3b9-771a-4d7c-a9db-9ed1abcb09d1
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -20252,7 +20369,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1756395053
+          example: 1757092694
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20281,7 +20398,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f14f5ea5-7b91-4aaf-be4f-9f2a756b9ae3
+          example: b7dfd91f-47f7-489b-901f-cb0b71d1e4dd
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20397,7 +20514,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1756395053
+          example: 1757092694
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20426,7 +20543,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: f14f5ea5-7b91-4aaf-be4f-9f2a756b9ae3
+          example: b7dfd91f-47f7-489b-901f-cb0b71d1e4dd
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20604,11 +20721,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1756395053
+          example: 1757092694
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1756395053
+          example: 1757092694
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -20619,7 +20736,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1756395053
+          example: 1757092694
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -20712,7 +20829,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1756395053
+          example: 1757092694
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21196,11 +21313,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1756395053
+          example: 1757092694
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1756395053
+          example: 1757092694
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21253,11 +21370,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1756395053
+          example: 1757092694
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1756395053
+          example: 1757092694
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21292,7 +21409,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 296daa6e-7586-4ed9-9f1d-7a4866dffae3
+          example: 2c39916f-f8fe-4bcb-988a-bd726a68ff51
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21308,7 +21425,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1756395053
+          example: 1757092694
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -21471,7 +21588,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: e7047b2b-03ab-49bc-ba5c-ce551d3a7399
+          example: 9de3253c-d058-42df-acc0-80d45b8821ee
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -21498,7 +21615,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1756395053
+          example: 1757092694
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -21626,7 +21743,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 2ea769f1-dc16-44fa-a56a-7091bfa59566
+          example: 69487c2b-c232-4570-9669-d73f6e063a52
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21648,7 +21765,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1756395053
+          example: 1757092694
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -21854,7 +21971,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: dbfc0349-4411-4d28-98e5-b479ea766a62
+          example: b840e4b1-8081-4ac3-adab-7f94581d3eb4
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -21871,15 +21988,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1756395053
+          example: 1757092694
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: ecf22bee-09db-46f2-8ecc-ee7fb8d97c8a
+          example: 8bd3545a-e0fd-47aa-894c-e86dd4a10c12
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1756395053
+          example: 1757092694
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -21887,7 +22004,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: 7f93c333-8e6a-472b-b584-9d8cc01a7731
+          example: 8777cd2e-f73a-4af5-8ead-f8b985782050
       required:
         - ticketId
         - isCheckIn

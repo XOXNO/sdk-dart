@@ -3189,7 +3189,7 @@ class CreatorProfileDto {
     this.ticketingContractAddress,
     required this.profile,
     required this.banner,
-    required this.joinedDate,
+    this.joinedDate,
     this.description,
     required this.socials,
     this.id,
@@ -3224,7 +3224,7 @@ class CreatorProfileDto {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'joinedDate')
-  final double joinedDate;
+  final double? joinedDate;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
@@ -3371,7 +3371,7 @@ extension $CreatorProfileDtoExtension on CreatorProfileDto {
     Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<double>? joinedDate,
+    Wrapped<double?>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
@@ -3412,7 +3412,7 @@ class CreatorProfileDoc {
     this.ticketingContractAddress,
     required this.profile,
     required this.banner,
-    required this.joinedDate,
+    this.joinedDate,
     this.description,
     required this.socials,
     this.id,
@@ -3446,7 +3446,7 @@ class CreatorProfileDoc {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'joinedDate')
-  final double joinedDate;
+  final double? joinedDate;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
@@ -3583,7 +3583,7 @@ extension $CreatorProfileDocExtension on CreatorProfileDoc {
     Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<double>? joinedDate,
+    Wrapped<double?>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
@@ -10207,6 +10207,7 @@ class LendingAccountProfile {
     this.eModeCategory,
     required this.address,
     this.initialPaymentMultiplier,
+    required this.isClassic,
     required this.id,
     required this.pk,
     required this.ts,
@@ -10260,6 +10261,8 @@ class LendingAccountProfile {
   final String address;
   @JsonKey(name: 'initialPaymentMultiplier')
   final InitialPaymentMultiplier? initialPaymentMultiplier;
+  @JsonKey(name: 'isClassic')
+  final bool isClassic;
   @JsonKey(name: 'id')
   final String id;
   @JsonKey(name: 'pk')
@@ -10355,6 +10358,11 @@ class LendingAccountProfile {
                   other.initialPaymentMultiplier,
                   initialPaymentMultiplier,
                 )) &&
+            (identical(other.isClassic, isClassic) ||
+                const DeepCollectionEquality().equals(
+                  other.isClassic,
+                  isClassic,
+                )) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.pk, pk) ||
@@ -10403,6 +10411,7 @@ class LendingAccountProfile {
       const DeepCollectionEquality().hash(eModeCategory) ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(initialPaymentMultiplier) ^
+      const DeepCollectionEquality().hash(isClassic) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(pk) ^
       const DeepCollectionEquality().hash(ts) ^
@@ -10430,6 +10439,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
     String? eModeCategory,
     String? address,
     InitialPaymentMultiplier? initialPaymentMultiplier,
+    bool? isClassic,
     String? id,
     String? pk,
     double? ts,
@@ -10457,6 +10467,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       address: address ?? this.address,
       initialPaymentMultiplier:
           initialPaymentMultiplier ?? this.initialPaymentMultiplier,
+      isClassic: isClassic ?? this.isClassic,
       id: id ?? this.id,
       pk: pk ?? this.pk,
       ts: ts ?? this.ts,
@@ -10483,6 +10494,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
     Wrapped<String?>? eModeCategory,
     Wrapped<String>? address,
     Wrapped<InitialPaymentMultiplier?>? initialPaymentMultiplier,
+    Wrapped<bool>? isClassic,
     Wrapped<String>? id,
     Wrapped<String>? pk,
     Wrapped<double>? ts,
@@ -10523,6 +10535,7 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       initialPaymentMultiplier: (initialPaymentMultiplier != null
           ? initialPaymentMultiplier.value
           : this.initialPaymentMultiplier),
+      isClassic: (isClassic != null ? isClassic.value : this.isClassic),
       id: (id != null ? id.value : this.id),
       pk: (pk != null ? pk.value : this.pk),
       ts: (ts != null ? ts.value : this.ts),
@@ -10550,6 +10563,8 @@ class LendingAccountSummary {
     required this.liquidationCollateralInDollars,
     required this.collateralInDollars,
     required this.borrowedInDollars,
+    required this.collateralInEgld,
+    required this.borrowedInEgld,
     required this.totalApy,
     required this.healthFactor,
   });
@@ -10570,6 +10585,10 @@ class LendingAccountSummary {
   final String collateralInDollars;
   @JsonKey(name: 'borrowedInDollars')
   final String borrowedInDollars;
+  @JsonKey(name: 'collateralInEgld')
+  final String collateralInEgld;
+  @JsonKey(name: 'borrowedInEgld')
+  final String borrowedInEgld;
   @JsonKey(name: 'totalApy')
   final String totalApy;
   @JsonKey(name: 'healthFactor')
@@ -10608,6 +10627,16 @@ class LendingAccountSummary {
                   other.borrowedInDollars,
                   borrowedInDollars,
                 )) &&
+            (identical(other.collateralInEgld, collateralInEgld) ||
+                const DeepCollectionEquality().equals(
+                  other.collateralInEgld,
+                  collateralInEgld,
+                )) &&
+            (identical(other.borrowedInEgld, borrowedInEgld) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowedInEgld,
+                  borrowedInEgld,
+                )) &&
             (identical(other.totalApy, totalApy) ||
                 const DeepCollectionEquality().equals(
                   other.totalApy,
@@ -10630,6 +10659,8 @@ class LendingAccountSummary {
       const DeepCollectionEquality().hash(liquidationCollateralInDollars) ^
       const DeepCollectionEquality().hash(collateralInDollars) ^
       const DeepCollectionEquality().hash(borrowedInDollars) ^
+      const DeepCollectionEquality().hash(collateralInEgld) ^
+      const DeepCollectionEquality().hash(borrowedInEgld) ^
       const DeepCollectionEquality().hash(totalApy) ^
       const DeepCollectionEquality().hash(healthFactor) ^
       runtimeType.hashCode;
@@ -10642,6 +10673,8 @@ extension $LendingAccountSummaryExtension on LendingAccountSummary {
     String? liquidationCollateralInDollars,
     String? collateralInDollars,
     String? borrowedInDollars,
+    String? collateralInEgld,
+    String? borrowedInEgld,
     String? totalApy,
     String? healthFactor,
   }) {
@@ -10652,6 +10685,8 @@ extension $LendingAccountSummaryExtension on LendingAccountSummary {
           liquidationCollateralInDollars ?? this.liquidationCollateralInDollars,
       collateralInDollars: collateralInDollars ?? this.collateralInDollars,
       borrowedInDollars: borrowedInDollars ?? this.borrowedInDollars,
+      collateralInEgld: collateralInEgld ?? this.collateralInEgld,
+      borrowedInEgld: borrowedInEgld ?? this.borrowedInEgld,
       totalApy: totalApy ?? this.totalApy,
       healthFactor: healthFactor ?? this.healthFactor,
     );
@@ -10663,6 +10698,8 @@ extension $LendingAccountSummaryExtension on LendingAccountSummary {
     Wrapped<String>? liquidationCollateralInDollars,
     Wrapped<String>? collateralInDollars,
     Wrapped<String>? borrowedInDollars,
+    Wrapped<String>? collateralInEgld,
+    Wrapped<String>? borrowedInEgld,
     Wrapped<String>? totalApy,
     Wrapped<String>? healthFactor,
   }) {
@@ -10678,6 +10715,12 @@ extension $LendingAccountSummaryExtension on LendingAccountSummary {
       borrowedInDollars: (borrowedInDollars != null
           ? borrowedInDollars.value
           : this.borrowedInDollars),
+      collateralInEgld: (collateralInEgld != null
+          ? collateralInEgld.value
+          : this.collateralInEgld),
+      borrowedInEgld: (borrowedInEgld != null
+          ? borrowedInEgld.value
+          : this.borrowedInEgld),
       totalApy: (totalApy != null ? totalApy.value : this.totalApy),
       healthFactor: (healthFactor != null
           ? healthFactor.value
@@ -10976,6 +11019,11 @@ class LendingMarketAnalyticsGraph {
     required this.minBorrowAmount,
     required this.maxBorrowAmount,
     required this.avgBorrowAmount,
+    required this.twapSupplyApy,
+    required this.twapBorrowApy,
+    required this.twapUtilizationRate,
+    required this.twapSupplyAmount,
+    required this.twapBorrowAmount,
   });
 
   factory LendingMarketAnalyticsGraph.fromJson(Map<String, dynamic> json) =>
@@ -11018,6 +11066,16 @@ class LendingMarketAnalyticsGraph {
   final List<List<Object?>> maxBorrowAmount;
   @JsonKey(name: 'avgBorrowAmount', defaultValue: <List<Object?>>[])
   final List<List<Object?>> avgBorrowAmount;
+  @JsonKey(name: 'twapSupplyApy')
+  final double twapSupplyApy;
+  @JsonKey(name: 'twapBorrowApy')
+  final double twapBorrowApy;
+  @JsonKey(name: 'twapUtilizationRate')
+  final double twapUtilizationRate;
+  @JsonKey(name: 'twapSupplyAmount')
+  final double twapSupplyAmount;
+  @JsonKey(name: 'twapBorrowAmount')
+  final double twapBorrowAmount;
   static const fromJsonFactory = _$LendingMarketAnalyticsGraphFromJson;
 
   @override
@@ -11105,6 +11163,31 @@ class LendingMarketAnalyticsGraph {
                 const DeepCollectionEquality().equals(
                   other.avgBorrowAmount,
                   avgBorrowAmount,
+                )) &&
+            (identical(other.twapSupplyApy, twapSupplyApy) ||
+                const DeepCollectionEquality().equals(
+                  other.twapSupplyApy,
+                  twapSupplyApy,
+                )) &&
+            (identical(other.twapBorrowApy, twapBorrowApy) ||
+                const DeepCollectionEquality().equals(
+                  other.twapBorrowApy,
+                  twapBorrowApy,
+                )) &&
+            (identical(other.twapUtilizationRate, twapUtilizationRate) ||
+                const DeepCollectionEquality().equals(
+                  other.twapUtilizationRate,
+                  twapUtilizationRate,
+                )) &&
+            (identical(other.twapSupplyAmount, twapSupplyAmount) ||
+                const DeepCollectionEquality().equals(
+                  other.twapSupplyAmount,
+                  twapSupplyAmount,
+                )) &&
+            (identical(other.twapBorrowAmount, twapBorrowAmount) ||
+                const DeepCollectionEquality().equals(
+                  other.twapBorrowAmount,
+                  twapBorrowAmount,
                 )));
   }
 
@@ -11130,6 +11213,11 @@ class LendingMarketAnalyticsGraph {
       const DeepCollectionEquality().hash(minBorrowAmount) ^
       const DeepCollectionEquality().hash(maxBorrowAmount) ^
       const DeepCollectionEquality().hash(avgBorrowAmount) ^
+      const DeepCollectionEquality().hash(twapSupplyApy) ^
+      const DeepCollectionEquality().hash(twapBorrowApy) ^
+      const DeepCollectionEquality().hash(twapUtilizationRate) ^
+      const DeepCollectionEquality().hash(twapSupplyAmount) ^
+      const DeepCollectionEquality().hash(twapBorrowAmount) ^
       runtimeType.hashCode;
 }
 
@@ -11152,6 +11240,11 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
     List<List<Object?>>? minBorrowAmount,
     List<List<Object?>>? maxBorrowAmount,
     List<List<Object?>>? avgBorrowAmount,
+    double? twapSupplyApy,
+    double? twapBorrowApy,
+    double? twapUtilizationRate,
+    double? twapSupplyAmount,
+    double? twapBorrowAmount,
   }) {
     return LendingMarketAnalyticsGraph(
       token: token ?? this.token,
@@ -11171,6 +11264,11 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
       minBorrowAmount: minBorrowAmount ?? this.minBorrowAmount,
       maxBorrowAmount: maxBorrowAmount ?? this.maxBorrowAmount,
       avgBorrowAmount: avgBorrowAmount ?? this.avgBorrowAmount,
+      twapSupplyApy: twapSupplyApy ?? this.twapSupplyApy,
+      twapBorrowApy: twapBorrowApy ?? this.twapBorrowApy,
+      twapUtilizationRate: twapUtilizationRate ?? this.twapUtilizationRate,
+      twapSupplyAmount: twapSupplyAmount ?? this.twapSupplyAmount,
+      twapBorrowAmount: twapBorrowAmount ?? this.twapBorrowAmount,
     );
   }
 
@@ -11192,6 +11290,11 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
     Wrapped<List<List<Object?>>>? minBorrowAmount,
     Wrapped<List<List<Object?>>>? maxBorrowAmount,
     Wrapped<List<List<Object?>>>? avgBorrowAmount,
+    Wrapped<double>? twapSupplyApy,
+    Wrapped<double>? twapBorrowApy,
+    Wrapped<double>? twapUtilizationRate,
+    Wrapped<double>? twapSupplyAmount,
+    Wrapped<double>? twapBorrowAmount,
   }) {
     return LendingMarketAnalyticsGraph(
       token: (token != null ? token.value : this.token),
@@ -11241,8 +11344,42 @@ extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
       avgBorrowAmount: (avgBorrowAmount != null
           ? avgBorrowAmount.value
           : this.avgBorrowAmount),
+      twapSupplyApy: (twapSupplyApy != null
+          ? twapSupplyApy.value
+          : this.twapSupplyApy),
+      twapBorrowApy: (twapBorrowApy != null
+          ? twapBorrowApy.value
+          : this.twapBorrowApy),
+      twapUtilizationRate: (twapUtilizationRate != null
+          ? twapUtilizationRate.value
+          : this.twapUtilizationRate),
+      twapSupplyAmount: (twapSupplyAmount != null
+          ? twapSupplyAmount.value
+          : this.twapSupplyAmount),
+      twapBorrowAmount: (twapBorrowAmount != null
+          ? twapBorrowAmount.value
+          : this.twapBorrowAmount),
     );
   }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LendingMarketAverageGraph {
+  const LendingMarketAverageGraph();
+
+  factory LendingMarketAverageGraph.fromJson(Map<String, dynamic> json) =>
+      _$LendingMarketAverageGraphFromJson(json);
+
+  static const toJsonFactory = _$LendingMarketAverageGraphToJson;
+  Map<String, dynamic> toJson() => _$LendingMarketAverageGraphToJson(this);
+
+  static const fromJsonFactory = _$LendingMarketAverageGraphFromJson;
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -22877,7 +23014,7 @@ class CreatorDetailsDto {
     this.ticketingContractAddress,
     required this.profile,
     required this.banner,
-    required this.joinedDate,
+    this.joinedDate,
     this.description,
     required this.socials,
     this.id,
@@ -22913,7 +23050,7 @@ class CreatorDetailsDto {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'joinedDate')
-  final double joinedDate;
+  final double? joinedDate;
   @JsonKey(name: 'description')
   final String? description;
   @JsonKey(name: 'socials')
@@ -23067,7 +23204,7 @@ extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
     Wrapped<String?>? ticketingContractAddress,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<double>? joinedDate,
+    Wrapped<double?>? joinedDate,
     Wrapped<String?>? description,
     Wrapped<SocialsDto>? socials,
     Wrapped<String?>? id,
@@ -26074,7 +26211,7 @@ class CreatorDto {
     required this.contractAddress,
     required this.name,
     required this.creatorTag,
-    required this.joinedDate,
+    this.joinedDate,
     required this.profile,
     this.chain,
   });
@@ -26100,7 +26237,7 @@ class CreatorDto {
   @JsonKey(name: 'creatorTag')
   final String creatorTag;
   @JsonKey(name: 'joinedDate')
-  final double joinedDate;
+  final double? joinedDate;
   @JsonKey(name: 'profile')
   final String profile;
   @JsonKey(
@@ -26214,7 +26351,7 @@ extension $CreatorDtoExtension on CreatorDto {
     Wrapped<String>? contractAddress,
     Wrapped<String>? name,
     Wrapped<String>? creatorTag,
-    Wrapped<double>? joinedDate,
+    Wrapped<double?>? joinedDate,
     Wrapped<String>? profile,
     Wrapped<enums.CreatorDtoChain?>? chain,
   }) {
@@ -31768,46 +31905,6 @@ extension $TransactionCostDataExtension on TransactionCostData {
 }
 
 @JsonSerializable(explicitToJson: true)
-class TransactionCost {
-  const TransactionCost({required this.data});
-
-  factory TransactionCost.fromJson(Map<String, dynamic> json) =>
-      _$TransactionCostFromJson(json);
-
-  static const toJsonFactory = _$TransactionCostToJson;
-  Map<String, dynamic> toJson() => _$TransactionCostToJson(this);
-
-  @JsonKey(name: 'data')
-  final TransactionCostData data;
-  static const fromJsonFactory = _$TransactionCostFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionCost &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
-}
-
-extension $TransactionCostExtension on TransactionCost {
-  TransactionCost copyWith({TransactionCostData? data}) {
-    return TransactionCost(data: data ?? this.data);
-  }
-
-  TransactionCost copyWithWrapped({Wrapped<TransactionCostData>? data}) {
-    return TransactionCost(data: (data != null ? data.value : this.data));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class TransactionSendResult {
   const TransactionSendResult({
     required this.receiver,
@@ -33185,6 +33282,161 @@ extension $WebSocketTokenDtoExtension on WebSocketTokenDto {
 
   WebSocketTokenDto copyWithWrapped({Wrapped<String>? token}) {
     return WebSocketTokenDto(token: (token != null ? token.value : this.token));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserInfo {
+  const UserInfo({
+    required this.collateral,
+    required this.collateralShort,
+    required this.collateralUsd,
+    required this.borrow,
+    required this.borrowShort,
+    required this.borrowUsd,
+    required this.health,
+    required this.healthPercentage,
+    required this.markets,
+  });
+
+  factory UserInfo.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoFromJson(json);
+
+  static const toJsonFactory = _$UserInfoToJson;
+  Map<String, dynamic> toJson() => _$UserInfoToJson(this);
+
+  @JsonKey(name: 'collateral')
+  final String collateral;
+  @JsonKey(name: 'collateralShort')
+  final double collateralShort;
+  @JsonKey(name: 'collateralUsd')
+  final double collateralUsd;
+  @JsonKey(name: 'borrow')
+  final String borrow;
+  @JsonKey(name: 'borrowShort')
+  final double borrowShort;
+  @JsonKey(name: 'borrowUsd')
+  final double borrowUsd;
+  @JsonKey(name: 'health')
+  final String health;
+  @JsonKey(name: 'healthPercentage')
+  final double healthPercentage;
+  @JsonKey(name: 'markets', defaultValue: <String>[])
+  final List<String> markets;
+  static const fromJsonFactory = _$UserInfoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is UserInfo &&
+            (identical(other.collateral, collateral) ||
+                const DeepCollectionEquality().equals(
+                  other.collateral,
+                  collateral,
+                )) &&
+            (identical(other.collateralShort, collateralShort) ||
+                const DeepCollectionEquality().equals(
+                  other.collateralShort,
+                  collateralShort,
+                )) &&
+            (identical(other.collateralUsd, collateralUsd) ||
+                const DeepCollectionEquality().equals(
+                  other.collateralUsd,
+                  collateralUsd,
+                )) &&
+            (identical(other.borrow, borrow) ||
+                const DeepCollectionEquality().equals(other.borrow, borrow)) &&
+            (identical(other.borrowShort, borrowShort) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowShort,
+                  borrowShort,
+                )) &&
+            (identical(other.borrowUsd, borrowUsd) ||
+                const DeepCollectionEquality().equals(
+                  other.borrowUsd,
+                  borrowUsd,
+                )) &&
+            (identical(other.health, health) ||
+                const DeepCollectionEquality().equals(other.health, health)) &&
+            (identical(other.healthPercentage, healthPercentage) ||
+                const DeepCollectionEquality().equals(
+                  other.healthPercentage,
+                  healthPercentage,
+                )) &&
+            (identical(other.markets, markets) ||
+                const DeepCollectionEquality().equals(other.markets, markets)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(collateral) ^
+      const DeepCollectionEquality().hash(collateralShort) ^
+      const DeepCollectionEquality().hash(collateralUsd) ^
+      const DeepCollectionEquality().hash(borrow) ^
+      const DeepCollectionEquality().hash(borrowShort) ^
+      const DeepCollectionEquality().hash(borrowUsd) ^
+      const DeepCollectionEquality().hash(health) ^
+      const DeepCollectionEquality().hash(healthPercentage) ^
+      const DeepCollectionEquality().hash(markets) ^
+      runtimeType.hashCode;
+}
+
+extension $UserInfoExtension on UserInfo {
+  UserInfo copyWith({
+    String? collateral,
+    double? collateralShort,
+    double? collateralUsd,
+    String? borrow,
+    double? borrowShort,
+    double? borrowUsd,
+    String? health,
+    double? healthPercentage,
+    List<String>? markets,
+  }) {
+    return UserInfo(
+      collateral: collateral ?? this.collateral,
+      collateralShort: collateralShort ?? this.collateralShort,
+      collateralUsd: collateralUsd ?? this.collateralUsd,
+      borrow: borrow ?? this.borrow,
+      borrowShort: borrowShort ?? this.borrowShort,
+      borrowUsd: borrowUsd ?? this.borrowUsd,
+      health: health ?? this.health,
+      healthPercentage: healthPercentage ?? this.healthPercentage,
+      markets: markets ?? this.markets,
+    );
+  }
+
+  UserInfo copyWithWrapped({
+    Wrapped<String>? collateral,
+    Wrapped<double>? collateralShort,
+    Wrapped<double>? collateralUsd,
+    Wrapped<String>? borrow,
+    Wrapped<double>? borrowShort,
+    Wrapped<double>? borrowUsd,
+    Wrapped<String>? health,
+    Wrapped<double>? healthPercentage,
+    Wrapped<List<String>>? markets,
+  }) {
+    return UserInfo(
+      collateral: (collateral != null ? collateral.value : this.collateral),
+      collateralShort: (collateralShort != null
+          ? collateralShort.value
+          : this.collateralShort),
+      collateralUsd: (collateralUsd != null
+          ? collateralUsd.value
+          : this.collateralUsd),
+      borrow: (borrow != null ? borrow.value : this.borrow),
+      borrowShort: (borrowShort != null ? borrowShort.value : this.borrowShort),
+      borrowUsd: (borrowUsd != null ? borrowUsd.value : this.borrowUsd),
+      health: (health != null ? health.value : this.health),
+      healthPercentage: (healthPercentage != null
+          ? healthPercentage.value
+          : this.healthPercentage),
+      markets: (markets != null ? markets.value : this.markets),
+    );
   }
 }
 
