@@ -32,40 +32,6 @@ class ErrorResponseDto {
   @JsonKey(name: 'path')
   final String path;
   static const fromJsonFactory = _$ErrorResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ErrorResponseDto &&
-            (identical(other.statusCode, statusCode) ||
-                const DeepCollectionEquality().equals(
-                  other.statusCode,
-                  statusCode,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.path, path) ||
-                const DeepCollectionEquality().equals(other.path, path)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(statusCode) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(path) ^
-      runtimeType.hashCode;
 }
 
 extension $ErrorResponseDtoExtension on ErrorResponseDto {
@@ -119,37 +85,6 @@ class ActiveGuardianDto {
   @JsonKey(name: 'serviceUID')
   final String serviceUID;
   static const fromJsonFactory = _$ActiveGuardianDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ActiveGuardianDto &&
-            (identical(other.activationEpoch, activationEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.activationEpoch,
-                  activationEpoch,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.serviceUID, serviceUID) ||
-                const DeepCollectionEquality().equals(
-                  other.serviceUID,
-                  serviceUID,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(activationEpoch) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(serviceUID) ^
-      runtimeType.hashCode;
 }
 
 extension $ActiveGuardianDtoExtension on ActiveGuardianDto {
@@ -234,100 +169,6 @@ class UserNetworkInfoDto {
   @JsonKey(name: 'usdValue')
   final double usdValue;
   static const fromJsonFactory = _$UserNetworkInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserNetworkInfoDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.balanceShort, balanceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.balanceShort,
-                  balanceShort,
-                )) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )) &&
-            (identical(other.isUpgradeable, isUpgradeable) ||
-                const DeepCollectionEquality().equals(
-                  other.isUpgradeable,
-                  isUpgradeable,
-                )) &&
-            (identical(other.isReadable, isReadable) ||
-                const DeepCollectionEquality().equals(
-                  other.isReadable,
-                  isReadable,
-                )) &&
-            (identical(other.isGuarded, isGuarded) ||
-                const DeepCollectionEquality().equals(
-                  other.isGuarded,
-                  isGuarded,
-                )) &&
-            (identical(other.isPayable, isPayable) ||
-                const DeepCollectionEquality().equals(
-                  other.isPayable,
-                  isPayable,
-                )) &&
-            (identical(
-                  other.isPayableBySmartContract,
-                  isPayableBySmartContract,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.isPayableBySmartContract,
-                  isPayableBySmartContract,
-                )) &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.shard, shard) ||
-                const DeepCollectionEquality().equals(other.shard, shard)) &&
-            (identical(other.guarded, guarded) ||
-                const DeepCollectionEquality().equals(
-                  other.guarded,
-                  guarded,
-                )) &&
-            (identical(other.activeGuardian, activeGuardian) ||
-                const DeepCollectionEquality().equals(
-                  other.activeGuardian,
-                  activeGuardian,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(balanceShort) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(isUpgradeable) ^
-      const DeepCollectionEquality().hash(isReadable) ^
-      const DeepCollectionEquality().hash(isGuarded) ^
-      const DeepCollectionEquality().hash(isPayable) ^
-      const DeepCollectionEquality().hash(isPayableBySmartContract) ^
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(shard) ^
-      const DeepCollectionEquality().hash(guarded) ^
-      const DeepCollectionEquality().hash(activeGuardian) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
 }
 
 extension $UserNetworkInfoDtoExtension on UserNetworkInfoDto {
@@ -430,34 +271,6 @@ class WalletDto {
   @JsonKey(name: 'weight')
   final double weight;
   static const fromJsonFactory = _$WalletDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is WalletDto &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(weight) ^
-      runtimeType.hashCode;
 }
 
 extension $WalletDtoExtension on WalletDto {
@@ -503,34 +316,6 @@ class EsdtsDto {
   @JsonKey(name: 'weight')
   final double weight;
   static const fromJsonFactory = _$EsdtsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EsdtsDto &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(weight) ^
-      runtimeType.hashCode;
 }
 
 extension $EsdtsDtoExtension on EsdtsDto {
@@ -576,34 +361,6 @@ class StablesDto {
   @JsonKey(name: 'weight')
   final double weight;
   static const fromJsonFactory = _$StablesDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StablesDto &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(weight) ^
-      runtimeType.hashCode;
 }
 
 extension $StablesDtoExtension on StablesDto {
@@ -652,37 +409,6 @@ class SuiCoinObjectDto {
   @JsonKey(name: 'version')
   final String version;
   static const fromJsonFactory = _$SuiCoinObjectDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SuiCoinObjectDto &&
-            (identical(other.objectId, objectId) ||
-                const DeepCollectionEquality().equals(
-                  other.objectId,
-                  objectId,
-                )) &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.digest, digest) ||
-                const DeepCollectionEquality().equals(other.digest, digest)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(other.version, version)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(objectId) ^
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(digest) ^
-      const DeepCollectionEquality().hash(version) ^
-      runtimeType.hashCode;
 }
 
 extension $SuiCoinObjectDtoExtension on SuiCoinObjectDto {
@@ -779,85 +505,6 @@ class TokenDataDocWithBalance {
   @JsonKey(name: 'objects', defaultValue: <SuiCoinObjectDto>[])
   final List<SuiCoinObjectDto>? objects;
   static const fromJsonFactory = _$TokenDataDocWithBalanceFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TokenDataDocWithBalance &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )) &&
-            (identical(other.ticker, ticker) ||
-                const DeepCollectionEquality().equals(other.ticker, ticker)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.svgUrl, svgUrl) ||
-                const DeepCollectionEquality().equals(other.svgUrl, svgUrl)) &&
-            (identical(other.pngUrl, pngUrl) ||
-                const DeepCollectionEquality().equals(other.pngUrl, pngUrl)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.shortBalance, shortBalance) ||
-                const DeepCollectionEquality().equals(
-                  other.shortBalance,
-                  shortBalance,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)) &&
-            (identical(other.objects, objects) ||
-                const DeepCollectionEquality().equals(other.objects, objects)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      const DeepCollectionEquality().hash(ticker) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(svgUrl) ^
-      const DeepCollectionEquality().hash(pngUrl) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(shortBalance) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(objects) ^
-      runtimeType.hashCode;
 }
 
 extension $TokenDataDocWithBalanceExtension on TokenDataDocWithBalance {
@@ -967,37 +614,6 @@ class UserTokenInventoryResponseDto {
   )
   final enums.ActivityChain chain;
   static const fromJsonFactory = _$UserTokenInventoryResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserTokenInventoryResponseDto &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.esdts, esdts) ||
-                const DeepCollectionEquality().equals(other.esdts, esdts)) &&
-            (identical(other.stables, stables) ||
-                const DeepCollectionEquality().equals(
-                  other.stables,
-                  stables,
-                )) &&
-            (identical(other.tokens, tokens) ||
-                const DeepCollectionEquality().equals(other.tokens, tokens)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(esdts) ^
-      const DeepCollectionEquality().hash(stables) ^
-      const DeepCollectionEquality().hash(tokens) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $UserTokenInventoryResponseDtoExtension
@@ -1068,58 +684,6 @@ class SocialsDto {
   @JsonKey(name: 'youtube')
   final String? youtube;
   static const fromJsonFactory = _$SocialsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SocialsDto &&
-            (identical(other.twitter, twitter) ||
-                const DeepCollectionEquality().equals(
-                  other.twitter,
-                  twitter,
-                )) &&
-            (identical(other.instagram, instagram) ||
-                const DeepCollectionEquality().equals(
-                  other.instagram,
-                  instagram,
-                )) &&
-            (identical(other.website, website) ||
-                const DeepCollectionEquality().equals(
-                  other.website,
-                  website,
-                )) &&
-            (identical(other.telegram, telegram) ||
-                const DeepCollectionEquality().equals(
-                  other.telegram,
-                  telegram,
-                )) &&
-            (identical(other.discord, discord) ||
-                const DeepCollectionEquality().equals(
-                  other.discord,
-                  discord,
-                )) &&
-            (identical(other.facebook, facebook) ||
-                const DeepCollectionEquality().equals(
-                  other.facebook,
-                  facebook,
-                )) &&
-            (identical(other.youtube, youtube) ||
-                const DeepCollectionEquality().equals(other.youtube, youtube)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(twitter) ^
-      const DeepCollectionEquality().hash(instagram) ^
-      const DeepCollectionEquality().hash(website) ^
-      const DeepCollectionEquality().hash(telegram) ^
-      const DeepCollectionEquality().hash(discord) ^
-      const DeepCollectionEquality().hash(facebook) ^
-      const DeepCollectionEquality().hash(youtube) ^
-      runtimeType.hashCode;
 }
 
 extension $SocialsDtoExtension on SocialsDto {
@@ -1191,49 +755,6 @@ class UserDeposit {
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
   static const fromJsonFactory = _$UserDepositFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserDeposit &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.balanceShort, balanceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.balanceShort,
-                  balanceShort,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(balanceShort) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
-      runtimeType.hashCode;
 }
 
 extension $UserDepositExtension on UserDeposit {
@@ -1353,118 +874,6 @@ class UserProfileDoc {
   @JsonKey(name: 'isBoberBattleUser')
   final bool? isBoberBattleUser;
   static const fromJsonFactory = _$UserProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.isBanned, isBanned) ||
-                const DeepCollectionEquality().equals(
-                  other.isBanned,
-                  isBanned,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.isPoolOwner, isPoolOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.isPoolOwner,
-                  isPoolOwner,
-                )) &&
-            (identical(other.shard, shard) ||
-                const DeepCollectionEquality().equals(other.shard, shard)) &&
-            (identical(other.userDeposit, userDeposit) ||
-                const DeepCollectionEquality().equals(
-                  other.userDeposit,
-                  userDeposit,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.isBoberBattleUser, isBoberBattleUser) ||
-                const DeepCollectionEquality().equals(
-                  other.isBoberBattleUser,
-                  isBoberBattleUser,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(isBanned) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(isPoolOwner) ^
-      const DeepCollectionEquality().hash(shard) ^
-      const DeepCollectionEquality().hash(userDeposit) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(isBoberBattleUser) ^
-      runtimeType.hashCode;
 }
 
 extension $UserProfileDocExtension on UserProfileDoc {
@@ -1589,58 +998,6 @@ class UserEmailNotificationSettings {
   @JsonKey(name: 'timestamp')
   final int? timestamp;
   static const fromJsonFactory = _$UserEmailNotificationSettingsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserEmailNotificationSettings &&
-            (identical(other.enabled, enabled) ||
-                const DeepCollectionEquality().equals(
-                  other.enabled,
-                  enabled,
-                )) &&
-            (identical(other.emailAddress, emailAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.emailAddress,
-                  emailAddress,
-                )) &&
-            (identical(
-                  other.isEmailVerificationPending,
-                  isEmailVerificationPending,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.isEmailVerificationPending,
-                  isEmailVerificationPending,
-                )) &&
-            (identical(other.isEmailVerified, isEmailVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isEmailVerified,
-                  isEmailVerified,
-                )) &&
-            (identical(other.isWeb2User, isWeb2User) ||
-                const DeepCollectionEquality().equals(
-                  other.isWeb2User,
-                  isWeb2User,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(enabled) ^
-      const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(isEmailVerificationPending) ^
-      const DeepCollectionEquality().hash(isEmailVerified) ^
-      const DeepCollectionEquality().hash(isWeb2User) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      runtimeType.hashCode;
 }
 
 extension $UserEmailNotificationSettingsExtension
@@ -1731,73 +1088,6 @@ class UserNotificationPreferences {
   @JsonKey(name: 'eventMarketing')
   final bool? eventMarketing;
   static const fromJsonFactory = _$UserNotificationPreferencesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserNotificationPreferences &&
-            (identical(other.sales, sales) ||
-                const DeepCollectionEquality().equals(other.sales, sales)) &&
-            (identical(other.bids, bids) ||
-                const DeepCollectionEquality().equals(other.bids, bids)) &&
-            (identical(other.offersReceived, offersReceived) ||
-                const DeepCollectionEquality().equals(
-                  other.offersReceived,
-                  offersReceived,
-                )) &&
-            (identical(other.offersAccepted, offersAccepted) ||
-                const DeepCollectionEquality().equals(
-                  other.offersAccepted,
-                  offersAccepted,
-                )) &&
-            (identical(other.offersRejected, offersRejected) ||
-                const DeepCollectionEquality().equals(
-                  other.offersRejected,
-                  offersRejected,
-                )) &&
-            (identical(other.deposits, deposits) ||
-                const DeepCollectionEquality().equals(
-                  other.deposits,
-                  deposits,
-                )) &&
-            (identical(other.eventUpdates, eventUpdates) ||
-                const DeepCollectionEquality().equals(
-                  other.eventUpdates,
-                  eventUpdates,
-                )) &&
-            (identical(other.eventReminders, eventReminders) ||
-                const DeepCollectionEquality().equals(
-                  other.eventReminders,
-                  eventReminders,
-                )) &&
-            (identical(other.eventCheckIn, eventCheckIn) ||
-                const DeepCollectionEquality().equals(
-                  other.eventCheckIn,
-                  eventCheckIn,
-                )) &&
-            (identical(other.eventMarketing, eventMarketing) ||
-                const DeepCollectionEquality().equals(
-                  other.eventMarketing,
-                  eventMarketing,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sales) ^
-      const DeepCollectionEquality().hash(bids) ^
-      const DeepCollectionEquality().hash(offersReceived) ^
-      const DeepCollectionEquality().hash(offersAccepted) ^
-      const DeepCollectionEquality().hash(offersRejected) ^
-      const DeepCollectionEquality().hash(deposits) ^
-      const DeepCollectionEquality().hash(eventUpdates) ^
-      const DeepCollectionEquality().hash(eventReminders) ^
-      const DeepCollectionEquality().hash(eventCheckIn) ^
-      const DeepCollectionEquality().hash(eventMarketing) ^
-      runtimeType.hashCode;
 }
 
 extension $UserNotificationPreferencesExtension on UserNotificationPreferences {
@@ -1895,46 +1185,6 @@ class UserSettingsDto {
   @JsonKey(name: '_ts')
   final double ts;
   static const fromJsonFactory = _$UserSettingsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserSettingsDto &&
-            (identical(other.emailNotifications, emailNotifications) ||
-                const DeepCollectionEquality().equals(
-                  other.emailNotifications,
-                  emailNotifications,
-                )) &&
-            (identical(
-                  other.notificationPreferences,
-                  notificationPreferences,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.notificationPreferences,
-                  notificationPreferences,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(emailNotifications) ^
-      const DeepCollectionEquality().hash(notificationPreferences) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $UserSettingsDtoExtension on UserSettingsDto {
@@ -2056,124 +1306,6 @@ class UserProfileDto {
   @JsonKey(name: 'userSettings')
   final UserSettingsDto? userSettings;
   static const fromJsonFactory = _$UserProfileDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserProfileDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.isBanned, isBanned) ||
-                const DeepCollectionEquality().equals(
-                  other.isBanned,
-                  isBanned,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.isPoolOwner, isPoolOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.isPoolOwner,
-                  isPoolOwner,
-                )) &&
-            (identical(other.shard, shard) ||
-                const DeepCollectionEquality().equals(other.shard, shard)) &&
-            (identical(other.userDeposit, userDeposit) ||
-                const DeepCollectionEquality().equals(
-                  other.userDeposit,
-                  userDeposit,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.isBoberBattleUser, isBoberBattleUser) ||
-                const DeepCollectionEquality().equals(
-                  other.isBoberBattleUser,
-                  isBoberBattleUser,
-                )) &&
-            (identical(other.userSettings, userSettings) ||
-                const DeepCollectionEquality().equals(
-                  other.userSettings,
-                  userSettings,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(isBanned) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(isPoolOwner) ^
-      const DeepCollectionEquality().hash(shard) ^
-      const DeepCollectionEquality().hash(userDeposit) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(isBoberBattleUser) ^
-      const DeepCollectionEquality().hash(userSettings) ^
-      runtimeType.hashCode;
 }
 
 extension $UserProfileDtoExtension on UserProfileDto {
@@ -2316,73 +1448,6 @@ class UserBillingDetails {
   @JsonKey(name: 'postalCode')
   final String? postalCode;
   static const fromJsonFactory = _$UserBillingDetailsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserBillingDetails &&
-            (identical(other.isCompany, isCompany) ||
-                const DeepCollectionEquality().equals(
-                  other.isCompany,
-                  isCompany,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(
-                  other.companyRegistrationNumber,
-                  companyRegistrationNumber,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.companyRegistrationNumber,
-                  companyRegistrationNumber,
-                )) &&
-            (identical(other.companyVatNumber, companyVatNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.companyVatNumber,
-                  companyVatNumber,
-                )) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality().equals(
-                  other.country,
-                  country,
-                )) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address1, address1) ||
-                const DeepCollectionEquality().equals(
-                  other.address1,
-                  address1,
-                )) &&
-            (identical(other.address2, address2) ||
-                const DeepCollectionEquality().equals(
-                  other.address2,
-                  address2,
-                )) &&
-            (identical(other.postalCode, postalCode) ||
-                const DeepCollectionEquality().equals(
-                  other.postalCode,
-                  postalCode,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isCompany) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(companyRegistrationNumber) ^
-      const DeepCollectionEquality().hash(companyVatNumber) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address1) ^
-      const DeepCollectionEquality().hash(address2) ^
-      const DeepCollectionEquality().hash(postalCode) ^
-      runtimeType.hashCode;
 }
 
 extension $UserBillingDetailsExtension on UserBillingDetails {
@@ -2471,52 +1536,6 @@ class UserPhoneNotificationSettings {
   @JsonKey(name: 'timestamp')
   final int? timestamp;
   static const fromJsonFactory = _$UserPhoneNotificationSettingsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserPhoneNotificationSettings &&
-            (identical(other.enabled, enabled) ||
-                const DeepCollectionEquality().equals(
-                  other.enabled,
-                  enabled,
-                )) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.phoneNumber,
-                  phoneNumber,
-                )) &&
-            (identical(
-                  other.isPhoneVerificationPending,
-                  isPhoneVerificationPending,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.isPhoneVerificationPending,
-                  isPhoneVerificationPending,
-                )) &&
-            (identical(other.isPhoneVerified, isPhoneVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isPhoneVerified,
-                  isPhoneVerified,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(enabled) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      const DeepCollectionEquality().hash(isPhoneVerificationPending) ^
-      const DeepCollectionEquality().hash(isPhoneVerified) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      runtimeType.hashCode;
 }
 
 extension $UserPhoneNotificationSettingsExtension
@@ -2598,67 +1617,6 @@ class UserSettingsDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$UserSettingsDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserSettingsDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.billingDetails, billingDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.billingDetails,
-                  billingDetails,
-                )) &&
-            (identical(other.emailNotifications, emailNotifications) ||
-                const DeepCollectionEquality().equals(
-                  other.emailNotifications,
-                  emailNotifications,
-                )) &&
-            (identical(other.phoneNotifications, phoneNotifications) ||
-                const DeepCollectionEquality().equals(
-                  other.phoneNotifications,
-                  phoneNotifications,
-                )) &&
-            (identical(
-                  other.notificationPreferences,
-                  notificationPreferences,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.notificationPreferences,
-                  notificationPreferences,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(billingDetails) ^
-      const DeepCollectionEquality().hash(emailNotifications) ^
-      const DeepCollectionEquality().hash(phoneNotifications) ^
-      const DeepCollectionEquality().hash(notificationPreferences) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $UserSettingsDocExtension on UserSettingsDoc {
@@ -2750,49 +1708,6 @@ class NotificationPreferencesPostDto {
   @JsonKey(name: 'deposits')
   final bool deposits;
   static const fromJsonFactory = _$NotificationPreferencesPostDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationPreferencesPostDto &&
-            (identical(other.sales, sales) ||
-                const DeepCollectionEquality().equals(other.sales, sales)) &&
-            (identical(other.bids, bids) ||
-                const DeepCollectionEquality().equals(other.bids, bids)) &&
-            (identical(other.offersReceived, offersReceived) ||
-                const DeepCollectionEquality().equals(
-                  other.offersReceived,
-                  offersReceived,
-                )) &&
-            (identical(other.offersAccepted, offersAccepted) ||
-                const DeepCollectionEquality().equals(
-                  other.offersAccepted,
-                  offersAccepted,
-                )) &&
-            (identical(other.offersRejected, offersRejected) ||
-                const DeepCollectionEquality().equals(
-                  other.offersRejected,
-                  offersRejected,
-                )) &&
-            (identical(other.deposits, deposits) ||
-                const DeepCollectionEquality().equals(
-                  other.deposits,
-                  deposits,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sales) ^
-      const DeepCollectionEquality().hash(bids) ^
-      const DeepCollectionEquality().hash(offersReceived) ^
-      const DeepCollectionEquality().hash(offersAccepted) ^
-      const DeepCollectionEquality().hash(offersRejected) ^
-      const DeepCollectionEquality().hash(deposits) ^
-      runtimeType.hashCode;
 }
 
 extension $NotificationPreferencesPostDtoExtension
@@ -2855,31 +1770,6 @@ class SetEmailDto {
   @JsonKey(name: 'emailAddress')
   final String? emailAddress;
   static const fromJsonFactory = _$SetEmailDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SetEmailDto &&
-            (identical(other.enabled, enabled) ||
-                const DeepCollectionEquality().equals(
-                  other.enabled,
-                  enabled,
-                )) &&
-            (identical(other.emailAddress, emailAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.emailAddress,
-                  emailAddress,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(enabled) ^
-      const DeepCollectionEquality().hash(emailAddress) ^
-      runtimeType.hashCode;
 }
 
 extension $SetEmailDtoExtension on SetEmailDto {
@@ -2918,31 +1808,6 @@ class SetPhoneDto {
   @JsonKey(name: 'phoneNumber')
   final String? phoneNumber;
   static const fromJsonFactory = _$SetPhoneDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SetPhoneDto &&
-            (identical(other.enabled, enabled) ||
-                const DeepCollectionEquality().equals(
-                  other.enabled,
-                  enabled,
-                )) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.phoneNumber,
-                  phoneNumber,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(enabled) ^
-      const DeepCollectionEquality().hash(phoneNumber) ^
-      runtimeType.hashCode;
 }
 
 extension $SetPhoneDtoExtension on SetPhoneDto {
@@ -2977,25 +1842,6 @@ class VerifyEmailDto {
   @JsonKey(name: 'verificationCode')
   final String verificationCode;
   static const fromJsonFactory = _$VerifyEmailDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is VerifyEmailDto &&
-            (identical(other.verificationCode, verificationCode) ||
-                const DeepCollectionEquality().equals(
-                  other.verificationCode,
-                  verificationCode,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(verificationCode) ^
-      runtimeType.hashCode;
 }
 
 extension $VerifyEmailDtoExtension on VerifyEmailDto {
@@ -3027,21 +1873,6 @@ class TradesilvaniaSignature {
   @JsonKey(name: 'url')
   final String url;
   static const fromJsonFactory = _$TradesilvaniaSignatureFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TradesilvaniaSignature &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(url) ^ runtimeType.hashCode;
 }
 
 extension $TradesilvaniaSignatureExtension on TradesilvaniaSignature {
@@ -3075,37 +1906,6 @@ class UserProfileEditDto {
   @JsonKey(name: 'isBoberBattleUser')
   final bool? isBoberBattleUser;
   static const fromJsonFactory = _$UserProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserProfileEditDto &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isBoberBattleUser, isBoberBattleUser) ||
-                const DeepCollectionEquality().equals(
-                  other.isBoberBattleUser,
-                  isBoberBattleUser,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isBoberBattleUser) ^
-      runtimeType.hashCode;
 }
 
 extension $UserProfileEditDtoExtension on UserProfileEditDto {
@@ -3149,21 +1949,6 @@ class SuccessDto {
   @JsonKey(name: 'success')
   final bool success;
   static const fromJsonFactory = _$SuccessDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SuccessDto &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality().equals(other.success, success)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(success) ^ runtimeType.hashCode;
 }
 
 extension $SuccessDtoExtension on SuccessDto {
@@ -3236,94 +2021,6 @@ class CreatorProfileDto {
   @JsonKey(name: 'followCount')
   final double followCount;
   static const fromJsonFactory = _$CreatorProfileDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorProfileDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(ticketingContractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorProfileDtoExtension on CreatorProfileDto {
@@ -3456,88 +2153,6 @@ class CreatorProfileDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$CreatorProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(ticketingContractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorProfileDocExtension on CreatorProfileDoc {
@@ -3628,28 +2243,6 @@ class RangeFilter {
   @JsonKey(name: 'field')
   final String? field;
   static const fromJsonFactory = _$RangeFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RangeFilter &&
-            (identical(other.min, min) ||
-                const DeepCollectionEquality().equals(other.min, min)) &&
-            (identical(other.max, max) ||
-                const DeepCollectionEquality().equals(other.max, max)) &&
-            (identical(other.field, field) ||
-                const DeepCollectionEquality().equals(other.field, field)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(min) ^
-      const DeepCollectionEquality().hash(max) ^
-      const DeepCollectionEquality().hash(field) ^
-      runtimeType.hashCode;
 }
 
 extension $RangeFilterExtension on RangeFilter {
@@ -3704,40 +2297,6 @@ class CollectionStatsFilterCriteriaDto {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   static const fromJsonFactory = _$CollectionStatsFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionStatsFilterCriteriaDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.verifiedOnly, verifiedOnly) ||
-                const DeepCollectionEquality().equals(
-                  other.verifiedOnly,
-                  verifiedOnly,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(verifiedOnly) ^
-      const DeepCollectionEquality().hash(range) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionStatsFilterCriteriaDtoExtension
@@ -3806,49 +2365,6 @@ class CollectionStatsFilter {
   @JsonKey(name: 'filters')
   final CollectionStatsFilterCriteriaDto filters;
   static const fromJsonFactory = _$CollectionStatsFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionStatsFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionStatsFilterExtension on CollectionStatsFilter {
@@ -3921,37 +2437,6 @@ class AllTimeHigh {
   @JsonKey(name: 'identifier')
   final String identifier;
   static const fromJsonFactory = _$AllTimeHighFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AllTimeHigh &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $AllTimeHighExtension on AllTimeHigh {
@@ -4017,55 +2502,6 @@ class TradingDataSummary {
   @JsonKey(name: 'averagePrice')
   final double? averagePrice;
   static const fromJsonFactory = _$TradingDataSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TradingDataSummary &&
-            (identical(other.volume, volume) ||
-                const DeepCollectionEquality().equals(other.volume, volume)) &&
-            (identical(other.volumeMargin, volumeMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.volumeMargin,
-                  volumeMargin,
-                )) &&
-            (identical(other.trades, trades) ||
-                const DeepCollectionEquality().equals(other.trades, trades)) &&
-            (identical(other.tradesMargin, tradesMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.tradesMargin,
-                  tradesMargin,
-                )) &&
-            (identical(other.minPrice, minPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.minPrice,
-                  minPrice,
-                )) &&
-            (identical(other.maxPrice, maxPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.maxPrice,
-                  maxPrice,
-                )) &&
-            (identical(other.averagePrice, averagePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.averagePrice,
-                  averagePrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(volume) ^
-      const DeepCollectionEquality().hash(volumeMargin) ^
-      const DeepCollectionEquality().hash(trades) ^
-      const DeepCollectionEquality().hash(tradesMargin) ^
-      const DeepCollectionEquality().hash(minPrice) ^
-      const DeepCollectionEquality().hash(maxPrice) ^
-      const DeepCollectionEquality().hash(averagePrice) ^
-      runtimeType.hashCode;
 }
 
 extension $TradingDataSummaryExtension on TradingDataSummary {
@@ -4158,67 +2594,6 @@ class TradingStatistics {
   @JsonKey(name: 'year')
   final TradingDataSummary year;
   static const fromJsonFactory = _$TradingStatisticsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TradingStatistics &&
-            (identical(other.totalVolume, totalVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalVolume,
-                  totalVolume,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )) &&
-            (identical(other.averagePrice, averagePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.averagePrice,
-                  averagePrice,
-                )) &&
-            (identical(other.allTimeHigh, allTimeHigh) ||
-                const DeepCollectionEquality().equals(
-                  other.allTimeHigh,
-                  allTimeHigh,
-                )) &&
-            (identical(other.day, day) ||
-                const DeepCollectionEquality().equals(other.day, day)) &&
-            (identical(other.week, week) ||
-                const DeepCollectionEquality().equals(other.week, week)) &&
-            (identical(other.month, month) ||
-                const DeepCollectionEquality().equals(other.month, month)) &&
-            (identical(other.quarter, quarter) ||
-                const DeepCollectionEquality().equals(
-                  other.quarter,
-                  quarter,
-                )) &&
-            (identical(other.halfYear, halfYear) ||
-                const DeepCollectionEquality().equals(
-                  other.halfYear,
-                  halfYear,
-                )) &&
-            (identical(other.year, year) ||
-                const DeepCollectionEquality().equals(other.year, year)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(totalVolume) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      const DeepCollectionEquality().hash(averagePrice) ^
-      const DeepCollectionEquality().hash(allTimeHigh) ^
-      const DeepCollectionEquality().hash(day) ^
-      const DeepCollectionEquality().hash(week) ^
-      const DeepCollectionEquality().hash(month) ^
-      const DeepCollectionEquality().hash(quarter) ^
-      const DeepCollectionEquality().hash(halfYear) ^
-      const DeepCollectionEquality().hash(year) ^
-      runtimeType.hashCode;
 }
 
 extension $TradingStatisticsExtension on TradingStatistics {
@@ -4332,82 +2707,6 @@ class ShortCollectionInfoDoc {
   @JsonKey(name: 'volume')
   final double volume;
   static const fromJsonFactory = _$ShortCollectionInfoDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortCollectionInfoDoc &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.volume, volume) ||
-                const DeepCollectionEquality().equals(other.volume, volume)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(volume) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortCollectionInfoDocExtension on ShortCollectionInfoDoc {
@@ -4523,64 +2822,6 @@ class CollectionStatsDocHydrated {
   @JsonKey(name: 'collectionInfo')
   final ShortCollectionInfoDoc? collectionInfo;
   static const fromJsonFactory = _$CollectionStatsDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionStatsDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.listedCount, listedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.listedCount,
-                  listedCount,
-                )) &&
-            (identical(other.tradingStats, tradingStats) ||
-                const DeepCollectionEquality().equals(
-                  other.tradingStats,
-                  tradingStats,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(listedCount) ^
-      const DeepCollectionEquality().hash(tradingStats) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionStatsDocHydratedExtension on CollectionStatsDocHydrated {
@@ -4658,34 +2899,6 @@ class CollectionStatsPaginated {
   @JsonKey(name: 'resources', defaultValue: <CollectionStatsDocHydrated>[])
   final List<CollectionStatsDocHydrated> resources;
   static const fromJsonFactory = _$CollectionStatsPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionStatsPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionStatsPaginatedExtension on CollectionStatsPaginated {
@@ -4729,24 +2942,6 @@ class CheckLikeStatusResponseDto {
   @JsonKey(name: 'isFavorite')
   final bool isFavorite;
   static const fromJsonFactory = _$CheckLikeStatusResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CheckLikeStatusResponseDto &&
-            (identical(other.isFavorite, isFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.isFavorite,
-                  isFavorite,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isFavorite) ^ runtimeType.hashCode;
 }
 
 extension $CheckLikeStatusResponseDtoExtension on CheckLikeStatusResponseDto {
@@ -4781,31 +2976,6 @@ class UserFavoriteResponseDto {
   @JsonKey(name: 'addressFavorite')
   final String addressFavorite;
   static const fromJsonFactory = _$UserFavoriteResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserFavoriteResponseDto &&
-            (identical(other.isFavorite, isFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.isFavorite,
-                  isFavorite,
-                )) &&
-            (identical(other.addressFavorite, addressFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.addressFavorite,
-                  addressFavorite,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isFavorite) ^
-      const DeepCollectionEquality().hash(addressFavorite) ^
-      runtimeType.hashCode;
 }
 
 extension $UserFavoriteResponseDtoExtension on UserFavoriteResponseDto {
@@ -4900,79 +3070,6 @@ class TokenDataDocHydrated {
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
   static const fromJsonFactory = _$TokenDataDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TokenDataDocHydrated &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )) &&
-            (identical(other.ticker, ticker) ||
-                const DeepCollectionEquality().equals(other.ticker, ticker)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.svgUrl, svgUrl) ||
-                const DeepCollectionEquality().equals(other.svgUrl, svgUrl)) &&
-            (identical(other.pngUrl, pngUrl) ||
-                const DeepCollectionEquality().equals(other.pngUrl, pngUrl)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality().equals(
-                  other.category,
-                  category,
-                )) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      const DeepCollectionEquality().hash(ticker) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(svgUrl) ^
-      const DeepCollectionEquality().hash(pngUrl) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
-      runtimeType.hashCode;
 }
 
 extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
@@ -5069,40 +3166,6 @@ class RateType {
   @JsonKey(name: 'reverseRateShort')
   final double reverseRateShort;
   static const fromJsonFactory = _$RateTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RateType &&
-            (identical(other.rateShort, rateShort) ||
-                const DeepCollectionEquality().equals(
-                  other.rateShort,
-                  rateShort,
-                )) &&
-            (identical(other.rate, rate) ||
-                const DeepCollectionEquality().equals(other.rate, rate)) &&
-            (identical(other.reverseRate, reverseRate) ||
-                const DeepCollectionEquality().equals(
-                  other.reverseRate,
-                  reverseRate,
-                )) &&
-            (identical(other.reverseRateShort, reverseRateShort) ||
-                const DeepCollectionEquality().equals(
-                  other.reverseRateShort,
-                  reverseRateShort,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rateShort) ^
-      const DeepCollectionEquality().hash(rate) ^
-      const DeepCollectionEquality().hash(reverseRate) ^
-      const DeepCollectionEquality().hash(reverseRateShort) ^
-      runtimeType.hashCode;
 }
 
 extension $RateTypeExtension on RateType {
@@ -5218,142 +3281,6 @@ class IMetrics {
   @JsonKey(name: 'serviceFee')
   final double serviceFee;
   static const fromJsonFactory = _$IMetricsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is IMetrics &&
-            (identical(other.supply, supply) ||
-                const DeepCollectionEquality().equals(other.supply, supply)) &&
-            (identical(other.minted, minted) ||
-                const DeepCollectionEquality().equals(other.minted, minted)) &&
-            (identical(other.burned, burned) ||
-                const DeepCollectionEquality().equals(other.burned, burned)) &&
-            (identical(other.initialMinted, initialMinted) ||
-                const DeepCollectionEquality().equals(
-                  other.initialMinted,
-                  initialMinted,
-                )) &&
-            (identical(other.recomputedSupply, recomputedSupply) ||
-                const DeepCollectionEquality().equals(
-                  other.recomputedSupply,
-                  recomputedSupply,
-                )) &&
-            (identical(other.burnedShort, burnedShort) ||
-                const DeepCollectionEquality().equals(
-                  other.burnedShort,
-                  burnedShort,
-                )) &&
-            (identical(other.initialMintedShort, initialMintedShort) ||
-                const DeepCollectionEquality().equals(
-                  other.initialMintedShort,
-                  initialMintedShort,
-                )) &&
-            (identical(other.minterShort, minterShort) ||
-                const DeepCollectionEquality().equals(
-                  other.minterShort,
-                  minterShort,
-                )) &&
-            (identical(other.supplyShort, supplyShort) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyShort,
-                  supplyShort,
-                )) &&
-            (identical(other.transfersCount, transfersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.transfersCount,
-                  transfersCount,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.rateInfo, rateInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.rateInfo,
-                  rateInfo,
-                )) &&
-            (identical(other.apr, apr) ||
-                const DeepCollectionEquality().equals(other.apr, apr)) &&
-            (identical(other.apy, apy) ||
-                const DeepCollectionEquality().equals(other.apy, apy)) &&
-            (identical(other.totalStakedCount, totalStakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.totalStakedCount,
-                  totalStakedCount,
-                )) &&
-            (identical(other.totalStakedCountUsd, totalStakedCountUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.totalStakedCountUsd,
-                  totalStakedCountUsd,
-                )) &&
-            (identical(other.totalRewardsPaid, totalRewardsPaid) ||
-                const DeepCollectionEquality().equals(
-                  other.totalRewardsPaid,
-                  totalRewardsPaid,
-                )) &&
-            (identical(other.totalRewardsPaidUsd, totalRewardsPaidUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.totalRewardsPaidUsd,
-                  totalRewardsPaidUsd,
-                )) &&
-            (identical(other.uniqueStakersCount, uniqueStakersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueStakersCount,
-                  uniqueStakersCount,
-                )) &&
-            (identical(other.instantUnstake, instantUnstake) ||
-                const DeepCollectionEquality().equals(
-                  other.instantUnstake,
-                  instantUnstake,
-                )) &&
-            (identical(other.instantPendingUnstake, instantPendingUnstake) ||
-                const DeepCollectionEquality().equals(
-                  other.instantPendingUnstake,
-                  instantPendingUnstake,
-                )) &&
-            (identical(other.totalWithdrawn, totalWithdrawn) ||
-                const DeepCollectionEquality().equals(
-                  other.totalWithdrawn,
-                  totalWithdrawn,
-                )) &&
-            (identical(other.serviceFee, serviceFee) ||
-                const DeepCollectionEquality().equals(
-                  other.serviceFee,
-                  serviceFee,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(supply) ^
-      const DeepCollectionEquality().hash(minted) ^
-      const DeepCollectionEquality().hash(burned) ^
-      const DeepCollectionEquality().hash(initialMinted) ^
-      const DeepCollectionEquality().hash(recomputedSupply) ^
-      const DeepCollectionEquality().hash(burnedShort) ^
-      const DeepCollectionEquality().hash(initialMintedShort) ^
-      const DeepCollectionEquality().hash(minterShort) ^
-      const DeepCollectionEquality().hash(supplyShort) ^
-      const DeepCollectionEquality().hash(transfersCount) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(rateInfo) ^
-      const DeepCollectionEquality().hash(apr) ^
-      const DeepCollectionEquality().hash(apy) ^
-      const DeepCollectionEquality().hash(totalStakedCount) ^
-      const DeepCollectionEquality().hash(totalStakedCountUsd) ^
-      const DeepCollectionEquality().hash(totalRewardsPaid) ^
-      const DeepCollectionEquality().hash(totalRewardsPaidUsd) ^
-      const DeepCollectionEquality().hash(uniqueStakersCount) ^
-      const DeepCollectionEquality().hash(instantUnstake) ^
-      const DeepCollectionEquality().hash(instantPendingUnstake) ^
-      const DeepCollectionEquality().hash(totalWithdrawn) ^
-      const DeepCollectionEquality().hash(serviceFee) ^
-      runtimeType.hashCode;
 }
 
 extension $IMetricsExtension on IMetrics {
@@ -5534,76 +3461,6 @@ class XoxnoInfo {
   @JsonKey(name: 'listingDate')
   final DateTime listingDate;
   static const fromJsonFactory = _$XoxnoInfoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is XoxnoInfo &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.marketCap, marketCap) ||
-                const DeepCollectionEquality().equals(
-                  other.marketCap,
-                  marketCap,
-                )) &&
-            (identical(other.fdv, fdv) ||
-                const DeepCollectionEquality().equals(other.fdv, fdv)) &&
-            (identical(other.tradeVol, tradeVol) ||
-                const DeepCollectionEquality().equals(
-                  other.tradeVol,
-                  tradeVol,
-                )) &&
-            (identical(other.supply, supply) ||
-                const DeepCollectionEquality().equals(other.supply, supply)) &&
-            (identical(other.burnedShort, burnedShort) ||
-                const DeepCollectionEquality().equals(
-                  other.burnedShort,
-                  burnedShort,
-                )) &&
-            (identical(other.circulatingSupply, circulatingSupply) ||
-                const DeepCollectionEquality().equals(
-                  other.circulatingSupply,
-                  circulatingSupply,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.totalSupply, totalSupply) ||
-                const DeepCollectionEquality().equals(
-                  other.totalSupply,
-                  totalSupply,
-                )) &&
-            (identical(other.idoPrice, idoPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.idoPrice,
-                  idoPrice,
-                )) &&
-            (identical(other.listingDate, listingDate) ||
-                const DeepCollectionEquality().equals(
-                  other.listingDate,
-                  listingDate,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(marketCap) ^
-      const DeepCollectionEquality().hash(fdv) ^
-      const DeepCollectionEquality().hash(tradeVol) ^
-      const DeepCollectionEquality().hash(supply) ^
-      const DeepCollectionEquality().hash(burnedShort) ^
-      const DeepCollectionEquality().hash(circulatingSupply) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(totalSupply) ^
-      const DeepCollectionEquality().hash(idoPrice) ^
-      const DeepCollectionEquality().hash(listingDate) ^
-      runtimeType.hashCode;
 }
 
 extension $XoxnoInfoExtension on XoxnoInfo {
@@ -5713,82 +3570,6 @@ class XoxnoLiquidStatsDto {
   @JsonKey(name: 'instantPendingUnstake')
   final String instantPendingUnstake;
   static const fromJsonFactory = _$XoxnoLiquidStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is XoxnoLiquidStatsDto &&
-            (identical(other.participants, participants) ||
-                const DeepCollectionEquality().equals(
-                  other.participants,
-                  participants,
-                )) &&
-            (identical(other.totalRewards, totalRewards) ||
-                const DeepCollectionEquality().equals(
-                  other.totalRewards,
-                  totalRewards,
-                )) &&
-            (identical(other.totalStaked, totalStaked) ||
-                const DeepCollectionEquality().equals(
-                  other.totalStaked,
-                  totalStaked,
-                )) &&
-            (identical(other.yearlyAPR, yearlyAPR) ||
-                const DeepCollectionEquality().equals(
-                  other.yearlyAPR,
-                  yearlyAPR,
-                )) &&
-            (identical(other.apy, apy) ||
-                const DeepCollectionEquality().equals(other.apy, apy)) &&
-            (identical(other.totalRewardsUsdValue, totalRewardsUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.totalRewardsUsdValue,
-                  totalRewardsUsdValue,
-                )) &&
-            (identical(other.totalStakedUsdValue, totalStakedUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.totalStakedUsdValue,
-                  totalStakedUsdValue,
-                )) &&
-            (identical(other.rateInfo, rateInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.rateInfo,
-                  rateInfo,
-                )) &&
-            (identical(other.serviceFee, serviceFee) ||
-                const DeepCollectionEquality().equals(
-                  other.serviceFee,
-                  serviceFee,
-                )) &&
-            (identical(other.instantUnstake, instantUnstake) ||
-                const DeepCollectionEquality().equals(
-                  other.instantUnstake,
-                  instantUnstake,
-                )) &&
-            (identical(other.instantPendingUnstake, instantPendingUnstake) ||
-                const DeepCollectionEquality().equals(
-                  other.instantPendingUnstake,
-                  instantPendingUnstake,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(participants) ^
-      const DeepCollectionEquality().hash(totalRewards) ^
-      const DeepCollectionEquality().hash(totalStaked) ^
-      const DeepCollectionEquality().hash(yearlyAPR) ^
-      const DeepCollectionEquality().hash(apy) ^
-      const DeepCollectionEquality().hash(totalRewardsUsdValue) ^
-      const DeepCollectionEquality().hash(totalStakedUsdValue) ^
-      const DeepCollectionEquality().hash(rateInfo) ^
-      const DeepCollectionEquality().hash(serviceFee) ^
-      const DeepCollectionEquality().hash(instantUnstake) ^
-      const DeepCollectionEquality().hash(instantPendingUnstake) ^
-      runtimeType.hashCode;
 }
 
 extension $XoxnoLiquidStatsDtoExtension on XoxnoLiquidStatsDto {
@@ -5887,40 +3668,6 @@ class AnalyticsMarketplaceUniqueUsers {
   @JsonKey(name: 'UniqueSellers')
   final int uniqueSellers;
   static const fromJsonFactory = _$AnalyticsMarketplaceUniqueUsersFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AnalyticsMarketplaceUniqueUsers &&
-            (identical(other.day, day) ||
-                const DeepCollectionEquality().equals(other.day, day)) &&
-            (identical(other.uniqueUsers, uniqueUsers) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueUsers,
-                  uniqueUsers,
-                )) &&
-            (identical(other.uniqueBuyers, uniqueBuyers) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueBuyers,
-                  uniqueBuyers,
-                )) &&
-            (identical(other.uniqueSellers, uniqueSellers) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueSellers,
-                  uniqueSellers,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(day) ^
-      const DeepCollectionEquality().hash(uniqueUsers) ^
-      const DeepCollectionEquality().hash(uniqueBuyers) ^
-      const DeepCollectionEquality().hash(uniqueSellers) ^
-      runtimeType.hashCode;
 }
 
 extension $AnalyticsMarketplaceUniqueUsersExtension
@@ -5973,25 +3720,6 @@ class ProtocolAprType {
   @JsonKey(name: 'apy')
   final double? apy;
   static const fromJsonFactory = _$ProtocolAprTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ProtocolAprType &&
-            (identical(other.apr, apr) ||
-                const DeepCollectionEquality().equals(other.apr, apr)) &&
-            (identical(other.apy, apy) ||
-                const DeepCollectionEquality().equals(other.apy, apy)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(apr) ^
-      const DeepCollectionEquality().hash(apy) ^
-      runtimeType.hashCode;
 }
 
 extension $ProtocolAprTypeExtension on ProtocolAprType {
@@ -6049,64 +3777,6 @@ class ProviderDto {
   @JsonKey(name: 'protocolStakedAmount')
   final double protocolStakedAmount;
   static const fromJsonFactory = _$ProviderDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ProviderDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.delegationCap, delegationCap) ||
-                const DeepCollectionEquality().equals(
-                  other.delegationCap,
-                  delegationCap,
-                )) &&
-            (identical(other.nodes, nodes) ||
-                const DeepCollectionEquality().equals(other.nodes, nodes)) &&
-            (identical(other.apr, apr) ||
-                const DeepCollectionEquality().equals(other.apr, apr)) &&
-            (identical(other.identity, identity) ||
-                const DeepCollectionEquality().equals(
-                  other.identity,
-                  identity,
-                )) &&
-            (identical(other.totalStaked, totalStaked) ||
-                const DeepCollectionEquality().equals(
-                  other.totalStaked,
-                  totalStaked,
-                )) &&
-            (identical(other.protocolStakedAmount, protocolStakedAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.protocolStakedAmount,
-                  protocolStakedAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(delegationCap) ^
-      const DeepCollectionEquality().hash(nodes) ^
-      const DeepCollectionEquality().hash(apr) ^
-      const DeepCollectionEquality().hash(identity) ^
-      const DeepCollectionEquality().hash(totalStaked) ^
-      const DeepCollectionEquality().hash(protocolStakedAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $ProviderDtoExtension on ProviderDto {
@@ -6199,67 +3869,6 @@ class DelegationDataOutput {
   @JsonKey(name: 'totalUnbondEligible')
   final String totalUnbondEligible;
   static const fromJsonFactory = _$DelegationDataOutputFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DelegationDataOutput &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.contract, contract) ||
-                const DeepCollectionEquality().equals(
-                  other.contract,
-                  contract,
-                )) &&
-            (identical(other.activeStake, activeStake) ||
-                const DeepCollectionEquality().equals(
-                  other.activeStake,
-                  activeStake,
-                )) &&
-            (identical(other.activeStakeShort, activeStakeShort) ||
-                const DeepCollectionEquality().equals(
-                  other.activeStakeShort,
-                  activeStakeShort,
-                )) &&
-            (identical(other.unDelegateInfo, unDelegateInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.unDelegateInfo,
-                  unDelegateInfo,
-                )) &&
-            (identical(other.claimableRewards, claimableRewards) ||
-                const DeepCollectionEquality().equals(
-                  other.claimableRewards,
-                  claimableRewards,
-                )) &&
-            (identical(other.claimableRewardsShort, claimableRewardsShort) ||
-                const DeepCollectionEquality().equals(
-                  other.claimableRewardsShort,
-                  claimableRewardsShort,
-                )) &&
-            (identical(other.totalUnbondEligible, totalUnbondEligible) ||
-                const DeepCollectionEquality().equals(
-                  other.totalUnbondEligible,
-                  totalUnbondEligible,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(contract) ^
-      const DeepCollectionEquality().hash(activeStake) ^
-      const DeepCollectionEquality().hash(activeStakeShort) ^
-      const DeepCollectionEquality().hash(unDelegateInfo) ^
-      const DeepCollectionEquality().hash(claimableRewards) ^
-      const DeepCollectionEquality().hash(claimableRewardsShort) ^
-      const DeepCollectionEquality().hash(totalUnbondEligible) ^
-      runtimeType.hashCode;
 }
 
 extension $DelegationDataOutputExtension on DelegationDataOutput {
@@ -6358,67 +3967,6 @@ class SwapDto {
   @JsonKey(name: 'arguments', defaultValue: <List<Object?>>[])
   final List<List<Object?>> arguments;
   static const fromJsonFactory = _$SwapDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SwapDto &&
-            (identical(other.poolId, poolId) ||
-                const DeepCollectionEquality().equals(other.poolId, poolId)) &&
-            (identical(other.assetInIndex, assetInIndex) ||
-                const DeepCollectionEquality().equals(
-                  other.assetInIndex,
-                  assetInIndex,
-                )) &&
-            (identical(other.assetOutIndex, assetOutIndex) ||
-                const DeepCollectionEquality().equals(
-                  other.assetOutIndex,
-                  assetOutIndex,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.returnAmount, returnAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.returnAmount,
-                  returnAmount,
-                )) &&
-            (identical(other.assetIn, assetIn) ||
-                const DeepCollectionEquality().equals(
-                  other.assetIn,
-                  assetIn,
-                )) &&
-            (identical(other.assetOut, assetOut) ||
-                const DeepCollectionEquality().equals(
-                  other.assetOut,
-                  assetOut,
-                )) &&
-            (identical(other.functionName, functionName) ||
-                const DeepCollectionEquality().equals(
-                  other.functionName,
-                  functionName,
-                )) &&
-            (identical(other.arguments, arguments) ||
-                const DeepCollectionEquality().equals(
-                  other.arguments,
-                  arguments,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(poolId) ^
-      const DeepCollectionEquality().hash(assetInIndex) ^
-      const DeepCollectionEquality().hash(assetOutIndex) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(returnAmount) ^
-      const DeepCollectionEquality().hash(assetIn) ^
-      const DeepCollectionEquality().hash(assetOut) ^
-      const DeepCollectionEquality().hash(functionName) ^
-      const DeepCollectionEquality().hash(arguments) ^
-      runtimeType.hashCode;
 }
 
 extension $SwapDtoExtension on SwapDto {
@@ -6494,28 +4042,6 @@ class AshTokenDto {
   @JsonKey(name: 'decimal')
   final double decimal;
   static const fromJsonFactory = _$AshTokenDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AshTokenDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.decimal, decimal) ||
-                const DeepCollectionEquality().equals(other.decimal, decimal)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(decimal) ^
-      runtimeType.hashCode;
 }
 
 extension $AshTokenDtoExtension on AshTokenDto {
@@ -6552,28 +4078,6 @@ class PoolDto {
   @JsonKey(name: 'type')
   final String type;
   static const fromJsonFactory = _$PoolDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PoolDto &&
-            (identical(other.allTokens, allTokens) ||
-                const DeepCollectionEquality().equals(
-                  other.allTokens,
-                  allTokens,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(allTokens) ^
-      const DeepCollectionEquality().hash(type) ^
-      runtimeType.hashCode;
 }
 
 extension $PoolDtoExtension on PoolDto {
@@ -6624,49 +4128,6 @@ class HopDto {
   @JsonKey(name: 'tokenOutAmount')
   final String tokenOutAmount;
   static const fromJsonFactory = _$HopDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is HopDto &&
-            (identical(other.poolId, poolId) ||
-                const DeepCollectionEquality().equals(other.poolId, poolId)) &&
-            (identical(other.pool, pool) ||
-                const DeepCollectionEquality().equals(other.pool, pool)) &&
-            (identical(other.tokenIn, tokenIn) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIn,
-                  tokenIn,
-                )) &&
-            (identical(other.tokenInAmount, tokenInAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenInAmount,
-                  tokenInAmount,
-                )) &&
-            (identical(other.tokenOut, tokenOut) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOut,
-                  tokenOut,
-                )) &&
-            (identical(other.tokenOutAmount, tokenOutAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOutAmount,
-                  tokenOutAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(poolId) ^
-      const DeepCollectionEquality().hash(pool) ^
-      const DeepCollectionEquality().hash(tokenIn) ^
-      const DeepCollectionEquality().hash(tokenInAmount) ^
-      const DeepCollectionEquality().hash(tokenOut) ^
-      const DeepCollectionEquality().hash(tokenOutAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $HopDtoExtension on HopDto {
@@ -6738,46 +4199,6 @@ class RouteDto {
   @JsonKey(name: 'tokenOutAmount')
   final String tokenOutAmount;
   static const fromJsonFactory = _$RouteDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RouteDto &&
-            (identical(other.hops, hops) ||
-                const DeepCollectionEquality().equals(other.hops, hops)) &&
-            (identical(other.tokenIn, tokenIn) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIn,
-                  tokenIn,
-                )) &&
-            (identical(other.tokenInAmount, tokenInAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenInAmount,
-                  tokenInAmount,
-                )) &&
-            (identical(other.tokenOut, tokenOut) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOut,
-                  tokenOut,
-                )) &&
-            (identical(other.tokenOutAmount, tokenOutAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOutAmount,
-                  tokenOutAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(hops) ^
-      const DeepCollectionEquality().hash(tokenIn) ^
-      const DeepCollectionEquality().hash(tokenInAmount) ^
-      const DeepCollectionEquality().hash(tokenOut) ^
-      const DeepCollectionEquality().hash(tokenOutAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $RouteDtoExtension on RouteDto {
@@ -6878,115 +4299,6 @@ class OriginalDto {
   @JsonKey(name: 'minReturnAmountWithDecimal')
   final String minReturnAmountWithDecimal;
   static const fromJsonFactory = _$OriginalDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OriginalDto &&
-            (identical(other.tokenAddresses, tokenAddresses) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenAddresses,
-                  tokenAddresses,
-                )) &&
-            (identical(other.swaps, swaps) ||
-                const DeepCollectionEquality().equals(other.swaps, swaps)) &&
-            (identical(other.swapAmount, swapAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.swapAmount,
-                  swapAmount,
-                )) &&
-            (identical(other.returnAmount, returnAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.returnAmount,
-                  returnAmount,
-                )) &&
-            (identical(other.swapAmountWithDecimal, swapAmountWithDecimal) ||
-                const DeepCollectionEquality().equals(
-                  other.swapAmountWithDecimal,
-                  swapAmountWithDecimal,
-                )) &&
-            (identical(
-                  other.returnAmountWithDecimal,
-                  returnAmountWithDecimal,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.returnAmountWithDecimal,
-                  returnAmountWithDecimal,
-                )) &&
-            (identical(other.tokenIn, tokenIn) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIn,
-                  tokenIn,
-                )) &&
-            (identical(other.tokenOut, tokenOut) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOut,
-                  tokenOut,
-                )) &&
-            (identical(other.marketSp, marketSp) ||
-                const DeepCollectionEquality().equals(
-                  other.marketSp,
-                  marketSp,
-                )) &&
-            (identical(other.routes, routes) ||
-                const DeepCollectionEquality().equals(other.routes, routes)) &&
-            (identical(other.effectivePrice, effectivePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.effectivePrice,
-                  effectivePrice,
-                )) &&
-            (identical(other.effectivePriceReserved, effectivePriceReserved) ||
-                const DeepCollectionEquality().equals(
-                  other.effectivePriceReserved,
-                  effectivePriceReserved,
-                )) &&
-            (identical(other.priceImpact, priceImpact) ||
-                const DeepCollectionEquality().equals(
-                  other.priceImpact,
-                  priceImpact,
-                )) &&
-            (identical(other.warning, warning) ||
-                const DeepCollectionEquality().equals(
-                  other.warning,
-                  warning,
-                )) &&
-            (identical(other.minReturnAmount, minReturnAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.minReturnAmount,
-                  minReturnAmount,
-                )) &&
-            (identical(
-                  other.minReturnAmountWithDecimal,
-                  minReturnAmountWithDecimal,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.minReturnAmountWithDecimal,
-                  minReturnAmountWithDecimal,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenAddresses) ^
-      const DeepCollectionEquality().hash(swaps) ^
-      const DeepCollectionEquality().hash(swapAmount) ^
-      const DeepCollectionEquality().hash(returnAmount) ^
-      const DeepCollectionEquality().hash(swapAmountWithDecimal) ^
-      const DeepCollectionEquality().hash(returnAmountWithDecimal) ^
-      const DeepCollectionEquality().hash(tokenIn) ^
-      const DeepCollectionEquality().hash(tokenOut) ^
-      const DeepCollectionEquality().hash(marketSp) ^
-      const DeepCollectionEquality().hash(routes) ^
-      const DeepCollectionEquality().hash(effectivePrice) ^
-      const DeepCollectionEquality().hash(effectivePriceReserved) ^
-      const DeepCollectionEquality().hash(priceImpact) ^
-      const DeepCollectionEquality().hash(warning) ^
-      const DeepCollectionEquality().hash(minReturnAmount) ^
-      const DeepCollectionEquality().hash(minReturnAmountWithDecimal) ^
-      runtimeType.hashCode;
 }
 
 extension $OriginalDtoExtension on OriginalDto {
@@ -7120,58 +4432,6 @@ class FetchSwapRoutesResponseDto {
   @JsonKey(name: 'original')
   final OriginalDto original;
   static const fromJsonFactory = _$FetchSwapRoutesResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FetchSwapRoutesResponseDto &&
-            (identical(other.argument, argument) ||
-                const DeepCollectionEquality().equals(
-                  other.argument,
-                  argument,
-                )) &&
-            (identical(other.limits, limits) ||
-                const DeepCollectionEquality().equals(other.limits, limits)) &&
-            (identical(other.extraGasLimit, extraGasLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.extraGasLimit,
-                  extraGasLimit,
-                )) &&
-            (identical(other.swapAmount, swapAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.swapAmount,
-                  swapAmount,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.bigUintAmount, bigUintAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.bigUintAmount,
-                  bigUintAmount,
-                )) &&
-            (identical(other.original, original) ||
-                const DeepCollectionEquality().equals(
-                  other.original,
-                  original,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(argument) ^
-      const DeepCollectionEquality().hash(limits) ^
-      const DeepCollectionEquality().hash(extraGasLimit) ^
-      const DeepCollectionEquality().hash(swapAmount) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(bigUintAmount) ^
-      const DeepCollectionEquality().hash(original) ^
-      runtimeType.hashCode;
 }
 
 extension $FetchSwapRoutesResponseDtoExtension on FetchSwapRoutesResponseDto {
@@ -7258,67 +4518,6 @@ class ArdaSwapResultDto {
   @JsonKey(name: 'gasLimit')
   final double gasLimit;
   static const fromJsonFactory = _$ArdaSwapResultDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ArdaSwapResultDto &&
-            (identical(other.tokenIn, tokenIn) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIn,
-                  tokenIn,
-                )) &&
-            (identical(other.amountIn, amountIn) ||
-                const DeepCollectionEquality().equals(
-                  other.amountIn,
-                  amountIn,
-                )) &&
-            (identical(other.amountInShort, amountInShort) ||
-                const DeepCollectionEquality().equals(
-                  other.amountInShort,
-                  amountInShort,
-                )) &&
-            (identical(other.tokenOut, tokenOut) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenOut,
-                  tokenOut,
-                )) &&
-            (identical(other.amountOut, amountOut) ||
-                const DeepCollectionEquality().equals(
-                  other.amountOut,
-                  amountOut,
-                )) &&
-            (identical(other.amountOutShort, amountOutShort) ||
-                const DeepCollectionEquality().equals(
-                  other.amountOutShort,
-                  amountOutShort,
-                )) &&
-            (identical(other.argument, argument) ||
-                const DeepCollectionEquality().equals(
-                  other.argument,
-                  argument,
-                )) &&
-            (identical(other.gasLimit, gasLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.gasLimit,
-                  gasLimit,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIn) ^
-      const DeepCollectionEquality().hash(amountIn) ^
-      const DeepCollectionEquality().hash(amountInShort) ^
-      const DeepCollectionEquality().hash(tokenOut) ^
-      const DeepCollectionEquality().hash(amountOut) ^
-      const DeepCollectionEquality().hash(amountOutShort) ^
-      const DeepCollectionEquality().hash(argument) ^
-      const DeepCollectionEquality().hash(gasLimit) ^
-      runtimeType.hashCode;
 }
 
 extension $ArdaSwapResultDtoExtension on ArdaSwapResultDto {
@@ -7395,43 +4594,6 @@ class OraclePriceFluctuation {
   @JsonKey(name: 'lastLowerRatio')
   final int lastLowerRatio;
   static const fromJsonFactory = _$OraclePriceFluctuationFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OraclePriceFluctuation &&
-            (identical(other.firstUpperRatio, firstUpperRatio) ||
-                const DeepCollectionEquality().equals(
-                  other.firstUpperRatio,
-                  firstUpperRatio,
-                )) &&
-            (identical(other.firstLowerRatio, firstLowerRatio) ||
-                const DeepCollectionEquality().equals(
-                  other.firstLowerRatio,
-                  firstLowerRatio,
-                )) &&
-            (identical(other.lastUpperRatio, lastUpperRatio) ||
-                const DeepCollectionEquality().equals(
-                  other.lastUpperRatio,
-                  lastUpperRatio,
-                )) &&
-            (identical(other.lastLowerRatio, lastLowerRatio) ||
-                const DeepCollectionEquality().equals(
-                  other.lastLowerRatio,
-                  lastLowerRatio,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(firstUpperRatio) ^
-      const DeepCollectionEquality().hash(firstLowerRatio) ^
-      const DeepCollectionEquality().hash(lastUpperRatio) ^
-      const DeepCollectionEquality().hash(lastLowerRatio) ^
-      runtimeType.hashCode;
 }
 
 extension $OraclePriceFluctuationExtension on OraclePriceFluctuation {
@@ -7526,79 +4688,6 @@ class LendingOracleUpdateStruct {
   @JsonKey(name: 'maxPriceStaleSeconds')
   final int maxPriceStaleSeconds;
   static const fromJsonFactory = _$LendingOracleUpdateStructFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingOracleUpdateStruct &&
-            (identical(other.baseTokenId, baseTokenId) ||
-                const DeepCollectionEquality().equals(
-                  other.baseTokenId,
-                  baseTokenId,
-                )) &&
-            (identical(other.quoteTokenId, quoteTokenId) ||
-                const DeepCollectionEquality().equals(
-                  other.quoteTokenId,
-                  quoteTokenId,
-                )) &&
-            (identical(other.tolerance, tolerance) ||
-                const DeepCollectionEquality().equals(
-                  other.tolerance,
-                  tolerance,
-                )) &&
-            (identical(other.oracleContractAddress, oracleContractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.oracleContractAddress,
-                  oracleContractAddress,
-                )) &&
-            (identical(other.pricingMethod, pricingMethod) ||
-                const DeepCollectionEquality().equals(
-                  other.pricingMethod,
-                  pricingMethod,
-                )) &&
-            (identical(other.oracleType, oracleType) ||
-                const DeepCollectionEquality().equals(
-                  other.oracleType,
-                  oracleType,
-                )) &&
-            (identical(other.exchangeSource, exchangeSource) ||
-                const DeepCollectionEquality().equals(
-                  other.exchangeSource,
-                  exchangeSource,
-                )) &&
-            (identical(other.assetDecimals, assetDecimals) ||
-                const DeepCollectionEquality().equals(
-                  other.assetDecimals,
-                  assetDecimals,
-                )) &&
-            (identical(other.onedexPairId, onedexPairId) ||
-                const DeepCollectionEquality().equals(
-                  other.onedexPairId,
-                  onedexPairId,
-                )) &&
-            (identical(other.maxPriceStaleSeconds, maxPriceStaleSeconds) ||
-                const DeepCollectionEquality().equals(
-                  other.maxPriceStaleSeconds,
-                  maxPriceStaleSeconds,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(baseTokenId) ^
-      const DeepCollectionEquality().hash(quoteTokenId) ^
-      const DeepCollectionEquality().hash(tolerance) ^
-      const DeepCollectionEquality().hash(oracleContractAddress) ^
-      const DeepCollectionEquality().hash(pricingMethod) ^
-      const DeepCollectionEquality().hash(oracleType) ^
-      const DeepCollectionEquality().hash(exchangeSource) ^
-      const DeepCollectionEquality().hash(assetDecimals) ^
-      const DeepCollectionEquality().hash(onedexPairId) ^
-      const DeepCollectionEquality().hash(maxPriceStaleSeconds) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingOracleUpdateStructExtension on LendingOracleUpdateStruct {
@@ -7685,25 +4774,6 @@ class LendingMarketParticipants {
   @JsonKey(name: 'wallets', defaultValue: <List<Object?>>[])
   final List<List<Object?>> wallets;
   static const fromJsonFactory = _$LendingMarketParticipantsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketParticipants &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.wallets, wallets) ||
-                const DeepCollectionEquality().equals(other.wallets, wallets)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(wallets) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketParticipantsExtension on LendingMarketParticipants {
@@ -7743,28 +4813,6 @@ class MarketExtraApy {
   @JsonKey(name: 'feesApr')
   final double? feesApr;
   static const fromJsonFactory = _$MarketExtraApyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MarketExtraApy &&
-            (identical(other.nativeApy, nativeApy) ||
-                const DeepCollectionEquality().equals(
-                  other.nativeApy,
-                  nativeApy,
-                )) &&
-            (identical(other.feesApr, feesApr) ||
-                const DeepCollectionEquality().equals(other.feesApr, feesApr)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(nativeApy) ^
-      const DeepCollectionEquality().hash(feesApr) ^
-      runtimeType.hashCode;
 }
 
 extension $MarketExtraApyExtension on MarketExtraApy {
@@ -7852,133 +4900,6 @@ class LendingIndexesDto {
   @JsonKey(name: 'withinSecondTolerance')
   final bool withinSecondTolerance;
   static const fromJsonFactory = _$LendingIndexesDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingIndexesDto &&
-            (identical(other.supplyIndex, supplyIndex) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyIndex,
-                  supplyIndex,
-                )) &&
-            (identical(other.supplyIndexShort, supplyIndexShort) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyIndexShort,
-                  supplyIndexShort,
-                )) &&
-            (identical(other.borrowIndex, borrowIndex) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowIndex,
-                  borrowIndex,
-                )) &&
-            (identical(other.borrowIndexShort, borrowIndexShort) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowIndexShort,
-                  borrowIndexShort,
-                )) &&
-            (identical(other.egldPrice, egldPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.egldPrice,
-                  egldPrice,
-                )) &&
-            (identical(other.egldPriceShort, egldPriceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.egldPriceShort,
-                  egldPriceShort,
-                )) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )) &&
-            (identical(other.usdPriceShort, usdPriceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPriceShort,
-                  usdPriceShort,
-                )) &&
-            (identical(other.safePriceEgld, safePriceEgld) ||
-                const DeepCollectionEquality().equals(
-                  other.safePriceEgld,
-                  safePriceEgld,
-                )) &&
-            (identical(other.safePriceEgldShort, safePriceEgldShort) ||
-                const DeepCollectionEquality().equals(
-                  other.safePriceEgldShort,
-                  safePriceEgldShort,
-                )) &&
-            (identical(other.safePriceUsd, safePriceUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.safePriceUsd,
-                  safePriceUsd,
-                )) &&
-            (identical(other.safePriceUsdShort, safePriceUsdShort) ||
-                const DeepCollectionEquality().equals(
-                  other.safePriceUsdShort,
-                  safePriceUsdShort,
-                )) &&
-            (identical(other.aggregatorPriceEgld, aggregatorPriceEgld) ||
-                const DeepCollectionEquality().equals(
-                  other.aggregatorPriceEgld,
-                  aggregatorPriceEgld,
-                )) &&
-            (identical(
-                  other.aggregatorPriceEgldShort,
-                  aggregatorPriceEgldShort,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.aggregatorPriceEgldShort,
-                  aggregatorPriceEgldShort,
-                )) &&
-            (identical(other.aggregatorPriceUsd, aggregatorPriceUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.aggregatorPriceUsd,
-                  aggregatorPriceUsd,
-                )) &&
-            (identical(
-                  other.aggregatorPriceUsdShort,
-                  aggregatorPriceUsdShort,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.aggregatorPriceUsdShort,
-                  aggregatorPriceUsdShort,
-                )) &&
-            (identical(other.withinFirstTolerance, withinFirstTolerance) ||
-                const DeepCollectionEquality().equals(
-                  other.withinFirstTolerance,
-                  withinFirstTolerance,
-                )) &&
-            (identical(other.withinSecondTolerance, withinSecondTolerance) ||
-                const DeepCollectionEquality().equals(
-                  other.withinSecondTolerance,
-                  withinSecondTolerance,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(supplyIndex) ^
-      const DeepCollectionEquality().hash(supplyIndexShort) ^
-      const DeepCollectionEquality().hash(borrowIndex) ^
-      const DeepCollectionEquality().hash(borrowIndexShort) ^
-      const DeepCollectionEquality().hash(egldPrice) ^
-      const DeepCollectionEquality().hash(egldPriceShort) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
-      const DeepCollectionEquality().hash(usdPriceShort) ^
-      const DeepCollectionEquality().hash(safePriceEgld) ^
-      const DeepCollectionEquality().hash(safePriceEgldShort) ^
-      const DeepCollectionEquality().hash(safePriceUsd) ^
-      const DeepCollectionEquality().hash(safePriceUsdShort) ^
-      const DeepCollectionEquality().hash(aggregatorPriceEgld) ^
-      const DeepCollectionEquality().hash(aggregatorPriceEgldShort) ^
-      const DeepCollectionEquality().hash(aggregatorPriceUsd) ^
-      const DeepCollectionEquality().hash(aggregatorPriceUsdShort) ^
-      const DeepCollectionEquality().hash(withinFirstTolerance) ^
-      const DeepCollectionEquality().hash(withinSecondTolerance) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingIndexesDtoExtension on LendingIndexesDto {
@@ -8282,328 +5203,6 @@ class LendingMarketProfile {
   @JsonKey(name: 'indexes')
   final LendingIndexesDto indexes;
   static const fromJsonFactory = _$LendingMarketProfileFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketProfile &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.baseRate, baseRate) ||
-                const DeepCollectionEquality().equals(
-                  other.baseRate,
-                  baseRate,
-                )) &&
-            (identical(other.maxBorrowRate, maxBorrowRate) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBorrowRate,
-                  maxBorrowRate,
-                )) &&
-            (identical(other.slopeRate1, slopeRate1) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate1,
-                  slopeRate1,
-                )) &&
-            (identical(other.slopeRate2, slopeRate2) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate2,
-                  slopeRate2,
-                )) &&
-            (identical(other.slopeRate3, slopeRate3) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate3,
-                  slopeRate3,
-                )) &&
-            (identical(other.midUsageRate, midUsageRate) ||
-                const DeepCollectionEquality().equals(
-                  other.midUsageRate,
-                  midUsageRate,
-                )) &&
-            (identical(other.optimalUsageRate, optimalUsageRate) ||
-                const DeepCollectionEquality().equals(
-                  other.optimalUsageRate,
-                  optimalUsageRate,
-                )) &&
-            (identical(other.reserveFactor, reserveFactor) ||
-                const DeepCollectionEquality().equals(
-                  other.reserveFactor,
-                  reserveFactor,
-                )) &&
-            (identical(other.liquidationFee, liquidationFee) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationFee,
-                  liquidationFee,
-                )) &&
-            (identical(other.ltv, ltv) ||
-                const DeepCollectionEquality().equals(other.ltv, ltv)) &&
-            (identical(other.liquidationBonus, liquidationBonus) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationBonus,
-                  liquidationBonus,
-                )) &&
-            (identical(other.liquidationThreshold, liquidationThreshold) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationThreshold,
-                  liquidationThreshold,
-                )) &&
-            (identical(other.rewardsReserve, rewardsReserve) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardsReserve,
-                  rewardsReserve,
-                )) &&
-            (identical(other.rewardsReserveShort, rewardsReserveShort) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardsReserveShort,
-                  rewardsReserveShort,
-                )) &&
-            (identical(other.reserves, reserves) ||
-                const DeepCollectionEquality().equals(
-                  other.reserves,
-                  reserves,
-                )) &&
-            (identical(other.reservesShort, reservesShort) ||
-                const DeepCollectionEquality().equals(
-                  other.reservesShort,
-                  reservesShort,
-                )) &&
-            (identical(other.supplyAmount, supplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmount,
-                  supplyAmount,
-                )) &&
-            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmountScaled,
-                  supplyAmountScaled,
-                )) &&
-            (identical(other.borrowAmount, borrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmount,
-                  borrowAmount,
-                )) &&
-            (identical(other.supplyAmountShort, supplyAmountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmountShort,
-                  supplyAmountShort,
-                )) &&
-            (identical(other.borrowAmountShort, borrowAmountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmountShort,
-                  borrowAmountShort,
-                )) &&
-            (identical(other.borrowAmountScaled, borrowAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmountScaled,
-                  borrowAmountScaled,
-                )) &&
-            (identical(other.supplyCap, supplyCap) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyCap,
-                  supplyCap,
-                )) &&
-            (identical(other.borrowCap, borrowCap) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowCap,
-                  borrowCap,
-                )) &&
-            (identical(other.supplyCapShort, supplyCapShort) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyCapShort,
-                  supplyCapShort,
-                )) &&
-            (identical(other.borrowCapShort, borrowCapShort) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowCapShort,
-                  borrowCapShort,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.borrowApy, borrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowApy,
-                  borrowApy,
-                )) &&
-            (identical(other.supplyApy, supplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyApy,
-                  supplyApy,
-                )) &&
-            (identical(other.utilizationRate, utilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.utilizationRate,
-                  utilizationRate,
-                )) &&
-            (identical(other.canBeCollateral, canBeCollateral) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeCollateral,
-                  canBeCollateral,
-                )) &&
-            (identical(other.canBeBorrowed, canBeBorrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeBorrowed,
-                  canBeBorrowed,
-                )) &&
-            (identical(other.eMode, eMode) ||
-                const DeepCollectionEquality().equals(other.eMode, eMode)) &&
-            (identical(other.eModeCategories, eModeCategories) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategories,
-                  eModeCategories,
-                )) &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.maxDebtUsd, maxDebtUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDebtUsd,
-                  maxDebtUsd,
-                )) &&
-            (identical(other.maxDebtUsdShort, maxDebtUsdShort) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDebtUsdShort,
-                  maxDebtUsdShort,
-                )) &&
-            (identical(other.debtCeiling, debtCeiling) ||
-                const DeepCollectionEquality().equals(
-                  other.debtCeiling,
-                  debtCeiling,
-                )) &&
-            (identical(other.debtCeilingShort, debtCeilingShort) ||
-                const DeepCollectionEquality().equals(
-                  other.debtCeilingShort,
-                  debtCeilingShort,
-                )) &&
-            (identical(other.siloed, siloed) ||
-                const DeepCollectionEquality().equals(other.siloed, siloed)) &&
-            (identical(other.flashLoan, flashLoan) ||
-                const DeepCollectionEquality().equals(
-                  other.flashLoan,
-                  flashLoan,
-                )) &&
-            (identical(other.flashLoanFee, flashLoanFee) ||
-                const DeepCollectionEquality().equals(
-                  other.flashLoanFee,
-                  flashLoanFee,
-                )) &&
-            (identical(other.canBorrowInIsolation, canBorrowInIsolation) ||
-                const DeepCollectionEquality().equals(
-                  other.canBorrowInIsolation,
-                  canBorrowInIsolation,
-                )) &&
-            (identical(other.oracleProvider, oracleProvider) ||
-                const DeepCollectionEquality().equals(
-                  other.oracleProvider,
-                  oracleProvider,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.eModeCategoryProfiles, eModeCategoryProfiles) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategoryProfiles,
-                  eModeCategoryProfiles,
-                )) &&
-            (identical(other.participants, participants) ||
-                const DeepCollectionEquality().equals(
-                  other.participants,
-                  participants,
-                )) &&
-            (identical(other.extraApy, extraApy) ||
-                const DeepCollectionEquality().equals(
-                  other.extraApy,
-                  extraApy,
-                )) &&
-            (identical(other.indexes, indexes) ||
-                const DeepCollectionEquality().equals(other.indexes, indexes)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(baseRate) ^
-      const DeepCollectionEquality().hash(maxBorrowRate) ^
-      const DeepCollectionEquality().hash(slopeRate1) ^
-      const DeepCollectionEquality().hash(slopeRate2) ^
-      const DeepCollectionEquality().hash(slopeRate3) ^
-      const DeepCollectionEquality().hash(midUsageRate) ^
-      const DeepCollectionEquality().hash(optimalUsageRate) ^
-      const DeepCollectionEquality().hash(reserveFactor) ^
-      const DeepCollectionEquality().hash(liquidationFee) ^
-      const DeepCollectionEquality().hash(ltv) ^
-      const DeepCollectionEquality().hash(liquidationBonus) ^
-      const DeepCollectionEquality().hash(liquidationThreshold) ^
-      const DeepCollectionEquality().hash(rewardsReserve) ^
-      const DeepCollectionEquality().hash(rewardsReserveShort) ^
-      const DeepCollectionEquality().hash(reserves) ^
-      const DeepCollectionEquality().hash(reservesShort) ^
-      const DeepCollectionEquality().hash(supplyAmount) ^
-      const DeepCollectionEquality().hash(supplyAmountScaled) ^
-      const DeepCollectionEquality().hash(borrowAmount) ^
-      const DeepCollectionEquality().hash(supplyAmountShort) ^
-      const DeepCollectionEquality().hash(borrowAmountShort) ^
-      const DeepCollectionEquality().hash(borrowAmountScaled) ^
-      const DeepCollectionEquality().hash(supplyCap) ^
-      const DeepCollectionEquality().hash(borrowCap) ^
-      const DeepCollectionEquality().hash(supplyCapShort) ^
-      const DeepCollectionEquality().hash(borrowCapShort) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(borrowApy) ^
-      const DeepCollectionEquality().hash(supplyApy) ^
-      const DeepCollectionEquality().hash(utilizationRate) ^
-      const DeepCollectionEquality().hash(canBeCollateral) ^
-      const DeepCollectionEquality().hash(canBeBorrowed) ^
-      const DeepCollectionEquality().hash(eMode) ^
-      const DeepCollectionEquality().hash(eModeCategories) ^
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(maxDebtUsd) ^
-      const DeepCollectionEquality().hash(maxDebtUsdShort) ^
-      const DeepCollectionEquality().hash(debtCeiling) ^
-      const DeepCollectionEquality().hash(debtCeilingShort) ^
-      const DeepCollectionEquality().hash(siloed) ^
-      const DeepCollectionEquality().hash(flashLoan) ^
-      const DeepCollectionEquality().hash(flashLoanFee) ^
-      const DeepCollectionEquality().hash(canBorrowInIsolation) ^
-      const DeepCollectionEquality().hash(oracleProvider) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(eModeCategoryProfiles) ^
-      const DeepCollectionEquality().hash(participants) ^
-      const DeepCollectionEquality().hash(extraApy) ^
-      const DeepCollectionEquality().hash(indexes) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketProfileExtension on LendingMarketProfile {
@@ -8948,67 +5547,6 @@ class LendingMarketProfileFilterCriteriaDto {
   final bool? isDebtCeilingReached;
   static const fromJsonFactory =
       _$LendingMarketProfileFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketProfileFilterCriteriaDto &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)) &&
-            (identical(other.eMode, eMode) ||
-                const DeepCollectionEquality().equals(other.eMode, eMode)) &&
-            (identical(other.flashLoan, flashLoan) ||
-                const DeepCollectionEquality().equals(
-                  other.flashLoan,
-                  flashLoan,
-                )) &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.siloed, siloed) ||
-                const DeepCollectionEquality().equals(other.siloed, siloed)) &&
-            (identical(other.canBeCollateral, canBeCollateral) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeCollateral,
-                  canBeCollateral,
-                )) &&
-            (identical(other.canBeBorrowed, canBeBorrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeBorrowed,
-                  canBeBorrowed,
-                )) &&
-            (identical(other.canBorrowInIsolation, canBorrowInIsolation) ||
-                const DeepCollectionEquality().equals(
-                  other.canBorrowInIsolation,
-                  canBorrowInIsolation,
-                )) &&
-            (identical(other.isDebtCeilingReached, isDebtCeilingReached) ||
-                const DeepCollectionEquality().equals(
-                  other.isDebtCeilingReached,
-                  isDebtCeilingReached,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(range) ^
-      const DeepCollectionEquality().hash(eMode) ^
-      const DeepCollectionEquality().hash(flashLoan) ^
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(siloed) ^
-      const DeepCollectionEquality().hash(canBeCollateral) ^
-      const DeepCollectionEquality().hash(canBeBorrowed) ^
-      const DeepCollectionEquality().hash(canBorrowInIsolation) ^
-      const DeepCollectionEquality().hash(isDebtCeilingReached) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketProfileFilterCriteriaDtoExtension
@@ -9094,31 +5632,6 @@ class LendingMarketProfileExtraProperties {
   @JsonKey(name: 'participants')
   final bool? participants;
   static const fromJsonFactory = _$LendingMarketProfileExtraPropertiesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketProfileExtraProperties &&
-            (identical(other.eModeCategoryProfile, eModeCategoryProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategoryProfile,
-                  eModeCategoryProfile,
-                )) &&
-            (identical(other.participants, participants) ||
-                const DeepCollectionEquality().equals(
-                  other.participants,
-                  participants,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(eModeCategoryProfile) ^
-      const DeepCollectionEquality().hash(participants) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketProfileExtraPropertiesExtension
@@ -9184,58 +5697,6 @@ class LendingMarketProfileFilter {
   @JsonKey(name: 'extraProperties')
   final LendingMarketProfileExtraProperties? extraProperties;
   static const fromJsonFactory = _$LendingMarketProfileFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketProfileFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(
-                  other.filters,
-                  filters,
-                )) &&
-            (identical(other.extraProperties, extraProperties) ||
-                const DeepCollectionEquality().equals(
-                  other.extraProperties,
-                  extraProperties,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      const DeepCollectionEquality().hash(extraProperties) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketProfileFilterExtension on LendingMarketProfileFilter {
@@ -9311,34 +5772,6 @@ class LendingMarketProfileQuery {
   @JsonKey(name: 'resources', defaultValue: <LendingMarketProfile>[])
   final List<LendingMarketProfile> resources;
   static const fromJsonFactory = _$LendingMarketProfileQueryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketProfileQuery &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketProfileQueryExtension on LendingMarketProfileQuery {
@@ -9390,37 +5823,6 @@ class InitialPaymentMultiplier {
   @JsonKey(name: 'usdValue')
   final String usdValue;
   static const fromJsonFactory = _$InitialPaymentMultiplierFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is InitialPaymentMultiplier &&
-            (identical(other.initialPaymentAmount, initialPaymentAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.initialPaymentAmount,
-                  initialPaymentAmount,
-                )) &&
-            (identical(other.initialPaymentToken, initialPaymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.initialPaymentToken,
-                  initialPaymentToken,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(initialPaymentAmount) ^
-      const DeepCollectionEquality().hash(initialPaymentToken) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
 }
 
 extension $InitialPaymentMultiplierExtension on InitialPaymentMultiplier {
@@ -9496,58 +5898,6 @@ class LendingEModeCategoryProfileDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$LendingEModeCategoryProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingEModeCategoryProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.ltv, ltv) ||
-                const DeepCollectionEquality().equals(other.ltv, ltv)) &&
-            (identical(other.liquidationThreshold, liquidationThreshold) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationThreshold,
-                  liquidationThreshold,
-                )) &&
-            (identical(other.liquidationBonus, liquidationBonus) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationBonus,
-                  liquidationBonus,
-                )) &&
-            (identical(other.isDeprecated, isDeprecated) ||
-                const DeepCollectionEquality().equals(
-                  other.isDeprecated,
-                  isDeprecated,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(ltv) ^
-      const DeepCollectionEquality().hash(liquidationThreshold) ^
-      const DeepCollectionEquality().hash(liquidationBonus) ^
-      const DeepCollectionEquality().hash(isDeprecated) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingEModeCategoryProfileDocExtension
@@ -9739,244 +6089,6 @@ class PickTypeClass {
   @JsonKey(name: 'indexes')
   final LendingIndexesDto indexes;
   static const fromJsonFactory = _$PickTypeClassFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PickTypeClass &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.baseRate, baseRate) ||
-                const DeepCollectionEquality().equals(
-                  other.baseRate,
-                  baseRate,
-                )) &&
-            (identical(other.maxBorrowRate, maxBorrowRate) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBorrowRate,
-                  maxBorrowRate,
-                )) &&
-            (identical(other.slopeRate1, slopeRate1) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate1,
-                  slopeRate1,
-                )) &&
-            (identical(other.slopeRate2, slopeRate2) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate2,
-                  slopeRate2,
-                )) &&
-            (identical(other.slopeRate3, slopeRate3) ||
-                const DeepCollectionEquality().equals(
-                  other.slopeRate3,
-                  slopeRate3,
-                )) &&
-            (identical(other.midUsageRate, midUsageRate) ||
-                const DeepCollectionEquality().equals(
-                  other.midUsageRate,
-                  midUsageRate,
-                )) &&
-            (identical(other.optimalUsageRate, optimalUsageRate) ||
-                const DeepCollectionEquality().equals(
-                  other.optimalUsageRate,
-                  optimalUsageRate,
-                )) &&
-            (identical(other.reserveFactor, reserveFactor) ||
-                const DeepCollectionEquality().equals(
-                  other.reserveFactor,
-                  reserveFactor,
-                )) &&
-            (identical(other.liquidationFee, liquidationFee) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationFee,
-                  liquidationFee,
-                )) &&
-            (identical(other.ltv, ltv) ||
-                const DeepCollectionEquality().equals(other.ltv, ltv)) &&
-            (identical(other.liquidationBonus, liquidationBonus) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationBonus,
-                  liquidationBonus,
-                )) &&
-            (identical(other.liquidationThreshold, liquidationThreshold) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationThreshold,
-                  liquidationThreshold,
-                )) &&
-            (identical(other.rewardsReserve, rewardsReserve) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardsReserve,
-                  rewardsReserve,
-                )) &&
-            (identical(other.reserves, reserves) ||
-                const DeepCollectionEquality().equals(
-                  other.reserves,
-                  reserves,
-                )) &&
-            (identical(other.supplyAmount, supplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmount,
-                  supplyAmount,
-                )) &&
-            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmountScaled,
-                  supplyAmountScaled,
-                )) &&
-            (identical(other.borrowAmount, borrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmount,
-                  borrowAmount,
-                )) &&
-            (identical(other.borrowAmountScaled, borrowAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmountScaled,
-                  borrowAmountScaled,
-                )) &&
-            (identical(other.supplyCap, supplyCap) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyCap,
-                  supplyCap,
-                )) &&
-            (identical(other.borrowCap, borrowCap) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowCap,
-                  borrowCap,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.borrowApy, borrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowApy,
-                  borrowApy,
-                )) &&
-            (identical(other.supplyApy, supplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyApy,
-                  supplyApy,
-                )) &&
-            (identical(other.utilizationRate, utilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.utilizationRate,
-                  utilizationRate,
-                )) &&
-            (identical(other.canBeCollateral, canBeCollateral) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeCollateral,
-                  canBeCollateral,
-                )) &&
-            (identical(other.canBeBorrowed, canBeBorrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeBorrowed,
-                  canBeBorrowed,
-                )) &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.maxDebtUsd, maxDebtUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDebtUsd,
-                  maxDebtUsd,
-                )) &&
-            (identical(other.debtCeiling, debtCeiling) ||
-                const DeepCollectionEquality().equals(
-                  other.debtCeiling,
-                  debtCeiling,
-                )) &&
-            (identical(other.siloed, siloed) ||
-                const DeepCollectionEquality().equals(other.siloed, siloed)) &&
-            (identical(other.flashLoan, flashLoan) ||
-                const DeepCollectionEquality().equals(
-                  other.flashLoan,
-                  flashLoan,
-                )) &&
-            (identical(other.flashLoanFee, flashLoanFee) ||
-                const DeepCollectionEquality().equals(
-                  other.flashLoanFee,
-                  flashLoanFee,
-                )) &&
-            (identical(other.canBorrowInIsolation, canBorrowInIsolation) ||
-                const DeepCollectionEquality().equals(
-                  other.canBorrowInIsolation,
-                  canBorrowInIsolation,
-                )) &&
-            (identical(other.oracleProvider, oracleProvider) ||
-                const DeepCollectionEquality().equals(
-                  other.oracleProvider,
-                  oracleProvider,
-                )) &&
-            (identical(other.extraApy, extraApy) ||
-                const DeepCollectionEquality().equals(
-                  other.extraApy,
-                  extraApy,
-                )) &&
-            (identical(other.indexes, indexes) ||
-                const DeepCollectionEquality().equals(other.indexes, indexes)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(baseRate) ^
-      const DeepCollectionEquality().hash(maxBorrowRate) ^
-      const DeepCollectionEquality().hash(slopeRate1) ^
-      const DeepCollectionEquality().hash(slopeRate2) ^
-      const DeepCollectionEquality().hash(slopeRate3) ^
-      const DeepCollectionEquality().hash(midUsageRate) ^
-      const DeepCollectionEquality().hash(optimalUsageRate) ^
-      const DeepCollectionEquality().hash(reserveFactor) ^
-      const DeepCollectionEquality().hash(liquidationFee) ^
-      const DeepCollectionEquality().hash(ltv) ^
-      const DeepCollectionEquality().hash(liquidationBonus) ^
-      const DeepCollectionEquality().hash(liquidationThreshold) ^
-      const DeepCollectionEquality().hash(rewardsReserve) ^
-      const DeepCollectionEquality().hash(reserves) ^
-      const DeepCollectionEquality().hash(supplyAmount) ^
-      const DeepCollectionEquality().hash(supplyAmountScaled) ^
-      const DeepCollectionEquality().hash(borrowAmount) ^
-      const DeepCollectionEquality().hash(borrowAmountScaled) ^
-      const DeepCollectionEquality().hash(supplyCap) ^
-      const DeepCollectionEquality().hash(borrowCap) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(borrowApy) ^
-      const DeepCollectionEquality().hash(supplyApy) ^
-      const DeepCollectionEquality().hash(utilizationRate) ^
-      const DeepCollectionEquality().hash(canBeCollateral) ^
-      const DeepCollectionEquality().hash(canBeBorrowed) ^
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(maxDebtUsd) ^
-      const DeepCollectionEquality().hash(debtCeiling) ^
-      const DeepCollectionEquality().hash(siloed) ^
-      const DeepCollectionEquality().hash(flashLoan) ^
-      const DeepCollectionEquality().hash(flashLoanFee) ^
-      const DeepCollectionEquality().hash(canBorrowInIsolation) ^
-      const DeepCollectionEquality().hash(oracleProvider) ^
-      const DeepCollectionEquality().hash(extraApy) ^
-      const DeepCollectionEquality().hash(indexes) ^
-      runtimeType.hashCode;
 }
 
 extension $PickTypeClassExtension on PickTypeClass {
@@ -10278,148 +6390,6 @@ class LendingAccountProfile {
   @JsonKey(name: 'marketProfile')
   final PickTypeClass marketProfile;
   static const fromJsonFactory = _$LendingAccountProfileFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingAccountProfile &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.supplyAmountScaled, supplyAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmountScaled,
-                  supplyAmountScaled,
-                )) &&
-            (identical(other.borrowAmountScaled, borrowAmountScaled) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmountScaled,
-                  borrowAmountScaled,
-                )) &&
-            (identical(
-                  other.entryLiquidationThreshold,
-                  entryLiquidationThreshold,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.entryLiquidationThreshold,
-                  entryLiquidationThreshold,
-                )) &&
-            (identical(other.entryLiquidationBonus, entryLiquidationBonus) ||
-                const DeepCollectionEquality().equals(
-                  other.entryLiquidationBonus,
-                  entryLiquidationBonus,
-                )) &&
-            (identical(other.entryLiquidationFee, entryLiquidationFee) ||
-                const DeepCollectionEquality().equals(
-                  other.entryLiquidationFee,
-                  entryLiquidationFee,
-                )) &&
-            (identical(other.entryLtv, entryLtv) ||
-                const DeepCollectionEquality().equals(
-                  other.entryLtv,
-                  entryLtv,
-                )) &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.positionMode, positionMode) ||
-                const DeepCollectionEquality().equals(
-                  other.positionMode,
-                  positionMode,
-                )) &&
-            (identical(other.eModeCategory, eModeCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategory,
-                  eModeCategory,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(
-                  other.initialPaymentMultiplier,
-                  initialPaymentMultiplier,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.initialPaymentMultiplier,
-                  initialPaymentMultiplier,
-                )) &&
-            (identical(other.isClassic, isClassic) ||
-                const DeepCollectionEquality().equals(
-                  other.isClassic,
-                  isClassic,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.supplyAmount, supplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyAmount,
-                  supplyAmount,
-                )) &&
-            (identical(other.borrowAmount, borrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowAmount,
-                  borrowAmount,
-                )) &&
-            (identical(other.eModeCategoryProfile, eModeCategoryProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategoryProfile,
-                  eModeCategoryProfile,
-                )) &&
-            (identical(other.marketProfile, marketProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.marketProfile,
-                  marketProfile,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(supplyAmountScaled) ^
-      const DeepCollectionEquality().hash(borrowAmountScaled) ^
-      const DeepCollectionEquality().hash(entryLiquidationThreshold) ^
-      const DeepCollectionEquality().hash(entryLiquidationBonus) ^
-      const DeepCollectionEquality().hash(entryLiquidationFee) ^
-      const DeepCollectionEquality().hash(entryLtv) ^
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(positionMode) ^
-      const DeepCollectionEquality().hash(eModeCategory) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(initialPaymentMultiplier) ^
-      const DeepCollectionEquality().hash(isClassic) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(supplyAmount) ^
-      const DeepCollectionEquality().hash(borrowAmount) ^
-      const DeepCollectionEquality().hash(eModeCategoryProfile) ^
-      const DeepCollectionEquality().hash(marketProfile) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingAccountProfileExtension on LendingAccountProfile {
@@ -10594,76 +6564,6 @@ class LendingAccountSummary {
   @JsonKey(name: 'healthFactor')
   final String healthFactor;
   static const fromJsonFactory = _$LendingAccountSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingAccountSummary &&
-            (identical(other.supplied, supplied) ||
-                const DeepCollectionEquality().equals(
-                  other.supplied,
-                  supplied,
-                )) &&
-            (identical(other.borrowed, borrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowed,
-                  borrowed,
-                )) &&
-            (identical(
-                  other.liquidationCollateralInDollars,
-                  liquidationCollateralInDollars,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationCollateralInDollars,
-                  liquidationCollateralInDollars,
-                )) &&
-            (identical(other.collateralInDollars, collateralInDollars) ||
-                const DeepCollectionEquality().equals(
-                  other.collateralInDollars,
-                  collateralInDollars,
-                )) &&
-            (identical(other.borrowedInDollars, borrowedInDollars) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowedInDollars,
-                  borrowedInDollars,
-                )) &&
-            (identical(other.collateralInEgld, collateralInEgld) ||
-                const DeepCollectionEquality().equals(
-                  other.collateralInEgld,
-                  collateralInEgld,
-                )) &&
-            (identical(other.borrowedInEgld, borrowedInEgld) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowedInEgld,
-                  borrowedInEgld,
-                )) &&
-            (identical(other.totalApy, totalApy) ||
-                const DeepCollectionEquality().equals(
-                  other.totalApy,
-                  totalApy,
-                )) &&
-            (identical(other.healthFactor, healthFactor) ||
-                const DeepCollectionEquality().equals(
-                  other.healthFactor,
-                  healthFactor,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(supplied) ^
-      const DeepCollectionEquality().hash(borrowed) ^
-      const DeepCollectionEquality().hash(liquidationCollateralInDollars) ^
-      const DeepCollectionEquality().hash(collateralInDollars) ^
-      const DeepCollectionEquality().hash(borrowedInDollars) ^
-      const DeepCollectionEquality().hash(collateralInEgld) ^
-      const DeepCollectionEquality().hash(borrowedInEgld) ^
-      const DeepCollectionEquality().hash(totalApy) ^
-      const DeepCollectionEquality().hash(healthFactor) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingAccountSummaryExtension on LendingAccountSummary {
@@ -10755,40 +6655,6 @@ class ShortLendingTokenEModeProfileDoc {
   @JsonKey(name: 'eModeCategory')
   final String eModeCategory;
   static const fromJsonFactory = _$ShortLendingTokenEModeProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortLendingTokenEModeProfileDoc &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.canBeCollateral, canBeCollateral) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeCollateral,
-                  canBeCollateral,
-                )) &&
-            (identical(other.canBeBorrowed, canBeBorrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.canBeBorrowed,
-                  canBeBorrowed,
-                )) &&
-            (identical(other.eModeCategory, eModeCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategory,
-                  eModeCategory,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(canBeCollateral) ^
-      const DeepCollectionEquality().hash(canBeBorrowed) ^
-      const DeepCollectionEquality().hash(eModeCategory) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortLendingTokenEModeProfileDocExtension
@@ -10877,64 +6743,6 @@ class LendingEModeCategoryProfile {
   )
   final List<ShortLendingTokenEModeProfileDoc> eModeTokenProfiles;
   static const fromJsonFactory = _$LendingEModeCategoryProfileFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingEModeCategoryProfile &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.ltv, ltv) ||
-                const DeepCollectionEquality().equals(other.ltv, ltv)) &&
-            (identical(other.liquidationThreshold, liquidationThreshold) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationThreshold,
-                  liquidationThreshold,
-                )) &&
-            (identical(other.liquidationBonus, liquidationBonus) ||
-                const DeepCollectionEquality().equals(
-                  other.liquidationBonus,
-                  liquidationBonus,
-                )) &&
-            (identical(other.isDeprecated, isDeprecated) ||
-                const DeepCollectionEquality().equals(
-                  other.isDeprecated,
-                  isDeprecated,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.eModeTokenProfiles, eModeTokenProfiles) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeTokenProfiles,
-                  eModeTokenProfiles,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(ltv) ^
-      const DeepCollectionEquality().hash(liquidationThreshold) ^
-      const DeepCollectionEquality().hash(liquidationBonus) ^
-      const DeepCollectionEquality().hash(isDeprecated) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(eModeTokenProfiles) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingEModeCategoryProfileExtension on LendingEModeCategoryProfile {
@@ -11077,148 +6885,6 @@ class LendingMarketAnalyticsGraph {
   @JsonKey(name: 'twapBorrowAmount')
   final double twapBorrowAmount;
   static const fromJsonFactory = _$LendingMarketAnalyticsGraphFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingMarketAnalyticsGraph &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.minSupplyApy, minSupplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.minSupplyApy,
-                  minSupplyApy,
-                )) &&
-            (identical(other.maxSupplyApy, maxSupplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.maxSupplyApy,
-                  maxSupplyApy,
-                )) &&
-            (identical(other.avgSupplyApy, avgSupplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.avgSupplyApy,
-                  avgSupplyApy,
-                )) &&
-            (identical(other.minBorrowApy, minBorrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.minBorrowApy,
-                  minBorrowApy,
-                )) &&
-            (identical(other.maxBorrowApy, maxBorrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBorrowApy,
-                  maxBorrowApy,
-                )) &&
-            (identical(other.avgBorrowApy, avgBorrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.avgBorrowApy,
-                  avgBorrowApy,
-                )) &&
-            (identical(other.minUtilizationRate, minUtilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.minUtilizationRate,
-                  minUtilizationRate,
-                )) &&
-            (identical(other.maxUtilizationRate, maxUtilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUtilizationRate,
-                  maxUtilizationRate,
-                )) &&
-            (identical(other.avgUtilizationRate, avgUtilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.avgUtilizationRate,
-                  avgUtilizationRate,
-                )) &&
-            (identical(other.minSupplyAmount, minSupplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.minSupplyAmount,
-                  minSupplyAmount,
-                )) &&
-            (identical(other.maxSupplyAmount, maxSupplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxSupplyAmount,
-                  maxSupplyAmount,
-                )) &&
-            (identical(other.avgSupplyAmount, avgSupplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.avgSupplyAmount,
-                  avgSupplyAmount,
-                )) &&
-            (identical(other.minBorrowAmount, minBorrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.minBorrowAmount,
-                  minBorrowAmount,
-                )) &&
-            (identical(other.maxBorrowAmount, maxBorrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBorrowAmount,
-                  maxBorrowAmount,
-                )) &&
-            (identical(other.avgBorrowAmount, avgBorrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.avgBorrowAmount,
-                  avgBorrowAmount,
-                )) &&
-            (identical(other.twapSupplyApy, twapSupplyApy) ||
-                const DeepCollectionEquality().equals(
-                  other.twapSupplyApy,
-                  twapSupplyApy,
-                )) &&
-            (identical(other.twapBorrowApy, twapBorrowApy) ||
-                const DeepCollectionEquality().equals(
-                  other.twapBorrowApy,
-                  twapBorrowApy,
-                )) &&
-            (identical(other.twapUtilizationRate, twapUtilizationRate) ||
-                const DeepCollectionEquality().equals(
-                  other.twapUtilizationRate,
-                  twapUtilizationRate,
-                )) &&
-            (identical(other.twapSupplyAmount, twapSupplyAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.twapSupplyAmount,
-                  twapSupplyAmount,
-                )) &&
-            (identical(other.twapBorrowAmount, twapBorrowAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.twapBorrowAmount,
-                  twapBorrowAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(minSupplyApy) ^
-      const DeepCollectionEquality().hash(maxSupplyApy) ^
-      const DeepCollectionEquality().hash(avgSupplyApy) ^
-      const DeepCollectionEquality().hash(minBorrowApy) ^
-      const DeepCollectionEquality().hash(maxBorrowApy) ^
-      const DeepCollectionEquality().hash(avgBorrowApy) ^
-      const DeepCollectionEquality().hash(minUtilizationRate) ^
-      const DeepCollectionEquality().hash(maxUtilizationRate) ^
-      const DeepCollectionEquality().hash(avgUtilizationRate) ^
-      const DeepCollectionEquality().hash(minSupplyAmount) ^
-      const DeepCollectionEquality().hash(maxSupplyAmount) ^
-      const DeepCollectionEquality().hash(avgSupplyAmount) ^
-      const DeepCollectionEquality().hash(minBorrowAmount) ^
-      const DeepCollectionEquality().hash(maxBorrowAmount) ^
-      const DeepCollectionEquality().hash(avgBorrowAmount) ^
-      const DeepCollectionEquality().hash(twapSupplyApy) ^
-      const DeepCollectionEquality().hash(twapBorrowApy) ^
-      const DeepCollectionEquality().hash(twapUtilizationRate) ^
-      const DeepCollectionEquality().hash(twapSupplyAmount) ^
-      const DeepCollectionEquality().hash(twapBorrowAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingMarketAnalyticsGraphExtension on LendingMarketAnalyticsGraph {
@@ -11374,12 +7040,6 @@ class LendingMarketAverageGraph {
   Map<String, dynamic> toJson() => _$LendingMarketAverageGraphToJson(this);
 
   static const fromJsonFactory = _$LendingMarketAverageGraphFromJson;
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -11403,34 +7063,6 @@ class OwnerDto {
   @JsonKey(name: 'profile')
   final String profile;
   static const fromJsonFactory = _$OwnerDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OwnerDto &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(profile) ^
-      runtimeType.hashCode;
 }
 
 extension $OwnerDtoExtension on OwnerDto {
@@ -11495,64 +7127,6 @@ class LendingPositionStatus {
   )
   final enums.LendingPositionStatusPositionMode positionMode;
   static const fromJsonFactory = _$LendingPositionStatusFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingPositionStatus &&
-            (identical(other.position, position) ||
-                const DeepCollectionEquality().equals(
-                  other.position,
-                  position,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.supplied, supplied) ||
-                const DeepCollectionEquality().equals(
-                  other.supplied,
-                  supplied,
-                )) &&
-            (identical(other.borrowed, borrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowed,
-                  borrowed,
-                )) &&
-            (identical(other.healthFactor, healthFactor) ||
-                const DeepCollectionEquality().equals(
-                  other.healthFactor,
-                  healthFactor,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.isEMode, isEMode) ||
-                const DeepCollectionEquality().equals(
-                  other.isEMode,
-                  isEMode,
-                )) &&
-            (identical(other.positionMode, positionMode) ||
-                const DeepCollectionEquality().equals(
-                  other.positionMode,
-                  positionMode,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(position) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(supplied) ^
-      const DeepCollectionEquality().hash(borrowed) ^
-      const DeepCollectionEquality().hash(healthFactor) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(isEMode) ^
-      const DeepCollectionEquality().hash(positionMode) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingPositionStatusExtension on LendingPositionStatus {
@@ -11641,67 +7215,6 @@ class LendingOverallStats {
   @JsonKey(name: 'borrowedMargin')
   final double borrowedMargin;
   static const fromJsonFactory = _$LendingOverallStatsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingOverallStats &&
-            (identical(other.topMarkets, topMarkets) ||
-                const DeepCollectionEquality().equals(
-                  other.topMarkets,
-                  topMarkets,
-                )) &&
-            (identical(other.marketCount, marketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.marketCount,
-                  marketCount,
-                )) &&
-            (identical(other.supplied, supplied) ||
-                const DeepCollectionEquality().equals(
-                  other.supplied,
-                  supplied,
-                )) &&
-            (identical(other.participantsCount, participantsCount) ||
-                const DeepCollectionEquality().equals(
-                  other.participantsCount,
-                  participantsCount,
-                )) &&
-            (identical(other.bestApy, bestApy) ||
-                const DeepCollectionEquality().equals(
-                  other.bestApy,
-                  bestApy,
-                )) &&
-            (identical(other.borrowed, borrowed) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowed,
-                  borrowed,
-                )) &&
-            (identical(other.suppliedMargin, suppliedMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.suppliedMargin,
-                  suppliedMargin,
-                )) &&
-            (identical(other.borrowedMargin, borrowedMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowedMargin,
-                  borrowedMargin,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(topMarkets) ^
-      const DeepCollectionEquality().hash(marketCount) ^
-      const DeepCollectionEquality().hash(supplied) ^
-      const DeepCollectionEquality().hash(participantsCount) ^
-      const DeepCollectionEquality().hash(bestApy) ^
-      const DeepCollectionEquality().hash(borrowed) ^
-      const DeepCollectionEquality().hash(suppliedMargin) ^
-      const DeepCollectionEquality().hash(borrowedMargin) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingOverallStatsExtension on LendingOverallStats {
@@ -11780,40 +7293,6 @@ class SaleInfoFilterDto {
   @JsonKey(name: 'auctionType', defaultValue: <String>[])
   final List<String>? auctionType;
   static const fromJsonFactory = _$SaleInfoFilterDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SaleInfoFilterDto &&
-            (identical(other.seller, seller) ||
-                const DeepCollectionEquality().equals(other.seller, seller)) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(seller) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      runtimeType.hashCode;
 }
 
 extension $SaleInfoFilterDtoExtension on SaleInfoFilterDto {
@@ -11862,28 +7341,6 @@ class Rarity {
   @JsonKey(name: 'rarityScore')
   final double? rarityScore;
   static const fromJsonFactory = _$RarityFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Rarity &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)) &&
-            (identical(other.rarityScore, rarityScore) ||
-                const DeepCollectionEquality().equals(
-                  other.rarityScore,
-                  rarityScore,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rank) ^
-      const DeepCollectionEquality().hash(rarityScore) ^
-      runtimeType.hashCode;
 }
 
 extension $RarityExtension on Rarity {
@@ -11917,28 +7374,6 @@ class NftMetadataAttributes {
   @JsonKey(name: 'value')
   final String $value;
   static const fromJsonFactory = _$NftMetadataAttributesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftMetadataAttributes &&
-            (identical(other.traitType, traitType) ||
-                const DeepCollectionEquality().equals(
-                  other.traitType,
-                  traitType,
-                )) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(traitType) ^
-      const DeepCollectionEquality().hash($value) ^
-      runtimeType.hashCode;
 }
 
 extension $NftMetadataAttributesExtension on NftMetadataAttributes {
@@ -11984,40 +7419,6 @@ class NftMetadata {
   @JsonKey(name: 'attributes', defaultValue: <NftMetadataAttributes>[])
   final List<NftMetadataAttributes>? attributes;
   static const fromJsonFactory = _$NftMetadataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftMetadata &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.rarity, rarity) ||
-                const DeepCollectionEquality().equals(other.rarity, rarity)) &&
-            (identical(other.extraAttributes, extraAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.extraAttributes,
-                  extraAttributes,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(rarity) ^
-      const DeepCollectionEquality().hash(extraAttributes) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      runtimeType.hashCode;
 }
 
 extension $NftMetadataExtension on NftMetadata {
@@ -12112,100 +7513,6 @@ class NftDocFilterCriteriaDto {
   @JsonKey(name: 'sftOriginalDoc')
   final bool? sftOriginalDoc;
   static const fromJsonFactory = _$NftDocFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftDocFilterCriteriaDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.cpStaked, cpStaked) ||
-                const DeepCollectionEquality().equals(
-                  other.cpStaked,
-                  cpStaked,
-                )) &&
-            (identical(other.activeAuction, activeAuction) ||
-                const DeepCollectionEquality().equals(
-                  other.activeAuction,
-                  activeAuction,
-                )) &&
-            (identical(other.verifiedOnly, verifiedOnly) ||
-                const DeepCollectionEquality().equals(
-                  other.verifiedOnly,
-                  verifiedOnly,
-                )) &&
-            (identical(other.sftOriginalDoc, sftOriginalDoc) ||
-                const DeepCollectionEquality().equals(
-                  other.sftOriginalDoc,
-                  sftOriginalDoc,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      const DeepCollectionEquality().hash(range) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(cpStaked) ^
-      const DeepCollectionEquality().hash(activeAuction) ^
-      const DeepCollectionEquality().hash(verifiedOnly) ^
-      const DeepCollectionEquality().hash(sftOriginalDoc) ^
-      runtimeType.hashCode;
 }
 
 extension $NftDocFilterCriteriaDtoExtension on NftDocFilterCriteriaDto {
@@ -12332,58 +7639,6 @@ class NftDocFilter {
   @JsonKey(name: 'applyNftExtraDetails')
   final bool? applyNftExtraDetails;
   static const fromJsonFactory = _$NftDocFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftDocFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(
-                  other.filters,
-                  filters,
-                )) &&
-            (identical(other.applyNftExtraDetails, applyNftExtraDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.applyNftExtraDetails,
-                  applyNftExtraDetails,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      const DeepCollectionEquality().hash(applyNftExtraDetails) ^
-      runtimeType.hashCode;
 }
 
 extension $NftDocFilterExtension on NftDocFilter {
@@ -12453,31 +7708,6 @@ class OriginalMedia {
   @JsonKey(name: 'contentLength')
   final double contentLength;
   static const fromJsonFactory = _$OriginalMediaFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OriginalMedia &&
-            (identical(other.contentType, contentType) ||
-                const DeepCollectionEquality().equals(
-                  other.contentType,
-                  contentType,
-                )) &&
-            (identical(other.contentLength, contentLength) ||
-                const DeepCollectionEquality().equals(
-                  other.contentLength,
-                  contentLength,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(contentType) ^
-      const DeepCollectionEquality().hash(contentLength) ^
-      runtimeType.hashCode;
 }
 
 extension $OriginalMediaExtension on OriginalMedia {
@@ -12525,43 +7755,6 @@ class NftMedia {
   @JsonKey(name: 'originalMedia')
   final OriginalMedia originalMedia;
   static const fromJsonFactory = _$NftMediaFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftMedia &&
-            (identical(other.avifUrl, avifUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.avifUrl,
-                  avifUrl,
-                )) &&
-            (identical(other.webpUrl, webpUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.webpUrl,
-                  webpUrl,
-                )) &&
-            (identical(other.retries, retries) ||
-                const DeepCollectionEquality().equals(
-                  other.retries,
-                  retries,
-                )) &&
-            (identical(other.originalMedia, originalMedia) ||
-                const DeepCollectionEquality().equals(
-                  other.originalMedia,
-                  originalMedia,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(avifUrl) ^
-      const DeepCollectionEquality().hash(webpUrl) ^
-      const DeepCollectionEquality().hash(retries) ^
-      const DeepCollectionEquality().hash(originalMedia) ^
-      runtimeType.hashCode;
 }
 
 extension $NftMediaExtension on NftMedia {
@@ -12609,24 +7802,6 @@ class NftStats {
   @JsonKey(name: 'likeCount')
   final int? likeCount;
   static const fromJsonFactory = _$NftStatsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftStats &&
-            (identical(other.likeCount, likeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.likeCount,
-                  likeCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(likeCount) ^ runtimeType.hashCode;
 }
 
 extension $NftStatsExtension on NftStats {
@@ -12662,37 +7837,6 @@ class NFTEventData {
   @JsonKey(name: 'checkInStatus')
   final Object checkInStatus;
   static const fromJsonFactory = _$NFTEventDataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NFTEventData &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.checkInStatus, checkInStatus) ||
-                const DeepCollectionEquality().equals(
-                  other.checkInStatus,
-                  checkInStatus,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(checkInStatus) ^
-      runtimeType.hashCode;
 }
 
 extension $NFTEventDataExtension on NFTEventData {
@@ -12803,130 +7947,6 @@ class NftSaleInfoHydrated {
   @JsonKey(name: 'currentWinner')
   final OwnerDto? currentWinner;
   static const fromJsonFactory = _$NftSaleInfoHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftSaleInfoHydrated &&
-            (identical(other.auctionId, auctionId) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionId,
-                  auctionId,
-                )) &&
-            (identical(other.seller, seller) ||
-                const DeepCollectionEquality().equals(other.seller, seller)) &&
-            (identical(other.minBid, minBid) ||
-                const DeepCollectionEquality().equals(other.minBid, minBid)) &&
-            (identical(other.maxBid, maxBid) ||
-                const DeepCollectionEquality().equals(other.maxBid, maxBid)) &&
-            (identical(other.currentBid, currentBid) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBid,
-                  currentBid,
-                )) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.minBidShort, minBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidShort,
-                  minBidShort,
-                )) &&
-            (identical(other.minBidUsdValue, minBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidUsdValue,
-                  minBidUsdValue,
-                )) &&
-            (identical(other.maxBidShort, maxBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidShort,
-                  maxBidShort,
-                )) &&
-            (identical(other.maxBidUsdValue, maxBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidUsdValue,
-                  maxBidUsdValue,
-                )) &&
-            (identical(other.currentBidShort, currentBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBidShort,
-                  currentBidShort,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.currentWinner, currentWinner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentWinner,
-                  currentWinner,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(auctionId) ^
-      const DeepCollectionEquality().hash(seller) ^
-      const DeepCollectionEquality().hash(minBid) ^
-      const DeepCollectionEquality().hash(maxBid) ^
-      const DeepCollectionEquality().hash(currentBid) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(minBidShort) ^
-      const DeepCollectionEquality().hash(minBidUsdValue) ^
-      const DeepCollectionEquality().hash(maxBidShort) ^
-      const DeepCollectionEquality().hash(maxBidUsdValue) ^
-      const DeepCollectionEquality().hash(currentBidShort) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(currentWinner) ^
-      runtimeType.hashCode;
 }
 
 extension $NftSaleInfoHydratedExtension on NftSaleInfoHydrated {
@@ -13068,58 +8088,6 @@ class NftMetadataAttributesHydrated {
   @JsonKey(name: 'usdValue')
   final double usdValue;
   static const fromJsonFactory = _$NftMetadataAttributesHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftMetadataAttributesHydrated &&
-            (identical(other.traitType, traitType) ||
-                const DeepCollectionEquality().equals(
-                  other.traitType,
-                  traitType,
-                )) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.occurance, occurance) ||
-                const DeepCollectionEquality().equals(
-                  other.occurance,
-                  occurance,
-                )) &&
-            (identical(other.frequency, frequency) ||
-                const DeepCollectionEquality().equals(
-                  other.frequency,
-                  frequency,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.onSaleCount, onSaleCount) ||
-                const DeepCollectionEquality().equals(
-                  other.onSaleCount,
-                  onSaleCount,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(traitType) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(occurance) ^
-      const DeepCollectionEquality().hash(frequency) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(onSaleCount) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
 }
 
 extension $NftMetadataAttributesHydratedExtension
@@ -13189,40 +8157,6 @@ class NftMetadataHydrated {
   @JsonKey(name: 'attributes', defaultValue: <NftMetadataAttributesHydrated>[])
   final List<NftMetadataAttributesHydrated>? attributes;
   static const fromJsonFactory = _$NftMetadataHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftMetadataHydrated &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.rarity, rarity) ||
-                const DeepCollectionEquality().equals(other.rarity, rarity)) &&
-            (identical(other.extraAttributes, extraAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.extraAttributes,
-                  extraAttributes,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(rarity) ^
-      const DeepCollectionEquality().hash(extraAttributes) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      runtimeType.hashCode;
 }
 
 extension $NftMetadataHydratedExtension on NftMetadataHydrated {
@@ -13275,25 +8209,6 @@ class CollectionExtraFeesConfig {
   @JsonKey(name: 'address')
   final String address;
   static const fromJsonFactory = _$CollectionExtraFeesConfigFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionExtraFeesConfig &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(address) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionExtraFeesConfigExtension on CollectionExtraFeesConfig {
@@ -13350,61 +8265,6 @@ class XoxnoMarketplaceScCollectionConfig {
   @JsonKey(name: 'adminAddress')
   final String? adminAddress;
   static const fromJsonFactory = _$XoxnoMarketplaceScCollectionConfigFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is XoxnoMarketplaceScCollectionConfig &&
-            (identical(other.reversedCutFees, reversedCutFees) ||
-                const DeepCollectionEquality().equals(
-                  other.reversedCutFees,
-                  reversedCutFees,
-                )) &&
-            (identical(other.reversedRoyalties, reversedRoyalties) ||
-                const DeepCollectionEquality().equals(
-                  other.reversedRoyalties,
-                  reversedRoyalties,
-                )) &&
-            (identical(other.customRoyalties, customRoyalties) ||
-                const DeepCollectionEquality().equals(
-                  other.customRoyalties,
-                  customRoyalties,
-                )) &&
-            (identical(other.minRoyalties, minRoyalties) ||
-                const DeepCollectionEquality().equals(
-                  other.minRoyalties,
-                  minRoyalties,
-                )) &&
-            (identical(other.maxRoyalties, maxRoyalties) ||
-                const DeepCollectionEquality().equals(
-                  other.maxRoyalties,
-                  maxRoyalties,
-                )) &&
-            (identical(other.extraFees, extraFees) ||
-                const DeepCollectionEquality().equals(
-                  other.extraFees,
-                  extraFees,
-                )) &&
-            (identical(other.adminAddress, adminAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.adminAddress,
-                  adminAddress,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(reversedCutFees) ^
-      const DeepCollectionEquality().hash(reversedRoyalties) ^
-      const DeepCollectionEquality().hash(customRoyalties) ^
-      const DeepCollectionEquality().hash(minRoyalties) ^
-      const DeepCollectionEquality().hash(maxRoyalties) ^
-      const DeepCollectionEquality().hash(extraFees) ^
-      const DeepCollectionEquality().hash(adminAddress) ^
-      runtimeType.hashCode;
 }
 
 extension $XoxnoMarketplaceScCollectionConfigExtension
@@ -13480,31 +8340,6 @@ class CollectionFeatures {
   @JsonKey(name: 'isGlobalOffersDisabled')
   final bool? isGlobalOffersDisabled;
   static const fromJsonFactory = _$CollectionFeaturesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionFeatures &&
-            (identical(other.isCustomOffersDisabled, isCustomOffersDisabled) ||
-                const DeepCollectionEquality().equals(
-                  other.isCustomOffersDisabled,
-                  isCustomOffersDisabled,
-                )) &&
-            (identical(other.isGlobalOffersDisabled, isGlobalOffersDisabled) ||
-                const DeepCollectionEquality().equals(
-                  other.isGlobalOffersDisabled,
-                  isGlobalOffersDisabled,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isCustomOffersDisabled) ^
-      const DeepCollectionEquality().hash(isGlobalOffersDisabled) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionFeaturesExtension on CollectionFeatures {
@@ -13590,85 +8425,6 @@ class ShortNftCollectionInfoDoc {
   @JsonKey(name: 'followCount')
   final double? followCount;
   static const fromJsonFactory = _$ShortNftCollectionInfoDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortNftCollectionInfoDoc &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)) &&
-            (identical(other.customConfig, customConfig) ||
-                const DeepCollectionEquality().equals(
-                  other.customConfig,
-                  customConfig,
-                )) &&
-            (identical(other.features, features) ||
-                const DeepCollectionEquality().equals(
-                  other.features,
-                  features,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(roles) ^
-      const DeepCollectionEquality().hash(customConfig) ^
-      const DeepCollectionEquality().hash(features) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortNftCollectionInfoDocExtension on ShortNftCollectionInfoDoc {
@@ -13758,28 +8514,6 @@ class ExtraProperties {
   @JsonKey(name: 'level')
   final double? level;
   static const fromJsonFactory = _$ExtraPropertiesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ExtraProperties &&
-            (identical(other.currentEpoch, currentEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.currentEpoch,
-                  currentEpoch,
-                )) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(currentEpoch) ^
-      const DeepCollectionEquality().hash(level) ^
-      runtimeType.hashCode;
 }
 
 extension $ExtraPropertiesExtension on ExtraProperties {
@@ -13942,193 +8676,6 @@ class NftDocHydrated {
   @JsonKey(name: 'extraProperties')
   final ExtraProperties? extraProperties;
   static const fromJsonFactory = _$NftDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.originalCollection, originalCollection) ||
-                const DeepCollectionEquality().equals(
-                  other.originalCollection,
-                  originalCollection,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.subType, subType) ||
-                const DeepCollectionEquality().equals(
-                  other.subType,
-                  subType,
-                )) &&
-            (identical(other.supply, supply) ||
-                const DeepCollectionEquality().equals(other.supply, supply)) &&
-            (identical(other.supplyLong, supplyLong) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyLong,
-                  supplyLong,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.uris, uris) ||
-                const DeepCollectionEquality().equals(other.uris, uris)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.isTicket, isTicket) ||
-                const DeepCollectionEquality().equals(
-                  other.isTicket,
-                  isTicket,
-                )) &&
-            (identical(other.eventData, eventData) ||
-                const DeepCollectionEquality().equals(
-                  other.eventData,
-                  eventData,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.kiosk, kiosk) ||
-                const DeepCollectionEquality().equals(other.kiosk, kiosk)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )) &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.balanceLong, balanceLong) ||
-                const DeepCollectionEquality().equals(
-                  other.balanceLong,
-                  balanceLong,
-                )) &&
-            (identical(other.unboundDaysLeft, unboundDaysLeft) ||
-                const DeepCollectionEquality().equals(
-                  other.unboundDaysLeft,
-                  unboundDaysLeft,
-                )) &&
-            (identical(other.unboundEpoch, unboundEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.unboundEpoch,
-                  unboundEpoch,
-                )) &&
-            (identical(other.extraProperties, extraProperties) ||
-                const DeepCollectionEquality().equals(
-                  other.extraProperties,
-                  extraProperties,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(originalCollection) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(subType) ^
-      const DeepCollectionEquality().hash(supply) ^
-      const DeepCollectionEquality().hash(supplyLong) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(uris) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(isTicket) ^
-      const DeepCollectionEquality().hash(eventData) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(kiosk) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(creator) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(balanceLong) ^
-      const DeepCollectionEquality().hash(unboundDaysLeft) ^
-      const DeepCollectionEquality().hash(unboundEpoch) ^
-      const DeepCollectionEquality().hash(extraProperties) ^
-      runtimeType.hashCode;
 }
 
 extension $NftDocHydratedExtension on NftDocHydrated {
@@ -14324,34 +8871,6 @@ class NftPaginated {
   @JsonKey(name: 'resources', defaultValue: <NftDocHydrated>[])
   final List<NftDocHydrated> resources;
   static const fromJsonFactory = _$NftPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $NftPaginatedExtension on NftPaginated {
@@ -14403,37 +8922,6 @@ class LikeNftDto {
   @JsonKey(name: 'identifier')
   final String identifier;
   static const fromJsonFactory = _$LikeNftDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LikeNftDto &&
-            (identical(other.isFavorite, isFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.isFavorite,
-                  isFavorite,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isFavorite) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $LikeNftDtoExtension on LikeNftDto {
@@ -14514,79 +9002,6 @@ class InventorySummaryDtoHydrated {
   )
   final enums.InventorySummaryDtoHydratedChain? chain;
   static const fromJsonFactory = _$InventorySummaryDtoHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is InventorySummaryDtoHydrated &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.inventoryCount, inventoryCount) ||
-                const DeepCollectionEquality().equals(
-                  other.inventoryCount,
-                  inventoryCount,
-                )) &&
-            (identical(other.listedCount, listedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.listedCount,
-                  listedCount,
-                )) &&
-            (identical(other.stakedCount, stakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.stakedCount,
-                  stakedCount,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(inventoryCount) ^
-      const DeepCollectionEquality().hash(listedCount) ^
-      const DeepCollectionEquality().hash(stakedCount) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $InventorySummaryDtoHydratedExtension on InventorySummaryDtoHydrated {
@@ -14745,145 +9160,6 @@ class NftOfferDocHydrated {
   @JsonKey(name: 'nftInfo')
   final NftDocHydrated nftInfo;
   static const fromJsonFactory = _$NftOfferDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftOfferDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.offerId, offerId) ||
-                const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.priceShort, priceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.priceShort,
-                  priceShort,
-                )) &&
-            (identical(other.priceUsd, priceUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.priceUsd,
-                  priceUsd,
-                )) &&
-            (identical(other.floorPriceMargin, floorPriceMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPriceMargin,
-                  floorPriceMargin,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.nftOwner, nftOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.nftOwner,
-                  nftOwner,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.auctionId, auctionId) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionId,
-                  auctionId,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.nftInfo, nftInfo) ||
-                const DeepCollectionEquality().equals(other.nftInfo, nftInfo)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(offerId) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(priceShort) ^
-      const DeepCollectionEquality().hash(priceUsd) ^
-      const DeepCollectionEquality().hash(floorPriceMargin) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(nftOwner) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(auctionId) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(nftInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $NftOfferDocHydratedExtension on NftOfferDocHydrated {
@@ -15023,34 +9299,6 @@ class NftOfferPaginated {
   @JsonKey(name: 'resources', defaultValue: <NftOfferDocHydrated>[])
   final List<NftOfferDocHydrated> resources;
   static const fromJsonFactory = _$NftOfferPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftOfferPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $NftOfferPaginatedExtension on NftOfferPaginated {
@@ -15114,55 +9362,6 @@ class NftOfferDocFilterCriteria {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   static const fromJsonFactory = _$NftOfferDocFilterCriteriaFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftOfferDocFilterCriteria &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.nftOwner, nftOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.nftOwner,
-                  nftOwner,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(nftOwner) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(range) ^
-      runtimeType.hashCode;
 }
 
 extension $NftOfferDocFilterCriteriaExtension on NftOfferDocFilterCriteria {
@@ -15240,49 +9439,6 @@ class NftOfferDocFilter {
   @JsonKey(name: 'filters')
   final NftOfferDocFilterCriteria? filters;
   static const fromJsonFactory = _$NftOfferDocFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftOfferDocFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $NftOfferDocFilterExtension on NftOfferDocFilter {
@@ -15352,31 +9508,6 @@ class CollectionRanksDTO {
   @JsonKey(name: 'rank')
   final double rank;
   static const fromJsonFactory = _$CollectionRanksDTOFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionRanksDTO &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(rank) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionRanksDTOExtension on CollectionRanksDTO {
@@ -15429,40 +9560,6 @@ class DensityDto {
   @JsonKey(name: 'totalCount')
   final double totalCount;
   static const fromJsonFactory = _$DensityDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DensityDto &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.intervalName, intervalName) ||
-                const DeepCollectionEquality().equals(
-                  other.intervalName,
-                  intervalName,
-                )) &&
-            (identical(other.intervalCount, intervalCount) ||
-                const DeepCollectionEquality().equals(
-                  other.intervalCount,
-                  intervalCount,
-                )) &&
-            (identical(other.totalCount, totalCount) ||
-                const DeepCollectionEquality().equals(
-                  other.totalCount,
-                  totalCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(key) ^
-      const DeepCollectionEquality().hash(intervalName) ^
-      const DeepCollectionEquality().hash(intervalCount) ^
-      const DeepCollectionEquality().hash(totalCount) ^
-      runtimeType.hashCode;
 }
 
 extension $DensityDtoExtension on DensityDto {
@@ -15512,21 +9609,6 @@ class RarityDto {
   @JsonKey(name: 'rank')
   final double rank;
   static const fromJsonFactory = _$RarityDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RarityDto &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rank) ^ runtimeType.hashCode;
 }
 
 extension $RarityDtoExtension on RarityDto {
@@ -15552,21 +9634,6 @@ class MetadataDto {
   @JsonKey(name: 'rarity')
   final RarityDto rarity;
   static const fromJsonFactory = _$MetadataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MetadataDto &&
-            (identical(other.rarity, rarity) ||
-                const DeepCollectionEquality().equals(other.rarity, rarity)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rarity) ^ runtimeType.hashCode;
 }
 
 extension $MetadataDtoExtension on MetadataDto {
@@ -15594,31 +9661,6 @@ class SaleInfoDto {
   @JsonKey(name: 'marketplace')
   final String marketplace;
   static const fromJsonFactory = _$SaleInfoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SaleInfoDto &&
-            (identical(other.minBidShort, minBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidShort,
-                  minBidShort,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(minBidShort) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      runtimeType.hashCode;
 }
 
 extension $SaleInfoDtoExtension on SaleInfoDto {
@@ -15676,58 +9718,6 @@ class ListingDto {
   @JsonKey(name: 'saleInfo')
   final SaleInfoDto saleInfo;
   static const fromJsonFactory = _$ListingDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ListingDto &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $ListingDtoExtension on ListingDto {
@@ -15793,31 +9783,6 @@ class ListingsResponseDto {
   @JsonKey(name: 'listings', defaultValue: <ListingDto>[])
   final List<ListingDto> listings;
   static const fromJsonFactory = _$ListingsResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ListingsResponseDto &&
-            (identical(other.density, density) ||
-                const DeepCollectionEquality().equals(
-                  other.density,
-                  density,
-                )) &&
-            (identical(other.listings, listings) ||
-                const DeepCollectionEquality().equals(
-                  other.listings,
-                  listings,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(density) ^
-      const DeepCollectionEquality().hash(listings) ^
-      runtimeType.hashCode;
 }
 
 extension $ListingsResponseDtoExtension on ListingsResponseDto {
@@ -15855,24 +9820,6 @@ class SignWithdrawDto {
   @JsonKey(name: 'auctionId', defaultValue: <int>[])
   final List<int> auctionId;
   static const fromJsonFactory = _$SignWithdrawDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SignWithdrawDto &&
-            (identical(other.auctionId, auctionId) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionId,
-                  auctionId,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(auctionId) ^ runtimeType.hashCode;
 }
 
 extension $SignWithdrawDtoExtension on SignWithdrawDto {
@@ -15902,28 +9849,6 @@ class SignDataDto {
   @JsonKey(name: 'signature')
   final String signature;
   static const fromJsonFactory = _$SignDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SignDataDto &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(data) ^
-      const DeepCollectionEquality().hash(signature) ^
-      runtimeType.hashCode;
 }
 
 extension $SignDataDtoExtension on SignDataDto {
@@ -15963,31 +9888,6 @@ class SignAcceptGlobalOfferDto {
   @JsonKey(name: 'identifier', defaultValue: <String>[])
   final List<String> identifier;
   static const fromJsonFactory = _$SignAcceptGlobalOfferDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SignAcceptGlobalOfferDto &&
-            (identical(other.offerId, offerId) ||
-                const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(offerId) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $SignAcceptGlobalOfferDtoExtension on SignAcceptGlobalOfferDto {
@@ -16024,28 +9924,6 @@ class SignMintDto {
   @JsonKey(name: 'stage')
   final String stage;
   static const fromJsonFactory = _$SignMintDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SignMintDto &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.stage, stage) ||
-                const DeepCollectionEquality().equals(other.stage, stage)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(stage) ^
-      runtimeType.hashCode;
 }
 
 extension $SignMintDtoExtension on SignMintDto {
@@ -16110,67 +9988,6 @@ class ShortCollectionDoc {
   @JsonKey(name: 'followCount')
   final double? followCount;
   static const fromJsonFactory = _$ShortCollectionDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortCollectionDoc &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortCollectionDocExtension on ShortCollectionDoc {
@@ -16307,124 +10124,6 @@ class GlobalOfferDocHydrated {
   @JsonKey(name: 'collectionInfo')
   final ShortCollectionDoc collectionInfo;
   static const fromJsonFactory = _$GlobalOfferDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalOfferDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.offerId, offerId) ||
-                const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )) &&
-            (identical(other.priceShort, priceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.priceShort,
-                  priceShort,
-                )) &&
-            (identical(other.floorPriceMargin, floorPriceMargin) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPriceMargin,
-                  floorPriceMargin,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(offerId) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      const DeepCollectionEquality().hash(priceShort) ^
-      const DeepCollectionEquality().hash(floorPriceMargin) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalOfferDocHydratedExtension on GlobalOfferDocHydrated {
@@ -16671,199 +10370,6 @@ class NftDocFull {
   @JsonKey(name: 'globalOffer')
   final GlobalOfferDocHydrated? globalOffer;
   static const fromJsonFactory = _$NftDocFullFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftDocFull &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.originalCollection, originalCollection) ||
-                const DeepCollectionEquality().equals(
-                  other.originalCollection,
-                  originalCollection,
-                )) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.subType, subType) ||
-                const DeepCollectionEquality().equals(
-                  other.subType,
-                  subType,
-                )) &&
-            (identical(other.supply, supply) ||
-                const DeepCollectionEquality().equals(other.supply, supply)) &&
-            (identical(other.supplyLong, supplyLong) ||
-                const DeepCollectionEquality().equals(
-                  other.supplyLong,
-                  supplyLong,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.uris, uris) ||
-                const DeepCollectionEquality().equals(other.uris, uris)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.isTicket, isTicket) ||
-                const DeepCollectionEquality().equals(
-                  other.isTicket,
-                  isTicket,
-                )) &&
-            (identical(other.eventData, eventData) ||
-                const DeepCollectionEquality().equals(
-                  other.eventData,
-                  eventData,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.kiosk, kiosk) ||
-                const DeepCollectionEquality().equals(other.kiosk, kiosk)) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
-            (identical(other.currentOwner, currentOwner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentOwner,
-                  currentOwner,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.saleInfo, saleInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.saleInfo,
-                  saleInfo,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )) &&
-            (identical(other.balance, balance) ||
-                const DeepCollectionEquality().equals(
-                  other.balance,
-                  balance,
-                )) &&
-            (identical(other.balanceLong, balanceLong) ||
-                const DeepCollectionEquality().equals(
-                  other.balanceLong,
-                  balanceLong,
-                )) &&
-            (identical(other.unboundDaysLeft, unboundDaysLeft) ||
-                const DeepCollectionEquality().equals(
-                  other.unboundDaysLeft,
-                  unboundDaysLeft,
-                )) &&
-            (identical(other.unboundEpoch, unboundEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.unboundEpoch,
-                  unboundEpoch,
-                )) &&
-            (identical(other.extraProperties, extraProperties) ||
-                const DeepCollectionEquality().equals(
-                  other.extraProperties,
-                  extraProperties,
-                )) &&
-            (identical(other.globalOffer, globalOffer) ||
-                const DeepCollectionEquality().equals(
-                  other.globalOffer,
-                  globalOffer,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(originalCollection) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(subType) ^
-      const DeepCollectionEquality().hash(supply) ^
-      const DeepCollectionEquality().hash(supplyLong) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(uris) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(isTicket) ^
-      const DeepCollectionEquality().hash(eventData) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(kiosk) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(creator) ^
-      const DeepCollectionEquality().hash(currentOwner) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(saleInfo) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      const DeepCollectionEquality().hash(balance) ^
-      const DeepCollectionEquality().hash(balanceLong) ^
-      const DeepCollectionEquality().hash(unboundDaysLeft) ^
-      const DeepCollectionEquality().hash(unboundEpoch) ^
-      const DeepCollectionEquality().hash(extraProperties) ^
-      const DeepCollectionEquality().hash(globalOffer) ^
-      runtimeType.hashCode;
 }
 
 extension $NftDocFullExtension on NftDocFull {
@@ -17063,37 +10569,6 @@ class StatisticsOtherDto {
   @JsonKey(name: 'holdersCount')
   final double? holdersCount;
   static const fromJsonFactory = _$StatisticsOtherDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StatisticsOtherDto &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.nftCount, nftCount) ||
-                const DeepCollectionEquality().equals(
-                  other.nftCount,
-                  nftCount,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(nftCount) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      runtimeType.hashCode;
 }
 
 extension $StatisticsOtherDtoExtension on StatisticsOtherDto {
@@ -17157,61 +10632,6 @@ class StatisticsTradeDataDto {
   @JsonKey(name: 'totalTrades')
   final double totalTrades;
   static const fromJsonFactory = _$StatisticsTradeDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StatisticsTradeDataDto &&
-            (identical(other.dayEgldVolume, dayEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.dayEgldVolume,
-                  dayEgldVolume,
-                )) &&
-            (identical(other.weekEgldVolume, weekEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.weekEgldVolume,
-                  weekEgldVolume,
-                )) &&
-            (identical(other.totalEgldVolume, totalEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalEgldVolume,
-                  totalEgldVolume,
-                )) &&
-            (identical(other.averageEgldPrice, averageEgldPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.averageEgldPrice,
-                  averageEgldPrice,
-                )) &&
-            (identical(other.athEgldPrice, athEgldPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.athEgldPrice,
-                  athEgldPrice,
-                )) &&
-            (identical(other.athTxHash, athTxHash) ||
-                const DeepCollectionEquality().equals(
-                  other.athTxHash,
-                  athTxHash,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dayEgldVolume) ^
-      const DeepCollectionEquality().hash(weekEgldVolume) ^
-      const DeepCollectionEquality().hash(totalEgldVolume) ^
-      const DeepCollectionEquality().hash(averageEgldPrice) ^
-      const DeepCollectionEquality().hash(athEgldPrice) ^
-      const DeepCollectionEquality().hash(athTxHash) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      runtimeType.hashCode;
 }
 
 extension $StatisticsTradeDataDtoExtension on StatisticsTradeDataDto {
@@ -17287,37 +10707,6 @@ class StatisticsMintDataDto {
   @JsonKey(name: 'dayMintEgldVolume')
   final double dayMintEgldVolume;
   static const fromJsonFactory = _$StatisticsMintDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StatisticsMintDataDto &&
-            (identical(other.totalMintEgldVolume, totalMintEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalMintEgldVolume,
-                  totalMintEgldVolume,
-                )) &&
-            (identical(other.weekMintEgldVolume, weekMintEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.weekMintEgldVolume,
-                  weekMintEgldVolume,
-                )) &&
-            (identical(other.dayMintEgldVolume, dayMintEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.dayMintEgldVolume,
-                  dayMintEgldVolume,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(totalMintEgldVolume) ^
-      const DeepCollectionEquality().hash(weekMintEgldVolume) ^
-      const DeepCollectionEquality().hash(dayMintEgldVolume) ^
-      runtimeType.hashCode;
 }
 
 extension $StatisticsMintDataDtoExtension on StatisticsMintDataDto {
@@ -17373,34 +10762,6 @@ class StatisticsDto {
   @JsonKey(name: 'mintData')
   final StatisticsMintDataDto? mintData;
   static const fromJsonFactory = _$StatisticsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StatisticsDto &&
-            (identical(other.other, other) ||
-                const DeepCollectionEquality().equals(other.other, other)) &&
-            (identical(other.tradeData, tradeData) ||
-                const DeepCollectionEquality().equals(
-                  other.tradeData,
-                  tradeData,
-                )) &&
-            (identical(other.mintData, mintData) ||
-                const DeepCollectionEquality().equals(
-                  other.mintData,
-                  mintData,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(other) ^
-      const DeepCollectionEquality().hash(tradeData) ^
-      const DeepCollectionEquality().hash(mintData) ^
-      runtimeType.hashCode;
 }
 
 extension $StatisticsDtoExtension on StatisticsDto {
@@ -17453,34 +10814,6 @@ class TransferPolicy {
   @JsonKey(name: 'is_origin_byte')
   final bool isOriginByte;
   static const fromJsonFactory = _$TransferPolicyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransferPolicy &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.rules, rules) ||
-                const DeepCollectionEquality().equals(other.rules, rules)) &&
-            (identical(other.isOriginByte, isOriginByte) ||
-                const DeepCollectionEquality().equals(
-                  other.isOriginByte,
-                  isOriginByte,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(rules) ^
-      const DeepCollectionEquality().hash(isOriginByte) ^
-      runtimeType.hashCode;
 }
 
 extension $TransferPolicyExtension on TransferPolicy {
@@ -17642,193 +10975,6 @@ class CollectionProfileDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$CollectionProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.originalCollection, originalCollection) ||
-                const DeepCollectionEquality().equals(
-                  other.originalCollection,
-                  originalCollection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.subType, subType) ||
-                const DeepCollectionEquality().equals(
-                  other.subType,
-                  subType,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.transferPolicies, transferPolicies) ||
-                const DeepCollectionEquality().equals(
-                  other.transferPolicies,
-                  transferPolicies,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
-            (identical(other.isMintable, isMintable) ||
-                const DeepCollectionEquality().equals(
-                  other.isMintable,
-                  isMintable,
-                )) &&
-            (identical(other.hasStaking, hasStaking) ||
-                const DeepCollectionEquality().equals(
-                  other.hasStaking,
-                  hasStaking,
-                )) &&
-            (identical(other.isEvent, isEvent) ||
-                const DeepCollectionEquality().equals(
-                  other.isEvent,
-                  isEvent,
-                )) &&
-            (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.pinnedAtDrops, pinnedAtDrops) ||
-                const DeepCollectionEquality().equals(
-                  other.pinnedAtDrops,
-                  pinnedAtDrops,
-                )) &&
-            (identical(other.pinnedAt, pinnedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.pinnedAt,
-                  pinnedAt,
-                )) &&
-            (identical(other.customConfig, customConfig) ||
-                const DeepCollectionEquality().equals(
-                  other.customConfig,
-                  customConfig,
-                )) &&
-            (identical(other.features, features) ||
-                const DeepCollectionEquality().equals(
-                  other.features,
-                  features,
-                )) &&
-            (identical(other.royalty, royalty) ||
-                const DeepCollectionEquality().equals(
-                  other.royalty,
-                  royalty,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.holdersCount, holdersCount) ||
-                const DeepCollectionEquality().equals(
-                  other.holdersCount,
-                  holdersCount,
-                )) &&
-            (identical(other.followCount, followCount) ||
-                const DeepCollectionEquality().equals(
-                  other.followCount,
-                  followCount,
-                )) &&
-            (identical(other.minSalePrice, minSalePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.minSalePrice,
-                  minSalePrice,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(originalCollection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(subType) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(transferPolicies) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(creator) ^
-      const DeepCollectionEquality().hash(isMintable) ^
-      const DeepCollectionEquality().hash(hasStaking) ^
-      const DeepCollectionEquality().hash(isEvent) ^
-      const DeepCollectionEquality().hash(roles) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(pinnedAtDrops) ^
-      const DeepCollectionEquality().hash(pinnedAt) ^
-      const DeepCollectionEquality().hash(customConfig) ^
-      const DeepCollectionEquality().hash(features) ^
-      const DeepCollectionEquality().hash(royalty) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(holdersCount) ^
-      const DeepCollectionEquality().hash(followCount) ^
-      const DeepCollectionEquality().hash(minSalePrice) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionProfileDocExtension on CollectionProfileDoc {
@@ -18012,34 +11158,6 @@ class FloorPriceDto {
   @JsonKey(name: 'usdPrice')
   final double usdPrice;
   static const fromJsonFactory = _$FloorPriceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FloorPriceDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.usdPrice, usdPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.usdPrice,
-                  usdPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(usdPrice) ^
-      runtimeType.hashCode;
 }
 
 extension $FloorPriceDtoExtension on FloorPriceDto {
@@ -18111,64 +11229,6 @@ class PinnedCollectionDto {
   @JsonKey(name: 'isMintable')
   final bool isMintable;
   static const fromJsonFactory = _$PinnedCollectionDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PinnedCollectionDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.creator, creator) ||
-                const DeepCollectionEquality().equals(
-                  other.creator,
-                  creator,
-                )) &&
-            (identical(other.isMintable, isMintable) ||
-                const DeepCollectionEquality().equals(
-                  other.isMintable,
-                  isMintable,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(creator) ^
-      const DeepCollectionEquality().hash(isMintable) ^
-      runtimeType.hashCode;
 }
 
 extension $PinnedCollectionDtoExtension on PinnedCollectionDto {
@@ -18251,52 +11311,6 @@ class EgldOrEsdtTokenPayment {
   @JsonKey(name: 'decimals')
   final double? decimals;
   static const fromJsonFactory = _$EgldOrEsdtTokenPaymentFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EgldOrEsdtTokenPayment &&
-            (identical(other.tokenIdentifier, tokenIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIdentifier,
-                  tokenIdentifier,
-                )) &&
-            (identical(other.tokenNonce, tokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenNonce,
-                  tokenNonce,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.amountShort, amountShort) ||
-                const DeepCollectionEquality().equals(
-                  other.amountShort,
-                  amountShort,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.decimals, decimals) ||
-                const DeepCollectionEquality().equals(
-                  other.decimals,
-                  decimals,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIdentifier) ^
-      const DeepCollectionEquality().hash(tokenNonce) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(amountShort) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(decimals) ^
-      runtimeType.hashCode;
 }
 
 extension $EgldOrEsdtTokenPaymentExtension on EgldOrEsdtTokenPayment {
@@ -18360,31 +11374,6 @@ class ShortCreatorDoc {
   @JsonKey(name: 'profile')
   final String profile;
   static const fromJsonFactory = _$ShortCreatorDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortCreatorDoc &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortCreatorDocExtension on ShortCreatorDoc {
@@ -18529,196 +11518,6 @@ class CollectionMintProfileDocHydrated {
   @JsonKey(name: 'creatorInfo')
   final ShortCreatorDoc creatorInfo;
   static const fromJsonFactory = _$CollectionMintProfileDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionMintProfileDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.creatorName, creatorName) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorName,
-                  creatorName,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
-            (identical(other.cid, cid) ||
-                const DeepCollectionEquality().equals(other.cid, cid)) &&
-            (identical(other.mediaType, mediaType) ||
-                const DeepCollectionEquality().equals(
-                  other.mediaType,
-                  mediaType,
-                )) &&
-            (identical(other.baseNftName, baseNftName) ||
-                const DeepCollectionEquality().equals(
-                  other.baseNftName,
-                  baseNftName,
-                )) &&
-            (identical(other.hasAttributes, hasAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.hasAttributes,
-                  hasAttributes,
-                )) &&
-            (identical(other.ownerTransferred, ownerTransferred) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerTransferred,
-                  ownerTransferred,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.totalNftMinted, totalNftMinted) ||
-                const DeepCollectionEquality().equals(
-                  other.totalNftMinted,
-                  totalNftMinted,
-                )) &&
-            (identical(other.globalWalletLimit, globalWalletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.globalWalletLimit,
-                  globalWalletLimit,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.oldVersion, oldVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.oldVersion,
-                  oldVersion,
-                )) &&
-            (identical(other.nameShuffle, nameShuffle) ||
-                const DeepCollectionEquality().equals(
-                  other.nameShuffle,
-                  nameShuffle,
-                )) &&
-            (identical(other.nftTransferLimited, nftTransferLimited) ||
-                const DeepCollectionEquality().equals(
-                  other.nftTransferLimited,
-                  nftTransferLimited,
-                )) &&
-            (identical(other.allowsPublicBurn, allowsPublicBurn) ||
-                const DeepCollectionEquality().equals(
-                  other.allowsPublicBurn,
-                  allowsPublicBurn,
-                )) &&
-            (identical(other.kycRequired, kycRequired) ||
-                const DeepCollectionEquality().equals(
-                  other.kycRequired,
-                  kycRequired,
-                )) &&
-            (identical(other.allowsRefund, allowsRefund) ||
-                const DeepCollectionEquality().equals(
-                  other.allowsRefund,
-                  allowsRefund,
-                )) &&
-            (identical(other.hasBotProtection, hasBotProtection) ||
-                const DeepCollectionEquality().equals(
-                  other.hasBotProtection,
-                  hasBotProtection,
-                )) &&
-            (identical(other.hasReveal, hasReveal) ||
-                const DeepCollectionEquality().equals(
-                  other.hasReveal,
-                  hasReveal,
-                )) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.isSoldOut, isSoldOut) ||
-                const DeepCollectionEquality().equals(
-                  other.isSoldOut,
-                  isSoldOut,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )) &&
-            (identical(other.creatorInfo, creatorInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorInfo,
-                  creatorInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(creatorName) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
-      const DeepCollectionEquality().hash(cid) ^
-      const DeepCollectionEquality().hash(mediaType) ^
-      const DeepCollectionEquality().hash(baseNftName) ^
-      const DeepCollectionEquality().hash(hasAttributes) ^
-      const DeepCollectionEquality().hash(ownerTransferred) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(totalNftMinted) ^
-      const DeepCollectionEquality().hash(globalWalletLimit) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(oldVersion) ^
-      const DeepCollectionEquality().hash(nameShuffle) ^
-      const DeepCollectionEquality().hash(nftTransferLimited) ^
-      const DeepCollectionEquality().hash(allowsPublicBurn) ^
-      const DeepCollectionEquality().hash(kycRequired) ^
-      const DeepCollectionEquality().hash(allowsRefund) ^
-      const DeepCollectionEquality().hash(hasBotProtection) ^
-      const DeepCollectionEquality().hash(hasReveal) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(prices) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(isSoldOut) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      const DeepCollectionEquality().hash(creatorInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionMintProfileDocHydratedExtension
@@ -18906,28 +11705,6 @@ class CollectionPinnedStatusDto {
   @JsonKey(name: 'status')
   final bool status;
   static const fromJsonFactory = _$CollectionPinnedStatusDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionPinnedStatusDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(status) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionPinnedStatusDtoExtension on CollectionPinnedStatusDto {
@@ -18966,31 +11743,6 @@ class CollectionProfileEditDto {
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
   static const fromJsonFactory = _$CollectionProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfileEditDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(other.socials, socials)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionProfileEditDtoExtension on CollectionProfileEditDto {
@@ -19034,31 +11786,6 @@ class FollowCollectionDto {
   @JsonKey(name: 'collection')
   final String? collection;
   static const fromJsonFactory = _$FollowCollectionDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FollowCollectionDto &&
-            (identical(other.isFavorite, isFavorite) ||
-                const DeepCollectionEquality().equals(
-                  other.isFavorite,
-                  isFavorite,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isFavorite) ^
-      const DeepCollectionEquality().hash(collection) ^
-      runtimeType.hashCode;
 }
 
 extension $FollowCollectionDtoExtension on FollowCollectionDto {
@@ -19110,46 +11837,6 @@ class CollectionProfileFilter {
   @JsonKey(name: 'skip')
   final int? skip;
   static const fromJsonFactory = _$CollectionProfileFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfileFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionProfileFilterExtension on CollectionProfileFilter {
@@ -19215,34 +11902,6 @@ class CollectionProfilePaginated {
   @JsonKey(name: 'resources', defaultValue: <CollectionProfileDoc>[])
   final List<CollectionProfileDoc> resources;
   static const fromJsonFactory = _$CollectionProfilePaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionProfilePaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionProfilePaginatedExtension on CollectionProfilePaginated {
@@ -19303,46 +11962,6 @@ class CollectionMintProfileFilter {
   @JsonKey(name: 'skip')
   final int? skip;
   static const fromJsonFactory = _$CollectionMintProfileFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionMintProfileFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionMintProfileFilterExtension on CollectionMintProfileFilter {
@@ -19411,34 +12030,6 @@ class CollectionMintProfilePaginated {
   )
   final List<CollectionMintProfileDocHydrated> resources;
   static const fromJsonFactory = _$CollectionMintProfilePaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionMintProfilePaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionMintProfilePaginatedExtension
@@ -19536,115 +12127,6 @@ class MintStageDto {
   @JsonKey(name: 'userMintsPerStage')
   final double? userMintsPerStage;
   static const fromJsonFactory = _$MintStageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MintStageDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.mintCount, mintCount) ||
-                const DeepCollectionEquality().equals(
-                  other.mintCount,
-                  mintCount,
-                )) &&
-            (identical(other.mintLimit, mintLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.mintLimit,
-                  mintLimit,
-                )) &&
-            (identical(other.mintEnabled, mintEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.mintEnabled,
-                  mintEnabled,
-                )) &&
-            (identical(other.isWhitelist, isWhitelist) ||
-                const DeepCollectionEquality().equals(
-                  other.isWhitelist,
-                  isWhitelist,
-                )) &&
-            (identical(other.walletLimit, walletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.walletLimit,
-                  walletLimit,
-                )) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.walletLimitReached, walletLimitReached) ||
-                const DeepCollectionEquality().equals(
-                  other.walletLimitReached,
-                  walletLimitReached,
-                )) &&
-            (identical(other.maxBuyable, maxBuyable) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBuyable,
-                  maxBuyable,
-                )) &&
-            (identical(other.userMintsPerStage, userMintsPerStage) ||
-                const DeepCollectionEquality().equals(
-                  other.userMintsPerStage,
-                  userMintsPerStage,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(mintCount) ^
-      const DeepCollectionEquality().hash(mintLimit) ^
-      const DeepCollectionEquality().hash(mintEnabled) ^
-      const DeepCollectionEquality().hash(isWhitelist) ^
-      const DeepCollectionEquality().hash(walletLimit) ^
-      const DeepCollectionEquality().hash(prices) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(walletLimitReached) ^
-      const DeepCollectionEquality().hash(maxBuyable) ^
-      const DeepCollectionEquality().hash(userMintsPerStage) ^
-      runtimeType.hashCode;
 }
 
 extension $MintStageDtoExtension on MintStageDto {
@@ -19806,118 +12288,6 @@ class CollectionMintProfileDocWithStages {
   @JsonKey(name: 'creatorInfo')
   final CreatorProfileDoc creatorInfo;
   static const fromJsonFactory = _$CollectionMintProfileDocWithStagesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionMintProfileDocWithStages &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
-            (identical(other.cid, cid) ||
-                const DeepCollectionEquality().equals(other.cid, cid)) &&
-            (identical(other.mediaType, mediaType) ||
-                const DeepCollectionEquality().equals(
-                  other.mediaType,
-                  mediaType,
-                )) &&
-            (identical(other.hasAttributes, hasAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.hasAttributes,
-                  hasAttributes,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.totalNftMinted, totalNftMinted) ||
-                const DeepCollectionEquality().equals(
-                  other.totalNftMinted,
-                  totalNftMinted,
-                )) &&
-            (identical(other.globalWalletLimit, globalWalletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.globalWalletLimit,
-                  globalWalletLimit,
-                )) &&
-            (identical(other.nftTransferLimited, nftTransferLimited) ||
-                const DeepCollectionEquality().equals(
-                  other.nftTransferLimited,
-                  nftTransferLimited,
-                )) &&
-            (identical(other.kycRequired, kycRequired) ||
-                const DeepCollectionEquality().equals(
-                  other.kycRequired,
-                  kycRequired,
-                )) &&
-            (identical(other.hasBotProtection, hasBotProtection) ||
-                const DeepCollectionEquality().equals(
-                  other.hasBotProtection,
-                  hasBotProtection,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.isExcludedFromMint, isExcludedFromMint) ||
-                const DeepCollectionEquality().equals(
-                  other.isExcludedFromMint,
-                  isExcludedFromMint,
-                )) &&
-            (identical(other.userMintsGlobal, userMintsGlobal) ||
-                const DeepCollectionEquality().equals(
-                  other.userMintsGlobal,
-                  userMintsGlobal,
-                )) &&
-            (identical(other.mintStages, mintStages) ||
-                const DeepCollectionEquality().equals(
-                  other.mintStages,
-                  mintStages,
-                )) &&
-            (identical(other.creatorInfo, creatorInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorInfo,
-                  creatorInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
-      const DeepCollectionEquality().hash(cid) ^
-      const DeepCollectionEquality().hash(mediaType) ^
-      const DeepCollectionEquality().hash(hasAttributes) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(totalNftMinted) ^
-      const DeepCollectionEquality().hash(globalWalletLimit) ^
-      const DeepCollectionEquality().hash(nftTransferLimited) ^
-      const DeepCollectionEquality().hash(kycRequired) ^
-      const DeepCollectionEquality().hash(hasBotProtection) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(isExcludedFromMint) ^
-      const DeepCollectionEquality().hash(userMintsGlobal) ^
-      const DeepCollectionEquality().hash(mintStages) ^
-      const DeepCollectionEquality().hash(creatorInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionMintProfileDocWithStagesExtension
@@ -20052,40 +12422,6 @@ class WalletDetailDto {
   @JsonKey(name: 'type')
   final String type;
   static const fromJsonFactory = _$WalletDetailDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is WalletDetailDto &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.weight, weight) ||
-                const DeepCollectionEquality().equals(other.weight, weight)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(type) ^
-      runtimeType.hashCode;
 }
 
 extension $WalletDetailDtoExtension on WalletDetailDto {
@@ -20158,61 +12494,6 @@ class CollectionHoldersDto {
   @JsonKey(name: 'holded')
   final Object holded;
   static const fromJsonFactory = _$CollectionHoldersDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionHoldersDto &&
-            (identical(other.totalSupply, totalSupply) ||
-                const DeepCollectionEquality().equals(
-                  other.totalSupply,
-                  totalSupply,
-                )) &&
-            (identical(other.walletDetails, walletDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.walletDetails,
-                  walletDetails,
-                )) &&
-            (identical(other.onMarket, onMarket) ||
-                const DeepCollectionEquality().equals(
-                  other.onMarket,
-                  onMarket,
-                )) &&
-            (identical(other.staked, staked) ||
-                const DeepCollectionEquality().equals(other.staked, staked)) &&
-            (identical(other.otherSCs, otherSCs) ||
-                const DeepCollectionEquality().equals(
-                  other.otherSCs,
-                  otherSCs,
-                )) &&
-            (identical(other.burnWallet, burnWallet) ||
-                const DeepCollectionEquality().equals(
-                  other.burnWallet,
-                  burnWallet,
-                )) &&
-            (identical(other.uniqueHolders, uniqueHolders) ||
-                const DeepCollectionEquality().equals(
-                  other.uniqueHolders,
-                  uniqueHolders,
-                )) &&
-            (identical(other.holded, holded) ||
-                const DeepCollectionEquality().equals(other.holded, holded)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(totalSupply) ^
-      const DeepCollectionEquality().hash(walletDetails) ^
-      const DeepCollectionEquality().hash(onMarket) ^
-      const DeepCollectionEquality().hash(staked) ^
-      const DeepCollectionEquality().hash(otherSCs) ^
-      const DeepCollectionEquality().hash(burnWallet) ^
-      const DeepCollectionEquality().hash(uniqueHolders) ^
-      const DeepCollectionEquality().hash(holded) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionHoldersDtoExtension on CollectionHoldersDto {
@@ -20276,12 +12557,6 @@ class CollectionHoldersExportDto {
   Map<String, dynamic> toJson() => _$CollectionHoldersExportDtoToJson(this);
 
   static const fromJsonFactory = _$CollectionHoldersExportDtoFromJson;
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -20297,21 +12572,6 @@ class CollectionOwnerDto {
   @JsonKey(name: 'owner')
   final String owner;
   static const fromJsonFactory = _$CollectionOwnerDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionOwnerDto &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(owner) ^ runtimeType.hashCode;
 }
 
 extension $CollectionOwnerDtoExtension on CollectionOwnerDto {
@@ -20371,67 +12631,6 @@ class CollectionOffersFilterCriteriaDto {
   @JsonKey(name: 'withAttributes')
   final bool? withAttributes;
   static const fromJsonFactory = _$CollectionOffersFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionOffersFilterCriteriaDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.offerId, offerId) ||
-                const DeepCollectionEquality().equals(
-                  other.offerId,
-                  offerId,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)) &&
-            (identical(other.attributes, attributes) ||
-                const DeepCollectionEquality().equals(
-                  other.attributes,
-                  attributes,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.withAttributes, withAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.withAttributes,
-                  withAttributes,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(offerId) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(range) ^
-      const DeepCollectionEquality().hash(attributes) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(withAttributes) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionOffersFilterCriteriaDtoExtension
@@ -20520,49 +12719,6 @@ class CollectionOffersFilter {
   @JsonKey(name: 'filters')
   final CollectionOffersFilterCriteriaDto? filters;
   static const fromJsonFactory = _$CollectionOffersFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionOffersFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionOffersFilterExtension on CollectionOffersFilter {
@@ -20632,34 +12788,6 @@ class GlobalOfferPaginated {
   @JsonKey(name: 'resources', defaultValue: <GlobalOfferDocHydrated>[])
   final List<GlobalOfferDocHydrated> resources;
   static const fromJsonFactory = _$GlobalOfferPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalOfferPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalOfferPaginatedExtension on GlobalOfferPaginated {
@@ -20799,190 +12927,6 @@ class MintingListingDto {
   @JsonKey(name: 'collectionInfo')
   final ShortCollectionInfoDoc collectionInfo;
   static const fromJsonFactory = _$MintingListingDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MintingListingDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.creatorName, creatorName) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorName,
-                  creatorName,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collectionTag, collectionTag) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionTag,
-                  collectionTag,
-                )) &&
-            (identical(other.cid, cid) ||
-                const DeepCollectionEquality().equals(other.cid, cid)) &&
-            (identical(other.mediaType, mediaType) ||
-                const DeepCollectionEquality().equals(
-                  other.mediaType,
-                  mediaType,
-                )) &&
-            (identical(other.baseNftName, baseNftName) ||
-                const DeepCollectionEquality().equals(
-                  other.baseNftName,
-                  baseNftName,
-                )) &&
-            (identical(other.hasAttributes, hasAttributes) ||
-                const DeepCollectionEquality().equals(
-                  other.hasAttributes,
-                  hasAttributes,
-                )) &&
-            (identical(other.ownerTransferred, ownerTransferred) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerTransferred,
-                  ownerTransferred,
-                )) &&
-            (identical(other.collectionSize, collectionSize) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionSize,
-                  collectionSize,
-                )) &&
-            (identical(other.totalNftMinted, totalNftMinted) ||
-                const DeepCollectionEquality().equals(
-                  other.totalNftMinted,
-                  totalNftMinted,
-                )) &&
-            (identical(other.globalWalletLimit, globalWalletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.globalWalletLimit,
-                  globalWalletLimit,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.oldVersion, oldVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.oldVersion,
-                  oldVersion,
-                )) &&
-            (identical(other.nameShuffle, nameShuffle) ||
-                const DeepCollectionEquality().equals(
-                  other.nameShuffle,
-                  nameShuffle,
-                )) &&
-            (identical(other.nftTransferLimited, nftTransferLimited) ||
-                const DeepCollectionEquality().equals(
-                  other.nftTransferLimited,
-                  nftTransferLimited,
-                )) &&
-            (identical(other.allowsPublicBurn, allowsPublicBurn) ||
-                const DeepCollectionEquality().equals(
-                  other.allowsPublicBurn,
-                  allowsPublicBurn,
-                )) &&
-            (identical(other.kycRequired, kycRequired) ||
-                const DeepCollectionEquality().equals(
-                  other.kycRequired,
-                  kycRequired,
-                )) &&
-            (identical(other.allowsRefund, allowsRefund) ||
-                const DeepCollectionEquality().equals(
-                  other.allowsRefund,
-                  allowsRefund,
-                )) &&
-            (identical(other.hasBotProtection, hasBotProtection) ||
-                const DeepCollectionEquality().equals(
-                  other.hasBotProtection,
-                  hasBotProtection,
-                )) &&
-            (identical(other.hasReveal, hasReveal) ||
-                const DeepCollectionEquality().equals(
-                  other.hasReveal,
-                  hasReveal,
-                )) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.isSoldOut, isSoldOut) ||
-                const DeepCollectionEquality().equals(
-                  other.isSoldOut,
-                  isSoldOut,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(creatorName) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collectionTag) ^
-      const DeepCollectionEquality().hash(cid) ^
-      const DeepCollectionEquality().hash(mediaType) ^
-      const DeepCollectionEquality().hash(baseNftName) ^
-      const DeepCollectionEquality().hash(hasAttributes) ^
-      const DeepCollectionEquality().hash(ownerTransferred) ^
-      const DeepCollectionEquality().hash(collectionSize) ^
-      const DeepCollectionEquality().hash(totalNftMinted) ^
-      const DeepCollectionEquality().hash(globalWalletLimit) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(oldVersion) ^
-      const DeepCollectionEquality().hash(nameShuffle) ^
-      const DeepCollectionEquality().hash(nftTransferLimited) ^
-      const DeepCollectionEquality().hash(allowsPublicBurn) ^
-      const DeepCollectionEquality().hash(kycRequired) ^
-      const DeepCollectionEquality().hash(allowsRefund) ^
-      const DeepCollectionEquality().hash(hasBotProtection) ^
-      const DeepCollectionEquality().hash(hasReveal) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(prices) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(isSoldOut) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $MintingListingDtoExtension on MintingListingDto {
@@ -21183,55 +13127,6 @@ class EventLocationDto {
   @JsonKey(name: 'country')
   final String? country;
   static const fromJsonFactory = _$EventLocationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventLocationDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.placeId, placeId) ||
-                const DeepCollectionEquality().equals(
-                  other.placeId,
-                  placeId,
-                )) &&
-            (identical(other.lat, lat) ||
-                const DeepCollectionEquality().equals(other.lat, lat)) &&
-            (identical(other.long, long) ||
-                const DeepCollectionEquality().equals(other.long, long)) &&
-            (identical(other.instructions, instructions) ||
-                const DeepCollectionEquality().equals(
-                  other.instructions,
-                  instructions,
-                )) &&
-            (identical(other.onlineLink, onlineLink) ||
-                const DeepCollectionEquality().equals(
-                  other.onlineLink,
-                  onlineLink,
-                )) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality().equals(other.country, country)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(placeId) ^
-      const DeepCollectionEquality().hash(lat) ^
-      const DeepCollectionEquality().hash(long) ^
-      const DeepCollectionEquality().hash(instructions) ^
-      const DeepCollectionEquality().hash(onlineLink) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(country) ^
-      runtimeType.hashCode;
 }
 
 extension $EventLocationDtoExtension on EventLocationDto {
@@ -21352,127 +13247,6 @@ class RegistrationDetailsDto {
   @JsonKey(name: 'emailSender')
   final String? emailSender;
   static const fromJsonFactory = _$RegistrationDetailsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RegistrationDetailsDto &&
-            (identical(other.visibility, visibility) ||
-                const DeepCollectionEquality().equals(
-                  other.visibility,
-                  visibility,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.requireKYC, requireKYC) ||
-                const DeepCollectionEquality().equals(
-                  other.requireKYC,
-                  requireKYC,
-                )) &&
-            (identical(other.requireName, requireName) ||
-                const DeepCollectionEquality().equals(
-                  other.requireName,
-                  requireName,
-                )) &&
-            (identical(other.requireEmail, requireEmail) ||
-                const DeepCollectionEquality().equals(
-                  other.requireEmail,
-                  requireEmail,
-                )) &&
-            (identical(other.requirePhoneNumber, requirePhoneNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.requirePhoneNumber,
-                  requirePhoneNumber,
-                )) &&
-            (identical(other.isPublished, isPublished) ||
-                const DeepCollectionEquality().equals(
-                  other.isPublished,
-                  isPublished,
-                )) &&
-            (identical(other.hasSideEvents, hasSideEvents) ||
-                const DeepCollectionEquality().equals(
-                  other.hasSideEvents,
-                  hasSideEvents,
-                )) &&
-            (identical(other.hasWaitlist, hasWaitlist) ||
-                const DeepCollectionEquality().equals(
-                  other.hasWaitlist,
-                  hasWaitlist,
-                )) &&
-            (identical(other.showGuestCount, showGuestCount) ||
-                const DeepCollectionEquality().equals(
-                  other.showGuestCount,
-                  showGuestCount,
-                )) &&
-            (identical(other.refundable, refundable) ||
-                const DeepCollectionEquality().equals(
-                  other.refundable,
-                  refundable,
-                )) &&
-            (identical(other.nameWithNumber, nameWithNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.nameWithNumber,
-                  nameWithNumber,
-                )) &&
-            (identical(other.botProtection, botProtection) ||
-                const DeepCollectionEquality().equals(
-                  other.botProtection,
-                  botProtection,
-                )) &&
-            (identical(other.acceptCrypto, acceptCrypto) ||
-                const DeepCollectionEquality().equals(
-                  other.acceptCrypto,
-                  acceptCrypto,
-                )) &&
-            (identical(other.soldCount, soldCount) ||
-                const DeepCollectionEquality().equals(
-                  other.soldCount,
-                  soldCount,
-                )) &&
-            (identical(other.hasCustomQuestions, hasCustomQuestions) ||
-                const DeepCollectionEquality().equals(
-                  other.hasCustomQuestions,
-                  hasCustomQuestions,
-                )) &&
-            (identical(other.emailSender, emailSender) ||
-                const DeepCollectionEquality().equals(
-                  other.emailSender,
-                  emailSender,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(visibility) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(requireKYC) ^
-      const DeepCollectionEquality().hash(requireName) ^
-      const DeepCollectionEquality().hash(requireEmail) ^
-      const DeepCollectionEquality().hash(requirePhoneNumber) ^
-      const DeepCollectionEquality().hash(isPublished) ^
-      const DeepCollectionEquality().hash(hasSideEvents) ^
-      const DeepCollectionEquality().hash(hasWaitlist) ^
-      const DeepCollectionEquality().hash(showGuestCount) ^
-      const DeepCollectionEquality().hash(refundable) ^
-      const DeepCollectionEquality().hash(nameWithNumber) ^
-      const DeepCollectionEquality().hash(botProtection) ^
-      const DeepCollectionEquality().hash(acceptCrypto) ^
-      const DeepCollectionEquality().hash(soldCount) ^
-      const DeepCollectionEquality().hash(hasCustomQuestions) ^
-      const DeepCollectionEquality().hash(emailSender) ^
-      runtimeType.hashCode;
 }
 
 extension $RegistrationDetailsDtoExtension on RegistrationDetailsDto {
@@ -21590,24 +13364,6 @@ class PremiumType {
   @JsonKey(name: 'searchable')
   final bool searchable;
   static const fromJsonFactory = _$PremiumTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PremiumType &&
-            (identical(other.searchable, searchable) ||
-                const DeepCollectionEquality().equals(
-                  other.searchable,
-                  searchable,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchable) ^ runtimeType.hashCode;
 }
 
 extension $PremiumTypeExtension on PremiumType {
@@ -21639,34 +13395,6 @@ class EventSeoDto {
   @JsonKey(name: 'alternativeTitle')
   final String? alternativeTitle;
   static const fromJsonFactory = _$EventSeoDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventSeoDto &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.tags, tags) ||
-                const DeepCollectionEquality().equals(other.tags, tags)) &&
-            (identical(other.alternativeTitle, alternativeTitle) ||
-                const DeepCollectionEquality().equals(
-                  other.alternativeTitle,
-                  alternativeTitle,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(tags) ^
-      const DeepCollectionEquality().hash(alternativeTitle) ^
-      runtimeType.hashCode;
 }
 
 extension $EventSeoDtoExtension on EventSeoDto {
@@ -21764,73 +13492,6 @@ class EventUserRoleDoc {
   @JsonKey(name: '_ts')
   final int? ts;
   static const fromJsonFactory = _$EventUserRoleDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventUserRoleDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality().equals(
-                  other.permissions,
-                  permissions,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(permissions) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $EventUserRoleDocExtension on EventUserRoleDoc {
@@ -21923,37 +13584,6 @@ class EventGuestProfileSummary {
   @JsonKey(name: 'herotag')
   final String? herotag;
   static const fromJsonFactory = _$EventGuestProfileSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestProfileSummary &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(other.herotag, herotag)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestProfileSummaryExtension on EventGuestProfileSummary {
@@ -22001,25 +13631,6 @@ class EventGuestSummary {
   @JsonKey(name: 'guests', defaultValue: <EventGuestProfileSummary>[])
   final List<EventGuestProfileSummary> guests;
   static const fromJsonFactory = _$EventGuestSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestSummary &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.guests, guests) ||
-                const DeepCollectionEquality().equals(other.guests, guests)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(guests) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestSummaryExtension on EventGuestSummary {
@@ -22059,28 +13670,6 @@ class EventStartPrice {
   @JsonKey(name: 'currency')
   final String currency;
   static const fromJsonFactory = _$EventStartPriceFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventStartPrice &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(currency) ^
-      runtimeType.hashCode;
 }
 
 extension $EventStartPriceExtension on EventStartPrice {
@@ -22119,28 +13708,6 @@ class EventGuestRegistration {
   @JsonKey(name: 'phone')
   final String? phone;
   static const fromJsonFactory = _$EventGuestRegistrationFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestRegistration &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestRegistrationExtension on EventGuestRegistration {
@@ -22211,73 +13778,6 @@ class EventGuestBilling {
   @JsonKey(name: 'postalCode')
   final String? postalCode;
   static const fromJsonFactory = _$EventGuestBillingFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestBilling &&
-            (identical(other.isCompany, isCompany) ||
-                const DeepCollectionEquality().equals(
-                  other.isCompany,
-                  isCompany,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(
-                  other.companyRegistrationNumber,
-                  companyRegistrationNumber,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.companyRegistrationNumber,
-                  companyRegistrationNumber,
-                )) &&
-            (identical(other.companyVatNumber, companyVatNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.companyVatNumber,
-                  companyVatNumber,
-                )) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality().equals(
-                  other.country,
-                  country,
-                )) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.address1, address1) ||
-                const DeepCollectionEquality().equals(
-                  other.address1,
-                  address1,
-                )) &&
-            (identical(other.address2, address2) ||
-                const DeepCollectionEquality().equals(
-                  other.address2,
-                  address2,
-                )) &&
-            (identical(other.postalCode, postalCode) ||
-                const DeepCollectionEquality().equals(
-                  other.postalCode,
-                  postalCode,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isCompany) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(companyRegistrationNumber) ^
-      const DeepCollectionEquality().hash(companyVatNumber) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(address1) ^
-      const DeepCollectionEquality().hash(address2) ^
-      const DeepCollectionEquality().hash(postalCode) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestBillingExtension on EventGuestBilling {
@@ -22414,97 +13914,6 @@ class EventGuestProfile {
   @JsonKey(name: 'herotag')
   final String herotag;
   static const fromJsonFactory = _$EventGuestProfileFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestProfile &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.ticket, ticket) ||
-                const DeepCollectionEquality().equals(other.ticket, ticket)) &&
-            (identical(other.questionnaireFilled, questionnaireFilled) ||
-                const DeepCollectionEquality().equals(
-                  other.questionnaireFilled,
-                  questionnaireFilled,
-                )) &&
-            (identical(other.registration, registration) ||
-                const DeepCollectionEquality().equals(
-                  other.registration,
-                  registration,
-                )) &&
-            (identical(other.billing, billing) ||
-                const DeepCollectionEquality().equals(
-                  other.billing,
-                  billing,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.invitationId, invitationId) ||
-                const DeepCollectionEquality().equals(
-                  other.invitationId,
-                  invitationId,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.ttl, ttl) ||
-                const DeepCollectionEquality().equals(other.ttl, ttl)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(other.herotag, herotag)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticket) ^
-      const DeepCollectionEquality().hash(questionnaireFilled) ^
-      const DeepCollectionEquality().hash(registration) ^
-      const DeepCollectionEquality().hash(billing) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(invitationId) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(ttl) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestProfileExtension on EventGuestProfile {
@@ -22704,163 +14113,6 @@ class EventProfile {
   @JsonKey(name: 'guestProfile')
   final EventGuestProfile? guestProfile;
   static const fromJsonFactory = _$EventProfileFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfile &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.creatorAddress, creatorAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorAddress,
-                  creatorAddress,
-                )) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.descriptionUrl, descriptionUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.descriptionUrl,
-                  descriptionUrl,
-                )) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality().equals(
-                  other.location,
-                  location,
-                )) &&
-            (identical(other.isVirtualEvent, isVirtualEvent) ||
-                const DeepCollectionEquality().equals(
-                  other.isVirtualEvent,
-                  isVirtualEvent,
-                )) &&
-            (identical(other.slug, slug) ||
-                const DeepCollectionEquality().equals(other.slug, slug)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality().equals(
-                  other.category,
-                  category,
-                )) &&
-            (identical(other.subCategory, subCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.subCategory,
-                  subCategory,
-                )) &&
-            (identical(other.background, background) ||
-                const DeepCollectionEquality().equals(
-                  other.background,
-                  background,
-                )) &&
-            (identical(other.registration, registration) ||
-                const DeepCollectionEquality().equals(
-                  other.registration,
-                  registration,
-                )) &&
-            (identical(other.premium, premium) ||
-                const DeepCollectionEquality().equals(
-                  other.premium,
-                  premium,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.seo, seo) ||
-                const DeepCollectionEquality().equals(other.seo, seo)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.eventPermissions, eventPermissions) ||
-                const DeepCollectionEquality().equals(
-                  other.eventPermissions,
-                  eventPermissions,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.creatorProfile, creatorProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorProfile,
-                  creatorProfile,
-                )) &&
-            (identical(other.guestSummary, guestSummary) ||
-                const DeepCollectionEquality().equals(
-                  other.guestSummary,
-                  guestSummary,
-                )) &&
-            (identical(other.startsFrom, startsFrom) ||
-                const DeepCollectionEquality().equals(
-                  other.startsFrom,
-                  startsFrom,
-                )) &&
-            (identical(other.guestProfile, guestProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.guestProfile,
-                  guestProfile,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(creatorAddress) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(descriptionUrl) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(isVirtualEvent) ^
-      const DeepCollectionEquality().hash(slug) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(subCategory) ^
-      const DeepCollectionEquality().hash(background) ^
-      const DeepCollectionEquality().hash(registration) ^
-      const DeepCollectionEquality().hash(premium) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(seo) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(eventPermissions) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(creatorProfile) ^
-      const DeepCollectionEquality().hash(guestSummary) ^
-      const DeepCollectionEquality().hash(startsFrom) ^
-      const DeepCollectionEquality().hash(guestProfile) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileExtension on EventProfile {
@@ -23064,97 +14316,6 @@ class CreatorDetailsDto {
   @JsonKey(name: 'events', defaultValue: <EventProfile>[])
   final List<EventProfile>? events;
   static const fromJsonFactory = _$CreatorDetailsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorDetailsDto &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketingContractAddress,
-                  ticketingContractAddress,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(
-                  other.socials,
-                  socials,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.listing, listing) ||
-                const DeepCollectionEquality().equals(
-                  other.listing,
-                  listing,
-                )) &&
-            (identical(other.events, events) ||
-                const DeepCollectionEquality().equals(other.events, events)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(ticketingContractAddress) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(listing) ^
-      const DeepCollectionEquality().hash(events) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorDetailsDtoExtension on CreatorDetailsDto {
@@ -23253,31 +14414,6 @@ class CreatorProfileEditDto {
   @JsonKey(name: 'socials')
   final SocialsDto? socials;
   static const fromJsonFactory = _$CreatorProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorProfileEditDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.socials, socials) ||
-                const DeepCollectionEquality().equals(other.socials, socials)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(socials) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorProfileEditDtoExtension on CreatorProfileEditDto {
@@ -23321,28 +14457,6 @@ class ShareholderDto {
   @JsonKey(name: 'share')
   final double share;
   static const fromJsonFactory = _$ShareholderDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShareholderDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.share, share) ||
-                const DeepCollectionEquality().equals(other.share, share)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(share) ^
-      runtimeType.hashCode;
 }
 
 extension $ShareholderDtoExtension on ShareholderDto {
@@ -23408,55 +14522,6 @@ class Web2UserWallet {
   @JsonKey(name: 'id')
   final String? id;
   static const fromJsonFactory = _$Web2UserWalletFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Web2UserWallet &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.walletClientType, walletClientType) ||
-                const DeepCollectionEquality().equals(
-                  other.walletClientType,
-                  walletClientType,
-                )) &&
-            (identical(other.recoveryMethod, recoveryMethod) ||
-                const DeepCollectionEquality().equals(
-                  other.recoveryMethod,
-                  recoveryMethod,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(walletClientType) ^
-      const DeepCollectionEquality().hash(recoveryMethod) ^
-      const DeepCollectionEquality().hash(id) ^
-      runtimeType.hashCode;
 }
 
 extension $Web2UserWalletExtension on Web2UserWallet {
@@ -23543,46 +14608,6 @@ class Web2UserAccount {
   @JsonKey(name: 'username')
   final String? username;
   static const fromJsonFactory = _$Web2UserAccountFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Web2UserAccount &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.subject, subject) ||
-                const DeepCollectionEquality().equals(
-                  other.subject,
-                  subject,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.profilePicture, profilePicture) ||
-                const DeepCollectionEquality().equals(
-                  other.profilePicture,
-                  profilePicture,
-                )) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality().equals(
-                  other.username,
-                  username,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(subject) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(profilePicture) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(username) ^
-      runtimeType.hashCode;
 }
 
 extension $Web2UserAccountExtension on Web2UserAccount {
@@ -23670,61 +14695,6 @@ class Web2UserDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$Web2UserDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Web2UserDoc &&
-            (identical(other.createdOn, createdOn) ||
-                const DeepCollectionEquality().equals(
-                  other.createdOn,
-                  createdOn,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.linkedAccounts, linkedAccounts) ||
-                const DeepCollectionEquality().equals(
-                  other.linkedAccounts,
-                  linkedAccounts,
-                )) &&
-            (identical(other.shards, shards) ||
-                const DeepCollectionEquality().equals(other.shards, shards)) &&
-            (identical(other.hasNativeWallet, hasNativeWallet) ||
-                const DeepCollectionEquality().equals(
-                  other.hasNativeWallet,
-                  hasNativeWallet,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.salt, salt) ||
-                const DeepCollectionEquality().equals(other.salt, salt)) &&
-            (identical(other.google, google) ||
-                const DeepCollectionEquality().equals(other.google, google)) &&
-            (identical(other.apple, apple) ||
-                const DeepCollectionEquality().equals(other.apple, apple)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(createdOn) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(linkedAccounts) ^
-      const DeepCollectionEquality().hash(shards) ^
-      const DeepCollectionEquality().hash(hasNativeWallet) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(salt) ^
-      const DeepCollectionEquality().hash(google) ^
-      const DeepCollectionEquality().hash(apple) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $Web2UserDocExtension on Web2UserDoc {
@@ -23804,28 +14774,6 @@ class SuccessWithMessageDto {
   @JsonKey(name: 'message')
   final String message;
   static const fromJsonFactory = _$SuccessWithMessageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SuccessWithMessageDto &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality().equals(
-                  other.success,
-                  success,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(success) ^
-      const DeepCollectionEquality().hash(message) ^
-      runtimeType.hashCode;
 }
 
 extension $SuccessWithMessageDtoExtension on SuccessWithMessageDto {
@@ -23891,58 +14839,6 @@ class Web2WalletDto {
   @JsonKey(name: 'recoveryMethod')
   final String? recoveryMethod;
   static const fromJsonFactory = _$Web2WalletDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Web2WalletDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.authToken, authToken) ||
-                const DeepCollectionEquality().equals(
-                  other.authToken,
-                  authToken,
-                )) &&
-            (identical(other.walletClientType, walletClientType) ||
-                const DeepCollectionEquality().equals(
-                  other.walletClientType,
-                  walletClientType,
-                )) &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.recoveryMethod, recoveryMethod) ||
-                const DeepCollectionEquality().equals(
-                  other.recoveryMethod,
-                  recoveryMethod,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(authToken) ^
-      const DeepCollectionEquality().hash(walletClientType) ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(recoveryMethod) ^
-      runtimeType.hashCode;
 }
 
 extension $Web2WalletDtoExtension on Web2WalletDto {
@@ -24016,31 +14912,6 @@ class NativeWalletDto {
   @JsonKey(name: 'isActive')
   final bool isActive;
   static const fromJsonFactory = _$NativeWalletDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NativeWalletDto &&
-            (identical(other.shards, shards) ||
-                const DeepCollectionEquality().equals(other.shards, shards)) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(shards) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      runtimeType.hashCode;
 }
 
 extension $NativeWalletDtoExtension on NativeWalletDto {
@@ -24082,21 +14953,6 @@ class SwitchWalletDto {
   @JsonKey(name: 'address')
   final String address;
   static const fromJsonFactory = _$SwitchWalletDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SwitchWalletDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^ runtimeType.hashCode;
 }
 
 extension $SwitchWalletDtoExtension on SwitchWalletDto {
@@ -24124,21 +14980,6 @@ class Web2UserShardsDto {
   @JsonKey(name: 'shards', defaultValue: <String>[])
   final List<String> shards;
   static const fromJsonFactory = _$Web2UserShardsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is Web2UserShardsDto &&
-            (identical(other.shards, shards) ||
-                const DeepCollectionEquality().equals(other.shards, shards)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(shards) ^ runtimeType.hashCode;
 }
 
 extension $Web2UserShardsDtoExtension on Web2UserShardsDto {
@@ -24192,73 +15033,6 @@ class XoxnoStakingReward {
   @JsonKey(name: 'usdValue')
   final double? usdValue;
   static const fromJsonFactory = _$XoxnoStakingRewardFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is XoxnoStakingReward &&
-            (identical(other.tokenIdentifier, tokenIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenIdentifier,
-                  tokenIdentifier,
-                )) &&
-            (identical(other.tokenNonce, tokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenNonce,
-                  tokenNonce,
-                )) &&
-            (identical(other.rewardBalance, rewardBalance) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardBalance,
-                  rewardBalance,
-                )) &&
-            (identical(other.shareRewardBalance, shareRewardBalance) ||
-                const DeepCollectionEquality().equals(
-                  other.shareRewardBalance,
-                  shareRewardBalance,
-                )) &&
-            (identical(other.rewardPerEpoch, rewardPerEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardPerEpoch,
-                  rewardPerEpoch,
-                )) &&
-            (identical(other.rewardPerEpochShort, rewardPerEpochShort) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardPerEpochShort,
-                  rewardPerEpochShort,
-                )) &&
-            (identical(other.rewardPerDayPerNft, rewardPerDayPerNft) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardPerDayPerNft,
-                  rewardPerDayPerNft,
-                )) &&
-            (identical(other.rewardBalanceShort, rewardBalanceShort) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardBalanceShort,
-                  rewardBalanceShort,
-                )) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenIdentifier) ^
-      const DeepCollectionEquality().hash(tokenNonce) ^
-      const DeepCollectionEquality().hash(rewardBalance) ^
-      const DeepCollectionEquality().hash(shareRewardBalance) ^
-      const DeepCollectionEquality().hash(rewardPerEpoch) ^
-      const DeepCollectionEquality().hash(rewardPerEpochShort) ^
-      const DeepCollectionEquality().hash(rewardPerDayPerNft) ^
-      const DeepCollectionEquality().hash(rewardBalanceShort) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      runtimeType.hashCode;
 }
 
 extension $XoxnoStakingRewardExtension on XoxnoStakingReward {
@@ -24421,175 +15195,6 @@ class StakingSummary {
   @JsonKey(name: 'percentageFilled')
   final double percentageFilled;
   static const fromJsonFactory = _$StakingSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingSummary &&
-            (identical(other.poolId, poolId) ||
-                const DeepCollectionEquality().equals(other.poolId, poolId)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.stakingEnabled, stakingEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.stakingEnabled,
-                  stakingEnabled,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.poolStakedCount, poolStakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.poolStakedCount,
-                  poolStakedCount,
-                )) &&
-            (identical(other.userStakedCount, userStakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.userStakedCount,
-                  userStakedCount,
-                )) &&
-            (identical(other.delegatorCount, delegatorCount) ||
-                const DeepCollectionEquality().equals(
-                  other.delegatorCount,
-                  delegatorCount,
-                )) &&
-            (identical(other.rewardDuration, rewardDuration) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardDuration,
-                  rewardDuration,
-                )) &&
-            (identical(other.poolReward, poolReward) ||
-                const DeepCollectionEquality().equals(
-                  other.poolReward,
-                  poolReward,
-                )) &&
-            (identical(other.userReward, userReward) ||
-                const DeepCollectionEquality().equals(
-                  other.userReward,
-                  userReward,
-                )) &&
-            (identical(other.poolType, poolType) ||
-                const DeepCollectionEquality().equals(
-                  other.poolType,
-                  poolType,
-                )) &&
-            (identical(other.issuingType, issuingType) ||
-                const DeepCollectionEquality().equals(
-                  other.issuingType,
-                  issuingType,
-                )) &&
-            (identical(other.unBoundPeriod, unBoundPeriod) ||
-                const DeepCollectionEquality().equals(
-                  other.unBoundPeriod,
-                  unBoundPeriod,
-                )) &&
-            (identical(other.hasUnboundPeriod, hasUnboundPeriod) ||
-                const DeepCollectionEquality().equals(
-                  other.hasUnboundPeriod,
-                  hasUnboundPeriod,
-                )) &&
-            (identical(other.userUnboundCount, userUnboundCount) ||
-                const DeepCollectionEquality().equals(
-                  other.userUnboundCount,
-                  userUnboundCount,
-                )) &&
-            (identical(other.maxPoolLimit, maxPoolLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxPoolLimit,
-                  maxPoolLimit,
-                )) &&
-            (identical(other.hasMaxWalletLimit, hasMaxWalletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMaxWalletLimit,
-                  hasMaxWalletLimit,
-                )) &&
-            (identical(other.maxWalletLimit, maxWalletLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxWalletLimit,
-                  maxWalletLimit,
-                )) &&
-            (identical(other.startEpoch, startEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.startEpoch,
-                  startEpoch,
-                )) &&
-            (identical(other.endEpoch, endEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.endEpoch,
-                  endEpoch,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.currentEpoch, currentEpoch) ||
-                const DeepCollectionEquality().equals(
-                  other.currentEpoch,
-                  currentEpoch,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.daysLeft, daysLeft) ||
-                const DeepCollectionEquality().equals(
-                  other.daysLeft,
-                  daysLeft,
-                )) &&
-            (identical(other.cutFee, cutFee) ||
-                const DeepCollectionEquality().equals(other.cutFee, cutFee)) &&
-            (identical(other.percentageFilled, percentageFilled) ||
-                const DeepCollectionEquality().equals(
-                  other.percentageFilled,
-                  percentageFilled,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(poolId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(stakingEnabled) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(poolStakedCount) ^
-      const DeepCollectionEquality().hash(userStakedCount) ^
-      const DeepCollectionEquality().hash(delegatorCount) ^
-      const DeepCollectionEquality().hash(rewardDuration) ^
-      const DeepCollectionEquality().hash(poolReward) ^
-      const DeepCollectionEquality().hash(userReward) ^
-      const DeepCollectionEquality().hash(poolType) ^
-      const DeepCollectionEquality().hash(issuingType) ^
-      const DeepCollectionEquality().hash(unBoundPeriod) ^
-      const DeepCollectionEquality().hash(hasUnboundPeriod) ^
-      const DeepCollectionEquality().hash(userUnboundCount) ^
-      const DeepCollectionEquality().hash(maxPoolLimit) ^
-      const DeepCollectionEquality().hash(hasMaxWalletLimit) ^
-      const DeepCollectionEquality().hash(maxWalletLimit) ^
-      const DeepCollectionEquality().hash(startEpoch) ^
-      const DeepCollectionEquality().hash(endEpoch) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(currentEpoch) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(daysLeft) ^
-      const DeepCollectionEquality().hash(cutFee) ^
-      const DeepCollectionEquality().hash(percentageFilled) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingSummaryExtension on StakingSummary {
@@ -24837,136 +15442,6 @@ class StakingPoolDoc {
   @JsonKey(name: 'id')
   final String? id;
   static const fromJsonFactory = _$StakingPoolDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingPoolDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.poolId, poolId) ||
-                const DeepCollectionEquality().equals(other.poolId, poolId)) &&
-            (identical(other.poolType, poolType) ||
-                const DeepCollectionEquality().equals(
-                  other.poolType,
-                  poolType,
-                )) &&
-            (identical(other.stakingEnabled, stakingEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.stakingEnabled,
-                  stakingEnabled,
-                )) &&
-            (identical(other.whitelistEnabled, whitelistEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.whitelistEnabled,
-                  whitelistEnabled,
-                )) &&
-            (identical(other.matchPairEnabled, matchPairEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.matchPairEnabled,
-                  matchPairEnabled,
-                )) &&
-            (identical(other.maxStakePerWallet, maxStakePerWallet) ||
-                const DeepCollectionEquality().equals(
-                  other.maxStakePerWallet,
-                  maxStakePerWallet,
-                )) &&
-            (identical(other.maxStakePerPool, maxStakePerPool) ||
-                const DeepCollectionEquality().equals(
-                  other.maxStakePerPool,
-                  maxStakePerPool,
-                )) &&
-            (identical(other.issuingType, issuingType) ||
-                const DeepCollectionEquality().equals(
-                  other.issuingType,
-                  issuingType,
-                )) &&
-            (identical(other.issuingDeadline, issuingDeadline) ||
-                const DeepCollectionEquality().equals(
-                  other.issuingDeadline,
-                  issuingDeadline,
-                )) &&
-            (identical(other.issuingStart, issuingStart) ||
-                const DeepCollectionEquality().equals(
-                  other.issuingStart,
-                  issuingStart,
-                )) &&
-            (identical(other.unboundPeriod, unboundPeriod) ||
-                const DeepCollectionEquality().equals(
-                  other.unboundPeriod,
-                  unboundPeriod,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.reward, reward) ||
-                const DeepCollectionEquality().equals(other.reward, reward)) &&
-            (identical(other.cutFee, cutFee) ||
-                const DeepCollectionEquality().equals(other.cutFee, cutFee)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.totalWhitelisted, totalWhitelisted) ||
-                const DeepCollectionEquality().equals(
-                  other.totalWhitelisted,
-                  totalWhitelisted,
-                )) &&
-            (identical(other.delegatorCount, delegatorCount) ||
-                const DeepCollectionEquality().equals(
-                  other.delegatorCount,
-                  delegatorCount,
-                )) &&
-            (identical(other.poolStakedCount, poolStakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.poolStakedCount,
-                  poolStakedCount,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(poolId) ^
-      const DeepCollectionEquality().hash(poolType) ^
-      const DeepCollectionEquality().hash(stakingEnabled) ^
-      const DeepCollectionEquality().hash(whitelistEnabled) ^
-      const DeepCollectionEquality().hash(matchPairEnabled) ^
-      const DeepCollectionEquality().hash(maxStakePerWallet) ^
-      const DeepCollectionEquality().hash(maxStakePerPool) ^
-      const DeepCollectionEquality().hash(issuingType) ^
-      const DeepCollectionEquality().hash(issuingDeadline) ^
-      const DeepCollectionEquality().hash(issuingStart) ^
-      const DeepCollectionEquality().hash(unboundPeriod) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(reward) ^
-      const DeepCollectionEquality().hash(cutFee) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(totalWhitelisted) ^
-      const DeepCollectionEquality().hash(delegatorCount) ^
-      const DeepCollectionEquality().hash(poolStakedCount) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(id) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingPoolDocExtension on StakingPoolDoc {
@@ -25112,28 +15587,6 @@ class StakingEditDto {
   @JsonKey(name: 'description')
   final String? description;
   static const fromJsonFactory = _$StakingEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingEditDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingEditDtoExtension on StakingEditDto {
@@ -25173,31 +15626,6 @@ class OwnedCollectionsDto {
   @JsonKey(name: 'availableForRegister', defaultValue: <String>[])
   final List<String> availableForRegister;
   static const fromJsonFactory = _$OwnedCollectionsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OwnedCollectionsDto &&
-            (identical(other.registered, registered) ||
-                const DeepCollectionEquality().equals(
-                  other.registered,
-                  registered,
-                )) &&
-            (identical(other.availableForRegister, availableForRegister) ||
-                const DeepCollectionEquality().equals(
-                  other.availableForRegister,
-                  availableForRegister,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(registered) ^
-      const DeepCollectionEquality().hash(availableForRegister) ^
-      runtimeType.hashCode;
 }
 
 extension $OwnedCollectionsDtoExtension on OwnedCollectionsDto {
@@ -25260,61 +15688,6 @@ class UserStakingSummaryDto {
   @JsonKey(name: 'userReward', defaultValue: <XoxnoStakingReward>[])
   final List<XoxnoStakingReward> userReward;
   static const fromJsonFactory = _$UserStakingSummaryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserStakingSummaryDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.stakedCount, stakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.stakedCount,
-                  stakedCount,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.banner, banner) ||
-                const DeepCollectionEquality().equals(other.banner, banner)) &&
-            (identical(other.poolIds, poolIds) ||
-                const DeepCollectionEquality().equals(
-                  other.poolIds,
-                  poolIds,
-                )) &&
-            (identical(other.userReward, userReward) ||
-                const DeepCollectionEquality().equals(
-                  other.userReward,
-                  userReward,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(stakedCount) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(banner) ^
-      const DeepCollectionEquality().hash(poolIds) ^
-      const DeepCollectionEquality().hash(userReward) ^
-      runtimeType.hashCode;
 }
 
 extension $UserStakingSummaryDtoExtension on UserStakingSummaryDto {
@@ -25400,52 +15773,6 @@ class StakingCreatorDoc {
   @JsonKey(name: 'pk')
   final String? pk;
   static const fromJsonFactory = _$StakingCreatorDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingCreatorDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.ownedPools, ownedPools) ||
-                const DeepCollectionEquality().equals(
-                  other.ownedPools,
-                  ownedPools,
-                )) &&
-            (identical(other.ownedCollections, ownedCollections) ||
-                const DeepCollectionEquality().equals(
-                  other.ownedCollections,
-                  ownedCollections,
-                )) &&
-            (identical(other.cutFee, cutFee) ||
-                const DeepCollectionEquality().equals(other.cutFee, cutFee)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(ownedPools) ^
-      const DeepCollectionEquality().hash(ownedCollections) ^
-      const DeepCollectionEquality().hash(cutFee) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingCreatorDocExtension on StakingCreatorDoc {
@@ -25513,34 +15840,6 @@ class StakingUserPoolNfts {
   @JsonKey(name: 'count')
   final int count;
   static const fromJsonFactory = _$StakingUserPoolNftsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingUserPoolNfts &&
-            (identical(other.poolInfo, poolInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.poolInfo,
-                  poolInfo,
-                )) &&
-            (identical(other.nftDocs, nftDocs) ||
-                const DeepCollectionEquality().equals(
-                  other.nftDocs,
-                  nftDocs,
-                )) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(poolInfo) ^
-      const DeepCollectionEquality().hash(nftDocs) ^
-      const DeepCollectionEquality().hash(count) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingUserPoolNftsExtension on StakingUserPoolNfts {
@@ -25599,55 +15898,6 @@ class StakingExploreDtoHydrated {
   @JsonKey(name: 'collectionInfo')
   final ShortCollectionDoc collectionInfo;
   static const fromJsonFactory = _$StakingExploreDtoHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StakingExploreDtoHydrated &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.activePools, activePools) ||
-                const DeepCollectionEquality().equals(
-                  other.activePools,
-                  activePools,
-                )) &&
-            (identical(other.totalPoolStakedCount, totalPoolStakedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.totalPoolStakedCount,
-                  totalPoolStakedCount,
-                )) &&
-            (identical(other.totalDelegatorCount, totalDelegatorCount) ||
-                const DeepCollectionEquality().equals(
-                  other.totalDelegatorCount,
-                  totalDelegatorCount,
-                )) &&
-            (identical(other.rewardTickers, rewardTickers) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardTickers,
-                  rewardTickers,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(activePools) ^
-      const DeepCollectionEquality().hash(totalPoolStakedCount) ^
-      const DeepCollectionEquality().hash(totalDelegatorCount) ^
-      const DeepCollectionEquality().hash(rewardTickers) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $StakingExploreDtoHydratedExtension on StakingExploreDtoHydrated {
@@ -25726,43 +15976,6 @@ class OwnedServicesDto {
   @JsonKey(name: 'address')
   final String address;
   static const fromJsonFactory = _$OwnedServicesDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is OwnedServicesDto &&
-            (identical(other.mintProfiles, mintProfiles) ||
-                const DeepCollectionEquality().equals(
-                  other.mintProfiles,
-                  mintProfiles,
-                )) &&
-            (identical(other.stakingPools, stakingPools) ||
-                const DeepCollectionEquality().equals(
-                  other.stakingPools,
-                  stakingPools,
-                )) &&
-            (identical(other.events, events) ||
-                const DeepCollectionEquality().equals(other.events, events)) &&
-            (identical(other.creatorProfile, creatorProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorProfile,
-                  creatorProfile,
-                )) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(mintProfiles) ^
-      const DeepCollectionEquality().hash(stakingPools) ^
-      const DeepCollectionEquality().hash(events) ^
-      const DeepCollectionEquality().hash(creatorProfile) ^
-      const DeepCollectionEquality().hash(address) ^
-      runtimeType.hashCode;
 }
 
 extension $OwnedServicesDtoExtension on OwnedServicesDto {
@@ -25839,40 +16052,6 @@ class FilterQueryDto {
   @JsonKey(name: 'select', defaultValue: <String>[])
   final List<String>? select;
   static const fromJsonFactory = _$FilterQueryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FilterQueryDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(select) ^
-      runtimeType.hashCode;
 }
 
 extension $FilterQueryDtoExtension on FilterQueryDto {
@@ -25956,64 +16135,6 @@ class CollectionDto {
   )
   final enums.CollectionDtoChain? chain;
   static const fromJsonFactory = _$CollectionDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isVisible, isVisible) ||
-                const DeepCollectionEquality().equals(
-                  other.isVisible,
-                  isVisible,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.statistics, statistics) ||
-                const DeepCollectionEquality().equals(
-                  other.statistics,
-                  statistics,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isVisible) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(statistics) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $CollectionDtoExtension on CollectionDto {
@@ -26103,58 +16224,6 @@ class UserDto {
   )
   final enums.UserDtoChain? chain;
   static const fromJsonFactory = _$UserDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.isVerified, isVerified) ||
-                const DeepCollectionEquality().equals(
-                  other.isVerified,
-                  isVerified,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.addressTrimmed, addressTrimmed) ||
-                const DeepCollectionEquality().equals(
-                  other.addressTrimmed,
-                  addressTrimmed,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(isVerified) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(addressTrimmed) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $UserDtoExtension on UserDto {
@@ -26247,73 +16316,6 @@ class CreatorDto {
   )
   final enums.CreatorDtoChain? chain;
   static const fromJsonFactory = _$CreatorDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(
-                  other.herotag,
-                  herotag,
-                )) &&
-            (identical(other.addressTrimmed, addressTrimmed) ||
-                const DeepCollectionEquality().equals(
-                  other.addressTrimmed,
-                  addressTrimmed,
-                )) &&
-            (identical(other.isCreator, isCreator) ||
-                const DeepCollectionEquality().equals(
-                  other.isCreator,
-                  isCreator,
-                )) &&
-            (identical(other.contractAddress, contractAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.contractAddress,
-                  contractAddress,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.creatorTag, creatorTag) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorTag,
-                  creatorTag,
-                )) &&
-            (identical(other.joinedDate, joinedDate) ||
-                const DeepCollectionEquality().equals(
-                  other.joinedDate,
-                  joinedDate,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      const DeepCollectionEquality().hash(addressTrimmed) ^
-      const DeepCollectionEquality().hash(isCreator) ^
-      const DeepCollectionEquality().hash(contractAddress) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(creatorTag) ^
-      const DeepCollectionEquality().hash(joinedDate) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorDtoExtension on CreatorDto {
@@ -26416,58 +16418,6 @@ class NftDto {
   )
   final enums.NftDtoChain? chain;
   static const fromJsonFactory = _$NftDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftDto &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.onSale, onSale) ||
-                const DeepCollectionEquality().equals(other.onSale, onSale)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(onSale) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      const DeepCollectionEquality().hash(chain) ^
-      runtimeType.hashCode;
 }
 
 extension $NftDtoExtension on NftDto {
@@ -26546,37 +16496,6 @@ class GlobalSearchResourcesDto {
   @JsonKey(name: 'nft', defaultValue: <NftDto>[])
   final List<NftDto> nft;
   static const fromJsonFactory = _$GlobalSearchResourcesDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalSearchResourcesDto &&
-            (identical(other.collections, collections) ||
-                const DeepCollectionEquality().equals(
-                  other.collections,
-                  collections,
-                )) &&
-            (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)) &&
-            (identical(other.creators, creators) ||
-                const DeepCollectionEquality().equals(
-                  other.creators,
-                  creators,
-                )) &&
-            (identical(other.nft, nft) ||
-                const DeepCollectionEquality().equals(other.nft, nft)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collections) ^
-      const DeepCollectionEquality().hash(users) ^
-      const DeepCollectionEquality().hash(creators) ^
-      const DeepCollectionEquality().hash(nft) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalSearchResourcesDtoExtension on GlobalSearchResourcesDto {
@@ -26630,34 +16549,6 @@ class GlobalSearchResourcesPaginated {
   @JsonKey(name: 'resources')
   final GlobalSearchResourcesDto resources;
   static const fromJsonFactory = _$GlobalSearchResourcesPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalSearchResourcesPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalSearchResourcesPaginatedExtension
@@ -26717,43 +16608,6 @@ class LendingNftAttributes {
   @JsonKey(name: 'isolatedToken')
   final String? isolatedToken;
   static const fromJsonFactory = _$LendingNftAttributesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingNftAttributes &&
-            (identical(other.isolated, isolated) ||
-                const DeepCollectionEquality().equals(
-                  other.isolated,
-                  isolated,
-                )) &&
-            (identical(other.eModeCategory, eModeCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.eModeCategory,
-                  eModeCategory,
-                )) &&
-            (identical(other.positionMode, positionMode) ||
-                const DeepCollectionEquality().equals(
-                  other.positionMode,
-                  positionMode,
-                )) &&
-            (identical(other.isolatedToken, isolatedToken) ||
-                const DeepCollectionEquality().equals(
-                  other.isolatedToken,
-                  isolatedToken,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isolated) ^
-      const DeepCollectionEquality().hash(eModeCategory) ^
-      const DeepCollectionEquality().hash(positionMode) ^
-      const DeepCollectionEquality().hash(isolatedToken) ^
-      runtimeType.hashCode;
 }
 
 extension $LendingNftAttributesExtension on LendingNftAttributes {
@@ -26805,21 +16659,6 @@ class LendingTokenPriceDto {
   @JsonKey(name: 'price')
   final String price;
   static const fromJsonFactory = _$LendingTokenPriceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LendingTokenPriceDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^ runtimeType.hashCode;
 }
 
 extension $LendingTokenPriceDtoExtension on LendingTokenPriceDto {
@@ -26900,73 +16739,6 @@ class NotificationDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$NotificationDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.source, source) ||
-                const DeepCollectionEquality().equals(other.source, source)) &&
-            (identical(other.activityType, activityType) ||
-                const DeepCollectionEquality().equals(
-                  other.activityType,
-                  activityType,
-                )) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.asset, asset) ||
-                const DeepCollectionEquality().equals(other.asset, asset)) &&
-            (identical(other.activity, activity) ||
-                const DeepCollectionEquality().equals(
-                  other.activity,
-                  activity,
-                )) &&
-            (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(source) ^
-      const DeepCollectionEquality().hash(activityType) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(asset) ^
-      const DeepCollectionEquality().hash(activity) ^
-      const DeepCollectionEquality().hash(isRead) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $NotificationDocExtension on NotificationDoc {
@@ -27058,34 +16830,6 @@ class NotificationPaginated {
   @JsonKey(name: 'resources', defaultValue: <NotificationDoc>[])
   final List<NotificationDoc> resources;
   static const fromJsonFactory = _$NotificationPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $NotificationPaginatedExtension on NotificationPaginated {
@@ -27129,21 +16873,6 @@ class PushNotificationCountResponse {
   @JsonKey(name: 'count')
   final double count;
   static const fromJsonFactory = _$PushNotificationCountResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PushNotificationCountResponse &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^ runtimeType.hashCode;
 }
 
 extension $PushNotificationCountResponseExtension
@@ -27193,55 +16922,6 @@ class MobileDeviceRegistrationDto {
   @JsonKey(name: 'osVersion')
   final String? osVersion;
   static const fromJsonFactory = _$MobileDeviceRegistrationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MobileDeviceRegistrationDto &&
-            (identical(other.deviceUUID, deviceUUID) ||
-                const DeepCollectionEquality().equals(
-                  other.deviceUUID,
-                  deviceUUID,
-                )) &&
-            (identical(other.platform, platform) ||
-                const DeepCollectionEquality().equals(
-                  other.platform,
-                  platform,
-                )) &&
-            (identical(other.pushChannel, pushChannel) ||
-                const DeepCollectionEquality().equals(
-                  other.pushChannel,
-                  pushChannel,
-                )) &&
-            (identical(other.appVersion, appVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.appVersion,
-                  appVersion,
-                )) &&
-            (identical(other.deviceModel, deviceModel) ||
-                const DeepCollectionEquality().equals(
-                  other.deviceModel,
-                  deviceModel,
-                )) &&
-            (identical(other.osVersion, osVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.osVersion,
-                  osVersion,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(deviceUUID) ^
-      const DeepCollectionEquality().hash(platform) ^
-      const DeepCollectionEquality().hash(pushChannel) ^
-      const DeepCollectionEquality().hash(appVersion) ^
-      const DeepCollectionEquality().hash(deviceModel) ^
-      const DeepCollectionEquality().hash(osVersion) ^
-      runtimeType.hashCode;
 }
 
 extension $MobileDeviceRegistrationDtoExtension on MobileDeviceRegistrationDto {
@@ -27346,106 +17026,6 @@ class MobileDeviceDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$MobileDeviceDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MobileDeviceDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.deviceUUID, deviceUUID) ||
-                const DeepCollectionEquality().equals(
-                  other.deviceUUID,
-                  deviceUUID,
-                )) &&
-            (identical(other.installationId, installationId) ||
-                const DeepCollectionEquality().equals(
-                  other.installationId,
-                  installationId,
-                )) &&
-            (identical(other.platform, platform) ||
-                const DeepCollectionEquality().equals(
-                  other.platform,
-                  platform,
-                )) &&
-            (identical(other.pushChannel, pushChannel) ||
-                const DeepCollectionEquality().equals(
-                  other.pushChannel,
-                  pushChannel,
-                )) &&
-            (identical(other.web2UserId, web2UserId) ||
-                const DeepCollectionEquality().equals(
-                  other.web2UserId,
-                  web2UserId,
-                )) &&
-            (identical(other.linkedAddresses, linkedAddresses) ||
-                const DeepCollectionEquality().equals(
-                  other.linkedAddresses,
-                  linkedAddresses,
-                )) &&
-            (identical(other.appVersion, appVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.appVersion,
-                  appVersion,
-                )) &&
-            (identical(other.deviceModel, deviceModel) ||
-                const DeepCollectionEquality().equals(
-                  other.deviceModel,
-                  deviceModel,
-                )) &&
-            (identical(other.osVersion, osVersion) ||
-                const DeepCollectionEquality().equals(
-                  other.osVersion,
-                  osVersion,
-                )) &&
-            (identical(other.registeredAt, registeredAt) ||
-                const DeepCollectionEquality().equals(
-                  other.registeredAt,
-                  registeredAt,
-                )) &&
-            (identical(other.lastActiveAt, lastActiveAt) ||
-                const DeepCollectionEquality().equals(
-                  other.lastActiveAt,
-                  lastActiveAt,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(deviceUUID) ^
-      const DeepCollectionEquality().hash(installationId) ^
-      const DeepCollectionEquality().hash(platform) ^
-      const DeepCollectionEquality().hash(pushChannel) ^
-      const DeepCollectionEquality().hash(web2UserId) ^
-      const DeepCollectionEquality().hash(linkedAddresses) ^
-      const DeepCollectionEquality().hash(appVersion) ^
-      const DeepCollectionEquality().hash(deviceModel) ^
-      const DeepCollectionEquality().hash(osVersion) ^
-      const DeepCollectionEquality().hash(registeredAt) ^
-      const DeepCollectionEquality().hash(lastActiveAt) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $MobileDeviceDocExtension on MobileDeviceDoc {
@@ -27561,49 +17141,6 @@ class PushNotificationEventDto {
   @JsonKey(name: 'creatorName')
   final String? creatorName;
   static const fromJsonFactory = _$PushNotificationEventDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PushNotificationEventDto &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.eventTitle, eventTitle) ||
-                const DeepCollectionEquality().equals(
-                  other.eventTitle,
-                  eventTitle,
-                )) &&
-            (identical(other.eventProfile, eventProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.eventProfile,
-                  eventProfile,
-                )) &&
-            (identical(other.creatorAddress, creatorAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorAddress,
-                  creatorAddress,
-                )) &&
-            (identical(other.creatorName, creatorName) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorName,
-                  creatorName,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(eventTitle) ^
-      const DeepCollectionEquality().hash(eventProfile) ^
-      const DeepCollectionEquality().hash(creatorAddress) ^
-      const DeepCollectionEquality().hash(creatorName) ^
-      runtimeType.hashCode;
 }
 
 extension $PushNotificationEventDtoExtension on PushNotificationEventDto {
@@ -27675,46 +17212,6 @@ class PushNotificationTargetingDto {
   @JsonKey(name: 'recipientCount')
   final double? recipientCount;
   static const fromJsonFactory = _$PushNotificationTargetingDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PushNotificationTargetingDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.tagExpression, tagExpression) ||
-                const DeepCollectionEquality().equals(
-                  other.tagExpression,
-                  tagExpression,
-                )) &&
-            (identical(other.targetUsers, targetUsers) ||
-                const DeepCollectionEquality().equals(
-                  other.targetUsers,
-                  targetUsers,
-                )) &&
-            (identical(other.targetAddresses, targetAddresses) ||
-                const DeepCollectionEquality().equals(
-                  other.targetAddresses,
-                  targetAddresses,
-                )) &&
-            (identical(other.recipientCount, recipientCount) ||
-                const DeepCollectionEquality().equals(
-                  other.recipientCount,
-                  recipientCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(tagExpression) ^
-      const DeepCollectionEquality().hash(targetUsers) ^
-      const DeepCollectionEquality().hash(targetAddresses) ^
-      const DeepCollectionEquality().hash(recipientCount) ^
-      runtimeType.hashCode;
 }
 
 extension $PushNotificationTargetingDtoExtension
@@ -27845,115 +17342,6 @@ class PushNotificationDoc {
   @JsonKey(name: '_ts')
   final double? ts;
   static const fromJsonFactory = _$PushNotificationDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PushNotificationDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.imageUrl,
-                  imageUrl,
-                )) &&
-            (identical(other.notificationType, notificationType) ||
-                const DeepCollectionEquality().equals(
-                  other.notificationType,
-                  notificationType,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.owner, owner) ||
-                const DeepCollectionEquality().equals(other.owner, owner)) &&
-            (identical(other.senderAddress, senderAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.senderAddress,
-                  senderAddress,
-                )) &&
-            (identical(other.senderName, senderName) ||
-                const DeepCollectionEquality().equals(
-                  other.senderName,
-                  senderName,
-                )) &&
-            (identical(other.event, event) ||
-                const DeepCollectionEquality().equals(other.event, event)) &&
-            (identical(other.targeting, targeting) ||
-                const DeepCollectionEquality().equals(
-                  other.targeting,
-                  targeting,
-                )) &&
-            (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.deliveredAt, deliveredAt) ||
-                const DeepCollectionEquality().equals(
-                  other.deliveredAt,
-                  deliveredAt,
-                )) &&
-            (identical(other.clickedAt, clickedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.clickedAt,
-                  clickedAt,
-                )) &&
-            (identical(other.sound, sound) ||
-                const DeepCollectionEquality().equals(other.sound, sound)) &&
-            (identical(other.badge, badge) ||
-                const DeepCollectionEquality().equals(other.badge, badge)) &&
-            (identical(other.appMetadata, appMetadata) ||
-                const DeepCollectionEquality().equals(
-                  other.appMetadata,
-                  appMetadata,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(notificationType) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(owner) ^
-      const DeepCollectionEquality().hash(senderAddress) ^
-      const DeepCollectionEquality().hash(senderName) ^
-      const DeepCollectionEquality().hash(event) ^
-      const DeepCollectionEquality().hash(targeting) ^
-      const DeepCollectionEquality().hash(isRead) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(deliveredAt) ^
-      const DeepCollectionEquality().hash(clickedAt) ^
-      const DeepCollectionEquality().hash(sound) ^
-      const DeepCollectionEquality().hash(badge) ^
-      const DeepCollectionEquality().hash(appMetadata) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $PushNotificationDocExtension on PushNotificationDoc {
@@ -28076,31 +17464,6 @@ class PushNotificationResponse {
   @JsonKey(name: 'hasMoreResults')
   final bool hasMoreResults;
   static const fromJsonFactory = _$PushNotificationResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PushNotificationResponse &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      runtimeType.hashCode;
 }
 
 extension $PushNotificationResponseExtension on PushNotificationResponse {
@@ -28145,28 +17508,6 @@ class NotificationSuccessResponseDto {
   @JsonKey(name: 'message')
   final String message;
   static const fromJsonFactory = _$NotificationSuccessResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NotificationSuccessResponseDto &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality().equals(
-                  other.success,
-                  success,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(success) ^
-      const DeepCollectionEquality().hash(message) ^
-      runtimeType.hashCode;
 }
 
 extension $NotificationSuccessResponseDtoExtension
@@ -28222,58 +17563,6 @@ class EventNotificationDto {
   @JsonKey(name: 'metadata')
   final Object? metadata;
   static const fromJsonFactory = _$EventNotificationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventNotificationDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.imageUrl,
-                  imageUrl,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.targetUsers, targetUsers) ||
-                const DeepCollectionEquality().equals(
-                  other.targetUsers,
-                  targetUsers,
-                )) &&
-            (identical(other.targetAddresses, targetAddresses) ||
-                const DeepCollectionEquality().equals(
-                  other.targetAddresses,
-                  targetAddresses,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(targetUsers) ^
-      const DeepCollectionEquality().hash(targetAddresses) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      runtimeType.hashCode;
 }
 
 extension $EventNotificationDtoExtension on EventNotificationDto {
@@ -28348,46 +17637,6 @@ class CreatorMarketingNotificationDto {
   @JsonKey(name: 'metadata')
   final Object? metadata;
   static const fromJsonFactory = _$CreatorMarketingNotificationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CreatorMarketingNotificationDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.imageUrl,
-                  imageUrl,
-                )) &&
-            (identical(other.creatorAddress, creatorAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorAddress,
-                  creatorAddress,
-                )) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(creatorAddress) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      runtimeType.hashCode;
 }
 
 extension $CreatorMarketingNotificationDtoExtension
@@ -28442,31 +17691,6 @@ class ActivityDataDto {
   @JsonKey(name: 'identifier', defaultValue: <String>[])
   final List<String>? identifier;
   static const fromJsonFactory = _$ActivityDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ActivityDataDto &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $ActivityDataDtoExtension on ActivityDataDto {
@@ -28535,52 +17759,6 @@ class NftActivityFilterCriteriaDto {
   @JsonKey(name: 'activityData')
   final ActivityDataDto? activityData;
   static const fromJsonFactory = _$NftActivityFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityFilterCriteriaDto &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.activityAddress, activityAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.activityAddress,
-                  activityAddress,
-                )) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.to, to) ||
-                const DeepCollectionEquality().equals(other.to, to)) &&
-            (identical(other.activityType, activityType) ||
-                const DeepCollectionEquality().equals(
-                  other.activityType,
-                  activityType,
-                )) &&
-            (identical(other.source, source) ||
-                const DeepCollectionEquality().equals(other.source, source)) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)) &&
-            (identical(other.activityData, activityData) ||
-                const DeepCollectionEquality().equals(
-                  other.activityData,
-                  activityData,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(activityAddress) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(to) ^
-      const DeepCollectionEquality().hash(activityType) ^
-      const DeepCollectionEquality().hash(source) ^
-      const DeepCollectionEquality().hash(range) ^
-      const DeepCollectionEquality().hash(activityData) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityFilterCriteriaDtoExtension
@@ -28669,49 +17847,6 @@ class NftActivityFilter {
   @JsonKey(name: 'filters')
   final NftActivityFilterCriteriaDto? filters;
   static const fromJsonFactory = _$NftActivityFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityFilterExtension on NftActivityFilter {
@@ -28793,52 +17928,6 @@ class ShortNftDoc {
   @JsonKey(name: 'metadata')
   final NftMetadata? metadata;
   static const fromJsonFactory = _$ShortNftDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortNftDoc &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.wasProcessed, wasProcessed) ||
-                const DeepCollectionEquality().equals(
-                  other.wasProcessed,
-                  wasProcessed,
-                )) &&
-            (identical(other.media, media) ||
-                const DeepCollectionEquality().equals(other.media, media)) &&
-            (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality().equals(
-                  other.metadata,
-                  metadata,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(wasProcessed) ^
-      const DeepCollectionEquality().hash(media) ^
-      const DeepCollectionEquality().hash(metadata) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortNftDocExtension on ShortNftDoc {
@@ -28955,127 +18044,6 @@ class NftActivityDataHydrated {
   @JsonKey(name: 'collectionInfo')
   final ShortCollectionDoc collectionInfo;
   static const fromJsonFactory = _$NftActivityDataHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityDataHydrated &&
-            (identical(other.collection, collection) ||
-                const DeepCollectionEquality().equals(
-                  other.collection,
-                  collection,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.scId, scId) ||
-                const DeepCollectionEquality().equals(other.scId, scId)) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.egldValue, egldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.egldValue,
-                  egldValue,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.originalPayment, originalPayment) ||
-                const DeepCollectionEquality().equals(
-                  other.originalPayment,
-                  originalPayment,
-                )) &&
-            (identical(other.originalTokenAmount, originalTokenAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTokenAmount,
-                  originalTokenAmount,
-                )) &&
-            (identical(
-                  other.originalTokenAmountShort,
-                  originalTokenAmountShort,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTokenAmountShort,
-                  originalTokenAmountShort,
-                )) &&
-            (identical(other.originalTokenEgldValue, originalTokenEgldValue) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTokenEgldValue,
-                  originalTokenEgldValue,
-                )) &&
-            (identical(other.originalTokenUsdValue, originalTokenUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTokenUsdValue,
-                  originalTokenUsdValue,
-                )) &&
-            (identical(
-                  other.originalTokenIdentifier,
-                  originalTokenIdentifier,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTokenIdentifier,
-                  originalTokenIdentifier,
-                )) &&
-            (identical(other.nftInfo, nftInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.nftInfo,
-                  nftInfo,
-                )) &&
-            (identical(other.collectionInfo, collectionInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.collectionInfo,
-                  collectionInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collection) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(scId) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(egldValue) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(originalPayment) ^
-      const DeepCollectionEquality().hash(originalTokenAmount) ^
-      const DeepCollectionEquality().hash(originalTokenAmountShort) ^
-      const DeepCollectionEquality().hash(originalTokenEgldValue) ^
-      const DeepCollectionEquality().hash(originalTokenUsdValue) ^
-      const DeepCollectionEquality().hash(originalTokenIdentifier) ^
-      const DeepCollectionEquality().hash(nftInfo) ^
-      const DeepCollectionEquality().hash(collectionInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityDataHydratedExtension on NftActivityDataHydrated {
@@ -29247,73 +18215,6 @@ class NftActivityDocHydrated {
   @JsonKey(name: 'activityData')
   final NftActivityDataHydrated activityData;
   static const fromJsonFactory = _$NftActivityDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityDocHydrated &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.eventIdentifier, eventIdentifier) ||
-                const DeepCollectionEquality().equals(
-                  other.eventIdentifier,
-                  eventIdentifier,
-                )) &&
-            (identical(other.eventOrder, eventOrder) ||
-                const DeepCollectionEquality().equals(
-                  other.eventOrder,
-                  eventOrder,
-                )) &&
-            (identical(other.chain, chain) ||
-                const DeepCollectionEquality().equals(other.chain, chain)) &&
-            (identical(other.source, source) ||
-                const DeepCollectionEquality().equals(other.source, source)) &&
-            (identical(other.activityType, activityType) ||
-                const DeepCollectionEquality().equals(
-                  other.activityType,
-                  activityType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.from, from) ||
-                const DeepCollectionEquality().equals(other.from, from)) &&
-            (identical(other.to, to) ||
-                const DeepCollectionEquality().equals(other.to, to)) &&
-            (identical(other.activityData, activityData) ||
-                const DeepCollectionEquality().equals(
-                  other.activityData,
-                  activityData,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(eventIdentifier) ^
-      const DeepCollectionEquality().hash(eventOrder) ^
-      const DeepCollectionEquality().hash(chain) ^
-      const DeepCollectionEquality().hash(source) ^
-      const DeepCollectionEquality().hash(activityType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(from) ^
-      const DeepCollectionEquality().hash(to) ^
-      const DeepCollectionEquality().hash(activityData) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityDocHydratedExtension on NftActivityDocHydrated {
@@ -29409,34 +18310,6 @@ class NftActivityPaginated {
   @JsonKey(name: 'resources', defaultValue: <NftActivityDocHydrated>[])
   final List<NftActivityDocHydrated> resources;
   static const fromJsonFactory = _$NftActivityPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityPaginatedExtension on NftActivityPaginated {
@@ -29503,67 +18376,6 @@ class VolumeGraph {
   @JsonKey(name: 'avgPrice', defaultValue: <List<Object?>>[])
   final List<List<Object?>> avgPrice;
   static const fromJsonFactory = _$VolumeGraphFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is VolumeGraph &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.totalEgldVolume, totalEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalEgldVolume,
-                  totalEgldVolume,
-                )) &&
-            (identical(other.totalUsdVolume, totalUsdVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalUsdVolume,
-                  totalUsdVolume,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.athPrice, athPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.athPrice,
-                  athPrice,
-                )) &&
-            (identical(other.avgPrice, avgPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.avgPrice,
-                  avgPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(totalEgldVolume) ^
-      const DeepCollectionEquality().hash(totalUsdVolume) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(athPrice) ^
-      const DeepCollectionEquality().hash(avgPrice) ^
-      runtimeType.hashCode;
 }
 
 extension $VolumeGraphExtension on VolumeGraph {
@@ -29652,67 +18464,6 @@ class AnalyticsVolumeDto {
   @JsonKey(name: 'avgPrice', defaultValue: <String>[])
   final List<String> avgPrice;
   static const fromJsonFactory = _$AnalyticsVolumeDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AnalyticsVolumeDto &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.totalEgldVolume, totalEgldVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalEgldVolume,
-                  totalEgldVolume,
-                )) &&
-            (identical(other.totalUsdVolume, totalUsdVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalUsdVolume,
-                  totalUsdVolume,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )) &&
-            (identical(other.floorPrice, floorPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.floorPrice,
-                  floorPrice,
-                )) &&
-            (identical(other.athPrice, athPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.athPrice,
-                  athPrice,
-                )) &&
-            (identical(other.avgPrice, avgPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.avgPrice,
-                  avgPrice,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(totalEgldVolume) ^
-      const DeepCollectionEquality().hash(totalUsdVolume) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      const DeepCollectionEquality().hash(floorPrice) ^
-      const DeepCollectionEquality().hash(athPrice) ^
-      const DeepCollectionEquality().hash(avgPrice) ^
-      runtimeType.hashCode;
 }
 
 extension $AnalyticsVolumeDtoExtension on AnalyticsVolumeDto {
@@ -29789,37 +18540,6 @@ class TransactionDetailsDto {
   @JsonKey(name: 'identifier')
   final String identifier;
   static const fromJsonFactory = _$TransactionDetailsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionDetailsDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionDetailsDtoExtension on TransactionDetailsDto {
@@ -29865,21 +18585,6 @@ class AveragePriceDto {
   @JsonKey(name: 'price')
   final double price;
   static const fromJsonFactory = _$AveragePriceDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AveragePriceDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^ runtimeType.hashCode;
 }
 
 extension $AveragePriceDtoExtension on AveragePriceDto {
@@ -29919,34 +18624,6 @@ class AnalyticsDto {
   @JsonKey(name: 'avg')
   final AveragePriceDto avg;
   static const fromJsonFactory = _$AnalyticsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AnalyticsDto &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.volume, volume) ||
-                const DeepCollectionEquality().equals(other.volume, volume)) &&
-            (identical(other.min, min) ||
-                const DeepCollectionEquality().equals(other.min, min)) &&
-            (identical(other.max, max) ||
-                const DeepCollectionEquality().equals(other.max, max)) &&
-            (identical(other.avg, avg) ||
-                const DeepCollectionEquality().equals(other.avg, avg)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(volume) ^
-      const DeepCollectionEquality().hash(min) ^
-      const DeepCollectionEquality().hash(max) ^
-      const DeepCollectionEquality().hash(avg) ^
-      runtimeType.hashCode;
 }
 
 extension $AnalyticsDtoExtension on AnalyticsDto {
@@ -29998,28 +18675,6 @@ class UserAnalyticsDto {
   @JsonKey(name: 'Sale')
   final AnalyticsDto sale;
   static const fromJsonFactory = _$UserAnalyticsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserAnalyticsDto &&
-            (identical(other.purchase, purchase) ||
-                const DeepCollectionEquality().equals(
-                  other.purchase,
-                  purchase,
-                )) &&
-            (identical(other.sale, sale) ||
-                const DeepCollectionEquality().equals(other.sale, sale)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(purchase) ^
-      const DeepCollectionEquality().hash(sale) ^
-      runtimeType.hashCode;
 }
 
 extension $UserAnalyticsDtoExtension on UserAnalyticsDto {
@@ -30065,37 +18720,6 @@ class AllTimeHighDto {
   @JsonKey(name: 'identifier')
   final String identifier;
   static const fromJsonFactory = _$AllTimeHighDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AllTimeHighDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      runtimeType.hashCode;
 }
 
 extension $AllTimeHighDtoExtension on AllTimeHighDto {
@@ -30170,67 +18794,6 @@ class TradingStatsDto {
   @JsonKey(name: 'year')
   final Object year;
   static const fromJsonFactory = _$TradingStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TradingStatsDto &&
-            (identical(other.totalVolume, totalVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalVolume,
-                  totalVolume,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )) &&
-            (identical(other.averagePrice, averagePrice) ||
-                const DeepCollectionEquality().equals(
-                  other.averagePrice,
-                  averagePrice,
-                )) &&
-            (identical(other.allTimeHigh, allTimeHigh) ||
-                const DeepCollectionEquality().equals(
-                  other.allTimeHigh,
-                  allTimeHigh,
-                )) &&
-            (identical(other.day, day) ||
-                const DeepCollectionEquality().equals(other.day, day)) &&
-            (identical(other.week, week) ||
-                const DeepCollectionEquality().equals(other.week, week)) &&
-            (identical(other.month, month) ||
-                const DeepCollectionEquality().equals(other.month, month)) &&
-            (identical(other.quarter, quarter) ||
-                const DeepCollectionEquality().equals(
-                  other.quarter,
-                  quarter,
-                )) &&
-            (identical(other.halfYear, halfYear) ||
-                const DeepCollectionEquality().equals(
-                  other.halfYear,
-                  halfYear,
-                )) &&
-            (identical(other.year, year) ||
-                const DeepCollectionEquality().equals(other.year, year)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(totalVolume) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      const DeepCollectionEquality().hash(averagePrice) ^
-      const DeepCollectionEquality().hash(allTimeHigh) ^
-      const DeepCollectionEquality().hash(day) ^
-      const DeepCollectionEquality().hash(week) ^
-      const DeepCollectionEquality().hash(month) ^
-      const DeepCollectionEquality().hash(quarter) ^
-      const DeepCollectionEquality().hash(halfYear) ^
-      const DeepCollectionEquality().hash(year) ^
-      runtimeType.hashCode;
 }
 
 extension $TradingStatsDtoExtension on TradingStatsDto {
@@ -30312,37 +18875,6 @@ class GlobalAnalyticsOverviewResponseDto {
   @JsonKey(name: 'tradingStats')
   final TradingStatsDto tradingStats;
   static const fromJsonFactory = _$GlobalAnalyticsOverviewResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalAnalyticsOverviewResponseDto &&
-            (identical(other.userCount, userCount) ||
-                const DeepCollectionEquality().equals(
-                  other.userCount,
-                  userCount,
-                )) &&
-            (identical(other.listingsCount, listingsCount) ||
-                const DeepCollectionEquality().equals(
-                  other.listingsCount,
-                  listingsCount,
-                )) &&
-            (identical(other.tradingStats, tradingStats) ||
-                const DeepCollectionEquality().equals(
-                  other.tradingStats,
-                  tradingStats,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(userCount) ^
-      const DeepCollectionEquality().hash(listingsCount) ^
-      const DeepCollectionEquality().hash(tradingStats) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalAnalyticsOverviewResponseDtoExtension
@@ -30406,46 +18938,6 @@ class PriceDataDto {
   @JsonKey(name: 'nftInfo')
   final ShortNftDoc? nftInfo;
   static const fromJsonFactory = _$PriceDataDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PriceDataDto &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.usdValue, usdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.usdValue,
-                  usdValue,
-                )) &&
-            (identical(other.nftInfo, nftInfo) ||
-                const DeepCollectionEquality().equals(other.nftInfo, nftInfo)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(usdValue) ^
-      const DeepCollectionEquality().hash(nftInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $PriceDataDtoExtension on PriceDataDto {
@@ -30558,136 +19050,6 @@ class UserStatsDto {
   @JsonKey(name: 'sellerMinPriceData')
   final PriceDataDto sellerMinPriceData;
   static const fromJsonFactory = _$UserStatsDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserStatsDto &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.totalVolume, totalVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.totalVolume,
-                  totalVolume,
-                )) &&
-            (identical(other.totalTrades, totalTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.totalTrades,
-                  totalTrades,
-                )) &&
-            (identical(other.totalCollections, totalCollections) ||
-                const DeepCollectionEquality().equals(
-                  other.totalCollections,
-                  totalCollections,
-                )) &&
-            (identical(other.totalNfts, totalNfts) ||
-                const DeepCollectionEquality().equals(
-                  other.totalNfts,
-                  totalNfts,
-                )) &&
-            (identical(other.totalPartners, totalPartners) ||
-                const DeepCollectionEquality().equals(
-                  other.totalPartners,
-                  totalPartners,
-                )) &&
-            (identical(other.buyerVolume, buyerVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerVolume,
-                  buyerVolume,
-                )) &&
-            (identical(other.buyerTrades, buyerTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerTrades,
-                  buyerTrades,
-                )) &&
-            (identical(other.buyerNfts, buyerNfts) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerNfts,
-                  buyerNfts,
-                )) &&
-            (identical(other.buyerCollections, buyerCollections) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerCollections,
-                  buyerCollections,
-                )) &&
-            (identical(other.buyerPartners, buyerPartners) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerPartners,
-                  buyerPartners,
-                )) &&
-            (identical(other.buyerMaxPriceData, buyerMaxPriceData) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerMaxPriceData,
-                  buyerMaxPriceData,
-                )) &&
-            (identical(other.buyerMinPriceData, buyerMinPriceData) ||
-                const DeepCollectionEquality().equals(
-                  other.buyerMinPriceData,
-                  buyerMinPriceData,
-                )) &&
-            (identical(other.sellerVolume, sellerVolume) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerVolume,
-                  sellerVolume,
-                )) &&
-            (identical(other.sellerTrades, sellerTrades) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerTrades,
-                  sellerTrades,
-                )) &&
-            (identical(other.sellerNfts, sellerNfts) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerNfts,
-                  sellerNfts,
-                )) &&
-            (identical(other.sellerCollections, sellerCollections) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerCollections,
-                  sellerCollections,
-                )) &&
-            (identical(other.sellerPartners, sellerPartners) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerPartners,
-                  sellerPartners,
-                )) &&
-            (identical(other.sellerMaxPriceData, sellerMaxPriceData) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerMaxPriceData,
-                  sellerMaxPriceData,
-                )) &&
-            (identical(other.sellerMinPriceData, sellerMinPriceData) ||
-                const DeepCollectionEquality().equals(
-                  other.sellerMinPriceData,
-                  sellerMinPriceData,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(totalVolume) ^
-      const DeepCollectionEquality().hash(totalTrades) ^
-      const DeepCollectionEquality().hash(totalCollections) ^
-      const DeepCollectionEquality().hash(totalNfts) ^
-      const DeepCollectionEquality().hash(totalPartners) ^
-      const DeepCollectionEquality().hash(buyerVolume) ^
-      const DeepCollectionEquality().hash(buyerTrades) ^
-      const DeepCollectionEquality().hash(buyerNfts) ^
-      const DeepCollectionEquality().hash(buyerCollections) ^
-      const DeepCollectionEquality().hash(buyerPartners) ^
-      const DeepCollectionEquality().hash(buyerMaxPriceData) ^
-      const DeepCollectionEquality().hash(buyerMinPriceData) ^
-      const DeepCollectionEquality().hash(sellerVolume) ^
-      const DeepCollectionEquality().hash(sellerTrades) ^
-      const DeepCollectionEquality().hash(sellerNfts) ^
-      const DeepCollectionEquality().hash(sellerCollections) ^
-      const DeepCollectionEquality().hash(sellerPartners) ^
-      const DeepCollectionEquality().hash(sellerMaxPriceData) ^
-      const DeepCollectionEquality().hash(sellerMinPriceData) ^
-      runtimeType.hashCode;
 }
 
 extension $UserStatsDtoExtension on UserStatsDto {
@@ -30841,52 +19203,6 @@ class AirdropDtoHydrated {
   @JsonKey(name: 'amount')
   final String? amount;
   static const fromJsonFactory = _$AirdropDtoHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AirdropDtoHydrated &&
-            (identical(other.tokenAllocation, tokenAllocation) ||
-                const DeepCollectionEquality().equals(
-                  other.tokenAllocation,
-                  tokenAllocation,
-                )) &&
-            (identical(other.totalScore, totalScore) ||
-                const DeepCollectionEquality().equals(
-                  other.totalScore,
-                  totalScore,
-                )) &&
-            (identical(other.rank, rank) ||
-                const DeepCollectionEquality().equals(other.rank, rank)) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.isClaimed, isClaimed) ||
-                const DeepCollectionEquality().equals(
-                  other.isClaimed,
-                  isClaimed,
-                )) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(tokenAllocation) ^
-      const DeepCollectionEquality().hash(totalScore) ^
-      const DeepCollectionEquality().hash(rank) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(isClaimed) ^
-      const DeepCollectionEquality().hash(amount) ^
-      runtimeType.hashCode;
 }
 
 extension $AirdropDtoHydratedExtension on AirdropDtoHydrated {
@@ -30971,43 +19287,6 @@ class LoginRequestDto {
       );
 
   static const fromJsonFactory = _$LoginRequestDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LoginRequestDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.loginToken, loginToken) ||
-                const DeepCollectionEquality().equals(
-                  other.loginToken,
-                  loginToken,
-                )) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.service, service) ||
-                const DeepCollectionEquality().equals(other.service, service)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(loginToken) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(data) ^
-      const DeepCollectionEquality().hash(service) ^
-      runtimeType.hashCode;
 }
 
 extension $LoginRequestDtoExtension on LoginRequestDto {
@@ -31059,28 +19338,6 @@ class LoginAccessDto {
   @JsonKey(name: 'expires')
   final double expires;
   static const fromJsonFactory = _$LoginAccessDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is LoginAccessDto &&
-            (identical(other.accessToken, accessToken) ||
-                const DeepCollectionEquality().equals(
-                  other.accessToken,
-                  accessToken,
-                )) &&
-            (identical(other.expires, expires) ||
-                const DeepCollectionEquality().equals(other.expires, expires)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(accessToken) ^
-      const DeepCollectionEquality().hash(expires) ^
-      runtimeType.hashCode;
 }
 
 extension $LoginAccessDtoExtension on LoginAccessDto {
@@ -31129,40 +19386,6 @@ class TransactionLog {
   @JsonKey(name: 'txHash')
   final String txHash;
   static const fromJsonFactory = _$TransactionLogFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionLog &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.events, events) ||
-                const DeepCollectionEquality().equals(other.events, events)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(events) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionLogExtension on TransactionLog {
@@ -31296,145 +19519,6 @@ class TransactionDetailed {
   @JsonKey(name: 'operations', defaultValue: <List<Object?>>[])
   final List<List<Object?>> operations;
   static const fromJsonFactory = _$TransactionDetailedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionDetailed &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.gasLimit, gasLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.gasLimit,
-                  gasLimit,
-                )) &&
-            (identical(other.gasPrice, gasPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.gasPrice,
-                  gasPrice,
-                )) &&
-            (identical(other.gasUsed, gasUsed) ||
-                const DeepCollectionEquality().equals(
-                  other.gasUsed,
-                  gasUsed,
-                )) &&
-            (identical(other.miniBlockHash, miniBlockHash) ||
-                const DeepCollectionEquality().equals(
-                  other.miniBlockHash,
-                  miniBlockHash,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.receiverShard, receiverShard) ||
-                const DeepCollectionEquality().equals(
-                  other.receiverShard,
-                  receiverShard,
-                )) &&
-            (identical(other.round, round) ||
-                const DeepCollectionEquality().equals(other.round, round)) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.senderShard, senderShard) ||
-                const DeepCollectionEquality().equals(
-                  other.senderShard,
-                  senderShard,
-                )) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.fee, fee) ||
-                const DeepCollectionEquality().equals(other.fee, fee)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.function, function) ||
-                const DeepCollectionEquality().equals(
-                  other.function,
-                  function,
-                )) &&
-            (identical(other.action, action) ||
-                const DeepCollectionEquality().equals(other.action, action)) &&
-            (identical(other.scamInfo, scamInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.scamInfo,
-                  scamInfo,
-                )) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.originalTxHash, originalTxHash) ||
-                const DeepCollectionEquality().equals(
-                  other.originalTxHash,
-                  originalTxHash,
-                )) &&
-            (identical(other.pendingResults, pendingResults) ||
-                const DeepCollectionEquality().equals(
-                  other.pendingResults,
-                  pendingResults,
-                )) &&
-            (identical(other.results, results) ||
-                const DeepCollectionEquality().equals(
-                  other.results,
-                  results,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.logs, logs) ||
-                const DeepCollectionEquality().equals(other.logs, logs)) &&
-            (identical(other.operations, operations) ||
-                const DeepCollectionEquality().equals(
-                  other.operations,
-                  operations,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(gasLimit) ^
-      const DeepCollectionEquality().hash(gasPrice) ^
-      const DeepCollectionEquality().hash(gasUsed) ^
-      const DeepCollectionEquality().hash(miniBlockHash) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(receiverShard) ^
-      const DeepCollectionEquality().hash(round) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(senderShard) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(fee) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(data) ^
-      const DeepCollectionEquality().hash(function) ^
-      const DeepCollectionEquality().hash(action) ^
-      const DeepCollectionEquality().hash(scamInfo) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(originalTxHash) ^
-      const DeepCollectionEquality().hash(pendingResults) ^
-      const DeepCollectionEquality().hash(results) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(logs) ^
-      const DeepCollectionEquality().hash(operations) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionDetailedExtension on TransactionDetailed {
@@ -31586,25 +19670,6 @@ class TransactionProcessStatus {
   )
   final enums.TransactionStatus status;
   static const fromJsonFactory = _$TransactionProcessStatusFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionProcessStatus &&
-            (identical(other.reason, reason) ||
-                const DeepCollectionEquality().equals(other.reason, reason)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(reason) ^
-      const DeepCollectionEquality().hash(status) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionProcessStatusExtension on TransactionProcessStatus {
@@ -31686,97 +19751,6 @@ class TransactionCreate {
   @JsonKey(name: 'guardianSignature')
   final String? guardianSignature;
   static const fromJsonFactory = _$TransactionCreateFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionCreate &&
-            (identical(other.chainID, chainID) ||
-                const DeepCollectionEquality().equals(
-                  other.chainID,
-                  chainID,
-                )) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.gasLimit, gasLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.gasLimit,
-                  gasLimit,
-                )) &&
-            (identical(other.gasPrice, gasPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.gasPrice,
-                  gasPrice,
-                )) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.receiverUsername, receiverUsername) ||
-                const DeepCollectionEquality().equals(
-                  other.receiverUsername,
-                  receiverUsername,
-                )) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.senderUsername, senderUsername) ||
-                const DeepCollectionEquality().equals(
-                  other.senderUsername,
-                  senderUsername,
-                )) &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality().equals(
-                  other.version,
-                  version,
-                )) &&
-            (identical(other.options, options) ||
-                const DeepCollectionEquality().equals(
-                  other.options,
-                  options,
-                )) &&
-            (identical(other.guardian, guardian) ||
-                const DeepCollectionEquality().equals(
-                  other.guardian,
-                  guardian,
-                )) &&
-            (identical(other.guardianSignature, guardianSignature) ||
-                const DeepCollectionEquality().equals(
-                  other.guardianSignature,
-                  guardianSignature,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(chainID) ^
-      const DeepCollectionEquality().hash(data) ^
-      const DeepCollectionEquality().hash(gasLimit) ^
-      const DeepCollectionEquality().hash(gasPrice) ^
-      const DeepCollectionEquality().hash(nonce) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(receiverUsername) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(senderUsername) ^
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(version) ^
-      const DeepCollectionEquality().hash(options) ^
-      const DeepCollectionEquality().hash(guardian) ^
-      const DeepCollectionEquality().hash(guardianSignature) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionCreateExtension on TransactionCreate {
@@ -31872,24 +19846,6 @@ class TransactionCostData {
   @JsonKey(name: 'txGasUnits')
   final double txGasUnits;
   static const fromJsonFactory = _$TransactionCostDataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionCostData &&
-            (identical(other.txGasUnits, txGasUnits) ||
-                const DeepCollectionEquality().equals(
-                  other.txGasUnits,
-                  txGasUnits,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(txGasUnits) ^ runtimeType.hashCode;
 }
 
 extension $TransactionCostDataExtension on TransactionCostData {
@@ -31938,46 +19894,6 @@ class TransactionSendResult {
   @JsonKey(name: 'txHash')
   final String txHash;
   static const fromJsonFactory = _$TransactionSendResultFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TransactionSendResult &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )) &&
-            (identical(other.receiverShard, receiverShard) ||
-                const DeepCollectionEquality().equals(
-                  other.receiverShard,
-                  receiverShard,
-                )) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.senderShard, senderShard) ||
-                const DeepCollectionEquality().equals(
-                  other.senderShard,
-                  senderShard,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(receiver) ^
-      const DeepCollectionEquality().hash(receiverShard) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(senderShard) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      runtimeType.hashCode;
 }
 
 extension $TransactionSendResultExtension on TransactionSendResult {
@@ -32044,37 +19960,6 @@ class ChatMessageReplyDto {
   @JsonKey(name: 'id')
   final String id;
   static const fromJsonFactory = _$ChatMessageReplyDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatMessageReplyDto &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(
-                  other.content,
-                  content,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(id) ^
-      runtimeType.hashCode;
 }
 
 extension $ChatMessageReplyDtoExtension on ChatMessageReplyDto {
@@ -32128,28 +20013,6 @@ class ChatMessageContentDto {
   @JsonKey(name: 'replyTo')
   final ChatMessageReplyDto? replyTo;
   static const fromJsonFactory = _$ChatMessageContentDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatMessageContentDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.$value, $value) ||
-                const DeepCollectionEquality().equals(other.$value, $value)) &&
-            (identical(other.replyTo, replyTo) ||
-                const DeepCollectionEquality().equals(other.replyTo, replyTo)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash($value) ^
-      const DeepCollectionEquality().hash(replyTo) ^
-      runtimeType.hashCode;
 }
 
 extension $ChatMessageContentDtoExtension on ChatMessageContentDto {
@@ -32199,34 +20062,6 @@ class SendChatMessageDto {
   @JsonKey(name: 'receiver')
   final String receiver;
   static const fromJsonFactory = _$SendChatMessageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is SendChatMessageDto &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(
-                  other.content,
-                  content,
-                )) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      runtimeType.hashCode;
 }
 
 extension $SendChatMessageDtoExtension on SendChatMessageDto {
@@ -32282,43 +20117,6 @@ class MessageDto {
   @JsonKey(name: 'isDeletedFor', defaultValue: <String>[])
   final List<String> isDeletedFor;
   static const fromJsonFactory = _$MessageDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is MessageDto &&
-            (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(
-                  other.content,
-                  content,
-                )) &&
-            (identical(other.isRead, isRead) ||
-                const DeepCollectionEquality().equals(other.isRead, isRead)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.isDeletedFor, isDeletedFor) ||
-                const DeepCollectionEquality().equals(
-                  other.isDeletedFor,
-                  isDeletedFor,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(content) ^
-      const DeepCollectionEquality().hash(isRead) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(isDeletedFor) ^
-      runtimeType.hashCode;
 }
 
 extension $MessageDtoExtension on MessageDto {
@@ -32399,61 +20197,6 @@ class ChatMessageDocHydrated {
   @JsonKey(name: 'receiver')
   final OwnerDto receiver;
   static const fromJsonFactory = _$ChatMessageDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatMessageDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.chatId, chatId) ||
-                const DeepCollectionEquality().equals(other.chatId, chatId)) &&
-            (identical(other.isGroupChat, isGroupChat) ||
-                const DeepCollectionEquality().equals(
-                  other.isGroupChat,
-                  isGroupChat,
-                )) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.ttl, ttl) ||
-                const DeepCollectionEquality().equals(other.ttl, ttl)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(chatId) ^
-      const DeepCollectionEquality().hash(isGroupChat) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(ttl) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      runtimeType.hashCode;
 }
 
 extension $ChatMessageDocHydratedExtension on ChatMessageDocHydrated {
@@ -32569,76 +20312,6 @@ class UserConversationDocHydrated {
   @JsonKey(name: 'receiver')
   final OwnerDto receiver;
   static const fromJsonFactory = _$UserConversationDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserConversationDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.chatName, chatName) ||
-                const DeepCollectionEquality().equals(
-                  other.chatName,
-                  chatName,
-                )) &&
-            (identical(other.isGroupChat, isGroupChat) ||
-                const DeepCollectionEquality().equals(
-                  other.isGroupChat,
-                  isGroupChat,
-                )) &&
-            (identical(other.chatId, chatId) ||
-                const DeepCollectionEquality().equals(other.chatId, chatId)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.deleteTimestamp, deleteTimestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.deleteTimestamp,
-                  deleteTimestamp,
-                )) &&
-            (identical(other.unreadCount, unreadCount) ||
-                const DeepCollectionEquality().equals(
-                  other.unreadCount,
-                  unreadCount,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(chatName) ^
-      const DeepCollectionEquality().hash(isGroupChat) ^
-      const DeepCollectionEquality().hash(chatId) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(deleteTimestamp) ^
-      const DeepCollectionEquality().hash(unreadCount) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      runtimeType.hashCode;
 }
 
 extension $UserConversationDocHydratedExtension on UserConversationDocHydrated {
@@ -32726,34 +20399,6 @@ class UserConversationPaginated {
   @JsonKey(name: 'resources', defaultValue: <UserConversationDocHydrated>[])
   final List<UserConversationDocHydrated> resources;
   static const fromJsonFactory = _$UserConversationPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserConversationPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $UserConversationPaginatedExtension on UserConversationPaginated {
@@ -32808,40 +20453,6 @@ class ChatMessagePaginated {
   @JsonKey(name: 'receiver')
   final OwnerDto receiver;
   static const fromJsonFactory = _$ChatMessagePaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ChatMessagePaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      runtimeType.hashCode;
 }
 
 extension $ChatMessagePaginatedExtension on ChatMessagePaginated {
@@ -32894,28 +20505,6 @@ class UnreadMessageCountByChatIdDto {
   @JsonKey(name: 'chatId')
   final String chatId;
   static const fromJsonFactory = _$UnreadMessageCountByChatIdDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UnreadMessageCountByChatIdDto &&
-            (identical(other.unreadCount, unreadCount) ||
-                const DeepCollectionEquality().equals(
-                  other.unreadCount,
-                  unreadCount,
-                )) &&
-            (identical(other.chatId, chatId) ||
-                const DeepCollectionEquality().equals(other.chatId, chatId)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(unreadCount) ^
-      const DeepCollectionEquality().hash(chatId) ^
-      runtimeType.hashCode;
 }
 
 extension $UnreadMessageCountByChatIdDtoExtension
@@ -32965,40 +20554,6 @@ class GlobalConversationSummaryDto {
   )
   final List<UnreadMessageCountByChatIdDto> unreadMessageCountByChatId;
   static const fromJsonFactory = _$GlobalConversationSummaryDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is GlobalConversationSummaryDto &&
-            (identical(other.totalUnreadChats, totalUnreadChats) ||
-                const DeepCollectionEquality().equals(
-                  other.totalUnreadChats,
-                  totalUnreadChats,
-                )) &&
-            (identical(other.totalUnreadMessages, totalUnreadMessages) ||
-                const DeepCollectionEquality().equals(
-                  other.totalUnreadMessages,
-                  totalUnreadMessages,
-                )) &&
-            (identical(
-                  other.unreadMessageCountByChatId,
-                  unreadMessageCountByChatId,
-                ) ||
-                const DeepCollectionEquality().equals(
-                  other.unreadMessageCountByChatId,
-                  unreadMessageCountByChatId,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(totalUnreadChats) ^
-      const DeepCollectionEquality().hash(totalUnreadMessages) ^
-      const DeepCollectionEquality().hash(unreadMessageCountByChatId) ^
-      runtimeType.hashCode;
 }
 
 extension $GlobalConversationSummaryDtoExtension
@@ -33079,49 +20634,6 @@ class UserBlockDocHydrated {
   @JsonKey(name: 'receiver')
   final OwnerDto receiver;
   static const fromJsonFactory = _$UserBlockDocHydratedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserBlockDocHydrated &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.sender, sender) ||
-                const DeepCollectionEquality().equals(other.sender, sender)) &&
-            (identical(other.receiver, receiver) ||
-                const DeepCollectionEquality().equals(
-                  other.receiver,
-                  receiver,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(sender) ^
-      const DeepCollectionEquality().hash(receiver) ^
-      runtimeType.hashCode;
 }
 
 extension $UserBlockDocHydratedExtension on UserBlockDocHydrated {
@@ -33187,34 +20699,6 @@ class UserBlockPaginated {
   @JsonKey(name: 'resources', defaultValue: <UserBlockDocHydrated>[])
   final List<UserBlockDocHydrated> resources;
   static const fromJsonFactory = _$UserBlockPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserBlockPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $UserBlockPaginatedExtension on UserBlockPaginated {
@@ -33258,21 +20742,6 @@ class WebSocketTokenDto {
   @JsonKey(name: 'token')
   final String token;
   static const fromJsonFactory = _$WebSocketTokenDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is WebSocketTokenDto &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(token) ^ runtimeType.hashCode;
 }
 
 extension $WebSocketTokenDtoExtension on WebSocketTokenDto {
@@ -33324,64 +20793,6 @@ class UserInfo {
   @JsonKey(name: 'markets', defaultValue: <String>[])
   final List<String> markets;
   static const fromJsonFactory = _$UserInfoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserInfo &&
-            (identical(other.collateral, collateral) ||
-                const DeepCollectionEquality().equals(
-                  other.collateral,
-                  collateral,
-                )) &&
-            (identical(other.collateralShort, collateralShort) ||
-                const DeepCollectionEquality().equals(
-                  other.collateralShort,
-                  collateralShort,
-                )) &&
-            (identical(other.collateralUsd, collateralUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.collateralUsd,
-                  collateralUsd,
-                )) &&
-            (identical(other.borrow, borrow) ||
-                const DeepCollectionEquality().equals(other.borrow, borrow)) &&
-            (identical(other.borrowShort, borrowShort) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowShort,
-                  borrowShort,
-                )) &&
-            (identical(other.borrowUsd, borrowUsd) ||
-                const DeepCollectionEquality().equals(
-                  other.borrowUsd,
-                  borrowUsd,
-                )) &&
-            (identical(other.health, health) ||
-                const DeepCollectionEquality().equals(other.health, health)) &&
-            (identical(other.healthPercentage, healthPercentage) ||
-                const DeepCollectionEquality().equals(
-                  other.healthPercentage,
-                  healthPercentage,
-                )) &&
-            (identical(other.markets, markets) ||
-                const DeepCollectionEquality().equals(other.markets, markets)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(collateral) ^
-      const DeepCollectionEquality().hash(collateralShort) ^
-      const DeepCollectionEquality().hash(collateralUsd) ^
-      const DeepCollectionEquality().hash(borrow) ^
-      const DeepCollectionEquality().hash(borrowShort) ^
-      const DeepCollectionEquality().hash(borrowUsd) ^
-      const DeepCollectionEquality().hash(health) ^
-      const DeepCollectionEquality().hash(healthPercentage) ^
-      const DeepCollectionEquality().hash(markets) ^
-      runtimeType.hashCode;
 }
 
 extension $UserInfoExtension on UserInfo {
@@ -33498,103 +20909,6 @@ class RegistrationDetailsCreateDto {
   @JsonKey(name: 'botProtection')
   final bool botProtection;
   static const fromJsonFactory = _$RegistrationDetailsCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RegistrationDetailsCreateDto &&
-            (identical(other.visibility, visibility) ||
-                const DeepCollectionEquality().equals(
-                  other.visibility,
-                  visibility,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.requireKYC, requireKYC) ||
-                const DeepCollectionEquality().equals(
-                  other.requireKYC,
-                  requireKYC,
-                )) &&
-            (identical(other.requireName, requireName) ||
-                const DeepCollectionEquality().equals(
-                  other.requireName,
-                  requireName,
-                )) &&
-            (identical(other.requireEmail, requireEmail) ||
-                const DeepCollectionEquality().equals(
-                  other.requireEmail,
-                  requireEmail,
-                )) &&
-            (identical(other.requirePhoneNumber, requirePhoneNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.requirePhoneNumber,
-                  requirePhoneNumber,
-                )) &&
-            (identical(other.isPublished, isPublished) ||
-                const DeepCollectionEquality().equals(
-                  other.isPublished,
-                  isPublished,
-                )) &&
-            (identical(other.hasSideEvents, hasSideEvents) ||
-                const DeepCollectionEquality().equals(
-                  other.hasSideEvents,
-                  hasSideEvents,
-                )) &&
-            (identical(other.hasWaitlist, hasWaitlist) ||
-                const DeepCollectionEquality().equals(
-                  other.hasWaitlist,
-                  hasWaitlist,
-                )) &&
-            (identical(other.showGuestCount, showGuestCount) ||
-                const DeepCollectionEquality().equals(
-                  other.showGuestCount,
-                  showGuestCount,
-                )) &&
-            (identical(other.refundable, refundable) ||
-                const DeepCollectionEquality().equals(
-                  other.refundable,
-                  refundable,
-                )) &&
-            (identical(other.nameWithNumber, nameWithNumber) ||
-                const DeepCollectionEquality().equals(
-                  other.nameWithNumber,
-                  nameWithNumber,
-                )) &&
-            (identical(other.botProtection, botProtection) ||
-                const DeepCollectionEquality().equals(
-                  other.botProtection,
-                  botProtection,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(visibility) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(requireKYC) ^
-      const DeepCollectionEquality().hash(requireName) ^
-      const DeepCollectionEquality().hash(requireEmail) ^
-      const DeepCollectionEquality().hash(requirePhoneNumber) ^
-      const DeepCollectionEquality().hash(isPublished) ^
-      const DeepCollectionEquality().hash(hasSideEvents) ^
-      const DeepCollectionEquality().hash(hasWaitlist) ^
-      const DeepCollectionEquality().hash(showGuestCount) ^
-      const DeepCollectionEquality().hash(refundable) ^
-      const DeepCollectionEquality().hash(nameWithNumber) ^
-      const DeepCollectionEquality().hash(botProtection) ^
-      runtimeType.hashCode;
 }
 
 extension $RegistrationDetailsCreateDtoExtension
@@ -33730,70 +21044,6 @@ class EventProfileCreateDto {
   @JsonKey(name: 'registration')
   final RegistrationDetailsCreateDto registration;
   static const fromJsonFactory = _$EventProfileCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfileCreateDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality().equals(
-                  other.location,
-                  location,
-                )) &&
-            (identical(other.isVirtualEvent, isVirtualEvent) ||
-                const DeepCollectionEquality().equals(
-                  other.isVirtualEvent,
-                  isVirtualEvent,
-                )) &&
-            (identical(other.slug, slug) ||
-                const DeepCollectionEquality().equals(other.slug, slug)) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality().equals(
-                  other.category,
-                  category,
-                )) &&
-            (identical(other.subCategory, subCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.subCategory,
-                  subCategory,
-                )) &&
-            (identical(other.seo, seo) ||
-                const DeepCollectionEquality().equals(other.seo, seo)) &&
-            (identical(other.registration, registration) ||
-                const DeepCollectionEquality().equals(
-                  other.registration,
-                  registration,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(isVirtualEvent) ^
-      const DeepCollectionEquality().hash(slug) ^
-      const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(subCategory) ^
-      const DeepCollectionEquality().hash(seo) ^
-      const DeepCollectionEquality().hash(registration) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileCreateDtoExtension on EventProfileCreateDto {
@@ -33881,43 +21131,6 @@ class EventProfileFilterCriteriaDto {
   @JsonKey(name: 'subCategory', defaultValue: <String>[])
   final List<String>? subCategory;
   static const fromJsonFactory = _$EventProfileFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfileFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.area, area) ||
-                const DeepCollectionEquality().equals(other.area, area)) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality().equals(
-                  other.category,
-                  category,
-                )) &&
-            (identical(other.subCategory, subCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.subCategory,
-                  subCategory,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(area) ^
-      const DeepCollectionEquality().hash(range) ^
-      const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(subCategory) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileFilterCriteriaDtoExtension
@@ -33976,37 +21189,6 @@ class EventExtraProperties {
   @JsonKey(name: 'startsFrom')
   final bool? startsFrom;
   static const fromJsonFactory = _$EventExtraPropertiesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventExtraProperties &&
-            (identical(other.creatorProfile, creatorProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.creatorProfile,
-                  creatorProfile,
-                )) &&
-            (identical(other.guestSummary, guestSummary) ||
-                const DeepCollectionEquality().equals(
-                  other.guestSummary,
-                  guestSummary,
-                )) &&
-            (identical(other.startsFrom, startsFrom) ||
-                const DeepCollectionEquality().equals(
-                  other.startsFrom,
-                  startsFrom,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(creatorProfile) ^
-      const DeepCollectionEquality().hash(guestSummary) ^
-      const DeepCollectionEquality().hash(startsFrom) ^
-      runtimeType.hashCode;
 }
 
 extension $EventExtraPropertiesExtension on EventExtraProperties {
@@ -34075,58 +21257,6 @@ class EventProfileFilter {
   @JsonKey(name: 'extraProperties')
   final EventExtraProperties? extraProperties;
   static const fromJsonFactory = _$EventProfileFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfileFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(
-                  other.filters,
-                  filters,
-                )) &&
-            (identical(other.extraProperties, extraProperties) ||
-                const DeepCollectionEquality().equals(
-                  other.extraProperties,
-                  extraProperties,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      const DeepCollectionEquality().hash(extraProperties) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileFilterExtension on EventProfileFilter {
@@ -34202,34 +21332,6 @@ class EventProfileQuery {
   @JsonKey(name: 'resources', defaultValue: <EventProfile>[])
   final List<EventProfile> resources;
   static const fromJsonFactory = _$EventProfileQueryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfileQuery &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileQueryExtension on EventProfileQuery {
@@ -34310,70 +21412,6 @@ class EventProfileEditDto {
   @JsonKey(name: 'registration')
   final RegistrationDetailsCreateDto? registration;
   static const fromJsonFactory = _$EventProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventProfileEditDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality().equals(
-                  other.location,
-                  location,
-                )) &&
-            (identical(other.isVirtualEvent, isVirtualEvent) ||
-                const DeepCollectionEquality().equals(
-                  other.isVirtualEvent,
-                  isVirtualEvent,
-                )) &&
-            (identical(other.slug, slug) ||
-                const DeepCollectionEquality().equals(other.slug, slug)) &&
-            (identical(other.category, category) ||
-                const DeepCollectionEquality().equals(
-                  other.category,
-                  category,
-                )) &&
-            (identical(other.subCategory, subCategory) ||
-                const DeepCollectionEquality().equals(
-                  other.subCategory,
-                  subCategory,
-                )) &&
-            (identical(other.seo, seo) ||
-                const DeepCollectionEquality().equals(other.seo, seo)) &&
-            (identical(other.registration, registration) ||
-                const DeepCollectionEquality().equals(
-                  other.registration,
-                  registration,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(isVirtualEvent) ^
-      const DeepCollectionEquality().hash(slug) ^
-      const DeepCollectionEquality().hash(category) ^
-      const DeepCollectionEquality().hash(subCategory) ^
-      const DeepCollectionEquality().hash(seo) ^
-      const DeepCollectionEquality().hash(registration) ^
-      runtimeType.hashCode;
 }
 
 extension $EventProfileEditDtoExtension on EventProfileEditDto {
@@ -34467,55 +21505,6 @@ class TicketSelectionDto {
   @JsonKey(name: 'currency')
   final String? currency;
   static const fromJsonFactory = _$TicketSelectionDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketSelectionDto &&
-            (identical(other.ticketProfileId, ticketProfileId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketProfileId,
-                  ticketProfileId,
-                )) &&
-            (identical(other.ticketStageId, ticketStageId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketStageId,
-                  ticketStageId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketProfileId) ^
-      const DeepCollectionEquality().hash(ticketStageId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(currency) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketSelectionDtoExtension on TicketSelectionDto {
@@ -34582,28 +21571,6 @@ class EventQuestionAnswerDto {
   @JsonKey(name: 'answer')
   final Object answer;
   static const fromJsonFactory = _$EventQuestionAnswerDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventQuestionAnswerDto &&
-            (identical(other.questionId, questionId) ||
-                const DeepCollectionEquality().equals(
-                  other.questionId,
-                  questionId,
-                )) &&
-            (identical(other.answer, answer) ||
-                const DeepCollectionEquality().equals(other.answer, answer)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(questionId) ^
-      const DeepCollectionEquality().hash(answer) ^
-      runtimeType.hashCode;
 }
 
 extension $EventQuestionAnswerDtoExtension on EventQuestionAnswerDto {
@@ -34649,40 +21616,6 @@ class CallbackUrl {
   @JsonKey(name: 'errorClose')
   final String errorClose;
   static const fromJsonFactory = _$CallbackUrlFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CallbackUrl &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality().equals(
-                  other.success,
-                  success,
-                )) &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)) &&
-            (identical(other.successClose, successClose) ||
-                const DeepCollectionEquality().equals(
-                  other.successClose,
-                  successClose,
-                )) &&
-            (identical(other.errorClose, errorClose) ||
-                const DeepCollectionEquality().equals(
-                  other.errorClose,
-                  errorClose,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(success) ^
-      const DeepCollectionEquality().hash(error) ^
-      const DeepCollectionEquality().hash(successClose) ^
-      const DeepCollectionEquality().hash(errorClose) ^
-      runtimeType.hashCode;
 }
 
 extension $CallbackUrlExtension on CallbackUrl {
@@ -34759,70 +21692,6 @@ class EventGuestRegistrationDto {
   @JsonKey(name: 'callbackUrl')
   final CallbackUrl? callbackUrl;
   static const fromJsonFactory = _$EventGuestRegistrationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestRegistrationDto &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.ticketSelections, ticketSelections) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketSelections,
-                  ticketSelections,
-                )) &&
-            (identical(other.voucherCode, voucherCode) ||
-                const DeepCollectionEquality().equals(
-                  other.voucherCode,
-                  voucherCode,
-                )) &&
-            (identical(other.referralCode, referralCode) ||
-                const DeepCollectionEquality().equals(
-                  other.referralCode,
-                  referralCode,
-                )) &&
-            (identical(other.payWithCrypto, payWithCrypto) ||
-                const DeepCollectionEquality().equals(
-                  other.payWithCrypto,
-                  payWithCrypto,
-                )) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )) &&
-            (identical(other.questionAnswers, questionAnswers) ||
-                const DeepCollectionEquality().equals(
-                  other.questionAnswers,
-                  questionAnswers,
-                )) &&
-            (identical(other.callbackUrl, callbackUrl) ||
-                const DeepCollectionEquality().equals(
-                  other.callbackUrl,
-                  callbackUrl,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(ticketSelections) ^
-      const DeepCollectionEquality().hash(voucherCode) ^
-      const DeepCollectionEquality().hash(referralCode) ^
-      const DeepCollectionEquality().hash(payWithCrypto) ^
-      const DeepCollectionEquality().hash(currency) ^
-      const DeepCollectionEquality().hash(questionAnswers) ^
-      const DeepCollectionEquality().hash(callbackUrl) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
@@ -34905,31 +21774,6 @@ class TwispayPaymentFormData {
   @JsonKey(name: 'base64Checksum')
   final Object base64Checksum;
   static const fromJsonFactory = _$TwispayPaymentFormDataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TwispayPaymentFormData &&
-            (identical(other.base64JsonRequest, base64JsonRequest) ||
-                const DeepCollectionEquality().equals(
-                  other.base64JsonRequest,
-                  base64JsonRequest,
-                )) &&
-            (identical(other.base64Checksum, base64Checksum) ||
-                const DeepCollectionEquality().equals(
-                  other.base64Checksum,
-                  base64Checksum,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(base64JsonRequest) ^
-      const DeepCollectionEquality().hash(base64Checksum) ^
-      runtimeType.hashCode;
 }
 
 extension $TwispayPaymentFormDataExtension on TwispayPaymentFormData {
@@ -34976,31 +21820,6 @@ class StripePaymentFormData {
   @JsonKey(name: 'publicKey')
   final String publicKey;
   static const fromJsonFactory = _$StripePaymentFormDataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StripePaymentFormData &&
-            (identical(other.sessionId, sessionId) ||
-                const DeepCollectionEquality().equals(
-                  other.sessionId,
-                  sessionId,
-                )) &&
-            (identical(other.publicKey, publicKey) ||
-                const DeepCollectionEquality().equals(
-                  other.publicKey,
-                  publicKey,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(sessionId) ^
-      const DeepCollectionEquality().hash(publicKey) ^
-      runtimeType.hashCode;
 }
 
 extension $StripePaymentFormDataExtension on StripePaymentFormData {
@@ -35041,25 +21860,6 @@ class FiatPaymentForm {
   @JsonKey(name: 'data')
   final dynamic data;
   static const fromJsonFactory = _$FiatPaymentFormFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is FiatPaymentForm &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(data) ^
-      runtimeType.hashCode;
 }
 
 extension $FiatPaymentFormExtension on FiatPaymentForm {
@@ -35093,28 +21893,6 @@ class CryptoPaymentResult {
   @JsonKey(name: 'data')
   final String data;
   static const fromJsonFactory = _$CryptoPaymentResultFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CryptoPaymentResult &&
-            (identical(other.signature, signature) ||
-                const DeepCollectionEquality().equals(
-                  other.signature,
-                  signature,
-                )) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(signature) ^
-      const DeepCollectionEquality().hash(data) ^
-      runtimeType.hashCode;
 }
 
 extension $CryptoPaymentResultExtension on CryptoPaymentResult {
@@ -35157,37 +21935,6 @@ class EventRegistrationResponseDto {
   @JsonKey(name: 'cryptoPayment')
   final CryptoPaymentResult? cryptoPayment;
   static const fromJsonFactory = _$EventRegistrationResponseDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventRegistrationResponseDto &&
-            (identical(other.guestDoc, guestDoc) ||
-                const DeepCollectionEquality().equals(
-                  other.guestDoc,
-                  guestDoc,
-                )) &&
-            (identical(other.fiatPaymentForm, fiatPaymentForm) ||
-                const DeepCollectionEquality().equals(
-                  other.fiatPaymentForm,
-                  fiatPaymentForm,
-                )) &&
-            (identical(other.cryptoPayment, cryptoPayment) ||
-                const DeepCollectionEquality().equals(
-                  other.cryptoPayment,
-                  cryptoPayment,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(guestDoc) ^
-      const DeepCollectionEquality().hash(fiatPaymentForm) ^
-      const DeepCollectionEquality().hash(cryptoPayment) ^
-      runtimeType.hashCode;
 }
 
 extension $EventRegistrationResponseDtoExtension
@@ -35251,52 +21998,6 @@ class EventTicketProfileCreateDto {
   @JsonKey(name: 'userLimit')
   final int userLimit;
   static const fromJsonFactory = _$EventTicketProfileCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventTicketProfileCreateDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.badgeColor, badgeColor) ||
-                const DeepCollectionEquality().equals(
-                  other.badgeColor,
-                  badgeColor,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      runtimeType.hashCode;
 }
 
 extension $EventTicketProfileCreateDtoExtension on EventTicketProfileCreateDto {
@@ -35398,97 +22099,6 @@ class EventTicketProfileDoc {
   @JsonKey(name: '_ts')
   final int? ts;
   static const fromJsonFactory = _$EventTicketProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventTicketProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.badgeColor, badgeColor) ||
-                const DeepCollectionEquality().equals(
-                  other.badgeColor,
-                  badgeColor,
-                )) &&
-            (identical(other.characteristics, characteristics) ||
-                const DeepCollectionEquality().equals(
-                  other.characteristics,
-                  characteristics,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.soldCount, soldCount) ||
-                const DeepCollectionEquality().equals(
-                  other.soldCount,
-                  soldCount,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(characteristics) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(soldCount) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $EventTicketProfileDocExtension on EventTicketProfileDoc {
@@ -35597,52 +22207,6 @@ class EventTicketProfileEditDto {
   @JsonKey(name: 'userLimit')
   final int? userLimit;
   static const fromJsonFactory = _$EventTicketProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventTicketProfileEditDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.badgeColor, badgeColor) ||
-                const DeepCollectionEquality().equals(
-                  other.badgeColor,
-                  badgeColor,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      runtimeType.hashCode;
 }
 
 extension $EventTicketProfileEditDtoExtension on EventTicketProfileEditDto {
@@ -35725,73 +22289,6 @@ class EventStageProfileCreateDto {
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment> prices;
   static const fromJsonFactory = _$EventStageProfileCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventStageProfileCreateDto &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.isEnabled, isEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.isEnabled,
-                  isEnabled,
-                )) &&
-            (identical(other.isWhitelist, isWhitelist) ||
-                const DeepCollectionEquality().equals(
-                  other.isWhitelist,
-                  isWhitelist,
-                )) &&
-            (identical(other.requiredApproval, requiredApproval) ||
-                const DeepCollectionEquality().equals(
-                  other.requiredApproval,
-                  requiredApproval,
-                )) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(isEnabled) ^
-      const DeepCollectionEquality().hash(isWhitelist) ^
-      const DeepCollectionEquality().hash(requiredApproval) ^
-      const DeepCollectionEquality().hash(prices) ^
-      runtimeType.hashCode;
 }
 
 extension $EventStageProfileCreateDtoExtension on EventStageProfileCreateDto {
@@ -35921,100 +22418,6 @@ class EventStageProfileDoc {
   @JsonKey(name: '_ts')
   final int? ts;
   static const fromJsonFactory = _$EventStageProfileDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventStageProfileDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.isEnabled, isEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.isEnabled,
-                  isEnabled,
-                )) &&
-            (identical(other.isWhitelist, isWhitelist) ||
-                const DeepCollectionEquality().equals(
-                  other.isWhitelist,
-                  isWhitelist,
-                )) &&
-            (identical(other.requiredApproval, requiredApproval) ||
-                const DeepCollectionEquality().equals(
-                  other.requiredApproval,
-                  requiredApproval,
-                )) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)) &&
-            (identical(other.soldCount, soldCount) ||
-                const DeepCollectionEquality().equals(
-                  other.soldCount,
-                  soldCount,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(isEnabled) ^
-      const DeepCollectionEquality().hash(isWhitelist) ^
-      const DeepCollectionEquality().hash(requiredApproval) ^
-      const DeepCollectionEquality().hash(prices) ^
-      const DeepCollectionEquality().hash(soldCount) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $EventStageProfileDocExtension on EventStageProfileDoc {
@@ -36136,67 +22539,6 @@ class EventStageProfileEditDto {
   @JsonKey(name: 'prices', defaultValue: <EgldOrEsdtTokenPayment>[])
   final List<EgldOrEsdtTokenPayment>? prices;
   static const fromJsonFactory = _$EventStageProfileEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventStageProfileEditDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.maxLimit, maxLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.maxLimit,
-                  maxLimit,
-                )) &&
-            (identical(other.userLimit, userLimit) ||
-                const DeepCollectionEquality().equals(
-                  other.userLimit,
-                  userLimit,
-                )) &&
-            (identical(other.isEnabled, isEnabled) ||
-                const DeepCollectionEquality().equals(
-                  other.isEnabled,
-                  isEnabled,
-                )) &&
-            (identical(other.isWhitelist, isWhitelist) ||
-                const DeepCollectionEquality().equals(
-                  other.isWhitelist,
-                  isWhitelist,
-                )) &&
-            (identical(other.requiredApproval, requiredApproval) ||
-                const DeepCollectionEquality().equals(
-                  other.requiredApproval,
-                  requiredApproval,
-                )) &&
-            (identical(other.prices, prices) ||
-                const DeepCollectionEquality().equals(other.prices, prices)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(maxLimit) ^
-      const DeepCollectionEquality().hash(userLimit) ^
-      const DeepCollectionEquality().hash(isEnabled) ^
-      const DeepCollectionEquality().hash(isWhitelist) ^
-      const DeepCollectionEquality().hash(requiredApproval) ^
-      const DeepCollectionEquality().hash(prices) ^
-      runtimeType.hashCode;
 }
 
 extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
@@ -36272,37 +22614,6 @@ class TicketCalculationRequestDto {
   @JsonKey(name: 'ticketSelections', defaultValue: <TicketSelectionDto>[])
   final List<TicketSelectionDto> ticketSelections;
   static const fromJsonFactory = _$TicketCalculationRequestDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketCalculationRequestDto &&
-            (identical(other.referralCode, referralCode) ||
-                const DeepCollectionEquality().equals(
-                  other.referralCode,
-                  referralCode,
-                )) &&
-            (identical(other.discountCode, discountCode) ||
-                const DeepCollectionEquality().equals(
-                  other.discountCode,
-                  discountCode,
-                )) &&
-            (identical(other.ticketSelections, ticketSelections) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketSelections,
-                  ticketSelections,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(referralCode) ^
-      const DeepCollectionEquality().hash(discountCode) ^
-      const DeepCollectionEquality().hash(ticketSelections) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketCalculationRequestDtoExtension on TicketCalculationRequestDto {
@@ -36373,67 +22684,6 @@ class StagePrice {
   @JsonKey(name: 'quantity')
   final int quantity;
   static const fromJsonFactory = _$StagePriceFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is StagePrice &&
-            (identical(other.stageId, stageId) ||
-                const DeepCollectionEquality().equals(
-                  other.stageId,
-                  stageId,
-                )) &&
-            (identical(other.stageName, stageName) ||
-                const DeepCollectionEquality().equals(
-                  other.stageName,
-                  stageName,
-                )) &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.ticketType, ticketType) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketType,
-                  ticketType,
-                )) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )) &&
-            (identical(other.normalPrice, normalPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.normalPrice,
-                  normalPrice,
-                )) &&
-            (identical(other.discountedPrice, discountedPrice) ||
-                const DeepCollectionEquality().equals(
-                  other.discountedPrice,
-                  discountedPrice,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(stageId) ^
-      const DeepCollectionEquality().hash(stageName) ^
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(ticketType) ^
-      const DeepCollectionEquality().hash(currency) ^
-      const DeepCollectionEquality().hash(normalPrice) ^
-      const DeepCollectionEquality().hash(discountedPrice) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      runtimeType.hashCode;
 }
 
 extension $StagePriceExtension on StagePrice {
@@ -36505,34 +22755,6 @@ class TicketPricesResponse {
   @JsonKey(name: 'vat')
   final double? vat;
   static const fromJsonFactory = _$TicketPricesResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketPricesResponse &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )) &&
-            (identical(other.stagePrices, stagePrices) ||
-                const DeepCollectionEquality().equals(
-                  other.stagePrices,
-                  stagePrices,
-                )) &&
-            (identical(other.vat, vat) ||
-                const DeepCollectionEquality().equals(other.vat, vat)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(currency) ^
-      const DeepCollectionEquality().hash(stagePrices) ^
-      const DeepCollectionEquality().hash(vat) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketPricesResponseExtension on TicketPricesResponse {
@@ -36585,43 +22807,6 @@ class DiscountCodeValidationResponse {
   @JsonKey(name: 'discountMaxAmount')
   final double? discountMaxAmount;
   static const fromJsonFactory = _$DiscountCodeValidationResponseFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is DiscountCodeValidationResponse &&
-            (identical(other.isValid, isValid) ||
-                const DeepCollectionEquality().equals(
-                  other.isValid,
-                  isValid,
-                )) &&
-            (identical(other.discountType, discountType) ||
-                const DeepCollectionEquality().equals(
-                  other.discountType,
-                  discountType,
-                )) &&
-            (identical(other.discountAmount, discountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.discountAmount,
-                  discountAmount,
-                )) &&
-            (identical(other.discountMaxAmount, discountMaxAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.discountMaxAmount,
-                  discountMaxAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isValid) ^
-      const DeepCollectionEquality().hash(discountType) ^
-      const DeepCollectionEquality().hash(discountAmount) ^
-      const DeepCollectionEquality().hash(discountMaxAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $DiscountCodeValidationResponseExtension
@@ -36676,31 +22861,6 @@ class TicketsType {
   @JsonKey(name: 'quantity')
   final int quantity;
   static const fromJsonFactory = _$TicketsTypeFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketsType &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketsTypeExtension on TicketsType {
@@ -36749,40 +22909,6 @@ class EventInvitationCreateDto {
   @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
   final List<TicketsType> tickets;
   static const fromJsonFactory = _$EventInvitationCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationCreateDto &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.tickets, tickets) ||
-                const DeepCollectionEquality().equals(other.tickets, tickets)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(tickets) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationCreateDtoExtension on EventInvitationCreateDto {
@@ -36852,58 +22978,6 @@ class TicketProfileSummary {
   @JsonKey(name: 'quantity')
   final int? quantity;
   static const fromJsonFactory = _$TicketProfileSummaryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketProfileSummary &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(
-                  other.description,
-                  description,
-                )) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.badgeColor, badgeColor) ||
-                const DeepCollectionEquality().equals(
-                  other.badgeColor,
-                  badgeColor,
-                )) &&
-            (identical(other.characteristics, characteristics) ||
-                const DeepCollectionEquality().equals(
-                  other.characteristics,
-                  characteristics,
-                )) &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(badgeColor) ^
-      const DeepCollectionEquality().hash(characteristics) ^
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketProfileSummaryExtension on TicketProfileSummary {
@@ -37034,100 +23108,6 @@ class EventInvitationDoc {
   @JsonKey(name: '_ts')
   final int? ts;
   static const fromJsonFactory = _$EventInvitationDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.tickets, tickets) ||
-                const DeepCollectionEquality().equals(
-                  other.tickets,
-                  tickets,
-                )) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.isClaimed, isClaimed) ||
-                const DeepCollectionEquality().equals(
-                  other.isClaimed,
-                  isClaimed,
-                )) &&
-            (identical(other.isUsed, isUsed) ||
-                const DeepCollectionEquality().equals(other.isUsed, isUsed)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.claimedAt, claimedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.claimedAt,
-                  claimedAt,
-                )) &&
-            (identical(other.claimedBy, claimedBy) ||
-                const DeepCollectionEquality().equals(
-                  other.claimedBy,
-                  claimedBy,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(tickets) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(isClaimed) ^
-      const DeepCollectionEquality().hash(isUsed) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(claimedAt) ^
-      const DeepCollectionEquality().hash(claimedBy) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationDocExtension on EventInvitationDoc {
@@ -37258,55 +23238,6 @@ class EventInvitationFilterCriteriaDto {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   static const fromJsonFactory = _$EventInvitationFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.claimedBy, claimedBy) ||
-                const DeepCollectionEquality().equals(
-                  other.claimedBy,
-                  claimedBy,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.isClaimed, isClaimed) ||
-                const DeepCollectionEquality().equals(
-                  other.isClaimed,
-                  isClaimed,
-                )) &&
-            (identical(other.isUsed, isUsed) ||
-                const DeepCollectionEquality().equals(other.isUsed, isUsed)) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(claimedBy) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(isClaimed) ^
-      const DeepCollectionEquality().hash(isUsed) ^
-      const DeepCollectionEquality().hash(range) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationFilterCriteriaDtoExtension
@@ -37389,49 +23320,6 @@ class EventInvitationFilter {
   @JsonKey(name: 'filters')
   final EventInvitationFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventInvitationFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationFilterExtension on EventInvitationFilter {
@@ -37570,109 +23458,6 @@ class EventInvitation {
   @JsonKey(name: 'herotag')
   final String? herotag;
   static const fromJsonFactory = _$EventInvitationFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitation &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.tickets, tickets) ||
-                const DeepCollectionEquality().equals(
-                  other.tickets,
-                  tickets,
-                )) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.isClaimed, isClaimed) ||
-                const DeepCollectionEquality().equals(
-                  other.isClaimed,
-                  isClaimed,
-                )) &&
-            (identical(other.isUsed, isUsed) ||
-                const DeepCollectionEquality().equals(other.isUsed, isUsed)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.claimedAt, claimedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.claimedAt,
-                  claimedAt,
-                )) &&
-            (identical(other.claimedBy, claimedBy) ||
-                const DeepCollectionEquality().equals(
-                  other.claimedBy,
-                  claimedBy,
-                )) &&
-            (identical(other.txHash, txHash) ||
-                const DeepCollectionEquality().equals(other.txHash, txHash)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(other.herotag, herotag)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(tickets) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(isClaimed) ^
-      const DeepCollectionEquality().hash(isUsed) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(claimedAt) ^
-      const DeepCollectionEquality().hash(claimedBy) ^
-      const DeepCollectionEquality().hash(txHash) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationExtension on EventInvitation {
@@ -37790,34 +23575,6 @@ class EventInvitationQuery {
   @JsonKey(name: 'resources', defaultValue: <EventInvitation>[])
   final List<EventInvitation> resources;
   static const fromJsonFactory = _$EventInvitationQueryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventInvitationQuery &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventInvitationQueryExtension on EventInvitationQuery {
@@ -37894,67 +23651,6 @@ class EventVoucherFilterCriteriaDto {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   static const fromJsonFactory = _$EventVoucherFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.maxDiscountAmount, maxDiscountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDiscountAmount,
-                  maxDiscountAmount,
-                )) &&
-            (identical(other.maxUses, maxUses) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUses,
-                  maxUses,
-                )) &&
-            (identical(other.maxUsesPerUser, maxUsesPerUser) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUsesPerUser,
-                  maxUsesPerUser,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(maxDiscountAmount) ^
-      const DeepCollectionEquality().hash(maxUses) ^
-      const DeepCollectionEquality().hash(maxUsesPerUser) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(range) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherFilterCriteriaDtoExtension
@@ -38049,49 +23745,6 @@ class EventVoucherFilter {
   @JsonKey(name: 'filters')
   final EventVoucherFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventVoucherFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherFilterExtension on EventVoucherFilter {
@@ -38227,130 +23880,6 @@ class EventVoucherDoc {
   @JsonKey(name: 'pk')
   final String pk;
   static const fromJsonFactory = _$EventVoucherDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.maxDiscountAmount, maxDiscountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDiscountAmount,
-                  maxDiscountAmount,
-                )) &&
-            (identical(other.maxUses, maxUses) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUses,
-                  maxUses,
-                )) &&
-            (identical(other.maxUsesPerUser, maxUsesPerUser) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUsesPerUser,
-                  maxUsesPerUser,
-                )) &&
-            (identical(other.usedCount, usedCount) ||
-                const DeepCollectionEquality().equals(
-                  other.usedCount,
-                  usedCount,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.ticketTypeIds, ticketTypeIds) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketTypeIds,
-                  ticketTypeIds,
-                )) &&
-            (identical(other.stageIds, stageIds) ||
-                const DeepCollectionEquality().equals(
-                  other.stageIds,
-                  stageIds,
-                )) &&
-            (identical(other.minTicketCount, minTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.minTicketCount,
-                  minTicketCount,
-                )) &&
-            (identical(other.maxTicketCount, maxTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxTicketCount,
-                  maxTicketCount,
-                )) &&
-            (identical(other.startDate, startDate) ||
-                const DeepCollectionEquality().equals(
-                  other.startDate,
-                  startDate,
-                )) &&
-            (identical(other.endDate, endDate) ||
-                const DeepCollectionEquality().equals(
-                  other.endDate,
-                  endDate,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.createdBy, createdBy) ||
-                const DeepCollectionEquality().equals(
-                  other.createdBy,
-                  createdBy,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(maxDiscountAmount) ^
-      const DeepCollectionEquality().hash(maxUses) ^
-      const DeepCollectionEquality().hash(maxUsesPerUser) ^
-      const DeepCollectionEquality().hash(usedCount) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticketTypeIds) ^
-      const DeepCollectionEquality().hash(stageIds) ^
-      const DeepCollectionEquality().hash(minTicketCount) ^
-      const DeepCollectionEquality().hash(maxTicketCount) ^
-      const DeepCollectionEquality().hash(startDate) ^
-      const DeepCollectionEquality().hash(endDate) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(createdBy) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherDocExtension on EventVoucherDoc {
@@ -38482,34 +24011,6 @@ class EventVoucherQuery {
   @JsonKey(name: 'resources', defaultValue: <EventVoucherDoc>[])
   final List<EventVoucherDoc> resources;
   static const fromJsonFactory = _$EventVoucherQueryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherQuery &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherQueryExtension on EventVoucherQuery {
@@ -38594,70 +24095,6 @@ class EventQuestionDoc {
   @JsonKey(name: 'pk')
   final String pk;
   static const fromJsonFactory = _$EventQuestionDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventQuestionDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.required, required) ||
-                const DeepCollectionEquality().equals(
-                  other.required,
-                  required,
-                )) &&
-            (identical(other.answerType, answerType) ||
-                const DeepCollectionEquality().equals(
-                  other.answerType,
-                  answerType,
-                )) &&
-            (identical(other.requireTime, requireTime) ||
-                const DeepCollectionEquality().equals(
-                  other.requireTime,
-                  requireTime,
-                )) &&
-            (identical(other.answers, answers) ||
-                const DeepCollectionEquality().equals(
-                  other.answers,
-                  answers,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(required) ^
-      const DeepCollectionEquality().hash(answerType) ^
-      const DeepCollectionEquality().hash(requireTime) ^
-      const DeepCollectionEquality().hash(answers) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $EventQuestionDocExtension on EventQuestionDoc {
@@ -38745,43 +24182,6 @@ class EventQuestionCreateDto {
   @JsonKey(name: 'answers', defaultValue: <String>[])
   final List<String>? answers;
   static const fromJsonFactory = _$EventQuestionCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventQuestionCreateDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.required, required) ||
-                const DeepCollectionEquality().equals(
-                  other.required,
-                  required,
-                )) &&
-            (identical(other.answerType, answerType) ||
-                const DeepCollectionEquality().equals(
-                  other.answerType,
-                  answerType,
-                )) &&
-            (identical(other.requireTime, requireTime) ||
-                const DeepCollectionEquality().equals(
-                  other.requireTime,
-                  requireTime,
-                )) &&
-            (identical(other.answers, answers) ||
-                const DeepCollectionEquality().equals(other.answers, answers)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(required) ^
-      const DeepCollectionEquality().hash(answerType) ^
-      const DeepCollectionEquality().hash(requireTime) ^
-      const DeepCollectionEquality().hash(answers) ^
-      runtimeType.hashCode;
 }
 
 extension $EventQuestionCreateDtoExtension on EventQuestionCreateDto {
@@ -38849,43 +24249,6 @@ class EventQuestionEditDto {
   @JsonKey(name: 'answers', defaultValue: <String>[])
   final List<String>? answers;
   static const fromJsonFactory = _$EventQuestionEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventQuestionEditDto &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.required, required) ||
-                const DeepCollectionEquality().equals(
-                  other.required,
-                  required,
-                )) &&
-            (identical(other.answerType, answerType) ||
-                const DeepCollectionEquality().equals(
-                  other.answerType,
-                  answerType,
-                )) &&
-            (identical(other.requireTime, requireTime) ||
-                const DeepCollectionEquality().equals(
-                  other.requireTime,
-                  requireTime,
-                )) &&
-            (identical(other.answers, answers) ||
-                const DeepCollectionEquality().equals(other.answers, answers)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(required) ^
-      const DeepCollectionEquality().hash(answerType) ^
-      const DeepCollectionEquality().hash(requireTime) ^
-      const DeepCollectionEquality().hash(answers) ^
-      runtimeType.hashCode;
 }
 
 extension $EventQuestionEditDtoExtension on EventQuestionEditDto {
@@ -38946,34 +24309,6 @@ class EventClaimInvitationDto {
   @JsonKey(name: 'questionAnswers', defaultValue: <EventQuestionAnswerDto>[])
   final List<EventQuestionAnswerDto>? questionAnswers;
   static const fromJsonFactory = _$EventClaimInvitationDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventClaimInvitationDto &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.questionAnswers, questionAnswers) ||
-                const DeepCollectionEquality().equals(
-                  other.questionAnswers,
-                  questionAnswers,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(questionAnswers) ^
-      runtimeType.hashCode;
 }
 
 extension $EventClaimInvitationDtoExtension on EventClaimInvitationDto {
@@ -39023,28 +24358,6 @@ class EventAcceptInvitation {
   @JsonKey(name: 'guest')
   final EventGuestProfile guest;
   static const fromJsonFactory = _$EventAcceptInvitationFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventAcceptInvitation &&
-            (identical(other.invitation, invitation) ||
-                const DeepCollectionEquality().equals(
-                  other.invitation,
-                  invitation,
-                )) &&
-            (identical(other.guest, guest) ||
-                const DeepCollectionEquality().equals(other.guest, guest)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(invitation) ^
-      const DeepCollectionEquality().hash(guest) ^
-      runtimeType.hashCode;
 }
 
 extension $EventAcceptInvitationExtension on EventAcceptInvitation {
@@ -39103,46 +24416,6 @@ class EventGuestFilterCriteriaDto {
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   static const fromJsonFactory = _$EventGuestFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.questionnaireFilled, questionnaireFilled) ||
-                const DeepCollectionEquality().equals(
-                  other.questionnaireFilled,
-                  questionnaireFilled,
-                )) &&
-            (identical(other.range, range) ||
-                const DeepCollectionEquality().equals(other.range, range)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(questionnaireFilled) ^
-      const DeepCollectionEquality().hash(range) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestFilterCriteriaDtoExtension on EventGuestFilterCriteriaDto {
@@ -39218,49 +24491,6 @@ class EventGuestFilter {
   @JsonKey(name: 'filters')
   final EventGuestFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventGuestFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestFilterExtension on EventGuestFilter {
@@ -39330,34 +24560,6 @@ class EventGuestProfileQuery {
   @JsonKey(name: 'resources', defaultValue: <EventGuestProfile>[])
   final List<EventGuestProfile> resources;
   static const fromJsonFactory = _$EventGuestProfileQueryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestProfileQuery &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestProfileQueryExtension on EventGuestProfileQuery {
@@ -39419,34 +24621,6 @@ class EventGuestExport {
   )
   final enums.EventGuestStatus status;
   static const fromJsonFactory = _$EventGuestExportFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestExport &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(status) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestExportExtension on EventGuestExport {
@@ -39521,40 +24695,6 @@ class EventUserRoleCreateDto {
   @JsonKey(name: 'endTime')
   final int? endTime;
   static const fromJsonFactory = _$EventUserRoleCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventUserRoleCreateDto &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality().equals(
-                  other.permissions,
-                  permissions,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(other.endTime, endTime)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(permissions) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      runtimeType.hashCode;
 }
 
 extension $EventUserRoleCreateDtoExtension on EventUserRoleCreateDto {
@@ -39668,82 +24808,6 @@ class EventUserRole {
   @JsonKey(name: 'herotag')
   final String herotag;
   static const fromJsonFactory = _$EventUserRoleFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventUserRole &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality().equals(
-                  other.permissions,
-                  permissions,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(
-                  other.endTime,
-                  endTime,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.ts, ts) ||
-                const DeepCollectionEquality().equals(other.ts, ts)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(
-                  other.profile,
-                  profile,
-                )) &&
-            (identical(other.herotag, herotag) ||
-                const DeepCollectionEquality().equals(other.herotag, herotag)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(permissions) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(ts) ^
-      const DeepCollectionEquality().hash(profile) ^
-      const DeepCollectionEquality().hash(herotag) ^
-      runtimeType.hashCode;
 }
 
 extension $EventUserRoleExtension on EventUserRole {
@@ -39858,40 +24922,6 @@ class EventUserRoleEditDto {
   @JsonKey(name: 'endTime')
   final int? endTime;
   static const fromJsonFactory = _$EventUserRoleEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventUserRoleEditDto &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality().equals(
-                  other.permissions,
-                  permissions,
-                )) &&
-            (identical(other.endTime, endTime) ||
-                const DeepCollectionEquality().equals(other.endTime, endTime)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(permissions) ^
-      const DeepCollectionEquality().hash(endTime) ^
-      runtimeType.hashCode;
 }
 
 extension $EventUserRoleEditDtoExtension on EventUserRoleEditDto {
@@ -39951,25 +24981,6 @@ class BageQRData {
   @JsonKey(name: 'data')
   final String data;
   static const fromJsonFactory = _$BageQRDataFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is BageQRData &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(data) ^
-      runtimeType.hashCode;
 }
 
 extension $BageQRDataExtension on BageQRData {
@@ -40006,25 +25017,6 @@ class QRBody {
   @JsonKey(name: 'data')
   final String data;
   static const fromJsonFactory = _$QRBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is QRBody &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(data) ^
-      runtimeType.hashCode;
 }
 
 extension $QRBodyExtension on QRBody {
@@ -40058,25 +25050,6 @@ class EventCheckInQR {
   @JsonKey(name: 'tickets', defaultValue: <TicketsType>[])
   final List<TicketsType>? tickets;
   static const fromJsonFactory = _$EventCheckInQRFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventCheckInQR &&
-            (identical(other.qr, qr) ||
-                const DeepCollectionEquality().equals(other.qr, qr)) &&
-            (identical(other.tickets, tickets) ||
-                const DeepCollectionEquality().equals(other.tickets, tickets)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(qr) ^
-      const DeepCollectionEquality().hash(tickets) ^
-      runtimeType.hashCode;
 }
 
 extension $EventCheckInQRExtension on EventCheckInQR {
@@ -40119,43 +25092,6 @@ class TicketSelection {
   @JsonKey(name: 'ticketProfile')
   final TicketProfileSummary? ticketProfile;
   static const fromJsonFactory = _$TicketSelectionFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketSelection &&
-            (identical(other.identifier, identifier) ||
-                const DeepCollectionEquality().equals(
-                  other.identifier,
-                  identifier,
-                )) &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.ticketProfile, ticketProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketProfile,
-                  ticketProfile,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(identifier) ^
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(ticketProfile) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketSelectionExtension on TicketSelection {
@@ -40235,49 +25171,6 @@ class TicketValidationResult {
   @JsonKey(name: 'availableTickets', defaultValue: <TicketSelection>[])
   final List<TicketSelection>? availableTickets;
   static const fromJsonFactory = _$TicketValidationResultFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is TicketValidationResult &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(
-                  other.message,
-                  message,
-                )) &&
-            (identical(other.guest, guest) ||
-                const DeepCollectionEquality().equals(other.guest, guest)) &&
-            (identical(other.invitation, invitation) ||
-                const DeepCollectionEquality().equals(
-                  other.invitation,
-                  invitation,
-                )) &&
-            (identical(other.nfts, nfts) ||
-                const DeepCollectionEquality().equals(other.nfts, nfts)) &&
-            (identical(other.availableTickets, availableTickets) ||
-                const DeepCollectionEquality().equals(
-                  other.availableTickets,
-                  availableTickets,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(guest) ^
-      const DeepCollectionEquality().hash(invitation) ^
-      const DeepCollectionEquality().hash(nfts) ^
-      const DeepCollectionEquality().hash(availableTickets) ^
-      runtimeType.hashCode;
 }
 
 extension $TicketValidationResultExtension on TicketValidationResult {
@@ -40388,103 +25281,6 @@ class EventVoucherCreateDto {
   @JsonKey(name: 'pk')
   final String? pk;
   static const fromJsonFactory = _$EventVoucherCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherCreateDto &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.maxDiscountAmount, maxDiscountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDiscountAmount,
-                  maxDiscountAmount,
-                )) &&
-            (identical(other.maxUses, maxUses) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUses,
-                  maxUses,
-                )) &&
-            (identical(other.maxUsesPerUser, maxUsesPerUser) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUsesPerUser,
-                  maxUsesPerUser,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.ticketTypeIds, ticketTypeIds) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketTypeIds,
-                  ticketTypeIds,
-                )) &&
-            (identical(other.stageIds, stageIds) ||
-                const DeepCollectionEquality().equals(
-                  other.stageIds,
-                  stageIds,
-                )) &&
-            (identical(other.minTicketCount, minTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.minTicketCount,
-                  minTicketCount,
-                )) &&
-            (identical(other.maxTicketCount, maxTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxTicketCount,
-                  maxTicketCount,
-                )) &&
-            (identical(other.startDate, startDate) ||
-                const DeepCollectionEquality().equals(
-                  other.startDate,
-                  startDate,
-                )) &&
-            (identical(other.endDate, endDate) ||
-                const DeepCollectionEquality().equals(
-                  other.endDate,
-                  endDate,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(maxDiscountAmount) ^
-      const DeepCollectionEquality().hash(maxUses) ^
-      const DeepCollectionEquality().hash(maxUsesPerUser) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(ticketTypeIds) ^
-      const DeepCollectionEquality().hash(stageIds) ^
-      const DeepCollectionEquality().hash(minTicketCount) ^
-      const DeepCollectionEquality().hash(maxTicketCount) ^
-      const DeepCollectionEquality().hash(startDate) ^
-      const DeepCollectionEquality().hash(endDate) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherCreateDtoExtension on EventVoucherCreateDto {
@@ -40633,94 +25429,6 @@ class EventVoucherEditDto {
   @JsonKey(name: 'pk')
   final String? pk;
   static const fromJsonFactory = _$EventVoucherEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventVoucherEditDto &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.maxDiscountAmount, maxDiscountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDiscountAmount,
-                  maxDiscountAmount,
-                )) &&
-            (identical(other.maxUses, maxUses) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUses,
-                  maxUses,
-                )) &&
-            (identical(other.maxUsesPerUser, maxUsesPerUser) ||
-                const DeepCollectionEquality().equals(
-                  other.maxUsesPerUser,
-                  maxUsesPerUser,
-                )) &&
-            (identical(other.ticketTypeIds, ticketTypeIds) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketTypeIds,
-                  ticketTypeIds,
-                )) &&
-            (identical(other.stageIds, stageIds) ||
-                const DeepCollectionEquality().equals(
-                  other.stageIds,
-                  stageIds,
-                )) &&
-            (identical(other.minTicketCount, minTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.minTicketCount,
-                  minTicketCount,
-                )) &&
-            (identical(other.maxTicketCount, maxTicketCount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxTicketCount,
-                  maxTicketCount,
-                )) &&
-            (identical(other.startDate, startDate) ||
-                const DeepCollectionEquality().equals(
-                  other.startDate,
-                  startDate,
-                )) &&
-            (identical(other.endDate, endDate) ||
-                const DeepCollectionEquality().equals(
-                  other.endDate,
-                  endDate,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(maxDiscountAmount) ^
-      const DeepCollectionEquality().hash(maxUses) ^
-      const DeepCollectionEquality().hash(maxUsesPerUser) ^
-      const DeepCollectionEquality().hash(ticketTypeIds) ^
-      const DeepCollectionEquality().hash(stageIds) ^
-      const DeepCollectionEquality().hash(minTicketCount) ^
-      const DeepCollectionEquality().hash(maxTicketCount) ^
-      const DeepCollectionEquality().hash(startDate) ^
-      const DeepCollectionEquality().hash(endDate) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $EventVoucherEditDtoExtension on EventVoucherEditDto {
@@ -40821,31 +25529,6 @@ class ManualCheckInDto {
   @JsonKey(name: 'selectedTickets', defaultValue: <TicketsType>[])
   final List<TicketsType>? selectedTickets;
   static const fromJsonFactory = _$ManualCheckInDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ManualCheckInDto &&
-            (identical(other.invitationIdOrAddress, invitationIdOrAddress) ||
-                const DeepCollectionEquality().equals(
-                  other.invitationIdOrAddress,
-                  invitationIdOrAddress,
-                )) &&
-            (identical(other.selectedTickets, selectedTickets) ||
-                const DeepCollectionEquality().equals(
-                  other.selectedTickets,
-                  selectedTickets,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(invitationIdOrAddress) ^
-      const DeepCollectionEquality().hash(selectedTickets) ^
-      runtimeType.hashCode;
 }
 
 extension $ManualCheckInDtoExtension on ManualCheckInDto {
@@ -40922,55 +25605,6 @@ class EventGuestAnswerDoc {
   @JsonKey(name: 'ttl')
   final int? ttl;
   static const fromJsonFactory = _$EventGuestAnswerDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestAnswerDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.wallet, wallet) ||
-                const DeepCollectionEquality().equals(other.wallet, wallet)) &&
-            (identical(other.questionId, questionId) ||
-                const DeepCollectionEquality().equals(
-                  other.questionId,
-                  questionId,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.answer, answer) ||
-                const DeepCollectionEquality().equals(other.answer, answer)) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.ttl, ttl) ||
-                const DeepCollectionEquality().equals(other.ttl, ttl)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(wallet) ^
-      const DeepCollectionEquality().hash(questionId) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(answer) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(ttl) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestAnswerDocExtension on EventGuestAnswerDoc {
@@ -41034,28 +25668,6 @@ class AnsweredQuestionWithDetails {
   @JsonKey(name: 'question')
   final EventQuestionDoc? question;
   static const fromJsonFactory = _$AnsweredQuestionWithDetailsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is AnsweredQuestionWithDetails &&
-            (identical(other.answer, answer) ||
-                const DeepCollectionEquality().equals(other.answer, answer)) &&
-            (identical(other.question, question) ||
-                const DeepCollectionEquality().equals(
-                  other.question,
-                  question,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(answer) ^
-      const DeepCollectionEquality().hash(question) ^
-      runtimeType.hashCode;
 }
 
 extension $AnsweredQuestionWithDetailsExtension on AnsweredQuestionWithDetails {
@@ -41095,31 +25707,6 @@ class EventGuestApproveDto {
   @JsonKey(name: 'isApproved')
   final bool isApproved;
   static const fromJsonFactory = _$EventGuestApproveDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestApproveDto &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(
-                  other.address,
-                  address,
-                )) &&
-            (identical(other.isApproved, isApproved) ||
-                const DeepCollectionEquality().equals(
-                  other.isApproved,
-                  isApproved,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(isApproved) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestApproveDtoExtension on EventGuestApproveDto {
@@ -41156,28 +25743,6 @@ class EventLocationCities {
   @JsonKey(name: 'eventCount')
   final int eventCount;
   static const fromJsonFactory = _$EventLocationCitiesFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventLocationCities &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.eventCount, eventCount) ||
-                const DeepCollectionEquality().equals(
-                  other.eventCount,
-                  eventCount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(eventCount) ^
-      runtimeType.hashCode;
 }
 
 extension $EventLocationCitiesExtension on EventLocationCities {
@@ -41220,34 +25785,6 @@ class EventCountGroupedByCountry {
   @JsonKey(name: 'cities', defaultValue: <EventLocationCities>[])
   final List<EventLocationCities> cities;
   static const fromJsonFactory = _$EventCountGroupedByCountryFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventCountGroupedByCountry &&
-            (identical(other.country, country) ||
-                const DeepCollectionEquality().equals(
-                  other.country,
-                  country,
-                )) &&
-            (identical(other.eventCount, eventCount) ||
-                const DeepCollectionEquality().equals(
-                  other.eventCount,
-                  eventCount,
-                )) &&
-            (identical(other.cities, cities) ||
-                const DeepCollectionEquality().equals(other.cities, cities)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(country) ^
-      const DeepCollectionEquality().hash(eventCount) ^
-      const DeepCollectionEquality().hash(cities) ^
-      runtimeType.hashCode;
 }
 
 extension $EventCountGroupedByCountryExtension on EventCountGroupedByCountry {
@@ -41301,31 +25838,6 @@ class ShortVoucherDoc {
   @JsonKey(name: 'maxDiscountAmount')
   final double? maxDiscountAmount;
   static const fromJsonFactory = _$ShortVoucherDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is ShortVoucherDoc &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)) &&
-            (identical(other.maxDiscountAmount, maxDiscountAmount) ||
-                const DeepCollectionEquality().equals(
-                  other.maxDiscountAmount,
-                  maxDiscountAmount,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(amount) ^
-      const DeepCollectionEquality().hash(maxDiscountAmount) ^
-      runtimeType.hashCode;
 }
 
 extension $ShortVoucherDocExtension on ShortVoucherDoc {
@@ -41391,49 +25903,6 @@ class RewardDetails {
   @JsonKey(name: 'voucherInfo')
   final ShortVoucherDoc? voucherInfo;
   static const fromJsonFactory = _$RewardDetailsFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is RewardDetails &&
-            (identical(other.rewardType, rewardType) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardType,
-                  rewardType,
-                )) &&
-            (identical(other.conditionType, conditionType) ||
-                const DeepCollectionEquality().equals(
-                  other.conditionType,
-                  conditionType,
-                )) &&
-            (identical(other.condition, condition) ||
-                const DeepCollectionEquality().equals(
-                  other.condition,
-                  condition,
-                )) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(
-                  other.currency,
-                  currency,
-                )) &&
-            (identical(other.voucherInfo, voucherInfo) ||
-                const DeepCollectionEquality().equals(
-                  other.voucherInfo,
-                  voucherInfo,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(rewardType) ^
-      const DeepCollectionEquality().hash(conditionType) ^
-      const DeepCollectionEquality().hash(condition) ^
-      const DeepCollectionEquality().hash(currency) ^
-      const DeepCollectionEquality().hash(voucherInfo) ^
-      runtimeType.hashCode;
 }
 
 extension $RewardDetailsExtension on RewardDetails {
@@ -41496,43 +25965,6 @@ class EventReferralConfigCreateDto {
   @JsonKey(name: 'isActive')
   final bool isActive;
   static const fromJsonFactory = _$EventReferralConfigCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigCreateDto &&
-            (identical(other.appliedVoucher, appliedVoucher) ||
-                const DeepCollectionEquality().equals(
-                  other.appliedVoucher,
-                  appliedVoucher,
-                )) &&
-            (identical(other.rewardDetails, rewardDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardDetails,
-                  rewardDetails,
-                )) &&
-            (identical(other.isSelfService, isSelfService) ||
-                const DeepCollectionEquality().equals(
-                  other.isSelfService,
-                  isSelfService,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(appliedVoucher) ^
-      const DeepCollectionEquality().hash(rewardDetails) ^
-      const DeepCollectionEquality().hash(isSelfService) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigCreateDtoExtension
@@ -41625,73 +26057,6 @@ class EventReferralConfigDoc {
   @JsonKey(name: 'pk')
   final String pk;
   static const fromJsonFactory = _$EventReferralConfigDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.appliedVoucher, appliedVoucher) ||
-                const DeepCollectionEquality().equals(
-                  other.appliedVoucher,
-                  appliedVoucher,
-                )) &&
-            (identical(other.rewardDetails, rewardDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardDetails,
-                  rewardDetails,
-                )) &&
-            (identical(other.isSelfService, isSelfService) ||
-                const DeepCollectionEquality().equals(
-                  other.isSelfService,
-                  isSelfService,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.createdBy, createdBy) ||
-                const DeepCollectionEquality().equals(
-                  other.createdBy,
-                  createdBy,
-                )) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(appliedVoucher) ^
-      const DeepCollectionEquality().hash(rewardDetails) ^
-      const DeepCollectionEquality().hash(isSelfService) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(createdBy) ^
-      const DeepCollectionEquality().hash(pk) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
@@ -41778,43 +26143,6 @@ class EventReferralConfigEditDto {
   @JsonKey(name: 'isActive')
   final bool? isActive;
   static const fromJsonFactory = _$EventReferralConfigEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigEditDto &&
-            (identical(other.appliedVoucher, appliedVoucher) ||
-                const DeepCollectionEquality().equals(
-                  other.appliedVoucher,
-                  appliedVoucher,
-                )) &&
-            (identical(other.rewardDetails, rewardDetails) ||
-                const DeepCollectionEquality().equals(
-                  other.rewardDetails,
-                  rewardDetails,
-                )) &&
-            (identical(other.isSelfService, isSelfService) ||
-                const DeepCollectionEquality().equals(
-                  other.isSelfService,
-                  isSelfService,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(appliedVoucher) ^
-      const DeepCollectionEquality().hash(rewardDetails) ^
-      const DeepCollectionEquality().hash(isSelfService) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
@@ -41882,49 +26210,6 @@ class EventReferralConfigFilterCriteriaDto {
   @JsonKey(name: 'createdAt', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? createdAt;
   static const fromJsonFactory = _$EventReferralConfigFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.isSelfService, isSelfService) ||
-                const DeepCollectionEquality().equals(
-                  other.isSelfService,
-                  isSelfService,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(isSelfService) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigFilterCriteriaDtoExtension
@@ -41997,49 +26282,6 @@ class EventReferralConfigFilter {
   @JsonKey(name: 'filters')
   final EventReferralConfigFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventReferralConfigFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigFilterExtension on EventReferralConfigFilter {
@@ -42109,34 +26351,6 @@ class EventReferralConfigPaginated {
   @JsonKey(name: 'resources', defaultValue: <EventReferralConfigDoc>[])
   final List<EventReferralConfigDoc> resources;
   static const fromJsonFactory = _$EventReferralConfigPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralConfigPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralConfigPaginatedExtension
@@ -42186,31 +26400,6 @@ class EventReferralCreateDto {
   @JsonKey(name: 'referralConfigId')
   final String referralConfigId;
   static const fromJsonFactory = _$EventReferralCreateDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralCreateDto &&
-            (identical(other.referralCode, referralCode) ||
-                const DeepCollectionEquality().equals(
-                  other.referralCode,
-                  referralCode,
-                )) &&
-            (identical(other.referralConfigId, referralConfigId) ||
-                const DeepCollectionEquality().equals(
-                  other.referralConfigId,
-                  referralConfigId,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(referralCode) ^
-      const DeepCollectionEquality().hash(referralConfigId) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralCreateDtoExtension on EventReferralCreateDto {
@@ -42292,73 +26481,6 @@ class EventReferralDoc {
   @JsonKey(name: 'isActive')
   final bool isActive;
   static const fromJsonFactory = _$EventReferralDocFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralDoc &&
-            (identical(other.dataType, dataType) ||
-                const DeepCollectionEquality().equals(
-                  other.dataType,
-                  dataType,
-                )) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.pk, pk) ||
-                const DeepCollectionEquality().equals(other.pk, pk)) &&
-            (identical(other.referralCode, referralCode) ||
-                const DeepCollectionEquality().equals(
-                  other.referralCode,
-                  referralCode,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.eventId, eventId) ||
-                const DeepCollectionEquality().equals(
-                  other.eventId,
-                  eventId,
-                )) &&
-            (identical(other.referralConfigId, referralConfigId) ||
-                const DeepCollectionEquality().equals(
-                  other.referralConfigId,
-                  referralConfigId,
-                )) &&
-            (identical(other.successfulReferrals, successfulReferrals) ||
-                const DeepCollectionEquality().equals(
-                  other.successfulReferrals,
-                  successfulReferrals,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(dataType) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(pk) ^
-      const DeepCollectionEquality().hash(referralCode) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(eventId) ^
-      const DeepCollectionEquality().hash(referralConfigId) ^
-      const DeepCollectionEquality().hash(successfulReferrals) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralDocExtension on EventReferralDoc {
@@ -42434,24 +26556,6 @@ class EventReferralEditDto {
   @JsonKey(name: 'isActive')
   final bool? isActive;
   static const fromJsonFactory = _$EventReferralEditDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralEditDto &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(isActive) ^ runtimeType.hashCode;
 }
 
 extension $EventReferralEditDtoExtension on EventReferralEditDto {
@@ -42509,73 +26613,6 @@ class EventReferralFilterCriteriaDto {
   @JsonKey(name: 'createdAt', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? createdAt;
   static const fromJsonFactory = _$EventReferralFilterCriteriaDtoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralFilterCriteriaDto &&
-            (identical(other.searchText, searchText) ||
-                const DeepCollectionEquality().equals(
-                  other.searchText,
-                  searchText,
-                )) &&
-            (identical(other.referralCode, referralCode) ||
-                const DeepCollectionEquality().equals(
-                  other.referralCode,
-                  referralCode,
-                )) &&
-            (identical(other.ownerId, ownerId) ||
-                const DeepCollectionEquality().equals(
-                  other.ownerId,
-                  ownerId,
-                )) &&
-            (identical(other.referralConfigId, referralConfigId) ||
-                const DeepCollectionEquality().equals(
-                  other.referralConfigId,
-                  referralConfigId,
-                )) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality().equals(
-                  other.isActive,
-                  isActive,
-                )) &&
-            (identical(other.minSuccessfulReferrals, minSuccessfulReferrals) ||
-                const DeepCollectionEquality().equals(
-                  other.minSuccessfulReferrals,
-                  minSuccessfulReferrals,
-                )) &&
-            (identical(other.maxSuccessfulReferrals, maxSuccessfulReferrals) ||
-                const DeepCollectionEquality().equals(
-                  other.maxSuccessfulReferrals,
-                  maxSuccessfulReferrals,
-                )) &&
-            (identical(other.conditionType, conditionType) ||
-                const DeepCollectionEquality().equals(
-                  other.conditionType,
-                  conditionType,
-                )) &&
-            (identical(other.createdAt, createdAt) ||
-                const DeepCollectionEquality().equals(
-                  other.createdAt,
-                  createdAt,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(searchText) ^
-      const DeepCollectionEquality().hash(referralCode) ^
-      const DeepCollectionEquality().hash(ownerId) ^
-      const DeepCollectionEquality().hash(referralConfigId) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(minSuccessfulReferrals) ^
-      const DeepCollectionEquality().hash(maxSuccessfulReferrals) ^
-      const DeepCollectionEquality().hash(conditionType) ^
-      const DeepCollectionEquality().hash(createdAt) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralFilterCriteriaDtoExtension
@@ -42674,49 +26711,6 @@ class EventReferralFilter {
   @JsonKey(name: 'filters')
   final EventReferralFilterCriteriaDto filters;
   static const fromJsonFactory = _$EventReferralFilterFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralFilter &&
-            (identical(other.select, select) ||
-                const DeepCollectionEquality().equals(other.select, select)) &&
-            (identical(other.orderBy, orderBy) ||
-                const DeepCollectionEquality().equals(
-                  other.orderBy,
-                  orderBy,
-                )) &&
-            (identical(other.includeCount, includeCount) ||
-                const DeepCollectionEquality().equals(
-                  other.includeCount,
-                  includeCount,
-                )) &&
-            (identical(other.strictSelect, strictSelect) ||
-                const DeepCollectionEquality().equals(
-                  other.strictSelect,
-                  strictSelect,
-                )) &&
-            (identical(other.top, top) ||
-                const DeepCollectionEquality().equals(other.top, top)) &&
-            (identical(other.skip, skip) ||
-                const DeepCollectionEquality().equals(other.skip, skip)) &&
-            (identical(other.filters, filters) ||
-                const DeepCollectionEquality().equals(other.filters, filters)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(select) ^
-      const DeepCollectionEquality().hash(orderBy) ^
-      const DeepCollectionEquality().hash(includeCount) ^
-      const DeepCollectionEquality().hash(strictSelect) ^
-      const DeepCollectionEquality().hash(top) ^
-      const DeepCollectionEquality().hash(skip) ^
-      const DeepCollectionEquality().hash(filters) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralFilterExtension on EventReferralFilter {
@@ -42786,34 +26780,6 @@ class EventReferralPaginated {
   @JsonKey(name: 'resources', defaultValue: <EventReferralDoc>[])
   final List<EventReferralDoc> resources;
   static const fromJsonFactory = _$EventReferralPaginatedFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventReferralPaginated &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.hasMoreResults, hasMoreResults) ||
-                const DeepCollectionEquality().equals(
-                  other.hasMoreResults,
-                  hasMoreResults,
-                )) &&
-            (identical(other.resources, resources) ||
-                const DeepCollectionEquality().equals(
-                  other.resources,
-                  resources,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(hasMoreResults) ^
-      const DeepCollectionEquality().hash(resources) ^
-      runtimeType.hashCode;
 }
 
 extension $EventReferralPaginatedExtension on EventReferralPaginated {
@@ -42924,130 +26890,6 @@ class NftSaleInfo {
   @JsonKey(name: 'currentWinner')
   final String? currentWinner;
   static const fromJsonFactory = _$NftSaleInfoFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftSaleInfo &&
-            (identical(other.auctionId, auctionId) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionId,
-                  auctionId,
-                )) &&
-            (identical(other.seller, seller) ||
-                const DeepCollectionEquality().equals(other.seller, seller)) &&
-            (identical(other.minBid, minBid) ||
-                const DeepCollectionEquality().equals(other.minBid, minBid)) &&
-            (identical(other.maxBid, maxBid) ||
-                const DeepCollectionEquality().equals(other.maxBid, maxBid)) &&
-            (identical(other.currentBid, currentBid) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBid,
-                  currentBid,
-                )) &&
-            (identical(other.startTime, startTime) ||
-                const DeepCollectionEquality().equals(
-                  other.startTime,
-                  startTime,
-                )) &&
-            (identical(other.deadline, deadline) ||
-                const DeepCollectionEquality().equals(
-                  other.deadline,
-                  deadline,
-                )) &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.paymentTokenNonce, paymentTokenNonce) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentTokenNonce,
-                  paymentTokenNonce,
-                )) &&
-            (identical(other.auctionType, auctionType) ||
-                const DeepCollectionEquality().equals(
-                  other.auctionType,
-                  auctionType,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.minBidShort, minBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidShort,
-                  minBidShort,
-                )) &&
-            (identical(other.minBidUsdValue, minBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.minBidUsdValue,
-                  minBidUsdValue,
-                )) &&
-            (identical(other.maxBidShort, maxBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidShort,
-                  maxBidShort,
-                )) &&
-            (identical(other.maxBidUsdValue, maxBidUsdValue) ||
-                const DeepCollectionEquality().equals(
-                  other.maxBidUsdValue,
-                  maxBidUsdValue,
-                )) &&
-            (identical(other.currentBidShort, currentBidShort) ||
-                const DeepCollectionEquality().equals(
-                  other.currentBidShort,
-                  currentBidShort,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.marketplace, marketplace) ||
-                const DeepCollectionEquality().equals(
-                  other.marketplace,
-                  marketplace,
-                )) &&
-            (identical(other.royalties, royalties) ||
-                const DeepCollectionEquality().equals(
-                  other.royalties,
-                  royalties,
-                )) &&
-            (identical(other.currentWinner, currentWinner) ||
-                const DeepCollectionEquality().equals(
-                  other.currentWinner,
-                  currentWinner,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(auctionId) ^
-      const DeepCollectionEquality().hash(seller) ^
-      const DeepCollectionEquality().hash(minBid) ^
-      const DeepCollectionEquality().hash(maxBid) ^
-      const DeepCollectionEquality().hash(currentBid) ^
-      const DeepCollectionEquality().hash(startTime) ^
-      const DeepCollectionEquality().hash(deadline) ^
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(paymentTokenNonce) ^
-      const DeepCollectionEquality().hash(auctionType) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(minBidShort) ^
-      const DeepCollectionEquality().hash(minBidUsdValue) ^
-      const DeepCollectionEquality().hash(maxBidShort) ^
-      const DeepCollectionEquality().hash(maxBidUsdValue) ^
-      const DeepCollectionEquality().hash(currentBidShort) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(marketplace) ^
-      const DeepCollectionEquality().hash(royalties) ^
-      const DeepCollectionEquality().hash(currentWinner) ^
-      runtimeType.hashCode;
 }
 
 extension $NftSaleInfoExtension on NftSaleInfo {
@@ -43195,73 +27037,6 @@ class EventGuestCheckIn {
   @JsonKey(name: 'transactionId')
   final String? transactionId;
   static const fromJsonFactory = _$EventGuestCheckInFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventGuestCheckIn &&
-            (identical(other.ticketId, ticketId) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketId,
-                  ticketId,
-                )) &&
-            (identical(other.ticketProfile, ticketProfile) ||
-                const DeepCollectionEquality().equals(
-                  other.ticketProfile,
-                  ticketProfile,
-                )) &&
-            (identical(other.isCheckIn, isCheckIn) ||
-                const DeepCollectionEquality().equals(
-                  other.isCheckIn,
-                  isCheckIn,
-                )) &&
-            (identical(other.freeTicket, freeTicket) ||
-                const DeepCollectionEquality().equals(
-                  other.freeTicket,
-                  freeTicket,
-                )) &&
-            (identical(other.receivedAt, receivedAt) ||
-                const DeepCollectionEquality().equals(
-                  other.receivedAt,
-                  receivedAt,
-                )) &&
-            (identical(other.invitationId, invitationId) ||
-                const DeepCollectionEquality().equals(
-                  other.invitationId,
-                  invitationId,
-                )) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(
-                  other.timestamp,
-                  timestamp,
-                )) &&
-            (identical(other.quantity, quantity) ||
-                const DeepCollectionEquality().equals(
-                  other.quantity,
-                  quantity,
-                )) &&
-            (identical(other.transactionId, transactionId) ||
-                const DeepCollectionEquality().equals(
-                  other.transactionId,
-                  transactionId,
-                )));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(ticketId) ^
-      const DeepCollectionEquality().hash(ticketProfile) ^
-      const DeepCollectionEquality().hash(isCheckIn) ^
-      const DeepCollectionEquality().hash(freeTicket) ^
-      const DeepCollectionEquality().hash(receivedAt) ^
-      const DeepCollectionEquality().hash(invitationId) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(transactionId) ^
-      runtimeType.hashCode;
 }
 
 extension $EventGuestCheckInExtension on EventGuestCheckIn {
@@ -43336,21 +27111,6 @@ class UserAddressUploadPicturePut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$UserAddressUploadPicturePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserAddressUploadPicturePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $UserAddressUploadPicturePut$RequestBodyExtension
@@ -43384,21 +27144,6 @@ class UserAddressUploadBannerPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$UserAddressUploadBannerPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserAddressUploadBannerPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $UserAddressUploadBannerPut$RequestBodyExtension
@@ -43433,21 +27178,6 @@ class UserAddressCreatorUploadPicturePut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$UserAddressCreatorUploadPicturePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserAddressCreatorUploadPicturePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $UserAddressCreatorUploadPicturePut$RequestBodyExtension
@@ -43484,21 +27214,6 @@ class UserAddressCreatorUploadBannerPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$UserAddressCreatorUploadBannerPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is UserAddressCreatorUploadBannerPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $UserAddressCreatorUploadBannerPut$RequestBodyExtension
@@ -43535,21 +27250,6 @@ class CollectionCollectionUploadPicturePut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$CollectionCollectionUploadPicturePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionCollectionUploadPicturePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $CollectionCollectionUploadPicturePut$RequestBodyExtension
@@ -43586,21 +27286,6 @@ class CollectionCollectionUploadBannerPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$CollectionCollectionUploadBannerPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is CollectionCollectionUploadBannerPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $CollectionCollectionUploadBannerPut$RequestBodyExtension
@@ -43636,21 +27321,6 @@ class PoolPoolIdUploadPicturePut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$PoolPoolIdUploadPicturePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is PoolPoolIdUploadPicturePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $PoolPoolIdUploadPicturePut$RequestBodyExtension
@@ -43683,21 +27353,6 @@ class EventEventIdProfilePut$RequestBody {
   @JsonKey(name: 'file')
   final String file;
   static const fromJsonFactory = _$EventEventIdProfilePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventEventIdProfilePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $EventEventIdProfilePut$RequestBodyExtension
@@ -43729,21 +27384,6 @@ class EventEventIdBackgroundPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$EventEventIdBackgroundPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventEventIdBackgroundPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $EventEventIdBackgroundPut$RequestBodyExtension
@@ -43777,21 +27417,6 @@ class EventEventIdDescriptionPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$EventEventIdDescriptionPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventEventIdDescriptionPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $EventEventIdDescriptionPut$RequestBodyExtension
@@ -43826,21 +27451,6 @@ class EventEventIdDescriptionImagePut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$EventEventIdDescriptionImagePut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventEventIdDescriptionImagePut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $EventEventIdDescriptionImagePut$RequestBodyExtension
@@ -43875,21 +27485,6 @@ class EventEventIdTicketTicketIdPut$RequestBody {
   final String file;
   static const fromJsonFactory =
       _$EventEventIdTicketTicketIdPut$RequestBodyFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is EventEventIdTicketTicketIdPut$RequestBody &&
-            (identical(other.file, file) ||
-                const DeepCollectionEquality().equals(other.file, file)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(file) ^ runtimeType.hashCode;
 }
 
 extension $EventEventIdTicketTicketIdPut$RequestBodyExtension
@@ -43928,28 +27523,6 @@ class NftActivityDataHydrated$OriginalPayment {
   final double? price;
   static const fromJsonFactory =
       _$NftActivityDataHydrated$OriginalPaymentFromJson;
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other is NftActivityDataHydrated$OriginalPayment &&
-            (identical(other.paymentToken, paymentToken) ||
-                const DeepCollectionEquality().equals(
-                  other.paymentToken,
-                  paymentToken,
-                )) &&
-            (identical(other.price, price) ||
-                const DeepCollectionEquality().equals(other.price, price)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(paymentToken) ^
-      const DeepCollectionEquality().hash(price) ^
-      runtimeType.hashCode;
 }
 
 extension $NftActivityDataHydrated$OriginalPaymentExtension
