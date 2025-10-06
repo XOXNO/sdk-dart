@@ -13,12 +13,16 @@ class TokensTypeSafeApi {
       identifier: identifier,
       category: category.map((element) => element.name).toList(),
     );
-    return data.map((element) => TokenDataDocHydrated.fromJson(element)).toList();
+    return data
+        .map((element) => TokenDataDocHydrated.fromJson(element))
+        .toList();
   }
 
   Future<List<TokenDataDocHydrated>> swapTokens() async {
     final data = await _api.swapTokens();
-    return data.map((element) => TokenDataDocHydrated.fromJson(element)).toList();
+    return data
+        .map((element) => TokenDataDocHydrated.fromJson(element))
+        .toList();
   }
 
   Future<Map<String, num>> usdPrice({final String identifier = ''}) async {
@@ -37,11 +41,6 @@ class TokensTypeSafeApi {
       identifier: identifier,
     );
     return data;
-  }
-
-  Future<IMetrics> xoxno() async {
-    final data = await _api.xoxno();
-    return IMetrics.fromJson(data);
   }
 
   Future<XoxnoInfo> xoxnoInfo() async {

@@ -418,6 +418,15 @@ class EventRawApi {
     );
   }
 
+  Future<Map<String, dynamic>> deleteEvent({required String eventId}) {
+    final logger = Logger('Xoxno.EventRawApi.deleteEvent');
+    logger.finest('delete event');
+    return genericDelete(
+      client,
+      generateUri(path: '${client.baseUrl}/event/$eventId'),
+    );
+  }
+
   Future<Map<String, dynamic>> calculateTicketPrices({
     required String eventId,
     required Map<String, dynamic> body,

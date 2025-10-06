@@ -835,12 +835,14 @@ enum EventUserRoles {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
 
-  @JsonValue('event-reader')
-  eventReader('event-reader'),
   @JsonValue('event-manager')
   eventManager('event-manager'),
+  @JsonValue('event-cohost')
+  eventCohost('event-cohost'),
   @JsonValue('check-in-manager')
-  checkInManager('check-in-manager');
+  checkInManager('check-in-manager'),
+  @JsonValue('event-reader')
+  eventReader('event-reader');
 
   final String? value;
 

@@ -3143,280 +3143,6 @@ extension $TokenDataDocHydratedExtension on TokenDataDocHydrated {
 }
 
 @JsonSerializable(explicitToJson: true)
-class RateType {
-  const RateType({
-    required this.rateShort,
-    required this.rate,
-    required this.reverseRate,
-    required this.reverseRateShort,
-  });
-
-  factory RateType.fromJson(Map<String, dynamic> json) =>
-      _$RateTypeFromJson(json);
-
-  static const toJsonFactory = _$RateTypeToJson;
-  Map<String, dynamic> toJson() => _$RateTypeToJson(this);
-
-  @JsonKey(name: 'rateShort')
-  final double rateShort;
-  @JsonKey(name: 'rate')
-  final String rate;
-  @JsonKey(name: 'reverseRate')
-  final String reverseRate;
-  @JsonKey(name: 'reverseRateShort')
-  final double reverseRateShort;
-  static const fromJsonFactory = _$RateTypeFromJson;
-}
-
-extension $RateTypeExtension on RateType {
-  RateType copyWith({
-    double? rateShort,
-    String? rate,
-    String? reverseRate,
-    double? reverseRateShort,
-  }) {
-    return RateType(
-      rateShort: rateShort ?? this.rateShort,
-      rate: rate ?? this.rate,
-      reverseRate: reverseRate ?? this.reverseRate,
-      reverseRateShort: reverseRateShort ?? this.reverseRateShort,
-    );
-  }
-
-  RateType copyWithWrapped({
-    Wrapped<double>? rateShort,
-    Wrapped<String>? rate,
-    Wrapped<String>? reverseRate,
-    Wrapped<double>? reverseRateShort,
-  }) {
-    return RateType(
-      rateShort: (rateShort != null ? rateShort.value : this.rateShort),
-      rate: (rate != null ? rate.value : this.rate),
-      reverseRate: (reverseRate != null ? reverseRate.value : this.reverseRate),
-      reverseRateShort: (reverseRateShort != null
-          ? reverseRateShort.value
-          : this.reverseRateShort),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class IMetrics {
-  const IMetrics({
-    required this.supply,
-    required this.minted,
-    required this.burned,
-    required this.initialMinted,
-    required this.recomputedSupply,
-    required this.burnedShort,
-    required this.initialMintedShort,
-    required this.minterShort,
-    required this.supplyShort,
-    required this.transfersCount,
-    required this.holdersCount,
-    required this.rateInfo,
-    required this.apr,
-    this.apy,
-    required this.totalStakedCount,
-    required this.totalStakedCountUsd,
-    required this.totalRewardsPaid,
-    required this.totalRewardsPaidUsd,
-    required this.uniqueStakersCount,
-    required this.instantUnstake,
-    required this.instantPendingUnstake,
-    required this.totalWithdrawn,
-    required this.serviceFee,
-  });
-
-  factory IMetrics.fromJson(Map<String, dynamic> json) =>
-      _$IMetricsFromJson(json);
-
-  static const toJsonFactory = _$IMetricsToJson;
-  Map<String, dynamic> toJson() => _$IMetricsToJson(this);
-
-  @JsonKey(name: 'supply')
-  final String supply;
-  @JsonKey(name: 'minted')
-  final String minted;
-  @JsonKey(name: 'burned')
-  final String burned;
-  @JsonKey(name: 'initialMinted')
-  final String initialMinted;
-  @JsonKey(name: 'recomputedSupply')
-  final bool recomputedSupply;
-  @JsonKey(name: 'burnedShort')
-  final double burnedShort;
-  @JsonKey(name: 'initialMintedShort')
-  final double initialMintedShort;
-  @JsonKey(name: 'minterShort')
-  final double minterShort;
-  @JsonKey(name: 'supplyShort')
-  final double supplyShort;
-  @JsonKey(name: 'transfersCount')
-  final double transfersCount;
-  @JsonKey(name: 'holdersCount')
-  final double holdersCount;
-  @JsonKey(name: 'rateInfo')
-  final RateType rateInfo;
-  @JsonKey(name: 'apr')
-  final double apr;
-  @JsonKey(name: 'apy')
-  final double? apy;
-  @JsonKey(name: 'totalStakedCount')
-  final double totalStakedCount;
-  @JsonKey(name: 'totalStakedCountUsd')
-  final double totalStakedCountUsd;
-  @JsonKey(name: 'totalRewardsPaid')
-  final double totalRewardsPaid;
-  @JsonKey(name: 'totalRewardsPaidUsd')
-  final double totalRewardsPaidUsd;
-  @JsonKey(name: 'uniqueStakersCount')
-  final double uniqueStakersCount;
-  @JsonKey(name: 'instantUnstake')
-  final String instantUnstake;
-  @JsonKey(name: 'instantPendingUnstake')
-  final String instantPendingUnstake;
-  @JsonKey(name: 'totalWithdrawn')
-  final double totalWithdrawn;
-  @JsonKey(name: 'serviceFee')
-  final double serviceFee;
-  static const fromJsonFactory = _$IMetricsFromJson;
-}
-
-extension $IMetricsExtension on IMetrics {
-  IMetrics copyWith({
-    String? supply,
-    String? minted,
-    String? burned,
-    String? initialMinted,
-    bool? recomputedSupply,
-    double? burnedShort,
-    double? initialMintedShort,
-    double? minterShort,
-    double? supplyShort,
-    double? transfersCount,
-    double? holdersCount,
-    RateType? rateInfo,
-    double? apr,
-    double? apy,
-    double? totalStakedCount,
-    double? totalStakedCountUsd,
-    double? totalRewardsPaid,
-    double? totalRewardsPaidUsd,
-    double? uniqueStakersCount,
-    String? instantUnstake,
-    String? instantPendingUnstake,
-    double? totalWithdrawn,
-    double? serviceFee,
-  }) {
-    return IMetrics(
-      supply: supply ?? this.supply,
-      minted: minted ?? this.minted,
-      burned: burned ?? this.burned,
-      initialMinted: initialMinted ?? this.initialMinted,
-      recomputedSupply: recomputedSupply ?? this.recomputedSupply,
-      burnedShort: burnedShort ?? this.burnedShort,
-      initialMintedShort: initialMintedShort ?? this.initialMintedShort,
-      minterShort: minterShort ?? this.minterShort,
-      supplyShort: supplyShort ?? this.supplyShort,
-      transfersCount: transfersCount ?? this.transfersCount,
-      holdersCount: holdersCount ?? this.holdersCount,
-      rateInfo: rateInfo ?? this.rateInfo,
-      apr: apr ?? this.apr,
-      apy: apy ?? this.apy,
-      totalStakedCount: totalStakedCount ?? this.totalStakedCount,
-      totalStakedCountUsd: totalStakedCountUsd ?? this.totalStakedCountUsd,
-      totalRewardsPaid: totalRewardsPaid ?? this.totalRewardsPaid,
-      totalRewardsPaidUsd: totalRewardsPaidUsd ?? this.totalRewardsPaidUsd,
-      uniqueStakersCount: uniqueStakersCount ?? this.uniqueStakersCount,
-      instantUnstake: instantUnstake ?? this.instantUnstake,
-      instantPendingUnstake:
-          instantPendingUnstake ?? this.instantPendingUnstake,
-      totalWithdrawn: totalWithdrawn ?? this.totalWithdrawn,
-      serviceFee: serviceFee ?? this.serviceFee,
-    );
-  }
-
-  IMetrics copyWithWrapped({
-    Wrapped<String>? supply,
-    Wrapped<String>? minted,
-    Wrapped<String>? burned,
-    Wrapped<String>? initialMinted,
-    Wrapped<bool>? recomputedSupply,
-    Wrapped<double>? burnedShort,
-    Wrapped<double>? initialMintedShort,
-    Wrapped<double>? minterShort,
-    Wrapped<double>? supplyShort,
-    Wrapped<double>? transfersCount,
-    Wrapped<double>? holdersCount,
-    Wrapped<RateType>? rateInfo,
-    Wrapped<double>? apr,
-    Wrapped<double?>? apy,
-    Wrapped<double>? totalStakedCount,
-    Wrapped<double>? totalStakedCountUsd,
-    Wrapped<double>? totalRewardsPaid,
-    Wrapped<double>? totalRewardsPaidUsd,
-    Wrapped<double>? uniqueStakersCount,
-    Wrapped<String>? instantUnstake,
-    Wrapped<String>? instantPendingUnstake,
-    Wrapped<double>? totalWithdrawn,
-    Wrapped<double>? serviceFee,
-  }) {
-    return IMetrics(
-      supply: (supply != null ? supply.value : this.supply),
-      minted: (minted != null ? minted.value : this.minted),
-      burned: (burned != null ? burned.value : this.burned),
-      initialMinted: (initialMinted != null
-          ? initialMinted.value
-          : this.initialMinted),
-      recomputedSupply: (recomputedSupply != null
-          ? recomputedSupply.value
-          : this.recomputedSupply),
-      burnedShort: (burnedShort != null ? burnedShort.value : this.burnedShort),
-      initialMintedShort: (initialMintedShort != null
-          ? initialMintedShort.value
-          : this.initialMintedShort),
-      minterShort: (minterShort != null ? minterShort.value : this.minterShort),
-      supplyShort: (supplyShort != null ? supplyShort.value : this.supplyShort),
-      transfersCount: (transfersCount != null
-          ? transfersCount.value
-          : this.transfersCount),
-      holdersCount: (holdersCount != null
-          ? holdersCount.value
-          : this.holdersCount),
-      rateInfo: (rateInfo != null ? rateInfo.value : this.rateInfo),
-      apr: (apr != null ? apr.value : this.apr),
-      apy: (apy != null ? apy.value : this.apy),
-      totalStakedCount: (totalStakedCount != null
-          ? totalStakedCount.value
-          : this.totalStakedCount),
-      totalStakedCountUsd: (totalStakedCountUsd != null
-          ? totalStakedCountUsd.value
-          : this.totalStakedCountUsd),
-      totalRewardsPaid: (totalRewardsPaid != null
-          ? totalRewardsPaid.value
-          : this.totalRewardsPaid),
-      totalRewardsPaidUsd: (totalRewardsPaidUsd != null
-          ? totalRewardsPaidUsd.value
-          : this.totalRewardsPaidUsd),
-      uniqueStakersCount: (uniqueStakersCount != null
-          ? uniqueStakersCount.value
-          : this.uniqueStakersCount),
-      instantUnstake: (instantUnstake != null
-          ? instantUnstake.value
-          : this.instantUnstake),
-      instantPendingUnstake: (instantPendingUnstake != null
-          ? instantPendingUnstake.value
-          : this.instantPendingUnstake),
-      totalWithdrawn: (totalWithdrawn != null
-          ? totalWithdrawn.value
-          : this.totalWithdrawn),
-      serviceFee: (serviceFee != null ? serviceFee.value : this.serviceFee),
-    );
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class XoxnoInfo {
   const XoxnoInfo({
     required this.price,
@@ -3521,6 +3247,64 @@ extension $XoxnoInfoExtension on XoxnoInfo {
       totalSupply: (totalSupply != null ? totalSupply.value : this.totalSupply),
       idoPrice: (idoPrice != null ? idoPrice.value : this.idoPrice),
       listingDate: (listingDate != null ? listingDate.value : this.listingDate),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class RateType {
+  const RateType({
+    required this.rateShort,
+    required this.rate,
+    required this.reverseRate,
+    required this.reverseRateShort,
+  });
+
+  factory RateType.fromJson(Map<String, dynamic> json) =>
+      _$RateTypeFromJson(json);
+
+  static const toJsonFactory = _$RateTypeToJson;
+  Map<String, dynamic> toJson() => _$RateTypeToJson(this);
+
+  @JsonKey(name: 'rateShort')
+  final double rateShort;
+  @JsonKey(name: 'rate')
+  final String rate;
+  @JsonKey(name: 'reverseRate')
+  final String reverseRate;
+  @JsonKey(name: 'reverseRateShort')
+  final double reverseRateShort;
+  static const fromJsonFactory = _$RateTypeFromJson;
+}
+
+extension $RateTypeExtension on RateType {
+  RateType copyWith({
+    double? rateShort,
+    String? rate,
+    String? reverseRate,
+    double? reverseRateShort,
+  }) {
+    return RateType(
+      rateShort: rateShort ?? this.rateShort,
+      rate: rate ?? this.rate,
+      reverseRate: reverseRate ?? this.reverseRate,
+      reverseRateShort: reverseRateShort ?? this.reverseRateShort,
+    );
+  }
+
+  RateType copyWithWrapped({
+    Wrapped<double>? rateShort,
+    Wrapped<String>? rate,
+    Wrapped<String>? reverseRate,
+    Wrapped<double>? reverseRateShort,
+  }) {
+    return RateType(
+      rateShort: (rateShort != null ? rateShort.value : this.rateShort),
+      rate: (rate != null ? rate.value : this.rate),
+      reverseRate: (reverseRate != null ? reverseRate.value : this.reverseRate),
+      reverseRateShort: (reverseRateShort != null
+          ? reverseRateShort.value
+          : this.reverseRateShort),
     );
   }
 }
@@ -6521,6 +6305,90 @@ extension $LendingAccountProfileExtension on LendingAccountProfile {
       marketProfile: (marketProfile != null
           ? marketProfile.value
           : this.marketProfile),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class LendingAccountPnl {
+  const LendingAccountPnl({
+    required this.token,
+    required this.identifier,
+    required this.pnlUSD,
+    required this.pnlToken,
+    required this.debt,
+    required this.debtUSD,
+    required this.interest,
+    required this.interestUSD,
+  });
+
+  factory LendingAccountPnl.fromJson(Map<String, dynamic> json) =>
+      _$LendingAccountPnlFromJson(json);
+
+  static const toJsonFactory = _$LendingAccountPnlToJson;
+  Map<String, dynamic> toJson() => _$LendingAccountPnlToJson(this);
+
+  @JsonKey(name: 'Token')
+  final String token;
+  @JsonKey(name: 'Identifier')
+  final String identifier;
+  @JsonKey(name: 'PnlUSD')
+  final double pnlUSD;
+  @JsonKey(name: 'PnlToken')
+  final double pnlToken;
+  @JsonKey(name: 'Debt')
+  final double debt;
+  @JsonKey(name: 'DebtUSD')
+  final double debtUSD;
+  @JsonKey(name: 'Interest')
+  final double interest;
+  @JsonKey(name: 'InterestUSD')
+  final double interestUSD;
+  static const fromJsonFactory = _$LendingAccountPnlFromJson;
+}
+
+extension $LendingAccountPnlExtension on LendingAccountPnl {
+  LendingAccountPnl copyWith({
+    String? token,
+    String? identifier,
+    double? pnlUSD,
+    double? pnlToken,
+    double? debt,
+    double? debtUSD,
+    double? interest,
+    double? interestUSD,
+  }) {
+    return LendingAccountPnl(
+      token: token ?? this.token,
+      identifier: identifier ?? this.identifier,
+      pnlUSD: pnlUSD ?? this.pnlUSD,
+      pnlToken: pnlToken ?? this.pnlToken,
+      debt: debt ?? this.debt,
+      debtUSD: debtUSD ?? this.debtUSD,
+      interest: interest ?? this.interest,
+      interestUSD: interestUSD ?? this.interestUSD,
+    );
+  }
+
+  LendingAccountPnl copyWithWrapped({
+    Wrapped<String>? token,
+    Wrapped<String>? identifier,
+    Wrapped<double>? pnlUSD,
+    Wrapped<double>? pnlToken,
+    Wrapped<double>? debt,
+    Wrapped<double>? debtUSD,
+    Wrapped<double>? interest,
+    Wrapped<double>? interestUSD,
+  }) {
+    return LendingAccountPnl(
+      token: (token != null ? token.value : this.token),
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      pnlUSD: (pnlUSD != null ? pnlUSD.value : this.pnlUSD),
+      pnlToken: (pnlToken != null ? pnlToken.value : this.pnlToken),
+      debt: (debt != null ? debt.value : this.debt),
+      debtUSD: (debtUSD != null ? debtUSD.value : this.debtUSD),
+      interest: (interest != null ? interest.value : this.interest),
+      interestUSD: (interestUSD != null ? interestUSD.value : this.interestUSD),
     );
   }
 }
@@ -14034,6 +13902,7 @@ class EventProfile {
     this.guestSummary,
     this.startsFrom,
     this.guestProfile,
+    this.coHosts,
   });
 
   factory EventProfile.fromJson(Map<String, dynamic> json) =>
@@ -14112,6 +13981,8 @@ class EventProfile {
   final EventStartPrice? startsFrom;
   @JsonKey(name: 'guestProfile')
   final EventGuestProfile? guestProfile;
+  @JsonKey(name: 'coHosts', defaultValue: <OwnerDto>[])
+  final List<OwnerDto>? coHosts;
   static const fromJsonFactory = _$EventProfileFromJson;
 }
 
@@ -14144,6 +14015,7 @@ extension $EventProfileExtension on EventProfile {
     EventGuestSummary? guestSummary,
     EventStartPrice? startsFrom,
     EventGuestProfile? guestProfile,
+    List<OwnerDto>? coHosts,
   }) {
     return EventProfile(
       dataType: dataType ?? this.dataType,
@@ -14173,6 +14045,7 @@ extension $EventProfileExtension on EventProfile {
       guestSummary: guestSummary ?? this.guestSummary,
       startsFrom: startsFrom ?? this.startsFrom,
       guestProfile: guestProfile ?? this.guestProfile,
+      coHosts: coHosts ?? this.coHosts,
     );
   }
 
@@ -14204,6 +14077,7 @@ extension $EventProfileExtension on EventProfile {
     Wrapped<EventGuestSummary?>? guestSummary,
     Wrapped<EventStartPrice?>? startsFrom,
     Wrapped<EventGuestProfile?>? guestProfile,
+    Wrapped<List<OwnerDto>?>? coHosts,
   }) {
     return EventProfile(
       dataType: (dataType != null ? dataType.value : this.dataType),
@@ -14251,6 +14125,7 @@ extension $EventProfileExtension on EventProfile {
       guestProfile: (guestProfile != null
           ? guestProfile.value
           : this.guestProfile),
+      coHosts: (coHosts != null ? coHosts.value : this.coHosts),
     );
   }
 }

@@ -956,72 +956,6 @@ Map<String, dynamic> _$TokenDataDocHydratedToJson(
   'usdPrice': instance.usdPrice,
 };
 
-RateType _$RateTypeFromJson(Map<String, dynamic> json) => RateType(
-  rateShort: (json['rateShort'] as num).toDouble(),
-  rate: json['rate'] as String,
-  reverseRate: json['reverseRate'] as String,
-  reverseRateShort: (json['reverseRateShort'] as num).toDouble(),
-);
-
-Map<String, dynamic> _$RateTypeToJson(RateType instance) => <String, dynamic>{
-  'rateShort': instance.rateShort,
-  'rate': instance.rate,
-  'reverseRate': instance.reverseRate,
-  'reverseRateShort': instance.reverseRateShort,
-};
-
-IMetrics _$IMetricsFromJson(Map<String, dynamic> json) => IMetrics(
-  supply: json['supply'] as String,
-  minted: json['minted'] as String,
-  burned: json['burned'] as String,
-  initialMinted: json['initialMinted'] as String,
-  recomputedSupply: json['recomputedSupply'] as bool,
-  burnedShort: (json['burnedShort'] as num).toDouble(),
-  initialMintedShort: (json['initialMintedShort'] as num).toDouble(),
-  minterShort: (json['minterShort'] as num).toDouble(),
-  supplyShort: (json['supplyShort'] as num).toDouble(),
-  transfersCount: (json['transfersCount'] as num).toDouble(),
-  holdersCount: (json['holdersCount'] as num).toDouble(),
-  rateInfo: RateType.fromJson(json['rateInfo'] as Map<String, dynamic>),
-  apr: (json['apr'] as num).toDouble(),
-  apy: (json['apy'] as num?)?.toDouble(),
-  totalStakedCount: (json['totalStakedCount'] as num).toDouble(),
-  totalStakedCountUsd: (json['totalStakedCountUsd'] as num).toDouble(),
-  totalRewardsPaid: (json['totalRewardsPaid'] as num).toDouble(),
-  totalRewardsPaidUsd: (json['totalRewardsPaidUsd'] as num).toDouble(),
-  uniqueStakersCount: (json['uniqueStakersCount'] as num).toDouble(),
-  instantUnstake: json['instantUnstake'] as String,
-  instantPendingUnstake: json['instantPendingUnstake'] as String,
-  totalWithdrawn: (json['totalWithdrawn'] as num).toDouble(),
-  serviceFee: (json['serviceFee'] as num).toDouble(),
-);
-
-Map<String, dynamic> _$IMetricsToJson(IMetrics instance) => <String, dynamic>{
-  'supply': instance.supply,
-  'minted': instance.minted,
-  'burned': instance.burned,
-  'initialMinted': instance.initialMinted,
-  'recomputedSupply': instance.recomputedSupply,
-  'burnedShort': instance.burnedShort,
-  'initialMintedShort': instance.initialMintedShort,
-  'minterShort': instance.minterShort,
-  'supplyShort': instance.supplyShort,
-  'transfersCount': instance.transfersCount,
-  'holdersCount': instance.holdersCount,
-  'rateInfo': instance.rateInfo.toJson(),
-  'apr': instance.apr,
-  'apy': instance.apy,
-  'totalStakedCount': instance.totalStakedCount,
-  'totalStakedCountUsd': instance.totalStakedCountUsd,
-  'totalRewardsPaid': instance.totalRewardsPaid,
-  'totalRewardsPaidUsd': instance.totalRewardsPaidUsd,
-  'uniqueStakersCount': instance.uniqueStakersCount,
-  'instantUnstake': instance.instantUnstake,
-  'instantPendingUnstake': instance.instantPendingUnstake,
-  'totalWithdrawn': instance.totalWithdrawn,
-  'serviceFee': instance.serviceFee,
-};
-
 XoxnoInfo _$XoxnoInfoFromJson(Map<String, dynamic> json) => XoxnoInfo(
   price: (json['price'] as num).toDouble(),
   marketCap: (json['marketCap'] as num).toDouble(),
@@ -1048,6 +982,20 @@ Map<String, dynamic> _$XoxnoInfoToJson(XoxnoInfo instance) => <String, dynamic>{
   'totalSupply': instance.totalSupply,
   'idoPrice': instance.idoPrice,
   'listingDate': instance.listingDate.toIso8601String(),
+};
+
+RateType _$RateTypeFromJson(Map<String, dynamic> json) => RateType(
+  rateShort: (json['rateShort'] as num).toDouble(),
+  rate: json['rate'] as String,
+  reverseRate: json['reverseRate'] as String,
+  reverseRateShort: (json['reverseRateShort'] as num).toDouble(),
+);
+
+Map<String, dynamic> _$RateTypeToJson(RateType instance) => <String, dynamic>{
+  'rateShort': instance.rateShort,
+  'rate': instance.rate,
+  'reverseRate': instance.reverseRate,
+  'reverseRateShort': instance.reverseRateShort,
 };
 
 XoxnoLiquidStatsDto _$XoxnoLiquidStatsDtoFromJson(Map<String, dynamic> json) =>
@@ -1922,6 +1870,30 @@ Map<String, dynamic> _$LendingAccountProfileToJson(
   'eModeCategoryProfile': instance.eModeCategoryProfile?.toJson(),
   'marketProfile': instance.marketProfile.toJson(),
 };
+
+LendingAccountPnl _$LendingAccountPnlFromJson(Map<String, dynamic> json) =>
+    LendingAccountPnl(
+      token: json['Token'] as String,
+      identifier: json['Identifier'] as String,
+      pnlUSD: (json['PnlUSD'] as num).toDouble(),
+      pnlToken: (json['PnlToken'] as num).toDouble(),
+      debt: (json['Debt'] as num).toDouble(),
+      debtUSD: (json['DebtUSD'] as num).toDouble(),
+      interest: (json['Interest'] as num).toDouble(),
+      interestUSD: (json['InterestUSD'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$LendingAccountPnlToJson(LendingAccountPnl instance) =>
+    <String, dynamic>{
+      'Token': instance.token,
+      'Identifier': instance.identifier,
+      'PnlUSD': instance.pnlUSD,
+      'PnlToken': instance.pnlToken,
+      'Debt': instance.debt,
+      'DebtUSD': instance.debtUSD,
+      'Interest': instance.interest,
+      'InterestUSD': instance.interestUSD,
+    };
 
 LendingAccountSummary _$LendingAccountSummaryFromJson(
   Map<String, dynamic> json,
@@ -4511,6 +4483,11 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
           : EventGuestProfile.fromJson(
             json['guestProfile'] as Map<String, dynamic>,
           ),
+  coHosts:
+      (json['coHosts'] as List<dynamic>?)
+          ?.map((e) => OwnerDto.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      [],
 );
 
 Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
@@ -4542,6 +4519,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'guestSummary': instance.guestSummary?.toJson(),
       'startsFrom': instance.startsFrom?.toJson(),
       'guestProfile': instance.guestProfile?.toJson(),
+      'coHosts': instance.coHosts?.map((e) => e.toJson()).toList(),
     };
 
 CreatorDetailsDto _$CreatorDetailsDtoFromJson(Map<String, dynamic> json) =>
