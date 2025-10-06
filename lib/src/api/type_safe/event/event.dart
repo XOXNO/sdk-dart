@@ -440,13 +440,8 @@ class EventTypeSafeApi {
     return SuccessDto.fromJson(data);
   }
 
-    Future<SuccessDto> deleteEvent({
-    required String eventId,
-    required String stageId
-  }) async {
-    final data = await _api.deleteEvent(
-      eventId: eventId,
-    );
+  Future<SuccessDto> deleteEvent({required String eventId}) async {
+    final data = await _api.deleteEvent(eventId: eventId);
     return SuccessDto.fromJson(data);
   }
 
