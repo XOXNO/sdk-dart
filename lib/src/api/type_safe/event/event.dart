@@ -389,7 +389,7 @@ class EventTypeSafeApi {
     return EventVoucherDoc.fromJson(data);
   }
 
-  Future<SuccessDto> deleteEventVoucher({
+  Future<EventVoucherDoc> deleteEventVoucher({
     required String eventId,
     required String voucherCode,
   }) async {
@@ -397,7 +397,7 @@ class EventTypeSafeApi {
       eventId: eventId,
       voucherCode: voucherCode,
     );
-    return SuccessDto.fromJson(data);
+    return EventVoucherDoc.fromJson(data);
   }
 
   Future<TicketValidationResult> manualCheckIn({
