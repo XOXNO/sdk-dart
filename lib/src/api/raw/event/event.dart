@@ -832,6 +832,139 @@ class EventRawApi {
     );
   }
 
+  Future<Map<String, dynamic>> createEventReferralConfig({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.createEventReferralConfig');
+    logger.finest('create event referral config');
+    return genericPost(
+      client,
+      generateUri(path: '${client.baseUrl}/event/$eventId/referral-config'),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> editEventReferralConfig({
+    required String eventId,
+    required String configId,
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.editEventReferralConfig');
+    logger.finest('edit event referral config');
+    return genericPatch(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referral-config/$configId',
+      ),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> deleteEventReferralConfig({
+    required String eventId,
+    required String configId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.deleteEventReferralConfig');
+    logger.finest('delete event referral config');
+    return genericDelete(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referral-config/$configId',
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> getEventReferralConfigs({
+    required String eventId,
+    String filter = '',
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.getEventReferralConfigs');
+    logger.finest('get event referral configs');
+    return genericGet(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referral-configs',
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> createEventReferral({
+    required String eventId,
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.createEventReferral');
+    logger.finest('create event referral');
+    return genericPost(
+      client,
+      generateUri(path: '${client.baseUrl}/event/$eventId/referral'),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> editEventReferral({
+    required String eventId,
+    required String referralCode,
+    required Map<String, dynamic> body,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.editEventReferral');
+    logger.finest('edit event referral');
+    return genericPatch(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referral/$referralCode',
+      ),
+      body: json.encode(body),
+      headers: {'content-type': 'application/json'},
+    );
+  }
+
+  Future<Map<String, dynamic>> deleteEventReferral({
+    required String eventId,
+    required String referralCode,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.deleteEventReferral');
+    logger.finest('delete event referral');
+    return genericDelete(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referral/$referralCode',
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> getEventReferrals({
+    required String eventId,
+    String filter = '',
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.getEventReferrals');
+    logger.finest('get event referrals');
+    return genericGet(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referrals',
+        queryParameters: [if (filter.isNotEmpty) 'filter=$filter'],
+      ),
+    );
+  }
+
+  Future<List<dynamic>> getEventSelfServicedReferrals({
+    required String eventId,
+  }) {
+    final logger = Logger('Xoxno.EventRawApi.getEventSelfServicedReferrals');
+    logger.finest('get event self-serviced referrals');
+    return genericGet(
+      client,
+      generateUri(
+        path: '${client.baseUrl}/event/$eventId/referrals/self-serviced',
+      ),
+    );
+  }
+
   Future<Map<String, dynamic>> manualCheckIn({
     required String eventId,
     required Map<String, dynamic> body,

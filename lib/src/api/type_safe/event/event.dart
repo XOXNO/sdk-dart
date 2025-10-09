@@ -400,6 +400,110 @@ class EventTypeSafeApi {
     return EventVoucherDoc.fromJson(data);
   }
 
+  Future<EventReferralConfigDoc> createEventReferralConfig({
+    required String eventId,
+    required EventReferralConfigCreateDto body,
+  }) async {
+    final data = await _api.createEventReferralConfig(
+      eventId: eventId,
+      body: body.toJson(),
+    );
+    return EventReferralConfigDoc.fromJson(data);
+  }
+
+  Future<EventReferralConfigDoc> editEventReferralConfig({
+    required String eventId,
+    required String configId,
+    required EventReferralConfigEditDto body,
+  }) async {
+    final data = await _api.editEventReferralConfig(
+      eventId: eventId,
+      configId: configId,
+      body: body.toJson(),
+    );
+    return EventReferralConfigDoc.fromJson(data);
+  }
+
+  Future<EventReferralConfigDoc> deleteEventReferralConfig({
+    required String eventId,
+    required String configId,
+  }) async {
+    final data = await _api.deleteEventReferralConfig(
+      eventId: eventId,
+      configId: configId,
+    );
+    return EventReferralConfigDoc.fromJson(data);
+  }
+
+  Future<EventReferralConfigPaginated> getEventReferralConfigs({
+    required String eventId,
+    required EventReferralConfigFilter? filter,
+  }) async {
+    final f = switch (filter?.toJson()) {
+      null => '',
+      (Map<String, dynamic> value) => json.encode(value),
+    };
+    final data = await _api.getEventReferralConfigs(
+      eventId: eventId,
+      filter: f,
+    );
+    return EventReferralConfigPaginated.fromJson(data);
+  }
+
+  Future<EventReferralDoc> createEventReferral({
+    required String eventId,
+    required EventReferralCreateDto body,
+  }) async {
+    final data = await _api.createEventReferral(
+      eventId: eventId,
+      body: body.toJson(),
+    );
+    return EventReferralDoc.fromJson(data);
+  }
+
+  Future<EventReferralDoc> editEventReferral({
+    required String eventId,
+    required String referralCode,
+    required EventReferralEditDto body,
+  }) async {
+    final data = await _api.editEventReferral(
+      eventId: eventId,
+      referralCode: referralCode,
+      body: body.toJson(),
+    );
+    return EventReferralDoc.fromJson(data);
+  }
+
+  Future<EventReferralDoc> deleteEventReferral({
+    required String eventId,
+    required String referralCode,
+  }) async {
+    final data = await _api.deleteEventReferral(
+      eventId: eventId,
+      referralCode: referralCode,
+    );
+    return EventReferralDoc.fromJson(data);
+  }
+
+  Future<EventReferralPaginated> getEventReferrals({
+    required String eventId,
+    required EventReferralFilter? filter,
+  }) async {
+    final f = switch (filter?.toJson()) {
+      null => '',
+      (Map<String, dynamic> value) => json.encode(value),
+    };
+    final data = await _api.getEventReferrals(eventId: eventId, filter: f);
+    return EventReferralPaginated.fromJson(data);
+  }
+
+  Future<List<EventReferralDoc>> getEventSelfServicedReferrals({
+    required String eventId,
+  }) async {
+    final data = await _api.getEventSelfServicedReferrals(eventId: eventId);
+    return data.map((item) => EventReferralDoc.fromJson(item)).toList();
+  }
+
   Future<TicketValidationResult> manualCheckIn({
     required String eventId,
     required ManualCheckInDto body,
