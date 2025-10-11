@@ -30,12 +30,12 @@ class Client extends http.BaseClient {
     http.Client? client,
     required this.baseUrl,
     required IRenewableTokens renewableTokens,
-  })  : _client = RetryClient(
-          client ?? http.Client(),
-          when: _when,
-          onRetry: _onRetry,
-        ),
-        _renewableTokens = renewableTokens;
+  }) : _client = RetryClient(
+         client ?? http.Client(),
+         when: _when,
+         onRetry: _onRetry,
+       ),
+       _renewableTokens = renewableTokens;
 
   @override
   Future<http.StreamedResponse> send(final http.BaseRequest request) async {
@@ -44,8 +44,10 @@ class Client extends http.BaseClient {
     final authorizationHeaderSB = StringBuffer('Bearer ');
     if (jwt.isNotEmpty) {
       final decodedJwt = JWT.decode(jwt);
-      final expiration =
-          DateTime.fromMillisecondsSinceEpoch(decodedJwt.payload['exp'] * 1000);
+      final payload = decodedJwt.payload as Map<String, dynamic>;
+      final expiration = DateTime.fromMillisecondsSinceEpoch(
+        payload['exp'] * 1000,
+      );
       if (clock.now().isAfter(expiration)) {
         await renewTokens();
       }
@@ -72,8 +74,11 @@ class Client extends http.BaseClient {
 bool _when(final http.BaseResponse response) =>
     _retryableStatusCode.contains(response.statusCode);
 
-void _onRetry(final http.BaseRequest request, final http.BaseResponse? response,
-    int retry) {
+void _onRetry(
+  final http.BaseRequest request,
+  final http.BaseResponse? response,
+  int retry,
+) {
   _logger.finest('retrying ${request.method} ${request.url}');
 }
 
