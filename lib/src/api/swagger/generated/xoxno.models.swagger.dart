@@ -17602,19 +17602,19 @@ extension $PerpSingleCoinExtension on PerpSingleCoin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class PerpCoin {
-  const PerpCoin({
+class PerpCoinExtended {
+  const PerpCoinExtended({
     required this.symbol,
     required this.coin,
     required this.againstCoin,
     required this.config,
   });
 
-  factory PerpCoin.fromJson(Map<String, dynamic> json) =>
-      _$PerpCoinFromJson(json);
+  factory PerpCoinExtended.fromJson(Map<String, dynamic> json) =>
+      _$PerpCoinExtendedFromJson(json);
 
-  static const toJsonFactory = _$PerpCoinToJson;
-  Map<String, dynamic> toJson() => _$PerpCoinToJson(this);
+  static const toJsonFactory = _$PerpCoinExtendedToJson;
+  Map<String, dynamic> toJson() => _$PerpCoinExtendedToJson(this);
 
   @JsonKey(name: 'symbol')
   final String symbol;
@@ -17624,17 +17624,17 @@ class PerpCoin {
   final PerpSingleCoin againstCoin;
   @JsonKey(name: 'config', defaultValue: <String>[])
   final List<String> config;
-  static const fromJsonFactory = _$PerpCoinFromJson;
+  static const fromJsonFactory = _$PerpCoinExtendedFromJson;
 }
 
-extension $PerpCoinExtension on PerpCoin {
-  PerpCoin copyWith({
+extension $PerpCoinExtendedExtension on PerpCoinExtended {
+  PerpCoinExtended copyWith({
     String? symbol,
     PerpSingleCoin? coin,
     PerpSingleCoin? againstCoin,
     List<String>? config,
   }) {
-    return PerpCoin(
+    return PerpCoinExtended(
       symbol: symbol ?? this.symbol,
       coin: coin ?? this.coin,
       againstCoin: againstCoin ?? this.againstCoin,
@@ -17642,17 +17642,127 @@ extension $PerpCoinExtension on PerpCoin {
     );
   }
 
-  PerpCoin copyWithWrapped({
+  PerpCoinExtended copyWithWrapped({
     Wrapped<String>? symbol,
     Wrapped<PerpSingleCoin>? coin,
     Wrapped<PerpSingleCoin>? againstCoin,
     Wrapped<List<String>>? config,
   }) {
-    return PerpCoin(
+    return PerpCoinExtended(
       symbol: (symbol != null ? symbol.value : this.symbol),
       coin: (coin != null ? coin.value : this.coin),
       againstCoin: (againstCoin != null ? againstCoin.value : this.againstCoin),
       config: (config != null ? config.value : this.config),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpSpotCoinExtended {
+  const PerpSpotCoinExtended({
+    required this.symbol,
+    required this.coin,
+    required this.againstCoin,
+    required this.config,
+  });
+
+  factory PerpSpotCoinExtended.fromJson(Map<String, dynamic> json) =>
+      _$PerpSpotCoinExtendedFromJson(json);
+
+  static const toJsonFactory = _$PerpSpotCoinExtendedToJson;
+  Map<String, dynamic> toJson() => _$PerpSpotCoinExtendedToJson(this);
+
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  @JsonKey(name: 'coin')
+  final PerpSingleCoin coin;
+  @JsonKey(name: 'againstCoin')
+  final PerpSingleCoin againstCoin;
+  @JsonKey(name: 'config', defaultValue: <String>[])
+  final List<String> config;
+  static const fromJsonFactory = _$PerpSpotCoinExtendedFromJson;
+}
+
+extension $PerpSpotCoinExtendedExtension on PerpSpotCoinExtended {
+  PerpSpotCoinExtended copyWith({
+    String? symbol,
+    PerpSingleCoin? coin,
+    PerpSingleCoin? againstCoin,
+    List<String>? config,
+  }) {
+    return PerpSpotCoinExtended(
+      symbol: symbol ?? this.symbol,
+      coin: coin ?? this.coin,
+      againstCoin: againstCoin ?? this.againstCoin,
+      config: config ?? this.config,
+    );
+  }
+
+  PerpSpotCoinExtended copyWithWrapped({
+    Wrapped<String>? symbol,
+    Wrapped<PerpSingleCoin>? coin,
+    Wrapped<PerpSingleCoin>? againstCoin,
+    Wrapped<List<String>>? config,
+  }) {
+    return PerpSpotCoinExtended(
+      symbol: (symbol != null ? symbol.value : this.symbol),
+      coin: (coin != null ? coin.value : this.coin),
+      againstCoin: (againstCoin != null ? againstCoin.value : this.againstCoin),
+      config: (config != null ? config.value : this.config),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpCoinExtendedSlim {
+  const PerpCoinExtendedSlim({required this.symbol});
+
+  factory PerpCoinExtendedSlim.fromJson(Map<String, dynamic> json) =>
+      _$PerpCoinExtendedSlimFromJson(json);
+
+  static const toJsonFactory = _$PerpCoinExtendedSlimToJson;
+  Map<String, dynamic> toJson() => _$PerpCoinExtendedSlimToJson(this);
+
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$PerpCoinExtendedSlimFromJson;
+}
+
+extension $PerpCoinExtendedSlimExtension on PerpCoinExtendedSlim {
+  PerpCoinExtendedSlim copyWith({String? symbol}) {
+    return PerpCoinExtendedSlim(symbol: symbol ?? this.symbol);
+  }
+
+  PerpCoinExtendedSlim copyWithWrapped({Wrapped<String>? symbol}) {
+    return PerpCoinExtendedSlim(
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpSpotCoinExtendedSlim {
+  const PerpSpotCoinExtendedSlim({required this.symbol});
+
+  factory PerpSpotCoinExtendedSlim.fromJson(Map<String, dynamic> json) =>
+      _$PerpSpotCoinExtendedSlimFromJson(json);
+
+  static const toJsonFactory = _$PerpSpotCoinExtendedSlimToJson;
+  Map<String, dynamic> toJson() => _$PerpSpotCoinExtendedSlimToJson(this);
+
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$PerpSpotCoinExtendedSlimFromJson;
+}
+
+extension $PerpSpotCoinExtendedSlimExtension on PerpSpotCoinExtendedSlim {
+  PerpSpotCoinExtendedSlim copyWith({String? symbol}) {
+    return PerpSpotCoinExtendedSlim(symbol: symbol ?? this.symbol);
+  }
+
+  PerpSpotCoinExtendedSlim copyWithWrapped({Wrapped<String>? symbol}) {
+    return PerpSpotCoinExtendedSlim(
+      symbol: (symbol != null ? symbol.value : this.symbol),
     );
   }
 }
@@ -26802,7 +26912,6 @@ class EventReferralConfigEditDto {
     this.name,
     this.appliedVoucher,
     this.rewardDetails,
-    this.isSelfService,
     this.isActive,
   });
 
@@ -26818,8 +26927,6 @@ class EventReferralConfigEditDto {
   final ShortVoucherDoc? appliedVoucher;
   @JsonKey(name: 'rewardDetails')
   final RewardDetails? rewardDetails;
-  @JsonKey(name: 'isSelfService')
-  final bool? isSelfService;
   @JsonKey(name: 'isActive')
   final bool? isActive;
   static const fromJsonFactory = _$EventReferralConfigEditDtoFromJson;
@@ -26830,14 +26937,12 @@ extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
     String? name,
     ShortVoucherDoc? appliedVoucher,
     RewardDetails? rewardDetails,
-    bool? isSelfService,
     bool? isActive,
   }) {
     return EventReferralConfigEditDto(
       name: name ?? this.name,
       appliedVoucher: appliedVoucher ?? this.appliedVoucher,
       rewardDetails: rewardDetails ?? this.rewardDetails,
-      isSelfService: isSelfService ?? this.isSelfService,
       isActive: isActive ?? this.isActive,
     );
   }
@@ -26846,7 +26951,6 @@ extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
     Wrapped<String?>? name,
     Wrapped<ShortVoucherDoc?>? appliedVoucher,
     Wrapped<RewardDetails?>? rewardDetails,
-    Wrapped<bool?>? isSelfService,
     Wrapped<bool?>? isActive,
   }) {
     return EventReferralConfigEditDto(
@@ -26857,9 +26961,6 @@ extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
       rewardDetails: (rewardDetails != null
           ? rewardDetails.value
           : this.rewardDetails),
-      isSelfService: (isSelfService != null
-          ? isSelfService.value
-          : this.isSelfService),
       isActive: (isActive != null ? isActive.value : this.isActive),
     );
   }

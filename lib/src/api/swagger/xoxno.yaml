@@ -6490,19 +6490,118 @@ paths:
       summary: Send direct notification to specific user
       tags:
         - Event Notifications
+  /perp/coin/{symbol}:
+    get:
+      operationId: BoberBattleController_getPerpCoin
+      parameters: []
+      responses:
+        '200':
+          description: Extended Perp coin
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerpCoinExtended'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/coin/spot/{symbol}:
+    get:
+      operationId: BoberBattleController_getSpotCoin
+      parameters: []
+      responses:
+        '200':
+          description: Extended Spot coin
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerpSpotCoinExtended'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
   /perp/coins:
     get:
       operationId: BoberBattleController_getPerpCoins
       parameters: []
       responses:
-        '201':
+        '200':
           description: Perp coins
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PerpCoin'
+                  $ref: '#/components/schemas/PerpCoinExtendedSlim'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/coins/spot:
+    get:
+      operationId: BoberBattleController_getSpotPerpCoins
+      parameters: []
+      responses:
+        '200':
+          description: Spot coins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerpSpotCoinExtendedSlim'
         '400':
           description: Bad Request
           content:
@@ -16340,11 +16439,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1761662926
+          example: 1761666696
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: eb7fdae0-021d-478c-aa0c-4bd9dbf5dfd0
+          example: 4768c116-e50b-4d9b-b4b6-5df394c7227b
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -18172,7 +18271,7 @@ components:
         - identifier
         - decimals
         - symbol
-    PerpCoin:
+    PerpCoinExtended:
       type: object
       properties:
         symbol:
@@ -18190,6 +18289,38 @@ components:
         - coin
         - againstCoin
         - config
+    PerpSpotCoinExtended:
+      type: object
+      properties:
+        symbol:
+          type: string
+        coin:
+          $ref: '#/components/schemas/PerpSingleCoin'
+        againstCoin:
+          $ref: '#/components/schemas/PerpSingleCoin'
+        config:
+          type: array
+          items:
+            type: string
+      required:
+        - symbol
+        - coin
+        - againstCoin
+        - config
+    PerpCoinExtendedSlim:
+      type: object
+      properties:
+        symbol:
+          type: string
+      required:
+        - symbol
+    PerpSpotCoinExtendedSlim:
+      type: object
+      properties:
+        symbol:
+          type: string
+      required:
+        - symbol
     L2BookPerpResponseSingle:
       type: object
       properties:
@@ -20415,11 +20546,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1761662926
+          example: 1761666696
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: fb682bf8-c8df-4e11-ac85-aec20e847f90
+          example: 85cf7399-8c80-4043-9451-daa947733f80
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20476,11 +20607,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1761662926
+          example: 1761666696
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1761662926
+          example: 1761666696
         maxLimit:
           type: integer
           description: >-
@@ -20538,11 +20669,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1761662926
+          example: 1761666696
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1761662926
+          example: 1761666696
         maxLimit:
           type: integer
           description: >-
@@ -20573,7 +20704,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: b1cc95d9-0447-476e-992c-4497b66d9a97
+          example: ab7b206b-6763-41b2-b896-c48a07568d59
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20604,11 +20735,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1761662926
+          example: 1761666696
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1761662926
+          example: 1761666696
         maxLimit:
           type: integer
           description: >-
@@ -20764,7 +20895,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: bed7b245-948d-4aa7-be18-8a966db284b9
+          example: 555b655b-8f01-4770-b427-8ce4b88dad6a
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -20820,7 +20951,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1761662926
+          example: 1761666696
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20849,7 +20980,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 8be287ac-b414-4765-ae21-fc24576447ac
+          example: 12708858-d3aa-4aae-b2ab-884f18dd8a63
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20965,7 +21096,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1761662926
+          example: 1761666696
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20994,7 +21125,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 8be287ac-b414-4765-ae21-fc24576447ac
+          example: 12708858-d3aa-4aae-b2ab-884f18dd8a63
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -21172,11 +21303,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1761662926
+          example: 1761666696
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1761662926
+          example: 1761666696
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21187,7 +21318,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1761662926
+          example: 1761666696
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -21280,7 +21411,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1761662926
+          example: 1761666696
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21764,11 +21895,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1761662926
+          example: 1761666696
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1761662926
+          example: 1761666696
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21821,11 +21952,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1761662926
+          example: 1761666696
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1761662926
+          example: 1761666696
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21860,7 +21991,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 0f6ea653-6621-46d7-99b2-ef82718c0cc3
+          example: 06b0eed8-f42c-4852-8e97-0aac42424b98
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21876,7 +22007,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1761662926
+          example: 1761666696
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -22043,7 +22174,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: eaeebc72-17b9-421c-931a-7d15a08d3ac0
+          example: d7c915e7-34f9-4d8e-8db2-f1a9974ff46e
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -22073,7 +22204,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1761662926
+          example: 1761666696
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -22108,11 +22239,6 @@ components:
             certain number of successful referrals or revenue thresholds.
           allOf:
             - $ref: '#/components/schemas/RewardDetails'
-        isSelfService:
-          type: boolean
-          description: >-
-            Indicates whether normal guests can generate and share their unique
-            referral codes for this event.
         isActive:
           type: boolean
           description: Indicates whether the referral program is currently active.
@@ -22205,7 +22331,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 249d0e54-6cc0-49c8-9844-137887f3712b
+          example: d33959ee-5b83-4474-8e26-4193cb275276
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -22227,7 +22353,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1761662926
+          example: 1761666696
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -22433,7 +22559,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 38c93563-ad53-42fe-93f1-8dcfb72d2daa
+          example: a7f337be-a843-4cf5-89af-82e9c9f4b063
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -22450,15 +22576,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1761662926
+          example: 1761666696
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 6965cae9-54e0-478a-ad2e-22098be5d9f6
+          example: 7ef4cd74-36b7-4972-8f83-3e16d10f0744
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1761662926
+          example: 1761666696
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -22466,7 +22592,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: 65f80209-a96c-4f72-b857-3d9636e1c106
+          example: 8c0b4779-4aa0-43d7-b4a7-2e8bb2477d5f
       required:
         - ticketId
         - isCheckIn

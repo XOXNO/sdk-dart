@@ -5570,7 +5570,31 @@ Map<String, dynamic> _$PerpSingleCoinToJson(PerpSingleCoin instance) =>
       'symbol': instance.symbol,
     };
 
-PerpCoin _$PerpCoinFromJson(Map<String, dynamic> json) => PerpCoin(
+PerpCoinExtended _$PerpCoinExtendedFromJson(Map<String, dynamic> json) =>
+    PerpCoinExtended(
+      symbol: json['symbol'] as String,
+      coin: PerpSingleCoin.fromJson(json['coin'] as Map<String, dynamic>),
+      againstCoin: PerpSingleCoin.fromJson(
+        json['againstCoin'] as Map<String, dynamic>,
+      ),
+      config:
+          (json['config'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$PerpCoinExtendedToJson(PerpCoinExtended instance) =>
+    <String, dynamic>{
+      'symbol': instance.symbol,
+      'coin': instance.coin.toJson(),
+      'againstCoin': instance.againstCoin.toJson(),
+      'config': instance.config,
+    };
+
+PerpSpotCoinExtended _$PerpSpotCoinExtendedFromJson(
+  Map<String, dynamic> json,
+) => PerpSpotCoinExtended(
   symbol: json['symbol'] as String,
   coin: PerpSingleCoin.fromJson(json['coin'] as Map<String, dynamic>),
   againstCoin: PerpSingleCoin.fromJson(
@@ -5581,12 +5605,30 @@ PerpCoin _$PerpCoinFromJson(Map<String, dynamic> json) => PerpCoin(
       [],
 );
 
-Map<String, dynamic> _$PerpCoinToJson(PerpCoin instance) => <String, dynamic>{
+Map<String, dynamic> _$PerpSpotCoinExtendedToJson(
+  PerpSpotCoinExtended instance,
+) => <String, dynamic>{
   'symbol': instance.symbol,
   'coin': instance.coin.toJson(),
   'againstCoin': instance.againstCoin.toJson(),
   'config': instance.config,
 };
+
+PerpCoinExtendedSlim _$PerpCoinExtendedSlimFromJson(
+  Map<String, dynamic> json,
+) => PerpCoinExtendedSlim(symbol: json['symbol'] as String);
+
+Map<String, dynamic> _$PerpCoinExtendedSlimToJson(
+  PerpCoinExtendedSlim instance,
+) => <String, dynamic>{'symbol': instance.symbol};
+
+PerpSpotCoinExtendedSlim _$PerpSpotCoinExtendedSlimFromJson(
+  Map<String, dynamic> json,
+) => PerpSpotCoinExtendedSlim(symbol: json['symbol'] as String);
+
+Map<String, dynamic> _$PerpSpotCoinExtendedSlimToJson(
+  PerpSpotCoinExtendedSlim instance,
+) => <String, dynamic>{'symbol': instance.symbol};
 
 L2BookPerpResponseSingle _$L2BookPerpResponseSingleFromJson(
   Map<String, dynamic> json,
@@ -8627,7 +8669,6 @@ EventReferralConfigEditDto _$EventReferralConfigEditDtoFromJson(
   rewardDetails: json['rewardDetails'] == null
       ? null
       : RewardDetails.fromJson(json['rewardDetails'] as Map<String, dynamic>),
-  isSelfService: json['isSelfService'] as bool?,
   isActive: json['isActive'] as bool?,
 );
 
@@ -8637,7 +8678,6 @@ Map<String, dynamic> _$EventReferralConfigEditDtoToJson(
   'name': instance.name,
   'appliedVoucher': instance.appliedVoucher?.toJson(),
   'rewardDetails': instance.rewardDetails?.toJson(),
-  'isSelfService': instance.isSelfService,
   'isActive': instance.isActive,
 };
 
