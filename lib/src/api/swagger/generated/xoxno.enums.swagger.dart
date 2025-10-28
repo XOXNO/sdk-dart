@@ -1,3 +1,6 @@
+// coverage:ignore-file
+// ignore_for_file: type=lint
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 
@@ -1581,6 +1584,20 @@ enum UserBlockDocHydratedDataType {
   final String? value;
 
   const UserBlockDocHydratedDataType(this.value);
+}
+
+enum DigitalWalletDtoWalletType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('googlePay')
+  googlepay('googlePay'),
+  @JsonValue('applePay')
+  applepay('applePay');
+
+  final String? value;
+
+  const DigitalWalletDtoWalletType(this.value);
 }
 
 enum PaymentProvider {

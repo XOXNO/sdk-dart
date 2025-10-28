@@ -1,3 +1,4 @@
+// coverage:ignore-file
 // ignore_for_file: type=lint
 
 import 'package:json_annotation/json_annotation.dart';
@@ -17552,6 +17553,646 @@ extension $CreatorMarketingNotificationDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class PerpSingleCoin {
+  const PerpSingleCoin({
+    required this.identifier,
+    required this.decimals,
+    required this.symbol,
+  });
+
+  factory PerpSingleCoin.fromJson(Map<String, dynamic> json) =>
+      _$PerpSingleCoinFromJson(json);
+
+  static const toJsonFactory = _$PerpSingleCoinToJson;
+  Map<String, dynamic> toJson() => _$PerpSingleCoinToJson(this);
+
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'decimals')
+  final double decimals;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$PerpSingleCoinFromJson;
+}
+
+extension $PerpSingleCoinExtension on PerpSingleCoin {
+  PerpSingleCoin copyWith({
+    String? identifier,
+    double? decimals,
+    String? symbol,
+  }) {
+    return PerpSingleCoin(
+      identifier: identifier ?? this.identifier,
+      decimals: decimals ?? this.decimals,
+      symbol: symbol ?? this.symbol,
+    );
+  }
+
+  PerpSingleCoin copyWithWrapped({
+    Wrapped<String>? identifier,
+    Wrapped<double>? decimals,
+    Wrapped<String>? symbol,
+  }) {
+    return PerpSingleCoin(
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      decimals: (decimals != null ? decimals.value : this.decimals),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpCoin {
+  const PerpCoin({
+    required this.symbol,
+    required this.coin,
+    required this.againstCoin,
+    required this.config,
+  });
+
+  factory PerpCoin.fromJson(Map<String, dynamic> json) =>
+      _$PerpCoinFromJson(json);
+
+  static const toJsonFactory = _$PerpCoinToJson;
+  Map<String, dynamic> toJson() => _$PerpCoinToJson(this);
+
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  @JsonKey(name: 'coin')
+  final PerpSingleCoin coin;
+  @JsonKey(name: 'againstCoin')
+  final PerpSingleCoin againstCoin;
+  @JsonKey(name: 'config', defaultValue: <String>[])
+  final List<String> config;
+  static const fromJsonFactory = _$PerpCoinFromJson;
+}
+
+extension $PerpCoinExtension on PerpCoin {
+  PerpCoin copyWith({
+    String? symbol,
+    PerpSingleCoin? coin,
+    PerpSingleCoin? againstCoin,
+    List<String>? config,
+  }) {
+    return PerpCoin(
+      symbol: symbol ?? this.symbol,
+      coin: coin ?? this.coin,
+      againstCoin: againstCoin ?? this.againstCoin,
+      config: config ?? this.config,
+    );
+  }
+
+  PerpCoin copyWithWrapped({
+    Wrapped<String>? symbol,
+    Wrapped<PerpSingleCoin>? coin,
+    Wrapped<PerpSingleCoin>? againstCoin,
+    Wrapped<List<String>>? config,
+  }) {
+    return PerpCoin(
+      symbol: (symbol != null ? symbol.value : this.symbol),
+      coin: (coin != null ? coin.value : this.coin),
+      againstCoin: (againstCoin != null ? againstCoin.value : this.againstCoin),
+      config: (config != null ? config.value : this.config),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class L2BookPerpResponseSingle {
+  const L2BookPerpResponseSingle({
+    required this.px,
+    required this.sz,
+    required this.n,
+  });
+
+  factory L2BookPerpResponseSingle.fromJson(Map<String, dynamic> json) =>
+      _$L2BookPerpResponseSingleFromJson(json);
+
+  static const toJsonFactory = _$L2BookPerpResponseSingleToJson;
+  Map<String, dynamic> toJson() => _$L2BookPerpResponseSingleToJson(this);
+
+  @JsonKey(name: 'px')
+  final String px;
+  @JsonKey(name: 'sz')
+  final String sz;
+  @JsonKey(name: 'n')
+  final double n;
+  static const fromJsonFactory = _$L2BookPerpResponseSingleFromJson;
+}
+
+extension $L2BookPerpResponseSingleExtension on L2BookPerpResponseSingle {
+  L2BookPerpResponseSingle copyWith({String? px, String? sz, double? n}) {
+    return L2BookPerpResponseSingle(
+      px: px ?? this.px,
+      sz: sz ?? this.sz,
+      n: n ?? this.n,
+    );
+  }
+
+  L2BookPerpResponseSingle copyWithWrapped({
+    Wrapped<String>? px,
+    Wrapped<String>? sz,
+    Wrapped<double>? n,
+  }) {
+    return L2BookPerpResponseSingle(
+      px: (px != null ? px.value : this.px),
+      sz: (sz != null ? sz.value : this.sz),
+      n: (n != null ? n.value : this.n),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TradesPerpResponseSingle {
+  const TradesPerpResponseSingle({
+    required this.side,
+    required this.px,
+    required this.sz,
+    required this.time,
+    required this.hash,
+    required this.users,
+  });
+
+  factory TradesPerpResponseSingle.fromJson(Map<String, dynamic> json) =>
+      _$TradesPerpResponseSingleFromJson(json);
+
+  static const toJsonFactory = _$TradesPerpResponseSingleToJson;
+  Map<String, dynamic> toJson() => _$TradesPerpResponseSingleToJson(this);
+
+  @JsonKey(name: 'side')
+  final String side;
+  @JsonKey(name: 'px')
+  final String px;
+  @JsonKey(name: 'sz')
+  final String sz;
+  @JsonKey(name: 'time')
+  final double time;
+  @JsonKey(name: 'hash')
+  final String hash;
+  @JsonKey(name: 'users', defaultValue: <String>[])
+  final List<String> users;
+  static const fromJsonFactory = _$TradesPerpResponseSingleFromJson;
+}
+
+extension $TradesPerpResponseSingleExtension on TradesPerpResponseSingle {
+  TradesPerpResponseSingle copyWith({
+    String? side,
+    String? px,
+    String? sz,
+    double? time,
+    String? hash,
+    List<String>? users,
+  }) {
+    return TradesPerpResponseSingle(
+      side: side ?? this.side,
+      px: px ?? this.px,
+      sz: sz ?? this.sz,
+      time: time ?? this.time,
+      hash: hash ?? this.hash,
+      users: users ?? this.users,
+    );
+  }
+
+  TradesPerpResponseSingle copyWithWrapped({
+    Wrapped<String>? side,
+    Wrapped<String>? px,
+    Wrapped<String>? sz,
+    Wrapped<double>? time,
+    Wrapped<String>? hash,
+    Wrapped<List<String>>? users,
+  }) {
+    return TradesPerpResponseSingle(
+      side: (side != null ? side.value : this.side),
+      px: (px != null ? px.value : this.px),
+      sz: (sz != null ? sz.value : this.sz),
+      time: (time != null ? time.value : this.time),
+      hash: (hash != null ? hash.value : this.hash),
+      users: (users != null ? users.value : this.users),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActiveSpotAssetCtx {
+  const ActiveSpotAssetCtx({
+    required this.prevDayPx,
+    required this.dayNtlVlm,
+    required this.markPx,
+    required this.midPx,
+    required this.dayBaseVlm,
+    required this.circulatingSupply,
+    required this.totalSupply,
+  });
+
+  factory ActiveSpotAssetCtx.fromJson(Map<String, dynamic> json) =>
+      _$ActiveSpotAssetCtxFromJson(json);
+
+  static const toJsonFactory = _$ActiveSpotAssetCtxToJson;
+  Map<String, dynamic> toJson() => _$ActiveSpotAssetCtxToJson(this);
+
+  @JsonKey(name: 'prevDayPx')
+  final String prevDayPx;
+  @JsonKey(name: 'dayNtlVlm')
+  final String dayNtlVlm;
+  @JsonKey(name: 'markPx')
+  final String markPx;
+  @JsonKey(name: 'midPx')
+  final String midPx;
+  @JsonKey(name: 'dayBaseVlm')
+  final String dayBaseVlm;
+  @JsonKey(name: 'circulatingSupply')
+  final String circulatingSupply;
+  @JsonKey(name: 'totalSupply')
+  final String totalSupply;
+  static const fromJsonFactory = _$ActiveSpotAssetCtxFromJson;
+}
+
+extension $ActiveSpotAssetCtxExtension on ActiveSpotAssetCtx {
+  ActiveSpotAssetCtx copyWith({
+    String? prevDayPx,
+    String? dayNtlVlm,
+    String? markPx,
+    String? midPx,
+    String? dayBaseVlm,
+    String? circulatingSupply,
+    String? totalSupply,
+  }) {
+    return ActiveSpotAssetCtx(
+      prevDayPx: prevDayPx ?? this.prevDayPx,
+      dayNtlVlm: dayNtlVlm ?? this.dayNtlVlm,
+      markPx: markPx ?? this.markPx,
+      midPx: midPx ?? this.midPx,
+      dayBaseVlm: dayBaseVlm ?? this.dayBaseVlm,
+      circulatingSupply: circulatingSupply ?? this.circulatingSupply,
+      totalSupply: totalSupply ?? this.totalSupply,
+    );
+  }
+
+  ActiveSpotAssetCtx copyWithWrapped({
+    Wrapped<String>? prevDayPx,
+    Wrapped<String>? dayNtlVlm,
+    Wrapped<String>? markPx,
+    Wrapped<String>? midPx,
+    Wrapped<String>? dayBaseVlm,
+    Wrapped<String>? circulatingSupply,
+    Wrapped<String>? totalSupply,
+  }) {
+    return ActiveSpotAssetCtx(
+      prevDayPx: (prevDayPx != null ? prevDayPx.value : this.prevDayPx),
+      dayNtlVlm: (dayNtlVlm != null ? dayNtlVlm.value : this.dayNtlVlm),
+      markPx: (markPx != null ? markPx.value : this.markPx),
+      midPx: (midPx != null ? midPx.value : this.midPx),
+      dayBaseVlm: (dayBaseVlm != null ? dayBaseVlm.value : this.dayBaseVlm),
+      circulatingSupply: (circulatingSupply != null
+          ? circulatingSupply.value
+          : this.circulatingSupply),
+      totalSupply: (totalSupply != null ? totalSupply.value : this.totalSupply),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActivePerpAssetCtx {
+  const ActivePerpAssetCtx({
+    required this.prevDayPx,
+    required this.dayNtlVlm,
+    required this.markPx,
+    required this.midPx,
+    required this.dayBaseVlm,
+    required this.funding,
+    required this.openInterest,
+    required this.premium,
+    required this.oraclePx,
+    required this.impactTxs,
+  });
+
+  factory ActivePerpAssetCtx.fromJson(Map<String, dynamic> json) =>
+      _$ActivePerpAssetCtxFromJson(json);
+
+  static const toJsonFactory = _$ActivePerpAssetCtxToJson;
+  Map<String, dynamic> toJson() => _$ActivePerpAssetCtxToJson(this);
+
+  @JsonKey(name: 'prevDayPx')
+  final String prevDayPx;
+  @JsonKey(name: 'dayNtlVlm')
+  final String dayNtlVlm;
+  @JsonKey(name: 'markPx')
+  final String markPx;
+  @JsonKey(name: 'midPx')
+  final String midPx;
+  @JsonKey(name: 'dayBaseVlm')
+  final String dayBaseVlm;
+  @JsonKey(name: 'funding')
+  final String funding;
+  @JsonKey(name: 'openInterest')
+  final String openInterest;
+  @JsonKey(name: 'premium')
+  final String premium;
+  @JsonKey(name: 'oraclePx')
+  final String oraclePx;
+  @JsonKey(name: 'impactTxs', defaultValue: <String>[])
+  final List<String> impactTxs;
+  static const fromJsonFactory = _$ActivePerpAssetCtxFromJson;
+}
+
+extension $ActivePerpAssetCtxExtension on ActivePerpAssetCtx {
+  ActivePerpAssetCtx copyWith({
+    String? prevDayPx,
+    String? dayNtlVlm,
+    String? markPx,
+    String? midPx,
+    String? dayBaseVlm,
+    String? funding,
+    String? openInterest,
+    String? premium,
+    String? oraclePx,
+    List<String>? impactTxs,
+  }) {
+    return ActivePerpAssetCtx(
+      prevDayPx: prevDayPx ?? this.prevDayPx,
+      dayNtlVlm: dayNtlVlm ?? this.dayNtlVlm,
+      markPx: markPx ?? this.markPx,
+      midPx: midPx ?? this.midPx,
+      dayBaseVlm: dayBaseVlm ?? this.dayBaseVlm,
+      funding: funding ?? this.funding,
+      openInterest: openInterest ?? this.openInterest,
+      premium: premium ?? this.premium,
+      oraclePx: oraclePx ?? this.oraclePx,
+      impactTxs: impactTxs ?? this.impactTxs,
+    );
+  }
+
+  ActivePerpAssetCtx copyWithWrapped({
+    Wrapped<String>? prevDayPx,
+    Wrapped<String>? dayNtlVlm,
+    Wrapped<String>? markPx,
+    Wrapped<String>? midPx,
+    Wrapped<String>? dayBaseVlm,
+    Wrapped<String>? funding,
+    Wrapped<String>? openInterest,
+    Wrapped<String>? premium,
+    Wrapped<String>? oraclePx,
+    Wrapped<List<String>>? impactTxs,
+  }) {
+    return ActivePerpAssetCtx(
+      prevDayPx: (prevDayPx != null ? prevDayPx.value : this.prevDayPx),
+      dayNtlVlm: (dayNtlVlm != null ? dayNtlVlm.value : this.dayNtlVlm),
+      markPx: (markPx != null ? markPx.value : this.markPx),
+      midPx: (midPx != null ? midPx.value : this.midPx),
+      dayBaseVlm: (dayBaseVlm != null ? dayBaseVlm.value : this.dayBaseVlm),
+      funding: (funding != null ? funding.value : this.funding),
+      openInterest: (openInterest != null
+          ? openInterest.value
+          : this.openInterest),
+      premium: (premium != null ? premium.value : this.premium),
+      oraclePx: (oraclePx != null ? oraclePx.value : this.oraclePx),
+      impactTxs: (impactTxs != null ? impactTxs.value : this.impactTxs),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class L2BookPerpEvent {
+  const L2BookPerpEvent({
+    required this.type,
+    required this.symbol,
+    required this.sigFigs,
+    required this.mantissa,
+  });
+
+  factory L2BookPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$L2BookPerpEventFromJson(json);
+
+  static const toJsonFactory = _$L2BookPerpEventToJson;
+  Map<String, dynamic> toJson() => _$L2BookPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  @JsonKey(name: 'sigFigs')
+  final double sigFigs;
+  @JsonKey(name: 'mantissa')
+  final Object mantissa;
+  static const fromJsonFactory = _$L2BookPerpEventFromJson;
+}
+
+extension $L2BookPerpEventExtension on L2BookPerpEvent {
+  L2BookPerpEvent copyWith({
+    String? type,
+    String? symbol,
+    double? sigFigs,
+    Object? mantissa,
+  }) {
+    return L2BookPerpEvent(
+      type: type ?? this.type,
+      symbol: symbol ?? this.symbol,
+      sigFigs: sigFigs ?? this.sigFigs,
+      mantissa: mantissa ?? this.mantissa,
+    );
+  }
+
+  L2BookPerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? symbol,
+    Wrapped<double>? sigFigs,
+    Wrapped<Object>? mantissa,
+  }) {
+    return L2BookPerpEvent(
+      type: (type != null ? type.value : this.type),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+      sigFigs: (sigFigs != null ? sigFigs.value : this.sigFigs),
+      mantissa: (mantissa != null ? mantissa.value : this.mantissa),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TradesPerpEvent {
+  const TradesPerpEvent({required this.type, required this.symbol});
+
+  factory TradesPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$TradesPerpEventFromJson(json);
+
+  static const toJsonFactory = _$TradesPerpEventToJson;
+  Map<String, dynamic> toJson() => _$TradesPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$TradesPerpEventFromJson;
+}
+
+extension $TradesPerpEventExtension on TradesPerpEvent {
+  TradesPerpEvent copyWith({String? type, String? symbol}) {
+    return TradesPerpEvent(
+      type: type ?? this.type,
+      symbol: symbol ?? this.symbol,
+    );
+  }
+
+  TradesPerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? symbol,
+  }) {
+    return TradesPerpEvent(
+      type: (type != null ? type.value : this.type),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActiveSpotAssetPerpEvent {
+  const ActiveSpotAssetPerpEvent({required this.type, required this.symbol});
+
+  factory ActiveSpotAssetPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveSpotAssetPerpEventFromJson(json);
+
+  static const toJsonFactory = _$ActiveSpotAssetPerpEventToJson;
+  Map<String, dynamic> toJson() => _$ActiveSpotAssetPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$ActiveSpotAssetPerpEventFromJson;
+}
+
+extension $ActiveSpotAssetPerpEventExtension on ActiveSpotAssetPerpEvent {
+  ActiveSpotAssetPerpEvent copyWith({String? type, String? symbol}) {
+    return ActiveSpotAssetPerpEvent(
+      type: type ?? this.type,
+      symbol: symbol ?? this.symbol,
+    );
+  }
+
+  ActiveSpotAssetPerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? symbol,
+  }) {
+    return ActiveSpotAssetPerpEvent(
+      type: (type != null ? type.value : this.type),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActiveAssetPerpEvent {
+  const ActiveAssetPerpEvent({required this.type, required this.symbol});
+
+  factory ActiveAssetPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveAssetPerpEventFromJson(json);
+
+  static const toJsonFactory = _$ActiveAssetPerpEventToJson;
+  Map<String, dynamic> toJson() => _$ActiveAssetPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$ActiveAssetPerpEventFromJson;
+}
+
+extension $ActiveAssetPerpEventExtension on ActiveAssetPerpEvent {
+  ActiveAssetPerpEvent copyWith({String? type, String? symbol}) {
+    return ActiveAssetPerpEvent(
+      type: type ?? this.type,
+      symbol: symbol ?? this.symbol,
+    );
+  }
+
+  ActiveAssetPerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? symbol,
+  }) {
+    return ActiveAssetPerpEvent(
+      type: (type != null ? type.value : this.type),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActiveSpotAssetsPerpEvent {
+  const ActiveSpotAssetsPerpEvent({required this.type});
+
+  factory ActiveSpotAssetsPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveSpotAssetsPerpEventFromJson(json);
+
+  static const toJsonFactory = _$ActiveSpotAssetsPerpEventToJson;
+  Map<String, dynamic> toJson() => _$ActiveSpotAssetsPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  static const fromJsonFactory = _$ActiveSpotAssetsPerpEventFromJson;
+}
+
+extension $ActiveSpotAssetsPerpEventExtension on ActiveSpotAssetsPerpEvent {
+  ActiveSpotAssetsPerpEvent copyWith({String? type}) {
+    return ActiveSpotAssetsPerpEvent(type: type ?? this.type);
+  }
+
+  ActiveSpotAssetsPerpEvent copyWithWrapped({Wrapped<String>? type}) {
+    return ActiveSpotAssetsPerpEvent(
+      type: (type != null ? type.value : this.type),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ActiveAssetsPerpEvent {
+  const ActiveAssetsPerpEvent({required this.type});
+
+  factory ActiveAssetsPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$ActiveAssetsPerpEventFromJson(json);
+
+  static const toJsonFactory = _$ActiveAssetsPerpEventToJson;
+  Map<String, dynamic> toJson() => _$ActiveAssetsPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  static const fromJsonFactory = _$ActiveAssetsPerpEventFromJson;
+}
+
+extension $ActiveAssetsPerpEventExtension on ActiveAssetsPerpEvent {
+  ActiveAssetsPerpEvent copyWith({String? type}) {
+    return ActiveAssetsPerpEvent(type: type ?? this.type);
+  }
+
+  ActiveAssetsPerpEvent copyWithWrapped({Wrapped<String>? type}) {
+    return ActiveAssetsPerpEvent(type: (type != null ? type.value : this.type));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpEvent {
+  const PerpEvent({required this.event});
+
+  factory PerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$PerpEventFromJson(json);
+
+  static const toJsonFactory = _$PerpEventToJson;
+  Map<String, dynamic> toJson() => _$PerpEventToJson(this);
+
+  @JsonKey(name: 'event')
+  final dynamic event;
+  static const fromJsonFactory = _$PerpEventFromJson;
+}
+
+extension $PerpEventExtension on PerpEvent {
+  PerpEvent copyWith({dynamic event}) {
+    return PerpEvent(event: event ?? this.event);
+  }
+
+  PerpEvent copyWithWrapped({Wrapped<dynamic>? event}) {
+    return PerpEvent(event: (event != null ? event.value : this.event));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ActivityDataDto {
   const ActivityDataDto({this.collection, this.identifier});
 
@@ -20984,6 +21625,9 @@ class EventProfileFilterCriteriaDto {
   const EventProfileFilterCriteriaDto({
     this.searchText,
     this.area,
+    this.latitude,
+    this.longitude,
+    this.rangeKm,
     this.range,
     this.category,
     this.subCategory,
@@ -20999,6 +21643,12 @@ class EventProfileFilterCriteriaDto {
   final String? searchText;
   @JsonKey(name: 'area', defaultValue: <String>[])
   final List<String>? area;
+  @JsonKey(name: 'latitude')
+  final double? latitude;
+  @JsonKey(name: 'longitude')
+  final double? longitude;
+  @JsonKey(name: 'rangeKm')
+  final double? rangeKm;
   @JsonKey(name: 'range', defaultValue: <RangeFilter>[])
   final List<RangeFilter>? range;
   @JsonKey(name: 'category', defaultValue: <String>[])
@@ -21013,6 +21663,9 @@ extension $EventProfileFilterCriteriaDtoExtension
   EventProfileFilterCriteriaDto copyWith({
     String? searchText,
     List<String>? area,
+    double? latitude,
+    double? longitude,
+    double? rangeKm,
     List<RangeFilter>? range,
     List<String>? category,
     List<String>? subCategory,
@@ -21020,6 +21673,9 @@ extension $EventProfileFilterCriteriaDtoExtension
     return EventProfileFilterCriteriaDto(
       searchText: searchText ?? this.searchText,
       area: area ?? this.area,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      rangeKm: rangeKm ?? this.rangeKm,
       range: range ?? this.range,
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
@@ -21029,6 +21685,9 @@ extension $EventProfileFilterCriteriaDtoExtension
   EventProfileFilterCriteriaDto copyWithWrapped({
     Wrapped<String?>? searchText,
     Wrapped<List<String>?>? area,
+    Wrapped<double?>? latitude,
+    Wrapped<double?>? longitude,
+    Wrapped<double?>? rangeKm,
     Wrapped<List<RangeFilter>?>? range,
     Wrapped<List<String>?>? category,
     Wrapped<List<String>?>? subCategory,
@@ -21036,6 +21695,9 @@ extension $EventProfileFilterCriteriaDtoExtension
     return EventProfileFilterCriteriaDto(
       searchText: (searchText != null ? searchText.value : this.searchText),
       area: (area != null ? area.value : this.area),
+      latitude: (latitude != null ? latitude.value : this.latitude),
+      longitude: (longitude != null ? longitude.value : this.longitude),
+      rangeKm: (rangeKm != null ? rangeKm.value : this.rangeKm),
       range: (range != null ? range.value : this.range),
       category: (category != null ? category.value : this.category),
       subCategory: (subCategory != null ? subCategory.value : this.subCategory),
@@ -21526,18 +22188,61 @@ extension $CallbackUrlExtension on CallbackUrl {
 }
 
 @JsonSerializable(explicitToJson: true)
+class DigitalWalletDto {
+  const DigitalWalletDto({required this.walletType, this.data});
+
+  factory DigitalWalletDto.fromJson(Map<String, dynamic> json) =>
+      _$DigitalWalletDtoFromJson(json);
+
+  static const toJsonFactory = _$DigitalWalletDtoToJson;
+  Map<String, dynamic> toJson() => _$DigitalWalletDtoToJson(this);
+
+  @JsonKey(
+    name: 'walletType',
+    toJson: digitalWalletDtoWalletTypeToJson,
+    fromJson: digitalWalletDtoWalletTypeFromJson,
+  )
+  final enums.DigitalWalletDtoWalletType walletType;
+  @JsonKey(name: 'data')
+  final dynamic data;
+  static const fromJsonFactory = _$DigitalWalletDtoFromJson;
+}
+
+extension $DigitalWalletDtoExtension on DigitalWalletDto {
+  DigitalWalletDto copyWith({
+    enums.DigitalWalletDtoWalletType? walletType,
+    dynamic data,
+  }) {
+    return DigitalWalletDto(
+      walletType: walletType ?? this.walletType,
+      data: data ?? this.data,
+    );
+  }
+
+  DigitalWalletDto copyWithWrapped({
+    Wrapped<enums.DigitalWalletDtoWalletType>? walletType,
+    Wrapped<dynamic>? data,
+  }) {
+    return DigitalWalletDto(
+      walletType: (walletType != null ? walletType.value : this.walletType),
+      data: (data != null ? data.value : this.data),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventGuestRegistrationDto {
   const EventGuestRegistrationDto({
     this.email,
     this.name,
     this.phone,
     this.ticketSelections,
-    this.voucherCode,
-    this.referralCode,
+    this.code,
     this.payWithCrypto,
     this.currency,
     this.questionAnswers,
     this.callbackUrl,
+    this.digitalWallet,
   });
 
   factory EventGuestRegistrationDto.fromJson(Map<String, dynamic> json) =>
@@ -21554,10 +22259,8 @@ class EventGuestRegistrationDto {
   final String? phone;
   @JsonKey(name: 'ticketSelections', defaultValue: <TicketSelectionDto>[])
   final List<TicketSelectionDto>? ticketSelections;
-  @JsonKey(name: 'voucherCode')
-  final String? voucherCode;
-  @JsonKey(name: 'referralCode')
-  final String? referralCode;
+  @JsonKey(name: 'code')
+  final String? code;
   @JsonKey(name: 'payWithCrypto', defaultValue: false)
   final bool? payWithCrypto;
   @JsonKey(name: 'currency')
@@ -21566,6 +22269,8 @@ class EventGuestRegistrationDto {
   final List<EventQuestionAnswerDto>? questionAnswers;
   @JsonKey(name: 'callbackUrl')
   final CallbackUrl? callbackUrl;
+  @JsonKey(name: 'digitalWallet')
+  final DigitalWalletDto? digitalWallet;
   static const fromJsonFactory = _$EventGuestRegistrationDtoFromJson;
 }
 
@@ -21575,24 +22280,24 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
     String? name,
     String? phone,
     List<TicketSelectionDto>? ticketSelections,
-    String? voucherCode,
-    String? referralCode,
+    String? code,
     bool? payWithCrypto,
     String? currency,
     List<EventQuestionAnswerDto>? questionAnswers,
     CallbackUrl? callbackUrl,
+    DigitalWalletDto? digitalWallet,
   }) {
     return EventGuestRegistrationDto(
       email: email ?? this.email,
       name: name ?? this.name,
       phone: phone ?? this.phone,
       ticketSelections: ticketSelections ?? this.ticketSelections,
-      voucherCode: voucherCode ?? this.voucherCode,
-      referralCode: referralCode ?? this.referralCode,
+      code: code ?? this.code,
       payWithCrypto: payWithCrypto ?? this.payWithCrypto,
       currency: currency ?? this.currency,
       questionAnswers: questionAnswers ?? this.questionAnswers,
       callbackUrl: callbackUrl ?? this.callbackUrl,
+      digitalWallet: digitalWallet ?? this.digitalWallet,
     );
   }
 
@@ -21601,12 +22306,12 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
     Wrapped<String?>? name,
     Wrapped<String?>? phone,
     Wrapped<List<TicketSelectionDto>?>? ticketSelections,
-    Wrapped<String?>? voucherCode,
-    Wrapped<String?>? referralCode,
+    Wrapped<String?>? code,
     Wrapped<bool?>? payWithCrypto,
     Wrapped<String?>? currency,
     Wrapped<List<EventQuestionAnswerDto>?>? questionAnswers,
     Wrapped<CallbackUrl?>? callbackUrl,
+    Wrapped<DigitalWalletDto?>? digitalWallet,
   }) {
     return EventGuestRegistrationDto(
       email: (email != null ? email.value : this.email),
@@ -21615,10 +22320,7 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
       ticketSelections: (ticketSelections != null
           ? ticketSelections.value
           : this.ticketSelections),
-      voucherCode: (voucherCode != null ? voucherCode.value : this.voucherCode),
-      referralCode: (referralCode != null
-          ? referralCode.value
-          : this.referralCode),
+      code: (code != null ? code.value : this.code),
       payWithCrypto: (payWithCrypto != null
           ? payWithCrypto.value
           : this.payWithCrypto),
@@ -21627,6 +22329,9 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
           ? questionAnswers.value
           : this.questionAnswers),
       callbackUrl: (callbackUrl != null ? callbackUrl.value : this.callbackUrl),
+      digitalWallet: (digitalWallet != null
+          ? digitalWallet.value
+          : this.digitalWallet),
     );
   }
 }
@@ -21712,6 +22417,100 @@ extension $StripePaymentFormDataExtension on StripePaymentFormData {
     return StripePaymentFormData(
       sessionId: (sessionId != null ? sessionId.value : this.sessionId),
       publicKey: (publicKey != null ? publicKey.value : this.publicKey),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TwispayDigitalWalletPaymentData {
+  const TwispayDigitalWalletPaymentData({
+    required this.orderId,
+    required this.externalOrderId,
+    required this.transactionId,
+    required this.is3d,
+    required this.isRedirect,
+    this.redirectUrl,
+    this.redirectMethod,
+    this.redirectParams,
+  });
+
+  factory TwispayDigitalWalletPaymentData.fromJson(Map<String, dynamic> json) =>
+      _$TwispayDigitalWalletPaymentDataFromJson(json);
+
+  static const toJsonFactory = _$TwispayDigitalWalletPaymentDataToJson;
+  Map<String, dynamic> toJson() =>
+      _$TwispayDigitalWalletPaymentDataToJson(this);
+
+  @JsonKey(name: 'orderId')
+  final double orderId;
+  @JsonKey(name: 'externalOrderId')
+  final String externalOrderId;
+  @JsonKey(name: 'transactionId')
+  final double transactionId;
+  @JsonKey(name: 'is3d')
+  final bool is3d;
+  @JsonKey(name: 'isRedirect')
+  final bool isRedirect;
+  @JsonKey(name: 'redirectUrl')
+  final String? redirectUrl;
+  @JsonKey(name: 'redirectMethod')
+  final String? redirectMethod;
+  @JsonKey(name: 'redirectParams')
+  final Object? redirectParams;
+  static const fromJsonFactory = _$TwispayDigitalWalletPaymentDataFromJson;
+}
+
+extension $TwispayDigitalWalletPaymentDataExtension
+    on TwispayDigitalWalletPaymentData {
+  TwispayDigitalWalletPaymentData copyWith({
+    double? orderId,
+    String? externalOrderId,
+    double? transactionId,
+    bool? is3d,
+    bool? isRedirect,
+    String? redirectUrl,
+    String? redirectMethod,
+    Object? redirectParams,
+  }) {
+    return TwispayDigitalWalletPaymentData(
+      orderId: orderId ?? this.orderId,
+      externalOrderId: externalOrderId ?? this.externalOrderId,
+      transactionId: transactionId ?? this.transactionId,
+      is3d: is3d ?? this.is3d,
+      isRedirect: isRedirect ?? this.isRedirect,
+      redirectUrl: redirectUrl ?? this.redirectUrl,
+      redirectMethod: redirectMethod ?? this.redirectMethod,
+      redirectParams: redirectParams ?? this.redirectParams,
+    );
+  }
+
+  TwispayDigitalWalletPaymentData copyWithWrapped({
+    Wrapped<double>? orderId,
+    Wrapped<String>? externalOrderId,
+    Wrapped<double>? transactionId,
+    Wrapped<bool>? is3d,
+    Wrapped<bool>? isRedirect,
+    Wrapped<String?>? redirectUrl,
+    Wrapped<String?>? redirectMethod,
+    Wrapped<Object?>? redirectParams,
+  }) {
+    return TwispayDigitalWalletPaymentData(
+      orderId: (orderId != null ? orderId.value : this.orderId),
+      externalOrderId: (externalOrderId != null
+          ? externalOrderId.value
+          : this.externalOrderId),
+      transactionId: (transactionId != null
+          ? transactionId.value
+          : this.transactionId),
+      is3d: (is3d != null ? is3d.value : this.is3d),
+      isRedirect: (isRedirect != null ? isRedirect.value : this.isRedirect),
+      redirectUrl: (redirectUrl != null ? redirectUrl.value : this.redirectUrl),
+      redirectMethod: (redirectMethod != null
+          ? redirectMethod.value
+          : this.redirectMethod),
+      redirectParams: (redirectParams != null
+          ? redirectParams.value
+          : this.redirectParams),
     );
   }
 }
@@ -22471,8 +23270,7 @@ extension $EventStageProfileEditDtoExtension on EventStageProfileEditDto {
 @JsonSerializable(explicitToJson: true)
 class TicketCalculationRequestDto {
   const TicketCalculationRequestDto({
-    this.referralCode,
-    this.discountCode,
+    this.code,
     required this.ticketSelections,
   });
 
@@ -22482,10 +23280,8 @@ class TicketCalculationRequestDto {
   static const toJsonFactory = _$TicketCalculationRequestDtoToJson;
   Map<String, dynamic> toJson() => _$TicketCalculationRequestDtoToJson(this);
 
-  @JsonKey(name: 'referralCode')
-  final String? referralCode;
-  @JsonKey(name: 'discountCode')
-  final String? discountCode;
+  @JsonKey(name: 'code')
+  final String? code;
   @JsonKey(name: 'ticketSelections', defaultValue: <TicketSelectionDto>[])
   final List<TicketSelectionDto> ticketSelections;
   static const fromJsonFactory = _$TicketCalculationRequestDtoFromJson;
@@ -22493,29 +23289,21 @@ class TicketCalculationRequestDto {
 
 extension $TicketCalculationRequestDtoExtension on TicketCalculationRequestDto {
   TicketCalculationRequestDto copyWith({
-    String? referralCode,
-    String? discountCode,
+    String? code,
     List<TicketSelectionDto>? ticketSelections,
   }) {
     return TicketCalculationRequestDto(
-      referralCode: referralCode ?? this.referralCode,
-      discountCode: discountCode ?? this.discountCode,
+      code: code ?? this.code,
       ticketSelections: ticketSelections ?? this.ticketSelections,
     );
   }
 
   TicketCalculationRequestDto copyWithWrapped({
-    Wrapped<String?>? referralCode,
-    Wrapped<String?>? discountCode,
+    Wrapped<String?>? code,
     Wrapped<List<TicketSelectionDto>>? ticketSelections,
   }) {
     return TicketCalculationRequestDto(
-      referralCode: (referralCode != null
-          ? referralCode.value
-          : this.referralCode),
-      discountCode: (discountCode != null
-          ? discountCode.value
-          : this.discountCode),
+      code: (code != null ? code.value : this.code),
       ticketSelections: (ticketSelections != null
           ? ticketSelections.value
           : this.ticketSelections),
@@ -25819,6 +26607,7 @@ extension $RewardDetailsExtension on RewardDetails {
 @JsonSerializable(explicitToJson: true)
 class EventReferralConfigCreateDto {
   const EventReferralConfigCreateDto({
+    required this.name,
     this.appliedVoucher,
     this.rewardDetails,
     required this.isSelfService,
@@ -25831,6 +26620,8 @@ class EventReferralConfigCreateDto {
   static const toJsonFactory = _$EventReferralConfigCreateDtoToJson;
   Map<String, dynamic> toJson() => _$EventReferralConfigCreateDtoToJson(this);
 
+  @JsonKey(name: 'name')
+  final String name;
   @JsonKey(name: 'appliedVoucher')
   final ShortVoucherDoc? appliedVoucher;
   @JsonKey(name: 'rewardDetails')
@@ -25845,12 +26636,14 @@ class EventReferralConfigCreateDto {
 extension $EventReferralConfigCreateDtoExtension
     on EventReferralConfigCreateDto {
   EventReferralConfigCreateDto copyWith({
+    String? name,
     ShortVoucherDoc? appliedVoucher,
     RewardDetails? rewardDetails,
     bool? isSelfService,
     bool? isActive,
   }) {
     return EventReferralConfigCreateDto(
+      name: name ?? this.name,
       appliedVoucher: appliedVoucher ?? this.appliedVoucher,
       rewardDetails: rewardDetails ?? this.rewardDetails,
       isSelfService: isSelfService ?? this.isSelfService,
@@ -25859,12 +26652,14 @@ extension $EventReferralConfigCreateDtoExtension
   }
 
   EventReferralConfigCreateDto copyWithWrapped({
+    Wrapped<String>? name,
     Wrapped<ShortVoucherDoc?>? appliedVoucher,
     Wrapped<RewardDetails?>? rewardDetails,
     Wrapped<bool>? isSelfService,
     Wrapped<bool>? isActive,
   }) {
     return EventReferralConfigCreateDto(
+      name: (name != null ? name.value : this.name),
       appliedVoucher: (appliedVoucher != null
           ? appliedVoucher.value
           : this.appliedVoucher),
@@ -25885,6 +26680,7 @@ class EventReferralConfigDoc {
     required this.dataType,
     required this.id,
     required this.eventId,
+    required this.name,
     this.appliedVoucher,
     this.rewardDetails,
     required this.isSelfService,
@@ -25917,6 +26713,8 @@ class EventReferralConfigDoc {
   final String id;
   @JsonKey(name: 'eventId')
   final String eventId;
+  @JsonKey(name: 'name')
+  final String name;
   @JsonKey(name: 'appliedVoucher')
   final ShortVoucherDoc? appliedVoucher;
   @JsonKey(name: 'rewardDetails')
@@ -25939,6 +26737,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
     enums.TicketingDataType? dataType,
     String? id,
     String? eventId,
+    String? name,
     ShortVoucherDoc? appliedVoucher,
     RewardDetails? rewardDetails,
     bool? isSelfService,
@@ -25951,6 +26750,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
       dataType: dataType ?? this.dataType,
       id: id ?? this.id,
       eventId: eventId ?? this.eventId,
+      name: name ?? this.name,
       appliedVoucher: appliedVoucher ?? this.appliedVoucher,
       rewardDetails: rewardDetails ?? this.rewardDetails,
       isSelfService: isSelfService ?? this.isSelfService,
@@ -25965,6 +26765,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
     Wrapped<enums.TicketingDataType>? dataType,
     Wrapped<String>? id,
     Wrapped<String>? eventId,
+    Wrapped<String>? name,
     Wrapped<ShortVoucherDoc?>? appliedVoucher,
     Wrapped<RewardDetails?>? rewardDetails,
     Wrapped<bool>? isSelfService,
@@ -25977,6 +26778,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
       dataType: (dataType != null ? dataType.value : this.dataType),
       id: (id != null ? id.value : this.id),
       eventId: (eventId != null ? eventId.value : this.eventId),
+      name: (name != null ? name.value : this.name),
       appliedVoucher: (appliedVoucher != null
           ? appliedVoucher.value
           : this.appliedVoucher),
@@ -25997,6 +26799,7 @@ extension $EventReferralConfigDocExtension on EventReferralConfigDoc {
 @JsonSerializable(explicitToJson: true)
 class EventReferralConfigEditDto {
   const EventReferralConfigEditDto({
+    this.name,
     this.appliedVoucher,
     this.rewardDetails,
     this.isSelfService,
@@ -26009,6 +26812,8 @@ class EventReferralConfigEditDto {
   static const toJsonFactory = _$EventReferralConfigEditDtoToJson;
   Map<String, dynamic> toJson() => _$EventReferralConfigEditDtoToJson(this);
 
+  @JsonKey(name: 'name')
+  final String? name;
   @JsonKey(name: 'appliedVoucher')
   final ShortVoucherDoc? appliedVoucher;
   @JsonKey(name: 'rewardDetails')
@@ -26022,12 +26827,14 @@ class EventReferralConfigEditDto {
 
 extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
   EventReferralConfigEditDto copyWith({
+    String? name,
     ShortVoucherDoc? appliedVoucher,
     RewardDetails? rewardDetails,
     bool? isSelfService,
     bool? isActive,
   }) {
     return EventReferralConfigEditDto(
+      name: name ?? this.name,
       appliedVoucher: appliedVoucher ?? this.appliedVoucher,
       rewardDetails: rewardDetails ?? this.rewardDetails,
       isSelfService: isSelfService ?? this.isSelfService,
@@ -26036,12 +26843,14 @@ extension $EventReferralConfigEditDtoExtension on EventReferralConfigEditDto {
   }
 
   EventReferralConfigEditDto copyWithWrapped({
+    Wrapped<String?>? name,
     Wrapped<ShortVoucherDoc?>? appliedVoucher,
     Wrapped<RewardDetails?>? rewardDetails,
     Wrapped<bool?>? isSelfService,
     Wrapped<bool?>? isActive,
   }) {
     return EventReferralConfigEditDto(
+      name: (name != null ? name.value : this.name),
       appliedVoucher: (appliedVoucher != null
           ? appliedVoucher.value
           : this.appliedVoucher),
@@ -33231,6 +34040,85 @@ userBlockDocHydratedDataTypeNullableListFromJson(
 
   return userBlockDocHydratedDataType
       .map((e) => userBlockDocHydratedDataTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? digitalWalletDtoWalletTypeNullableToJson(
+  enums.DigitalWalletDtoWalletType? digitalWalletDtoWalletType,
+) {
+  return digitalWalletDtoWalletType?.value;
+}
+
+String? digitalWalletDtoWalletTypeToJson(
+  enums.DigitalWalletDtoWalletType digitalWalletDtoWalletType,
+) {
+  return digitalWalletDtoWalletType.value;
+}
+
+enums.DigitalWalletDtoWalletType digitalWalletDtoWalletTypeFromJson(
+  Object? digitalWalletDtoWalletType, [
+  enums.DigitalWalletDtoWalletType? defaultValue,
+]) {
+  return enums.DigitalWalletDtoWalletType.values.firstWhereOrNull(
+        (e) => e.value == digitalWalletDtoWalletType,
+      ) ??
+      defaultValue ??
+      enums.DigitalWalletDtoWalletType.swaggerGeneratedUnknown;
+}
+
+enums.DigitalWalletDtoWalletType? digitalWalletDtoWalletTypeNullableFromJson(
+  Object? digitalWalletDtoWalletType, [
+  enums.DigitalWalletDtoWalletType? defaultValue,
+]) {
+  if (digitalWalletDtoWalletType == null) {
+    return null;
+  }
+  return enums.DigitalWalletDtoWalletType.values.firstWhereOrNull(
+        (e) => e.value == digitalWalletDtoWalletType,
+      ) ??
+      defaultValue;
+}
+
+String digitalWalletDtoWalletTypeExplodedListToJson(
+  List<enums.DigitalWalletDtoWalletType>? digitalWalletDtoWalletType,
+) {
+  return digitalWalletDtoWalletType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> digitalWalletDtoWalletTypeListToJson(
+  List<enums.DigitalWalletDtoWalletType>? digitalWalletDtoWalletType,
+) {
+  if (digitalWalletDtoWalletType == null) {
+    return [];
+  }
+
+  return digitalWalletDtoWalletType.map((e) => e.value!).toList();
+}
+
+List<enums.DigitalWalletDtoWalletType> digitalWalletDtoWalletTypeListFromJson(
+  List? digitalWalletDtoWalletType, [
+  List<enums.DigitalWalletDtoWalletType>? defaultValue,
+]) {
+  if (digitalWalletDtoWalletType == null) {
+    return defaultValue ?? [];
+  }
+
+  return digitalWalletDtoWalletType
+      .map((e) => digitalWalletDtoWalletTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.DigitalWalletDtoWalletType>?
+digitalWalletDtoWalletTypeNullableListFromJson(
+  List? digitalWalletDtoWalletType, [
+  List<enums.DigitalWalletDtoWalletType>? defaultValue,
+]) {
+  if (digitalWalletDtoWalletType == null) {
+    return defaultValue;
+  }
+
+  return digitalWalletDtoWalletType
+      .map((e) => digitalWalletDtoWalletTypeFromJson(e.toString()))
       .toList();
 }
 

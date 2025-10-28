@@ -2389,25 +2389,27 @@ paths:
       summary: Get single lending & borrowing position
       tags:
         - Lending And Borrowing
-  /lending/pnl/{identifier}:
+  /lending/pnl:
     get:
       operationId: LendingDataController_retrieveLendingPnl
       parameters:
-        - name: identifier
+        - name: identifiers
           required: true
-          in: path
+          in: query
           schema:
-            type: string
+            type: array
+            items:
+              type: string
       responses:
         '200':
-          description: User lending pnl
+          description: User lending pnls
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/LendingAccountPnl'
-      summary: Get single lending & borrowing pnl
+      summary: Get lending & borrowing pnls
       tags:
         - Lending And Borrowing
   /user/lending/pnl/{address}:
@@ -2696,6 +2698,15 @@ paths:
                 example:
                   EGLD: 1
       summary: Get token prices as EGLD for all lending markets
+      tags:
+        - Lending And Borrowing
+  /snap:
+    get:
+      operationId: LendingDataController_retrieveLendingMarketProfile
+      parameters: []
+      responses:
+        '200':
+          description: ''
       tags:
         - Lending And Borrowing
   /nft/query:
@@ -5735,6 +5746,15 @@ paths:
                   $ref: '#/components/schemas/LendingNftAttributes'
       tags:
         - Lending SC
+  /lending/liquidate:
+    get:
+      operationId: XoxnoLendingScController_getAccountPositionToLiquidate
+      parameters: []
+      responses:
+        '200':
+          description: Get account positions to liquidate
+      tags:
+        - Lending SC
   /lending/market/{token}/price/egld:
     get:
       operationId: XoxnoLendingScController_getTokenPrice
@@ -6470,6 +6490,251 @@ paths:
       summary: Send direct notification to specific user
       tags:
         - Event Notifications
+  /perp/coins:
+    get:
+      operationId: BoberBattleController_getPerpCoins
+      parameters: []
+      responses:
+        '201':
+          description: Perp coins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerpCoin'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/orderbook/{symbol}:
+    get:
+      operationId: BoberBattleController_getPerpOrderbook
+      parameters: []
+      responses:
+        '200':
+          description: Perp orderbook
+          schema:
+            type: array
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/L2BookPerpResponseSingle'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/L2BookPerpResponseSingle'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/trades/{symbol}:
+    get:
+      operationId: BoberBattleController_getPerpTrades
+      parameters: []
+      responses:
+        '200':
+          description: Perp trades
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TradesPerpResponseSingle'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/stats/spot/{symbol}:
+    get:
+      operationId: BoberBattleController_getSpotStats
+      parameters: []
+      responses:
+        '200':
+          description: Perp spot stats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActiveSpotAssetCtx'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/stats/{symbol}:
+    get:
+      operationId: BoberBattleController_getPerpStats
+      parameters: []
+      responses:
+        '200':
+          description: Perp stats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivePerpAssetCtx'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/subscribe:
+    post:
+      operationId: BoberBattleController_subscribe
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerpEvent'
+      responses:
+        '201':
+          description: User perp successfully unsubscribed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
+  /perp/unsubscribe:
+    post:
+      operationId: BoberBattleController_unsubscribe
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerpEvent'
+      responses:
+        '201':
+          description: User perp successfully unsubscribed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      tags:
+        - BoberBattle
   /activity/query:
     get:
       operationId: NftActivityDataController_retrieveNftActivity
@@ -16075,11 +16340,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1759714023
+          example: 1761662926
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: 7f4174ea-df92-4b70-a2d6-5a117df5f823
+          example: eb7fdae0-021d-478c-aa0c-4bd9dbf5dfd0
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -17894,6 +18159,208 @@ components:
         - title
         - message
         - creatorAddress
+    PerpSingleCoin:
+      type: object
+      properties:
+        identifier:
+          type: string
+        decimals:
+          type: number
+        symbol:
+          type: string
+      required:
+        - identifier
+        - decimals
+        - symbol
+    PerpCoin:
+      type: object
+      properties:
+        symbol:
+          type: string
+        coin:
+          $ref: '#/components/schemas/PerpSingleCoin'
+        againstCoin:
+          $ref: '#/components/schemas/PerpSingleCoin'
+        config:
+          type: array
+          items:
+            type: string
+      required:
+        - symbol
+        - coin
+        - againstCoin
+        - config
+    L2BookPerpResponseSingle:
+      type: object
+      properties:
+        px:
+          type: string
+        sz:
+          type: string
+        'n':
+          type: number
+      required:
+        - px
+        - sz
+        - 'n'
+    TradesPerpResponseSingle:
+      type: object
+      properties:
+        side:
+          type: string
+        px:
+          type: string
+        sz:
+          type: string
+        time:
+          type: number
+        hash:
+          type: string
+        users:
+          type: array
+          items:
+            type: string
+      required:
+        - side
+        - px
+        - sz
+        - time
+        - hash
+        - users
+    ActiveSpotAssetCtx:
+      type: object
+      properties:
+        prevDayPx:
+          type: string
+        dayNtlVlm:
+          type: string
+        markPx:
+          type: string
+        midPx:
+          type: string
+        dayBaseVlm:
+          type: string
+        circulatingSupply:
+          type: string
+        totalSupply:
+          type: string
+      required:
+        - prevDayPx
+        - dayNtlVlm
+        - markPx
+        - midPx
+        - dayBaseVlm
+        - circulatingSupply
+        - totalSupply
+    ActivePerpAssetCtx:
+      type: object
+      properties:
+        prevDayPx:
+          type: string
+        dayNtlVlm:
+          type: string
+        markPx:
+          type: string
+        midPx:
+          type: string
+        dayBaseVlm:
+          type: string
+        funding:
+          type: string
+        openInterest:
+          type: string
+        premium:
+          type: string
+        oraclePx:
+          type: string
+        impactTxs:
+          type: array
+          items:
+            type: string
+      required:
+        - prevDayPx
+        - dayNtlVlm
+        - markPx
+        - midPx
+        - dayBaseVlm
+        - funding
+        - openInterest
+        - premium
+        - oraclePx
+        - impactTxs
+    L2BookPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          type: string
+        sigFigs:
+          type: number
+        mantissa:
+          type: object
+      required:
+        - type
+        - symbol
+        - sigFigs
+        - mantissa
+    TradesPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          type: string
+      required:
+        - type
+        - symbol
+    ActiveSpotAssetPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          type: string
+      required:
+        - type
+        - symbol
+    ActiveAssetPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+        symbol:
+          type: string
+      required:
+        - type
+        - symbol
+    ActiveSpotAssetsPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+      required:
+        - type
+    ActiveAssetsPerpEvent:
+      type: object
+      properties:
+        type:
+          type: string
+      required:
+        - type
+    PerpEvent:
+      type: object
+      properties:
+        event:
+          oneOf:
+            - $ref: '#/components/schemas/L2BookPerpEvent'
+            - $ref: '#/components/schemas/TradesPerpEvent'
+            - $ref: '#/components/schemas/ActiveSpotAssetPerpEvent'
+            - $ref: '#/components/schemas/ActiveAssetPerpEvent'
+            - $ref: '#/components/schemas/ActiveSpotAssetsPerpEvent'
+            - $ref: '#/components/schemas/ActiveAssetsPerpEvent'
+      required:
+        - event
     NftActivityType:
       type: string
       enum:
@@ -19525,6 +19992,13 @@ components:
           type: array
           items:
             type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        rangeKm:
+          type: number
+          description: Radius in kilometers used to build a proximity polygon.
         range:
           type: array
           items:
@@ -19694,6 +20168,24 @@ components:
         - error
         - successClose
         - errorClose
+    DigitalWalletDto:
+      type: object
+      properties:
+        walletType:
+          type: string
+          description: Digital wallet provider
+          enum:
+            - googlePay
+            - applePay
+        data:
+          description: >-
+            Raw payload returned by the digital wallet (stringified JSON, Base64
+            string, or structured object)
+          oneOf:
+            - type: string
+            - type: object
+      required:
+        - walletType
     EventGuestRegistrationDto:
       type: object
       properties:
@@ -19714,12 +20206,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TicketSelectionDto'
-        voucherCode:
+        code:
           type: string
-          description: Voucher code
-        referralCode:
-          type: string
-          description: Referral code
+          description: Voucher or referral code
         payWithCrypto:
           type: boolean
           description: Indicates if the user wants to pay with cryptocurrency
@@ -19737,6 +20226,12 @@ components:
           description: Callback URL
           allOf:
             - $ref: '#/components/schemas/CallbackUrl'
+        digitalWallet:
+          description: >-
+            Digital wallet payload used when completing fiat payments via Apple
+            Pay / Google Pay
+          allOf:
+            - $ref: '#/components/schemas/DigitalWalletDto'
     TwispayPaymentFormData:
       type: object
       properties:
@@ -19757,6 +20252,45 @@ components:
       required:
         - sessionId
         - publicKey
+    TwispayDigitalWalletPaymentData:
+      type: object
+      properties:
+        orderId:
+          type: number
+          description: Twispay order identifier returned by the processor
+        externalOrderId:
+          type: string
+          description: External order identifier generated by XOXNO
+        transactionId:
+          type: number
+          description: Twispay transaction identifier bound to the wallet charge
+        is3d:
+          type: boolean
+          description: Flag indicating whether 3DS verification is required
+        isRedirect:
+          type: boolean
+          description: Flag indicating whether the client must follow a redirect
+        redirectUrl:
+          type: string
+          description: >-
+            Redirect URL supplied by the processor (present when isRedirect is
+            true)
+        redirectMethod:
+          type: string
+          description: >-
+            HTTP method to use when following the redirect instructions
+            (defaults to POST)
+        redirectParams:
+          type: object
+          description: >-
+            Key/value parameters that must accompany the redirect request, if
+            any
+      required:
+        - orderId
+        - externalOrderId
+        - transactionId
+        - is3d
+        - isRedirect
     PaymentProvider:
       type: string
       enum:
@@ -19774,6 +20308,7 @@ components:
           oneOf:
             - $ref: '#/components/schemas/TwispayPaymentFormData'
             - $ref: '#/components/schemas/StripePaymentFormData'
+            - $ref: '#/components/schemas/TwispayDigitalWalletPaymentData'
       required:
         - type
         - data
@@ -19880,11 +20415,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1759714023
+          example: 1761662926
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: bb7ebbc7-249b-4281-8073-ffd78a8204bd
+          example: fb682bf8-c8df-4e11-ac85-aec20e847f90
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -19941,11 +20476,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1759714023
+          example: 1761662926
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1759714023
+          example: 1761662926
         maxLimit:
           type: integer
           description: >-
@@ -20003,11 +20538,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1759714023
+          example: 1761662926
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1759714023
+          example: 1761662926
         maxLimit:
           type: integer
           description: >-
@@ -20038,7 +20573,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: ddaef9a5-d3c2-4ff0-93a7-48f3aec6c6bc
+          example: b1cc95d9-0447-476e-992c-4497b66d9a97
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -20069,11 +20604,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1759714023
+          example: 1761662926
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1759714023
+          example: 1761662926
         maxLimit:
           type: integer
           description: >-
@@ -20101,10 +20636,7 @@ components:
     TicketCalculationRequestDto:
       type: object
       properties:
-        referralCode:
-          type: string
-          nullable: true
-        discountCode:
+        code:
           type: string
           nullable: true
         ticketSelections:
@@ -20232,7 +20764,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 7501c8f0-118b-4216-8e32-98ce26211220
+          example: bed7b245-948d-4aa7-be18-8a966db284b9
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -20288,7 +20820,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1759714023
+          example: 1761662926
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20317,7 +20849,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 5b4a90d1-5b1c-49ea-a2bd-f70fa740ba95
+          example: 8be287ac-b414-4765-ae21-fc24576447ac
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20433,7 +20965,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1759714023
+          example: 1761662926
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -20462,7 +20994,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: 5b4a90d1-5b1c-49ea-a2bd-f70fa740ba95
+          example: 8be287ac-b414-4765-ae21-fc24576447ac
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -20640,11 +21172,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1759714023
+          example: 1761662926
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1759714023
+          example: 1761662926
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -20655,7 +21187,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1759714023
+          example: 1761662926
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -20748,7 +21280,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1759714023
+          example: 1761662926
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21232,11 +21764,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1759714023
+          example: 1761662926
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1759714023
+          example: 1761662926
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21289,11 +21821,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1759714023
+          example: 1761662926
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1759714023
+          example: 1761662926
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21328,7 +21860,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 2ce45a55-e92e-42b1-9142-e2356d3e587d
+          example: 0f6ea653-6621-46d7-99b2-ef82718c0cc3
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -21344,7 +21876,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1759714023
+          example: 1761662926
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -21473,6 +22005,9 @@ components:
     EventReferralConfigCreateDto:
       type: object
       properties:
+        name:
+          type: string
+          description: Human-friendly name for this referral program.
         appliedVoucher:
           description: >-
             Indicates if a voucher should be automatically applied as a discount
@@ -21494,6 +22029,7 @@ components:
           type: boolean
           description: Indicates whether the referral program is currently active.
       required:
+        - name
         - isSelfService
         - isActive
     EventReferralConfigDoc:
@@ -21507,10 +22043,13 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: e3cd0214-7588-4692-97cb-fbf9858a4e28
+          example: eaeebc72-17b9-421c-931a-7d15a08d3ac0
         eventId:
           type: string
           description: The event this referral configuration is linked to.
+        name:
+          type: string
+          description: Human-friendly name for this referral program.
         appliedVoucher:
           description: >-
             Indicates if a voucher should be automatically applied as a discount
@@ -21534,7 +22073,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1759714023
+          example: 1761662926
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -21545,6 +22084,7 @@ components:
         - dataType
         - id
         - eventId
+        - name
         - isSelfService
         - isActive
         - createdAt
@@ -21553,6 +22093,9 @@ components:
     EventReferralConfigEditDto:
       type: object
       properties:
+        name:
+          type: string
+          description: Human-friendly name for this referral program.
         appliedVoucher:
           description: >-
             Indicates if a voucher should be automatically applied as a discount
@@ -21662,7 +22205,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 45c67f0f-7ca2-4124-a2f1-e5ba07ea1054
+          example: 249d0e54-6cc0-49c8-9844-137887f3712b
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21684,7 +22227,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1759714023
+          example: 1761662926
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -21890,7 +22433,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 34d8abbc-9484-4c94-a5ba-db741161c57e
+          example: 38c93563-ad53-42fe-93f1-8dcfb72d2daa
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -21907,15 +22450,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1759714023
+          example: 1761662926
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 44d50fcd-9c87-49b0-8fa5-7c3202c50c5d
+          example: 6965cae9-54e0-478a-ad2e-22098be5d9f6
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1759714023
+          example: 1761662926
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -21923,7 +22466,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: ec087b88-9810-4547-882d-54b72ec05dba
+          example: 65f80209-a96c-4f72-b857-3d9636e1c106
       required:
         - ticketId
         - isCheckIn
