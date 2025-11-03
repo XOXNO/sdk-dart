@@ -1248,6 +1248,24 @@ enum PushNotificationStatus {
   const PushNotificationStatus(this.value);
 }
 
+enum SymbolInfoDtoDataStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('streaming')
+  streaming('streaming'),
+  @JsonValue('endofday')
+  endofday('endofday'),
+  @JsonValue('pulsed')
+  pulsed('pulsed'),
+  @JsonValue('delayed_streaming')
+  delayedStreaming('delayed_streaming');
+
+  final String? value;
+
+  const SymbolInfoDtoDataStatus(this.value);
+}
+
 enum NftActivityType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

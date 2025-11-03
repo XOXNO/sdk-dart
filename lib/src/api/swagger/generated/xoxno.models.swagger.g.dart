@@ -4377,6 +4377,7 @@ EventProfile _$EventProfileFromJson(Map<String, dynamic> json) => EventProfile(
   isVirtualEvent: json['isVirtualEvent'] as bool,
   slug: json['slug'] as String?,
   profile: json['profile'] as String,
+  profileBlurhash: json['profileBlurhash'] as String?,
   category: eventCategoryFromJson(json['category']),
   subCategory: eventSubCategoryNullableFromJson(json['subCategory']),
   background: json['background'] as String?,
@@ -4433,6 +4434,7 @@ Map<String, dynamic> _$EventProfileToJson(EventProfile instance) =>
       'isVirtualEvent': instance.isVirtualEvent,
       'slug': instance.slug,
       'profile': instance.profile,
+      'profileBlurhash': instance.profileBlurhash,
       'category': eventCategoryToJson(instance.category),
       'subCategory': eventSubCategoryNullableToJson(instance.subCategory),
       'background': instance.background,
@@ -5555,6 +5557,62 @@ Map<String, dynamic> _$CreatorMarketingNotificationDtoToJson(
   'creatorAddress': instance.creatorAddress,
   'metadata': instance.metadata,
 };
+
+BarDto _$BarDtoFromJson(Map<String, dynamic> json) => BarDto(
+  time: (json['time'] as num).toDouble(),
+  open: (json['open'] as num).toDouble(),
+  high: (json['high'] as num).toDouble(),
+  low: (json['low'] as num).toDouble(),
+  close: (json['close'] as num).toDouble(),
+  volume: (json['volume'] as num).toDouble(),
+);
+
+Map<String, dynamic> _$BarDtoToJson(BarDto instance) => <String, dynamic>{
+  'time': instance.time,
+  'open': instance.open,
+  'high': instance.high,
+  'low': instance.low,
+  'close': instance.close,
+  'volume': instance.volume,
+};
+
+SymbolInfoDto _$SymbolInfoDtoFromJson(Map<String, dynamic> json) =>
+    SymbolInfoDto(
+      name: json['name'] as String,
+      ticker: json['ticker'] as String,
+      description: json['description'] as String,
+      type: json['type'] as String,
+      session: json['session'] as String,
+      timezone: json['timezone'] as String,
+      exchange: json['exchange'] as String,
+      minmov: (json['minmov'] as num).toDouble(),
+      pricescale: (json['pricescale'] as num).toDouble(),
+      hasIntraday: json['has_intraday'] as bool,
+      supportedResolutions:
+          (json['supported_resolutions'] as List<dynamic>?)
+              ?.map((e) => e as List<dynamic>)
+              .toList() ??
+          [],
+      volumePrecision: (json['volume_precision'] as num).toDouble(),
+      dataStatus: symbolInfoDtoDataStatusFromJson(json['data_status']),
+    );
+
+Map<String, dynamic> _$SymbolInfoDtoToJson(SymbolInfoDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'ticker': instance.ticker,
+      'description': instance.description,
+      'type': instance.type,
+      'session': instance.session,
+      'timezone': instance.timezone,
+      'exchange': instance.exchange,
+      'minmov': instance.minmov,
+      'pricescale': instance.pricescale,
+      'has_intraday': instance.hasIntraday,
+      'supported_resolutions': instance.supportedResolutions,
+      'volume_precision': instance.volumePrecision,
+      'data_status': symbolInfoDtoDataStatusToJson(instance.dataStatus),
+    };
 
 PerpSingleCoin _$PerpSingleCoinFromJson(Map<String, dynamic> json) =>
     PerpSingleCoin(

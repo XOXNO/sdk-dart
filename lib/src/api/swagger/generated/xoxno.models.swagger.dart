@@ -13887,6 +13887,7 @@ class EventProfile {
     required this.isVirtualEvent,
     this.slug,
     required this.profile,
+    this.profileBlurhash,
     required this.category,
     this.subCategory,
     this.background,
@@ -13942,6 +13943,8 @@ class EventProfile {
   final String? slug;
   @JsonKey(name: 'profile')
   final String profile;
+  @JsonKey(name: 'profileBlurhash')
+  final String? profileBlurhash;
   @JsonKey(
     name: 'category',
     toJson: eventCategoryToJson,
@@ -14000,6 +14003,7 @@ extension $EventProfileExtension on EventProfile {
     bool? isVirtualEvent,
     String? slug,
     String? profile,
+    String? profileBlurhash,
     enums.EventCategory? category,
     enums.EventSubCategory? subCategory,
     String? background,
@@ -14030,6 +14034,7 @@ extension $EventProfileExtension on EventProfile {
       isVirtualEvent: isVirtualEvent ?? this.isVirtualEvent,
       slug: slug ?? this.slug,
       profile: profile ?? this.profile,
+      profileBlurhash: profileBlurhash ?? this.profileBlurhash,
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
       background: background ?? this.background,
@@ -14062,6 +14067,7 @@ extension $EventProfileExtension on EventProfile {
     Wrapped<bool>? isVirtualEvent,
     Wrapped<String?>? slug,
     Wrapped<String>? profile,
+    Wrapped<String?>? profileBlurhash,
     Wrapped<enums.EventCategory>? category,
     Wrapped<enums.EventSubCategory?>? subCategory,
     Wrapped<String?>? background,
@@ -14098,6 +14104,9 @@ extension $EventProfileExtension on EventProfile {
           : this.isVirtualEvent),
       slug: (slug != null ? slug.value : this.slug),
       profile: (profile != null ? profile.value : this.profile),
+      profileBlurhash: (profileBlurhash != null
+          ? profileBlurhash.value
+          : this.profileBlurhash),
       category: (category != null ? category.value : this.category),
       subCategory: (subCategory != null ? subCategory.value : this.subCategory),
       background: (background != null ? background.value : this.background),
@@ -17548,6 +17557,202 @@ extension $CreatorMarketingNotificationDtoExtension
           ? creatorAddress.value
           : this.creatorAddress),
       metadata: (metadata != null ? metadata.value : this.metadata),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BarDto {
+  const BarDto({
+    required this.time,
+    required this.open,
+    required this.high,
+    required this.low,
+    required this.close,
+    required this.volume,
+  });
+
+  factory BarDto.fromJson(Map<String, dynamic> json) => _$BarDtoFromJson(json);
+
+  static const toJsonFactory = _$BarDtoToJson;
+  Map<String, dynamic> toJson() => _$BarDtoToJson(this);
+
+  @JsonKey(name: 'time')
+  final double time;
+  @JsonKey(name: 'open')
+  final double open;
+  @JsonKey(name: 'high')
+  final double high;
+  @JsonKey(name: 'low')
+  final double low;
+  @JsonKey(name: 'close')
+  final double close;
+  @JsonKey(name: 'volume')
+  final double volume;
+  static const fromJsonFactory = _$BarDtoFromJson;
+}
+
+extension $BarDtoExtension on BarDto {
+  BarDto copyWith({
+    double? time,
+    double? open,
+    double? high,
+    double? low,
+    double? close,
+    double? volume,
+  }) {
+    return BarDto(
+      time: time ?? this.time,
+      open: open ?? this.open,
+      high: high ?? this.high,
+      low: low ?? this.low,
+      close: close ?? this.close,
+      volume: volume ?? this.volume,
+    );
+  }
+
+  BarDto copyWithWrapped({
+    Wrapped<double>? time,
+    Wrapped<double>? open,
+    Wrapped<double>? high,
+    Wrapped<double>? low,
+    Wrapped<double>? close,
+    Wrapped<double>? volume,
+  }) {
+    return BarDto(
+      time: (time != null ? time.value : this.time),
+      open: (open != null ? open.value : this.open),
+      high: (high != null ? high.value : this.high),
+      low: (low != null ? low.value : this.low),
+      close: (close != null ? close.value : this.close),
+      volume: (volume != null ? volume.value : this.volume),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SymbolInfoDto {
+  const SymbolInfoDto({
+    required this.name,
+    required this.ticker,
+    required this.description,
+    required this.type,
+    required this.session,
+    required this.timezone,
+    required this.exchange,
+    required this.minmov,
+    required this.pricescale,
+    required this.hasIntraday,
+    required this.supportedResolutions,
+    required this.volumePrecision,
+    required this.dataStatus,
+  });
+
+  factory SymbolInfoDto.fromJson(Map<String, dynamic> json) =>
+      _$SymbolInfoDtoFromJson(json);
+
+  static const toJsonFactory = _$SymbolInfoDtoToJson;
+  Map<String, dynamic> toJson() => _$SymbolInfoDtoToJson(this);
+
+  @JsonKey(name: 'name')
+  final String name;
+  @JsonKey(name: 'ticker')
+  final String ticker;
+  @JsonKey(name: 'description')
+  final String description;
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'session')
+  final String session;
+  @JsonKey(name: 'timezone')
+  final String timezone;
+  @JsonKey(name: 'exchange')
+  final String exchange;
+  @JsonKey(name: 'minmov')
+  final double minmov;
+  @JsonKey(name: 'pricescale')
+  final double pricescale;
+  @JsonKey(name: 'has_intraday')
+  final bool hasIntraday;
+  @JsonKey(name: 'supported_resolutions', defaultValue: <List<Object?>>[])
+  final List<List<Object?>> supportedResolutions;
+  @JsonKey(name: 'volume_precision')
+  final double volumePrecision;
+  @JsonKey(
+    name: 'data_status',
+    toJson: symbolInfoDtoDataStatusToJson,
+    fromJson: symbolInfoDtoDataStatusFromJson,
+  )
+  final enums.SymbolInfoDtoDataStatus dataStatus;
+  static const fromJsonFactory = _$SymbolInfoDtoFromJson;
+}
+
+extension $SymbolInfoDtoExtension on SymbolInfoDto {
+  SymbolInfoDto copyWith({
+    String? name,
+    String? ticker,
+    String? description,
+    String? type,
+    String? session,
+    String? timezone,
+    String? exchange,
+    double? minmov,
+    double? pricescale,
+    bool? hasIntraday,
+    List<List<Object?>>? supportedResolutions,
+    double? volumePrecision,
+    enums.SymbolInfoDtoDataStatus? dataStatus,
+  }) {
+    return SymbolInfoDto(
+      name: name ?? this.name,
+      ticker: ticker ?? this.ticker,
+      description: description ?? this.description,
+      type: type ?? this.type,
+      session: session ?? this.session,
+      timezone: timezone ?? this.timezone,
+      exchange: exchange ?? this.exchange,
+      minmov: minmov ?? this.minmov,
+      pricescale: pricescale ?? this.pricescale,
+      hasIntraday: hasIntraday ?? this.hasIntraday,
+      supportedResolutions: supportedResolutions ?? this.supportedResolutions,
+      volumePrecision: volumePrecision ?? this.volumePrecision,
+      dataStatus: dataStatus ?? this.dataStatus,
+    );
+  }
+
+  SymbolInfoDto copyWithWrapped({
+    Wrapped<String>? name,
+    Wrapped<String>? ticker,
+    Wrapped<String>? description,
+    Wrapped<String>? type,
+    Wrapped<String>? session,
+    Wrapped<String>? timezone,
+    Wrapped<String>? exchange,
+    Wrapped<double>? minmov,
+    Wrapped<double>? pricescale,
+    Wrapped<bool>? hasIntraday,
+    Wrapped<List<List<Object?>>>? supportedResolutions,
+    Wrapped<double>? volumePrecision,
+    Wrapped<enums.SymbolInfoDtoDataStatus>? dataStatus,
+  }) {
+    return SymbolInfoDto(
+      name: (name != null ? name.value : this.name),
+      ticker: (ticker != null ? ticker.value : this.ticker),
+      description: (description != null ? description.value : this.description),
+      type: (type != null ? type.value : this.type),
+      session: (session != null ? session.value : this.session),
+      timezone: (timezone != null ? timezone.value : this.timezone),
+      exchange: (exchange != null ? exchange.value : this.exchange),
+      minmov: (minmov != null ? minmov.value : this.minmov),
+      pricescale: (pricescale != null ? pricescale.value : this.pricescale),
+      hasIntraday: (hasIntraday != null ? hasIntraday.value : this.hasIntraday),
+      supportedResolutions: (supportedResolutions != null
+          ? supportedResolutions.value
+          : this.supportedResolutions),
+      volumePrecision: (volumePrecision != null
+          ? volumePrecision.value
+          : this.volumePrecision),
+      dataStatus: (dataStatus != null ? dataStatus.value : this.dataStatus),
     );
   }
 }
@@ -33186,6 +33391,85 @@ List<enums.PushNotificationStatus>? pushNotificationStatusNullableListFromJson(
 
   return pushNotificationStatus
       .map((e) => pushNotificationStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? symbolInfoDtoDataStatusNullableToJson(
+  enums.SymbolInfoDtoDataStatus? symbolInfoDtoDataStatus,
+) {
+  return symbolInfoDtoDataStatus?.value;
+}
+
+String? symbolInfoDtoDataStatusToJson(
+  enums.SymbolInfoDtoDataStatus symbolInfoDtoDataStatus,
+) {
+  return symbolInfoDtoDataStatus.value;
+}
+
+enums.SymbolInfoDtoDataStatus symbolInfoDtoDataStatusFromJson(
+  Object? symbolInfoDtoDataStatus, [
+  enums.SymbolInfoDtoDataStatus? defaultValue,
+]) {
+  return enums.SymbolInfoDtoDataStatus.values.firstWhereOrNull(
+        (e) => e.value == symbolInfoDtoDataStatus,
+      ) ??
+      defaultValue ??
+      enums.SymbolInfoDtoDataStatus.swaggerGeneratedUnknown;
+}
+
+enums.SymbolInfoDtoDataStatus? symbolInfoDtoDataStatusNullableFromJson(
+  Object? symbolInfoDtoDataStatus, [
+  enums.SymbolInfoDtoDataStatus? defaultValue,
+]) {
+  if (symbolInfoDtoDataStatus == null) {
+    return null;
+  }
+  return enums.SymbolInfoDtoDataStatus.values.firstWhereOrNull(
+        (e) => e.value == symbolInfoDtoDataStatus,
+      ) ??
+      defaultValue;
+}
+
+String symbolInfoDtoDataStatusExplodedListToJson(
+  List<enums.SymbolInfoDtoDataStatus>? symbolInfoDtoDataStatus,
+) {
+  return symbolInfoDtoDataStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> symbolInfoDtoDataStatusListToJson(
+  List<enums.SymbolInfoDtoDataStatus>? symbolInfoDtoDataStatus,
+) {
+  if (symbolInfoDtoDataStatus == null) {
+    return [];
+  }
+
+  return symbolInfoDtoDataStatus.map((e) => e.value!).toList();
+}
+
+List<enums.SymbolInfoDtoDataStatus> symbolInfoDtoDataStatusListFromJson(
+  List? symbolInfoDtoDataStatus, [
+  List<enums.SymbolInfoDtoDataStatus>? defaultValue,
+]) {
+  if (symbolInfoDtoDataStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return symbolInfoDtoDataStatus
+      .map((e) => symbolInfoDtoDataStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.SymbolInfoDtoDataStatus>?
+symbolInfoDtoDataStatusNullableListFromJson(
+  List? symbolInfoDtoDataStatus, [
+  List<enums.SymbolInfoDtoDataStatus>? defaultValue,
+]) {
+  if (symbolInfoDtoDataStatus == null) {
+    return defaultValue;
+  }
+
+  return symbolInfoDtoDataStatus
+      .map((e) => symbolInfoDtoDataStatusFromJson(e.toString()))
       .toList();
 }
 
