@@ -7242,7 +7242,7 @@ TwispayPaymentFormData _$TwispayPaymentFormDataFromJson(
   Map<String, dynamic> json,
 ) => TwispayPaymentFormData(
   base64JsonRequest: json['base64JsonRequest'] as String,
-  base64Checksum: json['base64Checksum'] as Object,
+  base64Checksum: json['base64Checksum'] as String,
 );
 
 Map<String, dynamic> _$TwispayPaymentFormDataToJson(

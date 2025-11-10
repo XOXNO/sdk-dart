@@ -22667,14 +22667,14 @@ class TwispayPaymentFormData {
   @JsonKey(name: 'base64JsonRequest')
   final String base64JsonRequest;
   @JsonKey(name: 'base64Checksum')
-  final Object base64Checksum;
+  final String base64Checksum;
   static const fromJsonFactory = _$TwispayPaymentFormDataFromJson;
 }
 
 extension $TwispayPaymentFormDataExtension on TwispayPaymentFormData {
   TwispayPaymentFormData copyWith({
     String? base64JsonRequest,
-    Object? base64Checksum,
+    String? base64Checksum,
   }) {
     return TwispayPaymentFormData(
       base64JsonRequest: base64JsonRequest ?? this.base64JsonRequest,
@@ -22684,7 +22684,7 @@ extension $TwispayPaymentFormDataExtension on TwispayPaymentFormData {
 
   TwispayPaymentFormData copyWithWrapped({
     Wrapped<String>? base64JsonRequest,
-    Wrapped<Object>? base64Checksum,
+    Wrapped<String>? base64Checksum,
   }) {
     return TwispayPaymentFormData(
       base64JsonRequest: (base64JsonRequest != null

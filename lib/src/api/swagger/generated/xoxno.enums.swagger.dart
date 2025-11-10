@@ -11,7 +11,11 @@ enum ActivityChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -43,7 +47,11 @@ enum UserProfileDocChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -75,7 +83,11 @@ enum UserProfileDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -147,7 +159,11 @@ enum ShortCollectionInfoDocChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -161,7 +177,11 @@ enum CollectionStatsDocHydratedChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -443,7 +463,11 @@ enum ShortNftCollectionInfoDocChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -457,7 +481,11 @@ enum InventorySummaryDtoHydratedChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -507,7 +535,11 @@ enum NftOfferDocHydratedChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -521,7 +553,11 @@ enum ShortCollectionDocChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -557,7 +593,11 @@ enum GlobalOfferDocHydratedChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -629,7 +669,11 @@ enum CollectionProfileDocChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -643,7 +687,11 @@ enum PinnedCollectionDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -975,7 +1023,11 @@ enum WalletClientType {
   @JsonValue('zkLogin')
   zklogin('zkLogin'),
   @JsonValue('metamask')
-  metamask('metamask');
+  metamask('metamask'),
+  @JsonValue('evm')
+  evm('evm'),
+  @JsonValue('solana')
+  solana('solana');
 
   final String? value;
 
@@ -1055,7 +1107,11 @@ enum CollectionDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -1069,7 +1125,11 @@ enum UserDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -1083,7 +1143,11 @@ enum CreatorDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -1097,7 +1161,11 @@ enum NftDtoChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
@@ -1395,7 +1463,11 @@ enum NftActivityDocHydratedChain {
   @JsonValue('MVX')
   mvx('MVX'),
   @JsonValue('SUI')
-  sui('SUI');
+  sui('SUI'),
+  @JsonValue('EVM')
+  evm('EVM'),
+  @JsonValue('SOL')
+  sol('SOL');
 
   final String? value;
 
