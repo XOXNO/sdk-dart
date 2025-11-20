@@ -4098,12 +4098,30 @@ Map<String, dynamic> _$MintingListingDtoToJson(MintingListingDto instance) =>
       'collectionInfo': instance.collectionInfo.toJson(),
     };
 
+GeoPointDto _$GeoPointDtoFromJson(Map<String, dynamic> json) => GeoPointDto(
+  type: json['type'] as String?,
+  coordinates:
+      (json['coordinates'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      [],
+);
+
+Map<String, dynamic> _$GeoPointDtoToJson(GeoPointDto instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'coordinates': instance.coordinates,
+    };
+
 EventLocationDto _$EventLocationDtoFromJson(Map<String, dynamic> json) =>
     EventLocationDto(
       address: json['address'] as String?,
       placeId: json['placeId'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       long: (json['long'] as num?)?.toDouble(),
+      geo: json['geo'] == null
+          ? null
+          : GeoPointDto.fromJson(json['geo'] as Map<String, dynamic>),
       instructions: json['instructions'] as String?,
       onlineLink: json['onlineLink'] as String?,
       city: json['city'] as String?,
@@ -4116,6 +4134,7 @@ Map<String, dynamic> _$EventLocationDtoToJson(EventLocationDto instance) =>
       'placeId': instance.placeId,
       'lat': instance.lat,
       'long': instance.long,
+      'geo': instance.geo?.toJson(),
       'instructions': instance.instructions,
       'onlineLink': instance.onlineLink,
       'city': instance.city,
@@ -5558,6 +5577,19 @@ Map<String, dynamic> _$CreatorMarketingNotificationDtoToJson(
   'metadata': instance.metadata,
 };
 
+PerpOrderResponse _$PerpOrderResponseFromJson(Map<String, dynamic> json) =>
+    PerpOrderResponse(
+      type: json['type'] as String,
+      statuses:
+          (json['statuses'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$PerpOrderResponseToJson(PerpOrderResponse instance) =>
+    <String, dynamic>{'type': instance.type, 'statuses': instance.statuses};
+
 BarDto _$BarDtoFromJson(Map<String, dynamic> json) => BarDto(
   time: (json['time'] as num).toDouble(),
   open: (json['open'] as num).toDouble(),
@@ -5628,11 +5660,27 @@ Map<String, dynamic> _$PerpSingleCoinToJson(PerpSingleCoin instance) =>
       'symbol': instance.symbol,
     };
 
+PerpSingleAgainstCoin _$PerpSingleAgainstCoinFromJson(
+  Map<String, dynamic> json,
+) => PerpSingleAgainstCoin(
+  identifier: json['identifier'] as String,
+  decimals: (json['decimals'] as num).toDouble(),
+  symbol: json['symbol'] as String,
+);
+
+Map<String, dynamic> _$PerpSingleAgainstCoinToJson(
+  PerpSingleAgainstCoin instance,
+) => <String, dynamic>{
+  'identifier': instance.identifier,
+  'decimals': instance.decimals,
+  'symbol': instance.symbol,
+};
+
 PerpCoinExtended _$PerpCoinExtendedFromJson(Map<String, dynamic> json) =>
     PerpCoinExtended(
       symbol: json['symbol'] as String,
       coin: PerpSingleCoin.fromJson(json['coin'] as Map<String, dynamic>),
-      againstCoin: PerpSingleCoin.fromJson(
+      againstCoin: PerpSingleAgainstCoin.fromJson(
         json['againstCoin'] as Map<String, dynamic>,
       ),
       config:
@@ -5655,7 +5703,7 @@ PerpSpotCoinExtended _$PerpSpotCoinExtendedFromJson(
 ) => PerpSpotCoinExtended(
   symbol: json['symbol'] as String,
   coin: PerpSingleCoin.fromJson(json['coin'] as Map<String, dynamic>),
-  againstCoin: PerpSingleCoin.fromJson(
+  againstCoin: PerpSingleAgainstCoin.fromJson(
     json['againstCoin'] as Map<String, dynamic>,
   ),
   config:
@@ -5679,6 +5727,20 @@ PerpCoinExtendedSlim _$PerpCoinExtendedSlimFromJson(
 Map<String, dynamic> _$PerpCoinExtendedSlimToJson(
   PerpCoinExtendedSlim instance,
 ) => <String, dynamic>{'symbol': instance.symbol};
+
+PerpLegalCheck _$PerpLegalCheckFromJson(Map<String, dynamic> json) =>
+    PerpLegalCheck(
+      ipAllowed: json['ipAllowed'] as bool,
+      acceptedTerms: json['acceptedTerms'] as bool,
+      userAllowed: json['userAllowed'] as bool,
+    );
+
+Map<String, dynamic> _$PerpLegalCheckToJson(PerpLegalCheck instance) =>
+    <String, dynamic>{
+      'ipAllowed': instance.ipAllowed,
+      'acceptedTerms': instance.acceptedTerms,
+      'userAllowed': instance.userAllowed,
+    };
 
 PerpSpotCoinExtendedSlim _$PerpSpotCoinExtendedSlimFromJson(
   Map<String, dynamic> json,
@@ -5839,6 +5901,66 @@ ActiveAssetsPerpEvent _$ActiveAssetsPerpEventFromJson(
 Map<String, dynamic> _$ActiveAssetsPerpEventToJson(
   ActiveAssetsPerpEvent instance,
 ) => <String, dynamic>{'type': instance.type};
+
+WebData3PerpEvent _$WebData3PerpEventFromJson(Map<String, dynamic> json) =>
+    WebData3PerpEvent(
+      type: json['type'] as String,
+      user: json['user'] as String,
+    );
+
+Map<String, dynamic> _$WebData3PerpEventToJson(WebData3PerpEvent instance) =>
+    <String, dynamic>{'type': instance.type, 'user': instance.user};
+
+SpotStatePerpEvent _$SpotStatePerpEventFromJson(Map<String, dynamic> json) =>
+    SpotStatePerpEvent(
+      type: json['type'] as String,
+      user: json['user'] as String,
+    );
+
+Map<String, dynamic> _$SpotStatePerpEventToJson(SpotStatePerpEvent instance) =>
+    <String, dynamic>{'type': instance.type, 'user': instance.user};
+
+UserOpenOrderEvent _$UserOpenOrderEventFromJson(Map<String, dynamic> json) =>
+    UserOpenOrderEvent(
+      type: json['type'] as String,
+      user: json['user'] as String,
+    );
+
+Map<String, dynamic> _$UserOpenOrderEventToJson(UserOpenOrderEvent instance) =>
+    <String, dynamic>{'type': instance.type, 'user': instance.user};
+
+UserFilledOrderEvent _$UserFilledOrderEventFromJson(
+  Map<String, dynamic> json,
+) => UserFilledOrderEvent(
+  type: json['type'] as String,
+  user: json['user'] as String,
+  aggregateByTime: json['aggregateByTime'] as bool,
+);
+
+Map<String, dynamic> _$UserFilledOrderEventToJson(
+  UserFilledOrderEvent instance,
+) => <String, dynamic>{
+  'type': instance.type,
+  'user': instance.user,
+  'aggregateByTime': instance.aggregateByTime,
+};
+
+UserHistoricalOrderEvent _$UserHistoricalOrderEventFromJson(
+  Map<String, dynamic> json,
+) => UserHistoricalOrderEvent(
+  type: json['type'] as String,
+  user: json['user'] as String,
+);
+
+Map<String, dynamic> _$UserHistoricalOrderEventToJson(
+  UserHistoricalOrderEvent instance,
+) => <String, dynamic>{'type': instance.type, 'user': instance.user};
+
+AllMidsPerpEvent _$AllMidsPerpEventFromJson(Map<String, dynamic> json) =>
+    AllMidsPerpEvent(type: json['type'] as String);
+
+Map<String, dynamic> _$AllMidsPerpEventToJson(AllMidsPerpEvent instance) =>
+    <String, dynamic>{'type': instance.type};
 
 PerpEvent _$PerpEventFromJson(Map<String, dynamic> json) =>
     PerpEvent(event: json['event']);

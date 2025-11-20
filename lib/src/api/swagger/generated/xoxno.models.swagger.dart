@@ -12961,12 +12961,49 @@ extension $MintingListingDtoExtension on MintingListingDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class GeoPointDto {
+  const GeoPointDto({this.type, this.coordinates});
+
+  factory GeoPointDto.fromJson(Map<String, dynamic> json) =>
+      _$GeoPointDtoFromJson(json);
+
+  static const toJsonFactory = _$GeoPointDtoToJson;
+  Map<String, dynamic> toJson() => _$GeoPointDtoToJson(this);
+
+  @JsonKey(name: 'type')
+  final String? type;
+  @JsonKey(name: 'coordinates', defaultValue: <String>[])
+  final List<String>? coordinates;
+  static const fromJsonFactory = _$GeoPointDtoFromJson;
+}
+
+extension $GeoPointDtoExtension on GeoPointDto {
+  GeoPointDto copyWith({String? type, List<String>? coordinates}) {
+    return GeoPointDto(
+      type: type ?? this.type,
+      coordinates: coordinates ?? this.coordinates,
+    );
+  }
+
+  GeoPointDto copyWithWrapped({
+    Wrapped<String?>? type,
+    Wrapped<List<String>?>? coordinates,
+  }) {
+    return GeoPointDto(
+      type: (type != null ? type.value : this.type),
+      coordinates: (coordinates != null ? coordinates.value : this.coordinates),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventLocationDto {
   const EventLocationDto({
     this.address,
     this.placeId,
     this.lat,
     this.long,
+    this.geo,
     this.instructions,
     this.onlineLink,
     this.city,
@@ -12987,6 +13024,8 @@ class EventLocationDto {
   final double? lat;
   @JsonKey(name: 'long')
   final double? long;
+  @JsonKey(name: 'geo')
+  final GeoPointDto? geo;
   @JsonKey(name: 'instructions')
   final String? instructions;
   @JsonKey(name: 'onlineLink')
@@ -13004,6 +13043,7 @@ extension $EventLocationDtoExtension on EventLocationDto {
     String? placeId,
     double? lat,
     double? long,
+    GeoPointDto? geo,
     String? instructions,
     String? onlineLink,
     String? city,
@@ -13014,6 +13054,7 @@ extension $EventLocationDtoExtension on EventLocationDto {
       placeId: placeId ?? this.placeId,
       lat: lat ?? this.lat,
       long: long ?? this.long,
+      geo: geo ?? this.geo,
       instructions: instructions ?? this.instructions,
       onlineLink: onlineLink ?? this.onlineLink,
       city: city ?? this.city,
@@ -13026,6 +13067,7 @@ extension $EventLocationDtoExtension on EventLocationDto {
     Wrapped<String?>? placeId,
     Wrapped<double?>? lat,
     Wrapped<double?>? long,
+    Wrapped<GeoPointDto?>? geo,
     Wrapped<String?>? instructions,
     Wrapped<String?>? onlineLink,
     Wrapped<String?>? city,
@@ -13036,6 +13078,7 @@ extension $EventLocationDtoExtension on EventLocationDto {
       placeId: (placeId != null ? placeId.value : this.placeId),
       lat: (lat != null ? lat.value : this.lat),
       long: (long != null ? long.value : this.long),
+      geo: (geo != null ? geo.value : this.geo),
       instructions: (instructions != null
           ? instructions.value
           : this.instructions),
@@ -17562,6 +17605,42 @@ extension $CreatorMarketingNotificationDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
+class PerpOrderResponse {
+  const PerpOrderResponse({required this.type, required this.statuses});
+
+  factory PerpOrderResponse.fromJson(Map<String, dynamic> json) =>
+      _$PerpOrderResponseFromJson(json);
+
+  static const toJsonFactory = _$PerpOrderResponseToJson;
+  Map<String, dynamic> toJson() => _$PerpOrderResponseToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'statuses', defaultValue: <String>[])
+  final List<String> statuses;
+  static const fromJsonFactory = _$PerpOrderResponseFromJson;
+}
+
+extension $PerpOrderResponseExtension on PerpOrderResponse {
+  PerpOrderResponse copyWith({String? type, List<String>? statuses}) {
+    return PerpOrderResponse(
+      type: type ?? this.type,
+      statuses: statuses ?? this.statuses,
+    );
+  }
+
+  PerpOrderResponse copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<List<String>>? statuses,
+  }) {
+    return PerpOrderResponse(
+      type: (type != null ? type.value : this.type),
+      statuses: (statuses != null ? statuses.value : this.statuses),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class BarDto {
   const BarDto({
     required this.time,
@@ -17807,6 +17886,55 @@ extension $PerpSingleCoinExtension on PerpSingleCoin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class PerpSingleAgainstCoin {
+  const PerpSingleAgainstCoin({
+    required this.identifier,
+    required this.decimals,
+    required this.symbol,
+  });
+
+  factory PerpSingleAgainstCoin.fromJson(Map<String, dynamic> json) =>
+      _$PerpSingleAgainstCoinFromJson(json);
+
+  static const toJsonFactory = _$PerpSingleAgainstCoinToJson;
+  Map<String, dynamic> toJson() => _$PerpSingleAgainstCoinToJson(this);
+
+  @JsonKey(name: 'identifier')
+  final String identifier;
+  @JsonKey(name: 'decimals')
+  final double decimals;
+  @JsonKey(name: 'symbol')
+  final String symbol;
+  static const fromJsonFactory = _$PerpSingleAgainstCoinFromJson;
+}
+
+extension $PerpSingleAgainstCoinExtension on PerpSingleAgainstCoin {
+  PerpSingleAgainstCoin copyWith({
+    String? identifier,
+    double? decimals,
+    String? symbol,
+  }) {
+    return PerpSingleAgainstCoin(
+      identifier: identifier ?? this.identifier,
+      decimals: decimals ?? this.decimals,
+      symbol: symbol ?? this.symbol,
+    );
+  }
+
+  PerpSingleAgainstCoin copyWithWrapped({
+    Wrapped<String>? identifier,
+    Wrapped<double>? decimals,
+    Wrapped<String>? symbol,
+  }) {
+    return PerpSingleAgainstCoin(
+      identifier: (identifier != null ? identifier.value : this.identifier),
+      decimals: (decimals != null ? decimals.value : this.decimals),
+      symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class PerpCoinExtended {
   const PerpCoinExtended({
     required this.symbol,
@@ -17826,7 +17954,7 @@ class PerpCoinExtended {
   @JsonKey(name: 'coin')
   final PerpSingleCoin coin;
   @JsonKey(name: 'againstCoin')
-  final PerpSingleCoin againstCoin;
+  final PerpSingleAgainstCoin againstCoin;
   @JsonKey(name: 'config', defaultValue: <String>[])
   final List<String> config;
   static const fromJsonFactory = _$PerpCoinExtendedFromJson;
@@ -17836,7 +17964,7 @@ extension $PerpCoinExtendedExtension on PerpCoinExtended {
   PerpCoinExtended copyWith({
     String? symbol,
     PerpSingleCoin? coin,
-    PerpSingleCoin? againstCoin,
+    PerpSingleAgainstCoin? againstCoin,
     List<String>? config,
   }) {
     return PerpCoinExtended(
@@ -17850,7 +17978,7 @@ extension $PerpCoinExtendedExtension on PerpCoinExtended {
   PerpCoinExtended copyWithWrapped({
     Wrapped<String>? symbol,
     Wrapped<PerpSingleCoin>? coin,
-    Wrapped<PerpSingleCoin>? againstCoin,
+    Wrapped<PerpSingleAgainstCoin>? againstCoin,
     Wrapped<List<String>>? config,
   }) {
     return PerpCoinExtended(
@@ -17882,7 +18010,7 @@ class PerpSpotCoinExtended {
   @JsonKey(name: 'coin')
   final PerpSingleCoin coin;
   @JsonKey(name: 'againstCoin')
-  final PerpSingleCoin againstCoin;
+  final PerpSingleAgainstCoin againstCoin;
   @JsonKey(name: 'config', defaultValue: <String>[])
   final List<String> config;
   static const fromJsonFactory = _$PerpSpotCoinExtendedFromJson;
@@ -17892,7 +18020,7 @@ extension $PerpSpotCoinExtendedExtension on PerpSpotCoinExtended {
   PerpSpotCoinExtended copyWith({
     String? symbol,
     PerpSingleCoin? coin,
-    PerpSingleCoin? againstCoin,
+    PerpSingleAgainstCoin? againstCoin,
     List<String>? config,
   }) {
     return PerpSpotCoinExtended(
@@ -17906,7 +18034,7 @@ extension $PerpSpotCoinExtendedExtension on PerpSpotCoinExtended {
   PerpSpotCoinExtended copyWithWrapped({
     Wrapped<String>? symbol,
     Wrapped<PerpSingleCoin>? coin,
-    Wrapped<PerpSingleCoin>? againstCoin,
+    Wrapped<PerpSingleAgainstCoin>? againstCoin,
     Wrapped<List<String>>? config,
   }) {
     return PerpSpotCoinExtended(
@@ -17941,6 +18069,57 @@ extension $PerpCoinExtendedSlimExtension on PerpCoinExtendedSlim {
   PerpCoinExtendedSlim copyWithWrapped({Wrapped<String>? symbol}) {
     return PerpCoinExtendedSlim(
       symbol: (symbol != null ? symbol.value : this.symbol),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class PerpLegalCheck {
+  const PerpLegalCheck({
+    required this.ipAllowed,
+    required this.acceptedTerms,
+    required this.userAllowed,
+  });
+
+  factory PerpLegalCheck.fromJson(Map<String, dynamic> json) =>
+      _$PerpLegalCheckFromJson(json);
+
+  static const toJsonFactory = _$PerpLegalCheckToJson;
+  Map<String, dynamic> toJson() => _$PerpLegalCheckToJson(this);
+
+  @JsonKey(name: 'ipAllowed')
+  final bool ipAllowed;
+  @JsonKey(name: 'acceptedTerms')
+  final bool acceptedTerms;
+  @JsonKey(name: 'userAllowed')
+  final bool userAllowed;
+  static const fromJsonFactory = _$PerpLegalCheckFromJson;
+}
+
+extension $PerpLegalCheckExtension on PerpLegalCheck {
+  PerpLegalCheck copyWith({
+    bool? ipAllowed,
+    bool? acceptedTerms,
+    bool? userAllowed,
+  }) {
+    return PerpLegalCheck(
+      ipAllowed: ipAllowed ?? this.ipAllowed,
+      acceptedTerms: acceptedTerms ?? this.acceptedTerms,
+      userAllowed: userAllowed ?? this.userAllowed,
+    );
+  }
+
+  PerpLegalCheck copyWithWrapped({
+    Wrapped<bool>? ipAllowed,
+    Wrapped<bool>? acceptedTerms,
+    Wrapped<bool>? userAllowed,
+  }) {
+    return PerpLegalCheck(
+      ipAllowed: (ipAllowed != null ? ipAllowed.value : this.ipAllowed),
+      acceptedTerms: (acceptedTerms != null
+          ? acceptedTerms.value
+          : this.acceptedTerms),
+      userAllowed: (userAllowed != null ? userAllowed.value : this.userAllowed),
     );
   }
 }
@@ -18479,6 +18658,217 @@ extension $ActiveAssetsPerpEventExtension on ActiveAssetsPerpEvent {
 
   ActiveAssetsPerpEvent copyWithWrapped({Wrapped<String>? type}) {
     return ActiveAssetsPerpEvent(type: (type != null ? type.value : this.type));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class WebData3PerpEvent {
+  const WebData3PerpEvent({required this.type, required this.user});
+
+  factory WebData3PerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$WebData3PerpEventFromJson(json);
+
+  static const toJsonFactory = _$WebData3PerpEventToJson;
+  Map<String, dynamic> toJson() => _$WebData3PerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'user')
+  final String user;
+  static const fromJsonFactory = _$WebData3PerpEventFromJson;
+}
+
+extension $WebData3PerpEventExtension on WebData3PerpEvent {
+  WebData3PerpEvent copyWith({String? type, String? user}) {
+    return WebData3PerpEvent(type: type ?? this.type, user: user ?? this.user);
+  }
+
+  WebData3PerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? user,
+  }) {
+    return WebData3PerpEvent(
+      type: (type != null ? type.value : this.type),
+      user: (user != null ? user.value : this.user),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class SpotStatePerpEvent {
+  const SpotStatePerpEvent({required this.type, required this.user});
+
+  factory SpotStatePerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$SpotStatePerpEventFromJson(json);
+
+  static const toJsonFactory = _$SpotStatePerpEventToJson;
+  Map<String, dynamic> toJson() => _$SpotStatePerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'user')
+  final String user;
+  static const fromJsonFactory = _$SpotStatePerpEventFromJson;
+}
+
+extension $SpotStatePerpEventExtension on SpotStatePerpEvent {
+  SpotStatePerpEvent copyWith({String? type, String? user}) {
+    return SpotStatePerpEvent(type: type ?? this.type, user: user ?? this.user);
+  }
+
+  SpotStatePerpEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? user,
+  }) {
+    return SpotStatePerpEvent(
+      type: (type != null ? type.value : this.type),
+      user: (user != null ? user.value : this.user),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserOpenOrderEvent {
+  const UserOpenOrderEvent({required this.type, required this.user});
+
+  factory UserOpenOrderEvent.fromJson(Map<String, dynamic> json) =>
+      _$UserOpenOrderEventFromJson(json);
+
+  static const toJsonFactory = _$UserOpenOrderEventToJson;
+  Map<String, dynamic> toJson() => _$UserOpenOrderEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'user')
+  final String user;
+  static const fromJsonFactory = _$UserOpenOrderEventFromJson;
+}
+
+extension $UserOpenOrderEventExtension on UserOpenOrderEvent {
+  UserOpenOrderEvent copyWith({String? type, String? user}) {
+    return UserOpenOrderEvent(type: type ?? this.type, user: user ?? this.user);
+  }
+
+  UserOpenOrderEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? user,
+  }) {
+    return UserOpenOrderEvent(
+      type: (type != null ? type.value : this.type),
+      user: (user != null ? user.value : this.user),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserFilledOrderEvent {
+  const UserFilledOrderEvent({
+    required this.type,
+    required this.user,
+    required this.aggregateByTime,
+  });
+
+  factory UserFilledOrderEvent.fromJson(Map<String, dynamic> json) =>
+      _$UserFilledOrderEventFromJson(json);
+
+  static const toJsonFactory = _$UserFilledOrderEventToJson;
+  Map<String, dynamic> toJson() => _$UserFilledOrderEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'user')
+  final String user;
+  @JsonKey(name: 'aggregateByTime')
+  final bool aggregateByTime;
+  static const fromJsonFactory = _$UserFilledOrderEventFromJson;
+}
+
+extension $UserFilledOrderEventExtension on UserFilledOrderEvent {
+  UserFilledOrderEvent copyWith({
+    String? type,
+    String? user,
+    bool? aggregateByTime,
+  }) {
+    return UserFilledOrderEvent(
+      type: type ?? this.type,
+      user: user ?? this.user,
+      aggregateByTime: aggregateByTime ?? this.aggregateByTime,
+    );
+  }
+
+  UserFilledOrderEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? user,
+    Wrapped<bool>? aggregateByTime,
+  }) {
+    return UserFilledOrderEvent(
+      type: (type != null ? type.value : this.type),
+      user: (user != null ? user.value : this.user),
+      aggregateByTime: (aggregateByTime != null
+          ? aggregateByTime.value
+          : this.aggregateByTime),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class UserHistoricalOrderEvent {
+  const UserHistoricalOrderEvent({required this.type, required this.user});
+
+  factory UserHistoricalOrderEvent.fromJson(Map<String, dynamic> json) =>
+      _$UserHistoricalOrderEventFromJson(json);
+
+  static const toJsonFactory = _$UserHistoricalOrderEventToJson;
+  Map<String, dynamic> toJson() => _$UserHistoricalOrderEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  @JsonKey(name: 'user')
+  final String user;
+  static const fromJsonFactory = _$UserHistoricalOrderEventFromJson;
+}
+
+extension $UserHistoricalOrderEventExtension on UserHistoricalOrderEvent {
+  UserHistoricalOrderEvent copyWith({String? type, String? user}) {
+    return UserHistoricalOrderEvent(
+      type: type ?? this.type,
+      user: user ?? this.user,
+    );
+  }
+
+  UserHistoricalOrderEvent copyWithWrapped({
+    Wrapped<String>? type,
+    Wrapped<String>? user,
+  }) {
+    return UserHistoricalOrderEvent(
+      type: (type != null ? type.value : this.type),
+      user: (user != null ? user.value : this.user),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class AllMidsPerpEvent {
+  const AllMidsPerpEvent({required this.type});
+
+  factory AllMidsPerpEvent.fromJson(Map<String, dynamic> json) =>
+      _$AllMidsPerpEventFromJson(json);
+
+  static const toJsonFactory = _$AllMidsPerpEventToJson;
+  Map<String, dynamic> toJson() => _$AllMidsPerpEventToJson(this);
+
+  @JsonKey(name: 'type')
+  final String type;
+  static const fromJsonFactory = _$AllMidsPerpEventFromJson;
+}
+
+extension $AllMidsPerpEventExtension on AllMidsPerpEvent {
+  AllMidsPerpEvent copyWith({String? type}) {
+    return AllMidsPerpEvent(type: type ?? this.type);
+  }
+
+  AllMidsPerpEvent copyWithWrapped({Wrapped<String>? type}) {
+    return AllMidsPerpEvent(type: (type != null ? type.value : this.type));
   }
 }
 
