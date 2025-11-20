@@ -4102,7 +4102,7 @@ GeoPointDto _$GeoPointDtoFromJson(Map<String, dynamic> json) => GeoPointDto(
   type: json['type'] as String?,
   coordinates:
       (json['coordinates'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => (e as num).toDouble())
           .toList() ??
       [],
 );

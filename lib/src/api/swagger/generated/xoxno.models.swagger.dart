@@ -12972,13 +12972,13 @@ class GeoPointDto {
 
   @JsonKey(name: 'type')
   final String? type;
-  @JsonKey(name: 'coordinates', defaultValue: <String>[])
-  final List<String>? coordinates;
+  @JsonKey(name: 'coordinates', defaultValue: <double>[])
+  final List<double>? coordinates;
   static const fromJsonFactory = _$GeoPointDtoFromJson;
 }
 
 extension $GeoPointDtoExtension on GeoPointDto {
-  GeoPointDto copyWith({String? type, List<String>? coordinates}) {
+  GeoPointDto copyWith({String? type, List<double>? coordinates}) {
     return GeoPointDto(
       type: type ?? this.type,
       coordinates: coordinates ?? this.coordinates,
@@ -12987,7 +12987,7 @@ extension $GeoPointDtoExtension on GeoPointDto {
 
   GeoPointDto copyWithWrapped({
     Wrapped<String?>? type,
-    Wrapped<List<String>?>? coordinates,
+    Wrapped<List<double>?>? coordinates,
   }) {
     return GeoPointDto(
       type: (type != null ? type.value : this.type),
