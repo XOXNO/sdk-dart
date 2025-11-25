@@ -7658,6 +7658,34 @@ paths:
       summary: Send a transaction to the blockchain
       tags:
         - Transactions
+  /sync/lending:
+    get:
+      operationId: SyncNftActivityController_syncNftMarketplaceActivity
+      parameters: []
+      responses:
+        '200':
+          description: Xoxno Lending Activity synced successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '403':
+          description: Forbidden resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDto'
+      summary: Sync Xoxno Lending Activity
+      tags:
+        - Sync Nft Activity
   /user/chat/message:
     post:
       operationId: ChatDataController_sendChatMessage
@@ -16635,11 +16663,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp of guest creation.
-          example: 1763669427
+          example: 1764093311
         invitationId:
           type: string
           description: Invitation ID for the guest
-          example: cf187153-e63a-4b93-9b00-248fddeb4870
+          example: 09dd0f35-633f-4449-b88b-1c0b731938e1
         metadata:
           type: object
           description: Custom metadata for the guest
@@ -20047,6 +20075,12 @@ components:
         guardianSignature:
           type: string
           description: Optional guardian signature
+        relayer:
+          type: string
+          description: Optional relayer address
+        relayerSignature:
+          type: string
+          description: Optional relayer signature
       required:
         - chainID
         - gasLimit
@@ -20747,6 +20781,27 @@ components:
             - type: object
       required:
         - walletType
+    CreditCardDto:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          description: Credit card number
+        cardExpiryDate:
+          type: string
+          description: Credit card expiry date
+        cardCvv:
+          type: string
+          description: Credit card CVV
+        cardHolderName:
+          type: string
+          description: Credit card name
+        cardHolderCountry:
+          type: string
+          description: Credit card country
+        saveCardId:
+          type: number
+          description: Save card ID
     EventGuestRegistrationDto:
       type: object
       properties:
@@ -20793,6 +20848,12 @@ components:
             Pay / Google Pay
           allOf:
             - $ref: '#/components/schemas/DigitalWalletDto'
+        creditCard:
+          description: >-
+            Credit card payload used when completing fiat payments via credit
+            card
+          allOf:
+            - $ref: '#/components/schemas/CreditCardDto'
     TwispayPaymentFormData:
       type: object
       properties:
@@ -20852,10 +20913,52 @@ components:
         - transactionId
         - is3d
         - isRedirect
+    XMoneyRedirectParams:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to redirect to for 3D Secure
+        params:
+          type: object
+          description: Parameters to send with the redirect
+          additionalProperties: true
+        formMethod:
+          type: string
+          description: HTTP method for the redirect (POST or GET)
+      required:
+        - url
+        - params
+    XMoneyPaymentFormData:
+      type: object
+      properties:
+        orderId:
+          type: number
+          description: Order ID from xMoney
+        transactionId:
+          type: number
+          description: Transaction ID from xMoney
+        cardId:
+          type: number
+          description: Card ID if the card was saved
+        is3d:
+          type: number
+          description: Whether 3D Secure is required (0 or 1)
+        isRedirect:
+          type: boolean
+          description: Whether a redirect is required
+        redirect:
+          description: Redirect data for 3D Secure
+          allOf:
+            - $ref: '#/components/schemas/XMoneyRedirectParams'
+      required:
+        - orderId
+        - transactionId
     PaymentProvider:
       type: string
       enum:
         - Twispay
+        - XMoney
         - Binance
         - Stripe
         - Crypto
@@ -20870,6 +20973,7 @@ components:
             - $ref: '#/components/schemas/TwispayPaymentFormData'
             - $ref: '#/components/schemas/StripePaymentFormData'
             - $ref: '#/components/schemas/TwispayDigitalWalletPaymentData'
+            - $ref: '#/components/schemas/XMoneyPaymentFormData'
       required:
         - type
         - data
@@ -20976,11 +21080,11 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the ticket type was created.
-          example: 1763669427
+          example: 1764093311
         id:
           type: string
           description: Unique identifier for this ticket type.
-          example: aff6f08e-ea6b-49f8-b8b1-c5b7b8b25a72
+          example: 7e634806-efd9-46c6-a65d-b13258767641
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21037,11 +21141,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1763669427
+          example: 1764093311
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1763669427
+          example: 1764093311
         maxLimit:
           type: integer
           description: >-
@@ -21099,11 +21203,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1763669427
+          example: 1764093311
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1763669427
+          example: 1764093311
         maxLimit:
           type: integer
           description: >-
@@ -21134,7 +21238,7 @@ components:
         id:
           type: string
           description: Unique identifier for this stage.
-          example: 5e8d3da1-bc4f-4f55-b37d-91f7a0bfbc72
+          example: 65e7f412-7d58-4158-a6a9-7247e33445bd
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -21165,11 +21269,11 @@ components:
         startTime:
           type: integer
           description: Timestamp when this stage starts.
-          example: 1763669427
+          example: 1764093311
         endTime:
           type: integer
           description: Timestamp when this stage ends.
-          example: 1763669427
+          example: 1764093311
         maxLimit:
           type: integer
           description: >-
@@ -21325,7 +21429,7 @@ components:
         ticketId:
           type: string
           description: The unique identifier for the ticket type.
-          example: 2ac4d7f2-1267-42c1-9b4a-5ed900d75e67
+          example: e6a4e008-6ace-42e8-99be-b9ac55cda43b
         quantity:
           type: integer
           description: The number of tickets for this type.
@@ -21381,7 +21485,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1763669427
+          example: 1764093311
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -21410,7 +21514,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d033d3d3-ac3a-47b5-bb6e-b10b7285520b
+          example: b7e4233b-c96f-41c8-a688-9142b5b8bfb2
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -21526,7 +21630,7 @@ components:
         createdAt:
           type: integer
           description: The timestamp when the ticket invitation was created.
-          example: 1763669427
+          example: 1764093311
         isClaimed:
           type: boolean
           description: Indicates if the ticket has been claimed.
@@ -21555,7 +21659,7 @@ components:
         id:
           type: string
           description: The unique identifier for the ticket invitation.
-          example: d033d3d3-ac3a-47b5-bb6e-b10b7285520b
+          example: b7e4233b-c96f-41c8-a688-9142b5b8bfb2
         pk:
           type: string
           description: The partition key for the ticket invitation.
@@ -21733,11 +21837,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1763669427
+          example: 1764093311
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1763669427
+          example: 1764093311
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -21748,7 +21852,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the voucher was created.
-          example: 1763669427
+          example: 1764093311
         createdBy:
           type: string
           description: Reference to the admin or system that created the voucher.
@@ -21841,7 +21945,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp of question creation.
-          example: 1763669427
+          example: 1764093311
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -22325,11 +22429,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1763669427
+          example: 1764093311
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1763669427
+          example: 1764093311
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -22382,11 +22486,11 @@ components:
         startDate:
           type: integer
           description: Timestamp when the voucher becomes valid.
-          example: 1763669427
+          example: 1764093311
         endDate:
           type: integer
           description: Timestamp when the voucher expires.
-          example: 1763669427
+          example: 1764093311
         isActive:
           type: boolean
           description: Indicates whether the voucher is currently active.
@@ -22421,7 +22525,7 @@ components:
         id:
           type: string
           description: Unique identifier for this guest answer.
-          example: 05022ccd-a37e-4d17-9514-9e25a5a067bc
+          example: 6c75fbde-ef57-4f50-8bbb-3f5ad1c543a1
         wallet:
           type: string
           description: The address of the guest who provided the answer.
@@ -22437,7 +22541,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the answer was provided.
-          example: 1763669427
+          example: 1764093311
         ttl:
           type: integer
           description: Time to live in seconds. Only set when status is pending.
@@ -22604,7 +22708,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral configuration.
-          example: 3e2f7ca7-bc25-4fa6-bf79-2a99ff977fee
+          example: 596e3f40-6382-4454-8bee-86ad020f8852
         eventId:
           type: string
           description: The event this referral configuration is linked to.
@@ -22634,7 +22738,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral configuration was created.
-          example: 1763669427
+          example: 1764093311
         createdBy:
           type: string
           description: The address of the user who created this referral configuration.
@@ -22761,7 +22865,7 @@ components:
         id:
           type: string
           description: Unique identifier for this referral.
-          example: 1e8c53a0-591f-4487-b021-b136adaf0d9b
+          example: 0f452d46-4999-46c6-80e0-922956de6d78
         pk:
           type: string
           description: Partition key for Cosmos DB document.
@@ -22783,7 +22887,7 @@ components:
         createdAt:
           type: integer
           description: Timestamp when the referral was created.
-          example: 1763669427
+          example: 1764093311
         isActive:
           type: boolean
           description: Indicates whether the referral code is currently active.
@@ -22989,7 +23093,7 @@ components:
         ticketId:
           type: string
           description: Unique identifier for the ticket type.
-          example: 64a18563-3b3d-410d-9611-887f8eba8919
+          example: d6f625e0-3ff9-4f63-8610-af14c8a46496
         ticketProfile:
           description: Profile of the ticket.
           allOf:
@@ -23006,15 +23110,15 @@ components:
         receivedAt:
           type: integer
           description: Timestamp for when the ticket was received by the guest.
-          example: 1763669427
+          example: 1764093311
         invitationId:
           type: string
           description: Invitation ID for the ticket
-          example: 570bfc36-4646-483f-844e-658c42e9f627
+          example: 184fe37c-9c92-4103-aedc-2824b1d95f57
         timestamp:
           type: integer
           description: Timestamp of check-in.
-          example: 1763669427
+          example: 1764093311
         quantity:
           type: integer
           description: Quantity of tickets.
@@ -23022,7 +23126,7 @@ components:
         transactionId:
           type: string
           description: Transaction ID for the ticket.
-          example: 7fc25b91-d9c2-4b0e-b14f-1f7b47e36dd1
+          example: 3ae21e44-0862-4a90-9e71-6e86222e6ffc
       required:
         - ticketId
         - isCheckIn

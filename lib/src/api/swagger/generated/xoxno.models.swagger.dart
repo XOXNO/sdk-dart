@@ -20933,6 +20933,8 @@ class TransactionCreate {
     this.options,
     this.guardian,
     this.guardianSignature,
+    this.relayer,
+    this.relayerSignature,
   });
 
   factory TransactionCreate.fromJson(Map<String, dynamic> json) =>
@@ -20971,6 +20973,10 @@ class TransactionCreate {
   final String? guardian;
   @JsonKey(name: 'guardianSignature')
   final String? guardianSignature;
+  @JsonKey(name: 'relayer')
+  final String? relayer;
+  @JsonKey(name: 'relayerSignature')
+  final String? relayerSignature;
   static const fromJsonFactory = _$TransactionCreateFromJson;
 }
 
@@ -20991,6 +20997,8 @@ extension $TransactionCreateExtension on TransactionCreate {
     double? options,
     String? guardian,
     String? guardianSignature,
+    String? relayer,
+    String? relayerSignature,
   }) {
     return TransactionCreate(
       chainID: chainID ?? this.chainID,
@@ -21008,6 +21016,8 @@ extension $TransactionCreateExtension on TransactionCreate {
       options: options ?? this.options,
       guardian: guardian ?? this.guardian,
       guardianSignature: guardianSignature ?? this.guardianSignature,
+      relayer: relayer ?? this.relayer,
+      relayerSignature: relayerSignature ?? this.relayerSignature,
     );
   }
 
@@ -21027,6 +21037,8 @@ extension $TransactionCreateExtension on TransactionCreate {
     Wrapped<double?>? options,
     Wrapped<String?>? guardian,
     Wrapped<String?>? guardianSignature,
+    Wrapped<String?>? relayer,
+    Wrapped<String?>? relayerSignature,
   }) {
     return TransactionCreate(
       chainID: (chainID != null ? chainID.value : this.chainID),
@@ -21050,6 +21062,10 @@ extension $TransactionCreateExtension on TransactionCreate {
       guardianSignature: (guardianSignature != null
           ? guardianSignature.value
           : this.guardianSignature),
+      relayer: (relayer != null ? relayer.value : this.relayer),
+      relayerSignature: (relayerSignature != null
+          ? relayerSignature.value
+          : this.relayerSignature),
     );
   }
 }
@@ -22936,6 +22952,82 @@ extension $DigitalWalletDtoExtension on DigitalWalletDto {
 }
 
 @JsonSerializable(explicitToJson: true)
+class CreditCardDto {
+  const CreditCardDto({
+    this.cardNumber,
+    this.cardExpiryDate,
+    this.cardCvv,
+    this.cardHolderName,
+    this.cardHolderCountry,
+    this.saveCardId,
+  });
+
+  factory CreditCardDto.fromJson(Map<String, dynamic> json) =>
+      _$CreditCardDtoFromJson(json);
+
+  static const toJsonFactory = _$CreditCardDtoToJson;
+  Map<String, dynamic> toJson() => _$CreditCardDtoToJson(this);
+
+  @JsonKey(name: 'cardNumber')
+  final String? cardNumber;
+  @JsonKey(name: 'cardExpiryDate')
+  final String? cardExpiryDate;
+  @JsonKey(name: 'cardCvv')
+  final String? cardCvv;
+  @JsonKey(name: 'cardHolderName')
+  final String? cardHolderName;
+  @JsonKey(name: 'cardHolderCountry')
+  final String? cardHolderCountry;
+  @JsonKey(name: 'saveCardId')
+  final double? saveCardId;
+  static const fromJsonFactory = _$CreditCardDtoFromJson;
+}
+
+extension $CreditCardDtoExtension on CreditCardDto {
+  CreditCardDto copyWith({
+    String? cardNumber,
+    String? cardExpiryDate,
+    String? cardCvv,
+    String? cardHolderName,
+    String? cardHolderCountry,
+    double? saveCardId,
+  }) {
+    return CreditCardDto(
+      cardNumber: cardNumber ?? this.cardNumber,
+      cardExpiryDate: cardExpiryDate ?? this.cardExpiryDate,
+      cardCvv: cardCvv ?? this.cardCvv,
+      cardHolderName: cardHolderName ?? this.cardHolderName,
+      cardHolderCountry: cardHolderCountry ?? this.cardHolderCountry,
+      saveCardId: saveCardId ?? this.saveCardId,
+    );
+  }
+
+  CreditCardDto copyWithWrapped({
+    Wrapped<String?>? cardNumber,
+    Wrapped<String?>? cardExpiryDate,
+    Wrapped<String?>? cardCvv,
+    Wrapped<String?>? cardHolderName,
+    Wrapped<String?>? cardHolderCountry,
+    Wrapped<double?>? saveCardId,
+  }) {
+    return CreditCardDto(
+      cardNumber: (cardNumber != null ? cardNumber.value : this.cardNumber),
+      cardExpiryDate: (cardExpiryDate != null
+          ? cardExpiryDate.value
+          : this.cardExpiryDate),
+      cardCvv: (cardCvv != null ? cardCvv.value : this.cardCvv),
+      cardHolderName: (cardHolderName != null
+          ? cardHolderName.value
+          : this.cardHolderName),
+      cardHolderCountry: (cardHolderCountry != null
+          ? cardHolderCountry.value
+          : this.cardHolderCountry),
+      saveCardId: (saveCardId != null ? saveCardId.value : this.saveCardId),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class EventGuestRegistrationDto {
   const EventGuestRegistrationDto({
     this.email,
@@ -22948,6 +23040,7 @@ class EventGuestRegistrationDto {
     this.questionAnswers,
     this.callbackUrl,
     this.digitalWallet,
+    this.creditCard,
   });
 
   factory EventGuestRegistrationDto.fromJson(Map<String, dynamic> json) =>
@@ -22976,6 +23069,8 @@ class EventGuestRegistrationDto {
   final CallbackUrl? callbackUrl;
   @JsonKey(name: 'digitalWallet')
   final DigitalWalletDto? digitalWallet;
+  @JsonKey(name: 'creditCard')
+  final CreditCardDto? creditCard;
   static const fromJsonFactory = _$EventGuestRegistrationDtoFromJson;
 }
 
@@ -22991,6 +23086,7 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
     List<EventQuestionAnswerDto>? questionAnswers,
     CallbackUrl? callbackUrl,
     DigitalWalletDto? digitalWallet,
+    CreditCardDto? creditCard,
   }) {
     return EventGuestRegistrationDto(
       email: email ?? this.email,
@@ -23003,6 +23099,7 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
       questionAnswers: questionAnswers ?? this.questionAnswers,
       callbackUrl: callbackUrl ?? this.callbackUrl,
       digitalWallet: digitalWallet ?? this.digitalWallet,
+      creditCard: creditCard ?? this.creditCard,
     );
   }
 
@@ -23017,6 +23114,7 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
     Wrapped<List<EventQuestionAnswerDto>?>? questionAnswers,
     Wrapped<CallbackUrl?>? callbackUrl,
     Wrapped<DigitalWalletDto?>? digitalWallet,
+    Wrapped<CreditCardDto?>? creditCard,
   }) {
     return EventGuestRegistrationDto(
       email: (email != null ? email.value : this.email),
@@ -23037,6 +23135,7 @@ extension $EventGuestRegistrationDtoExtension on EventGuestRegistrationDto {
       digitalWallet: (digitalWallet != null
           ? digitalWallet.value
           : this.digitalWallet),
+      creditCard: (creditCard != null ? creditCard.value : this.creditCard),
     );
   }
 }
@@ -23216,6 +23315,127 @@ extension $TwispayDigitalWalletPaymentDataExtension
       redirectParams: (redirectParams != null
           ? redirectParams.value
           : this.redirectParams),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class XMoneyRedirectParams {
+  const XMoneyRedirectParams({
+    required this.url,
+    required this.params,
+    this.formMethod,
+  });
+
+  factory XMoneyRedirectParams.fromJson(Map<String, dynamic> json) =>
+      _$XMoneyRedirectParamsFromJson(json);
+
+  static const toJsonFactory = _$XMoneyRedirectParamsToJson;
+  Map<String, dynamic> toJson() => _$XMoneyRedirectParamsToJson(this);
+
+  @JsonKey(name: 'url')
+  final String url;
+  @JsonKey(name: 'params')
+  final Map<String, dynamic> params;
+  @JsonKey(name: 'formMethod')
+  final String? formMethod;
+  static const fromJsonFactory = _$XMoneyRedirectParamsFromJson;
+}
+
+extension $XMoneyRedirectParamsExtension on XMoneyRedirectParams {
+  XMoneyRedirectParams copyWith({
+    String? url,
+    Map<String, dynamic>? params,
+    String? formMethod,
+  }) {
+    return XMoneyRedirectParams(
+      url: url ?? this.url,
+      params: params ?? this.params,
+      formMethod: formMethod ?? this.formMethod,
+    );
+  }
+
+  XMoneyRedirectParams copyWithWrapped({
+    Wrapped<String>? url,
+    Wrapped<Map<String, dynamic>>? params,
+    Wrapped<String?>? formMethod,
+  }) {
+    return XMoneyRedirectParams(
+      url: (url != null ? url.value : this.url),
+      params: (params != null ? params.value : this.params),
+      formMethod: (formMethod != null ? formMethod.value : this.formMethod),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class XMoneyPaymentFormData {
+  const XMoneyPaymentFormData({
+    required this.orderId,
+    required this.transactionId,
+    this.cardId,
+    this.is3d,
+    this.isRedirect,
+    this.redirect,
+  });
+
+  factory XMoneyPaymentFormData.fromJson(Map<String, dynamic> json) =>
+      _$XMoneyPaymentFormDataFromJson(json);
+
+  static const toJsonFactory = _$XMoneyPaymentFormDataToJson;
+  Map<String, dynamic> toJson() => _$XMoneyPaymentFormDataToJson(this);
+
+  @JsonKey(name: 'orderId')
+  final double orderId;
+  @JsonKey(name: 'transactionId')
+  final double transactionId;
+  @JsonKey(name: 'cardId')
+  final double? cardId;
+  @JsonKey(name: 'is3d')
+  final double? is3d;
+  @JsonKey(name: 'isRedirect')
+  final bool? isRedirect;
+  @JsonKey(name: 'redirect')
+  final XMoneyRedirectParams? redirect;
+  static const fromJsonFactory = _$XMoneyPaymentFormDataFromJson;
+}
+
+extension $XMoneyPaymentFormDataExtension on XMoneyPaymentFormData {
+  XMoneyPaymentFormData copyWith({
+    double? orderId,
+    double? transactionId,
+    double? cardId,
+    double? is3d,
+    bool? isRedirect,
+    XMoneyRedirectParams? redirect,
+  }) {
+    return XMoneyPaymentFormData(
+      orderId: orderId ?? this.orderId,
+      transactionId: transactionId ?? this.transactionId,
+      cardId: cardId ?? this.cardId,
+      is3d: is3d ?? this.is3d,
+      isRedirect: isRedirect ?? this.isRedirect,
+      redirect: redirect ?? this.redirect,
+    );
+  }
+
+  XMoneyPaymentFormData copyWithWrapped({
+    Wrapped<double>? orderId,
+    Wrapped<double>? transactionId,
+    Wrapped<double?>? cardId,
+    Wrapped<double?>? is3d,
+    Wrapped<bool?>? isRedirect,
+    Wrapped<XMoneyRedirectParams?>? redirect,
+  }) {
+    return XMoneyPaymentFormData(
+      orderId: (orderId != null ? orderId.value : this.orderId),
+      transactionId: (transactionId != null
+          ? transactionId.value
+          : this.transactionId),
+      cardId: (cardId != null ? cardId.value : this.cardId),
+      is3d: (is3d != null ? is3d.value : this.is3d),
+      isRedirect: (isRedirect != null ? isRedirect.value : this.isRedirect),
+      redirect: (redirect != null ? redirect.value : this.redirect),
     );
   }
 }

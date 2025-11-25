@@ -1696,6 +1696,8 @@ enum PaymentProvider {
 
   @JsonValue('Twispay')
   twispay('Twispay'),
+  @JsonValue('XMoney')
+  xmoney('XMoney'),
   @JsonValue('Binance')
   binance('Binance'),
   @JsonValue('Stripe')

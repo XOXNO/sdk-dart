@@ -6676,6 +6676,8 @@ TransactionCreate _$TransactionCreateFromJson(Map<String, dynamic> json) =>
       options: (json['options'] as num?)?.toDouble(),
       guardian: json['guardian'] as String?,
       guardianSignature: json['guardianSignature'] as String?,
+      relayer: json['relayer'] as String?,
+      relayerSignature: json['relayerSignature'] as String?,
     );
 
 Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
@@ -6695,6 +6697,8 @@ Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
       'options': instance.options,
       'guardian': instance.guardian,
       'guardianSignature': instance.guardianSignature,
+      'relayer': instance.relayer,
+      'relayerSignature': instance.relayerSignature,
     };
 
 TransactionCostData _$TransactionCostDataFromJson(Map<String, dynamic> json) =>
@@ -7312,6 +7316,26 @@ Map<String, dynamic> _$DigitalWalletDtoToJson(DigitalWalletDto instance) =>
       'data': instance.data,
     };
 
+CreditCardDto _$CreditCardDtoFromJson(Map<String, dynamic> json) =>
+    CreditCardDto(
+      cardNumber: json['cardNumber'] as String?,
+      cardExpiryDate: json['cardExpiryDate'] as String?,
+      cardCvv: json['cardCvv'] as String?,
+      cardHolderName: json['cardHolderName'] as String?,
+      cardHolderCountry: json['cardHolderCountry'] as String?,
+      saveCardId: (json['saveCardId'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$CreditCardDtoToJson(CreditCardDto instance) =>
+    <String, dynamic>{
+      'cardNumber': instance.cardNumber,
+      'cardExpiryDate': instance.cardExpiryDate,
+      'cardCvv': instance.cardCvv,
+      'cardHolderName': instance.cardHolderName,
+      'cardHolderCountry': instance.cardHolderCountry,
+      'saveCardId': instance.saveCardId,
+    };
+
 EventGuestRegistrationDto _$EventGuestRegistrationDtoFromJson(
   Map<String, dynamic> json,
 ) => EventGuestRegistrationDto(
@@ -7341,6 +7365,9 @@ EventGuestRegistrationDto _$EventGuestRegistrationDtoFromJson(
       : DigitalWalletDto.fromJson(
           json['digitalWallet'] as Map<String, dynamic>,
         ),
+  creditCard: json['creditCard'] == null
+      ? null
+      : CreditCardDto.fromJson(json['creditCard'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$EventGuestRegistrationDtoToJson(
@@ -7358,6 +7385,7 @@ Map<String, dynamic> _$EventGuestRegistrationDtoToJson(
   'questionAnswers': instance.questionAnswers?.map((e) => e.toJson()).toList(),
   'callbackUrl': instance.callbackUrl?.toJson(),
   'digitalWallet': instance.digitalWallet?.toJson(),
+  'creditCard': instance.creditCard?.toJson(),
 };
 
 TwispayPaymentFormData _$TwispayPaymentFormDataFromJson(
@@ -7412,6 +7440,46 @@ Map<String, dynamic> _$TwispayDigitalWalletPaymentDataToJson(
   'redirectUrl': instance.redirectUrl,
   'redirectMethod': instance.redirectMethod,
   'redirectParams': instance.redirectParams,
+};
+
+XMoneyRedirectParams _$XMoneyRedirectParamsFromJson(
+  Map<String, dynamic> json,
+) => XMoneyRedirectParams(
+  url: json['url'] as String,
+  params: json['params'] as Map<String, dynamic>,
+  formMethod: json['formMethod'] as String?,
+);
+
+Map<String, dynamic> _$XMoneyRedirectParamsToJson(
+  XMoneyRedirectParams instance,
+) => <String, dynamic>{
+  'url': instance.url,
+  'params': instance.params,
+  'formMethod': instance.formMethod,
+};
+
+XMoneyPaymentFormData _$XMoneyPaymentFormDataFromJson(
+  Map<String, dynamic> json,
+) => XMoneyPaymentFormData(
+  orderId: (json['orderId'] as num).toDouble(),
+  transactionId: (json['transactionId'] as num).toDouble(),
+  cardId: (json['cardId'] as num?)?.toDouble(),
+  is3d: (json['is3d'] as num?)?.toDouble(),
+  isRedirect: json['isRedirect'] as bool?,
+  redirect: json['redirect'] == null
+      ? null
+      : XMoneyRedirectParams.fromJson(json['redirect'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$XMoneyPaymentFormDataToJson(
+  XMoneyPaymentFormData instance,
+) => <String, dynamic>{
+  'orderId': instance.orderId,
+  'transactionId': instance.transactionId,
+  'cardId': instance.cardId,
+  'is3d': instance.is3d,
+  'isRedirect': instance.isRedirect,
+  'redirect': instance.redirect?.toJson(),
 };
 
 FiatPaymentForm _$FiatPaymentFormFromJson(Map<String, dynamic> json) =>
