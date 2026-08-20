@@ -3,6 +3,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
+
 import 'dart:convert';
 
 import 'xoxno.enums.swagger.dart' as enums;
@@ -7230,7 +7231,7 @@ extension $RarityExtension on Rarity {
 
 @JsonSerializable(explicitToJson: true)
 class NftMetadataAttributes {
-  const NftMetadataAttributes({required this.traitType, required this.$value});
+  const NftMetadataAttributes({required this.traitType, required this.value});
 
   factory NftMetadataAttributes.fromJson(Map<String, dynamic> json) =>
       _$NftMetadataAttributesFromJson(json);
@@ -7241,25 +7242,25 @@ class NftMetadataAttributes {
   @JsonKey(name: 'trait_type')
   final String traitType;
   @JsonKey(name: 'value')
-  final String $value;
+  final String value;
   static const fromJsonFactory = _$NftMetadataAttributesFromJson;
 }
 
 extension $NftMetadataAttributesExtension on NftMetadataAttributes {
-  NftMetadataAttributes copyWith({String? traitType, String? $value}) {
+  NftMetadataAttributes copyWith({String? traitType, String? value}) {
     return NftMetadataAttributes(
       traitType: traitType ?? this.traitType,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
     );
   }
 
   NftMetadataAttributes copyWithWrapped({
     Wrapped<String>? traitType,
-    Wrapped<String>? $value,
+    Wrapped<String>? value,
   }) {
     return NftMetadataAttributes(
       traitType: (traitType != null ? traitType.value : this.traitType),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
     );
   }
 }
@@ -7928,7 +7929,7 @@ extension $NftSaleInfoHydratedExtension on NftSaleInfoHydrated {
 class NftMetadataAttributesHydrated {
   const NftMetadataAttributesHydrated({
     required this.traitType,
-    required this.$value,
+    required this.value,
     required this.occurance,
     required this.frequency,
     required this.floorPrice,
@@ -7945,7 +7946,7 @@ class NftMetadataAttributesHydrated {
   @JsonKey(name: 'trait_type')
   final String traitType;
   @JsonKey(name: 'value')
-  final String $value;
+  final String value;
   @JsonKey(name: 'occurance')
   final int occurance;
   @JsonKey(name: 'frequency')
@@ -7963,7 +7964,7 @@ extension $NftMetadataAttributesHydratedExtension
     on NftMetadataAttributesHydrated {
   NftMetadataAttributesHydrated copyWith({
     String? traitType,
-    String? $value,
+    String? value,
     int? occurance,
     double? frequency,
     double? floorPrice,
@@ -7972,7 +7973,7 @@ extension $NftMetadataAttributesHydratedExtension
   }) {
     return NftMetadataAttributesHydrated(
       traitType: traitType ?? this.traitType,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
       occurance: occurance ?? this.occurance,
       frequency: frequency ?? this.frequency,
       floorPrice: floorPrice ?? this.floorPrice,
@@ -7983,7 +7984,7 @@ extension $NftMetadataAttributesHydratedExtension
 
   NftMetadataAttributesHydrated copyWithWrapped({
     Wrapped<String>? traitType,
-    Wrapped<String>? $value,
+    Wrapped<String>? value,
     Wrapped<int>? occurance,
     Wrapped<double>? frequency,
     Wrapped<double>? floorPrice,
@@ -7992,7 +7993,7 @@ extension $NftMetadataAttributesHydratedExtension
   }) {
     return NftMetadataAttributesHydrated(
       traitType: (traitType != null ? traitType.value : this.traitType),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
       occurance: (occurance != null ? occurance.value : this.occurance),
       frequency: (frequency != null ? frequency.value : this.frequency),
       floorPrice: (floorPrice != null ? floorPrice.value : this.floorPrice),
@@ -8832,7 +8833,7 @@ class InventorySummaryDtoHydrated {
     required this.isVisible,
     required this.profile,
     required this.banner,
-    required this.$value,
+    required this.value,
     this.chain,
   });
 
@@ -8863,7 +8864,7 @@ class InventorySummaryDtoHydrated {
   @JsonKey(name: 'banner')
   final String banner;
   @JsonKey(name: 'value')
-  final double $value;
+  final double value;
   @JsonKey(
     name: 'chain',
     toJson: inventorySummaryDtoHydratedChainNullableToJson,
@@ -8885,7 +8886,7 @@ extension $InventorySummaryDtoHydratedExtension on InventorySummaryDtoHydrated {
     bool? isVisible,
     String? profile,
     String? banner,
-    double? $value,
+    double? value,
     enums.InventorySummaryDtoHydratedChain? chain,
   }) {
     return InventorySummaryDtoHydrated(
@@ -8899,7 +8900,7 @@ extension $InventorySummaryDtoHydratedExtension on InventorySummaryDtoHydrated {
       isVisible: isVisible ?? this.isVisible,
       profile: profile ?? this.profile,
       banner: banner ?? this.banner,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
       chain: chain ?? this.chain,
     );
   }
@@ -8915,7 +8916,7 @@ extension $InventorySummaryDtoHydratedExtension on InventorySummaryDtoHydrated {
     Wrapped<bool>? isVisible,
     Wrapped<String>? profile,
     Wrapped<String>? banner,
-    Wrapped<double>? $value,
+    Wrapped<double>? value,
     Wrapped<enums.InventorySummaryDtoHydratedChain?>? chain,
   }) {
     return InventorySummaryDtoHydrated(
@@ -8931,7 +8932,7 @@ extension $InventorySummaryDtoHydratedExtension on InventorySummaryDtoHydrated {
       isVisible: (isVisible != null ? isVisible.value : this.isVisible),
       profile: (profile != null ? profile.value : this.profile),
       banner: (banner != null ? banner.value : this.banner),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
       chain: (chain != null ? chain.value : this.chain),
     );
   }
@@ -20659,7 +20660,7 @@ class TransactionDetailed {
     required this.senderShard,
     this.signature,
     required this.status,
-    required this.$value,
+    required this.value,
     this.fee,
     required this.timestamp,
     this.data,
@@ -20708,7 +20709,7 @@ class TransactionDetailed {
   @JsonKey(name: 'status')
   final String status;
   @JsonKey(name: 'value')
-  final String $value;
+  final String value;
   @JsonKey(name: 'fee')
   final String? fee;
   @JsonKey(name: 'timestamp')
@@ -20757,7 +20758,7 @@ extension $TransactionDetailedExtension on TransactionDetailed {
     int? senderShard,
     String? signature,
     String? status,
-    String? $value,
+    String? value,
     String? fee,
     int? timestamp,
     String? data,
@@ -20786,7 +20787,7 @@ extension $TransactionDetailedExtension on TransactionDetailed {
       senderShard: senderShard ?? this.senderShard,
       signature: signature ?? this.signature,
       status: status ?? this.status,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
       fee: fee ?? this.fee,
       timestamp: timestamp ?? this.timestamp,
       data: data ?? this.data,
@@ -20817,7 +20818,7 @@ extension $TransactionDetailedExtension on TransactionDetailed {
     Wrapped<int>? senderShard,
     Wrapped<String?>? signature,
     Wrapped<String>? status,
-    Wrapped<String>? $value,
+    Wrapped<String>? value,
     Wrapped<String?>? fee,
     Wrapped<int>? timestamp,
     Wrapped<String?>? data,
@@ -20850,7 +20851,7 @@ extension $TransactionDetailedExtension on TransactionDetailed {
       senderShard: (senderShard != null ? senderShard.value : this.senderShard),
       signature: (signature != null ? signature.value : this.signature),
       status: (status != null ? status.value : this.status),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
       fee: (fee != null ? fee.value : this.fee),
       timestamp: (timestamp != null ? timestamp.value : this.timestamp),
       data: (data != null ? data.value : this.data),
@@ -20928,7 +20929,7 @@ class TransactionCreate {
     required this.sender,
     this.senderUsername,
     required this.signature,
-    required this.$value,
+    required this.value,
     required this.version,
     this.options,
     this.guardian,
@@ -20964,7 +20965,7 @@ class TransactionCreate {
   @JsonKey(name: 'signature')
   final String signature;
   @JsonKey(name: 'value')
-  final String $value;
+  final String value;
   @JsonKey(name: 'version')
   final double version;
   @JsonKey(name: 'options')
@@ -20992,7 +20993,7 @@ extension $TransactionCreateExtension on TransactionCreate {
     String? sender,
     String? senderUsername,
     String? signature,
-    String? $value,
+    String? value,
     double? version,
     double? options,
     String? guardian,
@@ -21011,7 +21012,7 @@ extension $TransactionCreateExtension on TransactionCreate {
       sender: sender ?? this.sender,
       senderUsername: senderUsername ?? this.senderUsername,
       signature: signature ?? this.signature,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
       version: version ?? this.version,
       options: options ?? this.options,
       guardian: guardian ?? this.guardian,
@@ -21032,7 +21033,7 @@ extension $TransactionCreateExtension on TransactionCreate {
     Wrapped<String>? sender,
     Wrapped<String?>? senderUsername,
     Wrapped<String>? signature,
-    Wrapped<String>? $value,
+    Wrapped<String>? value,
     Wrapped<double>? version,
     Wrapped<double?>? options,
     Wrapped<String?>? guardian,
@@ -21055,7 +21056,7 @@ extension $TransactionCreateExtension on TransactionCreate {
           ? senderUsername.value
           : this.senderUsername),
       signature: (signature != null ? signature.value : this.signature),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
       version: (version != null ? version.value : this.version),
       options: (options != null ? options.value : this.options),
       guardian: (guardian != null ? guardian.value : this.guardian),
@@ -21233,7 +21234,7 @@ extension $ChatMessageReplyDtoExtension on ChatMessageReplyDto {
 class ChatMessageContentDto {
   const ChatMessageContentDto({
     required this.type,
-    required this.$value,
+    required this.value,
     this.replyTo,
   });
 
@@ -21246,7 +21247,7 @@ class ChatMessageContentDto {
   @JsonKey(name: 'type')
   final String type;
   @JsonKey(name: 'value')
-  final String $value;
+  final String value;
   @JsonKey(name: 'replyTo')
   final ChatMessageReplyDto? replyTo;
   static const fromJsonFactory = _$ChatMessageContentDtoFromJson;
@@ -21255,24 +21256,24 @@ class ChatMessageContentDto {
 extension $ChatMessageContentDtoExtension on ChatMessageContentDto {
   ChatMessageContentDto copyWith({
     String? type,
-    String? $value,
+    String? value,
     ChatMessageReplyDto? replyTo,
   }) {
     return ChatMessageContentDto(
       type: type ?? this.type,
-      $value: $value ?? this.$value,
+      value: value ?? this.value,
       replyTo: replyTo ?? this.replyTo,
     );
   }
 
   ChatMessageContentDto copyWithWrapped({
     Wrapped<String>? type,
-    Wrapped<String>? $value,
+    Wrapped<String>? value,
     Wrapped<ChatMessageReplyDto?>? replyTo,
   }) {
     return ChatMessageContentDto(
       type: (type != null ? type.value : this.type),
-      $value: ($value != null ? $value.value : this.$value),
+      value: (value != null ? value.value : this.value),
       replyTo: (replyTo != null ? replyTo.value : this.replyTo),
     );
   }

@@ -2217,14 +2217,14 @@ NftMetadataAttributes _$NftMetadataAttributesFromJson(
   Map<String, dynamic> json,
 ) => NftMetadataAttributes(
   traitType: json['trait_type'] as String,
-  $value: json['value'] as String,
+  value: json['value'] as String,
 );
 
 Map<String, dynamic> _$NftMetadataAttributesToJson(
   NftMetadataAttributes instance,
 ) => <String, dynamic>{
   'trait_type': instance.traitType,
-  'value': instance.$value,
+  'value': instance.value,
 };
 
 NftMetadata _$NftMetadataFromJson(Map<String, dynamic> json) => NftMetadata(
@@ -2458,7 +2458,7 @@ NftMetadataAttributesHydrated _$NftMetadataAttributesHydratedFromJson(
   Map<String, dynamic> json,
 ) => NftMetadataAttributesHydrated(
   traitType: json['trait_type'] as String,
-  $value: json['value'] as String,
+  value: json['value'] as String,
   occurance: (json['occurance'] as num).toInt(),
   frequency: (json['frequency'] as num).toDouble(),
   floorPrice: (json['floorPrice'] as num).toDouble(),
@@ -2470,7 +2470,7 @@ Map<String, dynamic> _$NftMetadataAttributesHydratedToJson(
   NftMetadataAttributesHydrated instance,
 ) => <String, dynamic>{
   'trait_type': instance.traitType,
-  'value': instance.$value,
+  'value': instance.value,
   'occurance': instance.occurance,
   'frequency': instance.frequency,
   'floorPrice': instance.floorPrice,
@@ -2760,7 +2760,7 @@ InventorySummaryDtoHydrated _$InventorySummaryDtoHydratedFromJson(
   isVisible: json['isVisible'] as bool,
   profile: json['profile'] as String,
   banner: json['banner'] as String,
-  $value: (json['value'] as num).toDouble(),
+  value: (json['value'] as num).toDouble(),
   chain: inventorySummaryDtoHydratedChainNullableFromJson(json['chain']),
 );
 
@@ -2777,7 +2777,7 @@ Map<String, dynamic> _$InventorySummaryDtoHydratedToJson(
   'isVisible': instance.isVisible,
   'profile': instance.profile,
   'banner': instance.banner,
-  'value': instance.$value,
+  'value': instance.value,
   'chain': inventorySummaryDtoHydratedChainNullableToJson(instance.chain),
 };
 
@@ -6587,7 +6587,7 @@ TransactionDetailed _$TransactionDetailedFromJson(Map<String, dynamic> json) =>
       senderShard: (json['senderShard'] as num).toInt(),
       signature: json['signature'] as String?,
       status: json['status'] as String,
-      $value: json['value'] as String,
+      value: json['value'] as String,
       fee: json['fee'] as String?,
       timestamp: (json['timestamp'] as num).toInt(),
       data: json['data'] as String?,
@@ -6629,7 +6629,7 @@ Map<String, dynamic> _$TransactionDetailedToJson(
   'senderShard': instance.senderShard,
   'signature': instance.signature,
   'status': instance.status,
-  'value': instance.$value,
+  'value': instance.value,
   'fee': instance.fee,
   'timestamp': instance.timestamp,
   'data': instance.data,
@@ -6671,7 +6671,7 @@ TransactionCreate _$TransactionCreateFromJson(Map<String, dynamic> json) =>
       sender: json['sender'] as String,
       senderUsername: json['senderUsername'] as String?,
       signature: json['signature'] as String,
-      $value: json['value'] as String,
+      value: json['value'] as String,
       version: (json['version'] as num).toDouble(),
       options: (json['options'] as num?)?.toDouble(),
       guardian: json['guardian'] as String?,
@@ -6692,7 +6692,7 @@ Map<String, dynamic> _$TransactionCreateToJson(TransactionCreate instance) =>
       'sender': instance.sender,
       'senderUsername': instance.senderUsername,
       'signature': instance.signature,
-      'value': instance.$value,
+      'value': instance.value,
       'version': instance.version,
       'options': instance.options,
       'guardian': instance.guardian,
@@ -6753,7 +6753,7 @@ ChatMessageContentDto _$ChatMessageContentDtoFromJson(
   Map<String, dynamic> json,
 ) => ChatMessageContentDto(
   type: json['type'] as String,
-  $value: json['value'] as String,
+  value: json['value'] as String,
   replyTo: json['replyTo'] == null
       ? null
       : ChatMessageReplyDto.fromJson(json['replyTo'] as Map<String, dynamic>),
@@ -6763,7 +6763,7 @@ Map<String, dynamic> _$ChatMessageContentDtoToJson(
   ChatMessageContentDto instance,
 ) => <String, dynamic>{
   'type': instance.type,
-  'value': instance.$value,
+  'value': instance.value,
   'replyTo': instance.replyTo?.toJson(),
 };
 
